@@ -21,3 +21,15 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
+
+# Custom files — never overwrite on regeneration
+README.md
+pyproject.toml
+.gitignore
+.github/workflows/publish.yml
+.github/workflows/test.yml
+.travis.yml
+.gitlab-ci.yml
+setup.py
+setup.cfg
+tox.ini
