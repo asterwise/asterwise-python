@@ -343,10 +343,10 @@ class UtilitiesApi:
     @validate_call
     def timezone(
         self,
-        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
-        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
-        lat: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
-        lon: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
+        lat: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
+        lon: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -423,10 +423,10 @@ class UtilitiesApi:
     @validate_call
     def timezone_with_http_info(
         self,
-        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
-        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
-        lat: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
-        lon: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
+        lat: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
+        lon: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -503,10 +503,10 @@ class UtilitiesApi:
     @validate_call
     def timezone_without_preload_content(
         self,
-        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
-        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
-        lat: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
-        lon: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
+        lat: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
+        lon: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

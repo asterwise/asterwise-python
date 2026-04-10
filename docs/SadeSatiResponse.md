@@ -7,10 +7,17 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **natal_moon_sign** | **str** |  | 
 **natal_moon_sign_index** | **int** |  | 
-**sade_sati_signs** | **List[Dict[str, object]]** |  | 
+**sade_sati_signs** | **object** |  | 
 **classical_note** | **str** |  | 
 **is_currently_active** | **bool** |  | [optional] 
 **current_phase** | **str** |  | [optional] 
+**current_phase_description** | **str** |  | [optional] 
+**intensity_score** | **int** |  | [optional] 
+**intensity_label** | **str** |  | [optional] 
+**next_sade_sati** | **object** |  | [optional] 
+**all_periods** | **List[object]** |  | [optional] 
+**mitigated_by_own_sign** | **bool** |  | [optional] 
+**mitigated_by_exaltation** | **bool** |  | [optional] 
 
 ## Example
 

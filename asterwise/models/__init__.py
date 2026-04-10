@@ -15,16 +15,16 @@
 
 # import models into model package
 from asterwise.models.api_response_ashtakavarga_response import ApiResponseAshtakavargaResponse
-from asterwise.models.api_response_ashtottari_response import ApiResponseAshtottariResponse
+from asterwise.models.api_response_ashtottari_endpoint_response import ApiResponseAshtottariEndpointResponse
 from asterwise.models.api_response_chart_response import ApiResponseChartResponse
 from asterwise.models.api_response_choghadiya_response import ApiResponseChoghadiyaResponse
 from asterwise.models.api_response_compatibility_response import ApiResponseCompatibilityResponse
+from asterwise.models.api_response_dasha_endpoint_response import ApiResponseDashaEndpointResponse
 from asterwise.models.api_response_divisional_response import ApiResponseDivisionalResponse
-from asterwise.models.api_response_dosha_response import ApiResponseDoshaResponse
+from asterwise.models.api_response_dosha_endpoint_response import ApiResponseDoshaEndpointResponse
 from asterwise.models.api_response_geocode_response import ApiResponseGeocodeResponse
 from asterwise.models.api_response_hora_response import ApiResponseHoraResponse
 from asterwise.models.api_response_life_path_response import ApiResponseLifePathResponse
-from asterwise.models.api_response_list_dasha_period import ApiResponseListDashaPeriod
 from asterwise.models.api_response_lucky_numbers_api_response import ApiResponseLuckyNumbersApiResponse
 from asterwise.models.api_response_matchmaking_response import ApiResponseMatchmakingResponse
 from asterwise.models.api_response_natal_response import ApiResponseNatalResponse
@@ -38,10 +38,11 @@ from asterwise.models.api_response_sade_sati_response import ApiResponseSadeSati
 from asterwise.models.api_response_strength_response import ApiResponseStrengthResponse
 from asterwise.models.api_response_timezone_response import ApiResponseTimezoneResponse
 from asterwise.models.api_response_transits_response import ApiResponseTransitsResponse
-from asterwise.models.api_response_yoga_response import ApiResponseYogaResponse
-from asterwise.models.api_response_yogini_response import ApiResponseYoginiResponse
+from asterwise.models.api_response_yoga_endpoint_response import ApiResponseYogaEndpointResponse
+from asterwise.models.api_response_yogini_endpoint_response import ApiResponseYoginiEndpointResponse
 from asterwise.models.ashtakavarga_request import AshtakavargaRequest
 from asterwise.models.ashtakavarga_response import AshtakavargaResponse
+from asterwise.models.ashtottari_endpoint_response import AshtottariEndpointResponse
 from asterwise.models.ashtottari_period import AshtottariPeriod
 from asterwise.models.ashtottari_request import AshtottariRequest
 from asterwise.models.ashtottari_response import AshtottariResponse
@@ -68,6 +69,7 @@ from asterwise.models.compatibility_person_input import CompatibilityPersonInput
 from asterwise.models.compatibility_request import CompatibilityRequest
 from asterwise.models.compatibility_response import CompatibilityResponse
 from asterwise.models.core_number import CoreNumber
+from asterwise.models.dasha_endpoint_response import DashaEndpointResponse
 from asterwise.models.dasha_period import DashaPeriod
 from asterwise.models.dasha_report_request import DashaReportRequest
 from asterwise.models.dasha_request import DashaRequest
@@ -75,6 +77,7 @@ from asterwise.models.dasha_transits_request import DashaTransitsRequest
 from asterwise.models.dashakoot_request import DashakootRequest
 from asterwise.models.divisional_request import DivisionalRequest
 from asterwise.models.divisional_response import DivisionalResponse
+from asterwise.models.dosha_endpoint_response import DoshaEndpointResponse
 from asterwise.models.dosha_request import DoshaRequest
 from asterwise.models.dosha_result import DoshaResult
 from asterwise.models.forgot_password_request import ForgotPasswordRequest
@@ -145,8 +148,10 @@ from asterwise.models.vara_data import VaraData
 from asterwise.models.varshaphal_report_request import VarshaphalReportRequest
 from asterwise.models.varshaphal_request import VarshaphalRequest
 from asterwise.models.yoga_data import YogaData
+from asterwise.models.yoga_endpoint_response import YogaEndpointResponse
 from asterwise.models.yoga_request import YogaRequest
 from asterwise.models.yoga_result import YogaResult
+from asterwise.models.yogini_endpoint_response import YoginiEndpointResponse
 from asterwise.models.yogini_period import YoginiPeriod
 from asterwise.models.yogini_request import YoginiRequest
 from asterwise.models.yogini_response import YoginiResponse

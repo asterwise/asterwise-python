@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **dasha**
-> ApiResponseListDashaPeriod dasha(dasha_request)
+> ApiResponseDashaEndpointResponse dasha(dasha_request)
 
 Vimshottari Dasha periods
 
@@ -136,7 +136,7 @@ Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mah
 
 ```python
 import asterwise
-from asterwise.models.api_response_list_dasha_period import ApiResponseListDashaPeriod
+from asterwise.models.api_response_dasha_endpoint_response import ApiResponseDashaEndpointResponse
 from asterwise.models.dasha_request import DashaRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -183,7 +183,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiResponseListDashaPeriod**](ApiResponseListDashaPeriod.md)
+[**ApiResponseDashaEndpointResponse**](ApiResponseDashaEndpointResponse.md)
 
 ### Authorization
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **doshas**
-> ApiResponseDoshaResponse doshas(dosha_request)
+> ApiResponseDoshaEndpointResponse doshas(dosha_request)
 
 Calculate dosha report
 
@@ -216,7 +216,7 @@ Detect all major Vedic doshas in a natal chart — Mangal Dosha, Kaal Sarp Dosha
 
 ```python
 import asterwise
-from asterwise.models.api_response_dosha_response import ApiResponseDoshaResponse
+from asterwise.models.api_response_dosha_endpoint_response import ApiResponseDoshaEndpointResponse
 from asterwise.models.dosha_request import DoshaRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -263,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiResponseDoshaResponse**](ApiResponseDoshaResponse.md)
+[**ApiResponseDoshaEndpointResponse**](ApiResponseDoshaEndpointResponse.md)
 
 ### Authorization
 
@@ -1015,7 +1015,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **yogas**
-> ApiResponseYogaResponse yogas(yoga_request)
+> ApiResponseYogaEndpointResponse yogas(yoga_request)
 
 Calculate yoga combinations
 
@@ -1027,7 +1027,7 @@ Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, 
 
 ```python
 import asterwise
-from asterwise.models.api_response_yoga_response import ApiResponseYogaResponse
+from asterwise.models.api_response_yoga_endpoint_response import ApiResponseYogaEndpointResponse
 from asterwise.models.yoga_request import YogaRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -1074,7 +1074,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiResponseYogaResponse**](ApiResponseYogaResponse.md)
+[**ApiResponseYogaEndpointResponse**](ApiResponseYogaEndpointResponse.md)
 
 ### Authorization
 

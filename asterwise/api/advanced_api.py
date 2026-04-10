@@ -17,11 +17,11 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from asterwise.models.api_response_ashtakavarga_response import ApiResponseAshtakavargaResponse
-from asterwise.models.api_response_ashtottari_response import ApiResponseAshtottariResponse
+from asterwise.models.api_response_ashtottari_endpoint_response import ApiResponseAshtottariEndpointResponse
 from asterwise.models.api_response_divisional_response import ApiResponseDivisionalResponse
 from asterwise.models.api_response_strength_response import ApiResponseStrengthResponse
 from asterwise.models.api_response_transits_response import ApiResponseTransitsResponse
-from asterwise.models.api_response_yogini_response import ApiResponseYoginiResponse
+from asterwise.models.api_response_yogini_endpoint_response import ApiResponseYoginiEndpointResponse
 from asterwise.models.ashtakavarga_request import AshtakavargaRequest
 from asterwise.models.ashtottari_request import AshtottariRequest
 from asterwise.models.divisional_request import DivisionalRequest
@@ -340,7 +340,7 @@ class AdvancedApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponseAshtottariResponse:
+    ) -> ApiResponseAshtottariEndpointResponse:
         """Ashtottari Dasha
 
         Computes Ashtottari Dasha periods for a given birth chart.  **What is Ashtottari Dasha?** Ashtottari Dasha is a 108-year dasha cycle using 8 planets (excluding Ketu).  It is considered applicable only for specific charts where Rahu occupies a  Kendra (houses 1, 4, 7, 10) or Trikona (houses 1, 5, 9) from the Lagna.  **Applicability check:** This endpoint first checks whether Ashtottari applies to the given chart. If Rahu is not in a Kendra or Trikona house, the response will contain  `applicable: false` and a reason string instead of dasha periods.  **The 8 planets and their durations:** - Sun — 6 years - Moon — 15 years - Mars — 8 years - Mercury — 17 years - Saturn — 10 years - Jupiter — 19 years - Rahu — 12 years - Venus — 21 years  **Levels:** - `levels: 1` — returns Maha Dasha periods only - `levels: 2` — returns Maha Dasha with Antar Dasha sub-periods (default)  **Date format:** All dates are returned in DD/MM/YYYY format.  **Ayanamsa:** Default is Lahiri.
@@ -378,7 +378,7 @@ class AdvancedApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseAshtottariResponse",
+            '200': "ApiResponseAshtottariEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -408,7 +408,7 @@ class AdvancedApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ApiResponseAshtottariResponse]:
+    ) -> ApiResponse[ApiResponseAshtottariEndpointResponse]:
         """Ashtottari Dasha
 
         Computes Ashtottari Dasha periods for a given birth chart.  **What is Ashtottari Dasha?** Ashtottari Dasha is a 108-year dasha cycle using 8 planets (excluding Ketu).  It is considered applicable only for specific charts where Rahu occupies a  Kendra (houses 1, 4, 7, 10) or Trikona (houses 1, 5, 9) from the Lagna.  **Applicability check:** This endpoint first checks whether Ashtottari applies to the given chart. If Rahu is not in a Kendra or Trikona house, the response will contain  `applicable: false` and a reason string instead of dasha periods.  **The 8 planets and their durations:** - Sun — 6 years - Moon — 15 years - Mars — 8 years - Mercury — 17 years - Saturn — 10 years - Jupiter — 19 years - Rahu — 12 years - Venus — 21 years  **Levels:** - `levels: 1` — returns Maha Dasha periods only - `levels: 2` — returns Maha Dasha with Antar Dasha sub-periods (default)  **Date format:** All dates are returned in DD/MM/YYYY format.  **Ayanamsa:** Default is Lahiri.
@@ -446,7 +446,7 @@ class AdvancedApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseAshtottariResponse",
+            '200': "ApiResponseAshtottariEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -514,7 +514,7 @@ class AdvancedApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseAshtottariResponse",
+            '200': "ApiResponseAshtottariEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -1448,7 +1448,7 @@ class AdvancedApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponseYoginiResponse:
+    ) -> ApiResponseYoginiEndpointResponse:
         """Yogini Dasha
 
         Computes Yogini Dasha periods for a given birth chart.  **What is Yogini Dasha?** Yogini Dasha is a Nakshatra-based dasha system using 8 Yoginis, each ruled  by a planet. The total cycle is 36 years. It is considered highly accurate  for timing events in the near term and is widely used alongside Vimshottari.  **The 8 Yoginis and their durations:** - Mangala (Moon) — 1 year - Pingala (Sun) — 2 years - Dhanya (Jupiter) — 3 years - Bhramari (Mars) — 4 years - Bhadrika (Mercury) — 5 years - Ulka (Saturn) — 6 years - Siddha (Venus) — 7 years - Sankata (Rahu) — 8 years  **Starting Yogini** is determined by the Moon's Nakshatra at birth.  **Levels:** - `levels: 1` — returns Maha Dasha periods only - `levels: 2` — returns Maha Dasha with Antar Dasha sub-periods (default)  **Date format:** All dates are returned in DD/MM/YYYY format.  **Ayanamsa:** Default is Lahiri.
@@ -1486,7 +1486,7 @@ class AdvancedApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseYoginiResponse",
+            '200': "ApiResponseYoginiEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -1516,7 +1516,7 @@ class AdvancedApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ApiResponseYoginiResponse]:
+    ) -> ApiResponse[ApiResponseYoginiEndpointResponse]:
         """Yogini Dasha
 
         Computes Yogini Dasha periods for a given birth chart.  **What is Yogini Dasha?** Yogini Dasha is a Nakshatra-based dasha system using 8 Yoginis, each ruled  by a planet. The total cycle is 36 years. It is considered highly accurate  for timing events in the near term and is widely used alongside Vimshottari.  **The 8 Yoginis and their durations:** - Mangala (Moon) — 1 year - Pingala (Sun) — 2 years - Dhanya (Jupiter) — 3 years - Bhramari (Mars) — 4 years - Bhadrika (Mercury) — 5 years - Ulka (Saturn) — 6 years - Siddha (Venus) — 7 years - Sankata (Rahu) — 8 years  **Starting Yogini** is determined by the Moon's Nakshatra at birth.  **Levels:** - `levels: 1` — returns Maha Dasha periods only - `levels: 2` — returns Maha Dasha with Antar Dasha sub-periods (default)  **Date format:** All dates are returned in DD/MM/YYYY format.  **Ayanamsa:** Default is Lahiri.
@@ -1554,7 +1554,7 @@ class AdvancedApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseYoginiResponse",
+            '200': "ApiResponseYoginiEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -1622,7 +1622,7 @@ class AdvancedApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseYoginiResponse",
+            '200': "ApiResponseYoginiEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(

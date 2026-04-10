@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**present** | **bool** | Whether this dosha is present in the chart | 
+**present** | **bool** |  | [optional] 
 **types** | **List[Optional[str]]** | Dosha subtypes or tags detected for this dosha | [optional] 
-**details** | **Dict[str, object]** | Structured diagnostic details for dosha evaluation | [optional] 
+**details** | **object** | Structured diagnostic details for dosha evaluation | [optional] 
 **interpretation_summary** | **str** |  | [optional] 
 **keywords** | **List[str]** |  | [optional] 
 **remedies** | **List[str]** |  | [optional] 

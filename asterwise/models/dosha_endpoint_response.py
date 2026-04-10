@@ -18,23 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.dosha_result import DoshaResult
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class DoshaResult(BaseModel):
+class DoshaEndpointResponse(BaseModel):
     """
-    DoshaResult
+    DoshaEndpointResponse
     """ # noqa: E501
-    present: Optional[StrictBool] = None
-    types: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Dosha subtypes or tags detected for this dosha")
-    details: Optional[Dict[str, Any]] = Field(default=None, description="Structured diagnostic details for dosha evaluation")
-    interpretation_summary: Optional[StrictStr] = None
-    keywords: Optional[List[StrictStr]] = None
-    remedies: Optional[List[StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["present", "types", "details", "interpretation_summary", "keywords", "remedies"]
+    doshas: Dict[str, DoshaResult]
+    birth_time_unknown: Optional[StrictBool] = False
+    fallback_method: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["doshas", "birth_time_unknown", "fallback_method"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -54,7 +52,7 @@ class DoshaResult(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DoshaResult from a JSON string"""
+        """Create an instance of DoshaEndpointResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,31 +73,23 @@ class DoshaResult(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if present (nullable) is None
+        # override the default output from pydantic by calling `to_dict()` of each value in doshas (dict)
+        _field_dict = {}
+        if self.doshas:
+            for _key_doshas in self.doshas:
+                if self.doshas[_key_doshas]:
+                    _field_dict[_key_doshas] = self.doshas[_key_doshas].to_dict()
+            _dict['doshas'] = _field_dict
+        # set to None if fallback_method (nullable) is None
         # and model_fields_set contains the field
-        if self.present is None and "present" in self.model_fields_set:
-            _dict['present'] = None
-
-        # set to None if interpretation_summary (nullable) is None
-        # and model_fields_set contains the field
-        if self.interpretation_summary is None and "interpretation_summary" in self.model_fields_set:
-            _dict['interpretation_summary'] = None
-
-        # set to None if keywords (nullable) is None
-        # and model_fields_set contains the field
-        if self.keywords is None and "keywords" in self.model_fields_set:
-            _dict['keywords'] = None
-
-        # set to None if remedies (nullable) is None
-        # and model_fields_set contains the field
-        if self.remedies is None and "remedies" in self.model_fields_set:
-            _dict['remedies'] = None
+        if self.fallback_method is None and "fallback_method" in self.model_fields_set:
+            _dict['fallback_method'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DoshaResult from a dict"""
+        """Create an instance of DoshaEndpointResponse from a dict"""
         if obj is None:
             return None
 
@@ -107,12 +97,14 @@ class DoshaResult(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "present": obj.get("present"),
-            "types": obj.get("types"),
-            "details": obj.get("details"),
-            "interpretation_summary": obj.get("interpretation_summary"),
-            "keywords": obj.get("keywords"),
-            "remedies": obj.get("remedies")
+            "doshas": dict(
+                (_k, DoshaResult.from_dict(_v))
+                for _k, _v in obj["doshas"].items()
+            )
+            if obj.get("doshas") is not None
+            else None,
+            "birth_time_unknown": obj.get("birth_time_unknown") if obj.get("birth_time_unknown") is not None else False,
+            "fallback_method": obj.get("fallback_method")
         })
         return _obj
 

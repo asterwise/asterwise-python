@@ -21,16 +21,16 @@ from typing import Optional, Union
 from typing_extensions import Annotated
 from asterwise.models.api_response_chart_response import ApiResponseChartResponse
 from asterwise.models.api_response_choghadiya_response import ApiResponseChoghadiyaResponse
-from asterwise.models.api_response_dosha_response import ApiResponseDoshaResponse
+from asterwise.models.api_response_dasha_endpoint_response import ApiResponseDashaEndpointResponse
+from asterwise.models.api_response_dosha_endpoint_response import ApiResponseDoshaEndpointResponse
 from asterwise.models.api_response_hora_response import ApiResponseHoraResponse
-from asterwise.models.api_response_list_dasha_period import ApiResponseListDashaPeriod
 from asterwise.models.api_response_matchmaking_response import ApiResponseMatchmakingResponse
 from asterwise.models.api_response_natal_response import ApiResponseNatalResponse
 from asterwise.models.api_response_panchanga_calendar_response import ApiResponsePanchangaCalendarResponse
 from asterwise.models.api_response_panchanga_response import ApiResponsePanchangaResponse
 from asterwise.models.api_response_rahu_kaal_response import ApiResponseRahuKaalResponse
 from asterwise.models.api_response_sade_sati_response import ApiResponseSadeSatiResponse
-from asterwise.models.api_response_yoga_response import ApiResponseYogaResponse
+from asterwise.models.api_response_yoga_endpoint_response import ApiResponseYogaEndpointResponse
 from asterwise.models.chart_request import ChartRequest
 from asterwise.models.dasha_request import DashaRequest
 from asterwise.models.dosha_request import DoshaRequest
@@ -353,7 +353,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponseListDashaPeriod:
+    ) -> ApiResponseDashaEndpointResponse:
         """Vimshottari Dasha periods
 
         Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha from Phaladeepika sources. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
@@ -391,7 +391,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseListDashaPeriod",
+            '200': "ApiResponseDashaEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -421,7 +421,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ApiResponseListDashaPeriod]:
+    ) -> ApiResponse[ApiResponseDashaEndpointResponse]:
         """Vimshottari Dasha periods
 
         Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha from Phaladeepika sources. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
@@ -459,7 +459,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseListDashaPeriod",
+            '200': "ApiResponseDashaEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -527,7 +527,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseListDashaPeriod",
+            '200': "ApiResponseDashaEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -630,7 +630,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponseDoshaResponse:
+    ) -> ApiResponseDoshaEndpointResponse:
         """Calculate dosha report
 
         Detect all major Vedic doshas in a natal chart — Mangal Dosha, Kaal Sarp Dosha, Gandmool, Grahan, Guru Chandal, Kemdrum, Shrapit, and Pitru Dosha. Present doshas include cancellation analysis, classical interpretation, keywords, and traditional remedies.
@@ -668,7 +668,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseDoshaResponse",
+            '200': "ApiResponseDoshaEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -698,7 +698,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ApiResponseDoshaResponse]:
+    ) -> ApiResponse[ApiResponseDoshaEndpointResponse]:
         """Calculate dosha report
 
         Detect all major Vedic doshas in a natal chart — Mangal Dosha, Kaal Sarp Dosha, Gandmool, Grahan, Guru Chandal, Kemdrum, Shrapit, and Pitru Dosha. Present doshas include cancellation analysis, classical interpretation, keywords, and traditional remedies.
@@ -736,7 +736,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseDoshaResponse",
+            '200': "ApiResponseDoshaEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -804,7 +804,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseDoshaResponse",
+            '200': "ApiResponseDoshaEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -1728,8 +1728,8 @@ class AstrologyApi:
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Year")],
         month: Annotated[int, Field(le=12, strict=True, ge=1, description="Month (1-12)")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone (required with lat/lon; ignored when using location alone)")] = None,
         ayanamsa: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1820,8 +1820,8 @@ class AstrologyApi:
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Year")],
         month: Annotated[int, Field(le=12, strict=True, ge=1, description="Month (1-12)")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone (required with lat/lon; ignored when using location alone)")] = None,
         ayanamsa: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1912,8 +1912,8 @@ class AstrologyApi:
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Year")],
         month: Annotated[int, Field(le=12, strict=True, ge=1, description="Month (1-12)")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone (required with lat/lon; ignored when using location alone)")] = None,
         ayanamsa: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -3491,7 +3491,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponseYogaResponse:
+    ) -> ApiResponseYogaEndpointResponse:
         """Calculate yoga combinations
 
         Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, classical results, modern summary, and keywords.
@@ -3529,7 +3529,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseYogaResponse",
+            '200': "ApiResponseYogaEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -3559,7 +3559,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ApiResponseYogaResponse]:
+    ) -> ApiResponse[ApiResponseYogaEndpointResponse]:
         """Calculate yoga combinations
 
         Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, classical results, modern summary, and keywords.
@@ -3597,7 +3597,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseYogaResponse",
+            '200': "ApiResponseYogaEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(
@@ -3665,7 +3665,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseYogaResponse",
+            '200': "ApiResponseYogaEndpointResponse",
             '422': "HTTPValidationError",
         }
         response_data = self.api_client.call_api(

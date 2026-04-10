@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 # Define package exports
 __all__ = [
@@ -39,16 +39,16 @@ __all__ = [
     "ApiAttributeError",
     "ApiException",
     "ApiResponseAshtakavargaResponse",
-    "ApiResponseAshtottariResponse",
+    "ApiResponseAshtottariEndpointResponse",
     "ApiResponseChartResponse",
     "ApiResponseChoghadiyaResponse",
     "ApiResponseCompatibilityResponse",
+    "ApiResponseDashaEndpointResponse",
     "ApiResponseDivisionalResponse",
-    "ApiResponseDoshaResponse",
+    "ApiResponseDoshaEndpointResponse",
     "ApiResponseGeocodeResponse",
     "ApiResponseHoraResponse",
     "ApiResponseLifePathResponse",
-    "ApiResponseListDashaPeriod",
     "ApiResponseLuckyNumbersApiResponse",
     "ApiResponseMatchmakingResponse",
     "ApiResponseNatalResponse",
@@ -62,10 +62,11 @@ __all__ = [
     "ApiResponseStrengthResponse",
     "ApiResponseTimezoneResponse",
     "ApiResponseTransitsResponse",
-    "ApiResponseYogaResponse",
-    "ApiResponseYoginiResponse",
+    "ApiResponseYogaEndpointResponse",
+    "ApiResponseYoginiEndpointResponse",
     "AshtakavargaRequest",
     "AshtakavargaResponse",
+    "AshtottariEndpointResponse",
     "AshtottariPeriod",
     "AshtottariRequest",
     "AshtottariResponse",
@@ -92,6 +93,7 @@ __all__ = [
     "CompatibilityRequest",
     "CompatibilityResponse",
     "CoreNumber",
+    "DashaEndpointResponse",
     "DashaPeriod",
     "DashaReportRequest",
     "DashaRequest",
@@ -99,6 +101,7 @@ __all__ = [
     "DashakootRequest",
     "DivisionalRequest",
     "DivisionalResponse",
+    "DoshaEndpointResponse",
     "DoshaRequest",
     "DoshaResult",
     "ForgotPasswordRequest",
@@ -169,8 +172,10 @@ __all__ = [
     "VarshaphalReportRequest",
     "VarshaphalRequest",
     "YogaData",
+    "YogaEndpointResponse",
     "YogaRequest",
     "YogaResult",
+    "YoginiEndpointResponse",
     "YoginiPeriod",
     "YoginiRequest",
     "YoginiResponse",
@@ -201,16 +206,16 @@ from asterwise.exceptions import ApiException as ApiException
 
 # import models into sdk package
 from asterwise.models.api_response_ashtakavarga_response import ApiResponseAshtakavargaResponse as ApiResponseAshtakavargaResponse
-from asterwise.models.api_response_ashtottari_response import ApiResponseAshtottariResponse as ApiResponseAshtottariResponse
+from asterwise.models.api_response_ashtottari_endpoint_response import ApiResponseAshtottariEndpointResponse as ApiResponseAshtottariEndpointResponse
 from asterwise.models.api_response_chart_response import ApiResponseChartResponse as ApiResponseChartResponse
 from asterwise.models.api_response_choghadiya_response import ApiResponseChoghadiyaResponse as ApiResponseChoghadiyaResponse
 from asterwise.models.api_response_compatibility_response import ApiResponseCompatibilityResponse as ApiResponseCompatibilityResponse
+from asterwise.models.api_response_dasha_endpoint_response import ApiResponseDashaEndpointResponse as ApiResponseDashaEndpointResponse
 from asterwise.models.api_response_divisional_response import ApiResponseDivisionalResponse as ApiResponseDivisionalResponse
-from asterwise.models.api_response_dosha_response import ApiResponseDoshaResponse as ApiResponseDoshaResponse
+from asterwise.models.api_response_dosha_endpoint_response import ApiResponseDoshaEndpointResponse as ApiResponseDoshaEndpointResponse
 from asterwise.models.api_response_geocode_response import ApiResponseGeocodeResponse as ApiResponseGeocodeResponse
 from asterwise.models.api_response_hora_response import ApiResponseHoraResponse as ApiResponseHoraResponse
 from asterwise.models.api_response_life_path_response import ApiResponseLifePathResponse as ApiResponseLifePathResponse
-from asterwise.models.api_response_list_dasha_period import ApiResponseListDashaPeriod as ApiResponseListDashaPeriod
 from asterwise.models.api_response_lucky_numbers_api_response import ApiResponseLuckyNumbersApiResponse as ApiResponseLuckyNumbersApiResponse
 from asterwise.models.api_response_matchmaking_response import ApiResponseMatchmakingResponse as ApiResponseMatchmakingResponse
 from asterwise.models.api_response_natal_response import ApiResponseNatalResponse as ApiResponseNatalResponse
@@ -224,10 +229,11 @@ from asterwise.models.api_response_sade_sati_response import ApiResponseSadeSati
 from asterwise.models.api_response_strength_response import ApiResponseStrengthResponse as ApiResponseStrengthResponse
 from asterwise.models.api_response_timezone_response import ApiResponseTimezoneResponse as ApiResponseTimezoneResponse
 from asterwise.models.api_response_transits_response import ApiResponseTransitsResponse as ApiResponseTransitsResponse
-from asterwise.models.api_response_yoga_response import ApiResponseYogaResponse as ApiResponseYogaResponse
-from asterwise.models.api_response_yogini_response import ApiResponseYoginiResponse as ApiResponseYoginiResponse
+from asterwise.models.api_response_yoga_endpoint_response import ApiResponseYogaEndpointResponse as ApiResponseYogaEndpointResponse
+from asterwise.models.api_response_yogini_endpoint_response import ApiResponseYoginiEndpointResponse as ApiResponseYoginiEndpointResponse
 from asterwise.models.ashtakavarga_request import AshtakavargaRequest as AshtakavargaRequest
 from asterwise.models.ashtakavarga_response import AshtakavargaResponse as AshtakavargaResponse
+from asterwise.models.ashtottari_endpoint_response import AshtottariEndpointResponse as AshtottariEndpointResponse
 from asterwise.models.ashtottari_period import AshtottariPeriod as AshtottariPeriod
 from asterwise.models.ashtottari_request import AshtottariRequest as AshtottariRequest
 from asterwise.models.ashtottari_response import AshtottariResponse as AshtottariResponse
@@ -254,6 +260,7 @@ from asterwise.models.compatibility_person_input import CompatibilityPersonInput
 from asterwise.models.compatibility_request import CompatibilityRequest as CompatibilityRequest
 from asterwise.models.compatibility_response import CompatibilityResponse as CompatibilityResponse
 from asterwise.models.core_number import CoreNumber as CoreNumber
+from asterwise.models.dasha_endpoint_response import DashaEndpointResponse as DashaEndpointResponse
 from asterwise.models.dasha_period import DashaPeriod as DashaPeriod
 from asterwise.models.dasha_report_request import DashaReportRequest as DashaReportRequest
 from asterwise.models.dasha_request import DashaRequest as DashaRequest
@@ -261,6 +268,7 @@ from asterwise.models.dasha_transits_request import DashaTransitsRequest as Dash
 from asterwise.models.dashakoot_request import DashakootRequest as DashakootRequest
 from asterwise.models.divisional_request import DivisionalRequest as DivisionalRequest
 from asterwise.models.divisional_response import DivisionalResponse as DivisionalResponse
+from asterwise.models.dosha_endpoint_response import DoshaEndpointResponse as DoshaEndpointResponse
 from asterwise.models.dosha_request import DoshaRequest as DoshaRequest
 from asterwise.models.dosha_result import DoshaResult as DoshaResult
 from asterwise.models.forgot_password_request import ForgotPasswordRequest as ForgotPasswordRequest
@@ -331,8 +339,10 @@ from asterwise.models.vara_data import VaraData as VaraData
 from asterwise.models.varshaphal_report_request import VarshaphalReportRequest as VarshaphalReportRequest
 from asterwise.models.varshaphal_request import VarshaphalRequest as VarshaphalRequest
 from asterwise.models.yoga_data import YogaData as YogaData
+from asterwise.models.yoga_endpoint_response import YogaEndpointResponse as YogaEndpointResponse
 from asterwise.models.yoga_request import YogaRequest as YogaRequest
 from asterwise.models.yoga_result import YogaResult as YogaResult
+from asterwise.models.yogini_endpoint_response import YoginiEndpointResponse as YoginiEndpointResponse
 from asterwise.models.yogini_period import YoginiPeriod as YoginiPeriod
 from asterwise.models.yogini_request import YoginiRequest as YoginiRequest
 from asterwise.models.yogini_response import YoginiResponse as YoginiResponse

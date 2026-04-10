@@ -30,11 +30,18 @@ class SadeSatiResponse(BaseModel):
     """ # noqa: E501
     natal_moon_sign: StrictStr
     natal_moon_sign_index: StrictInt
-    sade_sati_signs: List[Dict[str, Any]]
+    sade_sati_signs: Dict[str, Any]
     classical_note: StrictStr
     is_currently_active: Optional[StrictBool] = None
     current_phase: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["natal_moon_sign", "natal_moon_sign_index", "sade_sati_signs", "classical_note", "is_currently_active", "current_phase"]
+    current_phase_description: Optional[StrictStr] = None
+    intensity_score: Optional[StrictInt] = None
+    intensity_label: Optional[StrictStr] = None
+    next_sade_sati: Optional[Dict[str, Any]] = None
+    all_periods: Optional[List[Dict[str, Any]]] = None
+    mitigated_by_own_sign: Optional[StrictBool] = None
+    mitigated_by_exaltation: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["natal_moon_sign", "natal_moon_sign_index", "sade_sati_signs", "classical_note", "is_currently_active", "current_phase", "current_phase_description", "intensity_score", "intensity_label", "next_sade_sati", "all_periods", "mitigated_by_own_sign", "mitigated_by_exaltation"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -85,6 +92,41 @@ class SadeSatiResponse(BaseModel):
         if self.current_phase is None and "current_phase" in self.model_fields_set:
             _dict['current_phase'] = None
 
+        # set to None if current_phase_description (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_phase_description is None and "current_phase_description" in self.model_fields_set:
+            _dict['current_phase_description'] = None
+
+        # set to None if intensity_score (nullable) is None
+        # and model_fields_set contains the field
+        if self.intensity_score is None and "intensity_score" in self.model_fields_set:
+            _dict['intensity_score'] = None
+
+        # set to None if intensity_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.intensity_label is None and "intensity_label" in self.model_fields_set:
+            _dict['intensity_label'] = None
+
+        # set to None if next_sade_sati (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_sade_sati is None and "next_sade_sati" in self.model_fields_set:
+            _dict['next_sade_sati'] = None
+
+        # set to None if all_periods (nullable) is None
+        # and model_fields_set contains the field
+        if self.all_periods is None and "all_periods" in self.model_fields_set:
+            _dict['all_periods'] = None
+
+        # set to None if mitigated_by_own_sign (nullable) is None
+        # and model_fields_set contains the field
+        if self.mitigated_by_own_sign is None and "mitigated_by_own_sign" in self.model_fields_set:
+            _dict['mitigated_by_own_sign'] = None
+
+        # set to None if mitigated_by_exaltation (nullable) is None
+        # and model_fields_set contains the field
+        if self.mitigated_by_exaltation is None and "mitigated_by_exaltation" in self.model_fields_set:
+            _dict['mitigated_by_exaltation'] = None
+
         return _dict
 
     @classmethod
@@ -102,7 +144,14 @@ class SadeSatiResponse(BaseModel):
             "sade_sati_signs": obj.get("sade_sati_signs"),
             "classical_note": obj.get("classical_note"),
             "is_currently_active": obj.get("is_currently_active"),
-            "current_phase": obj.get("current_phase")
+            "current_phase": obj.get("current_phase"),
+            "current_phase_description": obj.get("current_phase_description"),
+            "intensity_score": obj.get("intensity_score"),
+            "intensity_label": obj.get("intensity_label"),
+            "next_sade_sati": obj.get("next_sade_sati"),
+            "all_periods": obj.get("all_periods"),
+            "mitigated_by_own_sign": obj.get("mitigated_by_own_sign"),
+            "mitigated_by_exaltation": obj.get("mitigated_by_exaltation")
         })
         return _obj
 

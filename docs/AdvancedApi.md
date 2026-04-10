@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ashtottari_dasha**
-> ApiResponseAshtottariResponse ashtottari_dasha(ashtottari_request)
+> ApiResponseAshtottariEndpointResponse ashtottari_dasha(ashtottari_request)
 
 Ashtottari Dasha
 
@@ -171,7 +171,7 @@ If Rahu is not in a Kendra or Trikona house, the response will contain
 
 ```python
 import asterwise
-from asterwise.models.api_response_ashtottari_response import ApiResponseAshtottariResponse
+from asterwise.models.api_response_ashtottari_endpoint_response import ApiResponseAshtottariEndpointResponse
 from asterwise.models.ashtottari_request import AshtottariRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiResponseAshtottariResponse**](ApiResponseAshtottariResponse.md)
+[**ApiResponseAshtottariEndpointResponse**](ApiResponseAshtottariEndpointResponse.md)
 
 ### Authorization
 
@@ -512,7 +512,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **yogini_dasha**
-> ApiResponseYoginiResponse yogini_dasha(yogini_request)
+> ApiResponseYoginiEndpointResponse yogini_dasha(yogini_request)
 
 Yogini Dasha
 
@@ -549,7 +549,7 @@ for timing events in the near term and is widely used alongside Vimshottari.
 
 ```python
 import asterwise
-from asterwise.models.api_response_yogini_response import ApiResponseYoginiResponse
+from asterwise.models.api_response_yogini_endpoint_response import ApiResponseYoginiEndpointResponse
 from asterwise.models.yogini_request import YoginiRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -596,7 +596,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiResponseYoginiResponse**](ApiResponseYoginiResponse.md)
+[**ApiResponseYoginiEndpointResponse**](ApiResponseYoginiEndpointResponse.md)
 
 ### Authorization
 
