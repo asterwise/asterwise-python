@@ -5,22 +5,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**d1** | **Dict[str, object]** | Rashi — the natal chart itself | 
-**d2** | **Dict[str, object]** | Hora — wealth and financial potential | 
-**d3** | **Dict[str, object]** | Drekkana — siblings and courage | 
-**d4** | **Dict[str, object]** | Chaturthamsha — property and fixed assets | 
-**d7** | **Dict[str, object]** | Saptamsha — children and creative output | 
-**d9** | **Dict[str, object]** | Navamsha — spouse, dharma, and deeper soul purpose. The most important divisional chart. | 
-**d10** | **Dict[str, object]** | Dashamsha — career and professional life | 
-**d12** | **Dict[str, object]** | Dwadashamsha — parents and ancestral karma | 
-**d16** | **Dict[str, object]** | Shodashamsha — vehicles and comforts | 
-**d20** | **Dict[str, object]** | Vimshamsha — spiritual life and upasana | 
-**d24** | **Dict[str, object]** | Chaturvimshamsha — education and learning | 
-**d27** | **Dict[str, object]** | Bhamsha — strength and physical vitality | 
-**d30** | **Dict[str, object]** | Trimshamsha — misfortunes and evils | 
-**d40** | **Dict[str, object]** | Khavedamsha — auspicious and inauspicious effects | 
-**d45** | **Dict[str, object]** | Akshavedamsha — all matters of life | 
-**d60** | **Dict[str, object]** | Shashtyamsha — all matters, most subtle divisional chart | 
+**d1** | **object** | Rashi — the natal chart itself | 
+**d2** | **object** | Hora — wealth and financial potential | 
+**d3** | **object** | Drekkana — siblings and courage | 
+**d4** | **object** | Chaturthamsha — property and fixed assets | 
+**d7** | **object** | Saptamsha — children and creative output | 
+**d9** | **object** | Navamsha — spouse, dharma, and deeper soul purpose. The most important divisional chart. | 
+**d10** | **object** | Dashamsha — career and professional life | 
+**d12** | **object** | Dwadashamsha — parents and ancestral karma | 
+**d16** | **object** | Shodashamsha — vehicles and comforts | 
+**d20** | **object** | Vimshamsha — spiritual life and upasana | 
+**d24** | **object** | Chaturvimshamsha — education and learning | 
+**d27** | **object** | Bhamsha — strength and physical vitality | 
+**d30** | **object** | Trimshamsha — misfortunes and evils | 
+**d40** | **object** | Khavedamsha — auspicious and inauspicious effects | 
+**d45** | **object** | Akshavedamsha — all matters of life | 
+**d60** | **object** | Shashtyamsha — all matters, most subtle divisional chart | 
 **birth_time_unknown** | **bool** | True if birth time was unknown and sunrise was used. | [optional] [default to False]
 **fallback_method** | **str** |  | [optional] 
 

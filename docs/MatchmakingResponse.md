@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **total_score** | **float** | Overall Guna Milan score out of 36 | 
 **breakdown** | **Dict[str, float]** | Per-koota score breakdown | 
 **compatibility_level** | **str** | Textual compatibility band derived from score | 
-**doshas** | **Dict[str, object]** | Detected compatibility doshas | 
-**dosha_cancellations** | **Dict[str, object]** | Traditional dosha cancellation flags | 
-**analysis** | **Dict[str, object]** | Additional high-level matchmaking analysis details | 
-**classical_vetoes** | **Dict[str, object]** |  | [optional] 
-**mangal_compatibility** | **Dict[str, object]** |  | [optional] 
-**supplementary_checks** | **Dict[str, object]** |  | [optional] 
-**compatibility_narrative** | **Dict[str, object]** |  | [optional] 
+**doshas** | **object** | Detected compatibility doshas | 
+**dosha_cancellations** | **object** | Traditional dosha cancellation flags | 
+**analysis** | **object** | Additional high-level matchmaking analysis details | 
+**classical_vetoes** | **object** |  | [optional] 
+**mangal_compatibility** | **object** |  | [optional] 
+**supplementary_checks** | **object** |  | [optional] 
+**compatibility_narrative** | **object** |  | [optional] 
 **birth_time_unknown** | **bool** | Whether fallback birth time was used for one or both persons | [optional] [default to False]
 **fallback_method** | **str** |  | [optional] 
 

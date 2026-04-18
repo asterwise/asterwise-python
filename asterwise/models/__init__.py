@@ -50,7 +50,6 @@ from asterwise.models.atmakaraka_request import AtmakarakaRequest
 from asterwise.models.authorize_consent_body import AuthorizeConsentBody
 from asterwise.models.bhava_madhya_entry import BhavaMadhyaEntry
 from asterwise.models.birth_input import BirthInput
-from asterwise.models.branding_params import BrandingParams
 from asterwise.models.business_name_post_request import BusinessNamePostRequest
 from asterwise.models.calendar_day import CalendarDay
 from asterwise.models.calendar_karana import CalendarKarana
@@ -71,7 +70,6 @@ from asterwise.models.compatibility_response import CompatibilityResponse
 from asterwise.models.core_number import CoreNumber
 from asterwise.models.dasha_endpoint_response import DashaEndpointResponse
 from asterwise.models.dasha_period import DashaPeriod
-from asterwise.models.dasha_report_request import DashaReportRequest
 from asterwise.models.dasha_request import DashaRequest
 from asterwise.models.dasha_transits_request import DashaTransitsRequest
 from asterwise.models.dashakoot_request import DashakootRequest
@@ -96,14 +94,12 @@ from asterwise.models.kp_birth_request import KPBirthRequest
 from asterwise.models.kp_ruling_planets_request import KPRulingPlanetsRequest
 from asterwise.models.kaal_period import KaalPeriod
 from asterwise.models.karana_data import KaranaData
-from asterwise.models.kundli_report_request import KundliReportRequest
 from asterwise.models.lal_kitab_request import LalKitabRequest
 from asterwise.models.life_path_response import LifePathResponse
 from asterwise.models.lo_shu_request import LoShuRequest
 from asterwise.models.location_inner import LocationInner
 from asterwise.models.login_request import LoginRequest
 from asterwise.models.lucky_numbers_api_response import LuckyNumbersApiResponse
-from asterwise.models.matchmaking_pdf_request import MatchmakingPdfRequest
 from asterwise.models.matchmaking_request import MatchmakingRequest
 from asterwise.models.matchmaking_response import MatchmakingResponse
 from asterwise.models.muhurta_request import MuhurtaRequest
@@ -145,7 +141,6 @@ from asterwise.models.transits_response import TransitsResponse
 from asterwise.models.upapada_lagna import UpapadaLagna
 from asterwise.models.validation_error import ValidationError
 from asterwise.models.vara_data import VaraData
-from asterwise.models.varshaphal_report_request import VarshaphalReportRequest
 from asterwise.models.varshaphal_request import VarshaphalRequest
 from asterwise.models.yoga_data import YogaData
 from asterwise.models.yoga_endpoint_response import YogaEndpointResponse

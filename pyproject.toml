@@ -1,6 +1,6 @@
 [project]
 name = "asterwise"
-version = "0.1.2"
+version = "0.1.4"
 description = "Asterwise API"
 authors = [
   {name = "Asterwise",email = "support@asterwise.com"},

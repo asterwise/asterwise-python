@@ -10,5 +10,3 @@ from asterwise.api.horoscope_api import HoroscopeApi
 from asterwise.api.kp_api import KpApi
 from asterwise.api.lal_kitab_api import LalKitabApi
 from asterwise.api.prashna_api import PrashnaApi
-from asterwise.api.reports_api import ReportsApi
-
