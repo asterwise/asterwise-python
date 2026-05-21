@@ -374,4 +374,177 @@ No `AsyncApiClient` or `async def` API methods in `asterwise/api/`.
 
 ---
 
-*Next pass: Pass 2 — endpoint coverage gaps, type-hint completeness, test coverage of public surface.*
+## Pass 2 — coverage gap mapping, method quality, test surface depth
+
+**Pass 2 audit date:** 2026-05-21
+**Commit at audit time:** 259c3ef (Pass 1 baseline)
+**Findings raised:** F-61 through F-68 in
+asterwise-api/_docs/audits/REPO_AUDIT_FINDINGS.md
+**Refines:** F-29 (Pass 1) — extended in place with per-tag
+uncovered breakdown in commit a84a5c39b3a7103a83ee3e866a97f84d898d5c9d
+
+### SDK file inventory
+asterwise/api/*.py files (excluding __init__.py): 9 modules.
+
+Per-module public method count (excluding _with_http_info,
+_without_preload_content, _serialize, _deserialize helpers):
+
+| Module                    | Methods |
+|---------------------------|---------|
+| astrology_api.py          | 13      |
+| astrology0_api.py         | 14      |
+| numerology_api.py         | 14      |
+| advanced_api.py           | 6       |
+| horoscope_api.py          | 4       |
+| kp_api.py                 | 3       |
+| lal_kitab_api.py          | 2       |
+| utilities_api.py          | 2       |
+| prashna_api.py            | 1       |
+| **Total**                 | **59**  |
+
+astrology0_api defines 14 methods but Astrology0Api is not
+exported at package root — tracked as F-40 from Pass 1 sweep.
+
+### Coverage match: per-operation against live API
+- Live OpenAPI operations: 117
+- SDK HTTP bindings: 59
+- Covered: 59 (50.4%)
+- Uncovered: 58 (49.6%)
+- SDK methods with no matching API operation: 0
+
+Matching uses HTTP method + resource_path from param_serialize
+in generated code (not operationId, which doesn't match SDK
+method names by design — openapi-generator strips verbose
+`_v1_..._post` suffixes).
+
+### Uncovered operations by OpenAPI tag
+
+| Tag                | Uncovered ops |
+|--------------------|---------------|
+| Western Astrology  | 16            |
+| Astrology          | 11            |
+| Numerology         | 10            |
+| Tarot              | 9             |
+| Crystals           | 5             |
+| Western            | 5             |
+| Dreams             | 2             |
+| **Total**          | **58**        |
+
+Tarot, Crystals, and Dreams are entire categories absent from
+the SDK. Western Astrology has the largest absolute gap (16 ops
+— synastry, transits weekly/monthly, progressions secondary/
+solar-arc, etc.). Numerology gaps cluster around the "computed
+number" tools (Soul Urge, Personality, Maturity, Karmic Lessons,
+Personal Cycles, Expression, Balance) and the Angel-number tools
+(personal/today/{number}). This pattern parallels F-54 almost
+exactly (docs coverage gap by category).
+
+### Per-method quality scoring
+Scored each of 59 methods against 6 signals: docstring present,
+all business params typed, return annotation, :raises in docstring,
+example/usage block, docstring length ≥200 chars.
+
+| Signals | Methods |
+|---------|---------|
+| 4/6     | 2 (geocode, timezone)  |
+| 3/6     | 57      |
+| <3      | 0       |
+
+Consistent failures across the suite:
+- 0 methods have :raises sections
+- 0 methods have example/usage blocks
+- All 59 have docstrings (generated from OpenAPI descriptions),
+  all params typed (Pydantic validate_call), all return-annotated
+  (typed Pydantic response models)
+- Median docstring length: long (generated prose) but lacking
+  structured raises/examples blocks
+Recorded as F-64 and F-65.
+
+### Type hint posture
+- py.typed marker: present (PEP 561 compliant — SDK exports
+  type hints to consumers)
+- `from typing` imports: extensive
+- Optional[] annotations: 1,554 across asterwise/
+- Union[] annotations: 344 across asterwise/
+- [tool.mypy] strict: off (commented in pyproject.toml)
+- [tool.mypy] files: references "tests" (doesn't exist —
+  actual dir is "test"). Recorded as F-67.
+
+### Test surface depth
+- Test files: 150 (every one carries openapi-generator banner)
+- Test LOC: 10,642
+- def test_* methods: 59
+- self.assert / assert statements: 0
+
+The generated stubs are file-shaped but empty of test value.
+Every test_* body is `pass`. Recorded as F-62 (HIGH severity).
+
+### Error handling
+asterwise/exceptions.py exposes a structured hierarchy:
+- OpenApiException (root)
+- ApiException (HTTP status base)
+- BadRequestException (400)
+- UnauthorizedException (401)
+- ForbiddenException (403)
+- NotFoundException (404)
+- ConflictException (409)
+- UnprocessableEntityException (422)
+- ServiceException (5xx base)
+- Various typed Api*Error subclasses
+
+Exceptions are raised by ApiException.from_response in the
+api_client layer based on HTTP status. The structure is sound;
+the gap (recorded as F-65) is that individual API methods don't
+document which of these exceptions they may raise.
+
+### Configuration surface
+asterwise/configuration.py exposes:
+- retries: int | urllib3.util.retry.Retry
+- verify_ssl: bool
+- connection_pool_maxsize: int
+- proxy: str
+- cert_file / key_file
+- All API methods accept `_request_timeout` kwarg
+
+None of this is documented in README — recorded as F-66.
+
+### Generation pipeline
+- openapi-generator-cli version: 7.21.0 (per openapitools.json)
+- .openapi-generator/VERSION: 7.21.0
+- Generated files (have "DO NOT EDIT" banner): 156 of 158
+- Hand-written: 2 (likely __init__.py variants)
+- Template: Python with Pydantic v2 (validate_call decorator,
+  Annotated kwargs)
+
+### Production parity
+- PyPI latest: asterwise==0.1.4 (uploaded 2026-04-18)
+- pyproject.toml version: 0.1.4
+- asterwise/__init__.py __version__: 0.1.1 (drift recorded as
+  F-35 in Pass 1)
+
+### Conclusions
+The Python SDK has a structurally sound foundation: clean
+typed exception hierarchy, py.typed marker, Pydantic v2
+integration, current openapi-generator version. The gaps are
+not structural — they're quality and completeness:
+1. Half the API surface is missing (F-29 / F-61 / F-62 / F-63
+   cluster — same as MCP, docs, marketing)
+2. The test suite is a Potemkin village — 150 files, zero
+   assertions (F-62)
+3. README under-claims and lacks Configuration docs (F-61, F-66)
+4. Method docs lack the structured :raises and examples that
+   production developers expect (F-64, F-65)
+5. Async surface missing (F-63)
+
+None of these are blockers for the current customer count (zero
+per memory), but every one materializes the moment a real
+customer integrates the SDK in production. F-62 (test suite)
+is the highest-priority follow-up — it's the difference between
+"SDK ships safely" and "SDK regression ships undetected."
+
+---
+
+*Next pass: Pass 3 — close coverage gap via SDK regeneration
+(F-29, F-61), test suite replacement (F-62), :raises and example
+docs (F-64, F-65), README expansion (F-66), exception matrix
+documentation.*
