@@ -72,6 +72,44 @@ Chaldean, Lo Shu, Mobile Number, Vehicle Number — 14 endpoints
 
 Full API reference: [docs.asterwise.com](https://docs.asterwise.com)
 
+## Development
+
+### Regenerating the SDK
+
+The SDK is generated from the asterwise SDK OpenAPI spec at
+`https://api.asterwise.com/openapi-sdk.json`. The contract that
+governs which operations are exposed and what their method names
+are lives in `asterwise-api/_docs/SDK_CONTRACT.md`.
+
+To regenerate locally:
+
+```bash
+bash scripts/generate.sh
+```
+
+To preview changes without applying them:
+
+```bash
+bash scripts/generate.sh --check
+```
+
+The script invokes `openapi-generator-cli` at the version pinned
+in `openapitools.json`. Regeneration is deterministic from the
+input spec; running it twice produces identical output.
+
+To publish a new version after regeneration:
+
+1. Bump `version` in `pyproject.toml` AND `__version__` in
+   `asterwise/__init__.py` (semver — breaking changes require
+   major bump after 1.0.0).
+2. Update `CHANGELOG.md` with the changes.
+3. Build: `python -m build`
+4. Smoke test the wheel: `pip install dist/asterwise-X.Y.Z-py3-none-any.whl` in a scratch venv.
+5. Publish: `twine upload dist/*` (requires PyPI credentials).
+
+See `asterwise-api/_docs/audits/REFINE_PLAN_2026_05.md` for the
+regeneration roadmap.
+
 ## Support
 
 support@asterwise.com
