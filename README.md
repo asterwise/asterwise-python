@@ -81,6 +81,16 @@ The SDK is generated from the asterwise SDK OpenAPI spec at
 governs which operations are exposed and what their method names
 are lives in `asterwise-api/_docs/SDK_CONTRACT.md`.
 
+**Requirements:**
+
+- Node.js and npm (the script uses npx)
+- **Java 11+** — the underlying openapi-generator JAR requires it
+  - macOS: `brew install openjdk@17`
+  - Ubuntu: `sudo apt install openjdk-17-jre-headless`
+
+The script preflight-checks for Java and prints install instructions
+if missing.
+
 To regenerate locally:
 
 ```bash
