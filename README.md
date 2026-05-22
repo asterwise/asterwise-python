@@ -37,7 +37,10 @@ with asterwise.ApiClient(configuration) as client:
 
 Python 3.9+
 
-## What's included
+## What's included in this SDK (v0.1.4)
+
+The Python SDK currently exposes **59 of 117** asterwise platform
+endpoints organized into four categories:
 
 **Astrology** — Natal chart, Dasha (5 levels), Yogas, Doshas, 
 Divisional charts (D1–D60), Ashtakavarga, Shadbala, Gochar, 
@@ -56,6 +59,14 @@ Chaldean, Lo Shu, Mobile Number, Vehicle Number — 14 endpoints
 
 **Utilities** — Geocode (city → coordinates), Timezone lookup 
 — 2 endpoints
+
+> **Platform scope**: The asterwise platform exposes 117 REST
+> endpoints in total (covering Vedic astrology, Western astrology,
+> numerology, horoscope, tarot, crystals, and dreams). The SDK
+> regenerates from the OpenAPI specification to align with platform
+> scope. For the complete API reference see
+> [docs.asterwise.com](https://docs.asterwise.com).
+> Coverage gap will close in the next SDK regeneration.
 
 ## Documentation
 
