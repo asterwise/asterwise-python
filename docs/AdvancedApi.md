@@ -126,7 +126,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -234,7 +236,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -276,7 +280,7 @@ subdivision. Use the D9 alongside the D1 for most interpretive work.
 
 **Ayanamsa:** All positions are sidereal. Default is Lahiri.
 
-Also known as Varga charts or Amsha charts. Returns D1 through D60 divisional charts.
+Also known as Varga charts or Amsha charts. Only the requested chart_type is returned. To get all sixteen charts, omit the chart_type parameter.
 
 ### Example
 
@@ -347,7 +351,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -427,7 +433,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Composite strength report across astrology modules |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -507,7 +515,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Transit ingress and station event collections |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -612,7 +622,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

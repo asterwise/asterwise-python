@@ -18,7 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from datetime import date
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -30,16 +31,9 @@ class PersonalYearPostRequest(BaseModel):
     MCP-friendly POST body for personal year (birth `date` + optional target `year`).
     """ # noqa: E501
     name: Annotated[str, Field(min_length=1, strict=True, max_length=100)] = Field(description="Person name (echoed for clients; not used in the calculation)")
-    var_date: Annotated[str, Field(strict=True)] = Field(description="Birth date (YYYY-MM-DD)", alias="date")
+    var_date: date = Field(description="Birth date (YYYY-MM-DD or ISO datetime string from clients)", alias="date")
     year: Optional[Annotated[int, Field(le=2100, strict=True, ge=1900)]] = None
     __properties: ClassVar[List[str]] = ["name", "date", "year"]
-
-    @field_validator('var_date')
-    def var_date_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^\d{4}-\d{2}-\d{2}$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}$/")
-        return value
 
     model_config = ConfigDict(
         validate_by_name=True,

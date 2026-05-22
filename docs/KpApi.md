@@ -1,12 +1,12 @@
-# asterwise.KpApi
+# asterwise.KPApi
 
 All URIs are relative to *https://api.asterwise.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**kp_chart**](KpApi.md#kp_chart) | **POST** /v1/astro/kp/chart | KP Natal Chart
-[**kp_ruling_planets**](KpApi.md#kp_ruling_planets) | **POST** /v1/astro/kp/ruling-planets | KP Ruling Planets
-[**kp_significators**](KpApi.md#kp_significators) | **POST** /v1/astro/kp/significators | KP House Significators
+[**kp_chart**](KPApi.md#kp_chart) | **POST** /v1/astro/kp/chart | KP Natal Chart
+[**kp_ruling_planets**](KPApi.md#kp_ruling_planets) | **POST** /v1/astro/kp/ruling-planets | KP Ruling Planets
+[**kp_significators**](KPApi.md#kp_significators) | **POST** /v1/astro/kp/significators | KP House Significators
 
 
 # **kp_chart**
@@ -45,16 +45,16 @@ configuration = asterwise.Configuration(
 # Enter a context with an instance of the API client
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = asterwise.KpApi(api_client)
+    api_instance = asterwise.KPApi(api_client)
     kp_birth_request = asterwise.KPBirthRequest() # KPBirthRequest | 
 
     try:
         # KP Natal Chart
         api_response = api_instance.kp_chart(kp_birth_request)
-        print("The response of KpApi->kp_chart:\n")
+        print("The response of KPApi->kp_chart:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KpApi->kp_chart: %s\n" % e)
+        print("Exception when calling KPApi->kp_chart: %s\n" % e)
 ```
 
 
@@ -84,7 +84,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -124,16 +126,16 @@ configuration = asterwise.Configuration(
 # Enter a context with an instance of the API client
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = asterwise.KpApi(api_client)
+    api_instance = asterwise.KPApi(api_client)
     kp_ruling_planets_request = asterwise.KPRulingPlanetsRequest() # KPRulingPlanetsRequest | 
 
     try:
         # KP Ruling Planets
         api_response = api_instance.kp_ruling_planets(kp_ruling_planets_request)
-        print("The response of KpApi->kp_ruling_planets:\n")
+        print("The response of KPApi->kp_ruling_planets:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KpApi->kp_ruling_planets: %s\n" % e)
+        print("Exception when calling KPApi->kp_ruling_planets: %s\n" % e)
 ```
 
 
@@ -163,7 +165,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -203,16 +207,16 @@ configuration = asterwise.Configuration(
 # Enter a context with an instance of the API client
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = asterwise.KpApi(api_client)
+    api_instance = asterwise.KPApi(api_client)
     kp_birth_request = asterwise.KPBirthRequest() # KPBirthRequest | 
 
     try:
         # KP House Significators
         api_response = api_instance.kp_significators(kp_birth_request)
-        print("The response of KpApi->kp_significators:\n")
+        print("The response of KPApi->kp_significators:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KpApi->kp_significators: %s\n" % e)
+        print("Exception when calling KPApi->kp_significators: %s\n" % e)
 ```
 
 
@@ -242,7 +246,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

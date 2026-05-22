@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**latitude** | **float** | Location latitude | 
-**longitude** | **float** | Location longitude | 
+**latitude** | **float** | Location latitude in decimal degrees. North positive, south negative. | 
+**longitude** | **float** | Location longitude in decimal degrees. East positive, west negative. | 
 **target_date** | **str** |  | [optional] 
 **target_time** | **str** |  | [optional] 
 **target_timezone** | **str** |  | [optional] 

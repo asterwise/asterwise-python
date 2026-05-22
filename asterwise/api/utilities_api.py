@@ -103,7 +103,9 @@ class UtilitiesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseGeocodeResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -179,7 +181,9 @@ class UtilitiesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseGeocodeResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -255,7 +259,9 @@ class UtilitiesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseGeocodeResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -407,7 +413,9 @@ class UtilitiesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTimezoneResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -487,7 +495,9 @@ class UtilitiesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTimezoneResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -567,7 +577,9 @@ class UtilitiesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTimezoneResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

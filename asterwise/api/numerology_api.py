@@ -20,18 +20,29 @@ from datetime import date
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Any, Optional
 from typing_extensions import Annotated
-from asterwise.models.api_response_compatibility_response import ApiResponseCompatibilityResponse
+from asterwise.models.api_response_angel_number_response import ApiResponseAngelNumberResponse
+from asterwise.models.api_response_karmic_lessons_response import ApiResponseKarmicLessonsResponse
 from asterwise.models.api_response_life_path_response import ApiResponseLifePathResponse
 from asterwise.models.api_response_lucky_numbers_api_response import ApiResponseLuckyNumbersApiResponse
+from asterwise.models.api_response_maturity_number_response import ApiResponseMaturityNumberResponse
+from asterwise.models.api_response_name_number_response import ApiResponseNameNumberResponse
 from asterwise.models.api_response_number_meaning_response import ApiResponseNumberMeaningResponse
 from asterwise.models.api_response_numerology_profile_response import ApiResponseNumerologyProfileResponse
+from asterwise.models.api_response_personal_angel_number_response import ApiResponsePersonalAngelNumberResponse
+from asterwise.models.api_response_personal_cycle_response import ApiResponsePersonalCycleResponse
 from asterwise.models.api_response_personal_year_response import ApiResponsePersonalYearResponse
+from asterwise.models.api_response_today_angel_number_response import ApiResponseTodayAngelNumberResponse
+from asterwise.models.app_api_response_api_response_compatibility_response2 import AppApiResponseApiResponseCompatibilityResponse2
 from asterwise.models.business_name_post_request import BusinessNamePostRequest
 from asterwise.models.chaldean_request import ChaldeanRequest
 from asterwise.models.compatibility_request import CompatibilityRequest
 from asterwise.models.lo_shu_request import LoShuRequest
+from asterwise.models.maturity_number_request import MaturityNumberRequest
 from asterwise.models.name_correction_request import NameCorrectionRequest
+from asterwise.models.name_only_request import NameOnlyRequest
 from asterwise.models.numerology_request import NumerologyRequest
+from asterwise.models.personal_angel_number_request import PersonalAngelNumberRequest
+from asterwise.models.personal_cycle_request import PersonalCycleRequest
 from asterwise.models.personal_year_post_request import PersonalYearPostRequest
 
 from asterwise.api_client import ApiClient, RequestSerialized
@@ -50,6 +61,1097 @@ class NumerologyApi:
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+
+
+    @validate_call
+    def angel_number(
+        self,
+        number: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseAngelNumberResponse:
+        """Angel number meaning
+
+        Look up the meaning of a specific angel number. Supported numbers: 000, 111–999 (single repeating digit), 1010, 1111, 1122, 1212, 1234, 2222–9999 (double repeating digit), 911. Pass the number as a string path parameter, e.g. /v1/numerology/angel/444.
+
+        :param number: (required)
+        :type number: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._angel_number_serialize(
+            number=number,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseAngelNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def angel_number_with_http_info(
+        self,
+        number: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseAngelNumberResponse]:
+        """Angel number meaning
+
+        Look up the meaning of a specific angel number. Supported numbers: 000, 111–999 (single repeating digit), 1010, 1111, 1122, 1212, 1234, 2222–9999 (double repeating digit), 911. Pass the number as a string path parameter, e.g. /v1/numerology/angel/444.
+
+        :param number: (required)
+        :type number: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._angel_number_serialize(
+            number=number,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseAngelNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def angel_number_without_preload_content(
+        self,
+        number: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Angel number meaning
+
+        Look up the meaning of a specific angel number. Supported numbers: 000, 111–999 (single repeating digit), 1010, 1111, 1122, 1212, 1234, 2222–9999 (double repeating digit), 911. Pass the number as a string path parameter, e.g. /v1/numerology/angel/444.
+
+        :param number: (required)
+        :type number: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._angel_number_serialize(
+            number=number,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseAngelNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _angel_number_serialize(
+        self,
+        number,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if number is not None:
+            _path_params['number'] = number
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/numerology/angel/{number}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def angel_personal(
+        self,
+        personal_angel_number_request: PersonalAngelNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponsePersonalAngelNumberResponse:
+        """Personal angel number
+
+        Compute your personal angel number from your birth date. Uses the Pythagorean Life Path number (digit-fusing method) as the base. Life Path 1-9 maps to the triple sequence (e.g. LP 4 → 444). Master numbers 11, 22, 33 map to 1111, 2222, 3333 respectively.
+
+        :param personal_angel_number_request: (required)
+        :type personal_angel_number_request: PersonalAngelNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._angel_personal_serialize(
+            personal_angel_number_request=personal_angel_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponsePersonalAngelNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def angel_personal_with_http_info(
+        self,
+        personal_angel_number_request: PersonalAngelNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponsePersonalAngelNumberResponse]:
+        """Personal angel number
+
+        Compute your personal angel number from your birth date. Uses the Pythagorean Life Path number (digit-fusing method) as the base. Life Path 1-9 maps to the triple sequence (e.g. LP 4 → 444). Master numbers 11, 22, 33 map to 1111, 2222, 3333 respectively.
+
+        :param personal_angel_number_request: (required)
+        :type personal_angel_number_request: PersonalAngelNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._angel_personal_serialize(
+            personal_angel_number_request=personal_angel_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponsePersonalAngelNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def angel_personal_without_preload_content(
+        self,
+        personal_angel_number_request: PersonalAngelNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Personal angel number
+
+        Compute your personal angel number from your birth date. Uses the Pythagorean Life Path number (digit-fusing method) as the base. Life Path 1-9 maps to the triple sequence (e.g. LP 4 → 444). Master numbers 11, 22, 33 map to 1111, 2222, 3333 respectively.
+
+        :param personal_angel_number_request: (required)
+        :type personal_angel_number_request: PersonalAngelNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._angel_personal_serialize(
+            personal_angel_number_request=personal_angel_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponsePersonalAngelNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _angel_personal_serialize(
+        self,
+        personal_angel_number_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if personal_angel_number_request is not None:
+            _body_params = personal_angel_number_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/numerology/angel/personal',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def angel_today(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseTodayAngelNumberResponse:
+        """Today's angel number
+
+        Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._angel_today_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseTodayAngelNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def angel_today_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseTodayAngelNumberResponse]:
+        """Today's angel number
+
+        Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._angel_today_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseTodayAngelNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def angel_today_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Today's angel number
+
+        Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._angel_today_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseTodayAngelNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _angel_today_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/numerology/angel/today',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def balance_number(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseNameNumberResponse:
+        """Balance Number
+
+        Calculates the Balance number from the first letter of each name part. Indicates how a person handles stress and unresolved issues.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._balance_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def balance_number_with_http_info(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseNameNumberResponse]:
+        """Balance Number
+
+        Calculates the Balance number from the first letter of each name part. Indicates how a person handles stress and unresolved issues.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._balance_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def balance_number_without_preload_content(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Balance Number
+
+        Calculates the Balance number from the first letter of each name part. Indicates how a person handles stress and unresolved issues.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._balance_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _balance_number_serialize(
+        self,
+        name_only_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if name_only_request is not None:
+            _body_params = name_only_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/numerology/balance',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
 
 
     @validate_call
@@ -107,7 +1209,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -175,7 +1279,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -243,7 +1349,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -373,7 +1481,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -441,7 +1551,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -509,7 +1621,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -650,7 +1764,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -718,7 +1834,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -786,7 +1904,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -873,6 +1993,572 @@ class NumerologyApi:
 
 
     @validate_call
+    def expression_number(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseNameNumberResponse:
+        """Expression (Destiny) Number
+
+        Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Goodwin method). Preserves master numbers 11, 22, 33.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._expression_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def expression_number_with_http_info(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseNameNumberResponse]:
+        """Expression (Destiny) Number
+
+        Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Goodwin method). Preserves master numbers 11, 22, 33.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._expression_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def expression_number_without_preload_content(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Expression (Destiny) Number
+
+        Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Goodwin method). Preserves master numbers 11, 22, 33.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._expression_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _expression_number_serialize(
+        self,
+        name_only_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if name_only_request is not None:
+            _body_params = name_only_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/numerology/expression',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def karmic_lessons(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseKarmicLessonsResponse:
+        """Karmic Lessons
+
+        Identifies karmic lessons from the name — the digit values 1-9 that are absent from the name's letter values. Missing numbers indicate areas requiring development in this lifetime.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._karmic_lessons_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseKarmicLessonsResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def karmic_lessons_with_http_info(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseKarmicLessonsResponse]:
+        """Karmic Lessons
+
+        Identifies karmic lessons from the name — the digit values 1-9 that are absent from the name's letter values. Missing numbers indicate areas requiring development in this lifetime.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._karmic_lessons_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseKarmicLessonsResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def karmic_lessons_without_preload_content(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Karmic Lessons
+
+        Identifies karmic lessons from the name — the digit values 1-9 that are absent from the name's letter values. Missing numbers indicate areas requiring development in this lifetime.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._karmic_lessons_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseKarmicLessonsResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _karmic_lessons_serialize(
+        self,
+        name_only_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if name_only_request is not None:
+            _body_params = name_only_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/numerology/karmic-lessons',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def life_path(
         self,
         var_date: Annotated[date, Field(description="Birth date (YYYY-MM-DD)")],
@@ -927,7 +2613,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseLifePathResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -995,7 +2683,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseLifePathResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1063,7 +2753,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseLifePathResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1202,7 +2894,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1270,7 +2964,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1338,7 +3034,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1487,7 +3185,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseLuckyNumbersApiResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1563,7 +3263,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseLuckyNumbersApiResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1639,7 +3341,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseLuckyNumbersApiResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1734,6 +3438,289 @@ class NumerologyApi:
 
 
     @validate_call
+    def maturity_number(
+        self,
+        maturity_number_request: MaturityNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseMaturityNumberResponse:
+        """Maturity (Realization) Number
+
+        Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces around age 30-35. Requires both name and birth date.
+
+        :param maturity_number_request: (required)
+        :type maturity_number_request: MaturityNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._maturity_number_serialize(
+            maturity_number_request=maturity_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseMaturityNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def maturity_number_with_http_info(
+        self,
+        maturity_number_request: MaturityNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseMaturityNumberResponse]:
+        """Maturity (Realization) Number
+
+        Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces around age 30-35. Requires both name and birth date.
+
+        :param maturity_number_request: (required)
+        :type maturity_number_request: MaturityNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._maturity_number_serialize(
+            maturity_number_request=maturity_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseMaturityNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def maturity_number_without_preload_content(
+        self,
+        maturity_number_request: MaturityNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Maturity (Realization) Number
+
+        Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces around age 30-35. Requires both name and birth date.
+
+        :param maturity_number_request: (required)
+        :type maturity_number_request: MaturityNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._maturity_number_serialize(
+            maturity_number_request=maturity_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseMaturityNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _maturity_number_serialize(
+        self,
+        maturity_number_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if maturity_number_request is not None:
+            _body_params = maturity_number_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/numerology/maturity',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def mobile_number(
         self,
         number: Annotated[str, Field(min_length=5, strict=True, max_length=20, description="Mobile number (digits only or with country code)")],
@@ -1788,7 +3775,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1856,7 +3845,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1924,7 +3915,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2054,7 +4047,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2122,7 +4117,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2190,7 +4187,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2335,7 +4334,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNumberMeaningResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2407,7 +4408,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNumberMeaningResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2479,7 +4482,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNumberMeaningResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2573,7 +4578,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponseCompatibilityResponse:
+    ) -> AppApiResponseApiResponseCompatibilityResponse2:
         """Calculate numerology compatibility
 
         Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Requires authenticated API key access (Core tier or above in product terms). Returns score, level, and explanatory strengths/challenges.
@@ -2611,8 +4616,10 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseCompatibilityResponse",
-            '422': "HTTPValidationError",
+            '200': "AppApiResponseApiResponseCompatibilityResponse2",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2641,7 +4648,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ApiResponseCompatibilityResponse]:
+    ) -> ApiResponse[AppApiResponseApiResponseCompatibilityResponse2]:
         """Calculate numerology compatibility
 
         Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Requires authenticated API key access (Core tier or above in product terms). Returns score, level, and explanatory strengths/challenges.
@@ -2679,8 +4686,10 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseCompatibilityResponse",
-            '422': "HTTPValidationError",
+            '200': "AppApiResponseApiResponseCompatibilityResponse2",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2747,8 +4756,10 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseCompatibilityResponse",
-            '422': "HTTPValidationError",
+            '200': "AppApiResponseApiResponseCompatibilityResponse2",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2889,7 +4900,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNumerologyProfileResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2957,7 +4970,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNumerologyProfileResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3025,7 +5040,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNumerologyProfileResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3112,6 +5129,289 @@ class NumerologyApi:
 
 
     @validate_call
+    def personal_cycles(
+        self,
+        personal_cycle_request: PersonalCycleRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponsePersonalCycleResponse:
+        """Personal Year, Month, and Day
+
+        Returns the Personal Year, Personal Month, and Personal Day numbers for a birth date and target date. Defaults to today if year/month/day not provided. Personal Day is only included when target day is provided.
+
+        :param personal_cycle_request: (required)
+        :type personal_cycle_request: PersonalCycleRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._personal_cycles_serialize(
+            personal_cycle_request=personal_cycle_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponsePersonalCycleResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def personal_cycles_with_http_info(
+        self,
+        personal_cycle_request: PersonalCycleRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponsePersonalCycleResponse]:
+        """Personal Year, Month, and Day
+
+        Returns the Personal Year, Personal Month, and Personal Day numbers for a birth date and target date. Defaults to today if year/month/day not provided. Personal Day is only included when target day is provided.
+
+        :param personal_cycle_request: (required)
+        :type personal_cycle_request: PersonalCycleRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._personal_cycles_serialize(
+            personal_cycle_request=personal_cycle_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponsePersonalCycleResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def personal_cycles_without_preload_content(
+        self,
+        personal_cycle_request: PersonalCycleRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Personal Year, Month, and Day
+
+        Returns the Personal Year, Personal Month, and Personal Day numbers for a birth date and target date. Defaults to today if year/month/day not provided. Personal Day is only included when target day is provided.
+
+        :param personal_cycle_request: (required)
+        :type personal_cycle_request: PersonalCycleRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._personal_cycles_serialize(
+            personal_cycle_request=personal_cycle_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponsePersonalCycleResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _personal_cycles_serialize(
+        self,
+        personal_cycle_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if personal_cycle_request is not None:
+            _body_params = personal_cycle_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/numerology/personal-cycles',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def personal_year(
         self,
         var_date: Annotated[date, Field(description="Birth date (YYYY-MM-DD)")],
@@ -3170,7 +5470,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePersonalYearResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3242,7 +5544,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePersonalYearResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3314,7 +5618,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePersonalYearResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3458,7 +5764,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePersonalYearResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3526,7 +5834,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePersonalYearResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3594,7 +5904,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePersonalYearResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3681,6 +5993,572 @@ class NumerologyApi:
 
 
     @validate_call
+    def personality_number(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseNameNumberResponse:
+        """Personality Number
+
+        Calculates the Personality number from consonants in the full name. Reduces each name part separately. Represents the outer personality visible to others.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._personality_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def personality_number_with_http_info(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseNameNumberResponse]:
+        """Personality Number
+
+        Calculates the Personality number from consonants in the full name. Reduces each name part separately. Represents the outer personality visible to others.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._personality_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def personality_number_without_preload_content(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Personality Number
+
+        Calculates the Personality number from consonants in the full name. Reduces each name part separately. Represents the outer personality visible to others.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._personality_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _personality_number_serialize(
+        self,
+        name_only_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if name_only_request is not None:
+            _body_params = name_only_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/numerology/personality',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def soul_urge_number(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseNameNumberResponse:
+        """Soul Urge (Heart's Desire) Number
+
+        Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately. Y is treated as a consonant in this implementation.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._soul_urge_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def soul_urge_number_with_http_info(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseNameNumberResponse]:
+        """Soul Urge (Heart's Desire) Number
+
+        Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately. Y is treated as a consonant in this implementation.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._soul_urge_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def soul_urge_number_without_preload_content(
+        self,
+        name_only_request: NameOnlyRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Soul Urge (Heart's Desire) Number
+
+        Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately. Y is treated as a consonant in this implementation.
+
+        :param name_only_request: (required)
+        :type name_only_request: NameOnlyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._soul_urge_number_serialize(
+            name_only_request=name_only_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseNameNumberResponse",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _soul_urge_number_serialize(
+        self,
+        name_only_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if name_only_request is not None:
+            _body_params = name_only_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/numerology/soul-urge',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def vehicle_number(
         self,
         number: Annotated[str, Field(min_length=2, strict=True, max_length=20, description="Vehicle registration number")],
@@ -3735,7 +6613,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3803,7 +6683,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3871,7 +6753,9 @@ class NumerologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

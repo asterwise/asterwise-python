@@ -4,21 +4,353 @@ All URIs are relative to *https://api.asterwise.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**angel_number**](NumerologyApi.md#angel_number) | **GET** /v1/numerology/angel/{number} | Angel number meaning
+[**angel_personal**](NumerologyApi.md#angel_personal) | **POST** /v1/numerology/angel/personal | Personal angel number
+[**angel_today**](NumerologyApi.md#angel_today) | **GET** /v1/numerology/angel/today | Today&#39;s angel number
+[**balance_number**](NumerologyApi.md#balance_number) | **POST** /v1/numerology/balance | Balance Number
 [**business_name**](NumerologyApi.md#business_name) | **GET** /v1/numerology/business-name | Business Name Numerology
 [**business_name_post**](NumerologyApi.md#business_name_post) | **POST** /v1/numerology/business-name | Business Name Numerology (JSON body)
 [**chaldean**](NumerologyApi.md#chaldean) | **POST** /v1/numerology/chaldean | Chaldean Numerology Profile
+[**expression_number**](NumerologyApi.md#expression_number) | **POST** /v1/numerology/expression | Expression (Destiny) Number
+[**karmic_lessons**](NumerologyApi.md#karmic_lessons) | **POST** /v1/numerology/karmic-lessons | Karmic Lessons
 [**life_path**](NumerologyApi.md#life_path) | **GET** /v1/numerology/life-path | Get life path number
 [**lo_shu**](NumerologyApi.md#lo_shu) | **POST** /v1/numerology/lo-shu | Lo Shu Grid
 [**lucky_numbers**](NumerologyApi.md#lucky_numbers) | **GET** /v1/numerology/lucky-numbers | Generate lucky numbers
+[**maturity_number**](NumerologyApi.md#maturity_number) | **POST** /v1/numerology/maturity | Maturity (Realization) Number
 [**mobile_number**](NumerologyApi.md#mobile_number) | **GET** /v1/numerology/mobile-number | Mobile Number Numerology
 [**name_correction**](NumerologyApi.md#name_correction) | **POST** /v1/numerology/name-correction | Name Correction Analysis
 [**number_meaning**](NumerologyApi.md#number_meaning) | **GET** /v1/numerology/meaning/{number} | Get number meaning by context
 [**numerology_compatibility**](NumerologyApi.md#numerology_compatibility) | **POST** /v1/numerology/compatibility | Calculate numerology compatibility
 [**numerology_profile**](NumerologyApi.md#numerology_profile) | **POST** /v1/numerology/profile | Generate numerology profile
+[**personal_cycles**](NumerologyApi.md#personal_cycles) | **POST** /v1/numerology/personal-cycles | Personal Year, Month, and Day
 [**personal_year**](NumerologyApi.md#personal_year) | **GET** /v1/numerology/personal-year | Get personal year number
 [**personal_year_post**](NumerologyApi.md#personal_year_post) | **POST** /v1/numerology/personal-year | Get personal year number (JSON body)
+[**personality_number**](NumerologyApi.md#personality_number) | **POST** /v1/numerology/personality | Personality Number
+[**soul_urge_number**](NumerologyApi.md#soul_urge_number) | **POST** /v1/numerology/soul-urge | Soul Urge (Heart&#39;s Desire) Number
 [**vehicle_number**](NumerologyApi.md#vehicle_number) | **GET** /v1/numerology/vehicle-number | Vehicle Number Numerology
 
+
+# **angel_number**
+> ApiResponseAngelNumberResponse angel_number(number)
+
+Angel number meaning
+
+Look up the meaning of a specific angel number. Supported numbers: 000, 111–999 (single repeating digit), 1010, 1111, 1122, 1212, 1234, 2222–9999 (double repeating digit), 911. Pass the number as a string path parameter, e.g. /v1/numerology/angel/444.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_angel_number_response import ApiResponseAngelNumberResponse
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    number = 'number_example' # str | 
+
+    try:
+        # Angel number meaning
+        api_response = api_instance.angel_number(number)
+        print("The response of NumerologyApi->angel_number:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->angel_number: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **number** | **str**|  | 
+
+### Return type
+
+[**ApiResponseAngelNumberResponse**](ApiResponseAngelNumberResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **angel_personal**
+> ApiResponsePersonalAngelNumberResponse angel_personal(personal_angel_number_request)
+
+Personal angel number
+
+Compute your personal angel number from your birth date. Uses the Pythagorean Life Path number (digit-fusing method) as the base. Life Path 1-9 maps to the triple sequence (e.g. LP 4 → 444). Master numbers 11, 22, 33 map to 1111, 2222, 3333 respectively.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_personal_angel_number_response import ApiResponsePersonalAngelNumberResponse
+from asterwise.models.personal_angel_number_request import PersonalAngelNumberRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    personal_angel_number_request = asterwise.PersonalAngelNumberRequest() # PersonalAngelNumberRequest | 
+
+    try:
+        # Personal angel number
+        api_response = api_instance.angel_personal(personal_angel_number_request)
+        print("The response of NumerologyApi->angel_personal:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->angel_personal: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **personal_angel_number_request** | [**PersonalAngelNumberRequest**](PersonalAngelNumberRequest.md)|  | 
+
+### Return type
+
+[**ApiResponsePersonalAngelNumberResponse**](ApiResponsePersonalAngelNumberResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **angel_today**
+> ApiResponseTodayAngelNumberResponse angel_today()
+
+Today's angel number
+
+Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_today_angel_number_response import ApiResponseTodayAngelNumberResponse
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+
+    try:
+        # Today's angel number
+        api_response = api_instance.angel_today()
+        print("The response of NumerologyApi->angel_today:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->angel_today: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ApiResponseTodayAngelNumberResponse**](ApiResponseTodayAngelNumberResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **balance_number**
+> ApiResponseNameNumberResponse balance_number(name_only_request)
+
+Balance Number
+
+Calculates the Balance number from the first letter of each name part. Indicates how a person handles stress and unresolved issues.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_name_number_response import ApiResponseNameNumberResponse
+from asterwise.models.name_only_request import NameOnlyRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    name_only_request = asterwise.NameOnlyRequest() # NameOnlyRequest | 
+
+    try:
+        # Balance Number
+        api_response = api_instance.balance_number(name_only_request)
+        print("The response of NumerologyApi->balance_number:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->balance_number: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name_only_request** | [**NameOnlyRequest**](NameOnlyRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseNameNumberResponse**](ApiResponseNameNumberResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **business_name**
 > object business_name(name)
@@ -94,7 +426,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -173,7 +507,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -252,7 +588,173 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **expression_number**
+> ApiResponseNameNumberResponse expression_number(name_only_request)
+
+Expression (Destiny) Number
+
+Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Goodwin method). Preserves master numbers 11, 22, 33.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_name_number_response import ApiResponseNameNumberResponse
+from asterwise.models.name_only_request import NameOnlyRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    name_only_request = asterwise.NameOnlyRequest() # NameOnlyRequest | 
+
+    try:
+        # Expression (Destiny) Number
+        api_response = api_instance.expression_number(name_only_request)
+        print("The response of NumerologyApi->expression_number:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->expression_number: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name_only_request** | [**NameOnlyRequest**](NameOnlyRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseNameNumberResponse**](ApiResponseNameNumberResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **karmic_lessons**
+> ApiResponseKarmicLessonsResponse karmic_lessons(name_only_request)
+
+Karmic Lessons
+
+Identifies karmic lessons from the name — the digit values 1-9 that are absent from the name's letter values. Missing numbers indicate areas requiring development in this lifetime.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_karmic_lessons_response import ApiResponseKarmicLessonsResponse
+from asterwise.models.name_only_request import NameOnlyRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    name_only_request = asterwise.NameOnlyRequest() # NameOnlyRequest | 
+
+    try:
+        # Karmic Lessons
+        api_response = api_instance.karmic_lessons(name_only_request)
+        print("The response of NumerologyApi->karmic_lessons:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->karmic_lessons: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name_only_request** | [**NameOnlyRequest**](NameOnlyRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseKarmicLessonsResponse**](ApiResponseKarmicLessonsResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -331,7 +833,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Life path number with interpretation metadata |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -410,7 +914,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -493,7 +999,91 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Lucky number list for the requested profile |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **maturity_number**
+> ApiResponseMaturityNumberResponse maturity_number(maturity_number_request)
+
+Maturity (Realization) Number
+
+Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces around age 30-35. Requires both name and birth date.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_maturity_number_response import ApiResponseMaturityNumberResponse
+from asterwise.models.maturity_number_request import MaturityNumberRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    maturity_number_request = asterwise.MaturityNumberRequest() # MaturityNumberRequest | 
+
+    try:
+        # Maturity (Realization) Number
+        api_response = api_instance.maturity_number(maturity_number_request)
+        print("The response of NumerologyApi->maturity_number:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->maturity_number: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **maturity_number_request** | [**MaturityNumberRequest**](MaturityNumberRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseMaturityNumberResponse**](ApiResponseMaturityNumberResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -571,7 +1161,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -650,7 +1242,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -731,12 +1325,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Interpretation details for number and context |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **numerology_compatibility**
-> ApiResponseCompatibilityResponse numerology_compatibility(compatibility_request)
+> AppApiResponseApiResponseCompatibilityResponse2 numerology_compatibility(compatibility_request)
 
 Calculate numerology compatibility
 
@@ -748,7 +1344,7 @@ Computes compatibility between two people from their numerology signatures. Each
 
 ```python
 import asterwise
-from asterwise.models.api_response_compatibility_response import ApiResponseCompatibilityResponse
+from asterwise.models.app_api_response_api_response_compatibility_response2 import AppApiResponseApiResponseCompatibilityResponse2
 from asterwise.models.compatibility_request import CompatibilityRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -795,7 +1391,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiResponseCompatibilityResponse**](ApiResponseCompatibilityResponse.md)
+[**AppApiResponseApiResponseCompatibilityResponse2**](AppApiResponseApiResponseCompatibilityResponse2.md)
 
 ### Authorization
 
@@ -811,7 +1407,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Numerology compatibility score and interpretation |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -891,7 +1489,91 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Full numerology profile with core number interpretations |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **personal_cycles**
+> ApiResponsePersonalCycleResponse personal_cycles(personal_cycle_request)
+
+Personal Year, Month, and Day
+
+Returns the Personal Year, Personal Month, and Personal Day numbers for a birth date and target date. Defaults to today if year/month/day not provided. Personal Day is only included when target day is provided.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_personal_cycle_response import ApiResponsePersonalCycleResponse
+from asterwise.models.personal_cycle_request import PersonalCycleRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    personal_cycle_request = asterwise.PersonalCycleRequest() # PersonalCycleRequest | 
+
+    try:
+        # Personal Year, Month, and Day
+        api_response = api_instance.personal_cycles(personal_cycle_request)
+        print("The response of NumerologyApi->personal_cycles:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->personal_cycles: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **personal_cycle_request** | [**PersonalCycleRequest**](PersonalCycleRequest.md)|  | 
+
+### Return type
+
+[**ApiResponsePersonalCycleResponse**](ApiResponsePersonalCycleResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -972,7 +1654,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Personal year number and yearly guidance |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1052,7 +1736,173 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **personality_number**
+> ApiResponseNameNumberResponse personality_number(name_only_request)
+
+Personality Number
+
+Calculates the Personality number from consonants in the full name. Reduces each name part separately. Represents the outer personality visible to others.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_name_number_response import ApiResponseNameNumberResponse
+from asterwise.models.name_only_request import NameOnlyRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    name_only_request = asterwise.NameOnlyRequest() # NameOnlyRequest | 
+
+    try:
+        # Personality Number
+        api_response = api_instance.personality_number(name_only_request)
+        print("The response of NumerologyApi->personality_number:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->personality_number: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name_only_request** | [**NameOnlyRequest**](NameOnlyRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseNameNumberResponse**](ApiResponseNameNumberResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **soul_urge_number**
+> ApiResponseNameNumberResponse soul_urge_number(name_only_request)
+
+Soul Urge (Heart's Desire) Number
+
+Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately. Y is treated as a consonant in this implementation.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_name_number_response import ApiResponseNameNumberResponse
+from asterwise.models.name_only_request import NameOnlyRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    name_only_request = asterwise.NameOnlyRequest() # NameOnlyRequest | 
+
+    try:
+        # Soul Urge (Heart's Desire) Number
+        api_response = api_instance.soul_urge_number(name_only_request)
+        print("The response of NumerologyApi->soul_urge_number:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->soul_urge_number: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name_only_request** | [**NameOnlyRequest**](NameOnlyRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseNameNumberResponse**](ApiResponseNameNumberResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1130,7 +1980,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation Error |  -  |
+**422** | Validation error or invalid input |  -  |
+**500** | Internal server error |  -  |
+**503** | Service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

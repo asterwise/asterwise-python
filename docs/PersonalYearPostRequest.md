@@ -7,7 +7,7 @@ MCP-friendly POST body for personal year (birth `date` + optional target `year`)
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Person name (echoed for clients; not used in the calculation) | 
-**var_date** | **str** | Birth date (YYYY-MM-DD) | 
+**var_date** | **date** | Birth date (YYYY-MM-DD or ISO datetime string from clients) | 
 **year** | **int** |  | [optional] 
 
 ## Example

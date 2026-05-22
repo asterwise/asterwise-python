@@ -102,7 +102,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseAshtakavargaResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -170,7 +172,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseAshtakavargaResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -238,7 +242,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseAshtakavargaResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -379,7 +385,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseAshtottariEndpointResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -447,7 +455,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseAshtottariEndpointResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -515,7 +525,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseAshtottariEndpointResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -620,7 +632,7 @@ class AdvancedApi:
     ) -> ApiResponseDivisionalResponse:
         """Divisional charts — Varga
 
-        Computes all 16 Vedic divisional charts (Varga charts) for a given birth date, time, and location.  **What are divisional charts?** In Vedic astrology, the birth chart (D1) is divided into progressively finer subdivisions to reveal different areas of life. Each divisional chart isolates a specific domain — the D9 Navamsha reveals spouse and dharma, the D10 Dashamsha reveals career, the D60 Shashtyamsha is the most subtle and reveals karmic residue from past lives.  **The 16 charts returned:** - D1 — Rashi (natal chart) - D2 — Hora (wealth) - D3 — Drekkana (siblings) - D4 — Chaturthamsha (property) - D7 — Saptamsha (children) - D9 — Navamsha (spouse, dharma) — the most consulted divisional chart - D10 — Dashamsha (career) - D12 — Dwadashamsha (parents) - D16 — Shodashamsha (vehicles) - D20 — Vimshamsha (spirituality) - D24 — Chaturvimshamsha (education) - D27 — Bhamsha (vitality) - D30 — Trimshamsha (misfortunes) - D40 — Khavedamsha (auspicious effects) - D45 — Akshavedamsha (all life matters) - D60 — Shashtyamsha (subtle karmic residue)  Each chart shows every planet's sign placement within that divisional subdivision. Use the D9 alongside the D1 for most interpretive work.  **Ayanamsa:** All positions are sidereal. Default is Lahiri.  Also known as Varga charts or Amsha charts. Returns D1 through D60 divisional charts.
+        Computes all 16 Vedic divisional charts (Varga charts) for a given birth date, time, and location.  **What are divisional charts?** In Vedic astrology, the birth chart (D1) is divided into progressively finer subdivisions to reveal different areas of life. Each divisional chart isolates a specific domain — the D9 Navamsha reveals spouse and dharma, the D10 Dashamsha reveals career, the D60 Shashtyamsha is the most subtle and reveals karmic residue from past lives.  **The 16 charts returned:** - D1 — Rashi (natal chart) - D2 — Hora (wealth) - D3 — Drekkana (siblings) - D4 — Chaturthamsha (property) - D7 — Saptamsha (children) - D9 — Navamsha (spouse, dharma) — the most consulted divisional chart - D10 — Dashamsha (career) - D12 — Dwadashamsha (parents) - D16 — Shodashamsha (vehicles) - D20 — Vimshamsha (spirituality) - D24 — Chaturvimshamsha (education) - D27 — Bhamsha (vitality) - D30 — Trimshamsha (misfortunes) - D40 — Khavedamsha (auspicious effects) - D45 — Akshavedamsha (all life matters) - D60 — Shashtyamsha (subtle karmic residue)  Each chart shows every planet's sign placement within that divisional subdivision. Use the D9 alongside the D1 for most interpretive work.  **Ayanamsa:** All positions are sidereal. Default is Lahiri.  Also known as Varga charts or Amsha charts. Only the requested chart_type is returned. To get all sixteen charts, omit the chart_type parameter.
 
         :param divisional_request: (required)
         :type divisional_request: DivisionalRequest
@@ -656,7 +668,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDivisionalResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -688,7 +702,7 @@ class AdvancedApi:
     ) -> ApiResponse[ApiResponseDivisionalResponse]:
         """Divisional charts — Varga
 
-        Computes all 16 Vedic divisional charts (Varga charts) for a given birth date, time, and location.  **What are divisional charts?** In Vedic astrology, the birth chart (D1) is divided into progressively finer subdivisions to reveal different areas of life. Each divisional chart isolates a specific domain — the D9 Navamsha reveals spouse and dharma, the D10 Dashamsha reveals career, the D60 Shashtyamsha is the most subtle and reveals karmic residue from past lives.  **The 16 charts returned:** - D1 — Rashi (natal chart) - D2 — Hora (wealth) - D3 — Drekkana (siblings) - D4 — Chaturthamsha (property) - D7 — Saptamsha (children) - D9 — Navamsha (spouse, dharma) — the most consulted divisional chart - D10 — Dashamsha (career) - D12 — Dwadashamsha (parents) - D16 — Shodashamsha (vehicles) - D20 — Vimshamsha (spirituality) - D24 — Chaturvimshamsha (education) - D27 — Bhamsha (vitality) - D30 — Trimshamsha (misfortunes) - D40 — Khavedamsha (auspicious effects) - D45 — Akshavedamsha (all life matters) - D60 — Shashtyamsha (subtle karmic residue)  Each chart shows every planet's sign placement within that divisional subdivision. Use the D9 alongside the D1 for most interpretive work.  **Ayanamsa:** All positions are sidereal. Default is Lahiri.  Also known as Varga charts or Amsha charts. Returns D1 through D60 divisional charts.
+        Computes all 16 Vedic divisional charts (Varga charts) for a given birth date, time, and location.  **What are divisional charts?** In Vedic astrology, the birth chart (D1) is divided into progressively finer subdivisions to reveal different areas of life. Each divisional chart isolates a specific domain — the D9 Navamsha reveals spouse and dharma, the D10 Dashamsha reveals career, the D60 Shashtyamsha is the most subtle and reveals karmic residue from past lives.  **The 16 charts returned:** - D1 — Rashi (natal chart) - D2 — Hora (wealth) - D3 — Drekkana (siblings) - D4 — Chaturthamsha (property) - D7 — Saptamsha (children) - D9 — Navamsha (spouse, dharma) — the most consulted divisional chart - D10 — Dashamsha (career) - D12 — Dwadashamsha (parents) - D16 — Shodashamsha (vehicles) - D20 — Vimshamsha (spirituality) - D24 — Chaturvimshamsha (education) - D27 — Bhamsha (vitality) - D30 — Trimshamsha (misfortunes) - D40 — Khavedamsha (auspicious effects) - D45 — Akshavedamsha (all life matters) - D60 — Shashtyamsha (subtle karmic residue)  Each chart shows every planet's sign placement within that divisional subdivision. Use the D9 alongside the D1 for most interpretive work.  **Ayanamsa:** All positions are sidereal. Default is Lahiri.  Also known as Varga charts or Amsha charts. Only the requested chart_type is returned. To get all sixteen charts, omit the chart_type parameter.
 
         :param divisional_request: (required)
         :type divisional_request: DivisionalRequest
@@ -724,7 +738,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDivisionalResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -756,7 +772,7 @@ class AdvancedApi:
     ) -> RESTResponseType:
         """Divisional charts — Varga
 
-        Computes all 16 Vedic divisional charts (Varga charts) for a given birth date, time, and location.  **What are divisional charts?** In Vedic astrology, the birth chart (D1) is divided into progressively finer subdivisions to reveal different areas of life. Each divisional chart isolates a specific domain — the D9 Navamsha reveals spouse and dharma, the D10 Dashamsha reveals career, the D60 Shashtyamsha is the most subtle and reveals karmic residue from past lives.  **The 16 charts returned:** - D1 — Rashi (natal chart) - D2 — Hora (wealth) - D3 — Drekkana (siblings) - D4 — Chaturthamsha (property) - D7 — Saptamsha (children) - D9 — Navamsha (spouse, dharma) — the most consulted divisional chart - D10 — Dashamsha (career) - D12 — Dwadashamsha (parents) - D16 — Shodashamsha (vehicles) - D20 — Vimshamsha (spirituality) - D24 — Chaturvimshamsha (education) - D27 — Bhamsha (vitality) - D30 — Trimshamsha (misfortunes) - D40 — Khavedamsha (auspicious effects) - D45 — Akshavedamsha (all life matters) - D60 — Shashtyamsha (subtle karmic residue)  Each chart shows every planet's sign placement within that divisional subdivision. Use the D9 alongside the D1 for most interpretive work.  **Ayanamsa:** All positions are sidereal. Default is Lahiri.  Also known as Varga charts or Amsha charts. Returns D1 through D60 divisional charts.
+        Computes all 16 Vedic divisional charts (Varga charts) for a given birth date, time, and location.  **What are divisional charts?** In Vedic astrology, the birth chart (D1) is divided into progressively finer subdivisions to reveal different areas of life. Each divisional chart isolates a specific domain — the D9 Navamsha reveals spouse and dharma, the D10 Dashamsha reveals career, the D60 Shashtyamsha is the most subtle and reveals karmic residue from past lives.  **The 16 charts returned:** - D1 — Rashi (natal chart) - D2 — Hora (wealth) - D3 — Drekkana (siblings) - D4 — Chaturthamsha (property) - D7 — Saptamsha (children) - D9 — Navamsha (spouse, dharma) — the most consulted divisional chart - D10 — Dashamsha (career) - D12 — Dwadashamsha (parents) - D16 — Shodashamsha (vehicles) - D20 — Vimshamsha (spirituality) - D24 — Chaturvimshamsha (education) - D27 — Bhamsha (vitality) - D30 — Trimshamsha (misfortunes) - D40 — Khavedamsha (auspicious effects) - D45 — Akshavedamsha (all life matters) - D60 — Shashtyamsha (subtle karmic residue)  Each chart shows every planet's sign placement within that divisional subdivision. Use the D9 alongside the D1 for most interpretive work.  **Ayanamsa:** All positions are sidereal. Default is Lahiri.  Also known as Varga charts or Amsha charts. Only the requested chart_type is returned. To get all sixteen charts, omit the chart_type parameter.
 
         :param divisional_request: (required)
         :type divisional_request: DivisionalRequest
@@ -792,7 +808,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDivisionalResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -933,7 +951,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseStrengthResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1001,7 +1021,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseStrengthResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1069,7 +1091,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseStrengthResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1210,7 +1234,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTransitsResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1278,7 +1304,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTransitsResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1346,7 +1374,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTransitsResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1487,7 +1517,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseYoginiEndpointResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1555,7 +1587,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseYoginiEndpointResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1623,7 +1657,9 @@ class AdvancedApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseYoginiEndpointResponse",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

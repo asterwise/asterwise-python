@@ -28,6 +28,7 @@ pyproject.toml
 .gitignore
 .github/workflows/publish.yml
 .github/workflows/test.yml
+.github/workflows/python.yml
 .travis.yml
 .gitlab-ci.yml
 setup.py

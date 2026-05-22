@@ -16,6 +16,9 @@ Name | Type | Description | Notes
 **intensity_label** | **str** |  | [optional] 
 **next_sade_sati** | **object** |  | [optional] 
 **all_periods** | **List[object]** |  | [optional] 
+**small_panoti** | [**List[SmallPanotiPeriod]**](SmallPanotiPeriod.md) |  | [optional] 
+**is_small_panoti_active** | **bool** |  | [optional] 
+**current_small_panoti_position** | **int** |  | [optional] 
 **mitigated_by_own_sign** | **bool** |  | [optional] 
 **mitigated_by_exaltation** | **bool** |  | [optional] 
 

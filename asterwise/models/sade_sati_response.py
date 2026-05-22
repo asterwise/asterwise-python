@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.small_panoti_period import SmallPanotiPeriod
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -39,9 +40,12 @@ class SadeSatiResponse(BaseModel):
     intensity_label: Optional[StrictStr] = None
     next_sade_sati: Optional[Dict[str, Any]] = None
     all_periods: Optional[List[Dict[str, Any]]] = None
+    small_panoti: Optional[List[SmallPanotiPeriod]] = None
+    is_small_panoti_active: Optional[StrictBool] = None
+    current_small_panoti_position: Optional[StrictInt] = None
     mitigated_by_own_sign: Optional[StrictBool] = None
     mitigated_by_exaltation: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["natal_moon_sign", "natal_moon_sign_index", "sade_sati_signs", "classical_note", "is_currently_active", "current_phase", "current_phase_description", "intensity_score", "intensity_label", "next_sade_sati", "all_periods", "mitigated_by_own_sign", "mitigated_by_exaltation"]
+    __properties: ClassVar[List[str]] = ["natal_moon_sign", "natal_moon_sign_index", "sade_sati_signs", "classical_note", "is_currently_active", "current_phase", "current_phase_description", "intensity_score", "intensity_label", "next_sade_sati", "all_periods", "small_panoti", "is_small_panoti_active", "current_small_panoti_position", "mitigated_by_own_sign", "mitigated_by_exaltation"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,6 +86,13 @@ class SadeSatiResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in small_panoti (list)
+        _items = []
+        if self.small_panoti:
+            for _item_small_panoti in self.small_panoti:
+                if _item_small_panoti:
+                    _items.append(_item_small_panoti.to_dict())
+            _dict['small_panoti'] = _items
         # set to None if is_currently_active (nullable) is None
         # and model_fields_set contains the field
         if self.is_currently_active is None and "is_currently_active" in self.model_fields_set:
@@ -117,6 +128,16 @@ class SadeSatiResponse(BaseModel):
         if self.all_periods is None and "all_periods" in self.model_fields_set:
             _dict['all_periods'] = None
 
+        # set to None if is_small_panoti_active (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_small_panoti_active is None and "is_small_panoti_active" in self.model_fields_set:
+            _dict['is_small_panoti_active'] = None
+
+        # set to None if current_small_panoti_position (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_small_panoti_position is None and "current_small_panoti_position" in self.model_fields_set:
+            _dict['current_small_panoti_position'] = None
+
         # set to None if mitigated_by_own_sign (nullable) is None
         # and model_fields_set contains the field
         if self.mitigated_by_own_sign is None and "mitigated_by_own_sign" in self.model_fields_set:
@@ -150,6 +171,9 @@ class SadeSatiResponse(BaseModel):
             "intensity_label": obj.get("intensity_label"),
             "next_sade_sati": obj.get("next_sade_sati"),
             "all_periods": obj.get("all_periods"),
+            "small_panoti": [SmallPanotiPeriod.from_dict(_item) for _item in obj["small_panoti"]] if obj.get("small_panoti") is not None else None,
+            "is_small_panoti_active": obj.get("is_small_panoti_active"),
+            "current_small_panoti_position": obj.get("current_small_panoti_position"),
             "mitigated_by_own_sign": obj.get("mitigated_by_own_sign"),
             "mitigated_by_exaltation": obj.get("mitigated_by_exaltation")
         })

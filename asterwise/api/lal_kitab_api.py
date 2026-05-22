@@ -92,7 +92,9 @@ class LalKitabApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -160,7 +162,9 @@ class LalKitabApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -228,7 +232,9 @@ class LalKitabApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -369,7 +375,9 @@ class LalKitabApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -437,7 +445,9 @@ class LalKitabApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -505,7 +515,9 @@ class LalKitabApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '422': "HTTPValidationError",
+            '422': "ErrorResponse",
+            '500': "ErrorResponse",
+            '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

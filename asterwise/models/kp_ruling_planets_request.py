@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,8 +29,8 @@ class KPRulingPlanetsRequest(BaseModel):
     """
     KPRulingPlanetsRequest
     """ # noqa: E501
-    latitude: Union[StrictFloat, StrictInt] = Field(description="Location latitude")
-    longitude: Union[StrictFloat, StrictInt] = Field(description="Location longitude")
+    latitude: Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]] = Field(description="Location latitude in decimal degrees. North positive, south negative.")
+    longitude: Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]] = Field(description="Location longitude in decimal degrees. East positive, west negative.")
     target_date: Optional[StrictStr] = None
     target_time: Optional[StrictStr] = None
     target_timezone: Optional[StrictStr] = None
