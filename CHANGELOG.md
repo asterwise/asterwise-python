@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.2.2 — 2026-05-23
+
+### Fixed
+
+- **README domain table arithmetic**: previous table
+  double-counted matchmaking (5 methods inside AstrologyApi
+  appeared in 'Vedic astrology: 38' AND 'Matchmaking: 5') and
+  Western horoscope (4 methods inside WesternApi appeared in
+  'Western astrology: 21' AND 'Horoscope: 8'). Replaced with a
+  verified disjoint 9-row partition summing to 117: Vedic 40,
+  Matchmaking 5, Western 17, Horoscope 8, Numerology 24,
+  KP+Lal Kitab 5, Tarot 9, Crystals & dreams 7, Utilities 2.
+
+### No code changes
+
+This is a docs-only patch release. SDK surface unchanged from
+0.2.1 — same 117 typed methods. Upgrading is useful only for
+the corrected PyPI landing page.
+
 ## 0.2.1 — 2026-05-23
 
 ### Docs
