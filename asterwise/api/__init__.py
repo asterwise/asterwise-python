@@ -6,7 +6,7 @@ from asterwise.api.astrology_api import AstrologyApi
 from asterwise.api.crystals_api import CrystalsApi
 from asterwise.api.dreams_api import DreamsApi
 from asterwise.api.horoscope_api import HoroscopeApi
-from asterwise.api.kp_api import KPApi
+from asterwise.api.kp_api import KpApi
 from asterwise.api.lal_kitab_api import LalKitabApi
 from asterwise.api.numerology_api import NumerologyApi
 from asterwise.api.prashna_api import PrashnaApi

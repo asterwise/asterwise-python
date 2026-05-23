@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.2.0"
+__version__ = "0.2.0-dev"
 
 # Define package exports
 __all__ = [
@@ -24,7 +24,7 @@ __all__ = [
     "CrystalsApi",
     "DreamsApi",
     "HoroscopeApi",
-    "KPApi",
+    "KpApi",
     "LalKitabApi",
     "NumerologyApi",
     "PrashnaApi",
@@ -287,7 +287,7 @@ from asterwise.api.astrology_api import AstrologyApi as AstrologyApi
 from asterwise.api.crystals_api import CrystalsApi as CrystalsApi
 from asterwise.api.dreams_api import DreamsApi as DreamsApi
 from asterwise.api.horoscope_api import HoroscopeApi as HoroscopeApi
-from asterwise.api.kp_api import KPApi as KPApi
+from asterwise.api.kp_api import KpApi as KpApi
 from asterwise.api.lal_kitab_api import LalKitabApi as LalKitabApi
 from asterwise.api.numerology_api import NumerologyApi as NumerologyApi
 from asterwise.api.prashna_api import PrashnaApi as PrashnaApi
