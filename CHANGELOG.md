@@ -52,6 +52,26 @@
   `astrology_api.natal_chart()`, `numerology_api.life_path()`,
   `horoscope_api.horoscope_daily()` continue to work unchanged.
 
+### Note for SDK consumers
+
+The following auth-related models are no longer exported from the
+top-level `asterwise` package:
+- `LoginRequest`, `RegisterRequest`, `ForgotPasswordRequest`,
+  `ResetPasswordRequest`, `GoogleAuthRequest`, `AuthorizeConsentBody`,
+  `CompatibilityResponse`, `ApiResponseCompatibilityResponse`
+
+These were never part of the documented SDK contract (auth routes
+are excluded from the SDK per
+asterwise-api/_docs/SDK_CONTRACT.md — auth lives behind the
+asterwise dashboard, not the SDK). The model files remain on disk
+at `asterwise/models/`; deep imports like
+`from asterwise.models.login_request import LoginRequest` continue
+to work but are not recommended.
+
+If you were using any of these via `from asterwise import X`, the
+intended usage is the asterwise dashboard's web auth flow, not the
+programmatic SDK.
+
 ### Internal
 
 - SDK regenerated via `bash scripts/generate.sh` against
