@@ -64,7 +64,42 @@ ADDITIONAL_PROPS="packageName=asterwise,projectName=asterwise,packageVersion=0.2
 # npm wrapper version (JAR version lives in openapitools.json)
 ASTERWISE_GENERATOR_VERSION="${ASTERWISE_GENERATOR_VERSION:-2.17.0}"
 
+# API name mapping — restore 0.1.4 acronym handling for KP
+# OpenAPI Generator 7.x camelizes the all-caps tag "KP" to
+# class KPApi. 0.1.4 shipped KpApi. The CLI has no
+# --api-name-mappings flag (7.21.0); we apply the equivalent
+# by remapping tag "KP" -> "Kp" in a preprocessed spec copy
+# before generation (see prepare_sdk_spec).
+#   from asterwise.api.kp_api import KpApi    # still works
+#   from asterwise import KpApi               # still works
+
 cd "${REPO_ROOT}"
+
+prepare_sdk_spec() {
+    local dest="$1"
+    local raw="${dest}.raw"
+    curl -sf -H "User-Agent: asterwise-sdk-gen/1.0" "${SPEC_URL}" -o "${raw}"
+    python3 - "${raw}" "${dest}" <<'PY'
+import json
+import sys
+
+raw_path, dest_path = sys.argv[1], sys.argv[2]
+with open(raw_path, encoding="utf-8") as f:
+    spec = json.load(f)
+
+patched = 0
+for methods in spec.get("paths", {}).values():
+    for op in methods.values():
+        if isinstance(op, dict) and "tags" in op and "KP" in op["tags"]:
+            op["tags"] = ["Kp" if t == "KP" else t for t in op["tags"]]
+            patched += 1
+
+with open(dest_path, "w", encoding="utf-8") as f:
+    json.dump(spec, f)
+
+print(f"==> SDK spec prepared ({patched} operations: tag KP -> Kp)")
+PY
+}
 
 echo "==> asterwise-python SDK regeneration"
 echo "    Spec URL: ${SPEC_URL}"
@@ -79,9 +114,13 @@ fi
 
 run_generator() {
     local out_dir="$1"
+    local spec_file
+    spec_file="$(mktemp "${TMPDIR:-/tmp}/asterwise-openapi-sdk.XXXXXX.json")"
+    trap 'rm -f "${spec_file}" "${spec_file}.raw" 2>/dev/null' RETURN
+    prepare_sdk_spec "${spec_file}"
     npx -y -p "@openapitools/openapi-generator-cli@${ASTERWISE_GENERATOR_VERSION}" \
         openapi-generator-cli generate \
-        -i "${SPEC_URL}" \
+        -i "${spec_file}" \
         -g "${GENERATOR}" \
         -o "${out_dir}" \
         --additional-properties="${ADDITIONAL_PROPS}" \
