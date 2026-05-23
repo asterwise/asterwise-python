@@ -1,13 +1,27 @@
 [project]
 name = "asterwise"
 version = "0.2.0"
-description = "Asterwise API"
+description = "Official Python SDK for the Asterwise API — Vedic and Western astrology, numerology, tarot, crystals, dreams. 115+ endpoints."
 authors = [
   {name = "Asterwise",email = "support@asterwise.com"},
 ]
 license = { text = "Commercial" }
 readme = "README.md"
-keywords = ["OpenAPI", "OpenAPI-Generator", "Asterwise API"]
+keywords = [
+    "vedic-astrology",
+    "jyotish",
+    "astrology",
+    "kundli",
+    "horoscope",
+    "numerology",
+    "tarot",
+    "panchanga",
+    "dasha",
+    "matchmaking",
+    "western-astrology",
+    "natal-chart",
+    "astrology-api",
+]
 requires-python = ">=3.9"
 
 dependencies = [
@@ -18,7 +32,11 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
+Homepage = "https://asterwise.com"
+Documentation = "https://docs.asterwise.com"
+Repository = "https://github.com/asterwise/asterwise-python"
+"Bug Tracker" = "https://github.com/asterwise/asterwise-python/issues"
+Changelog = "https://github.com/asterwise/asterwise-python/blob/main/CHANGELOG.md"
 
 [tool.poetry]
 requires-poetry = ">=2.0"
