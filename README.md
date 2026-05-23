@@ -1,15 +1,23 @@
-# asterwise
+<p align="center">
+  <img src="https://asterwise.com/public/logo.svg" alt="Asterwise" width="120" />
+</p>
 
-Official Python SDK for the [Asterwise Vedic Astrology API](https://asterwise.com).
+# asterwise-python
+
+[![PyPI version](https://img.shields.io/pypi/v/asterwise)](https://pypi.org/project/asterwise/)
+[![Python versions](https://img.shields.io/pypi/pyversions/asterwise)](https://pypi.org/project/asterwise/)
+
+The official Python library for **[Asterwise](https://asterwise.com)** — Vedic + Western astrology, numerology, tarot, crystals, and dreams. 115+ endpoints. Classical accuracy. Ships in days.
+
+[Documentation](https://docs.asterwise.com) · [API Reference](https://docs.asterwise.com) · [Pricing](https://asterwise.com/pages/pricing.html) · [MCP server](https://mcp.asterwise.com)
+
+## Installation
 
 ```bash
 pip install asterwise
 ```
 
-## Authentication
-
-Get a free API key at [asterwise.com](https://asterwise.com). 
-Pass it when configuring the client:
+## Quickstart
 
 ```python
 import asterwise
@@ -33,40 +41,61 @@ with asterwise.ApiClient(configuration) as client:
     print(result)
 ```
 
+Get a free API key at [asterwise.com](https://asterwise.com).
+
+## What you can build
+
+| Domain | Operations |
+|--------|------------|
+| Vedic astrology | 38 |
+| Western astrology | 21 |
+| Numerology | 24 |
+| Horoscope | 8 |
+| Matchmaking | 5 |
+| Tarot | 9 |
+| Crystals & dreams | 7 |
+| KP & Lal Kitab | 5 |
+
+*117 typed SDK methods across 13 API classes; marketed as **115+ REST endpoints**.*
+
+## What makes Asterwise different
+
+- **Classical BPHS source citations** on every interpretation
+- **5-level Vimshottari Dasha** (Maha → Antar → Pratyantar → Sookshma → Prana) — most APIs return two
+- **Rajju and Vedha as hard vetoes** in matchmaking — not just point scores
+- **HMAC-signed responses** for auditability
+- **MCP server** with **100+ tools** for Claude and Cursor integration
+
+## Examples
+
+```python
+from datetime import date
+from asterwise.api.western_astrology_api import WesternAstrologyApi
+from asterwise.api.numerology_api import NumerologyApi
+from asterwise.api.tarot_api import TarotApi
+
+with asterwise.ApiClient(configuration) as client:
+    western = WesternAstrologyApi(client)
+    chart = western.western_natal_chart(
+        asterwise.WesternNatalRequest(
+            date="1985-11-12",
+            time="06:45",
+            location="Mumbai, India",
+        )
+    )
+
+    numerology = NumerologyApi(client)
+    path = numerology.life_path(var_date=date(1985, 11, 12))
+
+    tarot = TarotApi(client)
+    spread = tarot.tarot_three_card(
+        asterwise.SpreadRequest(question="What should I focus on this month?")
+    )
+```
+
 ## Requirements
 
-Python 3.9+
-
-## What's included in this SDK (v0.1.4)
-
-The Python SDK currently exposes **59 of 117** asterwise platform
-endpoints organized into four categories:
-
-**Astrology** — Natal chart, Dasha (5 levels), Yogas, Doshas, 
-Divisional charts (D1–D60), Ashtakavarga, Shadbala, Gochar, 
-Sade Sati, Dasha-Transit correlation, Matchmaking (Ashtakoota, 
-Dashakoot, Porutham, Thirumana Porutham, Papasamyam), Panchanga, 
-Choghadiya, Hora, Rahu Kaal, Muhurta, Varshaphal, Prashna, 
-Remedies, Gemstones, KP System, Lal Kitab, Atmakaraka, 
-Ishta Devata, Nakshatra — 38 endpoints
-
-**Numerology** — Profile, Compatibility, Life Path, Personal Year, 
-Lucky Numbers, Number Meaning, Name Correction, Business Name, 
-Chaldean, Lo Shu, Mobile Number, Vehicle Number — 14 endpoints
-
-**Horoscope** — Daily, Weekly, Monthly, Yearly × 12 Moon signs 
-— 4 endpoints
-
-**Utilities** — Geocode (city → coordinates), Timezone lookup 
-— 2 endpoints
-
-> **Platform scope**: The asterwise platform exposes 117 REST
-> endpoints in total (covering Vedic astrology, Western astrology,
-> numerology, horoscope, tarot, crystals, and dreams). The SDK
-> regenerates from the OpenAPI specification to align with platform
-> scope. For the complete API reference see
-> [docs.asterwise.com](https://docs.asterwise.com).
-> Coverage gap will close in the next SDK regeneration.
+Python 3.9+. An API key from [asterwise.com](https://asterwise.com).
 
 ## Documentation
 
@@ -74,53 +103,20 @@ Full API reference: [docs.asterwise.com](https://docs.asterwise.com)
 
 ## Development
 
-### Regenerating the SDK
+Regenerate from `https://api.asterwise.com/openapi-sdk.json` (see `asterwise-api/_docs/SDK_CONTRACT.md`).
 
-The SDK is generated from the asterwise SDK OpenAPI spec at
-`https://api.asterwise.com/openapi-sdk.json`. The contract that
-governs which operations are exposed and what their method names
-are lives in `asterwise-api/_docs/SDK_CONTRACT.md`.
-
-**Requirements:**
-
-- Node.js and npm (the script uses npx)
-- **Java 11+** — the underlying openapi-generator JAR requires it
-  - macOS: `brew install openjdk@17`
-  - Ubuntu: `sudo apt install openjdk-17-jre-headless`
-
-The script preflight-checks for Java and prints install instructions
-if missing.
-
-To regenerate locally:
+**Requirements:** Node.js/npm (for `npx`), **Java 11+** for OpenAPI Generator.
 
 ```bash
 bash scripts/generate.sh
 ```
 
-To preview changes without applying them:
-
-```bash
-bash scripts/generate.sh --check
-```
-
-The script invokes `openapi-generator-cli` at the version pinned
-in `openapitools.json`. Regeneration is deterministic from the
-input spec; running it twice produces identical output.
-
-To publish a new version after regeneration:
-
-1. Bump `version` in `pyproject.toml` AND `__version__` in
-   `asterwise/__init__.py` (semver — breaking changes require
-   major bump after 1.0.0).
-2. Update `CHANGELOG.md` with the changes.
-3. Build: `python -m build`
-4. Smoke test the wheel: `pip install dist/asterwise-X.Y.Z-py3-none-any.whl` in a scratch venv.
-5. Publish: `twine upload dist/*` (requires PyPI credentials).
-
-See `asterwise-api/_docs/audits/REFINE_PLAN_2026_05.md` for the
-regeneration roadmap.
+**Versioning:** regenerate → bump `version` in `pyproject.toml` and `asterwise/__init__.py` → update `CHANGELOG.md` → `python -m build` → publish with `twine upload`.
 
 ## Support
 
 support@asterwise.com
 
+## License
+
+Commercial. See [LICENSE](LICENSE).
