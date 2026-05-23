@@ -1,5 +1,40 @@
 # CHANGELOG
 
+## 0.2.1 — 2026-05-23
+
+### Docs
+
+- Rewrote README to match world-class SDK README pattern
+  (Anthropic / Stripe / OpenAI peer-grade). Domain table for the
+  full 117-operation surface; 3 short examples demonstrating
+  Western astrology, numerology, and tarot.
+- Removed stale 'v0.1.4', '59 of 117 endpoints', and 'Coverage
+  gap will close in the next SDK regeneration' language. The
+  0.2.0 release closed that gap; the README now correctly
+  describes the shipped surface.
+- Updated framing from 'Vedic Astrology API' to 'Vedic + Western
+  astrology, numerology, tarot, crystals, dreams' to match the
+  post-0.2.0 product scope.
+
+### Metadata
+
+- pyproject.toml `description` rewritten: 'Official Python SDK
+  for the Asterwise API — Vedic and Western astrology, numerology,
+  tarot, crystals, dreams. 115+ endpoints.'
+- pyproject.toml `keywords` expanded from 3 (default
+  OpenAPI-Generator) to 13 product-relevant search terms.
+- pyproject.toml URLs: replaced placeholder GIT_USER_ID/GIT_REPO_ID
+  with real Homepage, Documentation, Repository, Bug Tracker,
+  Changelog links.
+
+### No code changes
+
+This is a docs-only patch release. SDK surface unchanged from
+0.2.0 — same 117 operations, same method names, fully
+backward-compatible. Upgrading from 0.2.0 is a no-op for code;
+the upgrade is only useful for the corrected PyPI landing page
+metadata.
+
 ## 0.2.0 — 2026-05-22
 
 ### Added
