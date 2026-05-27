@@ -19,6 +19,8 @@ asterwise/configuration.py
 asterwise/exceptions.py
 asterwise/models/__init__.py
 asterwise/models/angel_number_response.py
+asterwise/models/angel_numbers_list_data.py
+asterwise/models/angel_numbers_list_response.py
 asterwise/models/api_response_angel_number_response.py
 asterwise/models/api_response_ashtakavarga_response.py
 asterwise/models/api_response_ashtottari_endpoint_response.py
@@ -143,7 +145,6 @@ asterwise/models/gochar_request.py
 asterwise/models/hora_period.py
 asterwise/models/hora_response.py
 asterwise/models/house_data.py
-asterwise/models/http_validation_error.py
 asterwise/models/ingress_event.py
 asterwise/models/ishta_devta_request.py
 asterwise/models/kaal_period.py
@@ -154,7 +155,6 @@ asterwise/models/kp_ruling_planets_request.py
 asterwise/models/lal_kitab_request.py
 asterwise/models/life_path_response.py
 asterwise/models/lo_shu_request.py
-asterwise/models/location_inner.py
 asterwise/models/lucky_numbers_api_response.py
 asterwise/models/lunar_return_request.py
 asterwise/models/matchmaking_request.py
@@ -229,7 +229,6 @@ asterwise/models/transits_request.py
 asterwise/models/transits_response.py
 asterwise/models/two_person_request.py
 asterwise/models/upapada_lagna.py
-asterwise/models/validation_error.py
 asterwise/models/vara_data.py
 asterwise/models/varshaphal_request.py
 asterwise/models/weekly_transit_response.py
@@ -260,6 +259,8 @@ asterwise/py.typed
 asterwise/rest.py
 docs/AdvancedApi.md
 docs/AngelNumberResponse.md
+docs/AngelNumbersListData.md
+docs/AngelNumbersListResponse.md
 docs/ApiResponseAngelNumberResponse.md
 docs/ApiResponseAshtakavargaResponse.md
 docs/ApiResponseAshtottariEndpointResponse.md
@@ -384,7 +385,6 @@ docs/GemstoneRequest.md
 docs/GeocodeResponse.md
 docs/GeocodeResult.md
 docs/GocharRequest.md
-docs/HTTPValidationError.md
 docs/HoraPeriod.md
 docs/HoraResponse.md
 docs/HoroscopeApi.md
@@ -401,7 +401,6 @@ docs/LalKitabApi.md
 docs/LalKitabRequest.md
 docs/LifePathResponse.md
 docs/LoShuRequest.md
-docs/LocationInner.md
 docs/LuckyNumbersApiResponse.md
 docs/LunarReturnRequest.md
 docs/MatchmakingRequest.md
@@ -480,7 +479,6 @@ docs/TransitsResponse.md
 docs/TwoPersonRequest.md
 docs/UpapadaLagna.md
 docs/UtilitiesApi.md
-docs/ValidationError.md
 docs/VaraData.md
 docs/VarshaphalRequest.md
 docs/WeeklyTransitResponse.md
@@ -513,3 +511,5 @@ git_push.sh
 requirements.txt
 test-requirements.txt
 test/__init__.py
+test/test_angel_numbers_list_data.py
+test/test_angel_numbers_list_response.py

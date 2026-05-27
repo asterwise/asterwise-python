@@ -11,8 +11,7 @@ Name | Type | Description | Notes
 **ascendant_sign** | **str** | Ascendant sign name | 
 **ayanamsa_value** | **float** | Numerical ayanamsa value used in calculations | 
 **ayanamsa_used** | **str** | Ayanamsa mode used for the chart | 
-**birth_time_unknown** | **bool** | Whether birth time was unknown and fallback was applied | [optional] [default to False]
-**fallback_method** | **str** |  | [optional] 
+**birth_time_provided** | **bool** | Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits. | [optional] [default to True]
 **interpretation** | **List[object]** |  | [optional] 
 **ascendant_sign_interpretation** | **object** |  | [optional] 
 **moon_sign** | **str** |  | [optional] 

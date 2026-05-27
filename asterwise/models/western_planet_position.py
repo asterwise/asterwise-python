@@ -37,7 +37,7 @@ class WesternPlanetPosition(BaseModel):
     house: Annotated[int, Field(le=12, strict=True, ge=1)] = Field(description="House number (Placidus or chosen system)")
     is_retrograde: StrictBool
     dignity: StrictStr = Field(description="Essential dignity: domicile | exaltation | detriment | fall | peregrine")
-    dignity_score: StrictInt = Field(description="Lilly dignity weight: domicile=5, exaltation=4, detriment=-5, fall=-4, peregrine=0")
+    dignity_score: StrictInt = Field(description="Essential dignity weight: domicile=5, exaltation=4, detriment=-5, fall=-4, peregrine=0")
     is_exaltation_degree: StrictBool = Field(description="True if planet is in the exact classical exaltation degree (Nth degree = N-1°00' to N-1°59'59\"). Always false for outer planets (no exact degree defined).")
     dignity_disputed: StrictBool = Field(description="True for outer planet (Uranus/Neptune/Pluto) exaltation/fall — no classical consensus.")
     __properties: ClassVar[List[str]] = ["name", "longitude", "sign", "sign_index", "degree_in_sign", "house", "is_retrograde", "dignity", "dignity_score", "is_exaltation_degree", "dignity_disputed"]

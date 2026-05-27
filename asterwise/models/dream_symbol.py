@@ -34,7 +34,7 @@ class DreamSymbol(BaseModel):
     category: StrictStr = Field(description="Symbol category: animals, nature, people, places, objects, actions, body, or abstract.")
     jungian_meaning: StrictStr = Field(description="Jungian/Western psychological interpretation.")
     jungian_archetype: StrictStr = Field(description="Primary Jungian archetype activated by this symbol.")
-    vedic_meaning: StrictStr = Field(description="Classical Swapna Shastra interpretation.")
+    vedic_meaning: StrictStr = Field(description="Classical Vedic dream tradition interpretation.")
     vedic_auspicious: Optional[StrictBool] = None
     vedic_source: StrictStr = Field(description="Classical text source for the Vedic interpretation.")
     traditions_agree: StrictStr = Field(description="Whether Jungian and Vedic traditions agree: 'agree', 'conflict', or 'partial'.")

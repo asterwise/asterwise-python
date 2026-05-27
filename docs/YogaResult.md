@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **yoga_name** | **str** | Detected yoga name | 
 **category** | **str** | Yoga category bucket | 
 **formation** | **str** | Formation condition | 
-**classical_results** | **str** | Classical outcome text | 
 **modern_summary** | **str** | Modern interpretation summary | 
 **keywords** | **List[str]** | Interpretation keywords | [optional] 
 

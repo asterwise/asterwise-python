@@ -6,8 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **yogas** | [**List[YogaResult]**](YogaResult.md) |  | 
-**birth_time_unknown** | **bool** |  | [optional] [default to False]
-**fallback_method** | **str** |  | [optional] 
+**birth_time_provided** | **bool** | Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits. | [optional] [default to True]
 
 ## Example
 

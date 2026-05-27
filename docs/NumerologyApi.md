@@ -4,6 +4,8 @@ All URIs are relative to *https://api.asterwise.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**angel_list**](NumerologyApi.md#angel_list) | **GET** /v1/numerology/angel | List supported angel numbers
+[**angel_list_0**](NumerologyApi.md#angel_list_0) | **GET** /v1/numerology/angel | List supported angel numbers
 [**angel_number**](NumerologyApi.md#angel_number) | **GET** /v1/numerology/angel/{number} | Angel number meaning
 [**angel_personal**](NumerologyApi.md#angel_personal) | **POST** /v1/numerology/angel/personal | Personal angel number
 [**angel_today**](NumerologyApi.md#angel_today) | **GET** /v1/numerology/angel/today | Today&#39;s angel number
@@ -29,6 +31,172 @@ Method | HTTP request | Description
 [**soul_urge_number**](NumerologyApi.md#soul_urge_number) | **POST** /v1/numerology/soul-urge | Soul Urge (Heart&#39;s Desire) Number
 [**vehicle_number**](NumerologyApi.md#vehicle_number) | **GET** /v1/numerology/vehicle-number | Vehicle Number Numerology
 
+
+# **angel_list**
+> AngelNumbersListResponse angel_list()
+
+List supported angel numbers
+
+Returns the curated set of angel-number patterns this API interprets. Use this endpoint to discover valid inputs for GET /v1/numerology/angel/{number}. Numbers outside this list (e.g. Pythagorean master numbers 11/22/33) are not part of the angel-number tradition and return 404 from the lookup endpoint.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.angel_numbers_list_response import AngelNumbersListResponse
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+
+    try:
+        # List supported angel numbers
+        api_response = api_instance.angel_list()
+        print("The response of NumerologyApi->angel_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->angel_list: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AngelNumbersListResponse**](AngelNumbersListResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **angel_list_0**
+> AngelNumbersListResponse angel_list_0()
+
+List supported angel numbers
+
+Returns the curated set of angel-number patterns this API interprets. Use this endpoint to discover valid inputs for GET /v1/numerology/angel/{number}. Numbers outside this list (e.g. Pythagorean master numbers 11/22/33) are not part of the angel-number tradition and return 404 from the lookup endpoint.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.angel_numbers_list_response import AngelNumbersListResponse
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+
+    try:
+        # List supported angel numbers
+        api_response = api_instance.angel_list_0()
+        print("The response of NumerologyApi->angel_list_0:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->angel_list_0: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AngelNumbersListResponse**](AngelNumbersListResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **angel_number**
 > ApiResponseAngelNumberResponse angel_number(number)
@@ -105,9 +273,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -187,9 +361,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -264,9 +444,15 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -346,9 +532,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -426,9 +618,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -507,9 +705,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -588,9 +792,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -670,9 +880,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -752,9 +968,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -833,9 +1055,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Life path number with interpretation metadata |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -914,9 +1142,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -999,9 +1233,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Lucky number list for the requested profile |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1081,9 +1321,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1161,9 +1407,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1242,9 +1494,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1325,9 +1583,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Interpretation details for number and context |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1407,9 +1671,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Numerology compatibility score and interpretation |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1489,9 +1759,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Full numerology profile with core number interpretations |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1571,9 +1847,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1654,9 +1936,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Personal year number and yearly guidance |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1736,9 +2024,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1818,9 +2112,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1900,9 +2200,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1980,9 +2286,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

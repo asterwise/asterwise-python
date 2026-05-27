@@ -27,7 +27,7 @@ Method | HTTP request | Description
 
 Western Aspect Grid
 
-Calculate all active aspects between any set of planetary positions. Provide a dictionary of body names to tropical ecliptic longitudes. Uses Robert Hand Table 2 orbs by default: major aspects 5°, sextile 3°, minor aspects 1.5°. Custom orbs can be provided per aspect type.
+Calculate all active aspects between any set of planetary positions. Provide a dictionary of body names to tropical ecliptic longitudes. Uses standard modern Western orbs by default: major aspects 5°, sextile 3°, minor aspects 1.5°. Custom orbs can be provided per aspect type.
 
 ### Example
 
@@ -98,9 +98,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -180,9 +186,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -263,9 +275,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -274,7 +292,7 @@ Name | Type | Description  | Notes
 
 Western Composite Chart
 
-Midpoint composite chart for two people (Robert Hand method). Each composite planet is the midpoint of the two natal positions. Returns composite planets with dignities and internal aspects.
+Midpoint composite chart for two people using modern Western midpoint technique. Each composite planet is the midpoint of the two natal positions. Returns composite planets with dignities and internal aspects.
 
 ### Example
 
@@ -345,9 +363,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -427,9 +451,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -510,9 +540,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -591,9 +627,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -602,7 +644,7 @@ Name | Type | Description  | Notes
 
 Western Natal Chart — Tropical
 
-Calculate a complete Western natal chart using the tropical zodiac and Swiss Ephemeris. Returns 10 planet positions (Sun through Pluto) with tropical longitudes, Placidus (or chosen) house placements, essential dignities per Ptolemy/Lilly/Hand, all active aspects using Robert Hand's Table 2 orbs, and element/modality/hemisphere statistics. House system options: placidus (default), koch, equal, whole_sign.
+Calculate a complete Western natal chart using the tropical zodiac and Swiss Ephemeris. Returns 10 planet positions (Sun through Pluto) with tropical longitudes, Placidus (or chosen) house placements, essential dignities per classical Western tradition, all active aspects using standard modern Western orbs, and element/modality/hemisphere statistics. House system options: placidus (default), koch, equal, whole_sign.
 
 ### Example
 
@@ -673,9 +715,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Western natal chart with tropical positions and dignities |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -755,9 +803,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -837,9 +891,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -919,9 +979,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1001,9 +1067,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1012,7 +1084,7 @@ Name | Type | Description  | Notes
 
 Western Synastry
 
-Aspect grid between two natal charts using the tropical zodiac. Returns all inter-chart aspects using Robert Hand Table 2 orbs. Useful for relationship compatibility analysis.
+Aspect grid between two natal charts using the tropical zodiac. Returns all inter-chart aspects using standard modern Western orbs. Useful for relationship compatibility analysis.
 
 ### Example
 
@@ -1083,9 +1155,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1094,7 +1172,7 @@ Name | Type | Description  | Notes
 
 Western Daily Transits
 
-Current sky positions vs natal chart. Returns all 10 planets with tropical longitudes and active aspects to natal positions using transit orbs (Hand, Planets in Transit): major 3°, sextile 2°, minor 1°. Defaults to today if no date given.
+Current sky positions vs natal chart. Returns all 10 planets with tropical longitudes and active aspects to natal positions using standard modern Western transit orbs: major 3°, sextile 2°, minor 1°. Defaults to today if no date given.
 
 ### Example
 
@@ -1165,9 +1243,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1247,9 +1331,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1329,9 +1419,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -46,7 +46,7 @@ class NatalCrystalEntry(BaseModel):
     origins: List[StrictStr]
     affirmation: StrictStr
     caution: Optional[StrictStr]
-    match_score: StrictInt = Field(description="Classical Ratna Shastra match score.")
+    match_score: StrictInt = Field(description="Classical Vedic gemstone tradition match score.")
     match_reasons: List[StrictStr] = Field(description="Classical factors — which house lordship triggered this recommendation.")
     warnings: Optional[List[StrictStr]] = Field(default=None, description="Classical cautions for this specific chart context.")
     __properties: ClassVar[List[str]] = ["slug", "name", "colors", "hardness_mohs", "chakras", "element", "zodiac_signs", "vedic_planet", "vedic_correspondence", "western_planet", "keywords", "healing_physical", "healing_emotional", "healing_spiritual", "description", "origins", "affirmation", "caution", "match_score", "match_reasons", "warnings"]

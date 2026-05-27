@@ -92,8 +92,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -162,8 +168,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -232,8 +244,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -362,8 +380,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -432,8 +456,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -502,8 +532,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -632,8 +668,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -702,8 +744,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -772,8 +820,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -902,8 +956,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -972,8 +1032,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1042,8 +1108,14 @@ class HoroscopeApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(

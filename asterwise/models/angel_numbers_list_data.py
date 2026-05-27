@@ -18,20 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
-from typing import Any, ClassVar, Dict, List, Optional
-from asterwise.models.ashtottari_response import AshtottariResponse
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class AshtottariEndpointResponse(BaseModel):
+class AngelNumbersListData(BaseModel):
     """
-    AshtottariEndpointResponse
+    AngelNumbersListData
     """ # noqa: E501
-    periods: AshtottariResponse
-    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
-    __properties: ClassVar[List[str]] = ["periods", "birth_time_provided"]
+    count: StrictInt
+    numbers: List[StrictStr]
+    note: StrictStr
+    __properties: ClassVar[List[str]] = ["count", "numbers", "note"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -51,7 +51,7 @@ class AshtottariEndpointResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AshtottariEndpointResponse from a JSON string"""
+        """Create an instance of AngelNumbersListData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,14 +72,11 @@ class AshtottariEndpointResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of periods
-        if self.periods:
-            _dict['periods'] = self.periods.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AshtottariEndpointResponse from a dict"""
+        """Create an instance of AngelNumbersListData from a dict"""
         if obj is None:
             return None
 
@@ -87,8 +84,9 @@ class AshtottariEndpointResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "periods": AshtottariResponse.from_dict(obj["periods"]) if obj.get("periods") is not None else None,
-            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True
+            "count": obj.get("count"),
+            "numbers": obj.get("numbers"),
+            "note": obj.get("note")
         })
         return _obj
 

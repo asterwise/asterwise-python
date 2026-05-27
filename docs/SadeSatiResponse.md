@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **natal_moon_sign** | **str** |  | 
 **natal_moon_sign_index** | **int** |  | 
 **sade_sati_signs** | **object** |  | 
-**classical_note** | **str** |  | 
 **is_currently_active** | **bool** |  | [optional] 
 **current_phase** | **str** |  | [optional] 
 **current_phase_description** | **str** |  | [optional] 

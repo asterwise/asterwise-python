@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **origins** | **List[str]** |  | 
 **affirmation** | **str** |  | 
 **caution** | **str** |  | 
-**match_score** | **int** | Classical Ratna Shastra match score. | 
+**match_score** | **int** | Classical Vedic gemstone tradition match score. | 
 **match_reasons** | **List[str]** | Classical factors — which house lordship triggered this recommendation. | 
 **warnings** | **List[str]** | Classical cautions for this specific chart context. | [optional] 
 

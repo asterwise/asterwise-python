@@ -15,8 +15,7 @@ Name | Type | Description | Notes
 **mangal_compatibility** | **object** |  | [optional] 
 **supplementary_checks** | **object** |  | [optional] 
 **compatibility_narrative** | **object** |  | [optional] 
-**birth_time_unknown** | **bool** | Whether fallback birth time was used for one or both persons | [optional] [default to False]
-**fallback_method** | **str** |  | [optional] 
+**birth_time_provided** | **bool** | Whether a precise birth time was provided for both persons. False when either person&#39;s birth time was not supplied or treated as unknown. | [optional] [default to True]
 
 ## Example
 

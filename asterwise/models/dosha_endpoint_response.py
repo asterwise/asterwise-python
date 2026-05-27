@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.dosha_result import DoshaResult
 from typing import Optional, Set
@@ -30,9 +30,8 @@ class DoshaEndpointResponse(BaseModel):
     DoshaEndpointResponse
     """ # noqa: E501
     doshas: Dict[str, DoshaResult]
-    birth_time_unknown: Optional[StrictBool] = False
-    fallback_method: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["doshas", "birth_time_unknown", "fallback_method"]
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
+    __properties: ClassVar[List[str]] = ["doshas", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -80,11 +79,6 @@ class DoshaEndpointResponse(BaseModel):
                 if self.doshas[_key_doshas]:
                     _field_dict[_key_doshas] = self.doshas[_key_doshas].to_dict()
             _dict['doshas'] = _field_dict
-        # set to None if fallback_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.fallback_method is None and "fallback_method" in self.model_fields_set:
-            _dict['fallback_method'] = None
-
         return _dict
 
     @classmethod
@@ -103,8 +97,7 @@ class DoshaEndpointResponse(BaseModel):
             )
             if obj.get("doshas") is not None
             else None,
-            "birth_time_unknown": obj.get("birth_time_unknown") if obj.get("birth_time_unknown") is not None else False,
-            "fallback_method": obj.get("fallback_method")
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True
         })
         return _obj
 

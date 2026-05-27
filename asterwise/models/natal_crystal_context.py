@@ -29,7 +29,7 @@ class NatalCrystalContext(BaseModel):
     NatalCrystalContext
     """ # noqa: E501
     lagna_sign: StrictStr = Field(description="Ascendant sign (English).")
-    lagna_lord: StrictStr = Field(description="Lord of the 1st house per BPHS.")
+    lagna_lord: StrictStr = Field(description="Lord of the 1st house per classical Vedic tradition.")
     fifth_sign: StrictStr = Field(description="5th house sign (English).")
     fifth_lord: StrictStr = Field(description="Lord of the 5th house (Panchamesh — Lucky Stone).")
     ninth_sign: StrictStr = Field(description="9th house sign (English).")

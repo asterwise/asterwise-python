@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Single dream symbol lookup
 
-Lookup a specific dream symbol by slug or name (case-insensitive). Examples: 'snake', 'eagle', 'childhood-home', 'teeth falling out'. Returns full dual-tradition interpretation including Jungian archetype, Vedic Swapna Shastra meaning, context variants, and related symbols.
+Lookup a specific dream symbol by slug or name (case-insensitive). Examples: 'snake', 'eagle', 'childhood-home', 'teeth falling out'. Returns full dual-tradition interpretation including Jungian archetype, Vedic dream tradition meaning, context variants, and related symbols.
 
 ### Example
 
@@ -83,9 +83,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -94,7 +100,7 @@ Name | Type | Description  | Notes
 
 Dream symbol database
 
-Returns all dream symbols from the database, optionally filtered by category. Each symbol includes dual-tradition interpretation: Jungian/Western psychological analysis and classical Vedic Swapna Shastra meaning with auspiciousness rating. The traditions_agree field flags where Western and Vedic interpretations conflict — these cross-tradition conflicts are unique to this API. Categories: animals, nature, people, places, objects, actions, body, abstract.
+Returns all dream symbols from the database, optionally filtered by category. Each symbol includes dual-tradition interpretation: Jungian/Western psychological analysis and classical Vedic dream tradition meaning with auspiciousness rating. The traditions_agree field flags where Western and Vedic interpretations conflict. Categories: animals, nature, people, places, objects, actions, body, abstract.
 
 ### Example
 
@@ -164,9 +170,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
-**422** | Validation error or invalid input |  -  |
-**500** | Internal server error |  -  |
-**503** | Service temporarily unavailable |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

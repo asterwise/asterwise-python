@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.dasha_period import DashaPeriod
 from typing import Optional, Set
@@ -31,9 +31,8 @@ class DashaEndpointResponse(BaseModel):
     """ # noqa: E501
     periods: List[DashaPeriod] = Field(description="Calculated Vimshottari dasha hierarchy")
     interpretation: Optional[Dict[str, Any]] = None
-    birth_time_unknown: Optional[StrictBool] = False
-    fallback_method: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["periods", "interpretation", "birth_time_unknown", "fallback_method"]
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
+    __properties: ClassVar[List[str]] = ["periods", "interpretation", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,11 +85,6 @@ class DashaEndpointResponse(BaseModel):
         if self.interpretation is None and "interpretation" in self.model_fields_set:
             _dict['interpretation'] = None
 
-        # set to None if fallback_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.fallback_method is None and "fallback_method" in self.model_fields_set:
-            _dict['fallback_method'] = None
-
         return _dict
 
     @classmethod
@@ -105,8 +99,7 @@ class DashaEndpointResponse(BaseModel):
         _obj = cls.model_validate({
             "periods": [DashaPeriod.from_dict(_item) for _item in obj["periods"]] if obj.get("periods") is not None else None,
             "interpretation": obj.get("interpretation"),
-            "birth_time_unknown": obj.get("birth_time_unknown") if obj.get("birth_time_unknown") is not None else False,
-            "fallback_method": obj.get("fallback_method")
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True
         })
         return _obj
 

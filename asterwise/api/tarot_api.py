@@ -102,8 +102,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -172,8 +178,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -242,8 +254,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -376,8 +394,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCardOfDayResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -450,8 +474,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCardOfDayResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -524,8 +554,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCardOfDayResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -657,8 +693,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseListTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -723,8 +765,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseListTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -789,8 +837,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseListTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -880,7 +934,7 @@ class TarotApi:
     ) -> ApiResponseSpreadResponse:
         """Celtic Cross Spread
 
-        Full 10-card Celtic Cross spread — the most comprehensive tarot spread. Positions: present, challenge, root, past, possible outcome, near future, self, external influences, hopes and fears, final outcome. Returns each card with its spread position, position meaning, and active interpretation for the drawn orientation.
+        Full 10-card Celtic Cross spread — traditional ten-position tarot spread. Positions: present, challenge, root, past, possible outcome, near future, self, external influences, hopes and fears, final outcome. Returns each card with its spread position, position meaning, and active interpretation for the drawn orientation.
 
         :param spread_request: (required)
         :type spread_request: SpreadRequest
@@ -916,8 +970,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseSpreadResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -950,7 +1010,7 @@ class TarotApi:
     ) -> ApiResponse[ApiResponseSpreadResponse]:
         """Celtic Cross Spread
 
-        Full 10-card Celtic Cross spread — the most comprehensive tarot spread. Positions: present, challenge, root, past, possible outcome, near future, self, external influences, hopes and fears, final outcome. Returns each card with its spread position, position meaning, and active interpretation for the drawn orientation.
+        Full 10-card Celtic Cross spread — traditional ten-position tarot spread. Positions: present, challenge, root, past, possible outcome, near future, self, external influences, hopes and fears, final outcome. Returns each card with its spread position, position meaning, and active interpretation for the drawn orientation.
 
         :param spread_request: (required)
         :type spread_request: SpreadRequest
@@ -986,8 +1046,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseSpreadResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1020,7 +1086,7 @@ class TarotApi:
     ) -> RESTResponseType:
         """Celtic Cross Spread
 
-        Full 10-card Celtic Cross spread — the most comprehensive tarot spread. Positions: present, challenge, root, past, possible outcome, near future, self, external influences, hopes and fears, final outcome. Returns each card with its spread position, position meaning, and active interpretation for the drawn orientation.
+        Full 10-card Celtic Cross spread — traditional ten-position tarot spread. Positions: present, challenge, root, past, possible outcome, near future, self, external influences, hopes and fears, final outcome. Returns each card with its spread position, position meaning, and active interpretation for the drawn orientation.
 
         :param spread_request: (required)
         :type spread_request: SpreadRequest
@@ -1056,8 +1122,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseSpreadResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1199,8 +1271,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDrawResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1269,8 +1347,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDrawResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1339,8 +1423,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDrawResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1478,8 +1568,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseListTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1544,8 +1640,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseListTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1610,8 +1712,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseListTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1737,8 +1845,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseListTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1807,8 +1921,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseListTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1877,8 +1997,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseListTarotCardSchema",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2007,8 +2133,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseSpreadResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2077,8 +2209,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseSpreadResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2147,8 +2285,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseSpreadResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2290,8 +2434,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseYesNoResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2360,8 +2510,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseYesNoResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2430,8 +2586,14 @@ class TarotApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseYesNoResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(

@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **hemisphere** | [**WesternHemisphere**](WesternHemisphere.md) |  | 
 **ayanamsa_value** | **float** | Always 0.0 — tropical zodiac | [optional] [default to 0.0]
 **ayanamsa_used** | **str** |  | [optional] [default to 'tropical']
-**birth_time_unknown** | **bool** |  | [optional] [default to False]
+**birth_time_provided** | **bool** | Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits. | [optional] [default to True]
 
 ## Example
 

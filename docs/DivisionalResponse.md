@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **d3** | **object** | Drekkana — siblings and courage | 
 **d4** | **object** | Chaturthamsha — property and fixed assets | 
 **d7** | **object** | Saptamsha — children and creative output | 
-**d9** | **object** | Navamsha — spouse, dharma, and deeper soul purpose. The most important divisional chart. | 
+**d9** | **object** | Navamsha — spouse, dharma, and deeper soul purpose. A primary divisional chart. | 
 **d10** | **object** | Dashamsha — career and professional life | 
 **d12** | **object** | Dwadashamsha — parents and ancestral karma | 
 **d16** | **object** | Shodashamsha — vehicles and comforts | 
@@ -21,8 +21,7 @@ Name | Type | Description | Notes
 **d40** | **object** | Khavedamsha — auspicious and inauspicious effects | 
 **d45** | **object** | Akshavedamsha — all matters of life | 
 **d60** | **object** | Shashtyamsha — all matters, most subtle divisional chart | 
-**birth_time_unknown** | **bool** | True if birth time was unknown and sunrise was used. | [optional] [default to False]
-**fallback_method** | **str** |  | [optional] 
+**birth_time_provided** | **bool** | Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits. | [optional] [default to True]
 
 ## Example
 

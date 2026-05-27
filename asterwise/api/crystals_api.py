@@ -97,8 +97,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalEntry",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -167,8 +173,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalEntry",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -237,8 +249,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalEntry",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -331,7 +349,7 @@ class CrystalsApi:
     ) -> ApiResponseCrystalListResponse:
         """Crystals by Vedic planet
 
-        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes. Only classically verified Vedic assignments are included — crystals without classical Vedic text support are not returned here.
+        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes. Only Navaratna and Uparatna Vedic assignments are included — crystals without classical Vedic gemstone support are not returned here.
 
         :param planet: (required)
         :type planet: str
@@ -367,8 +385,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalListResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -401,7 +425,7 @@ class CrystalsApi:
     ) -> ApiResponse[ApiResponseCrystalListResponse]:
         """Crystals by Vedic planet
 
-        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes. Only classically verified Vedic assignments are included — crystals without classical Vedic text support are not returned here.
+        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes. Only Navaratna and Uparatna Vedic assignments are included — crystals without classical Vedic gemstone support are not returned here.
 
         :param planet: (required)
         :type planet: str
@@ -437,8 +461,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalListResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -471,7 +501,7 @@ class CrystalsApi:
     ) -> RESTResponseType:
         """Crystals by Vedic planet
 
-        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes. Only classically verified Vedic assignments are included — crystals without classical Vedic text support are not returned here.
+        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes. Only Navaratna and Uparatna Vedic assignments are included — crystals without classical Vedic gemstone support are not returned here.
 
         :param planet: (required)
         :type planet: str
@@ -507,8 +537,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalListResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -633,8 +669,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalListResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -699,8 +741,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalListResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -765,8 +813,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalListResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -892,8 +946,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalRecommendResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -962,8 +1022,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalRecommendResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1032,8 +1098,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseCrystalRecommendResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1139,7 +1211,7 @@ class CrystalsApi:
     ) -> ApiResponseNatalCrystalResponse:
         """Crystal recommendations from Vedic natal chart
 
-        Recommend crystals based on classical Ratna Shastra (BPHS + Mani Mala) house lordship rules. Computes the natal chart and identifies the planets that lord Trikona houses (1, 5, 9). Lagna lord = Life Stone (+5), Yogakaraka = supreme benefic (+5), 9th lord = Fortune Stone (+4), 5th lord = Lucky Stone (+3). Where a planet lords both a Trikona and a Dusthana (6, 8, 12), the Trikona lordship prevails per BPHS — it is still recommended. Planets not lordsing any Trikona house are contraindicated. Only crystals with verified classical Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
+        Recommend crystals based on classical Vedic gemstone tradition house lordship rules. Computes the natal chart and identifies the planets that lord Trikona houses (1, 5, 9). Lagna lord = Life Stone (+5), Yogakaraka = supreme benefic (+5), 9th lord = Fortune Stone (+4), 5th lord = Lucky Stone (+3). Where a planet lords both a Trikona and a Dusthana (6, 8, 12), the Trikona Trikona lordship still prevails — the planet is still recommended. Planets not lordsing any Trikona house are contraindicated. Only crystals with classical Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
         :param natal_request: (required)
         :type natal_request: NatalRequest
@@ -1175,8 +1247,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNatalCrystalResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1209,7 +1287,7 @@ class CrystalsApi:
     ) -> ApiResponse[ApiResponseNatalCrystalResponse]:
         """Crystal recommendations from Vedic natal chart
 
-        Recommend crystals based on classical Ratna Shastra (BPHS + Mani Mala) house lordship rules. Computes the natal chart and identifies the planets that lord Trikona houses (1, 5, 9). Lagna lord = Life Stone (+5), Yogakaraka = supreme benefic (+5), 9th lord = Fortune Stone (+4), 5th lord = Lucky Stone (+3). Where a planet lords both a Trikona and a Dusthana (6, 8, 12), the Trikona lordship prevails per BPHS — it is still recommended. Planets not lordsing any Trikona house are contraindicated. Only crystals with verified classical Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
+        Recommend crystals based on classical Vedic gemstone tradition house lordship rules. Computes the natal chart and identifies the planets that lord Trikona houses (1, 5, 9). Lagna lord = Life Stone (+5), Yogakaraka = supreme benefic (+5), 9th lord = Fortune Stone (+4), 5th lord = Lucky Stone (+3). Where a planet lords both a Trikona and a Dusthana (6, 8, 12), the Trikona Trikona lordship still prevails — the planet is still recommended. Planets not lordsing any Trikona house are contraindicated. Only crystals with classical Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
         :param natal_request: (required)
         :type natal_request: NatalRequest
@@ -1245,8 +1323,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNatalCrystalResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1279,7 +1363,7 @@ class CrystalsApi:
     ) -> RESTResponseType:
         """Crystal recommendations from Vedic natal chart
 
-        Recommend crystals based on classical Ratna Shastra (BPHS + Mani Mala) house lordship rules. Computes the natal chart and identifies the planets that lord Trikona houses (1, 5, 9). Lagna lord = Life Stone (+5), Yogakaraka = supreme benefic (+5), 9th lord = Fortune Stone (+4), 5th lord = Lucky Stone (+3). Where a planet lords both a Trikona and a Dusthana (6, 8, 12), the Trikona lordship prevails per BPHS — it is still recommended. Planets not lordsing any Trikona house are contraindicated. Only crystals with verified classical Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
+        Recommend crystals based on classical Vedic gemstone tradition house lordship rules. Computes the natal chart and identifies the planets that lord Trikona houses (1, 5, 9). Lagna lord = Life Stone (+5), Yogakaraka = supreme benefic (+5), 9th lord = Fortune Stone (+4), 5th lord = Lucky Stone (+3). Where a planet lords both a Trikona and a Dusthana (6, 8, 12), the Trikona Trikona lordship still prevails — the planet is still recommended. Planets not lordsing any Trikona house are contraindicated. Only crystals with classical Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
         :param natal_request: (required)
         :type natal_request: NatalRequest
@@ -1315,8 +1399,14 @@ class CrystalsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNatalCrystalResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(

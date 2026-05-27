@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **natal_context** | [**NatalCrystalContext**](NatalCrystalContext.md) |  | 
 **total** | **int** |  | 
 **crystals** | [**List[NatalCrystalEntry]**](NatalCrystalEntry.md) |  | 
-**classical_note** | **str** |  | 
 
 ## Example
 

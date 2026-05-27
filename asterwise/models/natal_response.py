@@ -39,8 +39,7 @@ class NatalResponse(BaseModel):
     ascendant_sign: StrictStr = Field(description="Ascendant sign name")
     ayanamsa_value: Union[StrictFloat, StrictInt] = Field(description="Numerical ayanamsa value used in calculations")
     ayanamsa_used: StrictStr = Field(description="Ayanamsa mode used for the chart")
-    birth_time_unknown: Optional[StrictBool] = Field(default=False, description="Whether birth time was unknown and fallback was applied")
-    fallback_method: Optional[StrictStr] = None
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
     interpretation: Optional[List[Dict[str, Any]]] = None
     ascendant_sign_interpretation: Optional[Dict[str, Any]] = None
     moon_sign: Optional[StrictStr] = None
@@ -54,7 +53,7 @@ class NatalResponse(BaseModel):
     rashi_drishti: Optional[List[RashiDrishtiEntry]] = None
     arudha_padas: Optional[Dict[str, Dict[str, Any]]] = None
     upapada_lagna: Optional[UpapadaLagna] = None
-    __properties: ClassVar[List[str]] = ["planets", "houses", "ascendant", "ascendant_sign", "ayanamsa_value", "ayanamsa_used", "birth_time_unknown", "fallback_method", "interpretation", "ascendant_sign_interpretation", "moon_sign", "moon_nakshatra", "moon_sign_interpretation", "moon_nakshatra_interpretation", "avakahada", "bhava_madhya", "bhava_sandhi", "graha_drishti", "rashi_drishti", "arudha_padas", "upapada_lagna"]
+    __properties: ClassVar[List[str]] = ["planets", "houses", "ascendant", "ascendant_sign", "ayanamsa_value", "ayanamsa_used", "birth_time_provided", "interpretation", "ascendant_sign_interpretation", "moon_sign", "moon_nakshatra", "moon_sign_interpretation", "moon_nakshatra_interpretation", "avakahada", "bhava_madhya", "bhava_sandhi", "graha_drishti", "rashi_drishti", "arudha_padas", "upapada_lagna"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -133,11 +132,6 @@ class NatalResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of upapada_lagna
         if self.upapada_lagna:
             _dict['upapada_lagna'] = self.upapada_lagna.to_dict()
-        # set to None if fallback_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.fallback_method is None and "fallback_method" in self.model_fields_set:
-            _dict['fallback_method'] = None
-
         # set to None if interpretation (nullable) is None
         # and model_fields_set contains the field
         if self.interpretation is None and "interpretation" in self.model_fields_set:
@@ -221,8 +215,7 @@ class NatalResponse(BaseModel):
             "ascendant_sign": obj.get("ascendant_sign"),
             "ayanamsa_value": obj.get("ayanamsa_value"),
             "ayanamsa_used": obj.get("ayanamsa_used"),
-            "birth_time_unknown": obj.get("birth_time_unknown") if obj.get("birth_time_unknown") is not None else False,
-            "fallback_method": obj.get("fallback_method"),
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "interpretation": obj.get("interpretation"),
             "ascendant_sign_interpretation": obj.get("ascendant_sign_interpretation"),
             "moon_sign": obj.get("moon_sign"),

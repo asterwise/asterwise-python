@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **category** | **str** | Symbol category: animals, nature, people, places, objects, actions, body, or abstract. | 
 **jungian_meaning** | **str** | Jungian/Western psychological interpretation. | 
 **jungian_archetype** | **str** | Primary Jungian archetype activated by this symbol. | 
-**vedic_meaning** | **str** | Classical Swapna Shastra interpretation. | 
+**vedic_meaning** | **str** | Classical Vedic dream tradition interpretation. | 
 **vedic_auspicious** | **bool** |  | [optional] 
 **vedic_source** | **str** | Classical text source for the Vedic interpretation. | 
 **traditions_agree** | **str** | Whether Jungian and Vedic traditions agree: &#39;agree&#39;, &#39;conflict&#39;, or &#39;partial&#39;. | 

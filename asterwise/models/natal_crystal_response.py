@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictInt
 from typing import Any, ClassVar, Dict, List
 from asterwise.models.natal_crystal_context import NatalCrystalContext
 from asterwise.models.natal_crystal_entry import NatalCrystalEntry
@@ -33,8 +33,7 @@ class NatalCrystalResponse(BaseModel):
     natal_context: NatalCrystalContext
     total: StrictInt
     crystals: List[NatalCrystalEntry]
-    classical_note: StrictStr
-    __properties: ClassVar[List[str]] = ["natal_context", "total", "crystals", "classical_note"]
+    __properties: ClassVar[List[str]] = ["natal_context", "total", "crystals"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -99,8 +98,7 @@ class NatalCrystalResponse(BaseModel):
         _obj = cls.model_validate({
             "natal_context": NatalCrystalContext.from_dict(obj["natal_context"]) if obj.get("natal_context") is not None else None,
             "total": obj.get("total"),
-            "crystals": [NatalCrystalEntry.from_dict(_item) for _item in obj["crystals"]] if obj.get("crystals") is not None else None,
-            "classical_note": obj.get("classical_note")
+            "crystals": [NatalCrystalEntry.from_dict(_item) for _item in obj["crystals"]] if obj.get("crystals") is not None else None
         })
         return _obj
 

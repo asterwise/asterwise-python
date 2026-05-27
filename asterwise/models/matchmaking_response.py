@@ -38,9 +38,8 @@ class MatchmakingResponse(BaseModel):
     mangal_compatibility: Optional[Dict[str, Any]] = None
     supplementary_checks: Optional[Dict[str, Any]] = None
     compatibility_narrative: Optional[Dict[str, Any]] = None
-    birth_time_unknown: Optional[StrictBool] = Field(default=False, description="Whether fallback birth time was used for one or both persons")
-    fallback_method: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["total_score", "breakdown", "compatibility_level", "doshas", "dosha_cancellations", "analysis", "classical_vetoes", "mangal_compatibility", "supplementary_checks", "compatibility_narrative", "birth_time_unknown", "fallback_method"]
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided for both persons. False when either person's birth time was not supplied or treated as unknown.")
+    __properties: ClassVar[List[str]] = ["total_score", "breakdown", "compatibility_level", "doshas", "dosha_cancellations", "analysis", "classical_vetoes", "mangal_compatibility", "supplementary_checks", "compatibility_narrative", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -101,11 +100,6 @@ class MatchmakingResponse(BaseModel):
         if self.compatibility_narrative is None and "compatibility_narrative" in self.model_fields_set:
             _dict['compatibility_narrative'] = None
 
-        # set to None if fallback_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.fallback_method is None and "fallback_method" in self.model_fields_set:
-            _dict['fallback_method'] = None
-
         return _dict
 
     @classmethod
@@ -128,8 +122,7 @@ class MatchmakingResponse(BaseModel):
             "mangal_compatibility": obj.get("mangal_compatibility"),
             "supplementary_checks": obj.get("supplementary_checks"),
             "compatibility_narrative": obj.get("compatibility_narrative"),
-            "birth_time_unknown": obj.get("birth_time_unknown") if obj.get("birth_time_unknown") is not None else False,
-            "fallback_method": obj.get("fallback_method")
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True
         })
         return _obj
 

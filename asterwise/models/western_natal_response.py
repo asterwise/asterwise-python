@@ -47,8 +47,8 @@ class WesternNatalResponse(BaseModel):
     hemisphere: WesternHemisphere
     ayanamsa_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=0.0, description="Always 0.0 — tropical zodiac")
     ayanamsa_used: Optional[StrictStr] = 'tropical'
-    birth_time_unknown: Optional[StrictBool] = False
-    __properties: ClassVar[List[str]] = ["zodiac", "house_system", "ascendant", "mc", "planets", "houses", "aspects", "elements", "modalities", "hemisphere", "ayanamsa_value", "ayanamsa_used", "birth_time_unknown"]
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
+    __properties: ClassVar[List[str]] = ["zodiac", "house_system", "ascendant", "mc", "planets", "houses", "aspects", "elements", "modalities", "hemisphere", "ayanamsa_value", "ayanamsa_used", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -149,7 +149,7 @@ class WesternNatalResponse(BaseModel):
             "hemisphere": WesternHemisphere.from_dict(obj["hemisphere"]) if obj.get("hemisphere") is not None else None,
             "ayanamsa_value": obj.get("ayanamsa_value") if obj.get("ayanamsa_value") is not None else 0.0,
             "ayanamsa_used": obj.get("ayanamsa_used") if obj.get("ayanamsa_used") is not None else 'tropical',
-            "birth_time_unknown": obj.get("birth_time_unknown") if obj.get("birth_time_unknown") is not None else False
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True
         })
         return _obj
 

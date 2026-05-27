@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List
 from asterwise.models.karana_data import KaranaData
 from asterwise.models.nakshatra_data import NakshatraData
 from asterwise.models.tithi_data import TithiData
@@ -38,9 +38,7 @@ class PanchangaResponse(BaseModel):
     nakshatra: NakshatraData = Field(description="Lunar mansion the Moon occupies at the given moment")
     yoga: YogaData = Field(description="Luni-solar yoga — combined Sun and Moon longitude divided into 27 parts")
     karana: KaranaData = Field(description="Half of a tithi — the smaller unit of lunar time")
-    birth_time_unknown: Optional[StrictBool] = Field(default=False, description="Whether birth time fallback was used")
-    fallback_method: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["tithi", "vara", "nakshatra", "yoga", "karana", "birth_time_unknown", "fallback_method"]
+    __properties: ClassVar[List[str]] = ["tithi", "vara", "nakshatra", "yoga", "karana"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -96,11 +94,6 @@ class PanchangaResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of karana
         if self.karana:
             _dict['karana'] = self.karana.to_dict()
-        # set to None if fallback_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.fallback_method is None and "fallback_method" in self.model_fields_set:
-            _dict['fallback_method'] = None
-
         return _dict
 
     @classmethod
@@ -117,9 +110,7 @@ class PanchangaResponse(BaseModel):
             "vara": VaraData.from_dict(obj["vara"]) if obj.get("vara") is not None else None,
             "nakshatra": NakshatraData.from_dict(obj["nakshatra"]) if obj.get("nakshatra") is not None else None,
             "yoga": YogaData.from_dict(obj["yoga"]) if obj.get("yoga") is not None else None,
-            "karana": KaranaData.from_dict(obj["karana"]) if obj.get("karana") is not None else None,
-            "birth_time_unknown": obj.get("birth_time_unknown") if obj.get("birth_time_unknown") is not None else False,
-            "fallback_method": obj.get("fallback_method")
+            "karana": KaranaData.from_dict(obj["karana"]) if obj.get("karana") is not None else None
         })
         return _obj
 

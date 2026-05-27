@@ -30,7 +30,7 @@ class ApiResponseStrengthResponse(BaseModel):
     """ # noqa: E501
     success: Optional[StrictBool] = True
     message: Optional[StrictStr] = 'success'
-    data: Dict[str, Any] = Field(description="Strength report root. Includes ``shadbala``, ``bhavbala`` (keys ``\"1\"``…``\"12\"`` with ``bhavadhipati_bala``, ``bhava_dig_bala``, ``bhava_drik_bala``, ``total``), ``vimshopaka_bala`` (per-planet sixteen-varga score and threshold), ``divisional_charts``, ``ashtakavarga``, ``karakas``, ``birth_time_unknown``, optional ``fallback_method``, and optional ``graha_yuddha``.")
+    data: Dict[str, Any] = Field(description="Strength report root. Includes ``shadbala``, ``bhavbala`` (keys ``\"1\"``…``\"12\"`` with ``bhavadhipati_bala``, ``bhava_dig_bala``, ``bhava_drik_bala``, ``total``), ``vimshopaka_bala`` (per-planet sixteen-varga score and threshold), ``divisional_charts``, ``ashtakavarga``, ``karakas``, ``birth_time_provided``, and optional ``graha_yuddha``.")
     __properties: ClassVar[List[str]] = ["success", "message", "data"]
 
     model_config = ConfigDict(

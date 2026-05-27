@@ -133,8 +133,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -203,8 +209,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -273,8 +285,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -416,8 +434,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -486,8 +510,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -556,8 +586,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -661,7 +697,7 @@ class AstrologyApi:
     ) -> object:
         """Jaimini Char Dasha
 
-        Computes Jaimini Char Dasha — a sign-based dasha system from Jaimini Sutras. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param char_dasha_request: (required)
         :type char_dasha_request: CharDashaRequest
@@ -697,8 +733,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -731,7 +773,7 @@ class AstrologyApi:
     ) -> ApiResponse[object]:
         """Jaimini Char Dasha
 
-        Computes Jaimini Char Dasha — a sign-based dasha system from Jaimini Sutras. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param char_dasha_request: (required)
         :type char_dasha_request: CharDashaRequest
@@ -767,8 +809,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -801,7 +849,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Jaimini Char Dasha
 
-        Computes Jaimini Char Dasha — a sign-based dasha system from Jaimini Sutras. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param char_dasha_request: (required)
         :type char_dasha_request: CharDashaRequest
@@ -837,8 +885,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -980,8 +1034,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseChartResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1050,8 +1110,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseChartResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1120,8 +1186,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseChartResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1227,7 +1299,7 @@ class AstrologyApi:
     ) -> ApiResponseDashaEndpointResponse:
         """Vimshottari Dasha periods
 
-        Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha from Phaladeepika sources. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
+        Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha per classical Vedic tradition. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
 
         :param dasha_request: (required)
         :type dasha_request: DashaRequest
@@ -1263,8 +1335,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDashaEndpointResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1297,7 +1375,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseDashaEndpointResponse]:
         """Vimshottari Dasha periods
 
-        Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha from Phaladeepika sources. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
+        Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha per classical Vedic tradition. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
 
         :param dasha_request: (required)
         :type dasha_request: DashaRequest
@@ -1333,8 +1411,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDashaEndpointResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1367,7 +1451,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Vimshottari Dasha periods
 
-        Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha from Phaladeepika sources. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
+        Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha per classical Vedic tradition. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
 
         :param dasha_request: (required)
         :type dasha_request: DashaRequest
@@ -1403,8 +1487,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDashaEndpointResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1546,8 +1636,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1616,8 +1712,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1686,8 +1788,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1829,8 +1937,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDoshaEndpointResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1899,8 +2013,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDoshaEndpointResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -1969,8 +2089,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDoshaEndpointResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2112,8 +2238,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2182,8 +2314,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2252,8 +2390,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2359,7 +2503,7 @@ class AstrologyApi:
     ) -> object:
         """Ghat Chakra
 
-        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided. Source: Muhurta Chintamani Ch.1 (Shubhashubha Prakarana); Phaladeepika Ch.26 (Gocharaphala).
+        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided. Computed per classical muhurta tradition.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -2395,8 +2539,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2429,7 +2579,7 @@ class AstrologyApi:
     ) -> ApiResponse[object]:
         """Ghat Chakra
 
-        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided. Source: Muhurta Chintamani Ch.1 (Shubhashubha Prakarana); Phaladeepika Ch.26 (Gocharaphala).
+        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided. Computed per classical muhurta tradition.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -2465,8 +2615,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2499,7 +2655,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Ghat Chakra
 
-        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided. Source: Muhurta Chintamani Ch.1 (Shubhashubha Prakarana); Phaladeepika Ch.26 (Gocharaphala).
+        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided. Computed per classical muhurta tradition.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -2535,8 +2691,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2642,7 +2804,7 @@ class AstrologyApi:
     ) -> object:
         """Gochar — Transit Analysis
 
-        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, Ashtakavarga Bhinna scores, Sade Sati and Chandra Ashtama flags, and Phaladeepika interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, Ashtakavarga Bhinna scores, Sade Sati and Chandra Ashtama flags, and classical transit interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param gochar_request: (required)
         :type gochar_request: GocharRequest
@@ -2678,8 +2840,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2712,7 +2880,7 @@ class AstrologyApi:
     ) -> ApiResponse[object]:
         """Gochar — Transit Analysis
 
-        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, Ashtakavarga Bhinna scores, Sade Sati and Chandra Ashtama flags, and Phaladeepika interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, Ashtakavarga Bhinna scores, Sade Sati and Chandra Ashtama flags, and classical transit interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param gochar_request: (required)
         :type gochar_request: GocharRequest
@@ -2748,8 +2916,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2782,7 +2956,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Gochar — Transit Analysis
 
-        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, Ashtakavarga Bhinna scores, Sade Sati and Chandra Ashtama flags, and Phaladeepika interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, Ashtakavarga Bhinna scores, Sade Sati and Chandra Ashtama flags, and classical transit interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param gochar_request: (required)
         :type gochar_request: GocharRequest
@@ -2818,8 +2992,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2925,7 +3105,7 @@ class AstrologyApi:
     ) -> object:
         """Ishta Devta — Personal Deity
 
-        Computes Ishta Devta (personal deity) from the 12th house lord of the Navamsa (D9) chart per Jaimini Sutras. Returns the ruling planet, associated deity, and D9 positions. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
+        Computes Ishta Devta (personal deity) from the 12th house lord of the Navamsa (D9) chart per Jaimini-tradition rules. Returns the ruling planet, associated deity, and D9 positions. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
 
         :param ishta_devta_request: (required)
         :type ishta_devta_request: IshtaDevtaRequest
@@ -2961,8 +3141,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -2995,7 +3181,7 @@ class AstrologyApi:
     ) -> ApiResponse[object]:
         """Ishta Devta — Personal Deity
 
-        Computes Ishta Devta (personal deity) from the 12th house lord of the Navamsa (D9) chart per Jaimini Sutras. Returns the ruling planet, associated deity, and D9 positions. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
+        Computes Ishta Devta (personal deity) from the 12th house lord of the Navamsa (D9) chart per Jaimini-tradition rules. Returns the ruling planet, associated deity, and D9 positions. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
 
         :param ishta_devta_request: (required)
         :type ishta_devta_request: IshtaDevtaRequest
@@ -3031,8 +3217,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -3065,7 +3257,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Ishta Devta — Personal Deity
 
-        Computes Ishta Devta (personal deity) from the 12th house lord of the Navamsa (D9) chart per Jaimini Sutras. Returns the ruling planet, associated deity, and D9 positions. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
+        Computes Ishta Devta (personal deity) from the 12th house lord of the Navamsa (D9) chart per Jaimini-tradition rules. Returns the ruling planet, associated deity, and D9 positions. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
 
         :param ishta_devta_request: (required)
         :type ishta_devta_request: IshtaDevtaRequest
@@ -3101,8 +3293,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -3244,8 +3442,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseMatchmakingResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -3314,8 +3518,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseMatchmakingResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -3384,8 +3594,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseMatchmakingResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -3527,8 +3743,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -3597,8 +3819,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -3667,8 +3895,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -3810,8 +4044,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -3880,8 +4120,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -3950,8 +4196,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -4093,8 +4345,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -4163,8 +4421,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -4233,8 +4497,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -4376,8 +4646,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -4446,8 +4722,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -4516,8 +4798,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -4659,8 +4947,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -4729,8 +5023,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -4799,8 +5099,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -4942,8 +5248,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -5012,8 +5324,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -5082,8 +5400,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -5176,7 +5500,7 @@ class AstrologyApi:
     ) -> object:
         """Personal Nakshatra Prediction (Tarabala)
 
-        Returns a personalised daily prediction using Tarabala and Chandrabala from the Muhurta Chintamani tradition. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today. Source: Muhurta Chintamani; Brihat Samhita Ch.98 (Varahamihira).
+        Returns a personalised daily prediction using Tarabala and Chandrabala from classical muhurta tradition. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today. Computed per classical Vedic nakshatra tradition.
 
         :param nakshatra_prediction_request: (required)
         :type nakshatra_prediction_request: NakshatraPredictionRequest
@@ -5212,8 +5536,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -5246,7 +5576,7 @@ class AstrologyApi:
     ) -> ApiResponse[object]:
         """Personal Nakshatra Prediction (Tarabala)
 
-        Returns a personalised daily prediction using Tarabala and Chandrabala from the Muhurta Chintamani tradition. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today. Source: Muhurta Chintamani; Brihat Samhita Ch.98 (Varahamihira).
+        Returns a personalised daily prediction using Tarabala and Chandrabala from classical muhurta tradition. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today. Computed per classical Vedic nakshatra tradition.
 
         :param nakshatra_prediction_request: (required)
         :type nakshatra_prediction_request: NakshatraPredictionRequest
@@ -5282,8 +5612,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -5316,7 +5652,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Personal Nakshatra Prediction (Tarabala)
 
-        Returns a personalised daily prediction using Tarabala and Chandrabala from the Muhurta Chintamani tradition. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today. Source: Muhurta Chintamani; Brihat Samhita Ch.98 (Varahamihira).
+        Returns a personalised daily prediction using Tarabala and Chandrabala from classical muhurta tradition. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today. Computed per classical Vedic nakshatra tradition.
 
         :param nakshatra_prediction_request: (required)
         :type nakshatra_prediction_request: NakshatraPredictionRequest
@@ -5352,8 +5688,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -5459,7 +5801,7 @@ class AstrologyApi:
     ) -> ApiResponseNatalResponse:
         """Natal Chart — Janam Kundali
 
-        Calculate a complete Vedic natal chart using Swiss Ephemeris. Returns planet positions in sidereal zodiac, house placements (whole sign), ascendant, nakshatra data, Avakahada Chakra table, and optional Phaladeepika-sourced interpretation for each planet placement. Also known as Janam Kundali or Janma Kundali. Returns planets (Grahas), houses (Bhavas), ascendant (Lagna), nakshatra positions, and avakahada table.
+        Calculate a complete Vedic natal chart using Swiss Ephemeris. Returns planet positions in sidereal zodiac, house placements (whole sign), ascendant, nakshatra data, Avakahada Chakra table, and optional classical Vedic interpretation for each planet placement. Also known as Janam Kundali or Janma Kundali. Returns planets (Grahas), houses (Bhavas), ascendant (Lagna), nakshatra positions, and avakahada table.
 
         :param natal_request: (required)
         :type natal_request: NatalRequest
@@ -5495,8 +5837,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNatalResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -5529,7 +5877,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseNatalResponse]:
         """Natal Chart — Janam Kundali
 
-        Calculate a complete Vedic natal chart using Swiss Ephemeris. Returns planet positions in sidereal zodiac, house placements (whole sign), ascendant, nakshatra data, Avakahada Chakra table, and optional Phaladeepika-sourced interpretation for each planet placement. Also known as Janam Kundali or Janma Kundali. Returns planets (Grahas), houses (Bhavas), ascendant (Lagna), nakshatra positions, and avakahada table.
+        Calculate a complete Vedic natal chart using Swiss Ephemeris. Returns planet positions in sidereal zodiac, house placements (whole sign), ascendant, nakshatra data, Avakahada Chakra table, and optional classical Vedic interpretation for each planet placement. Also known as Janam Kundali or Janma Kundali. Returns planets (Grahas), houses (Bhavas), ascendant (Lagna), nakshatra positions, and avakahada table.
 
         :param natal_request: (required)
         :type natal_request: NatalRequest
@@ -5565,8 +5913,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNatalResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -5599,7 +5953,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Natal Chart — Janam Kundali
 
-        Calculate a complete Vedic natal chart using Swiss Ephemeris. Returns planet positions in sidereal zodiac, house placements (whole sign), ascendant, nakshatra data, Avakahada Chakra table, and optional Phaladeepika-sourced interpretation for each planet placement. Also known as Janam Kundali or Janma Kundali. Returns planets (Grahas), houses (Bhavas), ascendant (Lagna), nakshatra positions, and avakahada table.
+        Calculate a complete Vedic natal chart using Swiss Ephemeris. Returns planet positions in sidereal zodiac, house placements (whole sign), ascendant, nakshatra data, Avakahada Chakra table, and optional classical Vedic interpretation for each planet placement. Also known as Janam Kundali or Janma Kundali. Returns planets (Grahas), houses (Bhavas), ascendant (Lagna), nakshatra positions, and avakahada table.
 
         :param natal_request: (required)
         :type natal_request: NatalRequest
@@ -5635,8 +5989,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseNatalResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -5778,8 +6138,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePanchangaResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -5848,8 +6214,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePanchangaResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -5918,8 +6290,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePanchangaResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -6085,8 +6463,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePanchangaCalendarResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -6179,8 +6563,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePanchangaCalendarResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -6273,8 +6663,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePanchangaCalendarResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -6435,8 +6831,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePanchangaCalendarResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -6505,8 +6907,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePanchangaCalendarResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -6575,8 +6983,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponsePanchangaCalendarResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -6718,8 +7132,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseChoghadiyaResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -6788,8 +7208,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseChoghadiyaResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -6858,8 +7284,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseChoghadiyaResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -7017,8 +7449,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseFestivalCalendarResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -7103,8 +7541,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseFestivalCalendarResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -7189,8 +7633,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseFestivalCalendarResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -7341,8 +7791,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseHoraResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -7411,8 +7867,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseHoraResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -7481,8 +7943,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseHoraResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -7624,8 +8092,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseRahuKaalResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -7694,8 +8168,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseRahuKaalResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -7764,8 +8244,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseRahuKaalResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -7923,8 +8409,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTamilPanchangaResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -8009,8 +8501,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTamilPanchangaResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -8095,8 +8593,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseTamilPanchangaResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -8211,7 +8715,7 @@ class AstrologyApi:
     ) -> object:
         """Pitru Dosha (Pitru Shapa)
 
-        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations from Brihat Parashara Hora Shastra Chapter 83 (Purvajanma Shapa Adhyaya — Effects of Curses in the Previous Birth). Returns presence flag, severity (mild/moderate/severe), which of the 5 BPHS combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
+        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence per classical Vedic doctrine. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -8247,8 +8751,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -8281,7 +8791,7 @@ class AstrologyApi:
     ) -> ApiResponse[object]:
         """Pitru Dosha (Pitru Shapa)
 
-        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations from Brihat Parashara Hora Shastra Chapter 83 (Purvajanma Shapa Adhyaya — Effects of Curses in the Previous Birth). Returns presence flag, severity (mild/moderate/severe), which of the 5 BPHS combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
+        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence per classical Vedic doctrine. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -8317,8 +8827,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -8351,7 +8867,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Pitru Dosha (Pitru Shapa)
 
-        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations from Brihat Parashara Hora Shastra Chapter 83 (Purvajanma Shapa Adhyaya — Effects of Curses in the Previous Birth). Returns presence flag, severity (mild/moderate/severe), which of the 5 BPHS combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
+        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence per classical Vedic doctrine. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -8387,8 +8903,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -8492,9 +9014,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> object:
-        """Graha Nature (BPHS)
+        """Graha Nature
 
-        Returns classical graha properties for all nine planets or a single planet as described in Brihat Parashara Hora Shastra Chapter 3. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
+        Returns classical graha properties for all nine planets or a single planet per classical Vedic tradition. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -8530,8 +9052,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -8562,9 +9090,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[object]:
-        """Graha Nature (BPHS)
+        """Graha Nature
 
-        Returns classical graha properties for all nine planets or a single planet as described in Brihat Parashara Hora Shastra Chapter 3. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
+        Returns classical graha properties for all nine planets or a single planet per classical Vedic tradition. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -8600,8 +9128,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -8632,9 +9166,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Graha Nature (BPHS)
+        """Graha Nature
 
-        Returns classical graha properties for all nine planets or a single planet as described in Brihat Parashara Hora Shastra Chapter 3. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
+        Returns classical graha properties for all nine planets or a single planet per classical Vedic tradition. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -8670,8 +9204,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -8766,7 +9306,7 @@ class AstrologyApi:
     ) -> object:
         """Puja Suggestions
 
-        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra grounded in Agni Purana, Matsya Purana, Skanda Purana, and BPHS Chapter 84. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
+        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra grounded in classical Vedic worship tradition. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -8802,8 +9342,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -8836,7 +9382,7 @@ class AstrologyApi:
     ) -> ApiResponse[object]:
         """Puja Suggestions
 
-        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra grounded in Agni Purana, Matsya Purana, Skanda Purana, and BPHS Chapter 84. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
+        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra grounded in classical Vedic worship tradition. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -8872,8 +9418,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -8906,7 +9458,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Puja Suggestions
 
-        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra grounded in Agni Purana, Matsya Purana, Skanda Purana, and BPHS Chapter 84. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
+        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra grounded in classical Vedic worship tradition. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -8942,8 +9494,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -9074,8 +9632,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -9144,8 +9708,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -9214,8 +9784,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -9321,7 +9897,7 @@ class AstrologyApi:
     ) -> object:
         """Rudraksha Recommendations
 
-        Returns Rudraksha bead recommendations per planet as per Shiva Purana Vidyeshvara Samhita Chapter 25. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, and classical notes including the important distinction that the Shiva Purana assigns Mukhis to deities — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
+        Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -9357,8 +9933,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -9391,7 +9973,7 @@ class AstrologyApi:
     ) -> ApiResponse[object]:
         """Rudraksha Recommendations
 
-        Returns Rudraksha bead recommendations per planet as per Shiva Purana Vidyeshvara Samhita Chapter 25. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, and classical notes including the important distinction that the Shiva Purana assigns Mukhis to deities — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
+        Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -9427,8 +10009,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -9461,7 +10049,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Rudraksha Recommendations
 
-        Returns Rudraksha bead recommendations per planet as per Shiva Purana Vidyeshvara Samhita Chapter 25. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, and classical notes including the important distinction that the Shiva Purana assigns Mukhis to deities — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
+        Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -9497,8 +10085,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -9629,8 +10223,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseSadeSatiResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -9699,8 +10299,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseSadeSatiResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -9769,8 +10375,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseSadeSatiResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -9912,8 +10524,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -9982,8 +10600,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -10052,8 +10676,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -10159,7 +10789,7 @@ class AstrologyApi:
     ) -> object:
         """Varshaphal — Harsha Bala
 
-        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Source: Tajika Neelakanthi / Varsha Tantra.
+        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per classical Tajika tradition.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10195,8 +10825,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -10229,7 +10865,7 @@ class AstrologyApi:
     ) -> ApiResponse[object]:
         """Varshaphal — Harsha Bala
 
-        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Source: Tajika Neelakanthi / Varsha Tantra.
+        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per classical Tajika tradition.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10265,8 +10901,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -10299,7 +10941,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Varshaphal — Harsha Bala
 
-        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Source: Tajika Neelakanthi / Varsha Tantra.
+        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per classical Tajika tradition.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10335,8 +10977,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -10442,7 +11090,7 @@ class AstrologyApi:
     ) -> object:
         """Varshaphal — Tajika Saham Points
 
-        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per Tajika Neelakanthi). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
+        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per classical Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10478,8 +11126,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -10512,7 +11166,7 @@ class AstrologyApi:
     ) -> ApiResponse[object]:
         """Varshaphal — Tajika Saham Points
 
-        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per Tajika Neelakanthi). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
+        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per classical Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10548,8 +11202,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -10582,7 +11242,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Varshaphal — Tajika Saham Points
 
-        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per Tajika Neelakanthi). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
+        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per classical Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10618,8 +11278,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -10761,8 +11427,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseYogaEndpointResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -10831,8 +11503,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseYogaEndpointResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -10901,8 +11579,14 @@ class AstrologyApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseYogaEndpointResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(

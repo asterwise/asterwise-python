@@ -32,7 +32,6 @@ class SadeSatiResponse(BaseModel):
     natal_moon_sign: StrictStr
     natal_moon_sign_index: StrictInt
     sade_sati_signs: Dict[str, Any]
-    classical_note: StrictStr
     is_currently_active: Optional[StrictBool] = None
     current_phase: Optional[StrictStr] = None
     current_phase_description: Optional[StrictStr] = None
@@ -45,7 +44,7 @@ class SadeSatiResponse(BaseModel):
     current_small_panoti_position: Optional[StrictInt] = None
     mitigated_by_own_sign: Optional[StrictBool] = None
     mitigated_by_exaltation: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["natal_moon_sign", "natal_moon_sign_index", "sade_sati_signs", "classical_note", "is_currently_active", "current_phase", "current_phase_description", "intensity_score", "intensity_label", "next_sade_sati", "all_periods", "small_panoti", "is_small_panoti_active", "current_small_panoti_position", "mitigated_by_own_sign", "mitigated_by_exaltation"]
+    __properties: ClassVar[List[str]] = ["natal_moon_sign", "natal_moon_sign_index", "sade_sati_signs", "is_currently_active", "current_phase", "current_phase_description", "intensity_score", "intensity_label", "next_sade_sati", "all_periods", "small_panoti", "is_small_panoti_active", "current_small_panoti_position", "mitigated_by_own_sign", "mitigated_by_exaltation"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -163,7 +162,6 @@ class SadeSatiResponse(BaseModel):
             "natal_moon_sign": obj.get("natal_moon_sign"),
             "natal_moon_sign_index": obj.get("natal_moon_sign_index"),
             "sade_sati_signs": obj.get("sade_sati_signs"),
-            "classical_note": obj.get("classical_note"),
             "is_currently_active": obj.get("is_currently_active"),
             "current_phase": obj.get("current_phase"),
             "current_phase_description": obj.get("current_phase_description"),

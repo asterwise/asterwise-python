@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **lagna_sign** | **str** | Ascendant sign (English). | 
-**lagna_lord** | **str** | Lord of the 1st house per BPHS. | 
+**lagna_lord** | **str** | Lord of the 1st house per classical Vedic tradition. | 
 **fifth_sign** | **str** | 5th house sign (English). | 
 **fifth_lord** | **str** | Lord of the 5th house (Panchamesh — Lucky Stone). | 
 **ninth_sign** | **str** | 9th house sign (English). | 

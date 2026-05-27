@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,7 +33,7 @@ class DivisionalResponse(BaseModel):
     d3: Dict[str, Any] = Field(description="Drekkana — siblings and courage", alias="D3")
     d4: Dict[str, Any] = Field(description="Chaturthamsha — property and fixed assets", alias="D4")
     d7: Dict[str, Any] = Field(description="Saptamsha — children and creative output", alias="D7")
-    d9: Dict[str, Any] = Field(description="Navamsha — spouse, dharma, and deeper soul purpose. The most important divisional chart.", alias="D9")
+    d9: Dict[str, Any] = Field(description="Navamsha — spouse, dharma, and deeper soul purpose. A primary divisional chart.", alias="D9")
     d10: Dict[str, Any] = Field(description="Dashamsha — career and professional life", alias="D10")
     d12: Dict[str, Any] = Field(description="Dwadashamsha — parents and ancestral karma", alias="D12")
     d16: Dict[str, Any] = Field(description="Shodashamsha — vehicles and comforts", alias="D16")
@@ -44,9 +44,8 @@ class DivisionalResponse(BaseModel):
     d40: Dict[str, Any] = Field(description="Khavedamsha — auspicious and inauspicious effects", alias="D40")
     d45: Dict[str, Any] = Field(description="Akshavedamsha — all matters of life", alias="D45")
     d60: Dict[str, Any] = Field(description="Shashtyamsha — all matters, most subtle divisional chart", alias="D60")
-    birth_time_unknown: Optional[StrictBool] = Field(default=False, description="True if birth time was unknown and sunrise was used.")
-    fallback_method: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["D1", "D2", "D3", "D4", "D7", "D9", "D10", "D12", "D16", "D20", "D24", "D27", "D30", "D40", "D45", "D60", "birth_time_unknown", "fallback_method"]
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
+    __properties: ClassVar[List[str]] = ["D1", "D2", "D3", "D4", "D7", "D9", "D10", "D12", "D16", "D20", "D24", "D27", "D30", "D40", "D45", "D60", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -87,11 +86,6 @@ class DivisionalResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if fallback_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.fallback_method is None and "fallback_method" in self.model_fields_set:
-            _dict['fallback_method'] = None
-
         return _dict
 
     @classmethod
@@ -120,8 +114,7 @@ class DivisionalResponse(BaseModel):
             "D40": obj.get("D40"),
             "D45": obj.get("D45"),
             "D60": obj.get("D60"),
-            "birth_time_unknown": obj.get("birth_time_unknown") if obj.get("birth_time_unknown") is not None else False,
-            "fallback_method": obj.get("fallback_method")
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True
         })
         return _obj
 

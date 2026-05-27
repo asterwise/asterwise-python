@@ -12,8 +12,7 @@ Name | Type | Description | Notes
 **sarva_reduced** | **Dict[str, int]** | Reduced SAV — sum of the 7 fully reduced planet BAVs (after both Trikona and Ekadhipatya Shodana). Keys: Mesha through Meena. More accurate than sarva for predictive work. | 
 **after_trikona** | **Dict[str, int]** | SAV after Trikona Shodana applied directly to the raw SAV. Keys: Mesha through Meena. | 
 **after_ekadhipatya** | **Dict[str, int]** | SAV after both Trikona and Ekadhipatya Shodana applied directly to the raw SAV. Keys: Mesha through Meena. | 
-**birth_time_unknown** | **bool** | Whether birth time fallback was used | [optional] [default to False]
-**fallback_method** | **str** |  | [optional] 
+**birth_time_provided** | **bool** | Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits. | [optional] [default to True]
 
 ## Example
 

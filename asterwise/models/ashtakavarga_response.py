@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -35,9 +35,8 @@ class AshtakavargaResponse(BaseModel):
     sarva_reduced: Dict[str, StrictInt] = Field(description="Reduced SAV — sum of the 7 fully reduced planet BAVs (after both Trikona and Ekadhipatya Shodana). Keys: Mesha through Meena. More accurate than sarva for predictive work.")
     after_trikona: Dict[str, StrictInt] = Field(description="SAV after Trikona Shodana applied directly to the raw SAV. Keys: Mesha through Meena.")
     after_ekadhipatya: Dict[str, StrictInt] = Field(description="SAV after both Trikona and Ekadhipatya Shodana applied directly to the raw SAV. Keys: Mesha through Meena.")
-    birth_time_unknown: Optional[StrictBool] = Field(default=False, description="Whether birth time fallback was used")
-    fallback_method: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["bhinna", "bhinna_after_trikona", "bhinna_after_ekadhipatya", "sarva", "sarva_reduced", "after_trikona", "after_ekadhipatya", "birth_time_unknown", "fallback_method"]
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
+    __properties: ClassVar[List[str]] = ["bhinna", "bhinna_after_trikona", "bhinna_after_ekadhipatya", "sarva", "sarva_reduced", "after_trikona", "after_ekadhipatya", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,11 +77,6 @@ class AshtakavargaResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if fallback_method (nullable) is None
-        # and model_fields_set contains the field
-        if self.fallback_method is None and "fallback_method" in self.model_fields_set:
-            _dict['fallback_method'] = None
-
         return _dict
 
     @classmethod
@@ -102,8 +96,7 @@ class AshtakavargaResponse(BaseModel):
             "sarva_reduced": obj.get("sarva_reduced"),
             "after_trikona": obj.get("after_trikona"),
             "after_ekadhipatya": obj.get("after_ekadhipatya"),
-            "birth_time_unknown": obj.get("birth_time_unknown") if obj.get("birth_time_unknown") is not None else False,
-            "fallback_method": obj.get("fallback_method")
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True
         })
         return _obj
 

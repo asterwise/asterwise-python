@@ -59,7 +59,7 @@ class DreamsApi:
     ) -> ApiResponseDreamSymbol:
         """Single dream symbol lookup
 
-        Lookup a specific dream symbol by slug or name (case-insensitive). Examples: 'snake', 'eagle', 'childhood-home', 'teeth falling out'. Returns full dual-tradition interpretation including Jungian archetype, Vedic Swapna Shastra meaning, context variants, and related symbols.
+        Lookup a specific dream symbol by slug or name (case-insensitive). Examples: 'snake', 'eagle', 'childhood-home', 'teeth falling out'. Returns full dual-tradition interpretation including Jungian archetype, Vedic dream tradition meaning, context variants, and related symbols.
 
         :param name: (required)
         :type name: str
@@ -95,8 +95,14 @@ class DreamsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDreamSymbol",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -129,7 +135,7 @@ class DreamsApi:
     ) -> ApiResponse[ApiResponseDreamSymbol]:
         """Single dream symbol lookup
 
-        Lookup a specific dream symbol by slug or name (case-insensitive). Examples: 'snake', 'eagle', 'childhood-home', 'teeth falling out'. Returns full dual-tradition interpretation including Jungian archetype, Vedic Swapna Shastra meaning, context variants, and related symbols.
+        Lookup a specific dream symbol by slug or name (case-insensitive). Examples: 'snake', 'eagle', 'childhood-home', 'teeth falling out'. Returns full dual-tradition interpretation including Jungian archetype, Vedic dream tradition meaning, context variants, and related symbols.
 
         :param name: (required)
         :type name: str
@@ -165,8 +171,14 @@ class DreamsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDreamSymbol",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -199,7 +211,7 @@ class DreamsApi:
     ) -> RESTResponseType:
         """Single dream symbol lookup
 
-        Lookup a specific dream symbol by slug or name (case-insensitive). Examples: 'snake', 'eagle', 'childhood-home', 'teeth falling out'. Returns full dual-tradition interpretation including Jungian archetype, Vedic Swapna Shastra meaning, context variants, and related symbols.
+        Lookup a specific dream symbol by slug or name (case-insensitive). Examples: 'snake', 'eagle', 'childhood-home', 'teeth falling out'. Returns full dual-tradition interpretation including Jungian archetype, Vedic dream tradition meaning, context variants, and related symbols.
 
         :param name: (required)
         :type name: str
@@ -235,8 +247,14 @@ class DreamsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDreamSymbol",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -329,7 +347,7 @@ class DreamsApi:
     ) -> ApiResponseDreamSymbolListResponse:
         """Dream symbol database
 
-        Returns all dream symbols from the database, optionally filtered by category. Each symbol includes dual-tradition interpretation: Jungian/Western psychological analysis and classical Vedic Swapna Shastra meaning with auspiciousness rating. The traditions_agree field flags where Western and Vedic interpretations conflict — these cross-tradition conflicts are unique to this API. Categories: animals, nature, people, places, objects, actions, body, abstract.
+        Returns all dream symbols from the database, optionally filtered by category. Each symbol includes dual-tradition interpretation: Jungian/Western psychological analysis and classical Vedic dream tradition meaning with auspiciousness rating. The traditions_agree field flags where Western and Vedic interpretations conflict. Categories: animals, nature, people, places, objects, actions, body, abstract.
 
         :param category: Filter by category: animals, nature, people, places, objects, actions, body, abstract.
         :type category: str
@@ -365,8 +383,14 @@ class DreamsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDreamSymbolListResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -399,7 +423,7 @@ class DreamsApi:
     ) -> ApiResponse[ApiResponseDreamSymbolListResponse]:
         """Dream symbol database
 
-        Returns all dream symbols from the database, optionally filtered by category. Each symbol includes dual-tradition interpretation: Jungian/Western psychological analysis and classical Vedic Swapna Shastra meaning with auspiciousness rating. The traditions_agree field flags where Western and Vedic interpretations conflict — these cross-tradition conflicts are unique to this API. Categories: animals, nature, people, places, objects, actions, body, abstract.
+        Returns all dream symbols from the database, optionally filtered by category. Each symbol includes dual-tradition interpretation: Jungian/Western psychological analysis and classical Vedic dream tradition meaning with auspiciousness rating. The traditions_agree field flags where Western and Vedic interpretations conflict. Categories: animals, nature, people, places, objects, actions, body, abstract.
 
         :param category: Filter by category: animals, nature, people, places, objects, actions, body, abstract.
         :type category: str
@@ -435,8 +459,14 @@ class DreamsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDreamSymbolListResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -469,7 +499,7 @@ class DreamsApi:
     ) -> RESTResponseType:
         """Dream symbol database
 
-        Returns all dream symbols from the database, optionally filtered by category. Each symbol includes dual-tradition interpretation: Jungian/Western psychological analysis and classical Vedic Swapna Shastra meaning with auspiciousness rating. The traditions_agree field flags where Western and Vedic interpretations conflict — these cross-tradition conflicts are unique to this API. Categories: animals, nature, people, places, objects, actions, body, abstract.
+        Returns all dream symbols from the database, optionally filtered by category. Each symbol includes dual-tradition interpretation: Jungian/Western psychological analysis and classical Vedic dream tradition meaning with auspiciousness rating. The traditions_agree field flags where Western and Vedic interpretations conflict. Categories: animals, nature, people, places, objects, actions, body, abstract.
 
         :param category: Filter by category: animals, nature, people, places, objects, actions, body, abstract.
         :type category: str
@@ -505,8 +535,14 @@ class DreamsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ApiResponseDreamSymbolListResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
             '422': "ErrorResponse",
+            '429': "ErrorResponse",
             '500': "ErrorResponse",
+            '502': "ErrorResponse",
             '503': "ErrorResponse",
         }
         response_data = self.api_client.call_api(

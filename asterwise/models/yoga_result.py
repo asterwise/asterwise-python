@@ -31,10 +31,9 @@ class YogaResult(BaseModel):
     yoga_name: StrictStr = Field(description="Detected yoga name")
     category: StrictStr = Field(description="Yoga category bucket")
     formation: StrictStr = Field(description="Formation condition")
-    classical_results: StrictStr = Field(description="Classical outcome text")
     modern_summary: StrictStr = Field(description="Modern interpretation summary")
     keywords: Optional[List[StrictStr]] = Field(default=None, description="Interpretation keywords")
-    __properties: ClassVar[List[str]] = ["yoga_name", "category", "formation", "classical_results", "modern_summary", "keywords"]
+    __properties: ClassVar[List[str]] = ["yoga_name", "category", "formation", "modern_summary", "keywords"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -90,7 +89,6 @@ class YogaResult(BaseModel):
             "yoga_name": obj.get("yoga_name"),
             "category": obj.get("category"),
             "formation": obj.get("formation"),
-            "classical_results": obj.get("classical_results"),
             "modern_summary": obj.get("modern_summary"),
             "keywords": obj.get("keywords")
         })

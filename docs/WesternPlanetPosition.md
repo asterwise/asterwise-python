@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **house** | **int** | House number (Placidus or chosen system) | 
 **is_retrograde** | **bool** |  | 
 **dignity** | **str** | Essential dignity: domicile | exaltation | detriment | fall | peregrine | 
-**dignity_score** | **int** | Lilly dignity weight: domicile&#x3D;5, exaltation&#x3D;4, detriment&#x3D;-5, fall&#x3D;-4, peregrine&#x3D;0 | 
+**dignity_score** | **int** | Essential dignity weight: domicile&#x3D;5, exaltation&#x3D;4, detriment&#x3D;-5, fall&#x3D;-4, peregrine&#x3D;0 | 
 **is_exaltation_degree** | **bool** | True if planet is in the exact classical exaltation degree (Nth degree &#x3D; N-1°00&#39; to N-1°59&#39;59\&quot;). Always false for outer planets (no exact degree defined). | 
 **dignity_disputed** | **bool** | True for outer planet (Uranus/Neptune/Pluto) exaltation/fall — no classical consensus. | 
 
