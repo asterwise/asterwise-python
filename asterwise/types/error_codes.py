@@ -9,7 +9,7 @@ To change the contents, edit the source registry at
 app/core/error_codes.py in asterwise-api, then re-run the
 generator with --write-sdks.
 
-Generated from 50 codes (hash b20f68039cd1f577) ErrorCode members.
+Generated from 52 codes (hash 1e1be58fe6dc4705) ErrorCode members.
 """
 
 from typing import Literal
@@ -27,6 +27,7 @@ ErrorCode = Literal[
     "burst_limit_exceeded",
     "city_not_found",
     "date_out_of_supported_range",
+    "dependency_unavailable",
     "email_delivery_failed",
     "endpoint_restricted",
     "ephemeris_unavailable",
@@ -63,6 +64,7 @@ ErrorCode = Literal[
     "session_expired",
     "session_not_found",
     "session_revoked",
+    "solar_day_out_of_range",
     "subscription_expired",
     "subscription_not_found",
     "sun_calculation_failed",
@@ -83,6 +85,7 @@ ALL_ERROR_CODES: tuple[ErrorCode, ...] = (
     "burst_limit_exceeded",
     "city_not_found",
     "date_out_of_supported_range",
+    "dependency_unavailable",
     "email_delivery_failed",
     "endpoint_restricted",
     "ephemeris_unavailable",
@@ -119,6 +122,7 @@ ALL_ERROR_CODES: tuple[ErrorCode, ...] = (
     "session_expired",
     "session_not_found",
     "session_revoked",
+    "solar_day_out_of_range",
     "subscription_expired",
     "subscription_not_found",
     "sun_calculation_failed",
