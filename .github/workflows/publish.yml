@@ -3,7 +3,8 @@ name: Publish to PyPI
 on:
   push:
     tags:
-      - "v*"
+      # Release tags are python-v<version> (e.g. python-v0.2.4).
+      - "python-v*"
 
 jobs:
   publish:

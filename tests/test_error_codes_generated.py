@@ -1,10 +1,23 @@
 """
-Verify the generated error_codes.py contains all 50 codes the
-SDK is supposed to recognize.
+Verify the generated error_codes.py is internally consistent.
+
+The expected count is read from the generator's own header line
+("Generated from N codes (hash ...)") so that regenerating the file after
+the API registry grows does not require editing this test.
 """
+import pathlib
+import re
 import typing
 
+import asterwise.types.error_codes as generated
 from asterwise.types import ErrorCode, ALL_ERROR_CODES
+
+
+def _generated_count() -> int:
+    header = pathlib.Path(generated.__file__).read_text(encoding="utf-8")
+    m = re.search(r"Generated from (\d+) codes", header)
+    assert m, "generated header line 'Generated from N codes' not found"
+    return int(m.group(1))
 
 
 def test_all_error_codes_is_tuple():
@@ -13,11 +26,17 @@ def test_all_error_codes_is_tuple():
     )
 
 
-def test_all_error_codes_count_is_50():
-    assert len(ALL_ERROR_CODES) == 50, (
-        f"Expected 50 error codes, got {len(ALL_ERROR_CODES)}. "
+def test_all_error_codes_count_matches_generated_header():
+    expected = _generated_count()
+    assert len(ALL_ERROR_CODES) == expected, (
+        f"Header says {expected} error codes, tuple has {len(ALL_ERROR_CODES)}. "
         "Re-run scripts/generate_error_artifacts.py --write-sdks in asterwise-api."
     )
+
+
+def test_error_code_count_is_a_sane_size():
+    # Guards against an empty or truncated regeneration.
+    assert 40 <= len(ALL_ERROR_CODES) <= 200
 
 
 def test_all_error_codes_are_sorted_alphabetically():
