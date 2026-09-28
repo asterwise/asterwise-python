@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 # Define package exports
 __all__ = [
@@ -163,6 +163,7 @@ __all__ = [
     "BiorhythmRequest",
     "BiorhythmSingleDayResponse",
     "BirthInput",
+    "BirthMoment",
     "BirthNakshatraRef",
     "BusinessNameAnalysisResponse",
     "BusinessNamePostRequest",
@@ -598,6 +599,7 @@ from asterwise.models.biorhythm_range_response import BiorhythmRangeResponse as 
 from asterwise.models.biorhythm_request import BiorhythmRequest as BiorhythmRequest
 from asterwise.models.biorhythm_single_day_response import BiorhythmSingleDayResponse as BiorhythmSingleDayResponse
 from asterwise.models.birth_input import BirthInput as BirthInput
+from asterwise.models.birth_moment import BirthMoment as BirthMoment
 from asterwise.models.birth_nakshatra_ref import BirthNakshatraRef as BirthNakshatraRef
 from asterwise.models.business_name_analysis_response import BusinessNameAnalysisResponse as BusinessNameAnalysisResponse
 from asterwise.models.business_name_post_request import BusinessNamePostRequest as BusinessNamePostRequest

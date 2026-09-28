@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **varjyam** | [**List[NakshatraWindow]**](NakshatraWindow.md) | Windows beginning this day (4 ghatis of the nakshatra). | 
 **amrit_kaal** | [**List[NakshatraWindow]**](NakshatraWindow.md) | Windows beginning this day (4 ghatis of the nakshatra). | 
 **bhadra** | [**List[BhadraWindow]**](BhadraWindow.md) | Vishti karana during the day, split where the Moon changes sign. | 
-**panchaka** | [**List[TimeWindow]**](TimeWindow.md) | Moon in Kumbha or Meena (Dhanishtha pada 3 to Revati). | 
+**panchaka** | [**List[TimeWindow]**](TimeWindow.md) | Moon in Kumbha or Meena (Dhanishta pada 3 to Revati). | 
 **day_parts** | [**DayParts**](DayParts.md) | The day in five equal parts, used for festival timing. | 
 
 ## Example

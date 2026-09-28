@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.3.1 — 2026-09-28
+
+Regenerated from the API as deployed on 2026-09-28 (engine 7d68ba3).
+Additive only: no method, field or type changed.
+
+### Added
+
+- `utc_offset` (`±HH:MM` or `±HH:MM:SS`) on every birth-data request model
+  (`NatalRequest`, `DashaRequest`, `DivisionalRequest`, the Western requests
+  and the rest): an explicit offset that overrides the time zone's.
+- `NatalResponse.birth_moment` (`BirthMoment`): the UTC instant the chart
+  used, the offset applied, where it came from (`iana`, `local_mean_time`,
+  `explicit_offset`) and whether the local time fell in a daylight-saving
+  gap or overlap.
+- `AyanamshaSystemValue.true_value_decimal`: mean ayanamsa plus nutation,
+  the offset the API subtracts from apparent positions. `value_decimal`
+  stays the mean value.
+
+The API fixes that came with these fields (sidereal positions corrected for
+nutation, full time zone history, birthplace local mean time for old dates,
+and others) apply to 0.3.0 too; 0.3.0 reads the new responses, ignoring the
+new fields. See https://docs.asterwise.com/reference/changelog.
+
 ## 0.3.0 — 2026-09-28
 
 Regenerated from the API as deployed on 2026-09-28. No method was removed

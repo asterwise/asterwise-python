@@ -18,24 +18,35 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class AyanamshaSystemValue(BaseModel):
+class BirthMoment(BaseModel):
     """
-    AyanamshaSystemValue
+    BirthMoment
     """ # noqa: E501
-    value_decimal: Union[StrictFloat, StrictInt] = Field(description="Mean ayanamsha (no nutation) in decimal degrees, the conventionally published figure")
-    true_value_decimal: Union[StrictFloat, StrictInt] = Field(description="True ayanamsha: the mean value plus nutation in longitude, in decimal degrees. This is the offset subtracted from apparent tropical longitudes to give the sidereal positions every Vedic endpoint returns.")
-    degrees: StrictInt
-    minutes: StrictInt
-    seconds: Union[StrictFloat, StrictInt]
-    dms: StrictStr = Field(description="Degrees, minutes, seconds formatted string")
-    description: StrictStr
-    __properties: ClassVar[List[str]] = ["value_decimal", "true_value_decimal", "degrees", "minutes", "seconds", "dms", "description"]
+    utc: StrictStr = Field(description="The birth instant the chart was computed for, in UTC (ISO 8601, to the second).")
+    utc_offset: StrictStr = Field(description="UTC offset applied to the local birth time, as ±HH:MM or ±HH:MM:SS.")
+    offset_basis: StrictStr = Field(description="Where the offset came from: the IANA time zone; the birthplace's local mean time (longitude / 15 hours), used for dates before the zone adopted a standard time; or the explicit utc_offset input.")
+    local_time_status: StrictStr = Field(description="'nonexistent': the local time fell in a daylight-saving gap and was read with the offset in force before the change (moved forward by the gap). 'ambiguous': the local time occurred twice and the first occurrence was used. 'ok' otherwise.")
+    __properties: ClassVar[List[str]] = ["utc", "utc_offset", "offset_basis", "local_time_status"]
+
+    @field_validator('offset_basis')
+    def offset_basis_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['iana', 'local_mean_time', 'explicit_offset']):
+            raise ValueError("must be one of enum values ('iana', 'local_mean_time', 'explicit_offset')")
+        return value
+
+    @field_validator('local_time_status')
+    def local_time_status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['ok', 'nonexistent', 'ambiguous']):
+            raise ValueError("must be one of enum values ('ok', 'nonexistent', 'ambiguous')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -55,7 +66,7 @@ class AyanamshaSystemValue(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AyanamshaSystemValue from a JSON string"""
+        """Create an instance of BirthMoment from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,7 +91,7 @@ class AyanamshaSystemValue(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AyanamshaSystemValue from a dict"""
+        """Create an instance of BirthMoment from a dict"""
         if obj is None:
             return None
 
@@ -88,13 +99,10 @@ class AyanamshaSystemValue(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "value_decimal": obj.get("value_decimal"),
-            "true_value_decimal": obj.get("true_value_decimal"),
-            "degrees": obj.get("degrees"),
-            "minutes": obj.get("minutes"),
-            "seconds": obj.get("seconds"),
-            "dms": obj.get("dms"),
-            "description": obj.get("description")
+            "utc": obj.get("utc"),
+            "utc_offset": obj.get("utc_offset"),
+            "offset_basis": obj.get("offset_basis"),
+            "local_time_status": obj.get("local_time_status")
         })
         return _obj
 

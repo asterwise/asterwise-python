@@ -136,6 +136,7 @@ from asterwise.models.biorhythm_range_response import BiorhythmRangeResponse
 from asterwise.models.biorhythm_request import BiorhythmRequest
 from asterwise.models.biorhythm_single_day_response import BiorhythmSingleDayResponse
 from asterwise.models.birth_input import BirthInput
+from asterwise.models.birth_moment import BirthMoment
 from asterwise.models.birth_nakshatra_ref import BirthNakshatraRef
 from asterwise.models.business_name_analysis_response import BusinessNameAnalysisResponse
 from asterwise.models.business_name_post_request import BusinessNamePostRequest

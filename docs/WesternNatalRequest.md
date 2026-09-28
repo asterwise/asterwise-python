@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **latitude** | **float** |  | [optional] 
 **longitude** | **float** |  | [optional] 
 **timezone** | **str** |  | [optional] 
+**utc_offset** | **str** |  | [optional] 
 **ayanamsa** | **str** | Sidereal ayanamsa mode used in calculations | [optional] [default to 'lahiri']
 **house_system** | **str** | House system for Western natal chart. Placidus is the modern default. Koch is the second most popular. Equal and Whole Sign are sign-based systems. | [optional] [default to 'placidus']
 

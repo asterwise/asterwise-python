@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value_decimal** | **float** | Ayanamsha offset in decimal degrees | 
+**value_decimal** | **float** | Mean ayanamsha (no nutation) in decimal degrees, the conventionally published figure | 
+**true_value_decimal** | **float** | True ayanamsha: the mean value plus nutation in longitude, in decimal degrees. This is the offset subtracted from apparent tropical longitudes to give the sidereal positions every Vedic endpoint returns. | 
 **degrees** | **int** |  | 
 **minutes** | **int** |  | 
 **seconds** | **float** |  | 

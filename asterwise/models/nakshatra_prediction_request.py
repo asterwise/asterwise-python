@@ -37,9 +37,10 @@ class NakshatraPredictionRequest(BaseModel):
     latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None
     longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None
     timezone: Optional[StrictStr] = None
+    utc_offset: Optional[StrictStr] = None
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
     target_date: Optional[date] = None
-    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "ayanamsa", "target_date"]
+    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "target_date"]
 
     @field_validator('ayanamsa')
     def ayanamsa_validate_enum(cls, value):
@@ -115,6 +116,11 @@ class NakshatraPredictionRequest(BaseModel):
         if self.timezone is None and "timezone" in self.model_fields_set:
             _dict['timezone'] = None
 
+        # set to None if utc_offset (nullable) is None
+        # and model_fields_set contains the field
+        if self.utc_offset is None and "utc_offset" in self.model_fields_set:
+            _dict['utc_offset'] = None
+
         # set to None if target_date (nullable) is None
         # and model_fields_set contains the field
         if self.target_date is None and "target_date" in self.model_fields_set:
@@ -139,6 +145,7 @@ class NakshatraPredictionRequest(BaseModel):
             "latitude": obj.get("latitude"),
             "longitude": obj.get("longitude"),
             "timezone": obj.get("timezone"),
+            "utc_offset": obj.get("utc_offset"),
             "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri',
             "target_date": obj.get("target_date")
         })

@@ -140,6 +140,7 @@ asterwise/models/biorhythm_range_response.py
 asterwise/models/biorhythm_request.py
 asterwise/models/biorhythm_single_day_response.py
 asterwise/models/birth_input.py
+asterwise/models/birth_moment.py
 asterwise/models/birth_nakshatra_ref.py
 asterwise/models/business_name_analysis_response.py
 asterwise/models/business_name_post_request.py
@@ -550,6 +551,7 @@ docs/BiorhythmRangeResponse.md
 docs/BiorhythmRequest.md
 docs/BiorhythmSingleDayResponse.md
 docs/BirthInput.md
+docs/BirthMoment.md
 docs/BirthNakshatraRef.md
 docs/BusinessNameAnalysisResponse.md
 docs/BusinessNamePostRequest.md
@@ -849,3 +851,4 @@ git_push.sh
 requirements.txt
 test-requirements.txt
 test/__init__.py
+test/test_birth_moment.py

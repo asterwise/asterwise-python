@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **latitude** | **float** |  | [optional] 
 **longitude** | **float** |  | [optional] 
 **timezone** | **str** |  | [optional] 
+**utc_offset** | **str** |  | [optional] 
 **ayanamsa** | **str** | Sidereal ayanamsa mode used in calculations | [optional] [default to 'lahiri']
 **levels** | **int** | Depth of sub-periods to return. 1 returns Maha Dashas only. 2 returns Maha and Antar Dashas. Maximum is 2. | [optional] [default to 2]
 

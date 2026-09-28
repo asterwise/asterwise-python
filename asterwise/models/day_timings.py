@@ -48,7 +48,7 @@ class DayTimings(BaseModel):
     varjyam: List[NakshatraWindow] = Field(description="Windows beginning this day (4 ghatis of the nakshatra).")
     amrit_kaal: List[NakshatraWindow] = Field(description="Windows beginning this day (4 ghatis of the nakshatra).")
     bhadra: List[BhadraWindow] = Field(description="Vishti karana during the day, split where the Moon changes sign.")
-    panchaka: List[TimeWindow] = Field(description="Moon in Kumbha or Meena (Dhanishtha pada 3 to Revati).")
+    panchaka: List[TimeWindow] = Field(description="Moon in Kumbha or Meena (Dhanishta pada 3 to Revati).")
     day_parts: DayParts = Field(description="The day in five equal parts, used for festival timing.")
     __properties: ClassVar[List[str]] = ["brahma_muhurta", "pratah_sandhya", "abhijit", "vijaya_muhurta", "godhuli_muhurta", "sayahna_sandhya", "nishita_muhurta", "madhyahna", "pradosh", "rahu_kaal", "gulika_kaal", "yamaganda_kaal", "durmuhurta", "varjyam", "amrit_kaal", "bhadra", "panchaka", "day_parts"]
 
