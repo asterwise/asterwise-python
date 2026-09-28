@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -37,8 +37,8 @@ class TamilPanchangaResponse(BaseModel):
     rahu_kalam: TamilKaalPeriod = Field(description="Rahu Kalam — inauspicious period, avoid new beginnings.")
     yamagandam: TamilKaalPeriod = Field(description="Yamagandam — inauspicious period associated with Yama.")
     kuligai: TamilKaalPeriod = Field(description="Kuligai (Gulika) — inauspicious period associated with Mandi.")
-    emagandam: TamilKaalPeriod = Field(description="Emagandam — 4th Tamil inauspicious period.")
-    nalla_neram: List[TamilNallaNeramWindow] = Field(description="Auspicious daytime windows between the four inauspicious periods.")
+    emagandam: TamilKaalPeriod = Field(description="Emagandam: the Tamil spelling of Yamagandam, the same period (kept for existing clients).")
+    nalla_neram: List[TamilNallaNeramWindow] = Field(description="Daytime windows free of Rahu Kalam, Yamagandam and Kuligai.")
     __properties: ClassVar[List[str]] = ["date", "sunrise", "sunset", "tamil_month", "rahu_kalam", "yamagandam", "kuligai", "emagandam", "nalla_neram"]
 
     model_config = ConfigDict(

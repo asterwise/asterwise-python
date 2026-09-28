@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -46,7 +46,7 @@ class NatalCrystalEntry(BaseModel):
     origins: List[StrictStr]
     affirmation: StrictStr
     caution: Optional[StrictStr]
-    match_score: StrictInt = Field(description="Classical Vedic gemstone tradition match score.")
+    match_score: StrictInt = Field(description="Gemstone match score based on house lordship.")
     match_reasons: List[StrictStr] = Field(description="Classical factors — which house lordship triggered this recommendation.")
     warnings: Optional[List[StrictStr]] = Field(default=None, description="Classical cautions for this specific chart context.")
     __properties: ClassVar[List[str]] = ["slug", "name", "colors", "hardness_mohs", "chakras", "element", "zodiac_signs", "vedic_planet", "vedic_correspondence", "western_planet", "keywords", "healing_physical", "healing_emotional", "healing_spiritual", "description", "origins", "affirmation", "caution", "match_score", "match_reasons", "warnings"]

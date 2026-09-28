@@ -1,7 +1,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -17,7 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictStr
-from typing import Any
+from asterwise.models.api_response_horoscope_data import ApiResponseHoroscopeData
 
 from asterwise.api_client import ApiClient, RequestSerialized
 from asterwise.api_response import ApiResponse
@@ -53,7 +53,7 @@ class HoroscopeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseHoroscopeData:
         """Daily horoscope
 
         Returns today's pre-generated daily horoscope for the given Moon sign. Content is computed from Vedic transit data and generated using AI. Returns 404 if today's horoscope has not been generated yet.
@@ -91,7 +91,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -129,7 +129,7 @@ class HoroscopeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseHoroscopeData]:
         """Daily horoscope
 
         Returns today's pre-generated daily horoscope for the given Moon sign. Content is computed from Vedic transit data and generated using AI. Returns 404 if today's horoscope has not been generated yet.
@@ -167,7 +167,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -243,7 +243,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -341,7 +341,7 @@ class HoroscopeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseHoroscopeData:
         """Monthly horoscope
 
         Returns this month's pre-generated monthly horoscope for the given Moon sign.
@@ -379,7 +379,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -417,7 +417,7 @@ class HoroscopeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseHoroscopeData]:
         """Monthly horoscope
 
         Returns this month's pre-generated monthly horoscope for the given Moon sign.
@@ -455,7 +455,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -531,7 +531,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -629,7 +629,7 @@ class HoroscopeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseHoroscopeData:
         """Weekly horoscope
 
         Returns this week's pre-generated weekly horoscope for the given Moon sign.
@@ -667,7 +667,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -705,7 +705,7 @@ class HoroscopeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseHoroscopeData]:
         """Weekly horoscope
 
         Returns this week's pre-generated weekly horoscope for the given Moon sign.
@@ -743,7 +743,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -819,7 +819,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -917,7 +917,7 @@ class HoroscopeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseHoroscopeData:
         """Yearly horoscope
 
         Returns this year's pre-generated yearly horoscope for the given Moon sign.
@@ -955,7 +955,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -993,7 +993,7 @@ class HoroscopeApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseHoroscopeData]:
         """Yearly horoscope
 
         Returns this year's pre-generated yearly horoscope for the given Moon sign.
@@ -1031,7 +1031,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1107,7 +1107,7 @@ class HoroscopeApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",

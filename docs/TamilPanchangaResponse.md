@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **rahu_kalam** | [**TamilKaalPeriod**](TamilKaalPeriod.md) | Rahu Kalam — inauspicious period, avoid new beginnings. | 
 **yamagandam** | [**TamilKaalPeriod**](TamilKaalPeriod.md) | Yamagandam — inauspicious period associated with Yama. | 
 **kuligai** | [**TamilKaalPeriod**](TamilKaalPeriod.md) | Kuligai (Gulika) — inauspicious period associated with Mandi. | 
-**emagandam** | [**TamilKaalPeriod**](TamilKaalPeriod.md) | Emagandam — 4th Tamil inauspicious period. | 
-**nalla_neram** | [**List[TamilNallaNeramWindow]**](TamilNallaNeramWindow.md) | Auspicious daytime windows between the four inauspicious periods. | 
+**emagandam** | [**TamilKaalPeriod**](TamilKaalPeriod.md) | Emagandam: the Tamil spelling of Yamagandam, the same period (kept for existing clients). | 
+**nalla_neram** | [**List[TamilNallaNeramWindow]**](TamilNallaNeramWindow.md) | Daytime windows free of Rahu Kalam, Yamagandam and Kuligai. | 
 
 ## Example
 

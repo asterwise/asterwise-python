@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -44,8 +44,9 @@ class DivisionalResponse(BaseModel):
     d40: Dict[str, Any] = Field(description="Khavedamsha — auspicious and inauspicious effects", alias="D40")
     d45: Dict[str, Any] = Field(description="Akshavedamsha — all matters of life", alias="D45")
     d60: Dict[str, Any] = Field(description="Shashtyamsha — all matters, most subtle divisional chart", alias="D60")
+    houses: Optional[Dict[str, Any]] = None
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
-    __properties: ClassVar[List[str]] = ["D1", "D2", "D3", "D4", "D7", "D9", "D10", "D12", "D16", "D20", "D24", "D27", "D30", "D40", "D45", "D60", "birth_time_provided"]
+    __properties: ClassVar[List[str]] = ["D1", "D2", "D3", "D4", "D7", "D9", "D10", "D12", "D16", "D20", "D24", "D27", "D30", "D40", "D45", "D60", "houses", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,6 +87,11 @@ class DivisionalResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if houses (nullable) is None
+        # and model_fields_set contains the field
+        if self.houses is None and "houses" in self.model_fields_set:
+            _dict['houses'] = None
+
         return _dict
 
     @classmethod
@@ -114,6 +120,7 @@ class DivisionalResponse(BaseModel):
             "D40": obj.get("D40"),
             "D45": obj.get("D45"),
             "D60": obj.get("D60"),
+            "houses": obj.get("houses"),
             "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True
         })
         return _obj

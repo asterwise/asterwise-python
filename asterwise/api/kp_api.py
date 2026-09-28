@@ -1,7 +1,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -16,7 +16,9 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from typing import Any
+from asterwise.models.api_response_kp_chart_response import ApiResponseKPChartResponse
+from asterwise.models.api_response_kp_ruling_planets_response import ApiResponseKPRulingPlanetsResponse
+from asterwise.models.api_response_kp_significators_response import ApiResponseKPSignificatorsResponse
 from asterwise.models.kp_birth_request import KPBirthRequest
 from asterwise.models.kp_ruling_planets_request import KPRulingPlanetsRequest
 
@@ -54,7 +56,7 @@ class KpApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseKPChartResponse:
         """KP Natal Chart
 
         Computes the KP (Krishnamurti Paddhati) natal chart using Krishnamurti ayanamsa and Placidus house system. Returns planet positions with nakshatra lord and sub-lord, and all 12 house cusps with sub-lords. Request JSON follows BirthInput: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa`.
@@ -92,7 +94,7 @@ class KpApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseKPChartResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -130,7 +132,7 @@ class KpApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseKPChartResponse]:
         """KP Natal Chart
 
         Computes the KP (Krishnamurti Paddhati) natal chart using Krishnamurti ayanamsa and Placidus house system. Returns planet positions with nakshatra lord and sub-lord, and all 12 house cusps with sub-lords. Request JSON follows BirthInput: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa`.
@@ -168,7 +170,7 @@ class KpApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseKPChartResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -244,7 +246,7 @@ class KpApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseKPChartResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -355,7 +357,7 @@ class KpApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseKPRulingPlanetsResponse:
         """KP Ruling Planets
 
         Computes KP Ruling Planets at a given moment (no natal birth chart). Request body: `latitude`, `longitude`, optional `target_date`, `target_time`, `target_timezone`. Returns day lord, Moon sign/nakshatra/sub lords, ascendant sign/nakshatra/sub lords, and the combined list of ruling planets in priority order.
@@ -393,7 +395,7 @@ class KpApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseKPRulingPlanetsResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -431,7 +433,7 @@ class KpApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseKPRulingPlanetsResponse]:
         """KP Ruling Planets
 
         Computes KP Ruling Planets at a given moment (no natal birth chart). Request body: `latitude`, `longitude`, optional `target_date`, `target_time`, `target_timezone`. Returns day lord, Moon sign/nakshatra/sub lords, ascendant sign/nakshatra/sub lords, and the combined list of ruling planets in priority order.
@@ -469,7 +471,7 @@ class KpApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseKPRulingPlanetsResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -545,7 +547,7 @@ class KpApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseKPRulingPlanetsResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -656,7 +658,7 @@ class KpApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseKPSignificatorsResponse:
         """KP House Significators
 
         Computes KP house significators for all 12 houses. For each house returns: occupants, sign lord, planets in nakshatra of occupants (level 3), and planets in nakshatra of the sign lord (level 4). Request JSON follows BirthInput: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa`.
@@ -694,7 +696,7 @@ class KpApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseKPSignificatorsResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -732,7 +734,7 @@ class KpApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseKPSignificatorsResponse]:
         """KP House Significators
 
         Computes KP house significators for all 12 houses. For each house returns: occupants, sign lord, planets in nakshatra of occupants (level 3), and planets in nakshatra of the sign lord (level 4). Request JSON follows BirthInput: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa`.
@@ -770,7 +772,7 @@ class KpApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseKPSignificatorsResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -846,7 +848,7 @@ class KpApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseKPSignificatorsResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",

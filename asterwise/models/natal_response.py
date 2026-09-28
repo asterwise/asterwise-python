@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -40,7 +40,7 @@ class NatalResponse(BaseModel):
     ayanamsa_value: Union[StrictFloat, StrictInt] = Field(description="Numerical ayanamsa value used in calculations")
     ayanamsa_used: StrictStr = Field(description="Ayanamsa mode used for the chart")
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
-    interpretation: Optional[List[Dict[str, Any]]] = None
+    interpretation: Optional[List[Optional[Dict[str, Any]]]] = None
     ascendant_sign_interpretation: Optional[Dict[str, Any]] = None
     moon_sign: Optional[StrictStr] = None
     moon_nakshatra: Optional[StrictStr] = None
@@ -51,7 +51,7 @@ class NatalResponse(BaseModel):
     bhava_sandhi: Optional[List[BhavaMadhyaEntry]] = None
     graha_drishti: Optional[Dict[str, Dict[str, StrictInt]]] = None
     rashi_drishti: Optional[List[RashiDrishtiEntry]] = None
-    arudha_padas: Optional[Dict[str, Dict[str, Any]]] = None
+    arudha_padas: Optional[Dict[str, Optional[Dict[str, Any]]]] = None
     upapada_lagna: Optional[UpapadaLagna] = None
     __properties: ClassVar[List[str]] = ["planets", "houses", "ascendant", "ascendant_sign", "ayanamsa_value", "ayanamsa_used", "birth_time_provided", "interpretation", "ascendant_sign_interpretation", "moon_sign", "moon_nakshatra", "moon_sign_interpretation", "moon_nakshatra_interpretation", "avakahada", "bhava_madhya", "bhava_sandhi", "graha_drishti", "rashi_drishti", "arudha_padas", "upapada_lagna"]
 

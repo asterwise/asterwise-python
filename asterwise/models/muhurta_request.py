@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -18,9 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
+from asterwise.models.muhurta_participant import MuhurtaParticipant
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,15 +30,36 @@ class MuhurtaRequest(BaseModel):
     """
     MuhurtaRequest
     """ # noqa: E501
-    event_type: StrictStr = Field(description="Type of event. One of: marriage, travel, business, griha_pravesh, naming_ceremony")
+    event_type: StrictStr = Field(description="Activity. One of: marriage; griha_pravesh (housewarming); business (starting a business or shop); travel; naming_ceremony; vehicle_purchase; property_purchase; mundan (first haircut); annaprashan (first solid food); upanayana (sacred thread); vidyarambha (beginning education).")
     from_date: StrictStr = Field(description="Start date in YYYY-MM-DD format (inclusive)")
-    to_date: StrictStr = Field(description="End date in YYYY-MM-DD format (inclusive). Maximum 30 days from from_date.")
-    latitude: Union[StrictFloat, StrictInt] = Field(description="Location latitude")
-    longitude: Union[StrictFloat, StrictInt] = Field(description="Location longitude")
-    timezone: StrictStr = Field(description="IANA timezone string e.g. Asia/Kolkata")
-    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="lahiri | raman | kp | tropical")
-    top_n: Optional[Annotated[int, Field(le=20, strict=True, ge=1)]] = Field(default=5, description="Number of top windows to return (1-20)")
-    __properties: ClassVar[List[str]] = ["event_type", "from_date", "to_date", "latitude", "longitude", "timezone", "ayanamsa", "top_n"]
+    to_date: StrictStr = Field(description="End date in YYYY-MM-DD format (inclusive). At most 366 days after from_date.")
+    location: Optional[StrictStr] = None
+    latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None
+    longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None
+    timezone: Optional[StrictStr] = None
+    ayanamsa: Optional[StrictStr] = 'lahiri'
+    top_n: Optional[Annotated[int, Field(le=50, strict=True, ge=1)]] = Field(default=5, description="Number of windows to return (1-50)")
+    max_windows_per_day: Optional[Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(default=1, description="At most this many windows per day, so results spread across dates (1-10).")
+    min_duration_minutes: Optional[Annotated[int, Field(le=240, strict=True, ge=1)]] = Field(default=15, description="Drop windows shorter than this (1-240 minutes).")
+    participants: Optional[Annotated[List[MuhurtaParticipant], Field(max_length=2)]] = None
+    __properties: ClassVar[List[str]] = ["event_type", "from_date", "to_date", "location", "latitude", "longitude", "timezone", "ayanamsa", "top_n", "max_windows_per_day", "min_duration_minutes", "participants"]
+
+    @field_validator('event_type')
+    def event_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['marriage', 'griha_pravesh', 'business', 'travel', 'naming_ceremony', 'vehicle_purchase', 'property_purchase', 'mundan', 'annaprashan', 'upanayana', 'vidyarambha']):
+            raise ValueError("must be one of enum values ('marriage', 'griha_pravesh', 'business', 'travel', 'naming_ceremony', 'vehicle_purchase', 'property_purchase', 'mundan', 'annaprashan', 'upanayana', 'vidyarambha')")
+        return value
+
+    @field_validator('ayanamsa')
+    def ayanamsa_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['lahiri', 'raman', 'kp', 'tropical']):
+            raise ValueError("must be one of enum values ('lahiri', 'raman', 'kp', 'tropical')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +100,38 @@ class MuhurtaRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in participants (list)
+        _items = []
+        if self.participants:
+            for _item_participants in self.participants:
+                if _item_participants:
+                    _items.append(_item_participants.to_dict())
+            _dict['participants'] = _items
+        # set to None if location (nullable) is None
+        # and model_fields_set contains the field
+        if self.location is None and "location" in self.model_fields_set:
+            _dict['location'] = None
+
+        # set to None if latitude (nullable) is None
+        # and model_fields_set contains the field
+        if self.latitude is None and "latitude" in self.model_fields_set:
+            _dict['latitude'] = None
+
+        # set to None if longitude (nullable) is None
+        # and model_fields_set contains the field
+        if self.longitude is None and "longitude" in self.model_fields_set:
+            _dict['longitude'] = None
+
+        # set to None if timezone (nullable) is None
+        # and model_fields_set contains the field
+        if self.timezone is None and "timezone" in self.model_fields_set:
+            _dict['timezone'] = None
+
+        # set to None if participants (nullable) is None
+        # and model_fields_set contains the field
+        if self.participants is None and "participants" in self.model_fields_set:
+            _dict['participants'] = None
+
         return _dict
 
     @classmethod
@@ -93,11 +147,15 @@ class MuhurtaRequest(BaseModel):
             "event_type": obj.get("event_type"),
             "from_date": obj.get("from_date"),
             "to_date": obj.get("to_date"),
+            "location": obj.get("location"),
             "latitude": obj.get("latitude"),
             "longitude": obj.get("longitude"),
             "timezone": obj.get("timezone"),
             "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri',
-            "top_n": obj.get("top_n") if obj.get("top_n") is not None else 5
+            "top_n": obj.get("top_n") if obj.get("top_n") is not None else 5,
+            "max_windows_per_day": obj.get("max_windows_per_day") if obj.get("max_windows_per_day") is not None else 1,
+            "min_duration_minutes": obj.get("min_duration_minutes") if obj.get("min_duration_minutes") is not None else 15,
+            "participants": [MuhurtaParticipant.from_dict(_item) for _item in obj["participants"]] if obj.get("participants") is not None else None
         })
         return _obj
 

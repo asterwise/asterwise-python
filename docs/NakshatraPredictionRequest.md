@@ -1,5 +1,6 @@
 # NakshatraPredictionRequest
 
+Nakshatra daily prediction — extends BirthInput with optional target_date.
 
 ## Properties
 

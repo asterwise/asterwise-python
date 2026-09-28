@@ -1,7 +1,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -59,7 +59,7 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseGeocodeResponse:
-        """Geocode
+        """Resolve a city or place name to latitude, longitude, and timezone
 
         Resolve a city or place name to coordinates and timezone.  Returns up to {limit} matches. When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
 
@@ -143,7 +143,7 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseGeocodeResponse]:
-        """Geocode
+        """Resolve a city or place name to latitude, longitude, and timezone
 
         Resolve a city or place name to coordinates and timezone.  Returns up to {limit} matches. When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
 
@@ -227,7 +227,7 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Geocode
+        """Resolve a city or place name to latitude, longitude, and timezone
 
         Resolve a city or place name to coordinates and timezone.  Returns up to {limit} matches. When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
 
@@ -367,10 +367,10 @@ class UtilitiesApi:
     @validate_call
     def timezone(
         self,
-        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
-        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
-        lat: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
-        lon: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
+        lat: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
+        lon: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -384,7 +384,7 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseTimezoneResponse:
-        """Timezone From Coordinates
+        """Return the IANA timezone for a given coordinate pair
 
         Get IANA timezone for a coordinate pair. Fully offline — no external API call. Accepts ?latitude=&longitude= and/or ?lat=&lon= (any pair that supplies both coordinates). Examples: ?latitude=19.055&longitude=72.869 (Mumbai), ?lat=19.055&lon=72.869
 
@@ -455,10 +455,10 @@ class UtilitiesApi:
     @validate_call
     def timezone_with_http_info(
         self,
-        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
-        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
-        lat: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
-        lon: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
+        lat: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
+        lon: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -472,7 +472,7 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseTimezoneResponse]:
-        """Timezone From Coordinates
+        """Return the IANA timezone for a given coordinate pair
 
         Get IANA timezone for a coordinate pair. Fully offline — no external API call. Accepts ?latitude=&longitude= and/or ?lat=&lon= (any pair that supplies both coordinates). Examples: ?latitude=19.055&longitude=72.869 (Mumbai), ?lat=19.055&lon=72.869
 
@@ -543,10 +543,10 @@ class UtilitiesApi:
     @validate_call
     def timezone_without_preload_content(
         self,
-        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
-        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
-        lat: Annotated[Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
-        lon: Annotated[Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude (alias: lat)")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude (alias: lon)")] = None,
+        lat: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Alias for latitude")] = None,
+        lon: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Alias for longitude")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -560,7 +560,7 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Timezone From Coordinates
+        """Return the IANA timezone for a given coordinate pair
 
         Get IANA timezone for a coordinate pair. Fully offline — no external API call. Accepts ?latitude=&longitude= and/or ?lat=&lon= (any pair that supplies both coordinates). Examples: ?latitude=19.055&longitude=72.869 (Mumbai), ?lat=19.055&lon=72.869
 

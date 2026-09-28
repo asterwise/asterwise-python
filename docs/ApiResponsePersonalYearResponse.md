@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **bool** |  | [optional] [default to True]
-**message** | **str** |  | [optional] [default to 'success']
-**data** | [**PersonalYearResponse**](PersonalYearResponse.md) |  | 
+**success** | **bool** | True if the request succeeded | [optional] [default to True]
+**message** | **str** | Human-readable status message | [optional] [default to 'success']
+**data** | [**PersonalYearResponse**](PersonalYearResponse.md) | The endpoint response payload | 
 
 ## Example
 

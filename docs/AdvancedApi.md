@@ -288,7 +288,12 @@ from past lives.
 - D60 — Shashtyamsha (subtle karmic residue)
 
 Each chart shows every planet's sign placement within that divisional
-subdivision. Use the D9 alongside the D1 for most interpretive work.
+subdivision, with its dignity there (exalted, debilitated, own sign, friendly,
+neutral or enemy) and whether it is vargottama (same sign as in D1). When the
+birth time is known, each chart also has its own lagna, every planet's
+whole-sign house from that lagna, and a `houses` table per chart (sign, lord
+and occupants of each house). Use the D9 alongside the D1 for most
+interpretive work.
 
 **Ayanamsa:** All positions are sidereal. Default is Lahiri.
 

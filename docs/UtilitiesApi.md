@@ -4,14 +4,14 @@ All URIs are relative to *https://api.asterwise.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**geocode**](UtilitiesApi.md#geocode) | **GET** /v1/utils/geocode | Geocode
-[**timezone**](UtilitiesApi.md#timezone) | **GET** /v1/utils/timezone | Timezone From Coordinates
+[**geocode**](UtilitiesApi.md#geocode) | **GET** /v1/utils/geocode | Resolve a city or place name to latitude, longitude, and timezone
+[**timezone**](UtilitiesApi.md#timezone) | **GET** /v1/utils/timezone | Return the IANA timezone for a given coordinate pair
 
 
 # **geocode**
 > ApiResponseGeocodeResponse geocode(q, limit=limit, country=country)
 
-Geocode
+Resolve a city or place name to latitude, longitude, and timezone
 
 Resolve a city or place name to coordinates and timezone.
 
@@ -60,7 +60,7 @@ with asterwise.ApiClient(configuration) as api_client:
     country = 'country_example' # str | ISO country code to narrow results, e.g. 'in', 'us' (optional)
 
     try:
-        # Geocode
+        # Resolve a city or place name to latitude, longitude, and timezone
         api_response = api_instance.geocode(q, limit=limit, country=country)
         print("The response of UtilitiesApi->geocode:\n")
         pprint(api_response)
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 # **timezone**
 > ApiResponseTimezoneResponse timezone(latitude=latitude, longitude=longitude, lat=lat, lon=lon)
 
-Timezone From Coordinates
+Return the IANA timezone for a given coordinate pair
 
 Get IANA timezone for a coordinate pair.
 Fully offline — no external API call.
@@ -155,7 +155,7 @@ with asterwise.ApiClient(configuration) as api_client:
     lon = 3.4 # float | Alias for longitude (optional)
 
     try:
-        # Timezone From Coordinates
+        # Return the IANA timezone for a given coordinate pair
         api_response = api_instance.timezone(latitude=latitude, longitude=longitude, lat=lat, lon=lon)
         print("The response of UtilitiesApi->timezone:\n")
         pprint(api_response)

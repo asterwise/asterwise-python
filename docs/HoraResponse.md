@@ -6,9 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_date** | **str** | Date for which Hora is calculated (YYYY-MM-DD). | 
+**convention** | **str** | Hora division used. &#x60;&#x60;unequal_seasonal&#x60;&#x60; &#x3D; 12 day + 12 night parts from real sunrise/sunset (panchanga / electional). | 
 **sunrise** | **str** | Sunrise time in HH:MM local time. | 
+**sunset** | **str** | Sunset time in HH:MM local time. | 
 **next_sunrise** | **str** | Next day sunrise time in HH:MM local time. | 
-**horas** | [**List[HoraPeriod]**](HoraPeriod.md) | 24 planetary hours from sunrise to next sunrise. | 
+**horas** | [**List[HoraPeriod]**](HoraPeriod.md) | 24 planetary hours: 12 from sunrise to sunset, then 12 from sunset to next sunrise. | 
 
 ## Example
 

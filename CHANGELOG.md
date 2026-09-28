@@ -1,5 +1,71 @@
 # CHANGELOG
 
+## 0.3.0 — 2026-09-28
+
+Regenerated from the API as deployed on 2026-09-28. No method was removed
+and no request model lost a field.
+
+### Changed (breaking)
+
+- **45 methods now return typed models instead of plain dicts.** They
+  previously returned `object` (the decoded JSON); they now return the
+  generated `ApiResponse...` model for the endpoint, like the other 74
+  methods already did. Replace `result["data"]["x"]` with `result.data.x`,
+  or call `result.to_dict()` to keep dict-style code working. Affected:
+  - AstrologyApi: `atmakaraka`, `ayanamsha`, `char_dasha`,
+    `dasha_transits`, `gemstones`, `ghat_chakra`, `gochar`, `ishta_devata`,
+    `matchmaking_dashakoot`, `matchmaking_papasamyam`,
+    `matchmaking_porutham`, `matchmaking_thirumana_porutham`, `muhurta`,
+    `nakshatra`, `nakshatra_prediction`, `pitra_dosha`, `planet_nature`,
+    `puja_suggestions`, `remedies`, `rudraksha`, `varshaphal`,
+    `varshaphal_harsha_bala`, `varshaphal_saham`
+  - HoroscopeApi: `horoscope_daily`, `horoscope_weekly`,
+    `horoscope_monthly`, `horoscope_yearly`
+  - KpApi: `kp_chart`, `kp_ruling_planets`, `kp_significators`
+  - LalKitabApi: `lal_kitab_chart`, `lal_kitab_remedies`
+  - NumerologyApi: `business_name`, `business_name_post`, `chaldean`,
+    `lo_shu`, `mobile_number`, `name_correction`, `vehicle_number`
+  - PrashnaApi: `prashna`
+  - WesternApi: `western_biorhythm`, `western_horoscope_daily`,
+    `western_horoscope_weekly`, `western_horoscope_monthly`,
+    `western_horoscope_yearly`
+
+  Before release, every model was checked against real responses: 107 of
+  107 endpoints parsed from responses produced by the deployed API code,
+  and the eight horoscope endpoints checked against the generation schema
+  their stored content is validated with.
+- User-Agent is now `asterwise-python/<version>` (was
+  `OpenAPI-Generator/0.2.0-dev/python`).
+
+### Added
+
+- Panchanga (`panchanga`, `panchanga_calendar`): the whole panchanga day:
+  every tithi, nakshatra, yoga and karana with start and end times and
+  kshaya/vriddhi flags; sunrise, sunset, moonrise, moonset; masa (amanta and
+  purnimanta, Adhik months); samvat; ritu; ayana; and the day's timings
+  (Rahu Kaal, Gulika, Yamaganda, Abhijit, Brahma Muhurta, Durmuhurta,
+  Varjyam, Amrit Kaal, Bhadra, Panchaka, Pradosh).
+- `panchanga_festivals`: `categories` parameter (festival, vrat, sankranti,
+  eclipse, period) and per-entry `masa`, `tithi`, `rule`,
+  `observance_window`, `end_date`, `sankranti` and `eclipse`.
+- `muhurta`: six more activities (`vehicle_purchase`, `property_purchase`,
+  `mundan`, `annaprashan`, `upanayana`, `vidyarambha`), `location`,
+  `participants` (Tarabala, Chandrabala), `max_windows_per_day`,
+  `min_duration_minutes`; windows add `start_at` / `end_at` (ISO 8601),
+  `civil_date`, `panchanga_day`, `grade`, `reasons`, `cautions`.
+- Divisional charts: `dignity`, `is_vargottama`, `house` per planet and a
+  `houses` table per chart; nakshatra prediction: Tarabala `cycle_name`
+  and `transit_nakshatras`.
+- Typed models for 169 more response and nested types.
+
+### Fixed
+
+- `__version__` read `0.2.0-dev` after a regeneration; the version is now
+  taken from `pyproject.toml` by `scripts/generate.sh`, and a test keeps
+  `__version__`, the User-Agent and the debug report in step with it.
+- `planet_nature`: `tattva` is optional (null for Rahu and Ketu); the typed
+  model would otherwise reject that response.
+
 ## 0.2.4 — 2026-09-05
 
 ### Changed

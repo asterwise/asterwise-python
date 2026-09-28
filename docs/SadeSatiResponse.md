@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **natal_moon_sign** | **str** |  | 
 **natal_moon_sign_index** | **int** |  | 
-**sade_sati_signs** | **object** |  | 
+**sade_sati_signs** | **Dict[str, object]** |  | 
 **is_currently_active** | **bool** |  | [optional] 
 **current_phase** | **str** |  | [optional] 
 **current_phase_description** | **str** |  | [optional] 
 **intensity_score** | **int** |  | [optional] 
 **intensity_label** | **str** |  | [optional] 
-**next_sade_sati** | **object** |  | [optional] 
-**all_periods** | **List[object]** |  | [optional] 
+**next_sade_sati** | **Dict[str, object]** |  | [optional] 
+**all_periods** | **List[Dict[str, object]]** |  | [optional] 
 **small_panoti** | [**List[SmallPanotiPeriod]**](SmallPanotiPeriod.md) |  | [optional] 
 **is_small_panoti_active** | **bool** |  | [optional] 
 **current_small_panoti_position** | **int** |  | [optional] 

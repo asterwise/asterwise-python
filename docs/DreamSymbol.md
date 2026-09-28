@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **jungian_archetype** | **str** | Primary Jungian archetype activated by this symbol. | 
 **vedic_meaning** | **str** | Classical Vedic dream tradition interpretation. | 
 **vedic_auspicious** | **bool** |  | [optional] 
-**vedic_source** | **str** | Classical text source for the Vedic interpretation. | 
 **traditions_agree** | **str** | Whether Jungian and Vedic traditions agree: &#39;agree&#39;, &#39;conflict&#39;, or &#39;partial&#39;. | 
 **emotional_tone** | **str** | Primary emotional register: anxiety, transformation, auspicious, warning, grief, power, healing, clarity, confusion, or neutral. | 
 **themes** | **List[str]** | Thematic keywords used for AI synthesis and search. | 

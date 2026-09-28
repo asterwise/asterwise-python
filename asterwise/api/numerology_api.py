@@ -1,7 +1,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -18,14 +18,19 @@ from typing_extensions import Annotated
 
 from datetime import date
 from pydantic import Field, StrictInt, StrictStr, field_validator
-from typing import Any, Optional
+from typing import Optional
 from typing_extensions import Annotated
 from asterwise.models.angel_numbers_list_response import AngelNumbersListResponse
 from asterwise.models.api_response_angel_number_response import ApiResponseAngelNumberResponse
+from asterwise.models.api_response_business_name_analysis_response import ApiResponseBusinessNameAnalysisResponse
+from asterwise.models.api_response_chaldean_response import ApiResponseChaldeanResponse
+from asterwise.models.api_response_digit_number_analysis_response import ApiResponseDigitNumberAnalysisResponse
 from asterwise.models.api_response_karmic_lessons_response import ApiResponseKarmicLessonsResponse
 from asterwise.models.api_response_life_path_response import ApiResponseLifePathResponse
+from asterwise.models.api_response_lo_shu_response import ApiResponseLoShuResponse
 from asterwise.models.api_response_lucky_numbers_api_response import ApiResponseLuckyNumbersApiResponse
 from asterwise.models.api_response_maturity_number_response import ApiResponseMaturityNumberResponse
+from asterwise.models.api_response_name_correction_response import ApiResponseNameCorrectionResponse
 from asterwise.models.api_response_name_number_response import ApiResponseNameNumberResponse
 from asterwise.models.api_response_number_meaning_response import ApiResponseNumberMeaningResponse
 from asterwise.models.api_response_numerology_profile_response import ApiResponseNumerologyProfileResponse
@@ -1789,7 +1794,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseBusinessNameAnalysisResponse:
         """Business Name Numerology
 
         Scores a business name using Pythagorean expression number. Returns single digit, theme, harmony score (1-10), and recommended uses.
@@ -1827,7 +1832,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseBusinessNameAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1865,7 +1870,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseBusinessNameAnalysisResponse]:
         """Business Name Numerology
 
         Scores a business name using Pythagorean expression number. Returns single digit, theme, harmony score (1-10), and recommended uses.
@@ -1903,7 +1908,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseBusinessNameAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1979,7 +1984,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseBusinessNameAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2079,7 +2084,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseBusinessNameAnalysisResponse:
         """Business Name Numerology (JSON body)
 
         Same analysis as GET /v1/numerology/business-name for clients that send a JSON body (e.g. MCP): `{ \"name\": \"...\" }`.
@@ -2117,7 +2122,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseBusinessNameAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2155,7 +2160,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseBusinessNameAnalysisResponse]:
         """Business Name Numerology (JSON body)
 
         Same analysis as GET /v1/numerology/business-name for clients that send a JSON body (e.g. MCP): `{ \"name\": \"...\" }`.
@@ -2193,7 +2198,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseBusinessNameAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2269,7 +2274,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseBusinessNameAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2380,7 +2385,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseChaldeanResponse:
         """Chaldean Numerology Profile
 
         Computes a full Chaldean numerology profile. Chaldean uses a different letter-value table than Pythagorean (numbers 1-8 only; 9 is sacred). Returns name number, birth number, and compound destiny number with interpretations.
@@ -2418,7 +2423,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseChaldeanResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2456,7 +2461,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseChaldeanResponse]:
         """Chaldean Numerology Profile
 
         Computes a full Chaldean numerology profile. Chaldean uses a different letter-value table than Pythagorean (numbers 1-8 only; 9 is sacred). Returns name number, birth number, and compound destiny number with interpretations.
@@ -2494,7 +2499,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseChaldeanResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2570,7 +2575,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseChaldeanResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -3582,7 +3587,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseLoShuResponse:
         """Lo Shu Grid
 
         Builds a Lo Shu 3x3 numerology grid from a birth date. Returns the grid with digit counts, present/missing/repeated numbers, plane analysis (thought/will/action), and per-number trait interpretation.
@@ -3620,7 +3625,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseLoShuResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -3658,7 +3663,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseLoShuResponse]:
         """Lo Shu Grid
 
         Builds a Lo Shu 3x3 numerology grid from a birth date. Returns the grid with digit counts, present/missing/repeated numbers, plane analysis (thought/will/action), and per-number trait interpretation.
@@ -3696,7 +3701,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseLoShuResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -3772,7 +3777,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseLoShuResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4517,7 +4522,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseDigitNumberAnalysisResponse:
         """Mobile Number Numerology
 
         Analyses a mobile/phone number numerologically. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
@@ -4555,7 +4560,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDigitNumberAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4593,7 +4598,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseDigitNumberAnalysisResponse]:
         """Mobile Number Numerology
 
         Analyses a mobile/phone number numerologically. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
@@ -4631,7 +4636,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDigitNumberAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4707,7 +4712,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDigitNumberAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4807,7 +4812,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseNameCorrectionResponse:
         """Name Correction Analysis
 
         Analyses a full name using Pythagorean numerology and suggests spelling variants that are more harmonious with the life path number. Returns current name scores and up to 8 alternatives ranked by harmony.
@@ -4845,7 +4850,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseNameCorrectionResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4883,7 +4888,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseNameCorrectionResponse]:
         """Name Correction Analysis
 
         Analyses a full name using Pythagorean numerology and suggests spelling variants that are more harmonious with the life path number. Returns current name scores and up to 8 alternatives ranked by harmony.
@@ -4921,7 +4926,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseNameCorrectionResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4997,7 +5002,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseNameCorrectionResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -7535,7 +7540,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseDigitNumberAnalysisResponse:
         """Vehicle Number Numerology
 
         Analyses a vehicle registration number numerologically. Extracts digits, sums to single number, returns theme and harmony score.
@@ -7573,7 +7578,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDigitNumberAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -7611,7 +7616,7 @@ class NumerologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseDigitNumberAnalysisResponse]:
         """Vehicle Number Numerology
 
         Analyses a vehicle registration number numerologically. Extracts digits, sums to single number, returns theme and harmony score.
@@ -7649,7 +7654,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDigitNumberAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -7725,7 +7730,7 @@ class NumerologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDigitNumberAnalysisResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",

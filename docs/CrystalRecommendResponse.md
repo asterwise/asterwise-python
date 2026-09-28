@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **total** | **int** | Number of crystals returned. | 
-**filters_applied** | **object** | The filters used for this recommendation. | 
+**filters_applied** | **Dict[str, object]** | The filters used for this recommendation. | 
 **crystals** | [**List[CrystalEntry]**](CrystalEntry.md) | Recommended crystals sorted by match strength. | 
 
 ## Example

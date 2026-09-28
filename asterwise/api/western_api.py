@@ -1,7 +1,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -17,7 +17,8 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictStr
-from typing import Any
+from asterwise.models.api_response_union_biorhythm_single_day_response_biorhythm_range_response import ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse
+from asterwise.models.api_response_western_horoscope_data import ApiResponseWesternHoroscopeData
 from asterwise.models.biorhythm_request import BiorhythmRequest
 
 from asterwise.api_client import ApiClient, RequestSerialized
@@ -54,7 +55,7 @@ class WesternApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse:
         """Biorhythm Cycles
 
         Computes physical (23-day), emotional (28-day), and intellectual (33-day) biorhythm cycles for a birth date. Returns cycle values (-1.0 to +1.0), percentage, phase label (High/Rising/Falling/Low), and critical day flags. Critical days occur when a cycle crosses zero — these represent instability and vulnerability to poor judgment. Supports single-day and multi-day (up to 90 days) range requests. Formula: sin(2π × t / cycle_length) where t = days since birth. Source: Wilhelm Fliess (1897) physical cycle; Hermann Swoboda (1900) emotional cycle; Alfred Teltscher (1926) intellectual cycle.
@@ -92,7 +93,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -130,7 +131,7 @@ class WesternApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse]:
         """Biorhythm Cycles
 
         Computes physical (23-day), emotional (28-day), and intellectual (33-day) biorhythm cycles for a birth date. Returns cycle values (-1.0 to +1.0), percentage, phase label (High/Rising/Falling/Low), and critical day flags. Critical days occur when a cycle crosses zero — these represent instability and vulnerability to poor judgment. Supports single-day and multi-day (up to 90 days) range requests. Formula: sin(2π × t / cycle_length) where t = days since birth. Source: Wilhelm Fliess (1897) physical cycle; Hermann Swoboda (1900) emotional cycle; Alfred Teltscher (1926) intellectual cycle.
@@ -168,7 +169,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -244,7 +245,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -355,7 +356,7 @@ class WesternApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseWesternHoroscopeData:
         """Western daily horoscope
 
         Returns today's pre-generated Western daily horoscope for the given Sun sign (tropical).
@@ -393,7 +394,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -431,7 +432,7 @@ class WesternApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseWesternHoroscopeData]:
         """Western daily horoscope
 
         Returns today's pre-generated Western daily horoscope for the given Sun sign (tropical).
@@ -469,7 +470,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -545,7 +546,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -643,7 +644,7 @@ class WesternApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseWesternHoroscopeData:
         """Western monthly horoscope
 
         Returns this month's pre-generated Western monthly horoscope for the given Sun sign.
@@ -681,7 +682,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -719,7 +720,7 @@ class WesternApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseWesternHoroscopeData]:
         """Western monthly horoscope
 
         Returns this month's pre-generated Western monthly horoscope for the given Sun sign.
@@ -757,7 +758,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -833,7 +834,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -931,7 +932,7 @@ class WesternApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseWesternHoroscopeData:
         """Western weekly horoscope
 
         Returns this week's pre-generated Western weekly horoscope for the given Sun sign.
@@ -969,7 +970,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1007,7 +1008,7 @@ class WesternApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseWesternHoroscopeData]:
         """Western weekly horoscope
 
         Returns this week's pre-generated Western weekly horoscope for the given Sun sign.
@@ -1045,7 +1046,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1121,7 +1122,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1219,7 +1220,7 @@ class WesternApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseWesternHoroscopeData:
         """Western yearly horoscope
 
         Returns this year's pre-generated Western yearly horoscope for the given Sun sign.
@@ -1257,7 +1258,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1295,7 +1296,7 @@ class WesternApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseWesternHoroscopeData]:
         """Western yearly horoscope
 
         Returns this year's pre-generated Western yearly horoscope for the given Sun sign.
@@ -1333,7 +1334,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1409,7 +1410,7 @@ class WesternApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseWesternHoroscopeData",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",

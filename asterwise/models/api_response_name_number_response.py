@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.name_number_response import NameNumberResponse
 from typing import Optional, Set
@@ -29,9 +29,9 @@ class ApiResponseNameNumberResponse(BaseModel):
     """
     ApiResponseNameNumberResponse
     """ # noqa: E501
-    success: Optional[StrictBool] = True
-    message: Optional[StrictStr] = 'success'
-    data: NameNumberResponse
+    success: Optional[StrictBool] = Field(default=True, description="True if the request succeeded")
+    message: Optional[StrictStr] = Field(default='success', description="Human-readable status message")
+    data: NameNumberResponse = Field(description="The endpoint response payload")
     __properties: ClassVar[List[str]] = ["success", "message", "data"]
 
     model_config = ConfigDict(

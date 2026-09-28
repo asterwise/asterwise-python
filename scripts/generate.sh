@@ -60,7 +60,15 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 SPEC_URL="${ASTERWISE_SDK_SPEC_URL:-https://api.asterwise.com/openapi-sdk.json}"
 GENERATOR="python"
-ADDITIONAL_PROPS="packageName=asterwise,projectName=asterwise,packageVersion=0.2.0-dev,generateSourceCodeOnly=false,library=urllib3"
+# The package version has one source of truth: pyproject.toml. The generator
+# writes it into asterwise/__init__.py (__version__), the User-Agent header
+# and the debug report, so bump pyproject.toml first, then regenerate.
+PKG_VERSION="$(sed -n 's/^version = "\(.*\)"$/\1/p' "${REPO_ROOT}/pyproject.toml" | head -1)"
+if [[ -z "${PKG_VERSION}" ]]; then
+    echo "ERR: could not read version from pyproject.toml" >&2
+    exit 1
+fi
+ADDITIONAL_PROPS="packageName=asterwise,projectName=asterwise,packageVersion=${PKG_VERSION},httpUserAgent=asterwise-python/${PKG_VERSION},generateSourceCodeOnly=false,library=urllib3"
 # npm wrapper version (JAR version lives in openapitools.json)
 ASTERWISE_GENERATOR_VERSION="${ASTERWISE_GENERATOR_VERSION:-2.17.0}"
 
@@ -104,6 +112,7 @@ PY
 echo "==> asterwise-python SDK regeneration"
 echo "    Spec URL: ${SPEC_URL}"
 echo "    Generator: ${GENERATOR}"
+echo "    Package version (from pyproject.toml): ${PKG_VERSION}"
 echo "    npm wrapper: @openapitools/openapi-generator-cli@${ASTERWISE_GENERATOR_VERSION}"
 
 # Verify spec is reachable
@@ -152,7 +161,7 @@ echo ""
 echo "==> Regeneration complete."
 echo "==> Next steps:"
 echo "    1. Review the diff: git status && git diff"
-echo "    2. Bump version in pyproject.toml + asterwise/__init__.py"
+echo "    2. Version ${PKG_VERSION} was written from pyproject.toml (bump it there, then regenerate)"
 echo "    3. Update CHANGELOG.md"
 echo "    4. Smoke test: pip install -e . && python -c 'import asterwise; print(asterwise.__version__)'"
 echo "    5. Build + publish: python -m build && twine upload dist/*"

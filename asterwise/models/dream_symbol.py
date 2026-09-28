@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -36,13 +36,12 @@ class DreamSymbol(BaseModel):
     jungian_archetype: StrictStr = Field(description="Primary Jungian archetype activated by this symbol.")
     vedic_meaning: StrictStr = Field(description="Classical Vedic dream tradition interpretation.")
     vedic_auspicious: Optional[StrictBool] = None
-    vedic_source: StrictStr = Field(description="Classical text source for the Vedic interpretation.")
     traditions_agree: StrictStr = Field(description="Whether Jungian and Vedic traditions agree: 'agree', 'conflict', or 'partial'.")
     emotional_tone: StrictStr = Field(description="Primary emotional register: anxiety, transformation, auspicious, warning, grief, power, healing, clarity, confusion, or neutral.")
     themes: List[StrictStr] = Field(description="Thematic keywords used for AI synthesis and search.")
     context_variants: List[ContextVariant] = Field(description="Alternative readings depending on dream context.")
     related_symbols: List[StrictStr] = Field(description="Slugs of related dream symbols.")
-    __properties: ClassVar[List[str]] = ["slug", "name", "category", "jungian_meaning", "jungian_archetype", "vedic_meaning", "vedic_auspicious", "vedic_source", "traditions_agree", "emotional_tone", "themes", "context_variants", "related_symbols"]
+    __properties: ClassVar[List[str]] = ["slug", "name", "category", "jungian_meaning", "jungian_archetype", "vedic_meaning", "vedic_auspicious", "traditions_agree", "emotional_tone", "themes", "context_variants", "related_symbols"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -114,7 +113,6 @@ class DreamSymbol(BaseModel):
             "jungian_archetype": obj.get("jungian_archetype"),
             "vedic_meaning": obj.get("vedic_meaning"),
             "vedic_auspicious": obj.get("vedic_auspicious"),
-            "vedic_source": obj.get("vedic_source"),
             "traditions_agree": obj.get("traditions_agree"),
             "emotional_tone": obj.get("emotional_tone"),
             "themes": obj.get("themes"),

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **horoscope_daily**
-> object horoscope_daily(moon_sign)
+> ApiResponseHoroscopeData horoscope_daily(moon_sign)
 
 Daily horoscope
 
@@ -23,6 +23,7 @@ Returns today's pre-generated daily horoscope for the given Moon sign. Content i
 
 ```python
 import asterwise
+from asterwise.models.api_response_horoscope_data import ApiResponseHoroscopeData
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -68,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseHoroscopeData**](ApiResponseHoroscopeData.md)
 
 ### Authorization
 
@@ -97,7 +98,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **horoscope_monthly**
-> object horoscope_monthly(moon_sign)
+> ApiResponseHoroscopeData horoscope_monthly(moon_sign)
 
 Monthly horoscope
 
@@ -109,6 +110,7 @@ Returns this month's pre-generated monthly horoscope for the given Moon sign.
 
 ```python
 import asterwise
+from asterwise.models.api_response_horoscope_data import ApiResponseHoroscopeData
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -154,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseHoroscopeData**](ApiResponseHoroscopeData.md)
 
 ### Authorization
 
@@ -183,7 +185,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **horoscope_weekly**
-> object horoscope_weekly(moon_sign)
+> ApiResponseHoroscopeData horoscope_weekly(moon_sign)
 
 Weekly horoscope
 
@@ -195,6 +197,7 @@ Returns this week's pre-generated weekly horoscope for the given Moon sign.
 
 ```python
 import asterwise
+from asterwise.models.api_response_horoscope_data import ApiResponseHoroscopeData
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -240,7 +243,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseHoroscopeData**](ApiResponseHoroscopeData.md)
 
 ### Authorization
 
@@ -269,7 +272,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **horoscope_yearly**
-> object horoscope_yearly(moon_sign)
+> ApiResponseHoroscopeData horoscope_yearly(moon_sign)
 
 Yearly horoscope
 
@@ -281,6 +284,7 @@ Returns this year's pre-generated yearly horoscope for the given Moon sign.
 
 ```python
 import asterwise
+from asterwise.models.api_response_horoscope_data import ApiResponseHoroscopeData
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -326,7 +330,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseHoroscopeData**](ApiResponseHoroscopeData.md)
 
 ### Authorization
 

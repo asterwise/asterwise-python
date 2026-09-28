@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.classical_source import ClassicalSource
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -33,7 +34,8 @@ class YogaResult(BaseModel):
     formation: StrictStr = Field(description="Formation condition")
     modern_summary: StrictStr = Field(description="Modern interpretation summary")
     keywords: Optional[List[StrictStr]] = Field(default=None, description="Interpretation keywords")
-    __properties: ClassVar[List[str]] = ["yoga_name", "category", "formation", "modern_summary", "keywords"]
+    classical_sources: Optional[List[ClassicalSource]] = Field(default=None, description="Classical texts this yoga is drawn from (empty when the yoga comes from general tradition rather than a named text)")
+    __properties: ClassVar[List[str]] = ["yoga_name", "category", "formation", "modern_summary", "keywords", "classical_sources"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,6 +76,13 @@ class YogaResult(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in classical_sources (list)
+        _items = []
+        if self.classical_sources:
+            for _item_classical_sources in self.classical_sources:
+                if _item_classical_sources:
+                    _items.append(_item_classical_sources.to_dict())
+            _dict['classical_sources'] = _items
         return _dict
 
     @classmethod
@@ -90,7 +99,8 @@ class YogaResult(BaseModel):
             "category": obj.get("category"),
             "formation": obj.get("formation"),
             "modern_summary": obj.get("modern_summary"),
-            "keywords": obj.get("keywords")
+            "keywords": obj.get("keywords"),
+            "classical_sources": [ClassicalSource.from_dict(_item) for _item in obj["classical_sources"]] if obj.get("classical_sources") is not None else None
         })
         return _obj
 

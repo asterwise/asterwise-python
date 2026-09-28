@@ -7,7 +7,7 @@ Standard error envelope returned by all Asterwise API endpoints.  Every error re
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **success** | **bool** | Always false for error responses. | [optional] [default to False]
-**error** | **str** | Machine-readable error code. Use this for programmatic error handling. See doc_url for the canonical docs page. | 
+**error** | [**ErrorCode**](ErrorCode.md) | Machine-readable error code. Use this for programmatic error handling. See doc_url for the canonical docs page. The full set of codes is the ErrorCode enum in this schema. | 
 **message** | **str** | Human-readable explanation of what went wrong and how to fix it. Safe to surface in customer-facing UIs. | 
 **details** | **List[object]** | Optional structured details. For validation errors, contains per-field error objects. Empty list when there are no structured details. | [optional] 
 **retry_after** | **int** |  | [optional] 

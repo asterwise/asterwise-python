@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **birth_date** | **date** | Date of birth in YYYY-MM-DD format. | 
 **target_date** | **date** |  | [optional] 
-**days** | **int** | Number of consecutive days to compute (1-90). Use 1 for a single day snapshot. Use &gt;1 for a date range (e.g. 30 for a month view). | [optional] [default to 1]
+**days** | **int** | Number of consecutive days to compute (1-90). Use 1 for a single day snapshot. Use &gt;1 for a date range. | [optional] [default to 1]
 
 ## Example
 

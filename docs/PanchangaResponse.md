@@ -1,10 +1,33 @@
 # PanchangaResponse
 
+``tithi``, ``vara``, ``nakshatra``, ``yoga`` and ``karana`` are the limbs at one instant: sunrise when no time is given, otherwise the given time. The remaining fields describe the whole panchanga day containing that instant (sunrise to next sunrise): every limb active in it, sunrise and moonrise, lunar month, samvat, season and the day's timings.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_date** | **str** |  | [optional] 
+**timezone** | **str** |  | [optional] 
+**sunrise** | **str** |  | [optional] 
+**sunset** | **str** |  | [optional] 
+**next_sunrise** | **str** |  | [optional] 
+**moonrise** | **str** |  | [optional] 
+**moonset** | **str** |  | [optional] 
+**day_duration_minutes** | **float** |  | [optional] 
+**night_duration_minutes** | **float** |  | [optional] 
+**paksha** | **str** |  | [optional] 
+**tithis** | [**List[DayTithi]**](DayTithi.md) |  | [optional] 
+**nakshatras** | [**List[DayNakshatra]**](DayNakshatra.md) |  | [optional] 
+**yogas** | [**List[DayYoga]**](DayYoga.md) |  | [optional] 
+**karanas** | [**List[DayKarana]**](DayKarana.md) |  | [optional] 
+**sun_rashi** | [**List[SignSpan]**](SignSpan.md) |  | [optional] 
+**moon_rashi** | [**List[SignSpan]**](SignSpan.md) |  | [optional] 
+**sun_nakshatra** | [**List[NakshatraSpan]**](NakshatraSpan.md) |  | [optional] 
+**masa** | [**Masa**](Masa.md) |  | [optional] 
+**samvat** | [**Samvat**](Samvat.md) |  | [optional] 
+**ritu** | [**Ritu**](Ritu.md) |  | [optional] 
+**ayana** | [**Ayana**](Ayana.md) |  | [optional] 
+**timings** | [**DayTimings**](DayTimings.md) |  | [optional] 
 **tithi** | [**TithiData**](TithiData.md) | Lunar day — the angular relationship between Sun and Moon | 
 **vara** | [**VaraData**](VaraData.md) | Weekday and its planetary lord | 
 **nakshatra** | [**NakshatraData**](NakshatraData.md) | Lunar mansion the Moon occupies at the given moment | 

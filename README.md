@@ -61,11 +61,13 @@ Get a free API key at [asterwise.com](https://asterwise.com).
 
 ## What makes Asterwise different
 
-- **Structured classical interpretations** on every response
+- **Classical interpretation text** alongside the calculations on chart endpoints (natal chart, dasha, yogas, doshas)
 - **5-level Vimshottari Dasha** (Maha → Antar → Pratyantar → Sookshma → Prana) — most APIs return two
 - **Rajju and Vedha as hard vetoes** in matchmaking — not just point scores
 - **HMAC-signed responses** for auditability
-- **MCP server** with **103 tools** for Claude and Cursor integration
+- **Panchanga as printed panchangs show it**: every tithi, nakshatra, yoga and karana of the day with start and end times, the festival and vrat calendar, and muhurta search with exact ISO times
+- **Typed responses**: every method returns a model generated from the OpenAPI document (`.to_dict()` gives a plain dict)
+- **MCP server** with **104 tools** for Claude and Cursor integration
 
 ## Examples
 
@@ -112,7 +114,7 @@ Regenerate from `https://api.asterwise.com/openapi-sdk.json` (see `asterwise-api
 bash scripts/generate.sh
 ```
 
-**Versioning:** regenerate → bump `version` in `pyproject.toml` and `asterwise/__init__.py` → update `CHANGELOG.md` → `python -m build` → publish with `twine upload`.
+**Releasing:** bump `version` in `pyproject.toml` (the only place it is set) → `bash scripts/generate.sh` (writes that version into `__version__` and the User-Agent) → update `CHANGELOG.md` → `pytest` → commit → push a `python-v<version>` tag. The publish workflow checks the tag against `pyproject.toml`, runs the tests, builds, runs `twine check` and uploads to PyPI.
 
 ## Support
 

@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -19,7 +19,12 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.festival_eclipse import FestivalEclipse
+from asterwise.models.festival_masa import FestivalMasa
+from asterwise.models.festival_sankranti import FestivalSankranti
+from asterwise.models.festival_tithi import FestivalTithi
+from asterwise.models.festival_window import FestivalWindow
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,11 +34,22 @@ class FestivalEntry(BaseModel):
     FestivalEntry
     """ # noqa: E501
     name: StrictStr = Field(description="Festival name.")
-    var_date: StrictStr = Field(description="Festival date in YYYY-MM-DD format.", alias="date")
-    type: StrictStr = Field(description="Festival type: 'solar' (sankranti-based) or 'tithi' (lunar day-based).")
-    description: StrictStr = Field(description="Classical basis for the festival date (tithi or sankranti).")
+    var_date: StrictStr = Field(description="Festival date in YYYY-MM-DD format (start date for a period).", alias="date")
+    type: StrictStr = Field(description="'solar' (sankranti-based), 'tithi' (lunar day-based) or 'eclipse'.")
+    description: StrictStr = Field(description="Classical basis for the date: the tithi or sankranti and the rule that picks the day.")
     significance: StrictStr = Field(description="Cultural and religious significance.")
-    __properties: ClassVar[List[str]] = ["name", "date", "type", "description", "significance"]
+    id: Optional[StrictStr] = None
+    category: Optional[StrictStr] = None
+    end_date: Optional[StrictStr] = None
+    masa: Optional[FestivalMasa] = None
+    paksha: Optional[StrictStr] = None
+    tithi: Optional[FestivalTithi] = None
+    rule: Optional[StrictStr] = None
+    observance_window: Optional[FestivalWindow] = None
+    note: Optional[StrictStr] = None
+    sankranti: Optional[FestivalSankranti] = None
+    eclipse: Optional[FestivalEclipse] = None
+    __properties: ClassVar[List[str]] = ["name", "date", "type", "description", "significance", "id", "category", "end_date", "masa", "paksha", "tithi", "rule", "observance_window", "note", "sankranti", "eclipse"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,6 +90,76 @@ class FestivalEntry(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of masa
+        if self.masa:
+            _dict['masa'] = self.masa.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tithi
+        if self.tithi:
+            _dict['tithi'] = self.tithi.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of observance_window
+        if self.observance_window:
+            _dict['observance_window'] = self.observance_window.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sankranti
+        if self.sankranti:
+            _dict['sankranti'] = self.sankranti.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of eclipse
+        if self.eclipse:
+            _dict['eclipse'] = self.eclipse.to_dict()
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if category (nullable) is None
+        # and model_fields_set contains the field
+        if self.category is None and "category" in self.model_fields_set:
+            _dict['category'] = None
+
+        # set to None if end_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.end_date is None and "end_date" in self.model_fields_set:
+            _dict['end_date'] = None
+
+        # set to None if masa (nullable) is None
+        # and model_fields_set contains the field
+        if self.masa is None and "masa" in self.model_fields_set:
+            _dict['masa'] = None
+
+        # set to None if paksha (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha is None and "paksha" in self.model_fields_set:
+            _dict['paksha'] = None
+
+        # set to None if tithi (nullable) is None
+        # and model_fields_set contains the field
+        if self.tithi is None and "tithi" in self.model_fields_set:
+            _dict['tithi'] = None
+
+        # set to None if rule (nullable) is None
+        # and model_fields_set contains the field
+        if self.rule is None and "rule" in self.model_fields_set:
+            _dict['rule'] = None
+
+        # set to None if observance_window (nullable) is None
+        # and model_fields_set contains the field
+        if self.observance_window is None and "observance_window" in self.model_fields_set:
+            _dict['observance_window'] = None
+
+        # set to None if note (nullable) is None
+        # and model_fields_set contains the field
+        if self.note is None and "note" in self.model_fields_set:
+            _dict['note'] = None
+
+        # set to None if sankranti (nullable) is None
+        # and model_fields_set contains the field
+        if self.sankranti is None and "sankranti" in self.model_fields_set:
+            _dict['sankranti'] = None
+
+        # set to None if eclipse (nullable) is None
+        # and model_fields_set contains the field
+        if self.eclipse is None and "eclipse" in self.model_fields_set:
+            _dict['eclipse'] = None
+
         return _dict
 
     @classmethod
@@ -90,7 +176,18 @@ class FestivalEntry(BaseModel):
             "date": obj.get("date"),
             "type": obj.get("type"),
             "description": obj.get("description"),
-            "significance": obj.get("significance")
+            "significance": obj.get("significance"),
+            "id": obj.get("id"),
+            "category": obj.get("category"),
+            "end_date": obj.get("end_date"),
+            "masa": FestivalMasa.from_dict(obj["masa"]) if obj.get("masa") is not None else None,
+            "paksha": obj.get("paksha"),
+            "tithi": FestivalTithi.from_dict(obj["tithi"]) if obj.get("tithi") is not None else None,
+            "rule": obj.get("rule"),
+            "observance_window": FestivalWindow.from_dict(obj["observance_window"]) if obj.get("observance_window") is not None else None,
+            "note": obj.get("note"),
+            "sankranti": FestivalSankranti.from_dict(obj["sankranti"]) if obj.get("sankranti") is not None else None,
+            "eclipse": FestivalEclipse.from_dict(obj["eclipse"]) if obj.get("eclipse") is not None else None
         })
         return _obj
 

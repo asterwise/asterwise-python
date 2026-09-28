@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **kp_chart**
-> object kp_chart(kp_birth_request)
+> ApiResponseKPChartResponse kp_chart(kp_birth_request)
 
 KP Natal Chart
 
@@ -22,6 +22,7 @@ Computes the KP (Krishnamurti Paddhati) natal chart using Krishnamurti ayanamsa 
 
 ```python
 import asterwise
+from asterwise.models.api_response_kp_chart_response import ApiResponseKPChartResponse
 from asterwise.models.kp_birth_request import KPBirthRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -68,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseKPChartResponse**](ApiResponseKPChartResponse.md)
 
 ### Authorization
 
@@ -97,7 +98,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **kp_ruling_planets**
-> object kp_ruling_planets(kp_ruling_planets_request)
+> ApiResponseKPRulingPlanetsResponse kp_ruling_planets(kp_ruling_planets_request)
 
 KP Ruling Planets
 
@@ -109,6 +110,7 @@ Computes KP Ruling Planets at a given moment (no natal birth chart). Request bod
 
 ```python
 import asterwise
+from asterwise.models.api_response_kp_ruling_planets_response import ApiResponseKPRulingPlanetsResponse
 from asterwise.models.kp_ruling_planets_request import KPRulingPlanetsRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -155,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseKPRulingPlanetsResponse**](ApiResponseKPRulingPlanetsResponse.md)
 
 ### Authorization
 
@@ -184,7 +186,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **kp_significators**
-> object kp_significators(kp_birth_request)
+> ApiResponseKPSignificatorsResponse kp_significators(kp_birth_request)
 
 KP House Significators
 
@@ -196,6 +198,7 @@ Computes KP house significators for all 12 houses. For each house returns: occup
 
 ```python
 import asterwise
+from asterwise.models.api_response_kp_significators_response import ApiResponseKPSignificatorsResponse
 from asterwise.models.kp_birth_request import KPBirthRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -242,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseKPSignificatorsResponse**](ApiResponseKPSignificatorsResponse.md)
 
 ### Authorization
 

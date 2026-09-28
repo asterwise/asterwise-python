@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -18,10 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from asterwise.models.ayana import Ayana
+from asterwise.models.day_karana import DayKarana
+from asterwise.models.day_nakshatra import DayNakshatra
+from asterwise.models.day_timings import DayTimings
+from asterwise.models.day_tithi import DayTithi
+from asterwise.models.day_yoga import DayYoga
 from asterwise.models.karana_data import KaranaData
+from asterwise.models.masa import Masa
 from asterwise.models.nakshatra_data import NakshatraData
+from asterwise.models.nakshatra_span import NakshatraSpan
+from asterwise.models.ritu import Ritu
+from asterwise.models.samvat import Samvat
+from asterwise.models.sign_span import SignSpan
 from asterwise.models.tithi_data import TithiData
 from asterwise.models.vara_data import VaraData
 from asterwise.models.yoga_data import YogaData
@@ -31,14 +42,36 @@ from pydantic_core import to_jsonable_python
 
 class PanchangaResponse(BaseModel):
     """
-    PanchangaResponse
+    ``tithi``, ``vara``, ``nakshatra``, ``yoga`` and ``karana`` are the limbs at one instant: sunrise when no time is given, otherwise the given time. The remaining fields describe the whole panchanga day containing that instant (sunrise to next sunrise): every limb active in it, sunrise and moonrise, lunar month, samvat, season and the day's timings.
     """ # noqa: E501
+    var_date: Optional[StrictStr] = Field(default=None, alias="date")
+    timezone: Optional[StrictStr] = None
+    sunrise: Optional[StrictStr] = None
+    sunset: Optional[StrictStr] = None
+    next_sunrise: Optional[StrictStr] = None
+    moonrise: Optional[StrictStr] = None
+    moonset: Optional[StrictStr] = None
+    day_duration_minutes: Optional[Union[StrictFloat, StrictInt]] = None
+    night_duration_minutes: Optional[Union[StrictFloat, StrictInt]] = None
+    paksha: Optional[StrictStr] = None
+    tithis: Optional[List[DayTithi]] = None
+    nakshatras: Optional[List[DayNakshatra]] = None
+    yogas: Optional[List[DayYoga]] = None
+    karanas: Optional[List[DayKarana]] = None
+    sun_rashi: Optional[List[SignSpan]] = None
+    moon_rashi: Optional[List[SignSpan]] = None
+    sun_nakshatra: Optional[List[NakshatraSpan]] = None
+    masa: Optional[Masa] = None
+    samvat: Optional[Samvat] = None
+    ritu: Optional[Ritu] = None
+    ayana: Optional[Ayana] = None
+    timings: Optional[DayTimings] = None
     tithi: TithiData = Field(description="Lunar day — the angular relationship between Sun and Moon")
     vara: VaraData = Field(description="Weekday and its planetary lord")
     nakshatra: NakshatraData = Field(description="Lunar mansion the Moon occupies at the given moment")
     yoga: YogaData = Field(description="Luni-solar yoga — combined Sun and Moon longitude divided into 27 parts")
     karana: KaranaData = Field(description="Half of a tithi — the smaller unit of lunar time")
-    __properties: ClassVar[List[str]] = ["tithi", "vara", "nakshatra", "yoga", "karana"]
+    __properties: ClassVar[List[str]] = ["date", "timezone", "sunrise", "sunset", "next_sunrise", "moonrise", "moonset", "day_duration_minutes", "night_duration_minutes", "paksha", "tithis", "nakshatras", "yogas", "karanas", "sun_rashi", "moon_rashi", "sun_nakshatra", "masa", "samvat", "ritu", "ayana", "timings", "tithi", "vara", "nakshatra", "yoga", "karana"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,6 +112,70 @@ class PanchangaResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in tithis (list)
+        _items = []
+        if self.tithis:
+            for _item_tithis in self.tithis:
+                if _item_tithis:
+                    _items.append(_item_tithis.to_dict())
+            _dict['tithis'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in nakshatras (list)
+        _items = []
+        if self.nakshatras:
+            for _item_nakshatras in self.nakshatras:
+                if _item_nakshatras:
+                    _items.append(_item_nakshatras.to_dict())
+            _dict['nakshatras'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in yogas (list)
+        _items = []
+        if self.yogas:
+            for _item_yogas in self.yogas:
+                if _item_yogas:
+                    _items.append(_item_yogas.to_dict())
+            _dict['yogas'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in karanas (list)
+        _items = []
+        if self.karanas:
+            for _item_karanas in self.karanas:
+                if _item_karanas:
+                    _items.append(_item_karanas.to_dict())
+            _dict['karanas'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in sun_rashi (list)
+        _items = []
+        if self.sun_rashi:
+            for _item_sun_rashi in self.sun_rashi:
+                if _item_sun_rashi:
+                    _items.append(_item_sun_rashi.to_dict())
+            _dict['sun_rashi'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in moon_rashi (list)
+        _items = []
+        if self.moon_rashi:
+            for _item_moon_rashi in self.moon_rashi:
+                if _item_moon_rashi:
+                    _items.append(_item_moon_rashi.to_dict())
+            _dict['moon_rashi'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in sun_nakshatra (list)
+        _items = []
+        if self.sun_nakshatra:
+            for _item_sun_nakshatra in self.sun_nakshatra:
+                if _item_sun_nakshatra:
+                    _items.append(_item_sun_nakshatra.to_dict())
+            _dict['sun_nakshatra'] = _items
+        # override the default output from pydantic by calling `to_dict()` of masa
+        if self.masa:
+            _dict['masa'] = self.masa.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of samvat
+        if self.samvat:
+            _dict['samvat'] = self.samvat.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ritu
+        if self.ritu:
+            _dict['ritu'] = self.ritu.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ayana
+        if self.ayana:
+            _dict['ayana'] = self.ayana.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of timings
+        if self.timings:
+            _dict['timings'] = self.timings.to_dict()
         # override the default output from pydantic by calling `to_dict()` of tithi
         if self.tithi:
             _dict['tithi'] = self.tithi.to_dict()
@@ -94,6 +191,116 @@ class PanchangaResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of karana
         if self.karana:
             _dict['karana'] = self.karana.to_dict()
+        # set to None if var_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.var_date is None and "var_date" in self.model_fields_set:
+            _dict['date'] = None
+
+        # set to None if timezone (nullable) is None
+        # and model_fields_set contains the field
+        if self.timezone is None and "timezone" in self.model_fields_set:
+            _dict['timezone'] = None
+
+        # set to None if sunrise (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise is None and "sunrise" in self.model_fields_set:
+            _dict['sunrise'] = None
+
+        # set to None if sunset (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset is None and "sunset" in self.model_fields_set:
+            _dict['sunset'] = None
+
+        # set to None if next_sunrise (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_sunrise is None and "next_sunrise" in self.model_fields_set:
+            _dict['next_sunrise'] = None
+
+        # set to None if moonrise (nullable) is None
+        # and model_fields_set contains the field
+        if self.moonrise is None and "moonrise" in self.model_fields_set:
+            _dict['moonrise'] = None
+
+        # set to None if moonset (nullable) is None
+        # and model_fields_set contains the field
+        if self.moonset is None and "moonset" in self.model_fields_set:
+            _dict['moonset'] = None
+
+        # set to None if day_duration_minutes (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_duration_minutes is None and "day_duration_minutes" in self.model_fields_set:
+            _dict['day_duration_minutes'] = None
+
+        # set to None if night_duration_minutes (nullable) is None
+        # and model_fields_set contains the field
+        if self.night_duration_minutes is None and "night_duration_minutes" in self.model_fields_set:
+            _dict['night_duration_minutes'] = None
+
+        # set to None if paksha (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha is None and "paksha" in self.model_fields_set:
+            _dict['paksha'] = None
+
+        # set to None if tithis (nullable) is None
+        # and model_fields_set contains the field
+        if self.tithis is None and "tithis" in self.model_fields_set:
+            _dict['tithis'] = None
+
+        # set to None if nakshatras (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatras is None and "nakshatras" in self.model_fields_set:
+            _dict['nakshatras'] = None
+
+        # set to None if yogas (nullable) is None
+        # and model_fields_set contains the field
+        if self.yogas is None and "yogas" in self.model_fields_set:
+            _dict['yogas'] = None
+
+        # set to None if karanas (nullable) is None
+        # and model_fields_set contains the field
+        if self.karanas is None and "karanas" in self.model_fields_set:
+            _dict['karanas'] = None
+
+        # set to None if sun_rashi (nullable) is None
+        # and model_fields_set contains the field
+        if self.sun_rashi is None and "sun_rashi" in self.model_fields_set:
+            _dict['sun_rashi'] = None
+
+        # set to None if moon_rashi (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_rashi is None and "moon_rashi" in self.model_fields_set:
+            _dict['moon_rashi'] = None
+
+        # set to None if sun_nakshatra (nullable) is None
+        # and model_fields_set contains the field
+        if self.sun_nakshatra is None and "sun_nakshatra" in self.model_fields_set:
+            _dict['sun_nakshatra'] = None
+
+        # set to None if masa (nullable) is None
+        # and model_fields_set contains the field
+        if self.masa is None and "masa" in self.model_fields_set:
+            _dict['masa'] = None
+
+        # set to None if samvat (nullable) is None
+        # and model_fields_set contains the field
+        if self.samvat is None and "samvat" in self.model_fields_set:
+            _dict['samvat'] = None
+
+        # set to None if ritu (nullable) is None
+        # and model_fields_set contains the field
+        if self.ritu is None and "ritu" in self.model_fields_set:
+            _dict['ritu'] = None
+
+        # set to None if ayana (nullable) is None
+        # and model_fields_set contains the field
+        if self.ayana is None and "ayana" in self.model_fields_set:
+            _dict['ayana'] = None
+
+        # set to None if timings (nullable) is None
+        # and model_fields_set contains the field
+        if self.timings is None and "timings" in self.model_fields_set:
+            _dict['timings'] = None
+
         return _dict
 
     @classmethod
@@ -106,6 +313,28 @@ class PanchangaResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "date": obj.get("date"),
+            "timezone": obj.get("timezone"),
+            "sunrise": obj.get("sunrise"),
+            "sunset": obj.get("sunset"),
+            "next_sunrise": obj.get("next_sunrise"),
+            "moonrise": obj.get("moonrise"),
+            "moonset": obj.get("moonset"),
+            "day_duration_minutes": obj.get("day_duration_minutes"),
+            "night_duration_minutes": obj.get("night_duration_minutes"),
+            "paksha": obj.get("paksha"),
+            "tithis": [DayTithi.from_dict(_item) for _item in obj["tithis"]] if obj.get("tithis") is not None else None,
+            "nakshatras": [DayNakshatra.from_dict(_item) for _item in obj["nakshatras"]] if obj.get("nakshatras") is not None else None,
+            "yogas": [DayYoga.from_dict(_item) for _item in obj["yogas"]] if obj.get("yogas") is not None else None,
+            "karanas": [DayKarana.from_dict(_item) for _item in obj["karanas"]] if obj.get("karanas") is not None else None,
+            "sun_rashi": [SignSpan.from_dict(_item) for _item in obj["sun_rashi"]] if obj.get("sun_rashi") is not None else None,
+            "moon_rashi": [SignSpan.from_dict(_item) for _item in obj["moon_rashi"]] if obj.get("moon_rashi") is not None else None,
+            "sun_nakshatra": [NakshatraSpan.from_dict(_item) for _item in obj["sun_nakshatra"]] if obj.get("sun_nakshatra") is not None else None,
+            "masa": Masa.from_dict(obj["masa"]) if obj.get("masa") is not None else None,
+            "samvat": Samvat.from_dict(obj["samvat"]) if obj.get("samvat") is not None else None,
+            "ritu": Ritu.from_dict(obj["ritu"]) if obj.get("ritu") is not None else None,
+            "ayana": Ayana.from_dict(obj["ayana"]) if obj.get("ayana") is not None else None,
+            "timings": DayTimings.from_dict(obj["timings"]) if obj.get("timings") is not None else None,
             "tithi": TithiData.from_dict(obj["tithi"]) if obj.get("tithi") is not None else None,
             "vara": VaraData.from_dict(obj["vara"]) if obj.get("vara") is not None else None,
             "nakshatra": NakshatraData.from_dict(obj["nakshatra"]) if obj.get("nakshatra") is not None else None,

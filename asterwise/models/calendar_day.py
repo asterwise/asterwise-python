@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -19,13 +19,19 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.bhadra_window import BhadraWindow
 from asterwise.models.calendar_karana import CalendarKarana
 from asterwise.models.calendar_nakshatra import CalendarNakshatra
 from asterwise.models.calendar_rahu_kaal import CalendarRahuKaal
 from asterwise.models.calendar_tithi import CalendarTithi
 from asterwise.models.calendar_vara import CalendarVara
 from asterwise.models.calendar_yoga import CalendarYoga
+from asterwise.models.day_karana import DayKarana
+from asterwise.models.day_nakshatra import DayNakshatra
+from asterwise.models.day_tithi import DayTithi
+from asterwise.models.day_yoga import DayYoga
+from asterwise.models.masa import Masa
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -35,13 +41,24 @@ class CalendarDay(BaseModel):
     CalendarDay
     """ # noqa: E501
     var_date: StrictStr = Field(description="Date in YYYY-MM-DD format.", alias="date")
-    tithi: CalendarTithi = Field(description="Tithi for this day.")
+    tithi: CalendarTithi = Field(description="Tithi at sunrise.")
     vara: CalendarVara = Field(description="Weekday for this day.")
-    nakshatra: CalendarNakshatra = Field(description="Moon nakshatra for this day.")
-    yoga: CalendarYoga = Field(description="Yoga for this day.")
-    karana: CalendarKarana = Field(description="Karana for this day.")
+    nakshatra: CalendarNakshatra = Field(description="Moon nakshatra at sunrise.")
+    yoga: CalendarYoga = Field(description="Yoga at sunrise.")
+    karana: CalendarKarana = Field(description="Karana at sunrise.")
     rahu_kaal: CalendarRahuKaal = Field(description="Rahu Kaal window for this day.")
-    __properties: ClassVar[List[str]] = ["date", "tithi", "vara", "nakshatra", "yoga", "karana", "rahu_kaal"]
+    sunrise: Optional[StrictStr] = None
+    sunset: Optional[StrictStr] = None
+    moonrise: Optional[StrictStr] = None
+    moonset: Optional[StrictStr] = None
+    paksha: Optional[StrictStr] = None
+    masa: Optional[Masa] = None
+    tithis: Optional[List[DayTithi]] = None
+    nakshatras: Optional[List[DayNakshatra]] = None
+    yogas: Optional[List[DayYoga]] = None
+    karanas: Optional[List[DayKarana]] = None
+    bhadra: Optional[List[BhadraWindow]] = None
+    __properties: ClassVar[List[str]] = ["date", "tithi", "vara", "nakshatra", "yoga", "karana", "rahu_kaal", "sunrise", "sunset", "moonrise", "moonset", "paksha", "masa", "tithis", "nakshatras", "yogas", "karanas", "bhadra"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -100,6 +117,99 @@ class CalendarDay(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of rahu_kaal
         if self.rahu_kaal:
             _dict['rahu_kaal'] = self.rahu_kaal.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of masa
+        if self.masa:
+            _dict['masa'] = self.masa.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in tithis (list)
+        _items = []
+        if self.tithis:
+            for _item_tithis in self.tithis:
+                if _item_tithis:
+                    _items.append(_item_tithis.to_dict())
+            _dict['tithis'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in nakshatras (list)
+        _items = []
+        if self.nakshatras:
+            for _item_nakshatras in self.nakshatras:
+                if _item_nakshatras:
+                    _items.append(_item_nakshatras.to_dict())
+            _dict['nakshatras'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in yogas (list)
+        _items = []
+        if self.yogas:
+            for _item_yogas in self.yogas:
+                if _item_yogas:
+                    _items.append(_item_yogas.to_dict())
+            _dict['yogas'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in karanas (list)
+        _items = []
+        if self.karanas:
+            for _item_karanas in self.karanas:
+                if _item_karanas:
+                    _items.append(_item_karanas.to_dict())
+            _dict['karanas'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in bhadra (list)
+        _items = []
+        if self.bhadra:
+            for _item_bhadra in self.bhadra:
+                if _item_bhadra:
+                    _items.append(_item_bhadra.to_dict())
+            _dict['bhadra'] = _items
+        # set to None if sunrise (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise is None and "sunrise" in self.model_fields_set:
+            _dict['sunrise'] = None
+
+        # set to None if sunset (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset is None and "sunset" in self.model_fields_set:
+            _dict['sunset'] = None
+
+        # set to None if moonrise (nullable) is None
+        # and model_fields_set contains the field
+        if self.moonrise is None and "moonrise" in self.model_fields_set:
+            _dict['moonrise'] = None
+
+        # set to None if moonset (nullable) is None
+        # and model_fields_set contains the field
+        if self.moonset is None and "moonset" in self.model_fields_set:
+            _dict['moonset'] = None
+
+        # set to None if paksha (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha is None and "paksha" in self.model_fields_set:
+            _dict['paksha'] = None
+
+        # set to None if masa (nullable) is None
+        # and model_fields_set contains the field
+        if self.masa is None and "masa" in self.model_fields_set:
+            _dict['masa'] = None
+
+        # set to None if tithis (nullable) is None
+        # and model_fields_set contains the field
+        if self.tithis is None and "tithis" in self.model_fields_set:
+            _dict['tithis'] = None
+
+        # set to None if nakshatras (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatras is None and "nakshatras" in self.model_fields_set:
+            _dict['nakshatras'] = None
+
+        # set to None if yogas (nullable) is None
+        # and model_fields_set contains the field
+        if self.yogas is None and "yogas" in self.model_fields_set:
+            _dict['yogas'] = None
+
+        # set to None if karanas (nullable) is None
+        # and model_fields_set contains the field
+        if self.karanas is None and "karanas" in self.model_fields_set:
+            _dict['karanas'] = None
+
+        # set to None if bhadra (nullable) is None
+        # and model_fields_set contains the field
+        if self.bhadra is None and "bhadra" in self.model_fields_set:
+            _dict['bhadra'] = None
+
         return _dict
 
     @classmethod
@@ -118,7 +228,18 @@ class CalendarDay(BaseModel):
             "nakshatra": CalendarNakshatra.from_dict(obj["nakshatra"]) if obj.get("nakshatra") is not None else None,
             "yoga": CalendarYoga.from_dict(obj["yoga"]) if obj.get("yoga") is not None else None,
             "karana": CalendarKarana.from_dict(obj["karana"]) if obj.get("karana") is not None else None,
-            "rahu_kaal": CalendarRahuKaal.from_dict(obj["rahu_kaal"]) if obj.get("rahu_kaal") is not None else None
+            "rahu_kaal": CalendarRahuKaal.from_dict(obj["rahu_kaal"]) if obj.get("rahu_kaal") is not None else None,
+            "sunrise": obj.get("sunrise"),
+            "sunset": obj.get("sunset"),
+            "moonrise": obj.get("moonrise"),
+            "moonset": obj.get("moonset"),
+            "paksha": obj.get("paksha"),
+            "masa": Masa.from_dict(obj["masa"]) if obj.get("masa") is not None else None,
+            "tithis": [DayTithi.from_dict(_item) for _item in obj["tithis"]] if obj.get("tithis") is not None else None,
+            "nakshatras": [DayNakshatra.from_dict(_item) for _item in obj["nakshatras"]] if obj.get("nakshatras") is not None else None,
+            "yogas": [DayYoga.from_dict(_item) for _item in obj["yogas"]] if obj.get("yogas") is not None else None,
+            "karanas": [DayKarana.from_dict(_item) for _item in obj["karanas"]] if obj.get("karanas") is not None else None,
+            "bhadra": [BhadraWindow.from_dict(_item) for _item in obj["bhadra"]] if obj.get("bhadra") is not None else None
         })
         return _obj
 

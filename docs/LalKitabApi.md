@@ -9,11 +9,11 @@ Method | HTTP request | Description
 
 
 # **lal_kitab_chart**
-> object lal_kitab_chart(lal_kitab_request)
+> ApiResponseLalKitabChartResponse lal_kitab_chart(lal_kitab_request)
 
 Lal Kitab Chart
 
-Computes a Lal Kitab chart using fixed sign=house mapping (Aries=House1, Taurus=House2, ..., Pisces=House12). Returns all 9 planets with Lal Kitab-specific flags: Pucca Ghar (permanent strong house), Kachcha Ghar (weak house), Uchcha (exaltation), and Neecha (debilitation). Source: Lal Kitab 1952, Pt. Roop Chand Joshi. Lahiri ayanamsa always used.
+Computes a Lal Kitab chart using fixed sign=house mapping (Aries=House1, Taurus=House2, ..., Pisces=House12). Returns all 9 planets with Lal Kitab-specific flags: Pucca Ghar (permanent strong house), Kachcha Ghar (weak house), Uchcha (exaltation), and Neecha (debilitation). Lahiri ayanamsa always used.
 
 ### Example
 
@@ -21,6 +21,7 @@ Computes a Lal Kitab chart using fixed sign=house mapping (Aries=House1, Taurus=
 
 ```python
 import asterwise
+from asterwise.models.api_response_lal_kitab_chart_response import ApiResponseLalKitabChartResponse
 from asterwise.models.lal_kitab_request import LalKitabRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -67,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseLalKitabChartResponse**](ApiResponseLalKitabChartResponse.md)
 
 ### Authorization
 
@@ -96,11 +97,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **lal_kitab_remedies**
-> object lal_kitab_remedies(lal_kitab_request)
+> ApiResponseLalKitabRemediesResponse lal_kitab_remedies(lal_kitab_request)
 
 Lal Kitab Remedies
 
-Computes personalised Lal Kitab remedies from the birth chart. Returns practical remedies (donations, items to keep/bury, actions to avoid) for each planet based on its house placement. Malefic planets in Kachcha Ghar or Neecha are marked high priority. Source: Lal Kitab 1952, Pt. Roop Chand Joshi.
+Computes personalised Lal Kitab remedies from the birth chart. Returns practical remedies (donations, items to keep/bury, actions to avoid) for each planet based on its house placement. Malefic planets in Kachcha Ghar or Neecha are marked high priority.
 
 ### Example
 
@@ -108,6 +109,7 @@ Computes personalised Lal Kitab remedies from the birth chart. Returns practical
 
 ```python
 import asterwise
+from asterwise.models.api_response_lal_kitab_remedies_response import ApiResponseLalKitabRemediesResponse
 from asterwise.models.lal_kitab_request import LalKitabRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -154,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseLalKitabRemediesResponse**](ApiResponseLalKitabRemediesResponse.md)
 
 ### Authorization
 

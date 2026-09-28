@@ -1,7 +1,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -18,21 +18,44 @@ from typing_extensions import Annotated
 
 from datetime import date
 from pydantic import Field, StrictStr, field_validator
-from typing import Any, Optional, Union
+from typing import Optional, Union
 from typing_extensions import Annotated
+from asterwise.models.api_response_atmakaraka_response import ApiResponseAtmakarakaResponse
+from asterwise.models.api_response_ayanamsha_response import ApiResponseAyanamshaResponse
+from asterwise.models.api_response_char_dasha_response import ApiResponseCharDashaResponse
 from asterwise.models.api_response_chart_response import ApiResponseChartResponse
 from asterwise.models.api_response_choghadiya_response import ApiResponseChoghadiyaResponse
 from asterwise.models.api_response_dasha_endpoint_response import ApiResponseDashaEndpointResponse
+from asterwise.models.api_response_dasha_transits_response import ApiResponseDashaTransitsResponse
+from asterwise.models.api_response_dashakoot_response import ApiResponseDashakootResponse
 from asterwise.models.api_response_dosha_endpoint_response import ApiResponseDoshaEndpointResponse
 from asterwise.models.api_response_festival_calendar_response import ApiResponseFestivalCalendarResponse
+from asterwise.models.api_response_gemstone_response import ApiResponseGemstoneResponse
+from asterwise.models.api_response_ghat_chakra_response import ApiResponseGhatChakraResponse
+from asterwise.models.api_response_gochar_response import ApiResponseGocharResponse
+from asterwise.models.api_response_harsha_bala_response import ApiResponseHarshaBalaResponse
 from asterwise.models.api_response_hora_response import ApiResponseHoraResponse
+from asterwise.models.api_response_ishta_devta_response import ApiResponseIshtaDevtaResponse
 from asterwise.models.api_response_matchmaking_response import ApiResponseMatchmakingResponse
+from asterwise.models.api_response_muhurta_response import ApiResponseMuhurtaResponse
+from asterwise.models.api_response_nakshatra_prediction_response import ApiResponseNakshatraPredictionResponse
+from asterwise.models.api_response_nakshatra_profile_response import ApiResponseNakshatraProfileResponse
 from asterwise.models.api_response_natal_response import ApiResponseNatalResponse
 from asterwise.models.api_response_panchanga_calendar_response import ApiResponsePanchangaCalendarResponse
 from asterwise.models.api_response_panchanga_response import ApiResponsePanchangaResponse
+from asterwise.models.api_response_papasamyam_response import ApiResponsePapasamyamResponse
+from asterwise.models.api_response_pitru_dosha_response import ApiResponsePitruDoshaResponse
+from asterwise.models.api_response_porutham_response import ApiResponsePoruthamResponse
 from asterwise.models.api_response_rahu_kaal_response import ApiResponseRahuKaalResponse
+from asterwise.models.api_response_remedies_response import ApiResponseRemediesResponse
 from asterwise.models.api_response_sade_sati_response import ApiResponseSadeSatiResponse
+from asterwise.models.api_response_saham_response import ApiResponseSahamResponse
 from asterwise.models.api_response_tamil_panchanga_response import ApiResponseTamilPanchangaResponse
+from asterwise.models.api_response_thirumana_porutham_response import ApiResponseThirumanaPoruthamResponse
+from asterwise.models.api_response_union_planet_nature_all_response_planet_nature_single_response import ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse
+from asterwise.models.api_response_union_puja_suggestions_all_response_puja_suggestion_single_response import ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse
+from asterwise.models.api_response_union_rudraksha_all_response_rudraksha_single_response import ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse
+from asterwise.models.api_response_varshaphal_response import ApiResponseVarshaphalResponse
 from asterwise.models.api_response_yoga_endpoint_response import ApiResponseYogaEndpointResponse
 from asterwise.models.atmakaraka_request import AtmakarakaRequest
 from asterwise.models.birth_input import BirthInput
@@ -94,7 +117,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseAtmakarakaResponse:
         """Jaimini Charakarakas
 
         Computes all 8 Jaimini Charakarakas from the natal chart: Atmakaraka, Amatyakaraka, Bhratrikaraka, Matrikaraka, Pitrikaraka, Putrakaraka, Gnatikaraka, and Darakaraka. The planet with the highest degree in its sign becomes the Atmakaraka. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
@@ -132,7 +155,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseAtmakarakaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -170,7 +193,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseAtmakarakaResponse]:
         """Jaimini Charakarakas
 
         Computes all 8 Jaimini Charakarakas from the natal chart: Atmakaraka, Amatyakaraka, Bhratrikaraka, Matrikaraka, Pitrikaraka, Putrakaraka, Gnatikaraka, and Darakaraka. The planet with the highest degree in its sign becomes the Atmakaraka. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
@@ -208,7 +231,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseAtmakarakaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -284,7 +307,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseAtmakarakaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -395,7 +418,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseAyanamshaResponse:
         """Ayanamsha Values
 
         Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Tropical) for a given date. Each system returns the value in decimal degrees and DMS (degrees/minutes/seconds) format. Pass ?date=YYYY-MM-DD for a specific date. Omit ?date to get today's values. Lahiri is the Indian government standard and default for Jyotish.
@@ -433,7 +456,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseAyanamshaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -471,7 +494,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseAyanamshaResponse]:
         """Ayanamsha Values
 
         Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Tropical) for a given date. Each system returns the value in decimal degrees and DMS (degrees/minutes/seconds) format. Pass ?date=YYYY-MM-DD for a specific date. Omit ?date to get today's values. Lahiri is the Indian government standard and default for Jyotish.
@@ -509,7 +532,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseAyanamshaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -585,7 +608,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseAyanamshaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -694,7 +717,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseCharDashaResponse:
         """Jaimini Char Dasha
 
         Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
@@ -732,7 +755,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseCharDashaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -770,7 +793,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseCharDashaResponse]:
         """Jaimini Char Dasha
 
         Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
@@ -808,7 +831,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseCharDashaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -884,7 +907,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseCharDashaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1297,9 +1320,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseDashaEndpointResponse:
-        """Vimshottari Dasha periods
+        """Vimshottari Dasha
 
-        Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha per classical Vedic tradition. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
+        Calculate the complete Vimshottari Dasha timeline for a birth chart. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana periods up to 5 levels deep, with start and end dates for each. The starting planet is determined by the Moon's nakshatra at birth (Janma Nakshatra). Interpretation text accompanies the currently active Mahadasha and Antardasha.
 
         :param dasha_request: (required)
         :type dasha_request: DashaRequest
@@ -1373,9 +1396,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseDashaEndpointResponse]:
-        """Vimshottari Dasha periods
+        """Vimshottari Dasha
 
-        Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha per classical Vedic tradition. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
+        Calculate the complete Vimshottari Dasha timeline for a birth chart. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana periods up to 5 levels deep, with start and end dates for each. The starting planet is determined by the Moon's nakshatra at birth (Janma Nakshatra). Interpretation text accompanies the currently active Mahadasha and Antardasha.
 
         :param dasha_request: (required)
         :type dasha_request: DashaRequest
@@ -1449,9 +1472,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Vimshottari Dasha periods
+        """Vimshottari Dasha
 
-        Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha per classical Vedic tradition. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
+        Calculate the complete Vimshottari Dasha timeline for a birth chart. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana periods up to 5 levels deep, with start and end dates for each. The starting planet is determined by the Moon's nakshatra at birth (Janma Nakshatra). Interpretation text accompanies the currently active Mahadasha and Antardasha.
 
         :param dasha_request: (required)
         :type dasha_request: DashaRequest
@@ -1597,7 +1620,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseDashaTransitsResponse:
         """Dasha-Transit Correlation
 
         Correlates active Vimshottari Dasha lords (maha, antar, pratyantar) with current planetary transits. Returns conjunction and aspect correlations scored by strength, and highlights periods of significance. Request JSON follows BirthInput plus optional `target_date`, `target_time`, `target_timezone` for the analysis moment: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
@@ -1635,7 +1658,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDashaTransitsResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1673,7 +1696,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseDashaTransitsResponse]:
         """Dasha-Transit Correlation
 
         Correlates active Vimshottari Dasha lords (maha, antar, pratyantar) with current planetary transits. Returns conjunction and aspect correlations scored by strength, and highlights periods of significance. Request JSON follows BirthInput plus optional `target_date`, `target_time`, `target_timezone` for the analysis moment: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
@@ -1711,7 +1734,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDashaTransitsResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1787,7 +1810,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDashaTransitsResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2199,7 +2222,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseGemstoneResponse:
         """Gemstone Recommendations
 
         Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord. Secondary gemstone supports the Atmakaraka (soul planet). Returns contraindicated gemstones (debilitated, combust, dusthana lords, dual lagna/8th). Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
@@ -2237,7 +2260,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseGemstoneResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2275,7 +2298,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseGemstoneResponse]:
         """Gemstone Recommendations
 
         Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord. Secondary gemstone supports the Atmakaraka (soul planet). Returns contraindicated gemstones (debilitated, combust, dusthana lords, dual lagna/8th). Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
@@ -2313,7 +2336,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseGemstoneResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2389,7 +2412,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseGemstoneResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2500,10 +2523,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseGhatChakraResponse:
         """Ghat Chakra
 
-        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided. Computed per classical muhurta tradition.
+        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -2538,7 +2561,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseGhatChakraResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2576,10 +2599,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseGhatChakraResponse]:
         """Ghat Chakra
 
-        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided. Computed per classical muhurta tradition.
+        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -2614,7 +2637,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseGhatChakraResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2655,7 +2678,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Ghat Chakra
 
-        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided. Computed per classical muhurta tradition.
+        Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -2690,7 +2713,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseGhatChakraResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2801,7 +2824,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseGocharResponse:
         """Gochar — Transit Analysis
 
         Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, Ashtakavarga Bhinna scores, Sade Sati and Chandra Ashtama flags, and classical transit interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
@@ -2839,7 +2862,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseGocharResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2877,7 +2900,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseGocharResponse]:
         """Gochar — Transit Analysis
 
         Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, Ashtakavarga Bhinna scores, Sade Sati and Chandra Ashtama flags, and classical transit interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
@@ -2915,7 +2938,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseGocharResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -2991,7 +3014,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseGocharResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -3102,7 +3125,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseIshtaDevtaResponse:
         """Ishta Devta — Personal Deity
 
         Computes Ishta Devta (personal deity) from the 12th house lord of the Navamsa (D9) chart per Jaimini-tradition rules. Returns the ruling planet, associated deity, and D9 positions. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
@@ -3140,7 +3163,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseIshtaDevtaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -3178,7 +3201,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseIshtaDevtaResponse]:
         """Ishta Devta — Personal Deity
 
         Computes Ishta Devta (personal deity) from the 12th house lord of the Navamsa (D9) chart per Jaimini-tradition rules. Returns the ruling planet, associated deity, and D9 positions. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
@@ -3216,7 +3239,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseIshtaDevtaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -3292,7 +3315,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseIshtaDevtaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -3704,7 +3727,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseDashakootResponse:
         """Dashakoot — 10-Koota Compatibility
 
         Computes all 10 kootas for two persons: the standard 8 Ashtakoot kootas plus Mahendra and Stree Deergha. Returns total score out of 38, per-koota breakdown, dosha analysis (Nadi, Bhakoot, Rajju, Vedha), and compatibility level.
@@ -3742,7 +3765,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDashakootResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -3780,7 +3803,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseDashakootResponse]:
         """Dashakoot — 10-Koota Compatibility
 
         Computes all 10 kootas for two persons: the standard 8 Ashtakoot kootas plus Mahendra and Stree Deergha. Returns total score out of 38, per-koota breakdown, dosha analysis (Nadi, Bhakoot, Rajju, Vedha), and compatibility level.
@@ -3818,7 +3841,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDashakootResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -3894,7 +3917,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseDashakootResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4005,7 +4028,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponsePapasamyamResponse:
         """Papasamyam — Malefic Planet Compatibility
 
         Computes Papasamyam between two natal charts. Scores each person based on Sun, Mars, Saturn, Rahu, Ketu in houses 1, 2, 4, 7, 8, 12 from Lagna, Moon, and Venus (#105). Compatible if score difference ≤ 11. person1 = groom, person2 = bride.
@@ -4043,7 +4066,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePapasamyamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4081,7 +4104,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponsePapasamyamResponse]:
         """Papasamyam — Malefic Planet Compatibility
 
         Computes Papasamyam between two natal charts. Scores each person based on Sun, Mars, Saturn, Rahu, Ketu in houses 1, 2, 4, 7, 8, 12 from Lagna, Moon, and Venus (#105). Compatible if score difference ≤ 11. person1 = groom, person2 = bride.
@@ -4119,7 +4142,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePapasamyamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4195,7 +4218,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePapasamyamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4306,7 +4329,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponsePoruthamResponse:
         """Kerala Porutham — 10-Porutham Compatibility
 
         Computes all 10 Kerala Poruthams: Dinam, Ganam, Mahendra, Stree Deergha, Yoni, Rasi, Rasiyathipaty, Rajju, Vedha, and Vasya. Rajju and Vedha are absolute vetoes — if either fails the match is prohibited. person1 = groom, person2 = bride.
@@ -4344,7 +4367,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePoruthamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4382,7 +4405,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponsePoruthamResponse]:
         """Kerala Porutham — 10-Porutham Compatibility
 
         Computes all 10 Kerala Poruthams: Dinam, Ganam, Mahendra, Stree Deergha, Yoni, Rasi, Rasiyathipaty, Rajju, Vedha, and Vasya. Rajju and Vedha are absolute vetoes — if either fails the match is prohibited. person1 = groom, person2 = bride.
@@ -4420,7 +4443,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePoruthamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4496,7 +4519,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePoruthamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4607,8 +4630,8 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
-        """Tamil Thirumana Porutham — 10-Porutham Compatibility
+    ) -> ApiResponseThirumanaPoruthamResponse:
+        """Tamil Thirumana Porutham — 12-Porutham Compatibility
 
         Computes all 10 Tamil Thirumana Poruthams with Tamil naming convention. Includes Rajju severity classification (Siro=most severe to Pada=least severe). Rajju and Vedha are absolute vetoes. person1 = groom, person2 = bride.
 
@@ -4645,7 +4668,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseThirumanaPoruthamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4683,8 +4706,8 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
-        """Tamil Thirumana Porutham — 10-Porutham Compatibility
+    ) -> ApiResponse[ApiResponseThirumanaPoruthamResponse]:
+        """Tamil Thirumana Porutham — 12-Porutham Compatibility
 
         Computes all 10 Tamil Thirumana Poruthams with Tamil naming convention. Includes Rajju severity classification (Siro=most severe to Pada=least severe). Rajju and Vedha are absolute vetoes. person1 = groom, person2 = bride.
 
@@ -4721,7 +4744,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseThirumanaPoruthamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4760,7 +4783,7 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Tamil Thirumana Porutham — 10-Porutham Compatibility
+        """Tamil Thirumana Porutham — 12-Porutham Compatibility
 
         Computes all 10 Tamil Thirumana Poruthams with Tamil naming convention. Includes Rajju severity classification (Siro=most severe to Pada=least severe). Rajju and Vedha are absolute vetoes. person1 = groom, person2 = bride.
 
@@ -4797,7 +4820,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseThirumanaPoruthamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4908,10 +4931,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseMuhurtaResponse:
         """Muhurta — Auspicious Timing
 
-        Finds and ranks auspicious time windows for a specific event type. Scores each Choghadiya period using Choghadiya quality, Yoga, Vara (weekday), and Tithi. Returns top N ranked windows. Supported events: marriage, travel, business, griha_pravesh, naming_ceremony.
+        Finds and ranks auspicious time windows for an activity between two dates (up to a year) at a location. The range is cut at every change of tithi, nakshatra, yoga, karana, lagna, sunrise and sunset and at the edges of Rahu Kaal, Yamaganda, Gulika, Durmuhurta, Varjyam and Bhadra, so windows start and end at exact moments. A moment is ruled out when the season bars the activity (Chaturmas, Adhik Maas, Pitru Paksha, Kharmas, Holashtak, Guru or Shukra asta, Panchaka, per activity), when its nakshatra, tithi or weekday is not one the activity allows, or when it falls in an inauspicious period. Survivors are scored 0-100 and returned with ISO 8601 start_at and end_at, the civil date and the panchanga day, the reasons and cautions (the earlier fields, including HH:MM start and end on the panchanga day's date, are still returned). Optional participants (up to two) add Tarabala and Chandrabala. Activities: marriage, griha_pravesh, business, travel, naming_ceremony, vehicle_purchase, property_purchase, mundan, annaprashan, upanayana, vidyarambha.
 
         :param muhurta_request: (required)
         :type muhurta_request: MuhurtaRequest
@@ -4946,7 +4969,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseMuhurtaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -4984,10 +5007,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseMuhurtaResponse]:
         """Muhurta — Auspicious Timing
 
-        Finds and ranks auspicious time windows for a specific event type. Scores each Choghadiya period using Choghadiya quality, Yoga, Vara (weekday), and Tithi. Returns top N ranked windows. Supported events: marriage, travel, business, griha_pravesh, naming_ceremony.
+        Finds and ranks auspicious time windows for an activity between two dates (up to a year) at a location. The range is cut at every change of tithi, nakshatra, yoga, karana, lagna, sunrise and sunset and at the edges of Rahu Kaal, Yamaganda, Gulika, Durmuhurta, Varjyam and Bhadra, so windows start and end at exact moments. A moment is ruled out when the season bars the activity (Chaturmas, Adhik Maas, Pitru Paksha, Kharmas, Holashtak, Guru or Shukra asta, Panchaka, per activity), when its nakshatra, tithi or weekday is not one the activity allows, or when it falls in an inauspicious period. Survivors are scored 0-100 and returned with ISO 8601 start_at and end_at, the civil date and the panchanga day, the reasons and cautions (the earlier fields, including HH:MM start and end on the panchanga day's date, are still returned). Optional participants (up to two) add Tarabala and Chandrabala. Activities: marriage, griha_pravesh, business, travel, naming_ceremony, vehicle_purchase, property_purchase, mundan, annaprashan, upanayana, vidyarambha.
 
         :param muhurta_request: (required)
         :type muhurta_request: MuhurtaRequest
@@ -5022,7 +5045,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseMuhurtaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -5063,7 +5086,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Muhurta — Auspicious Timing
 
-        Finds and ranks auspicious time windows for a specific event type. Scores each Choghadiya period using Choghadiya quality, Yoga, Vara (weekday), and Tithi. Returns top N ranked windows. Supported events: marriage, travel, business, griha_pravesh, naming_ceremony.
+        Finds and ranks auspicious time windows for an activity between two dates (up to a year) at a location. The range is cut at every change of tithi, nakshatra, yoga, karana, lagna, sunrise and sunset and at the edges of Rahu Kaal, Yamaganda, Gulika, Durmuhurta, Varjyam and Bhadra, so windows start and end at exact moments. A moment is ruled out when the season bars the activity (Chaturmas, Adhik Maas, Pitru Paksha, Kharmas, Holashtak, Guru or Shukra asta, Panchaka, per activity), when its nakshatra, tithi or weekday is not one the activity allows, or when it falls in an inauspicious period. Survivors are scored 0-100 and returned with ISO 8601 start_at and end_at, the civil date and the panchanga day, the reasons and cautions (the earlier fields, including HH:MM start and end on the panchanga day's date, are still returned). Optional participants (up to two) add Tarabala and Chandrabala. Activities: marriage, griha_pravesh, business, travel, naming_ceremony, vehicle_purchase, property_purchase, mundan, annaprashan, upanayana, vidyarambha.
 
         :param muhurta_request: (required)
         :type muhurta_request: MuhurtaRequest
@@ -5098,7 +5121,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseMuhurtaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -5209,7 +5232,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseNakshatraProfileResponse:
         """Nakshatra Profile
 
         Returns the complete classical profile for a given nakshatra: deity, ruling planet, gana, nature, body part, profession, life themes, strengths, challenges, favorable/unfavorable activities, and body map. Accepts nakshatra name in any case with spaces or underscores.
@@ -5247,7 +5270,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseNakshatraProfileResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -5285,7 +5308,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseNakshatraProfileResponse]:
         """Nakshatra Profile
 
         Returns the complete classical profile for a given nakshatra: deity, ruling planet, gana, nature, body part, profession, life themes, strengths, challenges, favorable/unfavorable activities, and body map. Accepts nakshatra name in any case with spaces or underscores.
@@ -5323,7 +5346,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseNakshatraProfileResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -5399,7 +5422,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseNakshatraProfileResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -5497,10 +5520,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseNakshatraPredictionResponse:
         """Personal Nakshatra Prediction (Tarabala)
 
-        Returns a personalised daily prediction using Tarabala and Chandrabala from classical muhurta tradition. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today. Computed per classical Vedic nakshatra tradition.
+        Returns a personalised daily prediction using Tarabala and Chandrabala for the day at the birth place (sunrise to next sunrise). The top-level tara is the one at sunrise; transit_nakshatras lists every nakshatra the Moon passes through that day with its tara. The tara names the round of nine: the first tara is Janma at count 1 (Moon in the birth nakshatra), Anujanma at 10 and Trijanma at 19. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today.
 
         :param nakshatra_prediction_request: (required)
         :type nakshatra_prediction_request: NakshatraPredictionRequest
@@ -5535,7 +5558,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseNakshatraPredictionResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -5573,10 +5596,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseNakshatraPredictionResponse]:
         """Personal Nakshatra Prediction (Tarabala)
 
-        Returns a personalised daily prediction using Tarabala and Chandrabala from classical muhurta tradition. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today. Computed per classical Vedic nakshatra tradition.
+        Returns a personalised daily prediction using Tarabala and Chandrabala for the day at the birth place (sunrise to next sunrise). The top-level tara is the one at sunrise; transit_nakshatras lists every nakshatra the Moon passes through that day with its tara. The tara names the round of nine: the first tara is Janma at count 1 (Moon in the birth nakshatra), Anujanma at 10 and Trijanma at 19. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today.
 
         :param nakshatra_prediction_request: (required)
         :type nakshatra_prediction_request: NakshatraPredictionRequest
@@ -5611,7 +5634,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseNakshatraPredictionResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -5652,7 +5675,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Personal Nakshatra Prediction (Tarabala)
 
-        Returns a personalised daily prediction using Tarabala and Chandrabala from classical muhurta tradition. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today. Computed per classical Vedic nakshatra tradition.
+        Returns a personalised daily prediction using Tarabala and Chandrabala for the day at the birth place (sunrise to next sunrise). The top-level tara is the one at sunrise; transit_nakshatras lists every nakshatra the Moon passes through that day with its tara. The tara names the round of nine: the first tara is Janma at count 1 (Moon in the birth nakshatra), Anujanma at 10 and Trijanma at 19. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today.
 
         :param nakshatra_prediction_request: (required)
         :type nakshatra_prediction_request: NakshatraPredictionRequest
@@ -5687,7 +5710,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseNakshatraPredictionResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -6102,7 +6125,7 @@ class AstrologyApi:
     ) -> ApiResponsePanchangaResponse:
         """Daily Panchanga
 
-        Calculate Vedic Panchanga for a given date and location. Returns Tithi, Nakshatra, Yoga, Karana, Vara (weekday), and auspicious and inauspicious periods for the day. Returns Tithi, Vara (weekday), Nakshatra, Yoga, and Karana for the birth date and location.
+        Vedic Panchanga for a date and location. The top-level tithi, vara, nakshatra, yoga and karana are the limbs at sunrise (or at `time` when given). The rest describes the whole panchanga day, sunrise to next sunrise: every tithi, nakshatra, yoga and karana active in it with ISO start and end times and kshaya/vriddhi flags; sunrise, sunset, moonrise and moonset; Sun and Moon rashi; lunar month in amanta and purnimanta reckoning (with Adhik months); Vikram, Shaka and Gujarati samvat; ritu and ayana; and the day's timings: Rahu Kaal, Gulika, Yamaganda, Abhijit, Brahma Muhurta, Durmuhurta, Varjyam, Amrit Kaal, Bhadra, Panchaka, Pradosh and others.
 
         :param panchanga_request: (required)
         :type panchanga_request: PanchangaRequest
@@ -6178,7 +6201,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponsePanchangaResponse]:
         """Daily Panchanga
 
-        Calculate Vedic Panchanga for a given date and location. Returns Tithi, Nakshatra, Yoga, Karana, Vara (weekday), and auspicious and inauspicious periods for the day. Returns Tithi, Vara (weekday), Nakshatra, Yoga, and Karana for the birth date and location.
+        Vedic Panchanga for a date and location. The top-level tithi, vara, nakshatra, yoga and karana are the limbs at sunrise (or at `time` when given). The rest describes the whole panchanga day, sunrise to next sunrise: every tithi, nakshatra, yoga and karana active in it with ISO start and end times and kshaya/vriddhi flags; sunrise, sunset, moonrise and moonset; Sun and Moon rashi; lunar month in amanta and purnimanta reckoning (with Adhik months); Vikram, Shaka and Gujarati samvat; ritu and ayana; and the day's timings: Rahu Kaal, Gulika, Yamaganda, Abhijit, Brahma Muhurta, Durmuhurta, Varjyam, Amrit Kaal, Bhadra, Panchaka, Pradosh and others.
 
         :param panchanga_request: (required)
         :type panchanga_request: PanchangaRequest
@@ -6254,7 +6277,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Daily Panchanga
 
-        Calculate Vedic Panchanga for a given date and location. Returns Tithi, Nakshatra, Yoga, Karana, Vara (weekday), and auspicious and inauspicious periods for the day. Returns Tithi, Vara (weekday), Nakshatra, Yoga, and Karana for the birth date and location.
+        Vedic Panchanga for a date and location. The top-level tithi, vara, nakshatra, yoga and karana are the limbs at sunrise (or at `time` when given). The rest describes the whole panchanga day, sunrise to next sunrise: every tithi, nakshatra, yoga and karana active in it with ISO start and end times and kshaya/vriddhi flags; sunrise, sunset, moonrise and moonset; Sun and Moon rashi; lunar month in amanta and purnimanta reckoning (with Adhik months); Vikram, Shaka and Gujarati samvat; ritu and ayana; and the day's timings: Rahu Kaal, Gulika, Yamaganda, Abhijit, Brahma Muhurta, Durmuhurta, Varjyam, Amrit Kaal, Bhadra, Panchaka, Pradosh and others.
 
         :param panchanga_request: (required)
         :type panchanga_request: PanchangaRequest
@@ -6390,8 +6413,8 @@ class AstrologyApi:
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Year")],
         month: Annotated[int, Field(le=12, strict=True, ge=1, description="Month (1-12)")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone (required with lat/lon; ignored when using location alone)")] = None,
         ayanamsa: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -6409,7 +6432,7 @@ class AstrologyApi:
     ) -> ApiResponsePanchangaCalendarResponse:
         """Monthly Panchanga calendar
 
-        Calculate complete Panchanga for every day of a given month at a given location. Returns all 5 Panchanga elements (Tithi, Vara, Nakshatra, Yoga, Karana) plus Rahu Kaal for each day. Useful for building monthly almanac views.
+        Panchanga for every day of a month at a location. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days.
 
         :param year: Year (required)
         :type year: int
@@ -6490,8 +6513,8 @@ class AstrologyApi:
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Year")],
         month: Annotated[int, Field(le=12, strict=True, ge=1, description="Month (1-12)")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone (required with lat/lon; ignored when using location alone)")] = None,
         ayanamsa: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -6509,7 +6532,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponsePanchangaCalendarResponse]:
         """Monthly Panchanga calendar
 
-        Calculate complete Panchanga for every day of a given month at a given location. Returns all 5 Panchanga elements (Tithi, Vara, Nakshatra, Yoga, Karana) plus Rahu Kaal for each day. Useful for building monthly almanac views.
+        Panchanga for every day of a month at a location. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days.
 
         :param year: Year (required)
         :type year: int
@@ -6590,8 +6613,8 @@ class AstrologyApi:
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Year")],
         month: Annotated[int, Field(le=12, strict=True, ge=1, description="Month (1-12)")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone (required with lat/lon; ignored when using location alone)")] = None,
         ayanamsa: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -6609,7 +6632,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Monthly Panchanga calendar
 
-        Calculate complete Panchanga for every day of a given month at a given location. Returns all 5 Panchanga elements (Tithi, Vara, Nakshatra, Yoga, Karana) plus Rahu Kaal for each day. Useful for building monthly almanac views.
+        Panchanga for every day of a month at a location. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days.
 
         :param year: Year (required)
         :type year: int
@@ -7383,9 +7406,10 @@ class AstrologyApi:
         self,
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Calendar year")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
+        categories: Annotated[Optional[StrictStr], Field(description="Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. 'festival,vrat,period' for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or 'eclipse' for eclipses.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7399,9 +7423,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseFestivalCalendarResponse:
-        """Hindu festival calendar
+        """Hindu festival and vrat calendar
 
-        Compute all major Hindu festival dates for a given year and location. Returns 20 pan-Hindu festivals including solar sankrantis (Makar Sankranti, Vaisakhi) and tithi-based festivals (Diwali, Holi, Dussehra, Janmashtami, Ganesh Chaturthi, Ram Navami, and 12 others). All dates are astronomically computed — no hardcoded dates. Tithi festivals use the Sun-Moon elongation at local sunrise with Lahiri sidereal ayanamsa. Location is required for accurate sunrise-based tithi determination.
+        Hindu festivals, vrats, sankrantis, eclipses and periods for a year at a location. Each lunar festival is fixed by its lunar month (amanta, with Adhik months detected from new moons and sankrantis), its tithi, and the part of the day in which the tithi must prevail (sunrise, forenoon, Madhyahna, Aparahna, Pradosh, Nishita, moonrise), with the classical tie-breaks when a tithi spans two days, Bhadra rules for Holika Dahan and Raksha Bandhan, and the Smarta Ekadashi rule. Categories: festival (about 50 named festivals), vrat (every Ekadashi, Pradosh, Sankashti Chaturthi, Masik Shivaratri, Purnima and Amavasya), sankranti (12 solar ingresses), eclipse (with local visibility and contact times), period (Adhik Maas, Chaturmas, Pitru Paksha, Navratri, Holashtak, Kharmas). By default only the named festivals are returned; pass `categories` for the rest. Lahiri ayanamsa.
 
         :param year: Calendar year (required)
         :type year: int
@@ -7413,6 +7437,8 @@ class AstrologyApi:
         :type longitude: float
         :param timezone: IANA timezone
         :type timezone: str
+        :param categories: Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. 'festival,vrat,period' for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or 'eclipse' for eclipses.
+        :type categories: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7441,6 +7467,7 @@ class AstrologyApi:
             latitude=latitude,
             longitude=longitude,
             timezone=timezone,
+            categories=categories,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7475,9 +7502,10 @@ class AstrologyApi:
         self,
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Calendar year")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
+        categories: Annotated[Optional[StrictStr], Field(description="Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. 'festival,vrat,period' for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or 'eclipse' for eclipses.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7491,9 +7519,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseFestivalCalendarResponse]:
-        """Hindu festival calendar
+        """Hindu festival and vrat calendar
 
-        Compute all major Hindu festival dates for a given year and location. Returns 20 pan-Hindu festivals including solar sankrantis (Makar Sankranti, Vaisakhi) and tithi-based festivals (Diwali, Holi, Dussehra, Janmashtami, Ganesh Chaturthi, Ram Navami, and 12 others). All dates are astronomically computed — no hardcoded dates. Tithi festivals use the Sun-Moon elongation at local sunrise with Lahiri sidereal ayanamsa. Location is required for accurate sunrise-based tithi determination.
+        Hindu festivals, vrats, sankrantis, eclipses and periods for a year at a location. Each lunar festival is fixed by its lunar month (amanta, with Adhik months detected from new moons and sankrantis), its tithi, and the part of the day in which the tithi must prevail (sunrise, forenoon, Madhyahna, Aparahna, Pradosh, Nishita, moonrise), with the classical tie-breaks when a tithi spans two days, Bhadra rules for Holika Dahan and Raksha Bandhan, and the Smarta Ekadashi rule. Categories: festival (about 50 named festivals), vrat (every Ekadashi, Pradosh, Sankashti Chaturthi, Masik Shivaratri, Purnima and Amavasya), sankranti (12 solar ingresses), eclipse (with local visibility and contact times), period (Adhik Maas, Chaturmas, Pitru Paksha, Navratri, Holashtak, Kharmas). By default only the named festivals are returned; pass `categories` for the rest. Lahiri ayanamsa.
 
         :param year: Calendar year (required)
         :type year: int
@@ -7505,6 +7533,8 @@ class AstrologyApi:
         :type longitude: float
         :param timezone: IANA timezone
         :type timezone: str
+        :param categories: Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. 'festival,vrat,period' for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or 'eclipse' for eclipses.
+        :type categories: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7533,6 +7563,7 @@ class AstrologyApi:
             latitude=latitude,
             longitude=longitude,
             timezone=timezone,
+            categories=categories,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7567,9 +7598,10 @@ class AstrologyApi:
         self,
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Calendar year")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
+        categories: Annotated[Optional[StrictStr], Field(description="Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. 'festival,vrat,period' for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or 'eclipse' for eclipses.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7583,9 +7615,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Hindu festival calendar
+        """Hindu festival and vrat calendar
 
-        Compute all major Hindu festival dates for a given year and location. Returns 20 pan-Hindu festivals including solar sankrantis (Makar Sankranti, Vaisakhi) and tithi-based festivals (Diwali, Holi, Dussehra, Janmashtami, Ganesh Chaturthi, Ram Navami, and 12 others). All dates are astronomically computed — no hardcoded dates. Tithi festivals use the Sun-Moon elongation at local sunrise with Lahiri sidereal ayanamsa. Location is required for accurate sunrise-based tithi determination.
+        Hindu festivals, vrats, sankrantis, eclipses and periods for a year at a location. Each lunar festival is fixed by its lunar month (amanta, with Adhik months detected from new moons and sankrantis), its tithi, and the part of the day in which the tithi must prevail (sunrise, forenoon, Madhyahna, Aparahna, Pradosh, Nishita, moonrise), with the classical tie-breaks when a tithi spans two days, Bhadra rules for Holika Dahan and Raksha Bandhan, and the Smarta Ekadashi rule. Categories: festival (about 50 named festivals), vrat (every Ekadashi, Pradosh, Sankashti Chaturthi, Masik Shivaratri, Purnima and Amavasya), sankranti (12 solar ingresses), eclipse (with local visibility and contact times), period (Adhik Maas, Chaturmas, Pitru Paksha, Navratri, Holashtak, Kharmas). By default only the named festivals are returned; pass `categories` for the rest. Lahiri ayanamsa.
 
         :param year: Calendar year (required)
         :type year: int
@@ -7597,6 +7629,8 @@ class AstrologyApi:
         :type longitude: float
         :param timezone: IANA timezone
         :type timezone: str
+        :param categories: Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. 'festival,vrat,period' for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or 'eclipse' for eclipses.
+        :type categories: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7625,6 +7659,7 @@ class AstrologyApi:
             latitude=latitude,
             longitude=longitude,
             timezone=timezone,
+            categories=categories,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7657,6 +7692,7 @@ class AstrologyApi:
         latitude,
         longitude,
         timezone,
+        categories,
         _request_auth,
         _content_type,
         _headers,
@@ -7698,6 +7734,10 @@ class AstrologyApi:
         if timezone is not None:
             
             _query_params.append(('timezone', timezone))
+            
+        if categories is not None:
+            
+            _query_params.append(('categories', categories))
             
         # process the header parameters
         # process the form parameters
@@ -7755,7 +7795,7 @@ class AstrologyApi:
     ) -> ApiResponseHoraResponse:
         """Planetary hours (Hora)
 
-        Calculate all 24 Hora (planetary hours) for a given date and location, starting from sunrise. Each hora is ruled by a planet in the Chaldean sequence with qualities indicating suitable activities.
+        Calculate all 24 Hora (planetary hours) for a given date and location using unequal seasonal division: 12 equal parts from sunrise to sunset and 12 from sunset to next sunrise. The first hora after sunrise is ruled by the sunrise-boundary Vedic vara lord; subsequent horas follow the Chaldean sequence. Response includes a convention field naming the division used.
 
         :param panchanga_ext_request: (required)
         :type panchanga_ext_request: PanchangaExtRequest
@@ -7831,7 +7871,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseHoraResponse]:
         """Planetary hours (Hora)
 
-        Calculate all 24 Hora (planetary hours) for a given date and location, starting from sunrise. Each hora is ruled by a planet in the Chaldean sequence with qualities indicating suitable activities.
+        Calculate all 24 Hora (planetary hours) for a given date and location using unequal seasonal division: 12 equal parts from sunrise to sunset and 12 from sunset to next sunrise. The first hora after sunrise is ruled by the sunrise-boundary Vedic vara lord; subsequent horas follow the Chaldean sequence. Response includes a convention field naming the division used.
 
         :param panchanga_ext_request: (required)
         :type panchanga_ext_request: PanchangaExtRequest
@@ -7907,7 +7947,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Planetary hours (Hora)
 
-        Calculate all 24 Hora (planetary hours) for a given date and location, starting from sunrise. Each hora is ruled by a planet in the Chaldean sequence with qualities indicating suitable activities.
+        Calculate all 24 Hora (planetary hours) for a given date and location using unequal seasonal division: 12 equal parts from sunrise to sunset and 12 from sunset to next sunrise. The first hora after sunrise is ruled by the sunrise-boundary Vedic vara lord; subsequent horas follow the Chaldean sequence. Response includes a convention field naming the division used.
 
         :param panchanga_ext_request: (required)
         :type panchanga_ext_request: PanchangaExtRequest
@@ -8343,8 +8383,8 @@ class AstrologyApi:
         self,
         var_date: Annotated[StrictStr, Field(description="Date in YYYY-MM-DD format")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
         _request_timeout: Union[
             None,
@@ -8361,7 +8401,7 @@ class AstrologyApi:
     ) -> ApiResponseTamilPanchangaResponse:
         """Tamil Panchanga
 
-        Tamil-specific Panchanga for a date and location. Returns all four Tamil inauspicious periods (Rahu Kalam, Yamagandam, Kuligai, Emagandam), Nalla Neram (auspicious daytime windows between inauspicious periods), and the Tamil solar month name derived from the Sun's sidereal position at sunrise.
+        Tamil-specific Panchanga for a date and location. Returns the Tamil inauspicious periods Rahu Kalam, Yamagandam and Kuligai (emagandam is the Tamil spelling of Yamagandam and repeats the same period), Nalla Neram (daytime windows free of those periods), and the Tamil solar month name derived from the Sun's sidereal position at sunrise.
 
         :param var_date: Date in YYYY-MM-DD format (required)
         :type var_date: str
@@ -8435,8 +8475,8 @@ class AstrologyApi:
         self,
         var_date: Annotated[StrictStr, Field(description="Date in YYYY-MM-DD format")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
         _request_timeout: Union[
             None,
@@ -8453,7 +8493,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseTamilPanchangaResponse]:
         """Tamil Panchanga
 
-        Tamil-specific Panchanga for a date and location. Returns all four Tamil inauspicious periods (Rahu Kalam, Yamagandam, Kuligai, Emagandam), Nalla Neram (auspicious daytime windows between inauspicious periods), and the Tamil solar month name derived from the Sun's sidereal position at sunrise.
+        Tamil-specific Panchanga for a date and location. Returns the Tamil inauspicious periods Rahu Kalam, Yamagandam and Kuligai (emagandam is the Tamil spelling of Yamagandam and repeats the same period), Nalla Neram (daytime windows free of those periods), and the Tamil solar month name derived from the Sun's sidereal position at sunrise.
 
         :param var_date: Date in YYYY-MM-DD format (required)
         :type var_date: str
@@ -8527,8 +8567,8 @@ class AstrologyApi:
         self,
         var_date: Annotated[StrictStr, Field(description="Date in YYYY-MM-DD format")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
         _request_timeout: Union[
             None,
@@ -8545,7 +8585,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Tamil Panchanga
 
-        Tamil-specific Panchanga for a date and location. Returns all four Tamil inauspicious periods (Rahu Kalam, Yamagandam, Kuligai, Emagandam), Nalla Neram (auspicious daytime windows between inauspicious periods), and the Tamil solar month name derived from the Sun's sidereal position at sunrise.
+        Tamil-specific Panchanga for a date and location. Returns the Tamil inauspicious periods Rahu Kalam, Yamagandam and Kuligai (emagandam is the Tamil spelling of Yamagandam and repeats the same period), Nalla Neram (daytime windows free of those periods), and the Tamil solar month name derived from the Sun's sidereal position at sunrise.
 
         :param var_date: Date in YYYY-MM-DD format (required)
         :type var_date: str
@@ -8712,10 +8752,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponsePitruDoshaResponse:
         """Pitru Dosha (Pitru Shapa)
 
-        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence per classical Vedic doctrine. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
+        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -8750,7 +8790,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePitruDoshaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -8788,10 +8828,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponsePitruDoshaResponse]:
         """Pitru Dosha (Pitru Shapa)
 
-        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence per classical Vedic doctrine. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
+        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -8826,7 +8866,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePitruDoshaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -8867,7 +8907,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Pitru Dosha (Pitru Shapa)
 
-        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence per classical Vedic doctrine. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
+        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
         :param birth_input: (required)
         :type birth_input: BirthInput
@@ -8902,7 +8942,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePitruDoshaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -9013,10 +9053,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse:
         """Graha Nature
 
-        Returns classical graha properties for all nine planets or a single planet per classical Vedic tradition. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
+        Returns classical graha properties for all nine planets or a single planet. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -9051,7 +9091,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -9089,10 +9129,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse]:
         """Graha Nature
 
-        Returns classical graha properties for all nine planets or a single planet per classical Vedic tradition. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
+        Returns classical graha properties for all nine planets or a single planet. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -9127,7 +9167,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -9168,7 +9208,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Graha Nature
 
-        Returns classical graha properties for all nine planets or a single planet per classical Vedic tradition. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
+        Returns classical graha properties for all nine planets or a single planet. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -9203,7 +9243,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -9303,10 +9343,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse:
         """Puja Suggestions
 
-        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra grounded in classical Vedic worship tradition. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
+        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -9341,7 +9381,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -9379,10 +9419,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse]:
         """Puja Suggestions
 
-        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra grounded in classical Vedic worship tradition. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
+        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -9417,7 +9457,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -9458,7 +9498,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Puja Suggestions
 
-        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra grounded in classical Vedic worship tradition. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
+        Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -9493,7 +9533,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -9593,7 +9633,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseRemediesResponse:
         """Personalised Remedies
 
         Prescribes personalised Vedic remedies based on planetary dignity in the natal chart. Prioritises debilitated planets, planets in enemy signs, and dusthana lords (6th/8th/12th house rulers). Returns mantras, gemstones, colours, fasting days, and daily actions. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`. Plus `top_n` (1–9) to cap how many planets receive remedy rows.
@@ -9631,7 +9671,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseRemediesResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -9669,7 +9709,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseRemediesResponse]:
         """Personalised Remedies
 
         Prescribes personalised Vedic remedies based on planetary dignity in the natal chart. Prioritises debilitated planets, planets in enemy signs, and dusthana lords (6th/8th/12th house rulers). Returns mantras, gemstones, colours, fasting days, and daily actions. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`. Plus `top_n` (1–9) to cap how many planets receive remedy rows.
@@ -9707,7 +9747,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseRemediesResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -9783,7 +9823,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseRemediesResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -9894,7 +9934,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse:
         """Rudraksha Recommendations
 
         Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
@@ -9932,7 +9972,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -9970,7 +10010,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse]:
         """Rudraksha Recommendations
 
         Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
@@ -10008,7 +10048,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -10084,7 +10124,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -10485,7 +10525,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseVarshaphalResponse:
         """Varshaphal — Solar Return Chart
 
         Computes the Varshaphal (annual horoscope) for a given year. Finds the exact moment when the Sun returns to its natal longitude, computes all planet positions at that moment, and returns Muntha (progressed ascendant) and Varsha Lord (year lord). Request JSON follows BirthInput plus `target_year`: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
@@ -10523,7 +10563,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseVarshaphalResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -10561,7 +10601,7 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseVarshaphalResponse]:
         """Varshaphal — Solar Return Chart
 
         Computes the Varshaphal (annual horoscope) for a given year. Finds the exact moment when the Sun returns to its natal longitude, computes all planet positions at that moment, and returns Muntha (progressed ascendant) and Varsha Lord (year lord). Request JSON follows BirthInput plus `target_year`: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
@@ -10599,7 +10639,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseVarshaphalResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -10675,7 +10715,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseVarshaphalResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -10786,10 +10826,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseHarshaBalaResponse:
         """Varshaphal — Harsha Bala
 
-        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per classical Tajika tradition.
+        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per Tajika rules.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10824,7 +10864,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHarshaBalaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -10862,10 +10902,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseHarshaBalaResponse]:
         """Varshaphal — Harsha Bala
 
-        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per classical Tajika tradition.
+        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per Tajika rules.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10900,7 +10940,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHarshaBalaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -10941,7 +10981,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Varshaphal — Harsha Bala
 
-        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per classical Tajika tradition.
+        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per Tajika rules.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10976,7 +11016,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseHarshaBalaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -11087,10 +11127,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponseSahamResponse:
         """Varshaphal — Tajika Saham Points
 
-        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per classical Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
+        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -11125,7 +11165,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseSahamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -11163,10 +11203,10 @@ class AstrologyApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponseSahamResponse]:
         """Varshaphal — Tajika Saham Points
 
-        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per classical Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
+        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -11201,7 +11241,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseSahamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -11242,7 +11282,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Varshaphal — Tajika Saham Points
 
-        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per classical Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
+        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -11277,7 +11317,7 @@ class AstrologyApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponseSahamResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -11391,7 +11431,7 @@ class AstrologyApi:
     ) -> ApiResponseYogaEndpointResponse:
         """Calculate yoga combinations
 
-        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, classical results, modern summary, and keywords.
+        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
 
         :param yoga_request: (required)
         :type yoga_request: YogaRequest
@@ -11467,7 +11507,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseYogaEndpointResponse]:
         """Calculate yoga combinations
 
-        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, classical results, modern summary, and keywords.
+        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
 
         :param yoga_request: (required)
         :type yoga_request: YogaRequest
@@ -11543,7 +11583,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Calculate yoga combinations
 
-        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, classical results, modern summary, and keywords.
+        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
 
         :param yoga_request: (required)
         :type yoga_request: YogaRequest

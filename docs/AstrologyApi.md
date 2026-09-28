@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**ayanamsha**](AstrologyApi.md#ayanamsha) | **GET** /v1/astro/ayanamsha | Ayanamsha Values
 [**char_dasha**](AstrologyApi.md#char_dasha) | **POST** /v1/astro/char-dasha | Jaimini Char Dasha
 [**chart_svg**](AstrologyApi.md#chart_svg) | **POST** /v1/astro/chart | Generate Kundali chart SVG
-[**dasha**](AstrologyApi.md#dasha) | **POST** /v1/astro/dasha | Vimshottari Dasha periods
+[**dasha**](AstrologyApi.md#dasha) | **POST** /v1/astro/dasha | Vimshottari Dasha
 [**dasha_transits**](AstrologyApi.md#dasha_transits) | **POST** /v1/astro/dasha-transits | Dasha-Transit Correlation
 [**doshas**](AstrologyApi.md#doshas) | **POST** /v1/astro/dosha | Calculate dosha report
 [**gemstones**](AstrologyApi.md#gemstones) | **POST** /v1/astro/gemstones | Gemstone Recommendations
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 [**matchmaking_dashakoot**](AstrologyApi.md#matchmaking_dashakoot) | **POST** /v1/astro/matchmaking/dashakoot | Dashakoot — 10-Koota Compatibility
 [**matchmaking_papasamyam**](AstrologyApi.md#matchmaking_papasamyam) | **POST** /v1/astro/matchmaking/papasamyam | Papasamyam — Malefic Planet Compatibility
 [**matchmaking_porutham**](AstrologyApi.md#matchmaking_porutham) | **POST** /v1/astro/matchmaking/porutham | Kerala Porutham — 10-Porutham Compatibility
-[**matchmaking_thirumana_porutham**](AstrologyApi.md#matchmaking_thirumana_porutham) | **POST** /v1/astro/matchmaking/thirumana-porutham | Tamil Thirumana Porutham — 10-Porutham Compatibility
+[**matchmaking_thirumana_porutham**](AstrologyApi.md#matchmaking_thirumana_porutham) | **POST** /v1/astro/matchmaking/thirumana-porutham | Tamil Thirumana Porutham — 12-Porutham Compatibility
 [**muhurta**](AstrologyApi.md#muhurta) | **POST** /v1/astro/muhurta | Muhurta — Auspicious Timing
 [**nakshatra**](AstrologyApi.md#nakshatra) | **GET** /v1/astro/nakshatra/{name} | Nakshatra Profile
 [**nakshatra_prediction**](AstrologyApi.md#nakshatra_prediction) | **POST** /v1/astro/nakshatra/prediction | Personal Nakshatra Prediction (Tarabala)
@@ -28,7 +28,7 @@ Method | HTTP request | Description
 [**panchanga_calendar**](AstrologyApi.md#panchanga_calendar) | **GET** /v1/astro/panchanga/calendar | Monthly Panchanga calendar
 [**panchanga_calendar_post**](AstrologyApi.md#panchanga_calendar_post) | **POST** /v1/astro/panchanga/calendar | Monthly Panchanga calendar (JSON body)
 [**panchanga_choghadiya**](AstrologyApi.md#panchanga_choghadiya) | **POST** /v1/astro/panchanga/choghadiya | Choghadiya periods
-[**panchanga_festivals**](AstrologyApi.md#panchanga_festivals) | **GET** /v1/astro/panchanga/festivals | Hindu festival calendar
+[**panchanga_festivals**](AstrologyApi.md#panchanga_festivals) | **GET** /v1/astro/panchanga/festivals | Hindu festival and vrat calendar
 [**panchanga_hora**](AstrologyApi.md#panchanga_hora) | **POST** /v1/astro/panchanga/hora | Planetary hours (Hora)
 [**panchanga_rahu_kaal**](AstrologyApi.md#panchanga_rahu_kaal) | **POST** /v1/astro/panchanga/rahu-kaal | Rahu Kaal, Gulika Kaal, Yamaganda Kaal
 [**panchanga_tamil**](AstrologyApi.md#panchanga_tamil) | **GET** /v1/astro/panchanga/tamil | Tamil Panchanga
@@ -45,7 +45,7 @@ Method | HTTP request | Description
 
 
 # **atmakaraka**
-> object atmakaraka(atmakaraka_request)
+> ApiResponseAtmakarakaResponse atmakaraka(atmakaraka_request)
 
 Jaimini Charakarakas
 
@@ -57,6 +57,7 @@ Computes all 8 Jaimini Charakarakas from the natal chart: Atmakaraka, Amatyakara
 
 ```python
 import asterwise
+from asterwise.models.api_response_atmakaraka_response import ApiResponseAtmakarakaResponse
 from asterwise.models.atmakaraka_request import AtmakarakaRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -103,7 +104,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseAtmakarakaResponse**](ApiResponseAtmakarakaResponse.md)
 
 ### Authorization
 
@@ -132,7 +133,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ayanamsha**
-> object ayanamsha(var_date=var_date)
+> ApiResponseAyanamshaResponse ayanamsha(var_date=var_date)
 
 Ayanamsha Values
 
@@ -144,6 +145,7 @@ Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Trop
 
 ```python
 import asterwise
+from asterwise.models.api_response_ayanamsha_response import ApiResponseAyanamshaResponse
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -189,7 +191,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseAyanamshaResponse**](ApiResponseAyanamshaResponse.md)
 
 ### Authorization
 
@@ -218,7 +220,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **char_dasha**
-> object char_dasha(char_dasha_request)
+> ApiResponseCharDashaResponse char_dasha(char_dasha_request)
 
 Jaimini Char Dasha
 
@@ -230,6 +232,7 @@ Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini schoo
 
 ```python
 import asterwise
+from asterwise.models.api_response_char_dasha_response import ApiResponseCharDashaResponse
 from asterwise.models.char_dasha_request import CharDashaRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -276,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseCharDashaResponse**](ApiResponseCharDashaResponse.md)
 
 ### Authorization
 
@@ -419,9 +422,9 @@ Name | Type | Description  | Notes
 # **dasha**
 > ApiResponseDashaEndpointResponse dasha(dasha_request)
 
-Vimshottari Dasha periods
+Vimshottari Dasha
 
-Calculate complete Vimshottari Dasha timeline for a birth chart. Returns all Mahadasha and Antardasha periods with dates, plus classical interpretation text for the currently active Mahadasha and Antardasha per classical Vedic tradition. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana dasha periods up to 5 levels deep. Starting planet determined by Moon nakshatra (Janma Nakshatra).
+Calculate the complete Vimshottari Dasha timeline for a birth chart. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana periods up to 5 levels deep, with start and end dates for each. The starting planet is determined by the Moon's nakshatra at birth (Janma Nakshatra). Interpretation text accompanies the currently active Mahadasha and Antardasha.
 
 ### Example
 
@@ -457,7 +460,7 @@ with asterwise.ApiClient(configuration) as api_client:
     dasha_request = {name=Arjun Mehta, date=1985-11-12, time=06:45, location=Mumbai, ayanamsa=lahiri} # DashaRequest | 
 
     try:
-        # Vimshottari Dasha periods
+        # Vimshottari Dasha
         api_response = api_instance.dasha(dasha_request)
         print("The response of AstrologyApi->dasha:\n")
         pprint(api_response)
@@ -505,7 +508,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **dasha_transits**
-> object dasha_transits(dasha_transits_request)
+> ApiResponseDashaTransitsResponse dasha_transits(dasha_transits_request)
 
 Dasha-Transit Correlation
 
@@ -517,6 +520,7 @@ Correlates active Vimshottari Dasha lords (maha, antar, pratyantar) with current
 
 ```python
 import asterwise
+from asterwise.models.api_response_dasha_transits_response import ApiResponseDashaTransitsResponse
 from asterwise.models.dasha_transits_request import DashaTransitsRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -563,7 +567,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseDashaTransitsResponse**](ApiResponseDashaTransitsResponse.md)
 
 ### Authorization
 
@@ -680,7 +684,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **gemstones**
-> object gemstones(gemstone_request)
+> ApiResponseGemstoneResponse gemstones(gemstone_request)
 
 Gemstone Recommendations
 
@@ -692,6 +696,7 @@ Recommends gemstones based on the natal chart. Primary gemstone strengthens the 
 
 ```python
 import asterwise
+from asterwise.models.api_response_gemstone_response import ApiResponseGemstoneResponse
 from asterwise.models.gemstone_request import GemstoneRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -738,7 +743,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseGemstoneResponse**](ApiResponseGemstoneResponse.md)
 
 ### Authorization
 
@@ -767,11 +772,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ghat_chakra**
-> object ghat_chakra(birth_input)
+> ApiResponseGhatChakraResponse ghat_chakra(birth_input)
 
 Ghat Chakra
 
-Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided. Computed per classical muhurta tradition.
+Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided.
 
 ### Example
 
@@ -779,6 +784,7 @@ Returns the four Ghatak (inauspicious) timing parameters for a native based on t
 
 ```python
 import asterwise
+from asterwise.models.api_response_ghat_chakra_response import ApiResponseGhatChakraResponse
 from asterwise.models.birth_input import BirthInput
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -825,7 +831,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseGhatChakraResponse**](ApiResponseGhatChakraResponse.md)
 
 ### Authorization
 
@@ -854,7 +860,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **gochar**
-> object gochar(gochar_request)
+> ApiResponseGocharResponse gochar(gochar_request)
 
 Gochar — Transit Analysis
 
@@ -866,6 +872,7 @@ Computes planetary transits against a natal chart using classical Vedic rules. R
 
 ```python
 import asterwise
+from asterwise.models.api_response_gochar_response import ApiResponseGocharResponse
 from asterwise.models.gochar_request import GocharRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -912,7 +919,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseGocharResponse**](ApiResponseGocharResponse.md)
 
 ### Authorization
 
@@ -941,7 +948,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ishta_devata**
-> object ishta_devata(ishta_devta_request)
+> ApiResponseIshtaDevtaResponse ishta_devata(ishta_devta_request)
 
 Ishta Devta — Personal Deity
 
@@ -953,6 +960,7 @@ Computes Ishta Devta (personal deity) from the 12th house lord of the Navamsa (D
 
 ```python
 import asterwise
+from asterwise.models.api_response_ishta_devta_response import ApiResponseIshtaDevtaResponse
 from asterwise.models.ishta_devta_request import IshtaDevtaRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -999,7 +1007,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseIshtaDevtaResponse**](ApiResponseIshtaDevtaResponse.md)
 
 ### Authorization
 
@@ -1116,7 +1124,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matchmaking_dashakoot**
-> object matchmaking_dashakoot(dashakoot_request)
+> ApiResponseDashakootResponse matchmaking_dashakoot(dashakoot_request)
 
 Dashakoot — 10-Koota Compatibility
 
@@ -1128,6 +1136,7 @@ Computes all 10 kootas for two persons: the standard 8 Ashtakoot kootas plus Mah
 
 ```python
 import asterwise
+from asterwise.models.api_response_dashakoot_response import ApiResponseDashakootResponse
 from asterwise.models.dashakoot_request import DashakootRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -1174,7 +1183,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseDashakootResponse**](ApiResponseDashakootResponse.md)
 
 ### Authorization
 
@@ -1203,7 +1212,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matchmaking_papasamyam**
-> object matchmaking_papasamyam(papasamyam_request)
+> ApiResponsePapasamyamResponse matchmaking_papasamyam(papasamyam_request)
 
 Papasamyam — Malefic Planet Compatibility
 
@@ -1215,6 +1224,7 @@ Computes Papasamyam between two natal charts. Scores each person based on Sun, M
 
 ```python
 import asterwise
+from asterwise.models.api_response_papasamyam_response import ApiResponsePapasamyamResponse
 from asterwise.models.papasamyam_request import PapasamyamRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -1261,7 +1271,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponsePapasamyamResponse**](ApiResponsePapasamyamResponse.md)
 
 ### Authorization
 
@@ -1290,7 +1300,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matchmaking_porutham**
-> object matchmaking_porutham(portutham_request)
+> ApiResponsePoruthamResponse matchmaking_porutham(portutham_request)
 
 Kerala Porutham — 10-Porutham Compatibility
 
@@ -1302,6 +1312,7 @@ Computes all 10 Kerala Poruthams: Dinam, Ganam, Mahendra, Stree Deergha, Yoni, R
 
 ```python
 import asterwise
+from asterwise.models.api_response_porutham_response import ApiResponsePoruthamResponse
 from asterwise.models.portutham_request import PortuthamRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -1348,7 +1359,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponsePoruthamResponse**](ApiResponsePoruthamResponse.md)
 
 ### Authorization
 
@@ -1377,9 +1388,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matchmaking_thirumana_porutham**
-> object matchmaking_thirumana_porutham(thirumana_porutham_request)
+> ApiResponseThirumanaPoruthamResponse matchmaking_thirumana_porutham(thirumana_porutham_request)
 
-Tamil Thirumana Porutham — 10-Porutham Compatibility
+Tamil Thirumana Porutham — 12-Porutham Compatibility
 
 Computes all 10 Tamil Thirumana Poruthams with Tamil naming convention. Includes Rajju severity classification (Siro=most severe to Pada=least severe). Rajju and Vedha are absolute vetoes. person1 = groom, person2 = bride.
 
@@ -1389,6 +1400,7 @@ Computes all 10 Tamil Thirumana Poruthams with Tamil naming convention. Includes
 
 ```python
 import asterwise
+from asterwise.models.api_response_thirumana_porutham_response import ApiResponseThirumanaPoruthamResponse
 from asterwise.models.thirumana_porutham_request import ThirumanaPoruthamRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -1416,7 +1428,7 @@ with asterwise.ApiClient(configuration) as api_client:
     thirumana_porutham_request = asterwise.ThirumanaPoruthamRequest() # ThirumanaPoruthamRequest | 
 
     try:
-        # Tamil Thirumana Porutham — 10-Porutham Compatibility
+        # Tamil Thirumana Porutham — 12-Porutham Compatibility
         api_response = api_instance.matchmaking_thirumana_porutham(thirumana_porutham_request)
         print("The response of AstrologyApi->matchmaking_thirumana_porutham:\n")
         pprint(api_response)
@@ -1435,7 +1447,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseThirumanaPoruthamResponse**](ApiResponseThirumanaPoruthamResponse.md)
 
 ### Authorization
 
@@ -1464,11 +1476,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **muhurta**
-> object muhurta(muhurta_request)
+> ApiResponseMuhurtaResponse muhurta(muhurta_request)
 
 Muhurta — Auspicious Timing
 
-Finds and ranks auspicious time windows for a specific event type. Scores each Choghadiya period using Choghadiya quality, Yoga, Vara (weekday), and Tithi. Returns top N ranked windows. Supported events: marriage, travel, business, griha_pravesh, naming_ceremony.
+Finds and ranks auspicious time windows for an activity between two dates (up to a year) at a location. The range is cut at every change of tithi, nakshatra, yoga, karana, lagna, sunrise and sunset and at the edges of Rahu Kaal, Yamaganda, Gulika, Durmuhurta, Varjyam and Bhadra, so windows start and end at exact moments. A moment is ruled out when the season bars the activity (Chaturmas, Adhik Maas, Pitru Paksha, Kharmas, Holashtak, Guru or Shukra asta, Panchaka, per activity), when its nakshatra, tithi or weekday is not one the activity allows, or when it falls in an inauspicious period. Survivors are scored 0-100 and returned with ISO 8601 start_at and end_at, the civil date and the panchanga day, the reasons and cautions (the earlier fields, including HH:MM start and end on the panchanga day's date, are still returned). Optional participants (up to two) add Tarabala and Chandrabala. Activities: marriage, griha_pravesh, business, travel, naming_ceremony, vehicle_purchase, property_purchase, mundan, annaprashan, upanayana, vidyarambha.
 
 ### Example
 
@@ -1476,6 +1488,7 @@ Finds and ranks auspicious time windows for a specific event type. Scores each C
 
 ```python
 import asterwise
+from asterwise.models.api_response_muhurta_response import ApiResponseMuhurtaResponse
 from asterwise.models.muhurta_request import MuhurtaRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -1522,7 +1535,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseMuhurtaResponse**](ApiResponseMuhurtaResponse.md)
 
 ### Authorization
 
@@ -1551,7 +1564,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **nakshatra**
-> object nakshatra(name)
+> ApiResponseNakshatraProfileResponse nakshatra(name)
 
 Nakshatra Profile
 
@@ -1563,6 +1576,7 @@ Returns the complete classical profile for a given nakshatra: deity, ruling plan
 
 ```python
 import asterwise
+from asterwise.models.api_response_nakshatra_profile_response import ApiResponseNakshatraProfileResponse
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -1608,7 +1622,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseNakshatraProfileResponse**](ApiResponseNakshatraProfileResponse.md)
 
 ### Authorization
 
@@ -1637,11 +1651,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **nakshatra_prediction**
-> object nakshatra_prediction(nakshatra_prediction_request)
+> ApiResponseNakshatraPredictionResponse nakshatra_prediction(nakshatra_prediction_request)
 
 Personal Nakshatra Prediction (Tarabala)
 
-Returns a personalised daily prediction using Tarabala and Chandrabala from classical muhurta tradition. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today. Computed per classical Vedic nakshatra tradition.
+Returns a personalised daily prediction using Tarabala and Chandrabala for the day at the birth place (sunrise to next sunrise). The top-level tara is the one at sunrise; transit_nakshatras lists every nakshatra the Moon passes through that day with its tara. The tara names the round of nine: the first tara is Janma at count 1 (Moon in the birth nakshatra), Anujanma at 10 and Trijanma at 19. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today.
 
 ### Example
 
@@ -1649,6 +1663,7 @@ Returns a personalised daily prediction using Tarabala and Chandrabala from clas
 
 ```python
 import asterwise
+from asterwise.models.api_response_nakshatra_prediction_response import ApiResponseNakshatraPredictionResponse
 from asterwise.models.nakshatra_prediction_request import NakshatraPredictionRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -1695,7 +1710,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseNakshatraPredictionResponse**](ApiResponseNakshatraPredictionResponse.md)
 
 ### Authorization
 
@@ -1816,7 +1831,7 @@ Name | Type | Description  | Notes
 
 Daily Panchanga
 
-Calculate Vedic Panchanga for a given date and location. Returns Tithi, Nakshatra, Yoga, Karana, Vara (weekday), and auspicious and inauspicious periods for the day. Returns Tithi, Vara (weekday), Nakshatra, Yoga, and Karana for the birth date and location.
+Vedic Panchanga for a date and location. The top-level tithi, vara, nakshatra, yoga and karana are the limbs at sunrise (or at `time` when given). The rest describes the whole panchanga day, sunrise to next sunrise: every tithi, nakshatra, yoga and karana active in it with ISO start and end times and kshaya/vriddhi flags; sunrise, sunset, moonrise and moonset; Sun and Moon rashi; lunar month in amanta and purnimanta reckoning (with Adhik months); Vikram, Shaka and Gujarati samvat; ritu and ayana; and the day's timings: Rahu Kaal, Gulika, Yamaganda, Abhijit, Brahma Muhurta, Durmuhurta, Varjyam, Amrit Kaal, Bhadra, Panchaka, Pradosh and others.
 
 ### Example
 
@@ -1904,7 +1919,7 @@ Name | Type | Description  | Notes
 
 Monthly Panchanga calendar
 
-Calculate complete Panchanga for every day of a given month at a given location. Returns all 5 Panchanga elements (Tithi, Vara, Nakshatra, Yoga, Karana) plus Rahu Kaal for each day. Useful for building monthly almanac views.
+Panchanga for every day of a month at a location. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days.
 
 ### Example
 
@@ -2175,11 +2190,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **panchanga_festivals**
-> ApiResponseFestivalCalendarResponse panchanga_festivals(year, location=location, latitude=latitude, longitude=longitude, timezone=timezone)
+> ApiResponseFestivalCalendarResponse panchanga_festivals(year, location=location, latitude=latitude, longitude=longitude, timezone=timezone, categories=categories)
 
-Hindu festival calendar
+Hindu festival and vrat calendar
 
-Compute all major Hindu festival dates for a given year and location. Returns 20 pan-Hindu festivals including solar sankrantis (Makar Sankranti, Vaisakhi) and tithi-based festivals (Diwali, Holi, Dussehra, Janmashtami, Ganesh Chaturthi, Ram Navami, and 12 others). All dates are astronomically computed — no hardcoded dates. Tithi festivals use the Sun-Moon elongation at local sunrise with Lahiri sidereal ayanamsa. Location is required for accurate sunrise-based tithi determination.
+Hindu festivals, vrats, sankrantis, eclipses and periods for a year at a location. Each lunar festival is fixed by its lunar month (amanta, with Adhik months detected from new moons and sankrantis), its tithi, and the part of the day in which the tithi must prevail (sunrise, forenoon, Madhyahna, Aparahna, Pradosh, Nishita, moonrise), with the classical tie-breaks when a tithi spans two days, Bhadra rules for Holika Dahan and Raksha Bandhan, and the Smarta Ekadashi rule. Categories: festival (about 50 named festivals), vrat (every Ekadashi, Pradosh, Sankashti Chaturthi, Masik Shivaratri, Purnima and Amavasya), sankranti (12 solar ingresses), eclipse (with local visibility and contact times), period (Adhik Maas, Chaturmas, Pitru Paksha, Navratri, Holashtak, Kharmas). By default only the named festivals are returned; pass `categories` for the rest. Lahiri ayanamsa.
 
 ### Example
 
@@ -2216,10 +2231,11 @@ with asterwise.ApiClient(configuration) as api_client:
     latitude = 3.4 # float |  (optional)
     longitude = 3.4 # float |  (optional)
     timezone = 'timezone_example' # str | IANA timezone (optional)
+    categories = 'categories_example' # str | Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. 'festival,vrat,period' for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or 'eclipse' for eclipses. (optional)
 
     try:
-        # Hindu festival calendar
-        api_response = api_instance.panchanga_festivals(year, location=location, latitude=latitude, longitude=longitude, timezone=timezone)
+        # Hindu festival and vrat calendar
+        api_response = api_instance.panchanga_festivals(year, location=location, latitude=latitude, longitude=longitude, timezone=timezone, categories=categories)
         print("The response of AstrologyApi->panchanga_festivals:\n")
         pprint(api_response)
     except Exception as e:
@@ -2238,6 +2254,7 @@ Name | Type | Description  | Notes
  **latitude** | **float**|  | [optional] 
  **longitude** | **float**|  | [optional] 
  **timezone** | **str**| IANA timezone | [optional] 
+ **categories** | **str**| Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. &#39;festival,vrat,period&#39; for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or &#39;eclipse&#39; for eclipses. | [optional] 
 
 ### Return type
 
@@ -2274,7 +2291,7 @@ Name | Type | Description  | Notes
 
 Planetary hours (Hora)
 
-Calculate all 24 Hora (planetary hours) for a given date and location, starting from sunrise. Each hora is ruled by a planet in the Chaldean sequence with qualities indicating suitable activities.
+Calculate all 24 Hora (planetary hours) for a given date and location using unequal seasonal division: 12 equal parts from sunrise to sunset and 12 from sunset to next sunrise. The first hora after sunrise is ruled by the sunrise-boundary Vedic vara lord; subsequent horas follow the Chaldean sequence. Response includes a convention field naming the division used.
 
 ### Example
 
@@ -2344,7 +2361,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | 24 planetary hours with ruling planet, start/end times, and suitable activities |  -  |
+**200** | 24 planetary hours with ruling planet, start/end times, convention, and suitable activities |  -  |
 **401** | Authentication failed |  -  |
 **403** | Authorization failed |  -  |
 **404** | Resource not found |  -  |
@@ -2450,7 +2467,7 @@ Name | Type | Description  | Notes
 
 Tamil Panchanga
 
-Tamil-specific Panchanga for a date and location. Returns all four Tamil inauspicious periods (Rahu Kalam, Yamagandam, Kuligai, Emagandam), Nalla Neram (auspicious daytime windows between inauspicious periods), and the Tamil solar month name derived from the Sun's sidereal position at sunrise.
+Tamil-specific Panchanga for a date and location. Returns the Tamil inauspicious periods Rahu Kalam, Yamagandam and Kuligai (emagandam is the Tamil spelling of Yamagandam and repeats the same period), Nalla Neram (daytime windows free of those periods), and the Tamil solar month name derived from the Sun's sidereal position at sunrise.
 
 ### Example
 
@@ -2541,11 +2558,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pitra_dosha**
-> object pitra_dosha(birth_input)
+> ApiResponsePitruDoshaResponse pitra_dosha(birth_input)
 
 Pitru Dosha (Pitru Shapa)
 
-Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence per classical Vedic doctrine. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
+Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
 ### Example
 
@@ -2553,6 +2570,7 @@ Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the nata
 
 ```python
 import asterwise
+from asterwise.models.api_response_pitru_dosha_response import ApiResponsePitruDoshaResponse
 from asterwise.models.birth_input import BirthInput
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -2599,7 +2617,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponsePitruDoshaResponse**](ApiResponsePitruDoshaResponse.md)
 
 ### Authorization
 
@@ -2628,11 +2646,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **planet_nature**
-> object planet_nature(planet=planet)
+> ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse planet_nature(planet=planet)
 
 Graha Nature
 
-Returns classical graha properties for all nine planets or a single planet per classical Vedic tradition. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
+Returns classical graha properties for all nine planets or a single planet. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
 
 ### Example
 
@@ -2640,6 +2658,7 @@ Returns classical graha properties for all nine planets or a single planet per c
 
 ```python
 import asterwise
+from asterwise.models.api_response_union_planet_nature_all_response_planet_nature_single_response import ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -2685,7 +2704,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse**](ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse.md)
 
 ### Authorization
 
@@ -2714,11 +2733,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **puja_suggestions**
-> object puja_suggestions(planet=planet)
+> ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse puja_suggestions(planet=planet)
 
 Puja Suggestions
 
-Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra grounded in classical Vedic worship tradition. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
+Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
 
 ### Example
 
@@ -2726,6 +2745,7 @@ Returns classical puja recommendations for planetary propitiation. Each planet h
 
 ```python
 import asterwise
+from asterwise.models.api_response_union_puja_suggestions_all_response_puja_suggestion_single_response import ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -2771,7 +2791,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse**](ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse.md)
 
 ### Authorization
 
@@ -2800,7 +2820,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remedies**
-> object remedies(remedies_request)
+> ApiResponseRemediesResponse remedies(remedies_request)
 
 Personalised Remedies
 
@@ -2812,6 +2832,7 @@ Prescribes personalised Vedic remedies based on planetary dignity in the natal c
 
 ```python
 import asterwise
+from asterwise.models.api_response_remedies_response import ApiResponseRemediesResponse
 from asterwise.models.remedies_request import RemediesRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -2858,7 +2879,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseRemediesResponse**](ApiResponseRemediesResponse.md)
 
 ### Authorization
 
@@ -2887,7 +2908,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **rudraksha**
-> object rudraksha(planet=planet)
+> ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse rudraksha(planet=planet)
 
 Rudraksha Recommendations
 
@@ -2899,6 +2920,7 @@ Returns Rudraksha bead recommendations per planet. Each planet maps to a specifi
 
 ```python
 import asterwise
+from asterwise.models.api_response_union_rudraksha_all_response_rudraksha_single_response import ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -2944,7 +2966,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse**](ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse.md)
 
 ### Authorization
 
@@ -3061,7 +3083,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **varshaphal**
-> object varshaphal(varshaphal_request)
+> ApiResponseVarshaphalResponse varshaphal(varshaphal_request)
 
 Varshaphal — Solar Return Chart
 
@@ -3073,6 +3095,7 @@ Computes the Varshaphal (annual horoscope) for a given year. Finds the exact mom
 
 ```python
 import asterwise
+from asterwise.models.api_response_varshaphal_response import ApiResponseVarshaphalResponse
 from asterwise.models.varshaphal_request import VarshaphalRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -3119,7 +3142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseVarshaphalResponse**](ApiResponseVarshaphalResponse.md)
 
 ### Authorization
 
@@ -3148,11 +3171,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **varshaphal_harsha_bala**
-> object varshaphal_harsha_bala(varshaphal_request)
+> ApiResponseHarshaBalaResponse varshaphal_harsha_bala(varshaphal_request)
 
 Varshaphal — Harsha Bala
 
-Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per classical Tajika tradition.
+Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per Tajika rules.
 
 ### Example
 
@@ -3160,6 +3183,7 @@ Computes Harsha Bala (positional happiness score) for all 7 classical planets in
 
 ```python
 import asterwise
+from asterwise.models.api_response_harsha_bala_response import ApiResponseHarshaBalaResponse
 from asterwise.models.varshaphal_request import VarshaphalRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -3206,7 +3230,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseHarshaBalaResponse**](ApiResponseHarshaBalaResponse.md)
 
 ### Authorization
 
@@ -3235,11 +3259,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **varshaphal_saham**
-> object varshaphal_saham(varshaphal_request)
+> ApiResponseSahamResponse varshaphal_saham(varshaphal_request)
 
 Varshaphal — Tajika Saham Points
 
-Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per classical Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
+Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
 
 ### Example
 
@@ -3247,6 +3271,7 @@ Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams a
 
 ```python
 import asterwise
+from asterwise.models.api_response_saham_response import ApiResponseSahamResponse
 from asterwise.models.varshaphal_request import VarshaphalRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -3293,7 +3318,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseSahamResponse**](ApiResponseSahamResponse.md)
 
 ### Authorization
 
@@ -3326,7 +3351,7 @@ Name | Type | Description  | Notes
 
 Calculate yoga combinations
 
-Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, classical results, modern summary, and keywords.
+Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
 
 ### Example
 

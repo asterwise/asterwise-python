@@ -8,11 +8,11 @@ Method | HTTP request | Description
 
 
 # **prashna**
-> object prashna(prashna_request)
+> ApiResponsePrashnaResponse prashna(prashna_request)
 
 Prashna (Horary Chart)
 
-Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed. Sources: Prashna Marga, Brihat Prashna Sara.
+Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed.
 
 ### Example
 
@@ -20,6 +20,7 @@ Computes a Prashna (Horary) chart for the exact moment a question is asked. Retu
 
 ```python
 import asterwise
+from asterwise.models.api_response_prashna_response import ApiResponsePrashnaResponse
 from asterwise.models.prashna_request import PrashnaRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -66,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponsePrashnaResponse**](ApiResponsePrashnaResponse.md)
 
 ### Authorization
 

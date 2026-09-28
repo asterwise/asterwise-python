@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.error_code import ErrorCode
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,7 +30,7 @@ class ErrorResponse(BaseModel):
     Standard error envelope returned by all Asterwise API endpoints.  Every error response follows this 8-field shape. The 'error' field is the machine-readable identifier (use it for programmatic handling). The 'message' field is the human-readable explanation. The 'doc_url' field links to the canonical documentation for the error code. Include 'request_id' when contacting support.
     """ # noqa: E501
     success: Optional[StrictBool] = Field(default=False, description="Always false for error responses.")
-    error: StrictStr = Field(description="Machine-readable error code. Use this for programmatic error handling. See doc_url for the canonical docs page.")
+    error: ErrorCode = Field(description="Machine-readable error code. Use this for programmatic error handling. See doc_url for the canonical docs page. The full set of codes is the ErrorCode enum in this schema.")
     message: StrictStr = Field(description="Human-readable explanation of what went wrong and how to fix it. Safe to surface in customer-facing UIs.")
     details: Optional[List[Any]] = Field(default=None, description="Optional structured details. For validation errors, contains per-field error objects. Empty list when there are no structured details.")
     retry_after: Optional[StrictInt] = None

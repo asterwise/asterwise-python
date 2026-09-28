@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **western_biorhythm**
-> object western_biorhythm(biorhythm_request)
+> ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse western_biorhythm(biorhythm_request)
 
 Biorhythm Cycles
 
@@ -24,6 +24,7 @@ Computes physical (23-day), emotional (28-day), and intellectual (33-day) biorhy
 
 ```python
 import asterwise
+from asterwise.models.api_response_union_biorhythm_single_day_response_biorhythm_range_response import ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse
 from asterwise.models.biorhythm_request import BiorhythmRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -70,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse**](ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse.md)
 
 ### Authorization
 
@@ -99,7 +100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **western_horoscope_daily**
-> object western_horoscope_daily(sun_sign)
+> ApiResponseWesternHoroscopeData western_horoscope_daily(sun_sign)
 
 Western daily horoscope
 
@@ -111,6 +112,7 @@ Returns today's pre-generated Western daily horoscope for the given Sun sign (tr
 
 ```python
 import asterwise
+from asterwise.models.api_response_western_horoscope_data import ApiResponseWesternHoroscopeData
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -156,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseWesternHoroscopeData**](ApiResponseWesternHoroscopeData.md)
 
 ### Authorization
 
@@ -185,7 +187,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **western_horoscope_monthly**
-> object western_horoscope_monthly(sun_sign)
+> ApiResponseWesternHoroscopeData western_horoscope_monthly(sun_sign)
 
 Western monthly horoscope
 
@@ -197,6 +199,7 @@ Returns this month's pre-generated Western monthly horoscope for the given Sun s
 
 ```python
 import asterwise
+from asterwise.models.api_response_western_horoscope_data import ApiResponseWesternHoroscopeData
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -242,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseWesternHoroscopeData**](ApiResponseWesternHoroscopeData.md)
 
 ### Authorization
 
@@ -271,7 +274,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **western_horoscope_weekly**
-> object western_horoscope_weekly(sun_sign)
+> ApiResponseWesternHoroscopeData western_horoscope_weekly(sun_sign)
 
 Western weekly horoscope
 
@@ -283,6 +286,7 @@ Returns this week's pre-generated Western weekly horoscope for the given Sun sig
 
 ```python
 import asterwise
+from asterwise.models.api_response_western_horoscope_data import ApiResponseWesternHoroscopeData
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -328,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseWesternHoroscopeData**](ApiResponseWesternHoroscopeData.md)
 
 ### Authorization
 
@@ -357,7 +361,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **western_horoscope_yearly**
-> object western_horoscope_yearly(sun_sign)
+> ApiResponseWesternHoroscopeData western_horoscope_yearly(sun_sign)
 
 Western yearly horoscope
 
@@ -369,6 +373,7 @@ Returns this year's pre-generated Western yearly horoscope for the given Sun sig
 
 ```python
 import asterwise
+from asterwise.models.api_response_western_horoscope_data import ApiResponseWesternHoroscopeData
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -414,7 +419,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseWesternHoroscopeData**](ApiResponseWesternHoroscopeData.md)
 
 ### Authorization
 

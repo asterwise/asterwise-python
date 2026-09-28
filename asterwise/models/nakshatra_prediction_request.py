@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -28,7 +28,7 @@ from pydantic_core import to_jsonable_python
 
 class NakshatraPredictionRequest(BaseModel):
     """
-    NakshatraPredictionRequest
+    Nakshatra daily prediction — extends BirthInput with optional target_date.
     """ # noqa: E501
     location: Optional[StrictStr] = None
     name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default='Chart', description="Person name associated with the birth record")

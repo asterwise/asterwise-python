@@ -1,7 +1,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -16,7 +16,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from typing import Any
+from asterwise.models.api_response_prashna_response import ApiResponsePrashnaResponse
 from asterwise.models.prashna_request import PrashnaRequest
 
 from asterwise.api_client import ApiClient, RequestSerialized
@@ -53,10 +53,10 @@ class PrashnaApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> object:
+    ) -> ApiResponsePrashnaResponse:
         """Prashna (Horary Chart)
 
-        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed. Sources: Prashna Marga, Brihat Prashna Sara.
+        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed.
 
         :param prashna_request: (required)
         :type prashna_request: PrashnaRequest
@@ -91,7 +91,7 @@ class PrashnaApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePrashnaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -129,10 +129,10 @@ class PrashnaApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[object]:
+    ) -> ApiResponse[ApiResponsePrashnaResponse]:
         """Prashna (Horary Chart)
 
-        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed. Sources: Prashna Marga, Brihat Prashna Sara.
+        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed.
 
         :param prashna_request: (required)
         :type prashna_request: PrashnaRequest
@@ -167,7 +167,7 @@ class PrashnaApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePrashnaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -208,7 +208,7 @@ class PrashnaApi:
     ) -> RESTResponseType:
         """Prashna (Horary Chart)
 
-        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed. Sources: Prashna Marga, Brihat Prashna Sara.
+        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed.
 
         :param prashna_request: (required)
         :type prashna_request: PrashnaRequest
@@ -243,7 +243,7 @@ class PrashnaApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "object",
+            '200': "ApiResponsePrashnaResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",

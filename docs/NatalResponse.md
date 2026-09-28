@@ -12,18 +12,18 @@ Name | Type | Description | Notes
 **ayanamsa_value** | **float** | Numerical ayanamsa value used in calculations | 
 **ayanamsa_used** | **str** | Ayanamsa mode used for the chart | 
 **birth_time_provided** | **bool** | Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits. | [optional] [default to True]
-**interpretation** | **List[object]** |  | [optional] 
-**ascendant_sign_interpretation** | **object** |  | [optional] 
+**interpretation** | **List[Optional[Dict[str, object]]]** |  | [optional] 
+**ascendant_sign_interpretation** | **Dict[str, object]** |  | [optional] 
 **moon_sign** | **str** |  | [optional] 
 **moon_nakshatra** | **str** |  | [optional] 
-**moon_sign_interpretation** | **object** |  | [optional] 
-**moon_nakshatra_interpretation** | **object** |  | [optional] 
-**avakahada** | **object** |  | [optional] 
+**moon_sign_interpretation** | **Dict[str, object]** |  | [optional] 
+**moon_nakshatra_interpretation** | **Dict[str, object]** |  | [optional] 
+**avakahada** | **Dict[str, object]** |  | [optional] 
 **bhava_madhya** | [**List[BhavaMadhyaEntry]**](BhavaMadhyaEntry.md) |  | [optional] 
 **bhava_sandhi** | [**List[BhavaMadhyaEntry]**](BhavaMadhyaEntry.md) |  | [optional] 
 **graha_drishti** | **Dict[str, Dict[str, int]]** |  | [optional] 
 **rashi_drishti** | [**List[RashiDrishtiEntry]**](RashiDrishtiEntry.md) |  | [optional] 
-**arudha_padas** | **Dict[str, object]** |  | [optional] 
+**arudha_padas** | **Dict[str, Optional[Dict[str, object]]]** |  | [optional] 
 **upapada_lagna** | [**UpapadaLagna**](UpapadaLagna.md) |  | [optional] 
 
 ## Example

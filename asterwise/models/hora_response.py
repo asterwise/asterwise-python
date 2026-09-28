@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -30,10 +30,12 @@ class HoraResponse(BaseModel):
     HoraResponse
     """ # noqa: E501
     var_date: StrictStr = Field(description="Date for which Hora is calculated (YYYY-MM-DD).", alias="date")
+    convention: StrictStr = Field(description="Hora division used. ``unequal_seasonal`` = 12 day + 12 night parts from real sunrise/sunset (panchanga / electional).")
     sunrise: StrictStr = Field(description="Sunrise time in HH:MM local time.")
+    sunset: StrictStr = Field(description="Sunset time in HH:MM local time.")
     next_sunrise: StrictStr = Field(description="Next day sunrise time in HH:MM local time.")
-    horas: List[HoraPeriod] = Field(description="24 planetary hours from sunrise to next sunrise.")
-    __properties: ClassVar[List[str]] = ["date", "sunrise", "next_sunrise", "horas"]
+    horas: List[HoraPeriod] = Field(description="24 planetary hours: 12 from sunrise to sunset, then 12 from sunset to next sunrise.")
+    __properties: ClassVar[List[str]] = ["date", "convention", "sunrise", "sunset", "next_sunrise", "horas"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -94,7 +96,9 @@ class HoraResponse(BaseModel):
 
         _obj = cls.model_validate({
             "date": obj.get("date"),
+            "convention": obj.get("convention"),
             "sunrise": obj.get("sunrise"),
+            "sunset": obj.get("sunset"),
             "next_sunrise": obj.get("next_sunrise"),
             "horas": [HoraPeriod.from_dict(_item) for _item in obj["horas"]] if obj.get("horas") is not None else None
         })

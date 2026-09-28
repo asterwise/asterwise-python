@@ -545,7 +545,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **business_name**
-> object business_name(name)
+> ApiResponseBusinessNameAnalysisResponse business_name(name)
 
 Business Name Numerology
 
@@ -557,6 +557,7 @@ Scores a business name using Pythagorean expression number. Returns single digit
 
 ```python
 import asterwise
+from asterwise.models.api_response_business_name_analysis_response import ApiResponseBusinessNameAnalysisResponse
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -602,7 +603,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseBusinessNameAnalysisResponse**](ApiResponseBusinessNameAnalysisResponse.md)
 
 ### Authorization
 
@@ -631,7 +632,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **business_name_post**
-> object business_name_post(business_name_post_request)
+> ApiResponseBusinessNameAnalysisResponse business_name_post(business_name_post_request)
 
 Business Name Numerology (JSON body)
 
@@ -643,6 +644,7 @@ Same analysis as GET /v1/numerology/business-name for clients that send a JSON b
 
 ```python
 import asterwise
+from asterwise.models.api_response_business_name_analysis_response import ApiResponseBusinessNameAnalysisResponse
 from asterwise.models.business_name_post_request import BusinessNamePostRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -689,7 +691,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseBusinessNameAnalysisResponse**](ApiResponseBusinessNameAnalysisResponse.md)
 
 ### Authorization
 
@@ -718,7 +720,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **chaldean**
-> object chaldean(chaldean_request)
+> ApiResponseChaldeanResponse chaldean(chaldean_request)
 
 Chaldean Numerology Profile
 
@@ -730,6 +732,7 @@ Computes a full Chaldean numerology profile. Chaldean uses a different letter-va
 
 ```python
 import asterwise
+from asterwise.models.api_response_chaldean_response import ApiResponseChaldeanResponse
 from asterwise.models.chaldean_request import ChaldeanRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -776,7 +779,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseChaldeanResponse**](ApiResponseChaldeanResponse.md)
 
 ### Authorization
 
@@ -1068,7 +1071,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **lo_shu**
-> object lo_shu(lo_shu_request)
+> ApiResponseLoShuResponse lo_shu(lo_shu_request)
 
 Lo Shu Grid
 
@@ -1080,6 +1083,7 @@ Builds a Lo Shu 3x3 numerology grid from a birth date. Returns the grid with dig
 
 ```python
 import asterwise
+from asterwise.models.api_response_lo_shu_response import ApiResponseLoShuResponse
 from asterwise.models.lo_shu_request import LoShuRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -1126,7 +1130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseLoShuResponse**](ApiResponseLoShuResponse.md)
 
 ### Authorization
 
@@ -1334,7 +1338,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **mobile_number**
-> object mobile_number(number)
+> ApiResponseDigitNumberAnalysisResponse mobile_number(number)
 
 Mobile Number Numerology
 
@@ -1346,6 +1350,7 @@ Analyses a mobile/phone number numerologically. Sums all digits to a single numb
 
 ```python
 import asterwise
+from asterwise.models.api_response_digit_number_analysis_response import ApiResponseDigitNumberAnalysisResponse
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -1391,7 +1396,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseDigitNumberAnalysisResponse**](ApiResponseDigitNumberAnalysisResponse.md)
 
 ### Authorization
 
@@ -1420,7 +1425,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **name_correction**
-> object name_correction(name_correction_request)
+> ApiResponseNameCorrectionResponse name_correction(name_correction_request)
 
 Name Correction Analysis
 
@@ -1432,6 +1437,7 @@ Analyses a full name using Pythagorean numerology and suggests spelling variants
 
 ```python
 import asterwise
+from asterwise.models.api_response_name_correction_response import ApiResponseNameCorrectionResponse
 from asterwise.models.name_correction_request import NameCorrectionRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -1478,7 +1484,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseNameCorrectionResponse**](ApiResponseNameCorrectionResponse.md)
 
 ### Authorization
 
@@ -2213,7 +2219,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **vehicle_number**
-> object vehicle_number(number)
+> ApiResponseDigitNumberAnalysisResponse vehicle_number(number)
 
 Vehicle Number Numerology
 
@@ -2225,6 +2231,7 @@ Analyses a vehicle registration number numerologically. Extracts digits, sums to
 
 ```python
 import asterwise
+from asterwise.models.api_response_digit_number_analysis_response import ApiResponseDigitNumberAnalysisResponse
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -2270,7 +2277,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**ApiResponseDigitNumberAnalysisResponse**](ApiResponseDigitNumberAnalysisResponse.md)
 
 ### Authorization
 

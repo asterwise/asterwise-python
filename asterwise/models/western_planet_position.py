@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -39,7 +39,7 @@ class WesternPlanetPosition(BaseModel):
     dignity: StrictStr = Field(description="Essential dignity: domicile | exaltation | detriment | fall | peregrine")
     dignity_score: StrictInt = Field(description="Essential dignity weight: domicile=5, exaltation=4, detriment=-5, fall=-4, peregrine=0")
     is_exaltation_degree: StrictBool = Field(description="True if planet is in the exact classical exaltation degree (Nth degree = N-1°00' to N-1°59'59\"). Always false for outer planets (no exact degree defined).")
-    dignity_disputed: StrictBool = Field(description="True for outer planet (Uranus/Neptune/Pluto) exaltation/fall — no classical consensus.")
+    dignity_disputed: StrictBool = Field(description="True for outer planet (Uranus/Neptune/Pluto) exaltation/fall — no established consensus.")
     __properties: ClassVar[List[str]] = ["name", "longitude", "sign", "sign_index", "degree_in_sign", "house", "is_retrograde", "dignity", "dignity_score", "is_exaltation_degree", "dignity_disputed"]
 
     model_config = ConfigDict(

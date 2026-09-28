@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **formation** | **str** | Formation condition | 
 **modern_summary** | **str** | Modern interpretation summary | 
 **keywords** | **List[str]** | Interpretation keywords | [optional] 
+**classical_sources** | [**List[ClassicalSource]**](ClassicalSource.md) | Classical texts this yoga is drawn from (empty when the yoga comes from general tradition rather than a named text) | [optional] 
 
 ## Example
 

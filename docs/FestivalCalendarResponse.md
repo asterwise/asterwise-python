@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **year** | **int** | Calendar year for which festivals are computed. | 
 **timezone** | **str** | IANA timezone used for sunrise-based tithi calculations. | 
-**total** | **int** | Total number of festivals found. | 
+**total** | **int** | Number of entries returned. | 
 **festivals** | [**List[FestivalEntry]**](FestivalEntry.md) | Festivals sorted chronologically by date. | 
 
 ## Example

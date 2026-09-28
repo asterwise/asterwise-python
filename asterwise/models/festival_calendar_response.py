@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -31,7 +31,7 @@ class FestivalCalendarResponse(BaseModel):
     """ # noqa: E501
     year: StrictInt = Field(description="Calendar year for which festivals are computed.")
     timezone: StrictStr = Field(description="IANA timezone used for sunrise-based tithi calculations.")
-    total: StrictInt = Field(description="Total number of festivals found.")
+    total: StrictInt = Field(description="Number of entries returned.")
     festivals: List[FestivalEntry] = Field(description="Festivals sorted chronologically by date.")
     __properties: ClassVar[List[str]] = ["year", "timezone", "total", "festivals"]
 

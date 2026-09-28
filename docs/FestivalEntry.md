@@ -6,10 +6,21 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Festival name. | 
-**var_date** | **str** | Festival date in YYYY-MM-DD format. | 
-**type** | **str** | Festival type: &#39;solar&#39; (sankranti-based) or &#39;tithi&#39; (lunar day-based). | 
-**description** | **str** | Classical basis for the festival date (tithi or sankranti). | 
+**var_date** | **str** | Festival date in YYYY-MM-DD format (start date for a period). | 
+**type** | **str** | &#39;solar&#39; (sankranti-based), &#39;tithi&#39; (lunar day-based) or &#39;eclipse&#39;. | 
+**description** | **str** | Classical basis for the date: the tithi or sankranti and the rule that picks the day. | 
 **significance** | **str** | Cultural and religious significance. | 
+**id** | **str** |  | [optional] 
+**category** | **str** |  | [optional] 
+**end_date** | **str** |  | [optional] 
+**masa** | [**FestivalMasa**](FestivalMasa.md) |  | [optional] 
+**paksha** | **str** |  | [optional] 
+**tithi** | [**FestivalTithi**](FestivalTithi.md) |  | [optional] 
+**rule** | **str** |  | [optional] 
+**observance_window** | [**FestivalWindow**](FestivalWindow.md) |  | [optional] 
+**note** | **str** |  | [optional] 
+**sankranti** | [**FestivalSankranti**](FestivalSankranti.md) |  | [optional] 
+**eclipse** | [**FestivalEclipse**](FestivalEclipse.md) |  | [optional] 
 
 ## Example
 

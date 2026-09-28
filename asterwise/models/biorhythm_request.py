@@ -3,7 +3,7 @@
 """
     Asterwise API
 
-    Vedic astrology, numerology, horoscope, and PDF report API. Send birth data, get accurate sidereal calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
+    Astrology and divination API — Vedic and Western astrology, numerology, tarot, crystals, dreams, and horoscopes. Send birth data, get accurate calculations as structured JSON.  **Base URL:** https://api.asterwise.com  **Authentication:** Bearer token — `Authorization: Bearer YOUR_API_KEY`  Get your free API key at https://asterwise.com
 
     The version of the OpenAPI document: 2026-03-01
     Contact: support@asterwise.com
@@ -32,7 +32,7 @@ class BiorhythmRequest(BaseModel):
     """ # noqa: E501
     birth_date: date = Field(description="Date of birth in YYYY-MM-DD format.")
     target_date: Optional[date] = None
-    days: Optional[Annotated[int, Field(le=90, strict=True, ge=1)]] = Field(default=1, description="Number of consecutive days to compute (1-90). Use 1 for a single day snapshot. Use >1 for a date range (e.g. 30 for a month view).")
+    days: Optional[Annotated[int, Field(le=90, strict=True, ge=1)]] = Field(default=1, description="Number of consecutive days to compute (1-90). Use 1 for a single day snapshot. Use >1 for a date range.")
     __properties: ClassVar[List[str]] = ["birth_date", "target_date", "days"]
 
     model_config = ConfigDict(
