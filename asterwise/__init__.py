@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 
 # Define package exports
 __all__ = [
@@ -283,12 +283,14 @@ __all__ = [
     "LalKitabRemediesResponse",
     "LalKitabRemedyItem",
     "LalKitabRequest",
+    "LifePathRequest",
     "LifePathResponse",
     "LoShuNumberEntry",
     "LoShuPlaneEntry",
     "LoShuRequest",
     "LoShuResponse",
     "LuckyNumbersApiResponse",
+    "LuckyNumbersRequest",
     "LunarReturnRequest",
     "Masa",
     "MasaName",
@@ -296,6 +298,7 @@ __all__ = [
     "MatchmakingResponse",
     "MaturityNumberRequest",
     "MaturityNumberResponse",
+    "MobileNumberRequest",
     "MonthlyTransitResponse",
     "MoonPhaseResponse",
     "MoonRashi",
@@ -420,6 +423,7 @@ __all__ = [
     "VarshaphalPlanet",
     "VarshaphalRequest",
     "VarshaphalResponse",
+    "VehicleNumberRequest",
     "WeeklyTransitResponse",
     "WesternAngle",
     "WesternAspect",
@@ -719,12 +723,14 @@ from asterwise.models.lal_kitab_planet_remedy import LalKitabPlanetRemedy as Lal
 from asterwise.models.lal_kitab_remedies_response import LalKitabRemediesResponse as LalKitabRemediesResponse
 from asterwise.models.lal_kitab_remedy_item import LalKitabRemedyItem as LalKitabRemedyItem
 from asterwise.models.lal_kitab_request import LalKitabRequest as LalKitabRequest
+from asterwise.models.life_path_request import LifePathRequest as LifePathRequest
 from asterwise.models.life_path_response import LifePathResponse as LifePathResponse
 from asterwise.models.lo_shu_number_entry import LoShuNumberEntry as LoShuNumberEntry
 from asterwise.models.lo_shu_plane_entry import LoShuPlaneEntry as LoShuPlaneEntry
 from asterwise.models.lo_shu_request import LoShuRequest as LoShuRequest
 from asterwise.models.lo_shu_response import LoShuResponse as LoShuResponse
 from asterwise.models.lucky_numbers_api_response import LuckyNumbersApiResponse as LuckyNumbersApiResponse
+from asterwise.models.lucky_numbers_request import LuckyNumbersRequest as LuckyNumbersRequest
 from asterwise.models.lunar_return_request import LunarReturnRequest as LunarReturnRequest
 from asterwise.models.masa import Masa as Masa
 from asterwise.models.masa_name import MasaName as MasaName
@@ -732,6 +738,7 @@ from asterwise.models.matchmaking_request import MatchmakingRequest as Matchmaki
 from asterwise.models.matchmaking_response import MatchmakingResponse as MatchmakingResponse
 from asterwise.models.maturity_number_request import MaturityNumberRequest as MaturityNumberRequest
 from asterwise.models.maturity_number_response import MaturityNumberResponse as MaturityNumberResponse
+from asterwise.models.mobile_number_request import MobileNumberRequest as MobileNumberRequest
 from asterwise.models.monthly_transit_response import MonthlyTransitResponse as MonthlyTransitResponse
 from asterwise.models.moon_phase_response import MoonPhaseResponse as MoonPhaseResponse
 from asterwise.models.moon_rashi import MoonRashi as MoonRashi
@@ -856,6 +863,7 @@ from asterwise.models.varshaphal_muntha import VarshaphalMuntha as VarshaphalMun
 from asterwise.models.varshaphal_planet import VarshaphalPlanet as VarshaphalPlanet
 from asterwise.models.varshaphal_request import VarshaphalRequest as VarshaphalRequest
 from asterwise.models.varshaphal_response import VarshaphalResponse as VarshaphalResponse
+from asterwise.models.vehicle_number_request import VehicleNumberRequest as VehicleNumberRequest
 from asterwise.models.weekly_transit_response import WeeklyTransitResponse as WeeklyTransitResponse
 from asterwise.models.western_angle import WesternAngle as WesternAngle
 from asterwise.models.western_aspect import WesternAspect as WesternAspect

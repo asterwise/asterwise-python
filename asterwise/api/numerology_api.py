@@ -42,14 +42,18 @@ from asterwise.models.app_api_response_api_response_compatibility_response2 impo
 from asterwise.models.business_name_post_request import BusinessNamePostRequest
 from asterwise.models.chaldean_request import ChaldeanRequest
 from asterwise.models.compatibility_request import CompatibilityRequest
+from asterwise.models.life_path_request import LifePathRequest
 from asterwise.models.lo_shu_request import LoShuRequest
+from asterwise.models.lucky_numbers_request import LuckyNumbersRequest
 from asterwise.models.maturity_number_request import MaturityNumberRequest
+from asterwise.models.mobile_number_request import MobileNumberRequest
 from asterwise.models.name_correction_request import NameCorrectionRequest
 from asterwise.models.name_only_request import NameOnlyRequest
 from asterwise.models.numerology_request import NumerologyRequest
 from asterwise.models.personal_angel_number_request import PersonalAngelNumberRequest
 from asterwise.models.personal_cycle_request import PersonalCycleRequest
 from asterwise.models.personal_year_post_request import PersonalYearPostRequest
+from asterwise.models.vehicle_number_request import VehicleNumberRequest
 
 from asterwise.api_client import ApiClient, RequestSerialized
 from asterwise.api_response import ApiResponse
@@ -3289,9 +3293,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseLifePathResponse:
-        """Get life path number
+        """(Deprecated) Get life path number (deprecated GET)
 
-        Calculates the life path number for a birth date and returns interpretation details. Query: `date` (YYYY-MM-DD). Requires authenticated API key access (Core tier or above in product terms). Returns number, master/karmic markers, and guidance keywords.
+        Deprecated: put the birth date in a JSON body with POST /v1/numerology/life-path instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param var_date: Birth date (YYYY-MM-DD) (required)
         :type var_date: date
@@ -3316,6 +3320,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/life-path is deprecated.", DeprecationWarning)
 
         _param = self._life_path_serialize(
             var_date=var_date,
@@ -3365,9 +3370,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseLifePathResponse]:
-        """Get life path number
+        """(Deprecated) Get life path number (deprecated GET)
 
-        Calculates the life path number for a birth date and returns interpretation details. Query: `date` (YYYY-MM-DD). Requires authenticated API key access (Core tier or above in product terms). Returns number, master/karmic markers, and guidance keywords.
+        Deprecated: put the birth date in a JSON body with POST /v1/numerology/life-path instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param var_date: Birth date (YYYY-MM-DD) (required)
         :type var_date: date
@@ -3392,6 +3397,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/life-path is deprecated.", DeprecationWarning)
 
         _param = self._life_path_serialize(
             var_date=var_date,
@@ -3441,9 +3447,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get life path number
+        """(Deprecated) Get life path number (deprecated GET)
 
-        Calculates the life path number for a birth date and returns interpretation details. Query: `date` (YYYY-MM-DD). Requires authenticated API key access (Core tier or above in product terms). Returns number, master/karmic markers, and guidance keywords.
+        Deprecated: put the birth date in a JSON body with POST /v1/numerology/life-path instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param var_date: Birth date (YYYY-MM-DD) (required)
         :type var_date: date
@@ -3468,6 +3474,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/life-path is deprecated.", DeprecationWarning)
 
         _param = self._life_path_serialize(
             var_date=var_date,
@@ -3555,6 +3562,307 @@ class NumerologyApi:
 
         return self.api_client.param_serialize(
             method='GET',
+            resource_path='/v1/numerology/life-path',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def life_path_post(
+        self,
+        life_path_request: LifePathRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseLifePathResponse:
+        """Get life path number
+
+        Calculates the life path number for a birth date and returns interpretation details. Body: `date` (YYYY-MM-DD). Returns number, master/karmic markers, and guidance keywords.
+
+        :param life_path_request: (required)
+        :type life_path_request: LifePathRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._life_path_post_serialize(
+            life_path_request=life_path_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseLifePathResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def life_path_post_with_http_info(
+        self,
+        life_path_request: LifePathRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseLifePathResponse]:
+        """Get life path number
+
+        Calculates the life path number for a birth date and returns interpretation details. Body: `date` (YYYY-MM-DD). Returns number, master/karmic markers, and guidance keywords.
+
+        :param life_path_request: (required)
+        :type life_path_request: LifePathRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._life_path_post_serialize(
+            life_path_request=life_path_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseLifePathResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def life_path_post_without_preload_content(
+        self,
+        life_path_request: LifePathRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get life path number
+
+        Calculates the life path number for a birth date and returns interpretation details. Body: `date` (YYYY-MM-DD). Returns number, master/karmic markers, and guidance keywords.
+
+        :param life_path_request: (required)
+        :type life_path_request: LifePathRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._life_path_post_serialize(
+            life_path_request=life_path_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseLifePathResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _life_path_post_serialize(
+        self,
+        life_path_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if life_path_request is not None:
+            _body_params = life_path_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
             resource_path='/v1/numerology/life-path',
             path_params=_path_params,
             query_params=_query_params,
@@ -3891,9 +4199,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseLuckyNumbersApiResponse:
-        """Generate lucky numbers
+        """(Deprecated) Generate lucky numbers (deprecated GET)
 
-        Generates a deterministic lucky number set from `name` and `date` query params (BirthInput-aligned). Requires authenticated API key access (Core tier or above in product terms). Returns lucky numbers with supporting numerology context.
+        Deprecated: put the name and birth date in a JSON body with POST /v1/numerology/lucky-numbers instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param name: (required)
         :type name: str
@@ -3922,6 +4230,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/lucky-numbers is deprecated.", DeprecationWarning)
 
         _param = self._lucky_numbers_serialize(
             name=name,
@@ -3975,9 +4284,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseLuckyNumbersApiResponse]:
-        """Generate lucky numbers
+        """(Deprecated) Generate lucky numbers (deprecated GET)
 
-        Generates a deterministic lucky number set from `name` and `date` query params (BirthInput-aligned). Requires authenticated API key access (Core tier or above in product terms). Returns lucky numbers with supporting numerology context.
+        Deprecated: put the name and birth date in a JSON body with POST /v1/numerology/lucky-numbers instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param name: (required)
         :type name: str
@@ -4006,6 +4315,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/lucky-numbers is deprecated.", DeprecationWarning)
 
         _param = self._lucky_numbers_serialize(
             name=name,
@@ -4059,9 +4369,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Generate lucky numbers
+        """(Deprecated) Generate lucky numbers (deprecated GET)
 
-        Generates a deterministic lucky number set from `name` and `date` query params (BirthInput-aligned). Requires authenticated API key access (Core tier or above in product terms). Returns lucky numbers with supporting numerology context.
+        Deprecated: put the name and birth date in a JSON body with POST /v1/numerology/lucky-numbers instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param name: (required)
         :type name: str
@@ -4090,6 +4400,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/lucky-numbers is deprecated.", DeprecationWarning)
 
         _param = self._lucky_numbers_serialize(
             name=name,
@@ -4189,6 +4500,307 @@ class NumerologyApi:
 
         return self.api_client.param_serialize(
             method='GET',
+            resource_path='/v1/numerology/lucky-numbers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def lucky_numbers_post(
+        self,
+        lucky_numbers_request: LuckyNumbersRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseLuckyNumbersApiResponse:
+        """Generate lucky numbers
+
+        Generates a deterministic lucky number set from `name` and `date` in the JSON body (BirthInput-aligned), with optional `count` (1-20, default 6). Returns lucky numbers with supporting numerology context.
+
+        :param lucky_numbers_request: (required)
+        :type lucky_numbers_request: LuckyNumbersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._lucky_numbers_post_serialize(
+            lucky_numbers_request=lucky_numbers_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseLuckyNumbersApiResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def lucky_numbers_post_with_http_info(
+        self,
+        lucky_numbers_request: LuckyNumbersRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseLuckyNumbersApiResponse]:
+        """Generate lucky numbers
+
+        Generates a deterministic lucky number set from `name` and `date` in the JSON body (BirthInput-aligned), with optional `count` (1-20, default 6). Returns lucky numbers with supporting numerology context.
+
+        :param lucky_numbers_request: (required)
+        :type lucky_numbers_request: LuckyNumbersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._lucky_numbers_post_serialize(
+            lucky_numbers_request=lucky_numbers_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseLuckyNumbersApiResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def lucky_numbers_post_without_preload_content(
+        self,
+        lucky_numbers_request: LuckyNumbersRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Generate lucky numbers
+
+        Generates a deterministic lucky number set from `name` and `date` in the JSON body (BirthInput-aligned), with optional `count` (1-20, default 6). Returns lucky numbers with supporting numerology context.
+
+        :param lucky_numbers_request: (required)
+        :type lucky_numbers_request: LuckyNumbersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._lucky_numbers_post_serialize(
+            lucky_numbers_request=lucky_numbers_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseLuckyNumbersApiResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _lucky_numbers_post_serialize(
+        self,
+        lucky_numbers_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if lucky_numbers_request is not None:
+            _body_params = lucky_numbers_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
             resource_path='/v1/numerology/lucky-numbers',
             path_params=_path_params,
             query_params=_query_params,
@@ -4523,9 +5135,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseDigitNumberAnalysisResponse:
-        """Mobile Number Numerology
+        """(Deprecated) Mobile Number Numerology (deprecated GET)
 
-        Analyses a mobile/phone number numerologically. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+        Deprecated: send the mobile number in a JSON body with POST /v1/numerology/mobile-number instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param number: Mobile number (digits only or with country code) (required)
         :type number: str
@@ -4550,6 +5162,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/mobile-number is deprecated.", DeprecationWarning)
 
         _param = self._mobile_number_serialize(
             number=number,
@@ -4599,9 +5212,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseDigitNumberAnalysisResponse]:
-        """Mobile Number Numerology
+        """(Deprecated) Mobile Number Numerology (deprecated GET)
 
-        Analyses a mobile/phone number numerologically. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+        Deprecated: send the mobile number in a JSON body with POST /v1/numerology/mobile-number instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param number: Mobile number (digits only or with country code) (required)
         :type number: str
@@ -4626,6 +5239,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/mobile-number is deprecated.", DeprecationWarning)
 
         _param = self._mobile_number_serialize(
             number=number,
@@ -4675,9 +5289,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Mobile Number Numerology
+        """(Deprecated) Mobile Number Numerology (deprecated GET)
 
-        Analyses a mobile/phone number numerologically. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+        Deprecated: send the mobile number in a JSON body with POST /v1/numerology/mobile-number instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param number: Mobile number (digits only or with country code) (required)
         :type number: str
@@ -4702,6 +5316,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/mobile-number is deprecated.", DeprecationWarning)
 
         _param = self._mobile_number_serialize(
             number=number,
@@ -4780,6 +5395,307 @@ class NumerologyApi:
 
         return self.api_client.param_serialize(
             method='GET',
+            resource_path='/v1/numerology/mobile-number',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def mobile_number_post(
+        self,
+        mobile_number_request: MobileNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDigitNumberAnalysisResponse:
+        """Mobile Number Numerology
+
+        Analyses a mobile/phone number numerologically. Body: `number`. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+
+        :param mobile_number_request: (required)
+        :type mobile_number_request: MobileNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._mobile_number_post_serialize(
+            mobile_number_request=mobile_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDigitNumberAnalysisResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def mobile_number_post_with_http_info(
+        self,
+        mobile_number_request: MobileNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDigitNumberAnalysisResponse]:
+        """Mobile Number Numerology
+
+        Analyses a mobile/phone number numerologically. Body: `number`. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+
+        :param mobile_number_request: (required)
+        :type mobile_number_request: MobileNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._mobile_number_post_serialize(
+            mobile_number_request=mobile_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDigitNumberAnalysisResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def mobile_number_post_without_preload_content(
+        self,
+        mobile_number_request: MobileNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Mobile Number Numerology
+
+        Analyses a mobile/phone number numerologically. Body: `number`. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+
+        :param mobile_number_request: (required)
+        :type mobile_number_request: MobileNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._mobile_number_post_serialize(
+            mobile_number_request=mobile_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDigitNumberAnalysisResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _mobile_number_post_serialize(
+        self,
+        mobile_number_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if mobile_number_request is not None:
+            _body_params = mobile_number_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
             resource_path='/v1/numerology/mobile-number',
             path_params=_path_params,
             query_params=_query_params,
@@ -6323,9 +7239,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponsePersonalYearResponse:
-        """Get personal year number
+        """(Deprecated) Get personal year number (deprecated GET)
 
-        Calculates personal year influence for a given birth date and target year. Query: `date`, `year`. Requires authenticated API key access (Core tier or above in product terms). Returns theme, opportunities, challenges, and practical advice.
+        Deprecated: put the birth date in a JSON body with POST /v1/numerology/personal-year instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param var_date: Birth date (YYYY-MM-DD) (required)
         :type var_date: date
@@ -6352,6 +7268,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/personal-year is deprecated.", DeprecationWarning)
 
         _param = self._personal_year_serialize(
             var_date=var_date,
@@ -6403,9 +7320,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponsePersonalYearResponse]:
-        """Get personal year number
+        """(Deprecated) Get personal year number (deprecated GET)
 
-        Calculates personal year influence for a given birth date and target year. Query: `date`, `year`. Requires authenticated API key access (Core tier or above in product terms). Returns theme, opportunities, challenges, and practical advice.
+        Deprecated: put the birth date in a JSON body with POST /v1/numerology/personal-year instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param var_date: Birth date (YYYY-MM-DD) (required)
         :type var_date: date
@@ -6432,6 +7349,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/personal-year is deprecated.", DeprecationWarning)
 
         _param = self._personal_year_serialize(
             var_date=var_date,
@@ -6483,9 +7401,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get personal year number
+        """(Deprecated) Get personal year number (deprecated GET)
 
-        Calculates personal year influence for a given birth date and target year. Query: `date`, `year`. Requires authenticated API key access (Core tier or above in product terms). Returns theme, opportunities, challenges, and practical advice.
+        Deprecated: put the birth date in a JSON body with POST /v1/numerology/personal-year instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param var_date: Birth date (YYYY-MM-DD) (required)
         :type var_date: date
@@ -6512,6 +7430,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/personal-year is deprecated.", DeprecationWarning)
 
         _param = self._personal_year_serialize(
             var_date=var_date,
@@ -6638,9 +7557,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponsePersonalYearResponse:
-        """Get personal year number (JSON body)
+        """Get personal year number
 
-        Same calculation as GET /v1/numerology/personal-year with an MCP-friendly JSON body: `name`, `date` (YYYY-MM-DD), optional `year` (defaults to the current calendar year).
+        Calculates the personal year number and its guidance for a birth date. Body: `date` (YYYY-MM-DD), optional `year` (defaults to the current calendar year). Returns theme, opportunities, challenges, and practical advice.
 
         :param personal_year_post_request: (required)
         :type personal_year_post_request: PersonalYearPostRequest
@@ -6714,9 +7633,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponsePersonalYearResponse]:
-        """Get personal year number (JSON body)
+        """Get personal year number
 
-        Same calculation as GET /v1/numerology/personal-year with an MCP-friendly JSON body: `name`, `date` (YYYY-MM-DD), optional `year` (defaults to the current calendar year).
+        Calculates the personal year number and its guidance for a birth date. Body: `date` (YYYY-MM-DD), optional `year` (defaults to the current calendar year). Returns theme, opportunities, challenges, and practical advice.
 
         :param personal_year_post_request: (required)
         :type personal_year_post_request: PersonalYearPostRequest
@@ -6790,9 +7709,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get personal year number (JSON body)
+        """Get personal year number
 
-        Same calculation as GET /v1/numerology/personal-year with an MCP-friendly JSON body: `name`, `date` (YYYY-MM-DD), optional `year` (defaults to the current calendar year).
+        Calculates the personal year number and its guidance for a birth date. Body: `date` (YYYY-MM-DD), optional `year` (defaults to the current calendar year). Returns theme, opportunities, challenges, and practical advice.
 
         :param personal_year_post_request: (required)
         :type personal_year_post_request: PersonalYearPostRequest
@@ -7541,9 +8460,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseDigitNumberAnalysisResponse:
-        """Vehicle Number Numerology
+        """(Deprecated) Vehicle Number Numerology (deprecated GET)
 
-        Analyses a vehicle registration number numerologically. Extracts digits, sums to single number, returns theme and harmony score.
+        Deprecated: send the vehicle number in a JSON body with POST /v1/numerology/vehicle-number instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param number: Vehicle registration number (required)
         :type number: str
@@ -7568,6 +8487,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/vehicle-number is deprecated.", DeprecationWarning)
 
         _param = self._vehicle_number_serialize(
             number=number,
@@ -7617,9 +8537,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseDigitNumberAnalysisResponse]:
-        """Vehicle Number Numerology
+        """(Deprecated) Vehicle Number Numerology (deprecated GET)
 
-        Analyses a vehicle registration number numerologically. Extracts digits, sums to single number, returns theme and harmony score.
+        Deprecated: send the vehicle number in a JSON body with POST /v1/numerology/vehicle-number instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param number: Vehicle registration number (required)
         :type number: str
@@ -7644,6 +8564,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/vehicle-number is deprecated.", DeprecationWarning)
 
         _param = self._vehicle_number_serialize(
             number=number,
@@ -7693,9 +8614,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Vehicle Number Numerology
+        """(Deprecated) Vehicle Number Numerology (deprecated GET)
 
-        Analyses a vehicle registration number numerologically. Extracts digits, sums to single number, returns theme and harmony score.
+        Deprecated: send the vehicle number in a JSON body with POST /v1/numerology/vehicle-number instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
         :param number: Vehicle registration number (required)
         :type number: str
@@ -7720,6 +8641,7 @@ class NumerologyApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /v1/numerology/vehicle-number is deprecated.", DeprecationWarning)
 
         _param = self._vehicle_number_serialize(
             number=number,
@@ -7798,6 +8720,307 @@ class NumerologyApi:
 
         return self.api_client.param_serialize(
             method='GET',
+            resource_path='/v1/numerology/vehicle-number',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def vehicle_number_post(
+        self,
+        vehicle_number_request: VehicleNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseDigitNumberAnalysisResponse:
+        """Vehicle Number Numerology
+
+        Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score.
+
+        :param vehicle_number_request: (required)
+        :type vehicle_number_request: VehicleNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._vehicle_number_post_serialize(
+            vehicle_number_request=vehicle_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDigitNumberAnalysisResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def vehicle_number_post_with_http_info(
+        self,
+        vehicle_number_request: VehicleNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseDigitNumberAnalysisResponse]:
+        """Vehicle Number Numerology
+
+        Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score.
+
+        :param vehicle_number_request: (required)
+        :type vehicle_number_request: VehicleNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._vehicle_number_post_serialize(
+            vehicle_number_request=vehicle_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDigitNumberAnalysisResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def vehicle_number_post_without_preload_content(
+        self,
+        vehicle_number_request: VehicleNumberRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Vehicle Number Numerology
+
+        Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score.
+
+        :param vehicle_number_request: (required)
+        :type vehicle_number_request: VehicleNumberRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._vehicle_number_post_serialize(
+            vehicle_number_request=vehicle_number_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseDigitNumberAnalysisResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _vehicle_number_post_serialize(
+        self,
+        vehicle_number_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if vehicle_number_request is not None:
+            _body_params = vehicle_number_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
             resource_path='/v1/numerology/vehicle-number',
             path_params=_path_params,
             query_params=_query_params,

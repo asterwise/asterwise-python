@@ -26,14 +26,14 @@ from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class PersonalYearPostRequest(BaseModel):
+class LuckyNumbersRequest(BaseModel):
     """
-    MCP-friendly POST body for personal year (birth `date` + optional target `year`).
+    POST body for lucky numbers: name and birth date stay out of the URL.
     """ # noqa: E501
-    name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=100)]] = None
-    var_date: date = Field(description="Birth date (YYYY-MM-DD or ISO datetime string from clients)", alias="date")
-    year: Optional[Annotated[int, Field(le=2100, strict=True, ge=1900)]] = None
-    __properties: ClassVar[List[str]] = ["name", "date", "year"]
+    name: Annotated[str, Field(min_length=1, strict=True, max_length=100)] = Field(description="Person name")
+    var_date: date = Field(description="Birth date (YYYY-MM-DD)", alias="date")
+    count: Optional[Annotated[int, Field(le=20, strict=True, ge=1)]] = Field(default=6, description="How many lucky numbers to return")
+    __properties: ClassVar[List[str]] = ["name", "date", "count"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -53,7 +53,7 @@ class PersonalYearPostRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PersonalYearPostRequest from a JSON string"""
+        """Create an instance of LuckyNumbersRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,21 +74,11 @@ class PersonalYearPostRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if name (nullable) is None
-        # and model_fields_set contains the field
-        if self.name is None and "name" in self.model_fields_set:
-            _dict['name'] = None
-
-        # set to None if year (nullable) is None
-        # and model_fields_set contains the field
-        if self.year is None and "year" in self.model_fields_set:
-            _dict['year'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PersonalYearPostRequest from a dict"""
+        """Create an instance of LuckyNumbersRequest from a dict"""
         if obj is None:
             return None
 
@@ -98,7 +88,7 @@ class PersonalYearPostRequest(BaseModel):
         _obj = cls.model_validate({
             "name": obj.get("name"),
             "date": obj.get("date"),
-            "year": obj.get("year")
+            "count": obj.get("count") if obj.get("count") is not None else 6
         })
         return _obj
 

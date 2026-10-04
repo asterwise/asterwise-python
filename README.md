@@ -88,7 +88,7 @@ with asterwise.ApiClient(configuration) as client:
     )
 
     numerology = NumerologyApi(client)
-    path = numerology.life_path(var_date=date(1985, 11, 12))
+    path = numerology.life_path_post(asterwise.LifePathRequest(date=date(1985, 11, 12)))
 
     tarot = TarotApi(client)
     spread = tarot.tarot_three_card(

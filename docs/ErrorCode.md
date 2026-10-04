@@ -13,33 +13,23 @@
 
 * `API_KEY_INVALID` (value: `'api_key_invalid'`)
 
-* `MAGIC_LINK_NOT_FOUND` (value: `'magic_link_not_found'`)
-
-* `MAGIC_LINK_ALREADY_USED` (value: `'magic_link_already_used'`)
-
-* `MAGIC_LINK_EXPIRED` (value: `'magic_link_expired'`)
-
 * `SESSION_NOT_FOUND` (value: `'session_not_found'`)
 
 * `SESSION_REVOKED` (value: `'session_revoked'`)
 
 * `SESSION_EXPIRED` (value: `'session_expired'`)
 
-* `EXCHANGE_CODE_NOT_FOUND` (value: `'exchange_code_not_found'`)
+* `SESSION_REQUIRED` (value: `'session_required'`)
 
-* `EXCHANGE_CODE_ALREADY_USED` (value: `'exchange_code_already_used'`)
+* `EMAIL_NOT_VERIFIED` (value: `'email_not_verified'`)
 
 * `IP_RATE_LIMIT_EXCEEDED` (value: `'ip_rate_limit_exceeded'`)
+
+* `LOGIN_ATTEMPTS_EXCEEDED` (value: `'login_attempts_exceeded'`)
 
 * `BURST_LIMIT_EXCEEDED` (value: `'burst_limit_exceeded'`)
 
 * `MONTHLY_USAGE_LIMIT_EXCEEDED` (value: `'monthly_usage_limit_exceeded'`)
-
-* `MAGIC_LINK_IP_LIMIT_EXCEEDED` (value: `'magic_link_ip_limit_exceeded'`)
-
-* `MAGIC_LINK_EMAIL_LIMIT_EXCEEDED` (value: `'magic_link_email_limit_exceeded'`)
-
-* `EXCHANGE_CODE_ATTEMPT_LIMIT_EXCEEDED` (value: `'exchange_code_attempt_limit_exceeded'`)
 
 * `VALIDATION_ERROR` (value: `'validation_error'`)
 

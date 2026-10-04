@@ -15,21 +15,25 @@ Method | HTTP request | Description
 [**chaldean**](NumerologyApi.md#chaldean) | **POST** /v1/numerology/chaldean | Chaldean Numerology Profile
 [**expression_number**](NumerologyApi.md#expression_number) | **POST** /v1/numerology/expression | Expression (Destiny) Number
 [**karmic_lessons**](NumerologyApi.md#karmic_lessons) | **POST** /v1/numerology/karmic-lessons | Karmic Lessons
-[**life_path**](NumerologyApi.md#life_path) | **GET** /v1/numerology/life-path | Get life path number
+[**life_path**](NumerologyApi.md#life_path) | **GET** /v1/numerology/life-path | Get life path number (deprecated GET)
+[**life_path_post**](NumerologyApi.md#life_path_post) | **POST** /v1/numerology/life-path | Get life path number
 [**lo_shu**](NumerologyApi.md#lo_shu) | **POST** /v1/numerology/lo-shu | Lo Shu Grid
-[**lucky_numbers**](NumerologyApi.md#lucky_numbers) | **GET** /v1/numerology/lucky-numbers | Generate lucky numbers
+[**lucky_numbers**](NumerologyApi.md#lucky_numbers) | **GET** /v1/numerology/lucky-numbers | Generate lucky numbers (deprecated GET)
+[**lucky_numbers_post**](NumerologyApi.md#lucky_numbers_post) | **POST** /v1/numerology/lucky-numbers | Generate lucky numbers
 [**maturity_number**](NumerologyApi.md#maturity_number) | **POST** /v1/numerology/maturity | Maturity (Realization) Number
-[**mobile_number**](NumerologyApi.md#mobile_number) | **GET** /v1/numerology/mobile-number | Mobile Number Numerology
+[**mobile_number**](NumerologyApi.md#mobile_number) | **GET** /v1/numerology/mobile-number | Mobile Number Numerology (deprecated GET)
+[**mobile_number_post**](NumerologyApi.md#mobile_number_post) | **POST** /v1/numerology/mobile-number | Mobile Number Numerology
 [**name_correction**](NumerologyApi.md#name_correction) | **POST** /v1/numerology/name-correction | Name Correction Analysis
 [**number_meaning**](NumerologyApi.md#number_meaning) | **GET** /v1/numerology/meaning/{number} | Get number meaning by context
 [**numerology_compatibility**](NumerologyApi.md#numerology_compatibility) | **POST** /v1/numerology/compatibility | Calculate numerology compatibility
 [**numerology_profile**](NumerologyApi.md#numerology_profile) | **POST** /v1/numerology/profile | Generate numerology profile
 [**personal_cycles**](NumerologyApi.md#personal_cycles) | **POST** /v1/numerology/personal-cycles | Personal Year, Month, and Day
-[**personal_year**](NumerologyApi.md#personal_year) | **GET** /v1/numerology/personal-year | Get personal year number
-[**personal_year_post**](NumerologyApi.md#personal_year_post) | **POST** /v1/numerology/personal-year | Get personal year number (JSON body)
+[**personal_year**](NumerologyApi.md#personal_year) | **GET** /v1/numerology/personal-year | Get personal year number (deprecated GET)
+[**personal_year_post**](NumerologyApi.md#personal_year_post) | **POST** /v1/numerology/personal-year | Get personal year number
 [**personality_number**](NumerologyApi.md#personality_number) | **POST** /v1/numerology/personality | Personality Number
 [**soul_urge_number**](NumerologyApi.md#soul_urge_number) | **POST** /v1/numerology/soul-urge | Soul Urge (Heart&#39;s Desire) Number
-[**vehicle_number**](NumerologyApi.md#vehicle_number) | **GET** /v1/numerology/vehicle-number | Vehicle Number Numerology
+[**vehicle_number**](NumerologyApi.md#vehicle_number) | **GET** /v1/numerology/vehicle-number | Vehicle Number Numerology (deprecated GET)
+[**vehicle_number_post**](NumerologyApi.md#vehicle_number_post) | **POST** /v1/numerology/vehicle-number | Vehicle Number Numerology
 
 
 # **angel_list**
@@ -986,9 +990,9 @@ Name | Type | Description  | Notes
 # **life_path**
 > ApiResponseLifePathResponse life_path(var_date)
 
-Get life path number
+Get life path number (deprecated GET)
 
-Calculates the life path number for a birth date and returns interpretation details. Query: `date` (YYYY-MM-DD). Requires authenticated API key access (Core tier or above in product terms). Returns number, master/karmic markers, and guidance keywords.
+Deprecated: put the birth date in a JSON body with POST /v1/numerology/life-path instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
 ### Example
 
@@ -1023,7 +1027,7 @@ with asterwise.ApiClient(configuration) as api_client:
     var_date = '2013-10-20' # date | Birth date (YYYY-MM-DD)
 
     try:
-        # Get life path number
+        # Get life path number (deprecated GET)
         api_response = api_instance.life_path(var_date)
         print("The response of NumerologyApi->life_path:\n")
         pprint(api_response)
@@ -1051,6 +1055,94 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Life path number with interpretation metadata |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **life_path_post**
+> ApiResponseLifePathResponse life_path_post(life_path_request)
+
+Get life path number
+
+Calculates the life path number for a birth date and returns interpretation details. Body: `date` (YYYY-MM-DD). Returns number, master/karmic markers, and guidance keywords.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_life_path_response import ApiResponseLifePathResponse
+from asterwise.models.life_path_request import LifePathRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    life_path_request = asterwise.LifePathRequest() # LifePathRequest | 
+
+    try:
+        # Get life path number
+        api_response = api_instance.life_path_post(life_path_request)
+        print("The response of NumerologyApi->life_path_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->life_path_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **life_path_request** | [**LifePathRequest**](LifePathRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseLifePathResponse**](ApiResponseLifePathResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1161,9 +1253,9 @@ Name | Type | Description  | Notes
 # **lucky_numbers**
 > ApiResponseLuckyNumbersApiResponse lucky_numbers(name, var_date, count=count)
 
-Generate lucky numbers
+Generate lucky numbers (deprecated GET)
 
-Generates a deterministic lucky number set from `name` and `date` query params (BirthInput-aligned). Requires authenticated API key access (Core tier or above in product terms). Returns lucky numbers with supporting numerology context.
+Deprecated: put the name and birth date in a JSON body with POST /v1/numerology/lucky-numbers instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
 ### Example
 
@@ -1200,7 +1292,7 @@ with asterwise.ApiClient(configuration) as api_client:
     count = 6 # int |  (optional) (default to 6)
 
     try:
-        # Generate lucky numbers
+        # Generate lucky numbers (deprecated GET)
         api_response = api_instance.lucky_numbers(name, var_date, count=count)
         print("The response of NumerologyApi->lucky_numbers:\n")
         pprint(api_response)
@@ -1230,6 +1322,94 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Lucky number list for the requested profile |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **lucky_numbers_post**
+> ApiResponseLuckyNumbersApiResponse lucky_numbers_post(lucky_numbers_request)
+
+Generate lucky numbers
+
+Generates a deterministic lucky number set from `name` and `date` in the JSON body (BirthInput-aligned), with optional `count` (1-20, default 6). Returns lucky numbers with supporting numerology context.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_lucky_numbers_api_response import ApiResponseLuckyNumbersApiResponse
+from asterwise.models.lucky_numbers_request import LuckyNumbersRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    lucky_numbers_request = asterwise.LuckyNumbersRequest() # LuckyNumbersRequest | 
+
+    try:
+        # Generate lucky numbers
+        api_response = api_instance.lucky_numbers_post(lucky_numbers_request)
+        print("The response of NumerologyApi->lucky_numbers_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->lucky_numbers_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **lucky_numbers_request** | [**LuckyNumbersRequest**](LuckyNumbersRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseLuckyNumbersApiResponse**](ApiResponseLuckyNumbersApiResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1340,9 +1520,9 @@ Name | Type | Description  | Notes
 # **mobile_number**
 > ApiResponseDigitNumberAnalysisResponse mobile_number(number)
 
-Mobile Number Numerology
+Mobile Number Numerology (deprecated GET)
 
-Analyses a mobile/phone number numerologically. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+Deprecated: send the mobile number in a JSON body with POST /v1/numerology/mobile-number instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
 ### Example
 
@@ -1377,7 +1557,7 @@ with asterwise.ApiClient(configuration) as api_client:
     number = 'number_example' # str | Mobile number (digits only or with country code)
 
     try:
-        # Mobile Number Numerology
+        # Mobile Number Numerology (deprecated GET)
         api_response = api_instance.mobile_number(number)
         print("The response of NumerologyApi->mobile_number:\n")
         pprint(api_response)
@@ -1405,6 +1585,94 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **mobile_number_post**
+> ApiResponseDigitNumberAnalysisResponse mobile_number_post(mobile_number_request)
+
+Mobile Number Numerology
+
+Analyses a mobile/phone number numerologically. Body: `number`. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_digit_number_analysis_response import ApiResponseDigitNumberAnalysisResponse
+from asterwise.models.mobile_number_request import MobileNumberRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    mobile_number_request = asterwise.MobileNumberRequest() # MobileNumberRequest | 
+
+    try:
+        # Mobile Number Numerology
+        api_response = api_instance.mobile_number_post(mobile_number_request)
+        print("The response of NumerologyApi->mobile_number_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->mobile_number_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **mobile_number_request** | [**MobileNumberRequest**](MobileNumberRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseDigitNumberAnalysisResponse**](ApiResponseDigitNumberAnalysisResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1868,9 +2136,9 @@ Name | Type | Description  | Notes
 # **personal_year**
 > ApiResponsePersonalYearResponse personal_year(var_date, year)
 
-Get personal year number
+Get personal year number (deprecated GET)
 
-Calculates personal year influence for a given birth date and target year. Query: `date`, `year`. Requires authenticated API key access (Core tier or above in product terms). Returns theme, opportunities, challenges, and practical advice.
+Deprecated: put the birth date in a JSON body with POST /v1/numerology/personal-year instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
 ### Example
 
@@ -1906,7 +2174,7 @@ with asterwise.ApiClient(configuration) as api_client:
     year = 56 # int | 
 
     try:
-        # Get personal year number
+        # Get personal year number (deprecated GET)
         api_response = api_instance.personal_year(var_date, year)
         print("The response of NumerologyApi->personal_year:\n")
         pprint(api_response)
@@ -1957,9 +2225,9 @@ Name | Type | Description  | Notes
 # **personal_year_post**
 > ApiResponsePersonalYearResponse personal_year_post(personal_year_post_request)
 
-Get personal year number (JSON body)
+Get personal year number
 
-Same calculation as GET /v1/numerology/personal-year with an MCP-friendly JSON body: `name`, `date` (YYYY-MM-DD), optional `year` (defaults to the current calendar year).
+Calculates the personal year number and its guidance for a birth date. Body: `date` (YYYY-MM-DD), optional `year` (defaults to the current calendar year). Returns theme, opportunities, challenges, and practical advice.
 
 ### Example
 
@@ -1995,7 +2263,7 @@ with asterwise.ApiClient(configuration) as api_client:
     personal_year_post_request = asterwise.PersonalYearPostRequest() # PersonalYearPostRequest | 
 
     try:
-        # Get personal year number (JSON body)
+        # Get personal year number
         api_response = api_instance.personal_year_post(personal_year_post_request)
         print("The response of NumerologyApi->personal_year_post:\n")
         pprint(api_response)
@@ -2029,7 +2297,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successful Response |  -  |
+**200** | Personal year number and yearly guidance |  -  |
 **401** | Authentication failed |  -  |
 **403** | Authorization failed |  -  |
 **404** | Resource not found |  -  |
@@ -2221,9 +2489,9 @@ Name | Type | Description  | Notes
 # **vehicle_number**
 > ApiResponseDigitNumberAnalysisResponse vehicle_number(number)
 
-Vehicle Number Numerology
+Vehicle Number Numerology (deprecated GET)
 
-Analyses a vehicle registration number numerologically. Extracts digits, sums to single number, returns theme and harmony score.
+Deprecated: send the vehicle number in a JSON body with POST /v1/numerology/vehicle-number instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
 ### Example
 
@@ -2258,7 +2526,7 @@ with asterwise.ApiClient(configuration) as api_client:
     number = 'number_example' # str | Vehicle registration number
 
     try:
-        # Vehicle Number Numerology
+        # Vehicle Number Numerology (deprecated GET)
         api_response = api_instance.vehicle_number(number)
         print("The response of NumerologyApi->vehicle_number:\n")
         pprint(api_response)
@@ -2286,6 +2554,94 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **vehicle_number_post**
+> ApiResponseDigitNumberAnalysisResponse vehicle_number_post(vehicle_number_request)
+
+Vehicle Number Numerology
+
+Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_digit_number_analysis_response import ApiResponseDigitNumberAnalysisResponse
+from asterwise.models.vehicle_number_request import VehicleNumberRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.NumerologyApi(api_client)
+    vehicle_number_request = asterwise.VehicleNumberRequest() # VehicleNumberRequest | 
+
+    try:
+        # Vehicle Number Numerology
+        api_response = api_instance.vehicle_number_post(vehicle_number_request)
+        print("The response of NumerologyApi->vehicle_number_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NumerologyApi->vehicle_number_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vehicle_number_request** | [**VehicleNumberRequest**](VehicleNumberRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseDigitNumberAnalysisResponse**](ApiResponseDigitNumberAnalysisResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details

@@ -256,12 +256,14 @@ from asterwise.models.lal_kitab_planet_remedy import LalKitabPlanetRemedy
 from asterwise.models.lal_kitab_remedies_response import LalKitabRemediesResponse
 from asterwise.models.lal_kitab_remedy_item import LalKitabRemedyItem
 from asterwise.models.lal_kitab_request import LalKitabRequest
+from asterwise.models.life_path_request import LifePathRequest
 from asterwise.models.life_path_response import LifePathResponse
 from asterwise.models.lo_shu_number_entry import LoShuNumberEntry
 from asterwise.models.lo_shu_plane_entry import LoShuPlaneEntry
 from asterwise.models.lo_shu_request import LoShuRequest
 from asterwise.models.lo_shu_response import LoShuResponse
 from asterwise.models.lucky_numbers_api_response import LuckyNumbersApiResponse
+from asterwise.models.lucky_numbers_request import LuckyNumbersRequest
 from asterwise.models.lunar_return_request import LunarReturnRequest
 from asterwise.models.masa import Masa
 from asterwise.models.masa_name import MasaName
@@ -269,6 +271,7 @@ from asterwise.models.matchmaking_request import MatchmakingRequest
 from asterwise.models.matchmaking_response import MatchmakingResponse
 from asterwise.models.maturity_number_request import MaturityNumberRequest
 from asterwise.models.maturity_number_response import MaturityNumberResponse
+from asterwise.models.mobile_number_request import MobileNumberRequest
 from asterwise.models.monthly_transit_response import MonthlyTransitResponse
 from asterwise.models.moon_phase_response import MoonPhaseResponse
 from asterwise.models.moon_rashi import MoonRashi
@@ -393,6 +396,7 @@ from asterwise.models.varshaphal_muntha import VarshaphalMuntha
 from asterwise.models.varshaphal_planet import VarshaphalPlanet
 from asterwise.models.varshaphal_request import VarshaphalRequest
 from asterwise.models.varshaphal_response import VarshaphalResponse
+from asterwise.models.vehicle_number_request import VehicleNumberRequest
 from asterwise.models.weekly_transit_response import WeeklyTransitResponse
 from asterwise.models.western_angle import WesternAngle
 from asterwise.models.western_aspect import WesternAspect

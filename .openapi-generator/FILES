@@ -260,12 +260,14 @@ asterwise/models/lal_kitab_planet_remedy.py
 asterwise/models/lal_kitab_remedies_response.py
 asterwise/models/lal_kitab_remedy_item.py
 asterwise/models/lal_kitab_request.py
+asterwise/models/life_path_request.py
 asterwise/models/life_path_response.py
 asterwise/models/lo_shu_number_entry.py
 asterwise/models/lo_shu_plane_entry.py
 asterwise/models/lo_shu_request.py
 asterwise/models/lo_shu_response.py
 asterwise/models/lucky_numbers_api_response.py
+asterwise/models/lucky_numbers_request.py
 asterwise/models/lunar_return_request.py
 asterwise/models/masa.py
 asterwise/models/masa_name.py
@@ -273,6 +275,7 @@ asterwise/models/matchmaking_request.py
 asterwise/models/matchmaking_response.py
 asterwise/models/maturity_number_request.py
 asterwise/models/maturity_number_response.py
+asterwise/models/mobile_number_request.py
 asterwise/models/monthly_transit_response.py
 asterwise/models/moon_phase_response.py
 asterwise/models/moon_rashi.py
@@ -397,6 +400,7 @@ asterwise/models/varshaphal_muntha.py
 asterwise/models/varshaphal_planet.py
 asterwise/models/varshaphal_request.py
 asterwise/models/varshaphal_response.py
+asterwise/models/vehicle_number_request.py
 asterwise/models/weekly_transit_response.py
 asterwise/models/western_angle.py
 asterwise/models/western_aspect.py
@@ -676,12 +680,14 @@ docs/LalKitabPlanetRemedy.md
 docs/LalKitabRemediesResponse.md
 docs/LalKitabRemedyItem.md
 docs/LalKitabRequest.md
+docs/LifePathRequest.md
 docs/LifePathResponse.md
 docs/LoShuNumberEntry.md
 docs/LoShuPlaneEntry.md
 docs/LoShuRequest.md
 docs/LoShuResponse.md
 docs/LuckyNumbersApiResponse.md
+docs/LuckyNumbersRequest.md
 docs/LunarReturnRequest.md
 docs/Masa.md
 docs/MasaName.md
@@ -689,6 +695,7 @@ docs/MatchmakingRequest.md
 docs/MatchmakingResponse.md
 docs/MaturityNumberRequest.md
 docs/MaturityNumberResponse.md
+docs/MobileNumberRequest.md
 docs/MonthlyTransitResponse.md
 docs/MoonPhaseResponse.md
 docs/MoonRashi.md
@@ -817,6 +824,7 @@ docs/VarshaphalMuntha.md
 docs/VarshaphalPlanet.md
 docs/VarshaphalRequest.md
 docs/VarshaphalResponse.md
+docs/VehicleNumberRequest.md
 docs/WeeklyTransitResponse.md
 docs/WesternAngle.md
 docs/WesternApi.md
