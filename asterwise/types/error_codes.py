@@ -9,7 +9,7 @@ To change the contents, edit the source registry at
 app/core/error_codes.py in asterwise-api, then re-run the
 generator with --write-sdks.
 
-Generated from 46 codes (hash fa251975c979311f) ErrorCode members.
+Generated from 47 codes (hash a6da401d38ca7954) ErrorCode members.
 """
 
 from typing import Literal
@@ -27,6 +27,7 @@ ErrorCode = Literal[
     "burst_limit_exceeded",
     "city_not_found",
     "email_delivery_failed",
+    "email_not_verified",
     "ephemeris_unavailable",
     "exchange_code_already_used",
     "exchange_code_attempt_limit_exceeded",
@@ -79,6 +80,7 @@ ALL_ERROR_CODES: tuple[ErrorCode, ...] = (
     "burst_limit_exceeded",
     "city_not_found",
     "email_delivery_failed",
+    "email_not_verified",
     "ephemeris_unavailable",
     "exchange_code_already_used",
     "exchange_code_attempt_limit_exceeded",
