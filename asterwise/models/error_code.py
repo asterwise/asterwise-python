@@ -50,8 +50,6 @@ class ErrorCode(str, Enum):
     INVALID_EMAIL = 'invalid_email'
     INVALID_KEY_NAME = 'invalid_key_name'
     INVALID_REQUEST_BODY = 'invalid_request_body'
-    DATE_OUT_OF_SUPPORTED_RANGE = 'date_out_of_supported_range'
-    POLAR_LATITUDE_UNSUPPORTED = 'polar_latitude_unsupported'
     SUN_CALCULATION_FAILED = 'sun_calculation_failed'
     SOLAR_DAY_OUT_OF_RANGE = 'solar_day_out_of_range'
     EPHEMERIS_UNAVAILABLE = 'ephemeris_unavailable'
@@ -62,11 +60,9 @@ class ErrorCode(str, Enum):
     KEY_NOT_FOUND = 'key_not_found'
     SUBSCRIPTION_NOT_FOUND = 'subscription_not_found'
     CITY_NOT_FOUND = 'city_not_found'
-    INTERPRETATION_NOT_FOUND = 'interpretation_not_found'
     RESOURCE_NOT_FOUND = 'resource_not_found'
     ENDPOINT_RESTRICTED = 'endpoint_restricted'
     OWNERSHIP_DENIED = 'ownership_denied'
-    INSUFFICIENT_TIER = 'insufficient_tier'
     PAYMENT_VERIFICATION_FAILED = 'payment_verification_failed'
     ORDER_CREATION_FAILED = 'order_creation_failed'
     ALREADY_ON_PLAN = 'already_on_plan'
@@ -77,7 +73,6 @@ class ErrorCode(str, Enum):
     PAYLOAD_TOO_LARGE = 'payload_too_large'
     EMAIL_DELIVERY_FAILED = 'email_delivery_failed'
     GEOCODE_UNAVAILABLE = 'geocode_unavailable'
-    DEPENDENCY_UNAVAILABLE = 'dependency_unavailable'
     INTERNAL_ERROR = 'internal_error'
 
     @classmethod

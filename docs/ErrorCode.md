@@ -49,10 +49,6 @@
 
 * `INVALID_REQUEST_BODY` (value: `'invalid_request_body'`)
 
-* `DATE_OUT_OF_SUPPORTED_RANGE` (value: `'date_out_of_supported_range'`)
-
-* `POLAR_LATITUDE_UNSUPPORTED` (value: `'polar_latitude_unsupported'`)
-
 * `SUN_CALCULATION_FAILED` (value: `'sun_calculation_failed'`)
 
 * `SOLAR_DAY_OUT_OF_RANGE` (value: `'solar_day_out_of_range'`)
@@ -73,15 +69,11 @@
 
 * `CITY_NOT_FOUND` (value: `'city_not_found'`)
 
-* `INTERPRETATION_NOT_FOUND` (value: `'interpretation_not_found'`)
-
 * `RESOURCE_NOT_FOUND` (value: `'resource_not_found'`)
 
 * `ENDPOINT_RESTRICTED` (value: `'endpoint_restricted'`)
 
 * `OWNERSHIP_DENIED` (value: `'ownership_denied'`)
-
-* `INSUFFICIENT_TIER` (value: `'insufficient_tier'`)
 
 * `PAYMENT_VERIFICATION_FAILED` (value: `'payment_verification_failed'`)
 
@@ -102,8 +94,6 @@
 * `EMAIL_DELIVERY_FAILED` (value: `'email_delivery_failed'`)
 
 * `GEOCODE_UNAVAILABLE` (value: `'geocode_unavailable'`)
-
-* `DEPENDENCY_UNAVAILABLE` (value: `'dependency_unavailable'`)
 
 * `INTERNAL_ERROR` (value: `'internal_error'`)
 
