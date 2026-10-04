@@ -45,8 +45,6 @@
 
 * `INVALID_EMAIL` (value: `'invalid_email'`)
 
-* `INVALID_KEY_NAME` (value: `'invalid_key_name'`)
-
 * `INVALID_REQUEST_BODY` (value: `'invalid_request_body'`)
 
 * `SUN_CALCULATION_FAILED` (value: `'sun_calculation_failed'`)
@@ -70,8 +68,6 @@
 * `CITY_NOT_FOUND` (value: `'city_not_found'`)
 
 * `RESOURCE_NOT_FOUND` (value: `'resource_not_found'`)
-
-* `ENDPOINT_RESTRICTED` (value: `'endpoint_restricted'`)
 
 * `OWNERSHIP_DENIED` (value: `'ownership_denied'`)
 
