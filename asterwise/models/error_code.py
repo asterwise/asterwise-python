@@ -39,6 +39,7 @@ class ErrorCode(str, Enum):
     EMAIL_NOT_VERIFIED = 'email_not_verified'
     IP_RATE_LIMIT_EXCEEDED = 'ip_rate_limit_exceeded'
     LOGIN_ATTEMPTS_EXCEEDED = 'login_attempts_exceeded'
+    ACCOUNT_ACTION_LIMIT_EXCEEDED = 'account_action_limit_exceeded'
     BURST_LIMIT_EXCEEDED = 'burst_limit_exceeded'
     MONTHLY_USAGE_LIMIT_EXCEEDED = 'monthly_usage_limit_exceeded'
     VALIDATION_ERROR = 'validation_error'

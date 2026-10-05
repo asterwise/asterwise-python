@@ -856,6 +856,4 @@ docs/YoginiRequest.md
 docs/YoginiResponse.md
 docs/ZodiacCompatibilityResponse.md
 git_push.sh
-requirements.txt
-test-requirements.txt
 test/__init__.py

@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.7.0 — 2026-10-05
+
+### Changed (breaking for Python 3.9)
+
+- Python 3.10 or newer is required. Python 3.9 reached end of life in
+  October 2025, and the security fixes below only exist for 3.10+. On 3.9,
+  pip keeps you on 0.6.x, which keeps working.
+- `urllib3` 2.8.0 or newer is required (security fixes PYSEC-2026-4175,
+  -4176 and -4177; 0.6.x allowed 2.1.0).
+
+### Added
+
+- `ErrorCode.ACCOUNT_ACTION_LIMIT_EXCEEDED` (dashboard only: a deletion code
+  asked for too often, or a data export already running).
+
+### Fixed
+
+- `geocode` description: "Returns up to `limit` matches (default 5, at most
+  10)" instead of a raw `{limit}`.
+
 ## 0.6.0 — 2026-10-04
 
 Regenerated from the API as deployed on 2026-10-04. Existing calls keep

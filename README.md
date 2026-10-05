@@ -98,7 +98,7 @@ with asterwise.ApiClient(configuration) as client:
 
 ## Requirements
 
-Python 3.9+. An API key from [asterwise.com](https://asterwise.com).
+Python 3.10+. An API key from [asterwise.com](https://asterwise.com).
 
 ## Documentation
 

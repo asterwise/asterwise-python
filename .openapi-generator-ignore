@@ -44,3 +44,7 @@ test/test_astrology0_api.py
 asterwise/api/reports_api.py
 docs/ReportsApi.md
 test/test_reports_api.py
+# Hand-maintained: security minimums (urllib3 >= 2.8.0, pytest >= 9.0.3) that the
+# generator's templates would reset.
+requirements.txt
+test-requirements.txt

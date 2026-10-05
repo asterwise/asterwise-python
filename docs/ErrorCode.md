@@ -27,6 +27,8 @@
 
 * `LOGIN_ATTEMPTS_EXCEEDED` (value: `'login_attempts_exceeded'`)
 
+* `ACCOUNT_ACTION_LIMIT_EXCEEDED` (value: `'account_action_limit_exceeded'`)
+
 * `BURST_LIMIT_EXCEEDED` (value: `'burst_limit_exceeded'`)
 
 * `MONTHLY_USAGE_LIMIT_EXCEEDED` (value: `'monthly_usage_limit_exceeded'`)
