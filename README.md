@@ -122,4 +122,4 @@ support@asterwise.com
 
 ## License
 
-Commercial. See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
