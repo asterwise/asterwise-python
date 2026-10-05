@@ -9,7 +9,7 @@ To change the contents, edit the source registry at
 app/core/error_codes.py in asterwise-api, then re-run the
 generator with --write-sdks.
 
-Generated from 40 codes (hash b8c8f8276214675d) ErrorCode members.
+Generated from 41 codes (hash ce57ccac0f42904f) ErrorCode members.
 """
 
 from typing import Literal
@@ -17,6 +17,7 @@ from typing import Literal
 
 # Stable wire-value identifier for every error the API can return.
 ErrorCode = Literal[
+    "account_action_limit_exceeded",
     "account_not_found",
     "already_on_plan",
     "api_key_invalid",
@@ -63,6 +64,7 @@ ErrorCode = Literal[
 # Runtime tuple of every valid ErrorCode value.
 # Use for membership checks: ``if code in ALL_ERROR_CODES``.
 ALL_ERROR_CODES: tuple[ErrorCode, ...] = (
+    "account_action_limit_exceeded",
     "account_not_found",
     "already_on_plan",
     "api_key_invalid",
