@@ -1,6 +1,6 @@
 # AtmakarakaRequest
 
-Jaimini Charakarakas — extends :class:`BirthInput`.  Inherits: ``name``, ``date`` (YYYY-MM-DD), ``time`` (HH:MM, required for this API), ``location`` *or* ``latitude``, ``longitude``, ``timezone``, ``ayanamsa``.
+Jaimini Charakarakas — extends :class:`TimedBirthInput`.  Inherits: ``name``, ``date`` (YYYY-MM-DD), ``time`` (HH:MM, required for this API), ``location`` *or* ``latitude``, ``longitude``, ``timezone``, ``ayanamsa``.
 
 ## Properties
 
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **location** | **str** |  | [optional] 
 **name** | **str** | Person name associated with the birth record | [optional] [default to 'Chart']
 **var_date** | **str** | Birth date in YYYY-MM-DD format | 
-**time** | **str** |  | [optional] 
+**time** | **str** | Birth time in HH:MM 24-hour format. Required: this endpoint has no sunrise fallback. | 
 **latitude** | **float** |  | [optional] 
 **longitude** | **float** |  | [optional] 
 **timezone** | **str** |  | [optional] 

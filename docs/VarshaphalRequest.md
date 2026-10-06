@@ -1,6 +1,6 @@
 # VarshaphalRequest
 
-Varshaphal — extends :class:`BirthInput` with ``target_year``.  Birth fields: ``name``, ``date``, ``time``, ``location`` or coordinates, ``ayanamsa``. Required: ``target_year`` (solar return year).
+Varshaphal — extends :class:`TimedBirthInput` with ``target_year``.  Birth fields: ``name``, ``date``, ``time``, ``location`` or coordinates, ``ayanamsa``. Required: ``target_year`` (solar return year).
 
 ## Properties
 
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **location** | **str** |  | [optional] 
 **name** | **str** | Person name associated with the birth record | [optional] [default to 'Chart']
 **var_date** | **str** | Birth date in YYYY-MM-DD format | 
-**time** | **str** |  | [optional] 
+**time** | **str** | Birth time in HH:MM 24-hour format. Required: this endpoint has no sunrise fallback. | 
 **latitude** | **float** |  | [optional] 
 **longitude** | **float** |  | [optional] 
 **timezone** | **str** |  | [optional] 

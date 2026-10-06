@@ -221,6 +221,7 @@ asterwise/models/gemstone_request.py
 asterwise/models/gemstone_response.py
 asterwise/models/geocode_response.py
 asterwise/models/geocode_result.py
+asterwise/models/ghat_chakra_request.py
 asterwise/models/ghat_chakra_response.py
 asterwise/models/ghatak_masa.py
 asterwise/models/ghatak_nakshatra.py
@@ -303,6 +304,7 @@ asterwise/models/name_number_response.py
 asterwise/models/name_only_request.py
 asterwise/models/natal_crystal_context.py
 asterwise/models/natal_crystal_entry.py
+asterwise/models/natal_crystal_request.py
 asterwise/models/natal_crystal_response.py
 asterwise/models/natal_request.py
 asterwise/models/natal_response.py
@@ -325,6 +327,7 @@ asterwise/models/personal_year.py
 asterwise/models/personal_year_post_request.py
 asterwise/models/personal_year_response.py
 asterwise/models/pinnacle_challenge.py
+asterwise/models/pitru_dosha_request.py
 asterwise/models/pitru_dosha_response.py
 asterwise/models/pitru_ninth_lord_analysis.py
 asterwise/models/pitru_sun_analysis.py
@@ -638,6 +641,7 @@ docs/GemstoneRequest.md
 docs/GemstoneResponse.md
 docs/GeocodeResponse.md
 docs/GeocodeResult.md
+docs/GhatChakraRequest.md
 docs/GhatChakraResponse.md
 docs/GhatakMasa.md
 docs/GhatakNakshatra.md
@@ -723,6 +727,7 @@ docs/NameNumberResponse.md
 docs/NameOnlyRequest.md
 docs/NatalCrystalContext.md
 docs/NatalCrystalEntry.md
+docs/NatalCrystalRequest.md
 docs/NatalCrystalResponse.md
 docs/NatalRequest.md
 docs/NatalResponse.md
@@ -746,6 +751,7 @@ docs/PersonalYear.md
 docs/PersonalYearPostRequest.md
 docs/PersonalYearResponse.md
 docs/PinnacleChallenge.md
+docs/PitruDoshaRequest.md
 docs/PitruDoshaResponse.md
 docs/PitruNinthLordAnalysis.md
 docs/PitruSunAnalysis.md
@@ -857,3 +863,6 @@ docs/YoginiResponse.md
 docs/ZodiacCompatibilityResponse.md
 git_push.sh
 test/__init__.py
+test/test_ghat_chakra_request.py
+test/test_natal_crystal_request.py
+test/test_pitru_dosha_request.py

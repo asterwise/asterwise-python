@@ -22,7 +22,7 @@ from asterwise.models.api_response_crystal_list_response import ApiResponseCryst
 from asterwise.models.api_response_crystal_recommend_response import ApiResponseCrystalRecommendResponse
 from asterwise.models.api_response_natal_crystal_response import ApiResponseNatalCrystalResponse
 from asterwise.models.crystal_recommend_request import CrystalRecommendRequest
-from asterwise.models.natal_request import NatalRequest
+from asterwise.models.natal_crystal_request import NatalCrystalRequest
 
 from asterwise.api_client import ApiClient, RequestSerialized
 from asterwise.api_response import ApiResponse
@@ -1195,7 +1195,7 @@ class CrystalsApi:
     @validate_call
     def crystals_recommend_natal(
         self,
-        natal_request: NatalRequest,
+        natal_crystal_request: NatalCrystalRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1213,8 +1213,8 @@ class CrystalsApi:
 
         Recommend crystals based on gemstone house lordship rules. Computes the natal chart and identifies the planets that lord Trikona houses (1, 5, 9). Lagna lord = Life Stone (+5), Yogakaraka = supreme benefic (+5), 9th lord = Fortune Stone (+4), 5th lord = Lucky Stone (+3). Where a planet lords both a Trikona and a Dusthana (6, 8, 12), the Trikona lordship still prevails — the planet is still recommended. Planets not lording any Trikona house are contraindicated. Only crystals with classical Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
-        :param natal_request: (required)
-        :type natal_request: NatalRequest
+        :param natal_crystal_request: (required)
+        :type natal_crystal_request: NatalCrystalRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1238,7 +1238,7 @@ class CrystalsApi:
         """ # noqa: E501
 
         _param = self._crystals_recommend_natal_serialize(
-            natal_request=natal_request,
+            natal_crystal_request=natal_crystal_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1271,7 +1271,7 @@ class CrystalsApi:
     @validate_call
     def crystals_recommend_natal_with_http_info(
         self,
-        natal_request: NatalRequest,
+        natal_crystal_request: NatalCrystalRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1289,8 +1289,8 @@ class CrystalsApi:
 
         Recommend crystals based on gemstone house lordship rules. Computes the natal chart and identifies the planets that lord Trikona houses (1, 5, 9). Lagna lord = Life Stone (+5), Yogakaraka = supreme benefic (+5), 9th lord = Fortune Stone (+4), 5th lord = Lucky Stone (+3). Where a planet lords both a Trikona and a Dusthana (6, 8, 12), the Trikona lordship still prevails — the planet is still recommended. Planets not lording any Trikona house are contraindicated. Only crystals with classical Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
-        :param natal_request: (required)
-        :type natal_request: NatalRequest
+        :param natal_crystal_request: (required)
+        :type natal_crystal_request: NatalCrystalRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1314,7 +1314,7 @@ class CrystalsApi:
         """ # noqa: E501
 
         _param = self._crystals_recommend_natal_serialize(
-            natal_request=natal_request,
+            natal_crystal_request=natal_crystal_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1347,7 +1347,7 @@ class CrystalsApi:
     @validate_call
     def crystals_recommend_natal_without_preload_content(
         self,
-        natal_request: NatalRequest,
+        natal_crystal_request: NatalCrystalRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1365,8 +1365,8 @@ class CrystalsApi:
 
         Recommend crystals based on gemstone house lordship rules. Computes the natal chart and identifies the planets that lord Trikona houses (1, 5, 9). Lagna lord = Life Stone (+5), Yogakaraka = supreme benefic (+5), 9th lord = Fortune Stone (+4), 5th lord = Lucky Stone (+3). Where a planet lords both a Trikona and a Dusthana (6, 8, 12), the Trikona lordship still prevails — the planet is still recommended. Planets not lording any Trikona house are contraindicated. Only crystals with classical Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
-        :param natal_request: (required)
-        :type natal_request: NatalRequest
+        :param natal_crystal_request: (required)
+        :type natal_crystal_request: NatalCrystalRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1390,7 +1390,7 @@ class CrystalsApi:
         """ # noqa: E501
 
         _param = self._crystals_recommend_natal_serialize(
-            natal_request=natal_request,
+            natal_crystal_request=natal_crystal_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1418,7 +1418,7 @@ class CrystalsApi:
 
     def _crystals_recommend_natal_serialize(
         self,
-        natal_request,
+        natal_crystal_request,
         _request_auth,
         _content_type,
         _headers,
@@ -1444,8 +1444,8 @@ class CrystalsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if natal_request is not None:
-            _body_params = natal_request
+        if natal_crystal_request is not None:
+            _body_params = natal_crystal_request
 
 
         # set the HTTP header `Accept`

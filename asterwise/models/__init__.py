@@ -217,6 +217,7 @@ from asterwise.models.gemstone_request import GemstoneRequest
 from asterwise.models.gemstone_response import GemstoneResponse
 from asterwise.models.geocode_response import GeocodeResponse
 from asterwise.models.geocode_result import GeocodeResult
+from asterwise.models.ghat_chakra_request import GhatChakraRequest
 from asterwise.models.ghat_chakra_response import GhatChakraResponse
 from asterwise.models.ghatak_masa import GhatakMasa
 from asterwise.models.ghatak_nakshatra import GhatakNakshatra
@@ -299,6 +300,7 @@ from asterwise.models.name_number_response import NameNumberResponse
 from asterwise.models.name_only_request import NameOnlyRequest
 from asterwise.models.natal_crystal_context import NatalCrystalContext
 from asterwise.models.natal_crystal_entry import NatalCrystalEntry
+from asterwise.models.natal_crystal_request import NatalCrystalRequest
 from asterwise.models.natal_crystal_response import NatalCrystalResponse
 from asterwise.models.natal_request import NatalRequest
 from asterwise.models.natal_response import NatalResponse
@@ -321,6 +323,7 @@ from asterwise.models.personal_year import PersonalYear
 from asterwise.models.personal_year_post_request import PersonalYearPostRequest
 from asterwise.models.personal_year_response import PersonalYearResponse
 from asterwise.models.pinnacle_challenge import PinnacleChallenge
+from asterwise.models.pitru_dosha_request import PitruDoshaRequest
 from asterwise.models.pitru_dosha_response import PitruDoshaResponse
 from asterwise.models.pitru_ninth_lord_analysis import PitruNinthLordAnalysis
 from asterwise.models.pitru_sun_analysis import PitruSunAnalysis

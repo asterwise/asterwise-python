@@ -1,5 +1,43 @@
 # CHANGELOG
 
+## 0.8.0 — 2026-10-06
+
+Generated from the API as deployed on 2026-10-06. Requests on the wire are
+unchanged; the models now say what the API has always required.
+
+### Changed (breaking for three methods)
+
+- `pitra_dosha`, `ghat_chakra` and `crystals_recommend_natal` take their own
+  request models, so the argument name changes:
+  - `pitra_dosha(birth_input=BirthInput(...))` →
+    `pitra_dosha(pitru_dosha_request=PitruDoshaRequest(...))`
+  - `ghat_chakra(birth_input=BirthInput(...))` →
+    `ghat_chakra(ghat_chakra_request=GhatChakraRequest(...))`
+  - `crystals_recommend_natal(natal_request=NatalRequest(...))` →
+    `crystals_recommend_natal(natal_crystal_request=NatalCrystalRequest(...))`
+
+  The fields are the same as before except that `time` is required
+  (`NatalCrystalRequest` also drops `include_interpretation`, which the
+  endpoint never read). `BirthInput` and `NatalRequest` are unchanged,
+  because other endpoints use them without requiring a time.
+- `time` is required on the request models of the 16 endpoints that always
+  rejected a request without it: `KPBirthRequest` (KP chart and
+  significators), `AtmakarakaRequest`, `CharDashaRequest`,
+  `IshtaDevtaRequest`, `VarshaphalRequest` (varshaphal, saham, harsha bala),
+  `GocharRequest`, `DashaTransitsRequest`, `RemediesRequest`,
+  `GemstoneRequest`, `NakshatraPredictionRequest`, plus the three new models
+  above. Code that left it out failed at the API; now the model refuses it.
+
+### Added
+
+- `PrashnaRequest.ayanamsa` accepts `raman` and `tropical` as well as
+  `lahiri` and `kp`.
+
+### Fixed
+
+- Five method descriptions no longer mention "Core tier" or "Vedic tier"
+  plans, which don't exist.
+
 ## 0.7.0 — 2026-10-05
 
 ### Changed (breaking for Python 3.9)

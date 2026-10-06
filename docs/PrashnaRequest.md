@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **target_date** | **str** |  | [optional] 
 **target_time** | **str** |  | [optional] 
 **target_timezone** | **str** |  | [optional] 
-**ayanamsa** | **str** | Ayanamsa system | [optional] [default to 'lahiri']
+**ayanamsa** | **str** | Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint | [optional] [default to 'lahiri']
 
 ## Example
 

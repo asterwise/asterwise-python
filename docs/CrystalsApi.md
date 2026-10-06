@@ -357,7 +357,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **crystals_recommend_natal**
-> ApiResponseNatalCrystalResponse crystals_recommend_natal(natal_request)
+> ApiResponseNatalCrystalResponse crystals_recommend_natal(natal_crystal_request)
 
 Crystal recommendations from Vedic natal chart
 
@@ -370,7 +370,7 @@ Recommend crystals based on gemstone house lordship rules. Computes the natal ch
 ```python
 import asterwise
 from asterwise.models.api_response_natal_crystal_response import ApiResponseNatalCrystalResponse
-from asterwise.models.natal_request import NatalRequest
+from asterwise.models.natal_crystal_request import NatalCrystalRequest
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -394,11 +394,11 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.CrystalsApi(api_client)
-    natal_request = asterwise.NatalRequest() # NatalRequest | 
+    natal_crystal_request = asterwise.NatalCrystalRequest() # NatalCrystalRequest | 
 
     try:
         # Crystal recommendations from Vedic natal chart
-        api_response = api_instance.crystals_recommend_natal(natal_request)
+        api_response = api_instance.crystals_recommend_natal(natal_crystal_request)
         print("The response of CrystalsApi->crystals_recommend_natal:\n")
         pprint(api_response)
     except Exception as e:
@@ -412,7 +412,7 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **natal_request** | [**NatalRequest**](NatalRequest.md)|  | 
+ **natal_crystal_request** | [**NatalCrystalRequest**](NatalCrystalRequest.md)|  | 
 
 ### Return type
 

@@ -35,7 +35,7 @@ class PrashnaRequest(BaseModel):
     target_date: Optional[StrictStr] = None
     target_time: Optional[StrictStr] = None
     target_timezone: Optional[StrictStr] = None
-    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Ayanamsa system")
+    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint")
     __properties: ClassVar[List[str]] = ["latitude", "longitude", "question", "target_date", "target_time", "target_timezone", "ayanamsa"]
 
     @field_validator('question')
@@ -51,8 +51,8 @@ class PrashnaRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['lahiri', 'kp']):
-            raise ValueError("must be one of enum values ('lahiri', 'kp')")
+        if value not in set(['lahiri', 'raman', 'kp', 'tropical']):
+            raise ValueError("must be one of enum values ('lahiri', 'raman', 'kp', 'tropical')")
         return value
 
     model_config = ConfigDict(

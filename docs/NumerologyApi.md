@@ -1785,7 +1785,7 @@ Name | Type | Description  | Notes
 
 Get number meaning by context
 
-Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Requires authenticated API key access (Core tier or above in product terms). Returns meaning text and optional thematic guidance fields.
+Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Returns meaning text and optional thematic guidance fields.
 
 ### Example
 
@@ -1874,7 +1874,7 @@ Name | Type | Description  | Notes
 
 Calculate numerology compatibility
 
-Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Requires authenticated API key access (Core tier or above in product terms). Returns score, level, and explanatory strengths/challenges.
+Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Returns score, level, and explanatory strengths/challenges.
 
 ### Example
 
@@ -1962,7 +1962,7 @@ Name | Type | Description  | Notes
 
 Generate numerology profile
 
-Builds a complete numerology profile from name and birth date (BirthInput-aligned: `name`, `date`). Requires authenticated API key access (Core tier or above in product terms). Returns core numbers, interpretations, cycles, and supportive metadata.
+Builds a complete numerology profile from name and birth date (BirthInput-aligned: `name`, `date`). Returns core numbers, interpretations, cycles, and supportive metadata.
 
 ### Example
 

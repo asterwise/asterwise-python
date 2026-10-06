@@ -969,7 +969,7 @@ class AdvancedApi:
     ) -> ApiResponseStrengthResponse:
         """Calculate planetary strength suite
 
-        Builds a composite strength report including shadbala, divisional charts, ashtakavarga, and karakas from birth input. Requires authenticated API key access (Vedic tier or above in product terms). Returns a unified strength payload for all supported modules.
+        Builds a composite strength report including shadbala, divisional charts, ashtakavarga, and karakas from birth input. Returns a unified strength payload for all supported modules.
 
         :param strength_request: (required)
         :type strength_request: StrengthRequest
@@ -1045,7 +1045,7 @@ class AdvancedApi:
     ) -> ApiResponse[ApiResponseStrengthResponse]:
         """Calculate planetary strength suite
 
-        Builds a composite strength report including shadbala, divisional charts, ashtakavarga, and karakas from birth input. Requires authenticated API key access (Vedic tier or above in product terms). Returns a unified strength payload for all supported modules.
+        Builds a composite strength report including shadbala, divisional charts, ashtakavarga, and karakas from birth input. Returns a unified strength payload for all supported modules.
 
         :param strength_request: (required)
         :type strength_request: StrengthRequest
@@ -1121,7 +1121,7 @@ class AdvancedApi:
     ) -> RESTResponseType:
         """Calculate planetary strength suite
 
-        Builds a composite strength report including shadbala, divisional charts, ashtakavarga, and karakas from birth input. Requires authenticated API key access (Vedic tier or above in product terms). Returns a unified strength payload for all supported modules.
+        Builds a composite strength report including shadbala, divisional charts, ashtakavarga, and karakas from birth input. Returns a unified strength payload for all supported modules.
 
         :param strength_request: (required)
         :type strength_request: StrengthRequest
@@ -1270,7 +1270,7 @@ class AdvancedApi:
     ) -> ApiResponseTransitsResponse:
         """Planetary transits — Gochar
 
-        Scans a date range for planetary sign ingresses and retrograde/direct station events. Requires authenticated API key access (Vedic tier or above in product terms). Returns grouped transit events for supported planets. Also known as Gochar. Returns planetary sign ingresses and retrograde/direct station events for a given date range.
+        Scans a date range for planetary sign ingresses and retrograde/direct station events. Returns grouped transit events for supported planets. Also known as Gochar.
 
         :param transits_request: (required)
         :type transits_request: TransitsRequest
@@ -1346,7 +1346,7 @@ class AdvancedApi:
     ) -> ApiResponse[ApiResponseTransitsResponse]:
         """Planetary transits — Gochar
 
-        Scans a date range for planetary sign ingresses and retrograde/direct station events. Requires authenticated API key access (Vedic tier or above in product terms). Returns grouped transit events for supported planets. Also known as Gochar. Returns planetary sign ingresses and retrograde/direct station events for a given date range.
+        Scans a date range for planetary sign ingresses and retrograde/direct station events. Returns grouped transit events for supported planets. Also known as Gochar.
 
         :param transits_request: (required)
         :type transits_request: TransitsRequest
@@ -1422,7 +1422,7 @@ class AdvancedApi:
     ) -> RESTResponseType:
         """Planetary transits — Gochar
 
-        Scans a date range for planetary sign ingresses and retrograde/direct station events. Requires authenticated API key access (Vedic tier or above in product terms). Returns grouped transit events for supported planets. Also known as Gochar. Returns planetary sign ingresses and retrograde/direct station events for a given date range.
+        Scans a date range for planetary sign ingresses and retrograde/direct station events. Returns grouped transit events for supported planets. Also known as Gochar.
 
         :param transits_request: (required)
         :type transits_request: TransitsRequest

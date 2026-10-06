@@ -58,7 +58,6 @@ from asterwise.models.api_response_union_rudraksha_all_response_rudraksha_single
 from asterwise.models.api_response_varshaphal_response import ApiResponseVarshaphalResponse
 from asterwise.models.api_response_yoga_endpoint_response import ApiResponseYogaEndpointResponse
 from asterwise.models.atmakaraka_request import AtmakarakaRequest
-from asterwise.models.birth_input import BirthInput
 from asterwise.models.char_dasha_request import CharDashaRequest
 from asterwise.models.chart_request import ChartRequest
 from asterwise.models.dasha_request import DashaRequest
@@ -66,6 +65,7 @@ from asterwise.models.dasha_transits_request import DashaTransitsRequest
 from asterwise.models.dashakoot_request import DashakootRequest
 from asterwise.models.dosha_request import DoshaRequest
 from asterwise.models.gemstone_request import GemstoneRequest
+from asterwise.models.ghat_chakra_request import GhatChakraRequest
 from asterwise.models.gochar_request import GocharRequest
 from asterwise.models.ishta_devta_request import IshtaDevtaRequest
 from asterwise.models.matchmaking_request import MatchmakingRequest
@@ -76,6 +76,7 @@ from asterwise.models.panchanga_calendar_post_body import PanchangaCalendarPostB
 from asterwise.models.panchanga_ext_request import PanchangaExtRequest
 from asterwise.models.panchanga_request import PanchangaRequest
 from asterwise.models.papasamyam_request import PapasamyamRequest
+from asterwise.models.pitru_dosha_request import PitruDoshaRequest
 from asterwise.models.portutham_request import PortuthamRequest
 from asterwise.models.remedies_request import RemediesRequest
 from asterwise.models.sade_sati_request import SadeSatiRequest
@@ -2510,7 +2511,7 @@ class AstrologyApi:
     @validate_call
     def ghat_chakra(
         self,
-        birth_input: BirthInput,
+        ghat_chakra_request: GhatChakraRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2528,8 +2529,8 @@ class AstrologyApi:
 
         Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided.
 
-        :param birth_input: (required)
-        :type birth_input: BirthInput
+        :param ghat_chakra_request: (required)
+        :type ghat_chakra_request: GhatChakraRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2553,7 +2554,7 @@ class AstrologyApi:
         """ # noqa: E501
 
         _param = self._ghat_chakra_serialize(
-            birth_input=birth_input,
+            ghat_chakra_request=ghat_chakra_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2586,7 +2587,7 @@ class AstrologyApi:
     @validate_call
     def ghat_chakra_with_http_info(
         self,
-        birth_input: BirthInput,
+        ghat_chakra_request: GhatChakraRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2604,8 +2605,8 @@ class AstrologyApi:
 
         Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided.
 
-        :param birth_input: (required)
-        :type birth_input: BirthInput
+        :param ghat_chakra_request: (required)
+        :type ghat_chakra_request: GhatChakraRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2629,7 +2630,7 @@ class AstrologyApi:
         """ # noqa: E501
 
         _param = self._ghat_chakra_serialize(
-            birth_input=birth_input,
+            ghat_chakra_request=ghat_chakra_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2662,7 +2663,7 @@ class AstrologyApi:
     @validate_call
     def ghat_chakra_without_preload_content(
         self,
-        birth_input: BirthInput,
+        ghat_chakra_request: GhatChakraRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2680,8 +2681,8 @@ class AstrologyApi:
 
         Returns the four Ghatak (inauspicious) timing parameters for a native based on their Janma Rasi (natal Moon sign). Ghat Chakra identifies the lunar month (Masa), lunar day group (Tithi), weekday (Vara), and transit nakshatra that are persistently inauspicious for that individual. When transit periods align with these Ghatak parameters, starting new ventures, surgery, travel, or auspicious ceremonies should be avoided.
 
-        :param birth_input: (required)
-        :type birth_input: BirthInput
+        :param ghat_chakra_request: (required)
+        :type ghat_chakra_request: GhatChakraRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2705,7 +2706,7 @@ class AstrologyApi:
         """ # noqa: E501
 
         _param = self._ghat_chakra_serialize(
-            birth_input=birth_input,
+            ghat_chakra_request=ghat_chakra_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2733,7 +2734,7 @@ class AstrologyApi:
 
     def _ghat_chakra_serialize(
         self,
-        birth_input,
+        ghat_chakra_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2759,8 +2760,8 @@ class AstrologyApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if birth_input is not None:
-            _body_params = birth_input
+        if ghat_chakra_request is not None:
+            _body_params = ghat_chakra_request
 
 
         # set the HTTP header `Accept`
@@ -8739,7 +8740,7 @@ class AstrologyApi:
     @validate_call
     def pitra_dosha(
         self,
-        birth_input: BirthInput,
+        pitru_dosha_request: PitruDoshaRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8757,8 +8758,8 @@ class AstrologyApi:
 
         Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
-        :param birth_input: (required)
-        :type birth_input: BirthInput
+        :param pitru_dosha_request: (required)
+        :type pitru_dosha_request: PitruDoshaRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8782,7 +8783,7 @@ class AstrologyApi:
         """ # noqa: E501
 
         _param = self._pitra_dosha_serialize(
-            birth_input=birth_input,
+            pitru_dosha_request=pitru_dosha_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8815,7 +8816,7 @@ class AstrologyApi:
     @validate_call
     def pitra_dosha_with_http_info(
         self,
-        birth_input: BirthInput,
+        pitru_dosha_request: PitruDoshaRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8833,8 +8834,8 @@ class AstrologyApi:
 
         Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
-        :param birth_input: (required)
-        :type birth_input: BirthInput
+        :param pitru_dosha_request: (required)
+        :type pitru_dosha_request: PitruDoshaRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8858,7 +8859,7 @@ class AstrologyApi:
         """ # noqa: E501
 
         _param = self._pitra_dosha_serialize(
-            birth_input=birth_input,
+            pitru_dosha_request=pitru_dosha_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8891,7 +8892,7 @@ class AstrologyApi:
     @validate_call
     def pitra_dosha_without_preload_content(
         self,
-        birth_input: BirthInput,
+        pitru_dosha_request: PitruDoshaRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8909,8 +8910,8 @@ class AstrologyApi:
 
         Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
-        :param birth_input: (required)
-        :type birth_input: BirthInput
+        :param pitru_dosha_request: (required)
+        :type pitru_dosha_request: PitruDoshaRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8934,7 +8935,7 @@ class AstrologyApi:
         """ # noqa: E501
 
         _param = self._pitra_dosha_serialize(
-            birth_input=birth_input,
+            pitru_dosha_request=pitru_dosha_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8962,7 +8963,7 @@ class AstrologyApi:
 
     def _pitra_dosha_serialize(
         self,
-        birth_input,
+        pitru_dosha_request,
         _request_auth,
         _content_type,
         _headers,
@@ -8988,8 +8989,8 @@ class AstrologyApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if birth_input is not None:
-            _body_params = birth_input
+        if pitru_dosha_request is not None:
+            _body_params = pitru_dosha_request
 
 
         # set the HTTP header `Accept`

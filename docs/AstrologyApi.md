@@ -772,7 +772,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ghat_chakra**
-> ApiResponseGhatChakraResponse ghat_chakra(birth_input)
+> ApiResponseGhatChakraResponse ghat_chakra(ghat_chakra_request)
 
 Ghat Chakra
 
@@ -785,7 +785,7 @@ Returns the four Ghatak (inauspicious) timing parameters for a native based on t
 ```python
 import asterwise
 from asterwise.models.api_response_ghat_chakra_response import ApiResponseGhatChakraResponse
-from asterwise.models.birth_input import BirthInput
+from asterwise.models.ghat_chakra_request import GhatChakraRequest
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -809,11 +809,11 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.AstrologyApi(api_client)
-    birth_input = asterwise.BirthInput() # BirthInput | 
+    ghat_chakra_request = asterwise.GhatChakraRequest() # GhatChakraRequest | 
 
     try:
         # Ghat Chakra
-        api_response = api_instance.ghat_chakra(birth_input)
+        api_response = api_instance.ghat_chakra(ghat_chakra_request)
         print("The response of AstrologyApi->ghat_chakra:\n")
         pprint(api_response)
     except Exception as e:
@@ -827,7 +827,7 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **birth_input** | [**BirthInput**](BirthInput.md)|  | 
+ **ghat_chakra_request** | [**GhatChakraRequest**](GhatChakraRequest.md)|  | 
 
 ### Return type
 
@@ -2558,7 +2558,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pitra_dosha**
-> ApiResponsePitruDoshaResponse pitra_dosha(birth_input)
+> ApiResponsePitruDoshaResponse pitra_dosha(pitru_dosha_request)
 
 Pitru Dosha (Pitru Shapa)
 
@@ -2571,7 +2571,7 @@ Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the nata
 ```python
 import asterwise
 from asterwise.models.api_response_pitru_dosha_response import ApiResponsePitruDoshaResponse
-from asterwise.models.birth_input import BirthInput
+from asterwise.models.pitru_dosha_request import PitruDoshaRequest
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -2595,11 +2595,11 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.AstrologyApi(api_client)
-    birth_input = asterwise.BirthInput() # BirthInput | 
+    pitru_dosha_request = asterwise.PitruDoshaRequest() # PitruDoshaRequest | 
 
     try:
         # Pitru Dosha (Pitru Shapa)
-        api_response = api_instance.pitra_dosha(birth_input)
+        api_response = api_instance.pitra_dosha(pitru_dosha_request)
         print("The response of AstrologyApi->pitra_dosha:\n")
         pprint(api_response)
     except Exception as e:
@@ -2613,7 +2613,7 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **birth_input** | [**BirthInput**](BirthInput.md)|  | 
+ **pitru_dosha_request** | [**PitruDoshaRequest**](PitruDoshaRequest.md)|  | 
 
 ### Return type
 

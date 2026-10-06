@@ -25,9 +25,9 @@ from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class GocharRequest(BaseModel):
+class NatalCrystalRequest(BaseModel):
     """
-    Gochar — extends :class:`TimedBirthInput` with optional transit instant fields.  Birth fields: ``name``, ``date``, ``time``, ``location`` or coordinates, ``ayanamsa``. Transit evaluation: optional ``target_date``, ``target_time``, ``target_timezone``.
+    Natal crystal recommendations: birth details with the exact birth time (the houses, and so the lordships, depend on it).
     """ # noqa: E501
     location: Optional[StrictStr] = None
     name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default='Chart', description="Person name associated with the birth record")
@@ -38,10 +38,7 @@ class GocharRequest(BaseModel):
     timezone: Optional[StrictStr] = None
     utc_offset: Optional[StrictStr] = None
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
-    target_date: Optional[StrictStr] = None
-    target_time: Optional[StrictStr] = None
-    target_timezone: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "target_date", "target_time", "target_timezone"]
+    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa"]
 
     @field_validator('ayanamsa')
     def ayanamsa_validate_enum(cls, value):
@@ -71,7 +68,7 @@ class GocharRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GocharRequest from a JSON string"""
+        """Create an instance of NatalCrystalRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -117,26 +114,11 @@ class GocharRequest(BaseModel):
         if self.utc_offset is None and "utc_offset" in self.model_fields_set:
             _dict['utc_offset'] = None
 
-        # set to None if target_date (nullable) is None
-        # and model_fields_set contains the field
-        if self.target_date is None and "target_date" in self.model_fields_set:
-            _dict['target_date'] = None
-
-        # set to None if target_time (nullable) is None
-        # and model_fields_set contains the field
-        if self.target_time is None and "target_time" in self.model_fields_set:
-            _dict['target_time'] = None
-
-        # set to None if target_timezone (nullable) is None
-        # and model_fields_set contains the field
-        if self.target_timezone is None and "target_timezone" in self.model_fields_set:
-            _dict['target_timezone'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GocharRequest from a dict"""
+        """Create an instance of NatalCrystalRequest from a dict"""
         if obj is None:
             return None
 
@@ -152,10 +134,7 @@ class GocharRequest(BaseModel):
             "longitude": obj.get("longitude"),
             "timezone": obj.get("timezone"),
             "utc_offset": obj.get("utc_offset"),
-            "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri',
-            "target_date": obj.get("target_date"),
-            "target_time": obj.get("target_time"),
-            "target_timezone": obj.get("target_timezone")
+            "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri'
         })
         return _obj
 

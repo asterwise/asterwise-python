@@ -385,7 +385,7 @@ Name | Type | Description  | Notes
 
 Calculate planetary strength suite
 
-Builds a composite strength report including shadbala, divisional charts, ashtakavarga, and karakas from birth input. Requires authenticated API key access (Vedic tier or above in product terms). Returns a unified strength payload for all supported modules.
+Builds a composite strength report including shadbala, divisional charts, ashtakavarga, and karakas from birth input. Returns a unified strength payload for all supported modules.
 
 ### Example
 
@@ -473,7 +473,7 @@ Name | Type | Description  | Notes
 
 Planetary transits — Gochar
 
-Scans a date range for planetary sign ingresses and retrograde/direct station events. Requires authenticated API key access (Vedic tier or above in product terms). Returns grouped transit events for supported planets. Also known as Gochar. Returns planetary sign ingresses and retrograde/direct station events for a given date range.
+Scans a date range for planetary sign ingresses and retrograde/direct station events. Returns grouped transit events for supported planets. Also known as Gochar.
 
 ### Example
 

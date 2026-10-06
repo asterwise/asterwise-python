@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.7.0"
+__version__ = "0.8.0"
 
 # Define package exports
 __all__ = [
@@ -244,6 +244,7 @@ __all__ = [
     "GemstoneResponse",
     "GeocodeResponse",
     "GeocodeResult",
+    "GhatChakraRequest",
     "GhatChakraResponse",
     "GhatakMasa",
     "GhatakNakshatra",
@@ -326,6 +327,7 @@ __all__ = [
     "NameOnlyRequest",
     "NatalCrystalContext",
     "NatalCrystalEntry",
+    "NatalCrystalRequest",
     "NatalCrystalResponse",
     "NatalRequest",
     "NatalResponse",
@@ -348,6 +350,7 @@ __all__ = [
     "PersonalYearPostRequest",
     "PersonalYearResponse",
     "PinnacleChallenge",
+    "PitruDoshaRequest",
     "PitruDoshaResponse",
     "PitruNinthLordAnalysis",
     "PitruSunAnalysis",
@@ -684,6 +687,7 @@ from asterwise.models.gemstone_request import GemstoneRequest as GemstoneRequest
 from asterwise.models.gemstone_response import GemstoneResponse as GemstoneResponse
 from asterwise.models.geocode_response import GeocodeResponse as GeocodeResponse
 from asterwise.models.geocode_result import GeocodeResult as GeocodeResult
+from asterwise.models.ghat_chakra_request import GhatChakraRequest as GhatChakraRequest
 from asterwise.models.ghat_chakra_response import GhatChakraResponse as GhatChakraResponse
 from asterwise.models.ghatak_masa import GhatakMasa as GhatakMasa
 from asterwise.models.ghatak_nakshatra import GhatakNakshatra as GhatakNakshatra
@@ -766,6 +770,7 @@ from asterwise.models.name_number_response import NameNumberResponse as NameNumb
 from asterwise.models.name_only_request import NameOnlyRequest as NameOnlyRequest
 from asterwise.models.natal_crystal_context import NatalCrystalContext as NatalCrystalContext
 from asterwise.models.natal_crystal_entry import NatalCrystalEntry as NatalCrystalEntry
+from asterwise.models.natal_crystal_request import NatalCrystalRequest as NatalCrystalRequest
 from asterwise.models.natal_crystal_response import NatalCrystalResponse as NatalCrystalResponse
 from asterwise.models.natal_request import NatalRequest as NatalRequest
 from asterwise.models.natal_response import NatalResponse as NatalResponse
@@ -788,6 +793,7 @@ from asterwise.models.personal_year import PersonalYear as PersonalYear
 from asterwise.models.personal_year_post_request import PersonalYearPostRequest as PersonalYearPostRequest
 from asterwise.models.personal_year_response import PersonalYearResponse as PersonalYearResponse
 from asterwise.models.pinnacle_challenge import PinnacleChallenge as PinnacleChallenge
+from asterwise.models.pitru_dosha_request import PitruDoshaRequest as PitruDoshaRequest
 from asterwise.models.pitru_dosha_response import PitruDoshaResponse as PitruDoshaResponse
 from asterwise.models.pitru_ninth_lord_analysis import PitruNinthLordAnalysis as PitruNinthLordAnalysis
 from asterwise.models.pitru_sun_analysis import PitruSunAnalysis as PitruSunAnalysis

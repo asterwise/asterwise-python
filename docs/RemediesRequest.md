@@ -1,6 +1,6 @@
 # RemediesRequest
 
-Personalised remedies — extends :class:`BirthInput` with ``top_n``.  Birth fields: ``name``, ``date``, ``time``, ``location`` or ``latitude``/``longitude``/ ``timezone``, ``ayanamsa``. Additional: ``top_n`` (1–9).
+Personalised remedies — extends :class:`TimedBirthInput` with ``top_n``.  Birth fields: ``name``, ``date``, ``time``, ``location`` or ``latitude``/``longitude``/ ``timezone``, ``ayanamsa``. Additional: ``top_n`` (1–9).
 
 ## Properties
 
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **location** | **str** |  | [optional] 
 **name** | **str** | Person name associated with the birth record | [optional] [default to 'Chart']
 **var_date** | **str** | Birth date in YYYY-MM-DD format | 
-**time** | **str** |  | [optional] 
+**time** | **str** | Birth time in HH:MM 24-hour format. Required: this endpoint has no sunrise fallback. | 
 **latitude** | **float** |  | [optional] 
 **longitude** | **float** |  | [optional] 
 **timezone** | **str** |  | [optional] 

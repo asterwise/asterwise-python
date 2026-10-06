@@ -33,7 +33,7 @@ class NakshatraPredictionRequest(BaseModel):
     location: Optional[StrictStr] = None
     name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default='Chart', description="Person name associated with the birth record")
     var_date: StrictStr = Field(description="Birth date in YYYY-MM-DD format", alias="date")
-    time: Optional[StrictStr] = None
+    time: StrictStr = Field(description="Birth time in HH:MM 24-hour format. Required: this endpoint has no sunrise fallback.")
     latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None
     longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None
     timezone: Optional[StrictStr] = None
@@ -95,11 +95,6 @@ class NakshatraPredictionRequest(BaseModel):
         # and model_fields_set contains the field
         if self.location is None and "location" in self.model_fields_set:
             _dict['location'] = None
-
-        # set to None if time (nullable) is None
-        # and model_fields_set contains the field
-        if self.time is None and "time" in self.model_fields_set:
-            _dict['time'] = None
 
         # set to None if latitude (nullable) is None
         # and model_fields_set contains the field

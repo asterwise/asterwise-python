@@ -1,6 +1,6 @@
 # GocharRequest
 
-Gochar — extends :class:`BirthInput` with optional transit instant fields.  Birth fields: ``name``, ``date``, ``time``, ``location`` or coordinates, ``ayanamsa``. Transit evaluation: optional ``target_date``, ``target_time``, ``target_timezone``.
+Gochar — extends :class:`TimedBirthInput` with optional transit instant fields.  Birth fields: ``name``, ``date``, ``time``, ``location`` or coordinates, ``ayanamsa``. Transit evaluation: optional ``target_date``, ``target_time``, ``target_timezone``.
 
 ## Properties
 
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **location** | **str** |  | [optional] 
 **name** | **str** | Person name associated with the birth record | [optional] [default to 'Chart']
 **var_date** | **str** | Birth date in YYYY-MM-DD format | 
-**time** | **str** |  | [optional] 
+**time** | **str** | Birth time in HH:MM 24-hour format. Required: this endpoint has no sunrise fallback. | 
 **latitude** | **float** |  | [optional] 
 **longitude** | **float** |  | [optional] 
 **timezone** | **str** |  | [optional] 

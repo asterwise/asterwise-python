@@ -6033,7 +6033,7 @@ class NumerologyApi:
     ) -> ApiResponseNumberMeaningResponse:
         """Get number meaning by context
 
-        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Requires authenticated API key access (Core tier or above in product terms). Returns meaning text and optional thematic guidance fields.
+        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Returns meaning text and optional thematic guidance fields.
 
         :param number: (required)
         :type number: int
@@ -6113,7 +6113,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseNumberMeaningResponse]:
         """Get number meaning by context
 
-        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Requires authenticated API key access (Core tier or above in product terms). Returns meaning text and optional thematic guidance fields.
+        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Returns meaning text and optional thematic guidance fields.
 
         :param number: (required)
         :type number: int
@@ -6193,7 +6193,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Get number meaning by context
 
-        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Requires authenticated API key access (Core tier or above in product terms). Returns meaning text and optional thematic guidance fields.
+        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Returns meaning text and optional thematic guidance fields.
 
         :param number: (required)
         :type number: int
@@ -6337,7 +6337,7 @@ class NumerologyApi:
     ) -> AppApiResponseApiResponseCompatibilityResponse2:
         """Calculate numerology compatibility
 
-        Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Requires authenticated API key access (Core tier or above in product terms). Returns score, level, and explanatory strengths/challenges.
+        Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Returns score, level, and explanatory strengths/challenges.
 
         :param compatibility_request: (required)
         :type compatibility_request: CompatibilityRequest
@@ -6413,7 +6413,7 @@ class NumerologyApi:
     ) -> ApiResponse[AppApiResponseApiResponseCompatibilityResponse2]:
         """Calculate numerology compatibility
 
-        Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Requires authenticated API key access (Core tier or above in product terms). Returns score, level, and explanatory strengths/challenges.
+        Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Returns score, level, and explanatory strengths/challenges.
 
         :param compatibility_request: (required)
         :type compatibility_request: CompatibilityRequest
@@ -6489,7 +6489,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Calculate numerology compatibility
 
-        Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Requires authenticated API key access (Core tier or above in product terms). Returns score, level, and explanatory strengths/challenges.
+        Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Returns score, level, and explanatory strengths/challenges.
 
         :param compatibility_request: (required)
         :type compatibility_request: CompatibilityRequest
@@ -6638,7 +6638,7 @@ class NumerologyApi:
     ) -> ApiResponseNumerologyProfileResponse:
         """Generate numerology profile
 
-        Builds a complete numerology profile from name and birth date (BirthInput-aligned: `name`, `date`). Requires authenticated API key access (Core tier or above in product terms). Returns core numbers, interpretations, cycles, and supportive metadata.
+        Builds a complete numerology profile from name and birth date (BirthInput-aligned: `name`, `date`). Returns core numbers, interpretations, cycles, and supportive metadata.
 
         :param numerology_request: (required)
         :type numerology_request: NumerologyRequest
@@ -6714,7 +6714,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseNumerologyProfileResponse]:
         """Generate numerology profile
 
-        Builds a complete numerology profile from name and birth date (BirthInput-aligned: `name`, `date`). Requires authenticated API key access (Core tier or above in product terms). Returns core numbers, interpretations, cycles, and supportive metadata.
+        Builds a complete numerology profile from name and birth date (BirthInput-aligned: `name`, `date`). Returns core numbers, interpretations, cycles, and supportive metadata.
 
         :param numerology_request: (required)
         :type numerology_request: NumerologyRequest
@@ -6790,7 +6790,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Generate numerology profile
 
-        Builds a complete numerology profile from name and birth date (BirthInput-aligned: `name`, `date`). Requires authenticated API key access (Core tier or above in product terms). Returns core numbers, interpretations, cycles, and supportive metadata.
+        Builds a complete numerology profile from name and birth date (BirthInput-aligned: `name`, `date`). Returns core numbers, interpretations, cycles, and supportive metadata.
 
         :param numerology_request: (required)
         :type numerology_request: NumerologyRequest
