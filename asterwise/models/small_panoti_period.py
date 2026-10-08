@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from asterwise.models.saturn_stay import SaturnStay
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -32,11 +33,13 @@ class SmallPanotiPeriod(BaseModel):
     sign_index: StrictInt
     sign: StrictStr
     position_from_moon: StrictInt
-    start: StrictStr
-    end: StrictStr
-    is_currently_active: StrictBool
+    start: StrictStr = Field(description="Saturn's first entry into the sign.")
+    end: StrictStr = Field(description="Saturn's final exit from the sign, after any retrograde return.")
+    is_currently_active: StrictBool = Field(description="Saturn is in this sign on the check date.")
     duration_years: Union[StrictFloat, StrictInt]
-    __properties: ClassVar[List[str]] = ["panoti_number", "sign_index", "sign", "position_from_moon", "start", "end", "is_currently_active", "duration_years"]
+    segments: Optional[List[SaturnStay]] = Field(default=None, description="Every stay of Saturn in the sign; more than one when it retrogrades out and back in.")
+    is_interrupted: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["panoti_number", "sign_index", "sign", "position_from_moon", "start", "end", "is_currently_active", "duration_years", "segments", "is_interrupted"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,6 +80,18 @@ class SmallPanotiPeriod(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in segments (list)
+        _items = []
+        if self.segments:
+            for _item_segments in self.segments:
+                if _item_segments:
+                    _items.append(_item_segments.to_dict())
+            _dict['segments'] = _items
+        # set to None if is_interrupted (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_interrupted is None and "is_interrupted" in self.model_fields_set:
+            _dict['is_interrupted'] = None
+
         return _dict
 
     @classmethod
@@ -96,7 +111,9 @@ class SmallPanotiPeriod(BaseModel):
             "start": obj.get("start"),
             "end": obj.get("end"),
             "is_currently_active": obj.get("is_currently_active"),
-            "duration_years": obj.get("duration_years")
+            "duration_years": obj.get("duration_years"),
+            "segments": [SaturnStay.from_dict(_item) for _item in obj["segments"]] if obj.get("segments") is not None else None,
+            "is_interrupted": obj.get("is_interrupted")
         })
         return _obj
 

@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **start_date** | **str** | Start date in DD/MM/YYYY format | 
 **end_date** | **str** | End date in DD/MM/YYYY format | 
 **sub** | **List[object]** |  | [optional] 
+**dasha_start_date** | **str** |  | [optional] 
+**balance_years** | **float** |  | [optional] 
 
 ## Example
 

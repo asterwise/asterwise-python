@@ -163,6 +163,7 @@ from asterwise.models.choghadiya_response import ChoghadiyaResponse
 from asterwise.models.classical_source import ClassicalSource
 from asterwise.models.compatibility_person_input import CompatibilityPersonInput
 from asterwise.models.compatibility_request import CompatibilityRequest
+from asterwise.models.composite_aspect_schema import CompositeAspectSchema
 from asterwise.models.composite_planet_schema import CompositePlanetSchema
 from asterwise.models.composite_response import CompositeResponse
 from asterwise.models.context_variant import ContextVariant
@@ -244,7 +245,9 @@ from asterwise.models.ishta_devta_request import IshtaDevtaRequest
 from asterwise.models.ishta_devta_response import IshtaDevtaResponse
 from asterwise.models.kp_birth_request import KPBirthRequest
 from asterwise.models.kp_chart_response import KPChartResponse
+from asterwise.models.kp_house_significators import KPHouseSignificators
 from asterwise.models.kp_lagna import KPLagna
+from asterwise.models.kp_planet import KPPlanet
 from asterwise.models.kp_ruling_planet_body import KPRulingPlanetBody
 from asterwise.models.kp_ruling_planets_request import KPRulingPlanetsRequest
 from asterwise.models.kp_ruling_planets_response import KPRulingPlanetsResponse
@@ -327,6 +330,7 @@ from asterwise.models.personal_year import PersonalYear
 from asterwise.models.personal_year_post_request import PersonalYearPostRequest
 from asterwise.models.personal_year_response import PersonalYearResponse
 from asterwise.models.pinnacle_challenge import PinnacleChallenge
+from asterwise.models.pitru_combination import PitruCombination
 from asterwise.models.pitru_dosha_request import PitruDoshaRequest
 from asterwise.models.pitru_dosha_response import PitruDoshaResponse
 from asterwise.models.pitru_ninth_lord_analysis import PitruNinthLordAnalysis
@@ -360,11 +364,14 @@ from asterwise.models.ritu import Ritu
 from asterwise.models.rudraksha_all_response import RudrakshaAllResponse
 from asterwise.models.rudraksha_entry import RudrakshaEntry
 from asterwise.models.rudraksha_single_response import RudrakshaSingleResponse
+from asterwise.models.sade_sati_period import SadeSatiPeriod
+from asterwise.models.sade_sati_phase import SadeSatiPhase
 from asterwise.models.sade_sati_request import SadeSatiRequest
 from asterwise.models.sade_sati_response import SadeSatiResponse
 from asterwise.models.saham_entry import SahamEntry
 from asterwise.models.saham_response import SahamResponse
 from asterwise.models.samvat import Samvat
+from asterwise.models.saturn_stay import SaturnStay
 from asterwise.models.secondary_progression_response import SecondaryProgressionResponse
 from asterwise.models.sign_span import SignSpan
 from asterwise.models.small_panoti_period import SmallPanotiPeriod
@@ -410,6 +417,7 @@ from asterwise.models.western_aspect import WesternAspect
 from asterwise.models.western_aspects_request import WesternAspectsRequest
 from asterwise.models.western_aspects_response import WesternAspectsResponse
 from asterwise.models.western_elements import WesternElements
+from asterwise.models.western_essential_dignities import WesternEssentialDignities
 from asterwise.models.western_hemisphere import WesternHemisphere
 from asterwise.models.western_horoscope_chapter import WesternHoroscopeChapter
 from asterwise.models.western_horoscope_content import WesternHoroscopeContent

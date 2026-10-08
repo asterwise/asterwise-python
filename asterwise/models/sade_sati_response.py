@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.sade_sati_period import SadeSatiPeriod
 from asterwise.models.small_panoti_period import SmallPanotiPeriod
 from typing import Optional, Set
 from typing_extensions import Self
@@ -38,8 +39,8 @@ class SadeSatiResponse(BaseModel):
     intensity_score: Optional[StrictInt] = None
     intensity_label: Optional[StrictStr] = None
     next_sade_sati: Optional[Dict[str, Any]] = None
-    all_periods: Optional[List[Dict[str, Any]]] = None
-    small_panoti: Optional[List[SmallPanotiPeriod]] = None
+    all_periods: Optional[List[SadeSatiPeriod]] = None
+    small_panoti: Optional[List[SmallPanotiPeriod]] = Field(default=None, description="Every Small Panoti in the same range, each to Saturn's final exit from the sign.")
     is_small_panoti_active: Optional[StrictBool] = None
     current_small_panoti_position: Optional[StrictInt] = None
     mitigated_by_own_sign: Optional[StrictBool] = None
@@ -85,6 +86,13 @@ class SadeSatiResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in all_periods (list)
+        _items = []
+        if self.all_periods:
+            for _item_all_periods in self.all_periods:
+                if _item_all_periods:
+                    _items.append(_item_all_periods.to_dict())
+            _dict['all_periods'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in small_panoti (list)
         _items = []
         if self.small_panoti:
@@ -168,7 +176,7 @@ class SadeSatiResponse(BaseModel):
             "intensity_score": obj.get("intensity_score"),
             "intensity_label": obj.get("intensity_label"),
             "next_sade_sati": obj.get("next_sade_sati"),
-            "all_periods": obj.get("all_periods"),
+            "all_periods": [SadeSatiPeriod.from_dict(_item) for _item in obj["all_periods"]] if obj.get("all_periods") is not None else None,
             "small_panoti": [SmallPanotiPeriod.from_dict(_item) for _item in obj["small_panoti"]] if obj.get("small_panoti") is not None else None,
             "is_small_panoti_active": obj.get("is_small_panoti_active"),
             "current_small_panoti_position": obj.get("current_small_panoti_position"),

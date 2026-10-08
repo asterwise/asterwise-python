@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Biorhythm Cycles
 
-Computes physical (23-day), emotional (28-day), and intellectual (33-day) biorhythm cycles for a birth date. Returns cycle values (-1.0 to +1.0), percentage, phase label (High/Rising/Falling/Low), and critical day flags. Critical days occur when a cycle crosses zero — these represent instability and vulnerability to poor judgment. Supports single-day and multi-day (up to 90 days) range requests. Formula: sin(2π × t / cycle_length) where t = days since birth. Source: Wilhelm Fliess (1897) physical cycle; Hermann Swoboda (1900) emotional cycle; Alfred Teltscher (1926) intellectual cycle.
+Computes physical (23-day), emotional (28-day), and intellectual (33-day) biorhythm cycles for a birth date. Returns cycle values (-1.0 to +1.0), percentage, phase label (High above +0.5, Low below -0.5, otherwise Rising or Falling by the curve's direction), trend, and critical day flags. Critical days occur when a cycle crosses zero — these represent instability and vulnerability to poor judgment. Supports single-day and multi-day (up to 90 days) range requests. Formula: sin(2π × t / cycle_length) where t = days since birth. Source: Wilhelm Fliess (1897) physical cycle; Hermann Swoboda (1900) emotional cycle; Alfred Teltscher (1926) intellectual cycle.
 
 ### Example
 

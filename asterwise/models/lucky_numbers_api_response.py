@@ -28,7 +28,7 @@ class LuckyNumbersApiResponse(BaseModel):
     """
     LuckyNumbersApiResponse
     """ # noqa: E501
-    lucky_numbers: List[StrictInt] = Field(description="Generated lucky numbers")
+    lucky_numbers: List[StrictInt] = Field(description="Lucky numbers, no repeats: first the Life Path, Expression, Soul Urge, Personality and Birth Day (these may be master numbers 11, 22, 33), then digits 1-9 from the birth date in ascending order, topped up with unused digits 1-9 (at most 9 are guaranteed)")
     power_number: StrictInt = Field(description="Most powerful number for the person")
     date_specific: Optional[StrictBool] = Field(default=False, description="Whether numbers are specific to a date")
     interpretation: StrictStr = Field(description="How to use these numbers")

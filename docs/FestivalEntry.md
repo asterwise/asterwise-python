@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **tithi** | [**FestivalTithi**](FestivalTithi.md) |  | [optional] 
 **rule** | **str** |  | [optional] 
 **observance_window** | [**FestivalWindow**](FestivalWindow.md) |  | [optional] 
+**tithi_at_moonrise** | **bool** |  | [optional] 
 **note** | **str** |  | [optional] 
 **sankranti** | [**FestivalSankranti**](FestivalSankranti.md) |  | [optional] 
 **eclipse** | [**FestivalEclipse**](FestivalEclipse.md) |  | [optional] 

@@ -1211,6 +1211,8 @@ class NumerologyApi:
     @validate_call
     def angel_today(
         self,
+        var_date: Annotated[Optional[StrictStr], Field(description="Date in YYYY-MM-DD format to compute the number for. Overrides timezone.")] = None,
+        timezone: Annotated[Optional[StrictStr], Field(description="IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1226,8 +1228,12 @@ class NumerologyApi:
     ) -> ApiResponseTodayAngelNumberResponse:
         """Today's angel number
 
-        Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date.
+        Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date. \"Today\" is the current date in UTC unless you pass `timezone` (the caller's IANA zone, e.g. Asia/Kolkata) or an explicit `date`.
 
+        :param var_date: Date in YYYY-MM-DD format to compute the number for. Overrides timezone.
+        :type var_date: str
+        :param timezone: IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.
+        :type timezone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1251,6 +1257,8 @@ class NumerologyApi:
         """ # noqa: E501
 
         _param = self._angel_today_serialize(
+            var_date=var_date,
+            timezone=timezone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1283,6 +1291,8 @@ class NumerologyApi:
     @validate_call
     def angel_today_with_http_info(
         self,
+        var_date: Annotated[Optional[StrictStr], Field(description="Date in YYYY-MM-DD format to compute the number for. Overrides timezone.")] = None,
+        timezone: Annotated[Optional[StrictStr], Field(description="IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1298,8 +1308,12 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseTodayAngelNumberResponse]:
         """Today's angel number
 
-        Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date.
+        Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date. \"Today\" is the current date in UTC unless you pass `timezone` (the caller's IANA zone, e.g. Asia/Kolkata) or an explicit `date`.
 
+        :param var_date: Date in YYYY-MM-DD format to compute the number for. Overrides timezone.
+        :type var_date: str
+        :param timezone: IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.
+        :type timezone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1323,6 +1337,8 @@ class NumerologyApi:
         """ # noqa: E501
 
         _param = self._angel_today_serialize(
+            var_date=var_date,
+            timezone=timezone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1355,6 +1371,8 @@ class NumerologyApi:
     @validate_call
     def angel_today_without_preload_content(
         self,
+        var_date: Annotated[Optional[StrictStr], Field(description="Date in YYYY-MM-DD format to compute the number for. Overrides timezone.")] = None,
+        timezone: Annotated[Optional[StrictStr], Field(description="IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1370,8 +1388,12 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Today's angel number
 
-        Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date.
+        Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date. \"Today\" is the current date in UTC unless you pass `timezone` (the caller's IANA zone, e.g. Asia/Kolkata) or an explicit `date`.
 
+        :param var_date: Date in YYYY-MM-DD format to compute the number for. Overrides timezone.
+        :type var_date: str
+        :param timezone: IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.
+        :type timezone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1395,6 +1417,8 @@ class NumerologyApi:
         """ # noqa: E501
 
         _param = self._angel_today_serialize(
+            var_date=var_date,
+            timezone=timezone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1422,6 +1446,8 @@ class NumerologyApi:
 
     def _angel_today_serialize(
         self,
+        var_date,
+        timezone,
         _request_auth,
         _content_type,
         _headers,
@@ -1444,6 +1470,14 @@ class NumerologyApi:
 
         # process the path parameters
         # process the query parameters
+        if var_date is not None:
+            
+            _query_params.append(('date', var_date))
+            
+        if timezone is not None:
+            
+            _query_params.append(('timezone', timezone))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -1801,7 +1835,7 @@ class NumerologyApi:
     ) -> ApiResponseBusinessNameAnalysisResponse:
         """Business Name Numerology
 
-        Scores a business name using Pythagorean expression number. Returns single digit, theme, harmony score (1-10), and recommended uses.
+        Scores a business name using its Pythagorean Expression number, worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. Returns single digit, theme, harmony score (1-10), and recommended uses. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
 
         :param name: Business name (required)
         :type name: str
@@ -1877,7 +1911,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseBusinessNameAnalysisResponse]:
         """Business Name Numerology
 
-        Scores a business name using Pythagorean expression number. Returns single digit, theme, harmony score (1-10), and recommended uses.
+        Scores a business name using its Pythagorean Expression number, worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. Returns single digit, theme, harmony score (1-10), and recommended uses. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
 
         :param name: Business name (required)
         :type name: str
@@ -1953,7 +1987,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Business Name Numerology
 
-        Scores a business name using Pythagorean expression number. Returns single digit, theme, harmony score (1-10), and recommended uses.
+        Scores a business name using its Pythagorean Expression number, worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. Returns single digit, theme, harmony score (1-10), and recommended uses. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
 
         :param name: Business name (required)
         :type name: str
@@ -2693,7 +2727,7 @@ class NumerologyApi:
     ) -> ApiResponseNameNumberResponse:
         """Expression (Destiny) Number
 
-        Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Goodwin method). Preserves master numbers 11, 22, 33.
+        Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Decoz method). Preserves master numbers 11, 22, 33. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total (e.g. 58 → 13 → 4).
 
         :param name_only_request: (required)
         :type name_only_request: NameOnlyRequest
@@ -2769,7 +2803,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseNameNumberResponse]:
         """Expression (Destiny) Number
 
-        Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Goodwin method). Preserves master numbers 11, 22, 33.
+        Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Decoz method). Preserves master numbers 11, 22, 33. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total (e.g. 58 → 13 → 4).
 
         :param name_only_request: (required)
         :type name_only_request: NameOnlyRequest
@@ -2845,7 +2879,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Expression (Destiny) Number
 
-        Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Goodwin method). Preserves master numbers 11, 22, 33.
+        Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Decoz method). Preserves master numbers 11, 22, 33. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total (e.g. 58 → 13 → 4).
 
         :param name_only_request: (required)
         :type name_only_request: NameOnlyRequest
@@ -3898,7 +3932,7 @@ class NumerologyApi:
     ) -> ApiResponseLoShuResponse:
         """Lo Shu Grid
 
-        Builds a Lo Shu 3x3 numerology grid from a birth date. Returns the grid with digit counts, present/missing/repeated numbers, plane analysis (thought/will/action), and per-number trait interpretation.
+        Builds a Lo Shu 3x3 numerology grid from a birth date. Returns the grid with digit counts, present/missing/repeated numbers, plane analysis over the eight lines of the square (rows mental/emotional/practical, columns thought/will/action, two diagonals), and per-number trait interpretation. In `number_analysis`, `plane` is the legacy v1 grouping (1-3 mental, 4-6 physical, 7-9 spiritual) and `lo_shu_plane` is the number's row of the square (mental 4-9-2, emotional 3-5-7, practical 8-1-6).
 
         :param lo_shu_request: (required)
         :type lo_shu_request: LoShuRequest
@@ -3974,7 +4008,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseLoShuResponse]:
         """Lo Shu Grid
 
-        Builds a Lo Shu 3x3 numerology grid from a birth date. Returns the grid with digit counts, present/missing/repeated numbers, plane analysis (thought/will/action), and per-number trait interpretation.
+        Builds a Lo Shu 3x3 numerology grid from a birth date. Returns the grid with digit counts, present/missing/repeated numbers, plane analysis over the eight lines of the square (rows mental/emotional/practical, columns thought/will/action, two diagonals), and per-number trait interpretation. In `number_analysis`, `plane` is the legacy v1 grouping (1-3 mental, 4-6 physical, 7-9 spiritual) and `lo_shu_plane` is the number's row of the square (mental 4-9-2, emotional 3-5-7, practical 8-1-6).
 
         :param lo_shu_request: (required)
         :type lo_shu_request: LoShuRequest
@@ -4050,7 +4084,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Lo Shu Grid
 
-        Builds a Lo Shu 3x3 numerology grid from a birth date. Returns the grid with digit counts, present/missing/repeated numbers, plane analysis (thought/will/action), and per-number trait interpretation.
+        Builds a Lo Shu 3x3 numerology grid from a birth date. Returns the grid with digit counts, present/missing/repeated numbers, plane analysis over the eight lines of the square (rows mental/emotional/practical, columns thought/will/action, two diagonals), and per-number trait interpretation. In `number_analysis`, `plane` is the legacy v1 grouping (1-3 mental, 4-6 physical, 7-9 spiritual) and `lo_shu_plane` is the number's row of the square (mental 4-9-2, emotional 3-5-7, practical 8-1-6).
 
         :param lo_shu_request: (required)
         :type lo_shu_request: LoShuRequest
@@ -5121,7 +5155,8 @@ class NumerologyApi:
     @validate_call
     def mobile_number(
         self,
-        number: Annotated[str, Field(min_length=5, strict=True, max_length=20, description="Mobile number (digits only or with country code)")],
+        number: Annotated[str, Field(min_length=5, strict=True, max_length=20, description="Mobile number (digits only or with country code; the country code is not counted)")],
+        country: Annotated[Optional[Annotated[str, Field(min_length=2, strict=True, max_length=2)]], Field(description="Optional ISO 3166 alpha-2 country the number is dialled in (e.g. 'IN', 'US', 'AU'). The number is parsed in that country first, so a country code or trunk 0 written in front is dropped and that country's international prefix is understood ('14155552671' with 'US' → 4155552671; '0011 61 412 345 678' with 'AU' → 412345678). An unknown code is a 422 `validation_error` with issue `unknown_country` on field `country`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5139,8 +5174,10 @@ class NumerologyApi:
 
         Deprecated: send the mobile number in a JSON body with POST /v1/numerology/mobile-number instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
-        :param number: Mobile number (digits only or with country code) (required)
+        :param number: Mobile number (digits only or with country code; the country code is not counted) (required)
         :type number: str
+        :param country: Optional ISO 3166 alpha-2 country the number is dialled in (e.g. 'IN', 'US', 'AU'). The number is parsed in that country first, so a country code or trunk 0 written in front is dropped and that country's international prefix is understood ('14155552671' with 'US' → 4155552671; '0011 61 412 345 678' with 'AU' → 412345678). An unknown code is a 422 `validation_error` with issue `unknown_country` on field `country`.
+        :type country: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5166,6 +5203,7 @@ class NumerologyApi:
 
         _param = self._mobile_number_serialize(
             number=number,
+            country=country,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5198,7 +5236,8 @@ class NumerologyApi:
     @validate_call
     def mobile_number_with_http_info(
         self,
-        number: Annotated[str, Field(min_length=5, strict=True, max_length=20, description="Mobile number (digits only or with country code)")],
+        number: Annotated[str, Field(min_length=5, strict=True, max_length=20, description="Mobile number (digits only or with country code; the country code is not counted)")],
+        country: Annotated[Optional[Annotated[str, Field(min_length=2, strict=True, max_length=2)]], Field(description="Optional ISO 3166 alpha-2 country the number is dialled in (e.g. 'IN', 'US', 'AU'). The number is parsed in that country first, so a country code or trunk 0 written in front is dropped and that country's international prefix is understood ('14155552671' with 'US' → 4155552671; '0011 61 412 345 678' with 'AU' → 412345678). An unknown code is a 422 `validation_error` with issue `unknown_country` on field `country`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5216,8 +5255,10 @@ class NumerologyApi:
 
         Deprecated: send the mobile number in a JSON body with POST /v1/numerology/mobile-number instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
-        :param number: Mobile number (digits only or with country code) (required)
+        :param number: Mobile number (digits only or with country code; the country code is not counted) (required)
         :type number: str
+        :param country: Optional ISO 3166 alpha-2 country the number is dialled in (e.g. 'IN', 'US', 'AU'). The number is parsed in that country first, so a country code or trunk 0 written in front is dropped and that country's international prefix is understood ('14155552671' with 'US' → 4155552671; '0011 61 412 345 678' with 'AU' → 412345678). An unknown code is a 422 `validation_error` with issue `unknown_country` on field `country`.
+        :type country: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5243,6 +5284,7 @@ class NumerologyApi:
 
         _param = self._mobile_number_serialize(
             number=number,
+            country=country,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5275,7 +5317,8 @@ class NumerologyApi:
     @validate_call
     def mobile_number_without_preload_content(
         self,
-        number: Annotated[str, Field(min_length=5, strict=True, max_length=20, description="Mobile number (digits only or with country code)")],
+        number: Annotated[str, Field(min_length=5, strict=True, max_length=20, description="Mobile number (digits only or with country code; the country code is not counted)")],
+        country: Annotated[Optional[Annotated[str, Field(min_length=2, strict=True, max_length=2)]], Field(description="Optional ISO 3166 alpha-2 country the number is dialled in (e.g. 'IN', 'US', 'AU'). The number is parsed in that country first, so a country code or trunk 0 written in front is dropped and that country's international prefix is understood ('14155552671' with 'US' → 4155552671; '0011 61 412 345 678' with 'AU' → 412345678). An unknown code is a 422 `validation_error` with issue `unknown_country` on field `country`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5293,8 +5336,10 @@ class NumerologyApi:
 
         Deprecated: send the mobile number in a JSON body with POST /v1/numerology/mobile-number instead, so it stays out of URLs and logs. This GET form keeps working for at least 12 months and answers with a `Deprecation` header.
 
-        :param number: Mobile number (digits only or with country code) (required)
+        :param number: Mobile number (digits only or with country code; the country code is not counted) (required)
         :type number: str
+        :param country: Optional ISO 3166 alpha-2 country the number is dialled in (e.g. 'IN', 'US', 'AU'). The number is parsed in that country first, so a country code or trunk 0 written in front is dropped and that country's international prefix is understood ('14155552671' with 'US' → 4155552671; '0011 61 412 345 678' with 'AU' → 412345678). An unknown code is a 422 `validation_error` with issue `unknown_country` on field `country`.
+        :type country: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5320,6 +5365,7 @@ class NumerologyApi:
 
         _param = self._mobile_number_serialize(
             number=number,
+            country=country,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5348,6 +5394,7 @@ class NumerologyApi:
     def _mobile_number_serialize(
         self,
         number,
+        country,
         _request_auth,
         _content_type,
         _headers,
@@ -5373,6 +5420,10 @@ class NumerologyApi:
         if number is not None:
             
             _query_params.append(('number', number))
+            
+        if country is not None:
+            
+            _query_params.append(('country', country))
             
         # process the header parameters
         # process the form parameters
@@ -5430,7 +5481,7 @@ class NumerologyApi:
     ) -> ApiResponseDigitNumberAnalysisResponse:
         """Mobile Number Numerology
 
-        Analyses a mobile/phone number numerologically. Body: `number`. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+        Analyses a mobile/phone number numerologically. Body: `number`, optional `country` (ISO 3166 alpha-2). Sums the digits of the national number, country code left out (libphonenumber): with `country` the number is read as dialled there first, international prefix included; a valid '+' or '00' number drops its country code; a '+' number that is not valid sums every digit after the '+', and a '00' number that is not valid is summed as written; with no prefix and no `country`, only India's code is removed (a 12-digit number starting 91) and any other number is summed as written, since the country cannot be known. Reduces to a single number and returns theme, harmony score, recommended uses, `digits_used`, `country_code` when one was left out, and `master_number` when the total passes through 11, 22 or 33. A number with no digits, or only zeros, is rejected with 422 `validation_error`, and so is an unknown `country` (issue `unknown_country`, field `country`).
 
         :param mobile_number_request: (required)
         :type mobile_number_request: MobileNumberRequest
@@ -5506,7 +5557,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseDigitNumberAnalysisResponse]:
         """Mobile Number Numerology
 
-        Analyses a mobile/phone number numerologically. Body: `number`. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+        Analyses a mobile/phone number numerologically. Body: `number`, optional `country` (ISO 3166 alpha-2). Sums the digits of the national number, country code left out (libphonenumber): with `country` the number is read as dialled there first, international prefix included; a valid '+' or '00' number drops its country code; a '+' number that is not valid sums every digit after the '+', and a '00' number that is not valid is summed as written; with no prefix and no `country`, only India's code is removed (a 12-digit number starting 91) and any other number is summed as written, since the country cannot be known. Reduces to a single number and returns theme, harmony score, recommended uses, `digits_used`, `country_code` when one was left out, and `master_number` when the total passes through 11, 22 or 33. A number with no digits, or only zeros, is rejected with 422 `validation_error`, and so is an unknown `country` (issue `unknown_country`, field `country`).
 
         :param mobile_number_request: (required)
         :type mobile_number_request: MobileNumberRequest
@@ -5582,7 +5633,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Mobile Number Numerology
 
-        Analyses a mobile/phone number numerologically. Body: `number`. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+        Analyses a mobile/phone number numerologically. Body: `number`, optional `country` (ISO 3166 alpha-2). Sums the digits of the national number, country code left out (libphonenumber): with `country` the number is read as dialled there first, international prefix included; a valid '+' or '00' number drops its country code; a '+' number that is not valid sums every digit after the '+', and a '00' number that is not valid is summed as written; with no prefix and no `country`, only India's code is removed (a 12-digit number starting 91) and any other number is summed as written, since the country cannot be known. Reduces to a single number and returns theme, harmony score, recommended uses, `digits_used`, `country_code` when one was left out, and `master_number` when the total passes through 11, 22 or 33. A number with no digits, or only zeros, is rejected with 422 `validation_error`, and so is an unknown `country` (issue `unknown_country`, field `country`).
 
         :param mobile_number_request: (required)
         :type mobile_number_request: MobileNumberRequest
@@ -5731,7 +5782,7 @@ class NumerologyApi:
     ) -> ApiResponseNameCorrectionResponse:
         """Name Correction Analysis
 
-        Analyses a full name using Pythagorean numerology and suggests spelling variants that are more harmonious with the life path number. Returns current name scores and up to 8 alternatives ranked by harmony.
+        Analyses a full name using Pythagorean numerology and suggests spelling variants that are more harmonious with the life path number. Expression, Soul Urge and Personality are worked part by part, the same way as /v1/numerology/expression, /soul-urge and /personality. karmic_debt (and is_master) refer to the Expression number; expression_karmic_debt, soul_urge_karmic_debt and personality_karmic_debt give each number's karmic debt (13, 14, 16 or 19 anywhere in its reduction). Returns current name scores and up to 8 alternatives ranked by harmony.
 
         :param name_correction_request: (required)
         :type name_correction_request: NameCorrectionRequest
@@ -5807,7 +5858,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseNameCorrectionResponse]:
         """Name Correction Analysis
 
-        Analyses a full name using Pythagorean numerology and suggests spelling variants that are more harmonious with the life path number. Returns current name scores and up to 8 alternatives ranked by harmony.
+        Analyses a full name using Pythagorean numerology and suggests spelling variants that are more harmonious with the life path number. Expression, Soul Urge and Personality are worked part by part, the same way as /v1/numerology/expression, /soul-urge and /personality. karmic_debt (and is_master) refer to the Expression number; expression_karmic_debt, soul_urge_karmic_debt and personality_karmic_debt give each number's karmic debt (13, 14, 16 or 19 anywhere in its reduction). Returns current name scores and up to 8 alternatives ranked by harmony.
 
         :param name_correction_request: (required)
         :type name_correction_request: NameCorrectionRequest
@@ -5883,7 +5934,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Name Correction Analysis
 
-        Analyses a full name using Pythagorean numerology and suggests spelling variants that are more harmonious with the life path number. Returns current name scores and up to 8 alternatives ranked by harmony.
+        Analyses a full name using Pythagorean numerology and suggests spelling variants that are more harmonious with the life path number. Expression, Soul Urge and Personality are worked part by part, the same way as /v1/numerology/expression, /soul-urge and /personality. karmic_debt (and is_master) refer to the Expression number; expression_karmic_debt, soul_urge_karmic_debt and personality_karmic_debt give each number's karmic debt (13, 14, 16 or 19 anywhere in its reduction). Returns current name scores and up to 8 alternatives ranked by harmony.
 
         :param name_correction_request: (required)
         :type name_correction_request: NameCorrectionRequest
@@ -6033,7 +6084,7 @@ class NumerologyApi:
     ) -> ApiResponseNumberMeaningResponse:
         """Get number meaning by context
 
-        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Returns meaning text and optional thematic guidance fields.
+        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Allowed numbers: 1-9, 11, 22 and 33 for general, life_path, expression, soul_urge and personality; 1-9 for birth_day (a master Birth Day 11 or 22 in a profile uses the 2 or 4 text) and personal_year. Any other number answers 422 `validation_error` with the allowed values in `details`. Returns meaning text and optional thematic guidance fields.
 
         :param number: (required)
         :type number: int
@@ -6113,7 +6164,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseNumberMeaningResponse]:
         """Get number meaning by context
 
-        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Returns meaning text and optional thematic guidance fields.
+        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Allowed numbers: 1-9, 11, 22 and 33 for general, life_path, expression, soul_urge and personality; 1-9 for birth_day (a master Birth Day 11 or 22 in a profile uses the 2 or 4 text) and personal_year. Any other number answers 422 `validation_error` with the allowed values in `details`. Returns meaning text and optional thematic guidance fields.
 
         :param number: (required)
         :type number: int
@@ -6193,7 +6244,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Get number meaning by context
 
-        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Returns meaning text and optional thematic guidance fields.
+        Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Allowed numbers: 1-9, 11, 22 and 33 for general, life_path, expression, soul_urge and personality; 1-9 for birth_day (a master Birth Day 11 or 22 in a profile uses the 2 or 4 text) and personal_year. Any other number answers 422 `validation_error` with the allowed values in `details`. Returns meaning text and optional thematic guidance fields.
 
         :param number: (required)
         :type number: int
@@ -7860,7 +7911,7 @@ class NumerologyApi:
     ) -> ApiResponseNameNumberResponse:
         """Personality Number
 
-        Calculates the Personality number from consonants in the full name. Reduces each name part separately. Represents the outer personality visible to others.
+        Calculates the Personality number from consonants in the full name. Reduces each name part separately (11, 22, 33 kept). Represents the outer personality visible to others. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total.
 
         :param name_only_request: (required)
         :type name_only_request: NameOnlyRequest
@@ -7936,7 +7987,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseNameNumberResponse]:
         """Personality Number
 
-        Calculates the Personality number from consonants in the full name. Reduces each name part separately. Represents the outer personality visible to others.
+        Calculates the Personality number from consonants in the full name. Reduces each name part separately (11, 22, 33 kept). Represents the outer personality visible to others. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total.
 
         :param name_only_request: (required)
         :type name_only_request: NameOnlyRequest
@@ -8012,7 +8063,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Personality Number
 
-        Calculates the Personality number from consonants in the full name. Reduces each name part separately. Represents the outer personality visible to others.
+        Calculates the Personality number from consonants in the full name. Reduces each name part separately (11, 22, 33 kept). Represents the outer personality visible to others. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total.
 
         :param name_only_request: (required)
         :type name_only_request: NameOnlyRequest
@@ -8161,7 +8212,7 @@ class NumerologyApi:
     ) -> ApiResponseNameNumberResponse:
         """Soul Urge (Heart's Desire) Number
 
-        Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately. Y is treated as a consonant in this implementation.
+        Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately (11, 22, 33 kept). Y is treated as a consonant in this implementation. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total.
 
         :param name_only_request: (required)
         :type name_only_request: NameOnlyRequest
@@ -8237,7 +8288,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseNameNumberResponse]:
         """Soul Urge (Heart's Desire) Number
 
-        Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately. Y is treated as a consonant in this implementation.
+        Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately (11, 22, 33 kept). Y is treated as a consonant in this implementation. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total.
 
         :param name_only_request: (required)
         :type name_only_request: NameOnlyRequest
@@ -8313,7 +8364,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Soul Urge (Heart's Desire) Number
 
-        Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately. Y is treated as a consonant in this implementation.
+        Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately (11, 22, 33 kept). Y is treated as a consonant in this implementation. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total.
 
         :param name_only_request: (required)
         :type name_only_request: NameOnlyRequest
@@ -8755,7 +8806,7 @@ class NumerologyApi:
     ) -> ApiResponseDigitNumberAnalysisResponse:
         """Vehicle Number Numerology
 
-        Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score.
+        Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score. `is_master` / `master_number` report a total that passes through 11, 22 or 33. A plate with no digits, or only zeros, is rejected with 422 `validation_error`.
 
         :param vehicle_number_request: (required)
         :type vehicle_number_request: VehicleNumberRequest
@@ -8831,7 +8882,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseDigitNumberAnalysisResponse]:
         """Vehicle Number Numerology
 
-        Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score.
+        Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score. `is_master` / `master_number` report a total that passes through 11, 22 or 33. A plate with no digits, or only zeros, is rejected with 422 `validation_error`.
 
         :param vehicle_number_request: (required)
         :type vehicle_number_request: VehicleNumberRequest
@@ -8907,7 +8958,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Vehicle Number Numerology
 
-        Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score.
+        Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score. `is_master` / `master_number` report a total that passes through 11, 22 or 33. A plate with no digits, or only zeros, is rejected with 422 `validation_error`.
 
         :param vehicle_number_request: (required)
         :type vehicle_number_request: VehicleNumberRequest

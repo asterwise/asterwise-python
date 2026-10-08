@@ -422,7 +422,7 @@ class AstrologyApi:
     ) -> ApiResponseAyanamshaResponse:
         """Ayanamsha Values
 
-        Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Tropical) for a given date. Each system returns the value in decimal degrees and DMS (degrees/minutes/seconds) format. Pass ?date=YYYY-MM-DD for a specific date. Omit ?date to get today's values. Lahiri is the Indian government standard and default for Jyotish.
+        Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Tropical) for a given date. Each system returns the value in decimal degrees and DMS (degrees/minutes/seconds) format. Pass ?date=YYYY-MM-DD for a specific date. Omit ?date to get today's values (today's UTC date). Lahiri is the Indian government standard and default for Jyotish.
 
         :param var_date:
         :type var_date: date
@@ -498,7 +498,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseAyanamshaResponse]:
         """Ayanamsha Values
 
-        Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Tropical) for a given date. Each system returns the value in decimal degrees and DMS (degrees/minutes/seconds) format. Pass ?date=YYYY-MM-DD for a specific date. Omit ?date to get today's values. Lahiri is the Indian government standard and default for Jyotish.
+        Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Tropical) for a given date. Each system returns the value in decimal degrees and DMS (degrees/minutes/seconds) format. Pass ?date=YYYY-MM-DD for a specific date. Omit ?date to get today's values (today's UTC date). Lahiri is the Indian government standard and default for Jyotish.
 
         :param var_date:
         :type var_date: date
@@ -574,7 +574,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Ayanamsha Values
 
-        Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Tropical) for a given date. Each system returns the value in decimal degrees and DMS (degrees/minutes/seconds) format. Pass ?date=YYYY-MM-DD for a specific date. Omit ?date to get today's values. Lahiri is the Indian government standard and default for Jyotish.
+        Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Tropical) for a given date. Each system returns the value in decimal degrees and DMS (degrees/minutes/seconds) format. Pass ?date=YYYY-MM-DD for a specific date. Omit ?date to get today's values (today's UTC date). Lahiri is the Indian government standard and default for Jyotish.
 
         :param var_date:
         :type var_date: date
@@ -721,7 +721,7 @@ class AstrologyApi:
     ) -> ApiResponseCharDashaResponse:
         """Jaimini Char Dasha
 
-        Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Method: K.N. Rao, as in his own dated case notes. The sequence runs forward when the 9th sign from the Lagna is savya (Aries, Taurus, Gemini, Libra, Scorpio, Sagittarius) and backward otherwise; period years count to the sign lord (savya forward, apasavya backward) minus one, 12 for the lord in its own rashi, with no year added or taken off for an exalted or debilitated lord (JHora's K.N. Rao option adds/subtracts one). Scorpio and Aquarius count to the co-lord outside the sign, or with both outside to the one with more planets, then the one further advanced. With `cycles` 2 or 3, every cycle repeats the first cycle's years. Antardashas are 12 equal parts (each as many months as the mahadasha has years); K.N. Rao: they run forward or backward by the 9th sign from the mahadasha sign (the same rule the Lagna uses), starting from the next sign, and the mahadasha sign's own antardasha comes last. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param char_dasha_request: (required)
         :type char_dasha_request: CharDashaRequest
@@ -797,7 +797,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseCharDashaResponse]:
         """Jaimini Char Dasha
 
-        Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Method: K.N. Rao, as in his own dated case notes. The sequence runs forward when the 9th sign from the Lagna is savya (Aries, Taurus, Gemini, Libra, Scorpio, Sagittarius) and backward otherwise; period years count to the sign lord (savya forward, apasavya backward) minus one, 12 for the lord in its own rashi, with no year added or taken off for an exalted or debilitated lord (JHora's K.N. Rao option adds/subtracts one). Scorpio and Aquarius count to the co-lord outside the sign, or with both outside to the one with more planets, then the one further advanced. With `cycles` 2 or 3, every cycle repeats the first cycle's years. Antardashas are 12 equal parts (each as many months as the mahadasha has years); K.N. Rao: they run forward or backward by the 9th sign from the mahadasha sign (the same rule the Lagna uses), starting from the next sign, and the mahadasha sign's own antardasha comes last. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param char_dasha_request: (required)
         :type char_dasha_request: CharDashaRequest
@@ -873,7 +873,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Jaimini Char Dasha
 
-        Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Method: K.N. Rao, as in his own dated case notes. The sequence runs forward when the 9th sign from the Lagna is savya (Aries, Taurus, Gemini, Libra, Scorpio, Sagittarius) and backward otherwise; period years count to the sign lord (savya forward, apasavya backward) minus one, 12 for the lord in its own rashi, with no year added or taken off for an exalted or debilitated lord (JHora's K.N. Rao option adds/subtracts one). Scorpio and Aquarius count to the co-lord outside the sign, or with both outside to the one with more planets, then the one further advanced. With `cycles` 2 or 3, every cycle repeats the first cycle's years. Antardashas are 12 equal parts (each as many months as the mahadasha has years); K.N. Rao: they run forward or backward by the 9th sign from the mahadasha sign (the same rule the Lagna uses), starting from the next sign, and the mahadasha sign's own antardasha comes last. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param char_dasha_request: (required)
         :type char_dasha_request: CharDashaRequest
@@ -1323,7 +1323,7 @@ class AstrologyApi:
     ) -> ApiResponseDashaEndpointResponse:
         """Vimshottari Dasha
 
-        Calculate the complete Vimshottari Dasha timeline for a birth chart. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana periods up to 5 levels deep, with start and end dates for each. The starting planet is determined by the Moon's nakshatra at birth (Janma Nakshatra). Interpretation text accompanies the currently active Mahadasha and Antardasha.
+        Calculate the complete Vimshottari Dasha timeline for a birth chart. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana periods up to 5 levels deep, with start and end dates for each. The starting planet is determined by the Moon's nakshatra at birth (Janma Nakshatra). The first Mahadasha row starts at birth and lasts the balance; its sub-periods are the remaining tail of the full Mahadasha, which began before birth, so the period running at birth is usually not the Mahadasha lord's own. That row also gives dasha_start_date and balance_years. Dates are DD/MM/YYYY. Interpretation text accompanies the currently active Mahadasha and Antardasha.
 
         :param dasha_request: (required)
         :type dasha_request: DashaRequest
@@ -1399,7 +1399,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseDashaEndpointResponse]:
         """Vimshottari Dasha
 
-        Calculate the complete Vimshottari Dasha timeline for a birth chart. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana periods up to 5 levels deep, with start and end dates for each. The starting planet is determined by the Moon's nakshatra at birth (Janma Nakshatra). Interpretation text accompanies the currently active Mahadasha and Antardasha.
+        Calculate the complete Vimshottari Dasha timeline for a birth chart. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana periods up to 5 levels deep, with start and end dates for each. The starting planet is determined by the Moon's nakshatra at birth (Janma Nakshatra). The first Mahadasha row starts at birth and lasts the balance; its sub-periods are the remaining tail of the full Mahadasha, which began before birth, so the period running at birth is usually not the Mahadasha lord's own. That row also gives dasha_start_date and balance_years. Dates are DD/MM/YYYY. Interpretation text accompanies the currently active Mahadasha and Antardasha.
 
         :param dasha_request: (required)
         :type dasha_request: DashaRequest
@@ -1475,7 +1475,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Vimshottari Dasha
 
-        Calculate the complete Vimshottari Dasha timeline for a birth chart. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana periods up to 5 levels deep, with start and end dates for each. The starting planet is determined by the Moon's nakshatra at birth (Janma Nakshatra). Interpretation text accompanies the currently active Mahadasha and Antardasha.
+        Calculate the complete Vimshottari Dasha timeline for a birth chart. Returns Mahadasha, Antardasha, Pratyantar, Sookshma, and Prana periods up to 5 levels deep, with start and end dates for each. The starting planet is determined by the Moon's nakshatra at birth (Janma Nakshatra). The first Mahadasha row starts at birth and lasts the balance; its sub-periods are the remaining tail of the full Mahadasha, which began before birth, so the period running at birth is usually not the Mahadasha lord's own. That row also gives dasha_start_date and balance_years. Dates are DD/MM/YYYY. Interpretation text accompanies the currently active Mahadasha and Antardasha.
 
         :param dasha_request: (required)
         :type dasha_request: DashaRequest
@@ -1624,7 +1624,7 @@ class AstrologyApi:
     ) -> ApiResponseDashaTransitsResponse:
         """Dasha-Transit Correlation
 
-        Correlates active Vimshottari Dasha lords (maha, antar, pratyantar) with current planetary transits. Returns conjunction and aspect correlations scored by strength, and highlights periods of significance. Request JSON follows BirthInput plus optional `target_date`, `target_time`, `target_timezone` for the analysis moment: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Correlates active Vimshottari Dasha lords (maha, antar, pratyantar) with current planetary transits. Returns conjunction and aspect correlations scored by strength, and highlights periods of significance. Aspects are Vedic graha drishti cast by the transiting planet (BPHS Ch.26): every planet aspects its 7th sign, Jupiter also its 5th and 9th, Saturn its 3rd and 10th, Mars its 4th and 8th. Each correlation gives `aspect_house` (the natal dasha lord's sign counted from the transiting planet, 1 = same sign) and `drishti` ('7th', '3rd', ...; absent for a conjunction). `aspect_type` is conjunction, opposition, trine (Jupiter 5th/9th), square (Saturn 10th, Mars 4th) or special (Saturn 3rd, Mars 8th). Request JSON follows BirthInput plus optional `target_date`, `target_time`, `target_timezone` for the analysis moment: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param dasha_transits_request: (required)
         :type dasha_transits_request: DashaTransitsRequest
@@ -1700,7 +1700,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseDashaTransitsResponse]:
         """Dasha-Transit Correlation
 
-        Correlates active Vimshottari Dasha lords (maha, antar, pratyantar) with current planetary transits. Returns conjunction and aspect correlations scored by strength, and highlights periods of significance. Request JSON follows BirthInput plus optional `target_date`, `target_time`, `target_timezone` for the analysis moment: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Correlates active Vimshottari Dasha lords (maha, antar, pratyantar) with current planetary transits. Returns conjunction and aspect correlations scored by strength, and highlights periods of significance. Aspects are Vedic graha drishti cast by the transiting planet (BPHS Ch.26): every planet aspects its 7th sign, Jupiter also its 5th and 9th, Saturn its 3rd and 10th, Mars its 4th and 8th. Each correlation gives `aspect_house` (the natal dasha lord's sign counted from the transiting planet, 1 = same sign) and `drishti` ('7th', '3rd', ...; absent for a conjunction). `aspect_type` is conjunction, opposition, trine (Jupiter 5th/9th), square (Saturn 10th, Mars 4th) or special (Saturn 3rd, Mars 8th). Request JSON follows BirthInput plus optional `target_date`, `target_time`, `target_timezone` for the analysis moment: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param dasha_transits_request: (required)
         :type dasha_transits_request: DashaTransitsRequest
@@ -1776,7 +1776,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Dasha-Transit Correlation
 
-        Correlates active Vimshottari Dasha lords (maha, antar, pratyantar) with current planetary transits. Returns conjunction and aspect correlations scored by strength, and highlights periods of significance. Request JSON follows BirthInput plus optional `target_date`, `target_time`, `target_timezone` for the analysis moment: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Correlates active Vimshottari Dasha lords (maha, antar, pratyantar) with current planetary transits. Returns conjunction and aspect correlations scored by strength, and highlights periods of significance. Aspects are Vedic graha drishti cast by the transiting planet (BPHS Ch.26): every planet aspects its 7th sign, Jupiter also its 5th and 9th, Saturn its 3rd and 10th, Mars its 4th and 8th. Each correlation gives `aspect_house` (the natal dasha lord's sign counted from the transiting planet, 1 = same sign) and `drishti` ('7th', '3rd', ...; absent for a conjunction). `aspect_type` is conjunction, opposition, trine (Jupiter 5th/9th), square (Saturn 10th, Mars 4th) or special (Saturn 3rd, Mars 8th). Request JSON follows BirthInput plus optional `target_date`, `target_time`, `target_timezone` for the analysis moment: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param dasha_transits_request: (required)
         :type dasha_transits_request: DashaTransitsRequest
@@ -1925,7 +1925,7 @@ class AstrologyApi:
     ) -> ApiResponseDoshaEndpointResponse:
         """Calculate dosha report
 
-        Detect all major Vedic doshas in a natal chart — Mangal Dosha, Kaal Sarp Dosha, Gandmool, Grahan, Guru Chandal, Kemdrum, Shrapit, and Pitru Dosha. Present doshas include cancellation analysis, classical interpretation, keywords, and traditional remedies.
+        Detect all major Vedic doshas in a natal chart — Mangal Dosha, Kaal Sarp Dosha, Gandmool, Grahan, Guru Chandal, Kemdrum, Shrapit, and Pitru Dosha. Present doshas include cancellation analysis, classical interpretation, keywords, and traditional remedies. Aspects are full Parashari graha drishti counted from the aspecting planet's sign (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu 7); house lords are whole sign from the lagna. A Jupiter or Venus aspect or conjunction cancels Mangal Dosha only when that planet is strong — not debilitated and not combust; one that does not count is listed in mangal_dosha.details.benefic_aspects_not_counted.
 
         :param dosha_request: (required)
         :type dosha_request: DoshaRequest
@@ -2001,7 +2001,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseDoshaEndpointResponse]:
         """Calculate dosha report
 
-        Detect all major Vedic doshas in a natal chart — Mangal Dosha, Kaal Sarp Dosha, Gandmool, Grahan, Guru Chandal, Kemdrum, Shrapit, and Pitru Dosha. Present doshas include cancellation analysis, classical interpretation, keywords, and traditional remedies.
+        Detect all major Vedic doshas in a natal chart — Mangal Dosha, Kaal Sarp Dosha, Gandmool, Grahan, Guru Chandal, Kemdrum, Shrapit, and Pitru Dosha. Present doshas include cancellation analysis, classical interpretation, keywords, and traditional remedies. Aspects are full Parashari graha drishti counted from the aspecting planet's sign (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu 7); house lords are whole sign from the lagna. A Jupiter or Venus aspect or conjunction cancels Mangal Dosha only when that planet is strong — not debilitated and not combust; one that does not count is listed in mangal_dosha.details.benefic_aspects_not_counted.
 
         :param dosha_request: (required)
         :type dosha_request: DoshaRequest
@@ -2077,7 +2077,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Calculate dosha report
 
-        Detect all major Vedic doshas in a natal chart — Mangal Dosha, Kaal Sarp Dosha, Gandmool, Grahan, Guru Chandal, Kemdrum, Shrapit, and Pitru Dosha. Present doshas include cancellation analysis, classical interpretation, keywords, and traditional remedies.
+        Detect all major Vedic doshas in a natal chart — Mangal Dosha, Kaal Sarp Dosha, Gandmool, Grahan, Guru Chandal, Kemdrum, Shrapit, and Pitru Dosha. Present doshas include cancellation analysis, classical interpretation, keywords, and traditional remedies. Aspects are full Parashari graha drishti counted from the aspecting planet's sign (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu 7); house lords are whole sign from the lagna. A Jupiter or Venus aspect or conjunction cancels Mangal Dosha only when that planet is strong — not debilitated and not combust; one that does not count is listed in mangal_dosha.details.benefic_aspects_not_counted.
 
         :param dosha_request: (required)
         :type dosha_request: DoshaRequest
@@ -2226,7 +2226,7 @@ class AstrologyApi:
     ) -> ApiResponseGemstoneResponse:
         """Gemstone Recommendations
 
-        Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord. Secondary gemstone supports the Atmakaraka (soul planet). Returns contraindicated gemstones (debilitated, combust, dusthana lords, dual lagna/8th). Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord (always a functional benefic). Further slots: Yogakaraka, 5th lord, 9th lord, and Atmakaraka (also returned as `secondary`). Returns contraindicated gemstones: dusthana (6/8/12) lords that own no trikona, debilitated planets, and combust planets — the same rule as POST /v1/crystals/recommend/natal. A slot whose planet is contraindicated carries `contraindicated: true` and a `caution`; it is never a silent recommendation. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param gemstone_request: (required)
         :type gemstone_request: GemstoneRequest
@@ -2302,7 +2302,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseGemstoneResponse]:
         """Gemstone Recommendations
 
-        Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord. Secondary gemstone supports the Atmakaraka (soul planet). Returns contraindicated gemstones (debilitated, combust, dusthana lords, dual lagna/8th). Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord (always a functional benefic). Further slots: Yogakaraka, 5th lord, 9th lord, and Atmakaraka (also returned as `secondary`). Returns contraindicated gemstones: dusthana (6/8/12) lords that own no trikona, debilitated planets, and combust planets — the same rule as POST /v1/crystals/recommend/natal. A slot whose planet is contraindicated carries `contraindicated: true` and a `caution`; it is never a silent recommendation. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param gemstone_request: (required)
         :type gemstone_request: GemstoneRequest
@@ -2378,7 +2378,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Gemstone Recommendations
 
-        Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord. Secondary gemstone supports the Atmakaraka (soul planet). Returns contraindicated gemstones (debilitated, combust, dusthana lords, dual lagna/8th). Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord (always a functional benefic). Further slots: Yogakaraka, 5th lord, 9th lord, and Atmakaraka (also returned as `secondary`). Returns contraindicated gemstones: dusthana (6/8/12) lords that own no trikona, debilitated planets, and combust planets — the same rule as POST /v1/crystals/recommend/natal. A slot whose planet is contraindicated carries `contraindicated: true` and a `caution`; it is never a silent recommendation. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param gemstone_request: (required)
         :type gemstone_request: GemstoneRequest
@@ -2828,7 +2828,7 @@ class AstrologyApi:
     ) -> ApiResponseGocharResponse:
         """Gochar — Transit Analysis
 
-        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, Ashtakavarga Bhinna scores, Sade Sati and Chandra Ashtama flags, and classical transit interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, raw Bhinna Ashtakavarga bindus for each transit sign (5+ makes a transit favourable, 3 or fewer unfavourable, whatever the house), Sade Sati and Chandra Ashtama flags, and classical transit interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param gochar_request: (required)
         :type gochar_request: GocharRequest
@@ -2904,7 +2904,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseGocharResponse]:
         """Gochar — Transit Analysis
 
-        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, Ashtakavarga Bhinna scores, Sade Sati and Chandra Ashtama flags, and classical transit interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, raw Bhinna Ashtakavarga bindus for each transit sign (5+ makes a transit favourable, 3 or fewer unfavourable, whatever the house), Sade Sati and Chandra Ashtama flags, and classical transit interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param gochar_request: (required)
         :type gochar_request: GocharRequest
@@ -2980,7 +2980,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Gochar — Transit Analysis
 
-        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, Ashtakavarga Bhinna scores, Sade Sati and Chandra Ashtama flags, and classical transit interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes planetary transits against a natal chart using classical Vedic rules. Returns house positions from Moon and Lagna, Vedha obstruction checks, raw Bhinna Ashtakavarga bindus for each transit sign (5+ makes a transit favourable, 3 or fewer unfavourable, whatever the house), Sade Sati and Chandra Ashtama flags, and classical transit interpretations for all 9 planets. Request JSON follows BirthInput plus optional transit fields `target_date`, `target_time`, `target_timezone`: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param gochar_request: (required)
         :type gochar_request: GocharRequest
@@ -7426,7 +7426,7 @@ class AstrologyApi:
     ) -> ApiResponseFestivalCalendarResponse:
         """Hindu festival and vrat calendar
 
-        Hindu festivals, vrats, sankrantis, eclipses and periods for a year at a location. Each lunar festival is fixed by its lunar month (amanta, with Adhik months detected from new moons and sankrantis), its tithi, and the part of the day in which the tithi must prevail (sunrise, forenoon, Madhyahna, Aparahna, Pradosh, Nishita, moonrise), with the classical tie-breaks when a tithi spans two days, Bhadra rules for Holika Dahan and Raksha Bandhan, and the Smarta Ekadashi rule. Categories: festival (about 50 named festivals), vrat (every Ekadashi, Pradosh, Sankashti Chaturthi, Masik Shivaratri, Purnima and Amavasya), sankranti (12 solar ingresses), eclipse (with local visibility and contact times), period (Adhik Maas, Chaturmas, Pitru Paksha, Navratri, Holashtak, Kharmas). By default only the named festivals are returned; pass `categories` for the rest. Lahiri ayanamsa.
+        Hindu festivals, vrats, sankrantis, eclipses and periods for a year at a location. Each lunar festival is fixed by its lunar month (amanta, with Adhik months detected from new moons and sankrantis), its tithi, and the part of the day in which the tithi must prevail (sunrise, forenoon, Madhyahna, Aparahna, Pradosh, Nishita, moonrise), with the classical tie-breaks when a tithi spans two days, Bhadra rules for Holika Dahan and Raksha Bandhan, and the Smarta Ekadashi rule. Categories: festival (about 50 named festivals), vrat (every Ekadashi, Pradosh, Sankashti Chaturthi, Masik Shivaratri, Purnima, the Purnima vrat (fast) day and Amavasya), sankranti (12 solar ingresses), eclipse (with local visibility and contact times), period (Adhik Maas, Chaturmas, Pitru Paksha, Navratri, Holashtak, Kharmas). By default only the named festivals are returned; pass `categories` for the rest. Lahiri ayanamsa.
 
         :param year: Calendar year (required)
         :type year: int
@@ -7522,7 +7522,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseFestivalCalendarResponse]:
         """Hindu festival and vrat calendar
 
-        Hindu festivals, vrats, sankrantis, eclipses and periods for a year at a location. Each lunar festival is fixed by its lunar month (amanta, with Adhik months detected from new moons and sankrantis), its tithi, and the part of the day in which the tithi must prevail (sunrise, forenoon, Madhyahna, Aparahna, Pradosh, Nishita, moonrise), with the classical tie-breaks when a tithi spans two days, Bhadra rules for Holika Dahan and Raksha Bandhan, and the Smarta Ekadashi rule. Categories: festival (about 50 named festivals), vrat (every Ekadashi, Pradosh, Sankashti Chaturthi, Masik Shivaratri, Purnima and Amavasya), sankranti (12 solar ingresses), eclipse (with local visibility and contact times), period (Adhik Maas, Chaturmas, Pitru Paksha, Navratri, Holashtak, Kharmas). By default only the named festivals are returned; pass `categories` for the rest. Lahiri ayanamsa.
+        Hindu festivals, vrats, sankrantis, eclipses and periods for a year at a location. Each lunar festival is fixed by its lunar month (amanta, with Adhik months detected from new moons and sankrantis), its tithi, and the part of the day in which the tithi must prevail (sunrise, forenoon, Madhyahna, Aparahna, Pradosh, Nishita, moonrise), with the classical tie-breaks when a tithi spans two days, Bhadra rules for Holika Dahan and Raksha Bandhan, and the Smarta Ekadashi rule. Categories: festival (about 50 named festivals), vrat (every Ekadashi, Pradosh, Sankashti Chaturthi, Masik Shivaratri, Purnima, the Purnima vrat (fast) day and Amavasya), sankranti (12 solar ingresses), eclipse (with local visibility and contact times), period (Adhik Maas, Chaturmas, Pitru Paksha, Navratri, Holashtak, Kharmas). By default only the named festivals are returned; pass `categories` for the rest. Lahiri ayanamsa.
 
         :param year: Calendar year (required)
         :type year: int
@@ -7618,7 +7618,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Hindu festival and vrat calendar
 
-        Hindu festivals, vrats, sankrantis, eclipses and periods for a year at a location. Each lunar festival is fixed by its lunar month (amanta, with Adhik months detected from new moons and sankrantis), its tithi, and the part of the day in which the tithi must prevail (sunrise, forenoon, Madhyahna, Aparahna, Pradosh, Nishita, moonrise), with the classical tie-breaks when a tithi spans two days, Bhadra rules for Holika Dahan and Raksha Bandhan, and the Smarta Ekadashi rule. Categories: festival (about 50 named festivals), vrat (every Ekadashi, Pradosh, Sankashti Chaturthi, Masik Shivaratri, Purnima and Amavasya), sankranti (12 solar ingresses), eclipse (with local visibility and contact times), period (Adhik Maas, Chaturmas, Pitru Paksha, Navratri, Holashtak, Kharmas). By default only the named festivals are returned; pass `categories` for the rest. Lahiri ayanamsa.
+        Hindu festivals, vrats, sankrantis, eclipses and periods for a year at a location. Each lunar festival is fixed by its lunar month (amanta, with Adhik months detected from new moons and sankrantis), its tithi, and the part of the day in which the tithi must prevail (sunrise, forenoon, Madhyahna, Aparahna, Pradosh, Nishita, moonrise), with the classical tie-breaks when a tithi spans two days, Bhadra rules for Holika Dahan and Raksha Bandhan, and the Smarta Ekadashi rule. Categories: festival (about 50 named festivals), vrat (every Ekadashi, Pradosh, Sankashti Chaturthi, Masik Shivaratri, Purnima, the Purnima vrat (fast) day and Amavasya), sankranti (12 solar ingresses), eclipse (with local visibility and contact times), period (Adhik Maas, Chaturmas, Pitru Paksha, Navratri, Holashtak, Kharmas). By default only the named festivals are returned; pass `categories` for the rest. Lahiri ayanamsa.
 
         :param year: Calendar year (required)
         :type year: int
@@ -8756,7 +8756,7 @@ class AstrologyApi:
     ) -> ApiResponsePitruDoshaResponse:
         """Pitru Dosha (Pitru Shapa)
 
-        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
+        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. The 9th, 5th and lagna lords are taken by whole sign from the lagna; aspects are full Parashari graha drishti (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu and Ketu 7). This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
         :param pitru_dosha_request: (required)
         :type pitru_dosha_request: PitruDoshaRequest
@@ -8832,7 +8832,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponsePitruDoshaResponse]:
         """Pitru Dosha (Pitru Shapa)
 
-        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
+        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. The 9th, 5th and lagna lords are taken by whole sign from the lagna; aspects are full Parashari graha drishti (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu and Ketu 7). This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
         :param pitru_dosha_request: (required)
         :type pitru_dosha_request: PitruDoshaRequest
@@ -8908,7 +8908,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Pitru Dosha (Pitru Shapa)
 
-        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
+        Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. The 9th, 5th and lagna lords are taken by whole sign from the lagna; aspects are full Parashari graha drishti (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu and Ketu 7). This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
 
         :param pitru_dosha_request: (required)
         :type pitru_dosha_request: PitruDoshaRequest
@@ -9637,7 +9637,7 @@ class AstrologyApi:
     ) -> ApiResponseRemediesResponse:
         """Personalised Remedies
 
-        Prescribes personalised Vedic remedies based on planetary dignity in the natal chart. Prioritises debilitated planets, planets in enemy signs, and dusthana lords (6th/8th/12th house rulers). Returns mantras, gemstones, colours, fasting days, and daily actions. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`. Plus `top_n` (1–9) to cap how many planets receive remedy rows.
+        Prescribes personalised Vedic remedies based on planetary dignity in the natal chart. Prioritises debilitated planets, planets in enemy signs, dusthana lords (6th/8th/12th house rulers), planets placed in those houses, and combust planets; is_dusthana_lord, in_dusthana_house and is_combust say which. Returns mantras, gemstones, colours, fasting days, and daily actions. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`. Plus `top_n` (1–9) to cap how many planets receive remedy rows.
 
         :param remedies_request: (required)
         :type remedies_request: RemediesRequest
@@ -9713,7 +9713,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseRemediesResponse]:
         """Personalised Remedies
 
-        Prescribes personalised Vedic remedies based on planetary dignity in the natal chart. Prioritises debilitated planets, planets in enemy signs, and dusthana lords (6th/8th/12th house rulers). Returns mantras, gemstones, colours, fasting days, and daily actions. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`. Plus `top_n` (1–9) to cap how many planets receive remedy rows.
+        Prescribes personalised Vedic remedies based on planetary dignity in the natal chart. Prioritises debilitated planets, planets in enemy signs, dusthana lords (6th/8th/12th house rulers), planets placed in those houses, and combust planets; is_dusthana_lord, in_dusthana_house and is_combust say which. Returns mantras, gemstones, colours, fasting days, and daily actions. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`. Plus `top_n` (1–9) to cap how many planets receive remedy rows.
 
         :param remedies_request: (required)
         :type remedies_request: RemediesRequest
@@ -9789,7 +9789,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Personalised Remedies
 
-        Prescribes personalised Vedic remedies based on planetary dignity in the natal chart. Prioritises debilitated planets, planets in enemy signs, and dusthana lords (6th/8th/12th house rulers). Returns mantras, gemstones, colours, fasting days, and daily actions. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`. Plus `top_n` (1–9) to cap how many planets receive remedy rows.
+        Prescribes personalised Vedic remedies based on planetary dignity in the natal chart. Prioritises debilitated planets, planets in enemy signs, dusthana lords (6th/8th/12th house rulers), planets placed in those houses, and combust planets; is_dusthana_lord, in_dusthana_house and is_combust say which. Returns mantras, gemstones, colours, fasting days, and daily actions. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`. Plus `top_n` (1–9) to cap how many planets receive remedy rows.
 
         :param remedies_request: (required)
         :type remedies_request: RemediesRequest
@@ -9938,7 +9938,7 @@ class AstrologyApi:
     ) -> ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse:
         """Rudraksha Recommendations
 
-        Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
+        Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, how the bead is worn (strung at the neck or wrist, not on a finger), and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -10014,7 +10014,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse]:
         """Rudraksha Recommendations
 
-        Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
+        Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, how the bead is worn (strung at the neck or wrist, not on a finger), and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -10090,7 +10090,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Rudraksha Recommendations
 
-        Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
+        Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, how the bead is worn (strung at the neck or wrist, not on a finger), and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
 
         :param planet:
         :type planet: str
@@ -10228,7 +10228,7 @@ class AstrologyApi:
     ) -> ApiResponseSadeSatiResponse:
         """Sade Sati periods
 
-        Calculate all Sade Sati periods for a natal chart. Returns rising, peak, and setting phases for each period, current active status, intensity score (0-100), intensity label, and next upcoming period. Optionally check status for a specific date using check_date. Sade Sati is Saturn's 7.5-year transit over natal Moon sign and adjacent signs. Small Panoti (Dhaiya) covers Saturn in the 4th or 8th sign from natal Moon (~2.5 years each). Returns all past, current, and future Sade Sati cycles with phase descriptions.
+        Calculate all Sade Sati periods for a natal chart. Returns rising, peak, and setting phases for each period (first entry, final exit and every stay of Saturn in the sign, so retrograde re-entries are shown), current active status and phase from Saturn's sign on the check date, intensity score (0-100 scale, 40-90 while active), intensity label, and next upcoming period. Optionally check status for a specific date using check_date. Sade Sati is Saturn's 7.5-year transit over natal Moon sign and adjacent signs. Small Panoti (Dhaiya) covers Saturn in the 4th or 8th sign from natal Moon (~2.5 years each). Returns all past, current, and future Sade Sati cycles with phase descriptions.
 
         :param sade_sati_request: (required)
         :type sade_sati_request: SadeSatiRequest
@@ -10304,7 +10304,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseSadeSatiResponse]:
         """Sade Sati periods
 
-        Calculate all Sade Sati periods for a natal chart. Returns rising, peak, and setting phases for each period, current active status, intensity score (0-100), intensity label, and next upcoming period. Optionally check status for a specific date using check_date. Sade Sati is Saturn's 7.5-year transit over natal Moon sign and adjacent signs. Small Panoti (Dhaiya) covers Saturn in the 4th or 8th sign from natal Moon (~2.5 years each). Returns all past, current, and future Sade Sati cycles with phase descriptions.
+        Calculate all Sade Sati periods for a natal chart. Returns rising, peak, and setting phases for each period (first entry, final exit and every stay of Saturn in the sign, so retrograde re-entries are shown), current active status and phase from Saturn's sign on the check date, intensity score (0-100 scale, 40-90 while active), intensity label, and next upcoming period. Optionally check status for a specific date using check_date. Sade Sati is Saturn's 7.5-year transit over natal Moon sign and adjacent signs. Small Panoti (Dhaiya) covers Saturn in the 4th or 8th sign from natal Moon (~2.5 years each). Returns all past, current, and future Sade Sati cycles with phase descriptions.
 
         :param sade_sati_request: (required)
         :type sade_sati_request: SadeSatiRequest
@@ -10380,7 +10380,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Sade Sati periods
 
-        Calculate all Sade Sati periods for a natal chart. Returns rising, peak, and setting phases for each period, current active status, intensity score (0-100), intensity label, and next upcoming period. Optionally check status for a specific date using check_date. Sade Sati is Saturn's 7.5-year transit over natal Moon sign and adjacent signs. Small Panoti (Dhaiya) covers Saturn in the 4th or 8th sign from natal Moon (~2.5 years each). Returns all past, current, and future Sade Sati cycles with phase descriptions.
+        Calculate all Sade Sati periods for a natal chart. Returns rising, peak, and setting phases for each period (first entry, final exit and every stay of Saturn in the sign, so retrograde re-entries are shown), current active status and phase from Saturn's sign on the check date, intensity score (0-100 scale, 40-90 while active), intensity label, and next upcoming period. Optionally check status for a specific date using check_date. Sade Sati is Saturn's 7.5-year transit over natal Moon sign and adjacent signs. Small Panoti (Dhaiya) covers Saturn in the 4th or 8th sign from natal Moon (~2.5 years each). Returns all past, current, and future Sade Sati cycles with phase descriptions.
 
         :param sade_sati_request: (required)
         :type sade_sati_request: SadeSatiRequest
@@ -10529,7 +10529,7 @@ class AstrologyApi:
     ) -> ApiResponseVarshaphalResponse:
         """Varshaphal — Solar Return Chart
 
-        Computes the Varshaphal (annual horoscope) for a given year. Finds the exact moment when the Sun returns to its natal longitude, computes all planet positions at that moment, and returns Muntha (progressed ascendant) and Varsha Lord (year lord). Request JSON follows BirthInput plus `target_year`: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes the Varshaphal (annual horoscope) for a given year. Finds the exact moment when the Sun returns to its natal longitude (the return nearest the birthday in target_year; in UT it can fall a day either side, or on 31 December for a 1 January birthday), computes all planet positions at that moment, and returns Muntha (natal lagna sign + completed years, target_year minus birth year), the Varsha Pati (Tajika year lord, elected from the five Pancha Adhikaris) and Tajika Ithasala/Musaripha between the seven grahas. year_lord / vara_lord is the weekday lord at the return, not the Varsha Pati. Request JSON follows BirthInput plus `target_year`: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10605,7 +10605,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseVarshaphalResponse]:
         """Varshaphal — Solar Return Chart
 
-        Computes the Varshaphal (annual horoscope) for a given year. Finds the exact moment when the Sun returns to its natal longitude, computes all planet positions at that moment, and returns Muntha (progressed ascendant) and Varsha Lord (year lord). Request JSON follows BirthInput plus `target_year`: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes the Varshaphal (annual horoscope) for a given year. Finds the exact moment when the Sun returns to its natal longitude (the return nearest the birthday in target_year; in UT it can fall a day either side, or on 31 December for a 1 January birthday), computes all planet positions at that moment, and returns Muntha (natal lagna sign + completed years, target_year minus birth year), the Varsha Pati (Tajika year lord, elected from the five Pancha Adhikaris) and Tajika Ithasala/Musaripha between the seven grahas. year_lord / vara_lord is the weekday lord at the return, not the Varsha Pati. Request JSON follows BirthInput plus `target_year`: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10681,7 +10681,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Varshaphal — Solar Return Chart
 
-        Computes the Varshaphal (annual horoscope) for a given year. Finds the exact moment when the Sun returns to its natal longitude, computes all planet positions at that moment, and returns Muntha (progressed ascendant) and Varsha Lord (year lord). Request JSON follows BirthInput plus `target_year`: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+        Computes the Varshaphal (annual horoscope) for a given year. Finds the exact moment when the Sun returns to its natal longitude (the return nearest the birthday in target_year; in UT it can fall a day either side, or on 31 December for a 1 January birthday), computes all planet positions at that moment, and returns Muntha (natal lagna sign + completed years, target_year minus birth year), the Varsha Pati (Tajika year lord, elected from the five Pancha Adhikaris) and Tajika Ithasala/Musaripha between the seven grahas. year_lord / vara_lord is the weekday lord at the return, not the Varsha Pati. Request JSON follows BirthInput plus `target_year`: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10830,7 +10830,7 @@ class AstrologyApi:
     ) -> ApiResponseHarshaBalaResponse:
         """Varshaphal — Harsha Bala
 
-        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per Tajika rules.
+        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house: Sun 9th, Moon 3rd, Mars 6th, Mercury 1st, Jupiter 11th, Venus 5th, Saturn 12th), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (masculine Sun, Mars, Jupiter in houses 4-6 or 10-12; feminine Moon, Mercury, Venus, Saturn in houses 1-3 or 7-9), Dina-Ratri (masculine planets in a day return, feminine in a night return). Houses are whole signs from the Varsha lagna, as Jagannatha Hora counts them.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10906,7 +10906,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseHarshaBalaResponse]:
         """Varshaphal — Harsha Bala
 
-        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per Tajika rules.
+        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house: Sun 9th, Moon 3rd, Mars 6th, Mercury 1st, Jupiter 11th, Venus 5th, Saturn 12th), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (masculine Sun, Mars, Jupiter in houses 4-6 or 10-12; feminine Moon, Mercury, Venus, Saturn in houses 1-3 or 7-9), Dina-Ratri (masculine planets in a day return, feminine in a night return). Houses are whole signs from the Varsha lagna, as Jagannatha Hora counts them.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -10982,7 +10982,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Varshaphal — Harsha Bala
 
-        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house placement), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (gender-appropriate house hemisphere), Dina-Ratri (day/night return alignment). Computed per Tajika rules.
+        Computes Harsha Bala (positional happiness score) for all 7 classical planets in the Varshaphal chart. Maximum = 20 per planet (4 components × 5 points). Harsha Bala measures whether a planet is positionally comfortable in the annual chart — distinct from Pancha Vargeeya Bala which measures mathematical strength. A planet with high Pancha Vargeeya Bala but zero Harsha Bala has the capacity to deliver results but will do so through stress and frustration. Components: Sthana (happy house: Sun 9th, Moon 3rd, Mars 6th, Mercury 1st, Jupiter 11th, Venus 5th, Saturn 12th), Swakshetra/Uccha (own or exaltation sign), Pum-Stri (masculine Sun, Mars, Jupiter in houses 4-6 or 10-12; feminine Moon, Mercury, Venus, Saturn in houses 1-3 or 7-9), Dina-Ratri (masculine planets in a day return, feminine in a night return). Houses are whole signs from the Varsha lagna, as Jagannatha Hora counts them.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -11131,7 +11131,7 @@ class AstrologyApi:
     ) -> ApiResponseSahamResponse:
         """Varshaphal — Tajika Saham Points
 
-        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
+        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + C, plus 30° when C is not on the arc from B forward to A (Tajika Neelakanthi). C is the Varsha ascendant except for Mitra (Venus) and Santapa (the 6th house, ascendant + 150°). For a night return A and B swap, except Vyapara. Day formulas: Punya Moon-Sun, Vidya Sun-Moon, Yashas Jupiter-Punya, Mitra Jupiter-Punya+Venus, Mahatmya Punya-Mars, Asha Saturn-Mars, Karmakarya Mars-Mercury, Vyapara Mars-Saturn, Vivaha Venus-Saturn, Santapa Saturn-Moon+6th house. Yashas, Mitra and Mahatmya use Punya Saham as an operand — computed first.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -11207,7 +11207,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseSahamResponse]:
         """Varshaphal — Tajika Saham Points
 
-        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
+        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + C, plus 30° when C is not on the arc from B forward to A (Tajika Neelakanthi). C is the Varsha ascendant except for Mitra (Venus) and Santapa (the 6th house, ascendant + 150°). For a night return A and B swap, except Vyapara. Day formulas: Punya Moon-Sun, Vidya Sun-Moon, Yashas Jupiter-Punya, Mitra Jupiter-Punya+Venus, Mahatmya Punya-Mars, Asha Saturn-Mars, Karmakarya Mars-Mercury, Vyapara Mars-Saturn, Vivaha Venus-Saturn, Santapa Saturn-Moon+6th house. Yashas, Mitra and Mahatmya use Punya Saham as an operand — computed first.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -11283,7 +11283,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Varshaphal — Tajika Saham Points
 
-        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + Ascendant (conditional +30° per Tajika Saham rules). Day and night formulas differ — the operands swap based on whether the solar return occurs during daytime or nighttime. 10 Sahams returned: Punya (Fortune), Vidya (Education), Yashas (Fame), Mitra (Friends), Mahatmya (Status), Asha (Desires), Karmakarya (Career), Vyapara (Business), Vivaha (Marriage), Santapa (Sorrow/Stress). Yashas and Mahatmya use Punya Saham as an operand — computed first.
+        Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + C, plus 30° when C is not on the arc from B forward to A (Tajika Neelakanthi). C is the Varsha ascendant except for Mitra (Venus) and Santapa (the 6th house, ascendant + 150°). For a night return A and B swap, except Vyapara. Day formulas: Punya Moon-Sun, Vidya Sun-Moon, Yashas Jupiter-Punya, Mitra Jupiter-Punya+Venus, Mahatmya Punya-Mars, Asha Saturn-Mars, Karmakarya Mars-Mercury, Vyapara Mars-Saturn, Vivaha Venus-Saturn, Santapa Saturn-Moon+6th house. Yashas, Mitra and Mahatmya use Punya Saham as an operand — computed first.
 
         :param varshaphal_request: (required)
         :type varshaphal_request: VarshaphalRequest
@@ -11432,7 +11432,7 @@ class AstrologyApi:
     ) -> ApiResponseYogaEndpointResponse:
         """Calculate yoga combinations
 
-        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
+        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, Viparita Raja, Amala, and more. House lords are taken by whole sign from the lagna (so they are found at polar latitudes too) and aspects are full Parashari graha drishti only. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
 
         :param yoga_request: (required)
         :type yoga_request: YogaRequest
@@ -11508,7 +11508,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseYogaEndpointResponse]:
         """Calculate yoga combinations
 
-        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
+        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, Viparita Raja, Amala, and more. House lords are taken by whole sign from the lagna (so they are found at polar latitudes too) and aspects are full Parashari graha drishti only. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
 
         :param yoga_request: (required)
         :type yoga_request: YogaRequest
@@ -11584,7 +11584,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Calculate yoga combinations
 
-        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, and more. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
+        Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, Viparita Raja, Amala, and more. House lords are taken by whole sign from the lagna (so they are found at polar latitudes too) and aspects are full Parashari graha drishti only. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
 
         :param yoga_request: (required)
         :type yoga_request: YogaRequest

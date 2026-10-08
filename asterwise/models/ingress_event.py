@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -32,10 +32,11 @@ class IngressEvent(BaseModel):
     from_sign: StrictInt = Field(description="Zero-based sign index the planet is leaving, 0 for Aries through 11 for Pisces")
     to_sign: StrictInt = Field(description="Zero-based sign index the planet is entering")
     jd: Union[StrictFloat, StrictInt] = Field(description="Julian Day number of the ingress moment")
-    date_iso: StrictStr = Field(description="Date of ingress in YYYY-MM-DD format")
+    date_iso: StrictStr = Field(description="Instant of ingress in UTC, ISO 8601 without an offset (YYYY-MM-DDTHH:MM:SS). Read it as UTC; datetime_utc carries the Z.")
+    datetime_utc: Optional[StrictStr] = None
     is_sankranti: StrictBool = Field(description="True for solar ingress (Sankranti); false for all other planets.")
     retrograde_ingress: StrictBool = Field(description="True when the planet is retrograde (speed < 0) at the ingress moment.")
-    __properties: ClassVar[List[str]] = ["planet", "from_sign", "to_sign", "jd", "date_iso", "is_sankranti", "retrograde_ingress"]
+    __properties: ClassVar[List[str]] = ["planet", "from_sign", "to_sign", "jd", "date_iso", "datetime_utc", "is_sankranti", "retrograde_ingress"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,6 +77,11 @@ class IngressEvent(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if datetime_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.datetime_utc is None and "datetime_utc" in self.model_fields_set:
+            _dict['datetime_utc'] = None
+
         return _dict
 
     @classmethod
@@ -93,6 +99,7 @@ class IngressEvent(BaseModel):
             "to_sign": obj.get("to_sign"),
             "jd": obj.get("jd"),
             "date_iso": obj.get("date_iso"),
+            "datetime_utc": obj.get("datetime_utc"),
             "is_sankranti": obj.get("is_sankranti"),
             "retrograde_ingress": obj.get("retrograde_ingress")
         })

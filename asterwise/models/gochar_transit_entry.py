@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -39,13 +39,15 @@ class GocharTransitEntry(BaseModel):
     house_from_lagna: StrictInt
     is_favorable_from_moon: StrictBool
     is_favorable_from_lagna: StrictBool
+    bindu_override: Optional[StrictBool] = Field(default=False, description="True when the bindus in ashtakavarga_score decided is_favorable_from_moon and is_favorable_from_lagna (5 or more: favourable; 3 or fewer: unfavourable) instead of the house from the Moon or Lagna. False when the score is 4 or unavailable and the house rule stands.")
     vedha_active: StrictBool
     vedha_blocking_planet: Optional[StrictStr]
     ashtakavarga_score: Optional[StrictInt]
+    ashtakavarga_score_reduced: Optional[StrictInt] = None
     interpretation: StrictStr
     themes: List[StrictStr]
     quality: StrictStr
-    __properties: ClassVar[List[str]] = ["planet", "transit_sign", "transit_sign_index", "transit_degree", "is_retrograde", "nakshatra", "nakshatra_pada", "house_from_moon", "house_from_lagna", "is_favorable_from_moon", "is_favorable_from_lagna", "vedha_active", "vedha_blocking_planet", "ashtakavarga_score", "interpretation", "themes", "quality"]
+    __properties: ClassVar[List[str]] = ["planet", "transit_sign", "transit_sign_index", "transit_degree", "is_retrograde", "nakshatra", "nakshatra_pada", "house_from_moon", "house_from_lagna", "is_favorable_from_moon", "is_favorable_from_lagna", "bindu_override", "vedha_active", "vedha_blocking_planet", "ashtakavarga_score", "ashtakavarga_score_reduced", "interpretation", "themes", "quality"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -106,6 +108,11 @@ class GocharTransitEntry(BaseModel):
         if self.ashtakavarga_score is None and "ashtakavarga_score" in self.model_fields_set:
             _dict['ashtakavarga_score'] = None
 
+        # set to None if ashtakavarga_score_reduced (nullable) is None
+        # and model_fields_set contains the field
+        if self.ashtakavarga_score_reduced is None and "ashtakavarga_score_reduced" in self.model_fields_set:
+            _dict['ashtakavarga_score_reduced'] = None
+
         return _dict
 
     @classmethod
@@ -129,9 +136,11 @@ class GocharTransitEntry(BaseModel):
             "house_from_lagna": obj.get("house_from_lagna"),
             "is_favorable_from_moon": obj.get("is_favorable_from_moon"),
             "is_favorable_from_lagna": obj.get("is_favorable_from_lagna"),
+            "bindu_override": obj.get("bindu_override") if obj.get("bindu_override") is not None else False,
             "vedha_active": obj.get("vedha_active"),
             "vedha_blocking_planet": obj.get("vedha_blocking_planet"),
             "ashtakavarga_score": obj.get("ashtakavarga_score"),
+            "ashtakavarga_score_reduced": obj.get("ashtakavarga_score_reduced"),
             "interpretation": obj.get("interpretation"),
             "themes": obj.get("themes"),
             "quality": obj.get("quality")

@@ -167,6 +167,7 @@ asterwise/models/choghadiya_response.py
 asterwise/models/classical_source.py
 asterwise/models/compatibility_person_input.py
 asterwise/models/compatibility_request.py
+asterwise/models/composite_aspect_schema.py
 asterwise/models/composite_planet_schema.py
 asterwise/models/composite_response.py
 asterwise/models/context_variant.py
@@ -251,7 +252,9 @@ asterwise/models/karana_data.py
 asterwise/models/karmic_lessons_response.py
 asterwise/models/kp_birth_request.py
 asterwise/models/kp_chart_response.py
+asterwise/models/kp_house_significators.py
 asterwise/models/kp_lagna.py
+asterwise/models/kp_planet.py
 asterwise/models/kp_ruling_planet_body.py
 asterwise/models/kp_ruling_planets_request.py
 asterwise/models/kp_ruling_planets_response.py
@@ -331,6 +334,7 @@ asterwise/models/personal_year.py
 asterwise/models/personal_year_post_request.py
 asterwise/models/personal_year_response.py
 asterwise/models/pinnacle_challenge.py
+asterwise/models/pitru_combination.py
 asterwise/models/pitru_dosha_request.py
 asterwise/models/pitru_dosha_response.py
 asterwise/models/pitru_ninth_lord_analysis.py
@@ -364,11 +368,14 @@ asterwise/models/ritu.py
 asterwise/models/rudraksha_all_response.py
 asterwise/models/rudraksha_entry.py
 asterwise/models/rudraksha_single_response.py
+asterwise/models/sade_sati_period.py
+asterwise/models/sade_sati_phase.py
 asterwise/models/sade_sati_request.py
 asterwise/models/sade_sati_response.py
 asterwise/models/saham_entry.py
 asterwise/models/saham_response.py
 asterwise/models/samvat.py
+asterwise/models/saturn_stay.py
 asterwise/models/secondary_progression_response.py
 asterwise/models/sign_span.py
 asterwise/models/small_panoti_period.py
@@ -414,6 +421,7 @@ asterwise/models/western_aspect.py
 asterwise/models/western_aspects_request.py
 asterwise/models/western_aspects_response.py
 asterwise/models/western_elements.py
+asterwise/models/western_essential_dignities.py
 asterwise/models/western_hemisphere.py
 asterwise/models/western_horoscope_chapter.py
 asterwise/models/western_horoscope_content.py
@@ -589,6 +597,7 @@ docs/ChoghadiyaResponse.md
 docs/ClassicalSource.md
 docs/CompatibilityPersonInput.md
 docs/CompatibilityRequest.md
+docs/CompositeAspectSchema.md
 docs/CompositePlanetSchema.md
 docs/CompositeResponse.md
 docs/ContextVariant.md
@@ -673,7 +682,9 @@ docs/IshtaDevtaRequest.md
 docs/IshtaDevtaResponse.md
 docs/KPBirthRequest.md
 docs/KPChartResponse.md
+docs/KPHouseSignificators.md
 docs/KPLagna.md
+docs/KPPlanet.md
 docs/KPRulingPlanetBody.md
 docs/KPRulingPlanetsRequest.md
 docs/KPRulingPlanetsResponse.md
@@ -759,6 +770,7 @@ docs/PersonalYear.md
 docs/PersonalYearPostRequest.md
 docs/PersonalYearResponse.md
 docs/PinnacleChallenge.md
+docs/PitruCombination.md
 docs/PitruDoshaRequest.md
 docs/PitruDoshaResponse.md
 docs/PitruNinthLordAnalysis.md
@@ -793,11 +805,14 @@ docs/Ritu.md
 docs/RudrakshaAllResponse.md
 docs/RudrakshaEntry.md
 docs/RudrakshaSingleResponse.md
+docs/SadeSatiPeriod.md
+docs/SadeSatiPhase.md
 docs/SadeSatiRequest.md
 docs/SadeSatiResponse.md
 docs/SahamEntry.md
 docs/SahamResponse.md
 docs/Samvat.md
+docs/SaturnStay.md
 docs/SecondaryProgressionResponse.md
 docs/SignSpan.md
 docs/SmallPanotiPeriod.md
@@ -847,6 +862,7 @@ docs/WesternAspectsRequest.md
 docs/WesternAspectsResponse.md
 docs/WesternAstrologyApi.md
 docs/WesternElements.md
+docs/WesternEssentialDignities.md
 docs/WesternHemisphere.md
 docs/WesternHoroscopeChapter.md
 docs/WesternHoroscopeContent.md
@@ -871,3 +887,11 @@ docs/YoginiResponse.md
 docs/ZodiacCompatibilityResponse.md
 git_push.sh
 test/__init__.py
+test/test_composite_aspect_schema.py
+test/test_kp_house_significators.py
+test/test_kp_planet.py
+test/test_pitru_combination.py
+test/test_sade_sati_period.py
+test/test_sade_sati_phase.py
+test/test_saturn_stay.py
+test/test_western_essential_dignities.py

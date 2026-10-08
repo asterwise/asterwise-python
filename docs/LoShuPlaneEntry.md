@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**numbers** | **List[int]** |  | 
+**numbers** | **List[int]** | The three numbers of this line of the Lo Shu square (4 9 2 / 3 5 7 / 8 1 6) | 
 **description** | **str** |  | 
-**complete** | **bool** |  | 
+**complete** | **bool** | True when all three numbers appear in the birth date | 
 
 ## Example
 

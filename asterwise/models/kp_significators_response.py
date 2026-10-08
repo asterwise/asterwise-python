@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.kp_house_significators import KPHouseSignificators
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,7 +30,7 @@ class KPSignificatorsResponse(BaseModel):
     KPSignificatorsResponse
     """ # noqa: E501
     ayanamsa: StrictStr
-    significators: Dict[str, Optional[Dict[str, Any]]]
+    significators: Dict[str, KPHouseSignificators]
     planet_significators: Dict[str, Optional[Dict[str, Any]]]
     __properties: ClassVar[List[str]] = ["ayanamsa", "significators", "planet_significators"]
 
@@ -72,6 +73,13 @@ class KPSignificatorsResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each value in significators (dict)
+        _field_dict = {}
+        if self.significators:
+            for _key_significators in self.significators:
+                if self.significators[_key_significators]:
+                    _field_dict[_key_significators] = self.significators[_key_significators].to_dict()
+            _dict['significators'] = _field_dict
         return _dict
 
     @classmethod
@@ -85,7 +93,12 @@ class KPSignificatorsResponse(BaseModel):
 
         _obj = cls.model_validate({
             "ayanamsa": obj.get("ayanamsa"),
-            "significators": obj.get("significators"),
+            "significators": dict(
+                (_k, KPHouseSignificators.from_dict(_v))
+                for _k, _v in obj["significators"].items()
+            )
+            if obj.get("significators") is not None
+            else None,
             "planet_significators": obj.get("planet_significators")
         })
         return _obj

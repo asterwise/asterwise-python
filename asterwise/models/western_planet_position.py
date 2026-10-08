@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
+from asterwise.models.western_essential_dignities import WesternEssentialDignities
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -36,11 +37,12 @@ class WesternPlanetPosition(BaseModel):
     degree_in_sign: Union[StrictFloat, StrictInt] = Field(description="Degrees within sign 0–29.999")
     house: Annotated[int, Field(le=12, strict=True, ge=1)] = Field(description="House number (Placidus or chosen system)")
     is_retrograde: StrictBool
-    dignity: StrictStr = Field(description="Essential dignity: domicile | exaltation | detriment | fall | peregrine")
-    dignity_score: StrictInt = Field(description="Essential dignity weight: domicile=5, exaltation=4, detriment=-5, fall=-4, peregrine=0")
+    dignity: StrictStr = Field(description="Primary sign-level essential dignity: domicile | exaltation | detriment | fall | peregrine. 'peregrine' here means no sign-level dignity; triplicity, term and face are not assessed.")
+    dignity_score: StrictInt = Field(description="Weight of the primary sign-level dignity only: domicile=5, exaltation=4, detriment=-5, fall=-4, peregrine=0. Triplicity, term and face are not scored, and the weights are not summed (e.g. Mercury in Virgo scores 5 for domicile, not 5+4). Full traditional scoring is in essential_dignities (natal and return charts).")
     is_exaltation_degree: StrictBool = Field(description="True if planet is in the exact classical exaltation degree (Nth degree = N-1°00' to N-1°59'59\"). Always false for outer planets (no exact degree defined).")
     dignity_disputed: StrictBool = Field(description="True for outer planet (Uranus/Neptune/Pluto) exaltation/fall — no established consensus.")
-    __properties: ClassVar[List[str]] = ["name", "longitude", "sign", "sign_index", "degree_in_sign", "house", "is_retrograde", "dignity", "dignity_score", "is_exaltation_degree", "dignity_disputed"]
+    essential_dignities: Optional[WesternEssentialDignities] = None
+    __properties: ClassVar[List[str]] = ["name", "longitude", "sign", "sign_index", "degree_in_sign", "house", "is_retrograde", "dignity", "dignity_score", "is_exaltation_degree", "dignity_disputed", "essential_dignities"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -81,6 +83,14 @@ class WesternPlanetPosition(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of essential_dignities
+        if self.essential_dignities:
+            _dict['essential_dignities'] = self.essential_dignities.to_dict()
+        # set to None if essential_dignities (nullable) is None
+        # and model_fields_set contains the field
+        if self.essential_dignities is None and "essential_dignities" in self.model_fields_set:
+            _dict['essential_dignities'] = None
+
         return _dict
 
     @classmethod
@@ -103,7 +113,8 @@ class WesternPlanetPosition(BaseModel):
             "dignity": obj.get("dignity"),
             "dignity_score": obj.get("dignity_score"),
             "is_exaltation_degree": obj.get("is_exaltation_degree"),
-            "dignity_disputed": obj.get("dignity_disputed")
+            "dignity_disputed": obj.get("dignity_disputed"),
+            "essential_dignities": WesternEssentialDignities.from_dict(obj["essential_dignities"]) if obj.get("essential_dignities") is not None else None
         })
         return _obj
 

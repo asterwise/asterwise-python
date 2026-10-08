@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,9 +29,9 @@ class PrashnaHouseAnalysis(BaseModel):
     PrashnaHouseAnalysis
     """ # noqa: E501
     house: StrictInt
-    rashi_index: StrictInt
+    rashi_index: StrictInt = Field(description="Sign of the quesited house, counted whole sign from the lagna sign (0 = Mesha).")
     rashi: StrictStr
-    lord: StrictStr
+    lord: StrictStr = Field(description="Lord of the quesited house by whole sign (lord of its sign), as BPHS and Jagannatha Hora read lordship.")
     lord_dignity: StrictStr
     lord_house: StrictInt
     lord_longitude: Union[StrictFloat, StrictInt]

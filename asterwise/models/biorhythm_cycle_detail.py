@@ -30,11 +30,12 @@ class BiorhythmCycleDetail(BaseModel):
     """ # noqa: E501
     value: Union[StrictFloat, StrictInt] = Field(description="Cycle value from -1.0 to +1.0")
     percentage: Union[StrictFloat, StrictInt] = Field(description="Cycle value as percentage")
-    phase: StrictStr = Field(description="Phase label: High, Rising, Falling, or Low")
+    phase: StrictStr = Field(description="Phase label: High (value above +0.5), Low (below -0.5), otherwise Rising or Falling by the direction the curve is moving that day (see trend).")
+    trend: Optional[StrictStr] = None
     is_critical: StrictBool = Field(description="True when the cycle crosses zero")
     cycle_length_days: Optional[StrictInt] = None
     description: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["value", "percentage", "phase", "is_critical", "cycle_length_days", "description"]
+    __properties: ClassVar[List[str]] = ["value", "percentage", "phase", "trend", "is_critical", "cycle_length_days", "description"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,6 +76,11 @@ class BiorhythmCycleDetail(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if trend (nullable) is None
+        # and model_fields_set contains the field
+        if self.trend is None and "trend" in self.model_fields_set:
+            _dict['trend'] = None
+
         # set to None if cycle_length_days (nullable) is None
         # and model_fields_set contains the field
         if self.cycle_length_days is None and "cycle_length_days" in self.model_fields_set:
@@ -100,6 +106,7 @@ class BiorhythmCycleDetail(BaseModel):
             "value": obj.get("value"),
             "percentage": obj.get("percentage"),
             "phase": obj.get("phase"),
+            "trend": obj.get("trend"),
             "is_critical": obj.get("is_critical"),
             "cycle_length_days": obj.get("cycle_length_days"),
             "description": obj.get("description")

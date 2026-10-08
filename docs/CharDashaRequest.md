@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **timezone** | **str** |  | [optional] 
 **utc_offset** | **str** |  | [optional] 
 **ayanamsa** | **str** | Sidereal ayanamsa mode used in calculations | [optional] [default to 'lahiri']
-**cycles** | **int** | Dasha cycles to compute (1-3) | [optional] [default to 1]
+**cycles** | **int** | Dasha cycles to compute (1-3). K.N. Rao: every cycle repeats the first cycle&#39;s signs, order and years. | [optional] [default to 1]
 
 ## Example
 

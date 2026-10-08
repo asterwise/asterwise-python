@@ -34,7 +34,9 @@ class AshtottariPeriod(BaseModel):
     start_date: StrictStr = Field(description="Start date in DD/MM/YYYY format")
     end_date: StrictStr = Field(description="End date in DD/MM/YYYY format")
     sub: Optional[List[Any]] = None
-    __properties: ClassVar[List[str]] = ["planet", "start_jd", "end_jd", "start_date", "end_date", "sub"]
+    dasha_start_date: Optional[StrictStr] = None
+    balance_years: Optional[Union[StrictFloat, StrictInt]] = None
+    __properties: ClassVar[List[str]] = ["planet", "start_jd", "end_jd", "start_date", "end_date", "sub", "dasha_start_date", "balance_years"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -80,6 +82,16 @@ class AshtottariPeriod(BaseModel):
         if self.sub is None and "sub" in self.model_fields_set:
             _dict['sub'] = None
 
+        # set to None if dasha_start_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.dasha_start_date is None and "dasha_start_date" in self.model_fields_set:
+            _dict['dasha_start_date'] = None
+
+        # set to None if balance_years (nullable) is None
+        # and model_fields_set contains the field
+        if self.balance_years is None and "balance_years" in self.model_fields_set:
+            _dict['balance_years'] = None
+
         return _dict
 
     @classmethod
@@ -97,7 +109,9 @@ class AshtottariPeriod(BaseModel):
             "end_jd": obj.get("end_jd"),
             "start_date": obj.get("start_date"),
             "end_date": obj.get("end_date"),
-            "sub": obj.get("sub")
+            "sub": obj.get("sub"),
+            "dasha_start_date": obj.get("dasha_start_date"),
+            "balance_years": obj.get("balance_years")
         })
         return _obj
 

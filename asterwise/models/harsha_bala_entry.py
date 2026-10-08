@@ -31,7 +31,7 @@ class HarshaBalaEntry(BaseModel):
     planet: StrictStr
     harsha_bala: StrictInt = Field(description="Harsha Bala score for this planet (0-20).")
     max_harsha_bala: Optional[StrictInt] = 20
-    varsha_house: StrictInt = Field(description="Planet's house in the Varshaphal chart (from Varsha Ascendant).")
+    varsha_house: StrictInt = Field(description="Planet's whole-sign house in the Varshaphal chart, counted from the Varsha Ascendant's sign.")
     rashi_index: StrictInt
     rashi: StrictStr
     components: Dict[str, Any] = Field(description="Breakdown of the 4 Harsha Bala components.")

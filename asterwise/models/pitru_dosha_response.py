@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.pitru_combination import PitruCombination
 from asterwise.models.pitru_ninth_lord_analysis import PitruNinthLordAnalysis
 from asterwise.models.pitru_sun_analysis import PitruSunAnalysis
 from typing import Optional, Set
@@ -33,7 +34,8 @@ class PitruDoshaResponse(BaseModel):
     present: StrictBool
     severity: Optional[StrictStr] = None
     severity_note: Optional[StrictStr] = None
-    combinations_triggered: List[StrictStr]
+    combinations_triggered: List[StrictStr] = Field(description="Names of the BPHS Ch.83 combinations that formed; details in combinations_detail.")
+    combinations_detail: Optional[List[PitruCombination]] = Field(default=None, description="One entry per formed combination, in the order of combinations_triggered.")
     combinations_count: StrictInt
     sun_analysis: PitruSunAnalysis
     ninth_lord_analysis: PitruNinthLordAnalysis
@@ -42,7 +44,7 @@ class PitruDoshaResponse(BaseModel):
     interpretation: StrictStr
     classical_symptoms: List[StrictStr]
     remedies: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["present", "severity", "severity_note", "combinations_triggered", "combinations_count", "sun_analysis", "ninth_lord_analysis", "all_factors", "cancellations", "interpretation", "classical_symptoms", "remedies"]
+    __properties: ClassVar[List[str]] = ["present", "severity", "severity_note", "combinations_triggered", "combinations_detail", "combinations_count", "sun_analysis", "ninth_lord_analysis", "all_factors", "cancellations", "interpretation", "classical_symptoms", "remedies"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -83,6 +85,13 @@ class PitruDoshaResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in combinations_detail (list)
+        _items = []
+        if self.combinations_detail:
+            for _item_combinations_detail in self.combinations_detail:
+                if _item_combinations_detail:
+                    _items.append(_item_combinations_detail.to_dict())
+            _dict['combinations_detail'] = _items
         # override the default output from pydantic by calling `to_dict()` of sun_analysis
         if self.sun_analysis:
             _dict['sun_analysis'] = self.sun_analysis.to_dict()
@@ -115,6 +124,7 @@ class PitruDoshaResponse(BaseModel):
             "severity": obj.get("severity"),
             "severity_note": obj.get("severity_note"),
             "combinations_triggered": obj.get("combinations_triggered"),
+            "combinations_detail": [PitruCombination.from_dict(_item) for _item in obj["combinations_detail"]] if obj.get("combinations_detail") is not None else None,
             "combinations_count": obj.get("combinations_count"),
             "sun_analysis": PitruSunAnalysis.from_dict(obj["sun_analysis"]) if obj.get("sun_analysis") is not None else None,
             "ninth_lord_analysis": PitruNinthLordAnalysis.from_dict(obj["ninth_lord_analysis"]) if obj.get("ninth_lord_analysis") is not None else None,

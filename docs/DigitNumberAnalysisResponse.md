@@ -8,9 +8,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **input** | **str** |  | 
 **input_type** | **str** |  | 
-**total** | **int** |  | 
-**single_digit** | **int** |  | 
-**is_master** | **bool** |  | 
+**total** | **int** | Sum of the digits in digits_used | 
+**single_digit** | **int** | Total reduced to 1-9 (master totals reduce too, e.g. 11 → 2) | 
+**is_master** | **bool** | True when the total, or a step of its reduction, is 11, 22 or 33 | 
+**master_number** | **int** |  | [optional] 
+**digits_used** | **str** |  | [optional] 
+**country_code** | **int** |  | [optional] 
 **theme** | **str** |  | 
 **favourable_for** | **List[str]** |  | 
 **caution** | **str** |  | 

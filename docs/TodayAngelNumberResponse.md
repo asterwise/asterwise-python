@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **var_date** | **str** | Date for which this number was computed (YYYY-MM-DD). | 
 **daily_digit** | **int** | Reduced single digit from today&#39;s date (1-9). | 
 **angel_number** | **str** | The angel number sequence derived from today&#39;s date. | 
+**timezone** | **str** |  | [optional] 
 
 ## Example
 

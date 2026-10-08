@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**lucky_numbers** | **List[int]** | Generated lucky numbers | 
+**lucky_numbers** | **List[int]** | Lucky numbers, no repeats: first the Life Path, Expression, Soul Urge, Personality and Birth Day (these may be master numbers 11, 22, 33), then digits 1-9 from the birth date in ascending order, topped up with unused digits 1-9 (at most 9 are guaranteed) | 
 **power_number** | **int** | Most powerful number for the person | 
 **date_specific** | **bool** | Whether numbers are specific to a date | [optional] [default to False]
 **interpretation** | **str** | How to use these numbers | 

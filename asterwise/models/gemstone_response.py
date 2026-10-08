@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,13 +28,13 @@ class GemstoneResponse(BaseModel):
     """
     GemstoneResponse
     """ # noqa: E501
-    primary: Dict[str, Any]
-    secondary: Optional[Dict[str, Any]]
+    primary: Dict[str, Any] = Field(description="Lagna lord's gem: planet, reason, gemstone, substitute_gemstone, metal, colour, note. The lagna lord is always a functional benefic (BPHS Ch.34), so this is never withheld for lordship; it can still be contraindicated when the planet is debilitated or combust. Every slot also carries `contraindicated` (bool) and `caution` (string or null): when the slot's planet appears in `contraindicated`, the slot says `contraindicated: true` with a caution — do not wear that gem for this role. A 5th/9th lord that also owns a dusthana keeps `contraindicated: false` with a caution naming the dusthana.")
+    secondary: Optional[Dict[str, Any]] = None
     yogakaraka_gem: Optional[Dict[str, Any]] = None
     fifth_lord_gem: Optional[Dict[str, Any]] = None
     ninth_lord_gem: Optional[Dict[str, Any]] = None
     atmakaraka_gem: Optional[Dict[str, Any]] = None
-    contraindicated: List[Optional[Dict[str, Any]]]
+    contraindicated: List[Optional[Dict[str, Any]]] = Field(description="Planets whose gem must not be worn in this chart (planet, gemstone, reason): dusthana (6/8/12) lords that own no trikona, debilitated planets, combust planets. Same rule as POST /v1/crystals/recommend/natal.")
     note: StrictStr
     __properties: ClassVar[List[str]] = ["primary", "secondary", "yogakaraka_gem", "fifth_lord_gem", "ninth_lord_gem", "atmakaraka_gem", "contraindicated", "note"]
 

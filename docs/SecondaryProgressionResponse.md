@@ -12,9 +12,9 @@ Name | Type | Description | Notes
 **natal_sun_longitude** | **float** |  | 
 **progressed_sun_longitude** | **float** |  | 
 **progressed_planets** | [**List[ProgressedPlanetSchema]**](ProgressedPlanetSchema.md) |  | 
-**progressed_ascendant** | **float** |  | 
+**progressed_ascendant** | **float** | Progressed Ascendant: the Ascendant that goes with progressed_mc — derived from the progressed MC&#39;s right ascension (RAMC) at the birth latitude (Placidus). | 
 **progressed_ascendant_sign** | **str** |  | 
-**progressed_mc** | **float** |  | 
+**progressed_mc** | **float** | Progressed MC: natal MC advanced by the solar arc in longitude | 
 **progressed_mc_sign** | **str** |  | 
 
 ## Example

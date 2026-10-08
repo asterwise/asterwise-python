@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,7 +30,7 @@ class PrashnaHouseCusp(BaseModel):
     """ # noqa: E501
     rashi_index: StrictInt
     rashi: StrictStr
-    lord: StrictStr
+    lord: StrictStr = Field(description="Lord of the sign on this quadrant cusp. House lordship in house_analysis is whole sign and can differ.")
     longitude: Union[StrictFloat, StrictInt]
     __properties: ClassVar[List[str]] = ["rashi_index", "rashi", "lord", "longitude"]
 

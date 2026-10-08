@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.kp_ruling_planet_body import KPRulingPlanetBody
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,12 +30,24 @@ class KPRulingPlanetsResponse(BaseModel):
     KPRulingPlanetsResponse
     """ # noqa: E501
     ayanamsa: StrictStr
-    target_utc: StrictStr
+    target_utc: StrictStr = Field(description="The instant used, ISO 8601 UTC.")
+    target_timezone: StrictStr = Field(description="Time zone used to read `target_date`/`target_time` and for the sunrise-based day lord.")
+    local_time_status: Optional[StrictStr] = Field(default='ok', description="How `target_date`/`target_time` was read. 'nonexistent': the local time fell in a daylight-saving gap and was read with the offset in force before the change (moved forward by the gap). 'ambiguous': the local time occurred twice and the first occurrence was used. 'ok' otherwise, including when the current instant was used.")
     day_lord: StrictStr
     moon: KPRulingPlanetBody
     ascendant: KPRulingPlanetBody
     ruling_planets: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["ayanamsa", "target_utc", "day_lord", "moon", "ascendant", "ruling_planets"]
+    __properties: ClassVar[List[str]] = ["ayanamsa", "target_utc", "target_timezone", "local_time_status", "day_lord", "moon", "ascendant", "ruling_planets"]
+
+    @field_validator('local_time_status')
+    def local_time_status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['ok', 'nonexistent', 'ambiguous']):
+            raise ValueError("must be one of enum values ('ok', 'nonexistent', 'ambiguous')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -96,6 +108,8 @@ class KPRulingPlanetsResponse(BaseModel):
         _obj = cls.model_validate({
             "ayanamsa": obj.get("ayanamsa"),
             "target_utc": obj.get("target_utc"),
+            "target_timezone": obj.get("target_timezone"),
+            "local_time_status": obj.get("local_time_status") if obj.get("local_time_status") is not None else 'ok',
             "day_lord": obj.get("day_lord"),
             "moon": KPRulingPlanetBody.from_dict(obj["moon"]) if obj.get("moon") is not None else None,
             "ascendant": KPRulingPlanetBody.from_dict(obj["ascendant"]) if obj.get("ascendant") is not None else None,

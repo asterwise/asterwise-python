@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ayanamsa** | **str** |  | 
-**significators** | **Dict[str, Optional[Dict[str, object]]]** |  | 
+**significators** | [**Dict[str, KPHouseSignificators]**](KPHouseSignificators.md) |  | 
 **planet_significators** | **Dict[str, Optional[Dict[str, object]]]** |  | 
 
 ## Example

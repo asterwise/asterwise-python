@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Single crystal lookup
 
-Lookup a specific crystal by slug or name (case-insensitive). Examples: 'amethyst', 'blue-sapphire', 'rose-quartz', 'Tiger's Eye'.
+Lookup a specific crystal by slug, name, or common alias (case-insensitive). Examples: 'amethyst', 'blue-sapphire', 'rose-quartz', 'Tiger's Eye'. Gem names used by POST /v1/astro/gemstones resolve too: 'Hessonite', "Cat's Eye", 'Tiger Eye', 'Honey-colored Zircon', 'Diamond'.
 
 ### Example
 
@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 
 Complete crystal database
 
-Returns all 50 crystals in the database sorted alphabetically. Each entry includes chakra associations, elemental correspondences, Vedic and Western planetary assignments, healing properties, origins, affirmations, and safety cautions. Vedic correspondences are strictly separated: 'navaratna' (classical primary gem), 'uparatna' (classical substitute), or 'none_classical' (no Vedic text assigns this stone).
+Returns all 54 crystals in the database sorted alphabetically. Each entry includes chakra associations, elemental correspondences, Vedic and Western planetary assignments, healing properties, origins, affirmations, and safety cautions. Vedic correspondences are strictly separated: 'navaratna' (classical primary gem), 'uparatna' (substitute gem; the description says when a substitute is modern rather than classical), or 'none_classical' (no Vedic gem use).
 
 ### Example
 
@@ -361,7 +361,7 @@ Name | Type | Description  | Notes
 
 Crystal recommendations from Vedic natal chart
 
-Recommend crystals based on gemstone house lordship rules. Computes the natal chart and identifies the planets that lord Trikona houses (1, 5, 9). Lagna lord = Life Stone (+5), Yogakaraka = supreme benefic (+5), 9th lord = Fortune Stone (+4), 5th lord = Lucky Stone (+3). Where a planet lords both a Trikona and a Dusthana (6, 8, 12), the Trikona lordship still prevails — the planet is still recommended. Planets not lording any Trikona house are contraindicated. Only crystals with classical Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
+Recommend crystals from the natal chart's functional benefics, using the same rule as POST /v1/astro/gemstones (BPHS Ch.34 lordship, whole-sign from the lagna). Recommended: the lagna lord (always auspicious) = Life Stone (+5), the Yogakaraka = supreme benefic (+5), the 9th lord = Fortune Stone (+4), the 5th lord = Lucky Stone (+3). A 5th/9th lord that also owns a Dusthana (6, 8, 12) is still recommended, with that Dusthana named in warnings[]. Contraindicated (natal_context.contraindicated_lords, never returned): Dusthana lords that own no Trikona, and debilitated or combust planets. Kendra-only and 2nd/3rd/11th lords are neither recommended nor contraindicated. Only crystals with Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
 ### Example
 

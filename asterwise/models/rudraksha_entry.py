@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,9 +34,10 @@ class RudrakshaEntry(BaseModel):
     metal: StrictStr
     wearing_day: StrictStr
     mala_beads: StrictInt
-    wearing_finger: StrictStr
+    wearing_finger: StrictStr = Field(description="Legacy field, kept for compatibility. Rudraksha is not worn on a finger, so this is always 'Not applicable (worn on neck or wrist)'. See how_to_wear.")
+    how_to_wear: StrictStr = Field(description="How the bead is worn: strung on thread or capped in the listed metal, at the neck (pendant or mala) or on the wrist (Shiva Purana Vidyeshvara Samhita Ch.25).")
     benefits: StrictStr
-    __properties: ClassVar[List[str]] = ["mukhi", "presiding_deity", "mantra", "metal", "wearing_day", "mala_beads", "wearing_finger", "benefits"]
+    __properties: ClassVar[List[str]] = ["mukhi", "presiding_deity", "mantra", "metal", "wearing_day", "mala_beads", "wearing_finger", "how_to_wear", "benefits"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -96,6 +97,7 @@ class RudrakshaEntry(BaseModel):
             "wearing_day": obj.get("wearing_day"),
             "mala_beads": obj.get("mala_beads"),
             "wearing_finger": obj.get("wearing_finger"),
+            "how_to_wear": obj.get("how_to_wear"),
             "benefits": obj.get("benefits")
         })
         return _obj

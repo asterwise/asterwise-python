@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -36,7 +36,8 @@ class TodayAngelNumberResponse(BaseModel):
     var_date: StrictStr = Field(description="Date for which this number was computed (YYYY-MM-DD).", alias="date")
     daily_digit: StrictInt = Field(description="Reduced single digit from today's date (1-9).")
     angel_number: StrictStr = Field(description="The angel number sequence derived from today's date.")
-    __properties: ClassVar[List[str]] = ["number", "theme", "message", "guidance", "areas", "date", "daily_digit", "angel_number"]
+    timezone: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["number", "theme", "message", "guidance", "areas", "date", "daily_digit", "angel_number", "timezone"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,6 +78,11 @@ class TodayAngelNumberResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if timezone (nullable) is None
+        # and model_fields_set contains the field
+        if self.timezone is None and "timezone" in self.model_fields_set:
+            _dict['timezone'] = None
+
         return _dict
 
     @classmethod
@@ -96,7 +102,8 @@ class TodayAngelNumberResponse(BaseModel):
             "areas": obj.get("areas"),
             "date": obj.get("date"),
             "daily_digit": obj.get("daily_digit"),
-            "angel_number": obj.get("angel_number")
+            "angel_number": obj.get("angel_number"),
+            "timezone": obj.get("timezone")
         })
         return _obj
 

@@ -28,8 +28,8 @@ class WesternHemisphere(BaseModel):
     """
     WesternHemisphere
     """ # noqa: E501
-    eastern: StrictInt = Field(description="Planet count in houses 7–12")
-    western: StrictInt = Field(description="Planet count in houses 1–6")
+    eastern: StrictInt = Field(description="Planet count in houses 10, 11, 12, 1, 2, 3 (the Ascendant side of the MC–IC meridian)")
+    western: StrictInt = Field(description="Planet count in houses 4–9 (the Descendant side of the MC–IC meridian)")
     northern: StrictInt = Field(description="Planet count in houses 1–6 (below horizon)")
     southern: StrictInt = Field(description="Planet count in houses 7–12 (above horizon)")
     __properties: ClassVar[List[str]] = ["eastern", "western", "northern", "southern"]

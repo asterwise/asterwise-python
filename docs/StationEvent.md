@@ -8,7 +8,8 @@ Name | Type | Description | Notes
 **planet** | **str** | Planet name. Rahu and Ketu never have station events. | 
 **station_type** | **str** | retrograde — planet appears to reverse direction. direct — planet resumes forward motion. | 
 **jd** | **float** | Julian Day number of the station moment | 
-**date_iso** | **str** | Date of station in YYYY-MM-DD format | 
+**date_iso** | **str** | Instant of station in UTC, ISO 8601 without an offset (YYYY-MM-DDTHH:MM:SS). Read it as UTC; datetime_utc carries the Z. | 
+**datetime_utc** | **str** |  | [optional] 
 **longitude** | **float** | Sidereal longitude of the planet at the moment of station | 
 
 ## Example

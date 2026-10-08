@@ -36,7 +36,7 @@ class CrystalEntry(BaseModel):
     element: StrictStr = Field(description="Classical element: Earth, Water, Fire, Air, or All.")
     zodiac_signs: List[StrictStr] = Field(description="Associated Western zodiac signs.")
     vedic_planet: Optional[StrictStr] = None
-    vedic_correspondence: StrictStr = Field(description="'navaratna' (primary classical gem), 'uparatna' (substitute gem), or 'none_classical' (no Vedic text assigns this stone).")
+    vedic_correspondence: StrictStr = Field(description="'navaratna' (primary classical gem, Phaladeepika table), 'uparatna' (substitute gem — includes common modern substitutes such as Tiger's Eye for Ketu; the description says when a substitute is not classical), or 'none_classical' (no Vedic gem use).")
     western_planet: Optional[StrictStr] = None
     keywords: List[StrictStr] = Field(description="Primary energy keywords.")
     healing_physical: StrictStr = Field(description="Physical healing properties.")

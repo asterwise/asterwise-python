@@ -11,9 +11,9 @@ Name | Type | Description | Notes
 **element2** | **str** |  | 
 **modality1** | **str** |  | 
 **modality2** | **str** |  | 
-**element_affinity** | **str** |  | 
-**modality_affinity** | **str** |  | 
-**overall_score** | **int** |  | 
+**element_affinity** | **str** | harmonious | neutral | challenging. From an Asterwise heuristic score: same element 80, fire–air and earth–water 85, other pairs 40–50 (harmonious ≥ 78, neutral ≥ 55). | 
+**modality_affinity** | **str** | harmonious | neutral | challenging. From an Asterwise heuristic score (cardinal–mutable 75, fixed–mutable 70, mutable–mutable 65, cardinal–cardinal and fixed–fixed 55, cardinal–fixed 50; harmonious ≥ 78, neutral ≥ 55). | 
+**overall_score** | **int** | Mean of the element and modality heuristic scores (0–100) | 
 **description** | **str** |  | 
 
 ## Example

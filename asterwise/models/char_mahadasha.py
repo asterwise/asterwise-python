@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
 from asterwise.models.char_antardasha import CharAntardasha
 from typing import Optional, Set
@@ -31,10 +31,10 @@ class CharMahadasha(BaseModel):
     """ # noqa: E501
     rashi: StrictStr
     rashi_index: StrictInt
-    years: StrictInt
+    years: StrictInt = Field(description="Mahadasha length (K.N. Rao): signs counted from the rashi to its lord (forward for savya, backward for apasavya rashis) minus one, 12 when the lord is in the rashi; no year is added or taken off for an exalted or debilitated lord. Range 1–12. Scorpio and Aquarius: the co-lord outside the sign; with both outside, the one with more planets, then the one further advanced in its sign. Every cycle repeats the first cycle's years.")
     start_date: StrictStr
     end_date: StrictStr
-    antardashas: List[CharAntardasha]
+    antardashas: List[CharAntardasha] = Field(description="The 12 antardashas, each lasting as many months as the mahadasha has years (K.N. Rao). They run forward when the 9th sign from the mahadasha sign is savya (Aries, Taurus, Gemini, Libra, Scorpio, Sagittarius) and backward otherwise, starting from the next sign; the mahadasha sign's own antardasha is the last.")
     __properties: ClassVar[List[str]] = ["rashi", "rashi_index", "years", "start_date", "end_date", "antardashas"]
 
     model_config = ConfigDict(

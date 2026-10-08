@@ -31,11 +31,13 @@ class DashaPeriod(BaseModel):
     planet: StrictStr = Field(description="Dasha lord for this period")
     start_jd: Union[StrictFloat, StrictInt] = Field(description="Julian day at period start")
     end_jd: Union[StrictFloat, StrictInt] = Field(description="Julian day at period end")
-    start_date: StrictStr = Field(description="ISO-like UTC date string for period start")
-    end_date: StrictStr = Field(description="ISO-like UTC date string for period end")
+    start_date: StrictStr = Field(description="Period start, DD/MM/YYYY (UTC calendar date). The first Mahadasha row starts at birth.")
+    end_date: StrictStr = Field(description="Period end, DD/MM/YYYY (UTC calendar date)")
     sub: Optional[List[DashaPeriod]] = None
+    dasha_start_date: Optional[StrictStr] = None
+    balance_years: Optional[Union[StrictFloat, StrictInt]] = None
     modern_summary: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["planet", "start_jd", "end_jd", "start_date", "end_date", "sub", "modern_summary"]
+    __properties: ClassVar[List[str]] = ["planet", "start_jd", "end_jd", "start_date", "end_date", "sub", "dasha_start_date", "balance_years", "modern_summary"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -88,6 +90,16 @@ class DashaPeriod(BaseModel):
         if self.sub is None and "sub" in self.model_fields_set:
             _dict['sub'] = None
 
+        # set to None if dasha_start_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.dasha_start_date is None and "dasha_start_date" in self.model_fields_set:
+            _dict['dasha_start_date'] = None
+
+        # set to None if balance_years (nullable) is None
+        # and model_fields_set contains the field
+        if self.balance_years is None and "balance_years" in self.model_fields_set:
+            _dict['balance_years'] = None
+
         # set to None if modern_summary (nullable) is None
         # and model_fields_set contains the field
         if self.modern_summary is None and "modern_summary" in self.model_fields_set:
@@ -111,6 +123,8 @@ class DashaPeriod(BaseModel):
             "start_date": obj.get("start_date"),
             "end_date": obj.get("end_date"),
             "sub": [DashaPeriod.from_dict(_item) for _item in obj["sub"]] if obj.get("sub") is not None else None,
+            "dasha_start_date": obj.get("dasha_start_date"),
+            "balance_years": obj.get("balance_years"),
             "modern_summary": obj.get("modern_summary")
         })
         return _obj

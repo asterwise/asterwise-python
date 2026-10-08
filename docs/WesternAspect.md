@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **type** | **str** | Aspect type: conjunction | opposition | trine | square | sextile | semisextile | semisquare | sesquiquadrate | quincunx | 
 **exact_angle** | **float** | Actual angular distance between planets | 
 **orb** | **float** | Difference from exact aspect angle (always positive) | 
-**is_applying** | **bool** | True if the faster planet is moving toward exact aspect (orb decreasing). | 
+**is_applying** | **bool** | True if the aspect is applying at this instant: the planets&#39; relative motion (instantaneous speeds) is closing the orb toward exactness. False if separating or exact. | 
 
 ## Example
 

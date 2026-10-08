@@ -35,11 +35,11 @@ class NumerologyProfileResponse(BaseModel):
     expression: CoreNumber = Field(description="Expression/Destiny number - natural talents and abilities")
     soul_urge: CoreNumber = Field(description="Soul Urge/Heart's Desire - inner motivations")
     personality: CoreNumber = Field(description="Personality number - outer persona")
-    birth_day: CoreNumber = Field(description="Birth Day number - special talents")
+    birth_day: CoreNumber = Field(description="Birth Day number - special talents. The day of the month reduced like the other core numbers: the 11th and 22nd stay master numbers 11 and 22, the 29th is 11; the 13th, 14th, 16th and 19th carry that karmic debt (number '13/4', karmic_debt_number 13). A master Birth Day uses the 2 or 4 interpretation text.")
     personal_year: Optional[PersonalYear] = None
     pinnacles: Optional[List[PinnacleChallenge]] = Field(default=None, description="Life pinnacle cycles")
     challenges: Optional[List[PinnacleChallenge]] = Field(default=None, description="Life challenge cycles")
-    lucky_numbers: Optional[List[StrictInt]] = Field(default=None, description="Personal lucky numbers")
+    lucky_numbers: Optional[List[StrictInt]] = Field(default=None, description="Lucky numbers, no repeats: first the Life Path, Expression, Soul Urge, Personality and Birth Day (these may be master numbers 11, 22, 33), then digits 1-9 from the birth date in ascending order, topped up with unused digits 1-9 (at most 9 are guaranteed)")
     summary: StrictStr = Field(description="Overall numerology summary")
     key_traits: Optional[List[StrictStr]] = Field(default=None, description="Key personality traits")
     __properties: ClassVar[List[str]] = ["life_path", "expression", "soul_urge", "personality", "birth_day", "personal_year", "pinnacles", "challenges", "lucky_numbers", "summary", "key_traits"]

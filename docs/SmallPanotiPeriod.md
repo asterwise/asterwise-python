@@ -10,10 +10,12 @@ Name | Type | Description | Notes
 **sign_index** | **int** |  | 
 **sign** | **str** |  | 
 **position_from_moon** | **int** |  | 
-**start** | **str** |  | 
-**end** | **str** |  | 
-**is_currently_active** | **bool** |  | 
+**start** | **str** | Saturn&#39;s first entry into the sign. | 
+**end** | **str** | Saturn&#39;s final exit from the sign, after any retrograde return. | 
+**is_currently_active** | **bool** | Saturn is in this sign on the check date. | 
 **duration_years** | **float** |  | 
+**segments** | [**List[SaturnStay]**](SaturnStay.md) | Every stay of Saturn in the sign; more than one when it retrogrades out and back in. | [optional] 
+**is_interrupted** | **bool** |  | [optional] 
 
 ## Example
 

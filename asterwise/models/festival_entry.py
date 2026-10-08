@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.festival_eclipse import FestivalEclipse
 from asterwise.models.festival_masa import FestivalMasa
@@ -46,10 +46,11 @@ class FestivalEntry(BaseModel):
     tithi: Optional[FestivalTithi] = None
     rule: Optional[StrictStr] = None
     observance_window: Optional[FestivalWindow] = None
+    tithi_at_moonrise: Optional[StrictBool] = None
     note: Optional[StrictStr] = None
     sankranti: Optional[FestivalSankranti] = None
     eclipse: Optional[FestivalEclipse] = None
-    __properties: ClassVar[List[str]] = ["name", "date", "type", "description", "significance", "id", "category", "end_date", "masa", "paksha", "tithi", "rule", "observance_window", "note", "sankranti", "eclipse"]
+    __properties: ClassVar[List[str]] = ["name", "date", "type", "description", "significance", "id", "category", "end_date", "masa", "paksha", "tithi", "rule", "observance_window", "tithi_at_moonrise", "note", "sankranti", "eclipse"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -145,6 +146,11 @@ class FestivalEntry(BaseModel):
         if self.observance_window is None and "observance_window" in self.model_fields_set:
             _dict['observance_window'] = None
 
+        # set to None if tithi_at_moonrise (nullable) is None
+        # and model_fields_set contains the field
+        if self.tithi_at_moonrise is None and "tithi_at_moonrise" in self.model_fields_set:
+            _dict['tithi_at_moonrise'] = None
+
         # set to None if note (nullable) is None
         # and model_fields_set contains the field
         if self.note is None and "note" in self.model_fields_set:
@@ -185,6 +191,7 @@ class FestivalEntry(BaseModel):
             "tithi": FestivalTithi.from_dict(obj["tithi"]) if obj.get("tithi") is not None else None,
             "rule": obj.get("rule"),
             "observance_window": FestivalWindow.from_dict(obj["observance_window"]) if obj.get("observance_window") is not None else None,
+            "tithi_at_moonrise": obj.get("tithi_at_moonrise"),
             "note": obj.get("note"),
             "sankranti": FestivalSankranti.from_dict(obj["sankranti"]) if obj.get("sankranti") is not None else None,
             "eclipse": FestivalEclipse.from_dict(obj["eclipse"]) if obj.get("eclipse") is not None else None

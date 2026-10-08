@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,9 +31,10 @@ class StationEvent(BaseModel):
     planet: StrictStr = Field(description="Planet name. Rahu and Ketu never have station events.")
     station_type: StrictStr = Field(description="retrograde — planet appears to reverse direction. direct — planet resumes forward motion.")
     jd: Union[StrictFloat, StrictInt] = Field(description="Julian Day number of the station moment")
-    date_iso: StrictStr = Field(description="Date of station in YYYY-MM-DD format")
+    date_iso: StrictStr = Field(description="Instant of station in UTC, ISO 8601 without an offset (YYYY-MM-DDTHH:MM:SS). Read it as UTC; datetime_utc carries the Z.")
+    datetime_utc: Optional[StrictStr] = None
     longitude: Union[StrictFloat, StrictInt] = Field(description="Sidereal longitude of the planet at the moment of station")
-    __properties: ClassVar[List[str]] = ["planet", "station_type", "jd", "date_iso", "longitude"]
+    __properties: ClassVar[List[str]] = ["planet", "station_type", "jd", "date_iso", "datetime_utc", "longitude"]
 
     @field_validator('station_type')
     def station_type_validate_enum(cls, value):
@@ -81,6 +82,11 @@ class StationEvent(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if datetime_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.datetime_utc is None and "datetime_utc" in self.model_fields_set:
+            _dict['datetime_utc'] = None
+
         return _dict
 
     @classmethod
@@ -97,6 +103,7 @@ class StationEvent(BaseModel):
             "station_type": obj.get("station_type"),
             "jd": obj.get("jd"),
             "date_iso": obj.get("date_iso"),
+            "datetime_utc": obj.get("datetime_utc"),
             "longitude": obj.get("longitude")
         })
         return _obj

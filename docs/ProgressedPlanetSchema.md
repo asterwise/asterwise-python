@@ -12,7 +12,8 @@ Name | Type | Description | Notes
 **degree_in_sign** | **float** |  | 
 **is_retrograde** | **bool** |  | 
 **dignity** | **str** |  | 
-**dignity_score** | **int** |  | 
+**dignity_score** | **int** | Weight of the primary sign-level dignity only: domicile&#x3D;5, exaltation&#x3D;4, detriment&#x3D;-5, fall&#x3D;-4, peregrine&#x3D;0. Triplicity, term and face are not scored, and the weights are not summed (e.g. Mercury in Virgo scores 5 for domicile, not 5+4). Full traditional scoring is in essential_dignities (natal and return charts). | 
+**dignity_disputed** | **bool** | True for outer planet (Uranus/Neptune/Pluto) exaltation/fall — no established consensus. | 
 
 ## Example
 

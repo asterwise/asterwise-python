@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from asterwise.models.varsha_pati import VarshaPati
 from asterwise.models.varshaphal_muntha import VarshaphalMuntha
@@ -33,12 +33,13 @@ class VarshaphalResponse(BaseModel):
     """ # noqa: E501
     target_year: StrictInt
     ayanamsa: StrictStr
-    solar_return_utc: StrictStr
+    solar_return_utc: StrictStr = Field(description="Solar return instant (UTC, to the minute): the Sun back on its natal longitude, the return nearest the birthday in target_year.")
     solar_return_jd: Union[StrictFloat, StrictInt]
     natal_sun_longitude: Union[StrictFloat, StrictInt]
     natal_lagna: StrictStr
     natal_lagna_index: StrictInt
-    year_lord: StrictStr
+    year_lord: StrictStr = Field(description="Weekday (vara) lord at the solar-return instant, sunrise to sunrise at the birth place. Historical name: this is NOT the Tajika year lord. The year lord (Varsha Pati / Varsheshwara) is varsha_pati.planet. Same value as vara_lord.")
+    vara_lord: Optional[StrictStr] = None
     muntha: VarshaphalMuntha
     planets: Dict[str, VarshaphalPlanet]
     varshaphal_ascendant_longitude: Optional[Union[StrictFloat, StrictInt]] = None
@@ -48,8 +49,8 @@ class VarshaphalResponse(BaseModel):
     pancha_adhikaris: List[Optional[Dict[str, Any]]]
     pancha_vargeeya_bala: Dict[str, Union[StrictFloat, StrictInt]]
     tajika_aspects: List[Optional[Dict[str, Any]]]
-    tajika_planet_pairs: List[Optional[Dict[str, Any]]]
-    __properties: ClassVar[List[str]] = ["target_year", "ayanamsa", "solar_return_utc", "solar_return_jd", "natal_sun_longitude", "natal_lagna", "natal_lagna_index", "year_lord", "muntha", "planets", "varshaphal_ascendant_longitude", "varshaphal_ascendant_sign", "varshaphal_ascendant_sign_index", "varsha_pati", "pancha_adhikaris", "pancha_vargeeya_bala", "tajika_aspects", "tajika_planet_pairs"]
+    tajika_planet_pairs: List[Optional[Dict[str, Any]]] = Field(description="Pairs of the seven grahas (no Rahu/Ketu) in Tajika aspect by sign: same sign (conjunction), 3rd/11th (mitra), 4th/10th (vikrama), 5th/9th (labha), 7th (shatru). Keys: planet_a, planet_b, house_a, house_b (whole-sign houses from the Varsha lagna), diff_ab, diff_ba, aspect_ab, aspect_ba, faster_planet (by mean motion: Moon, Mercury, Venus, Sun, Mars, Jupiter, Saturn), orb_degrees (gap between their degrees within sign), orb_limit (mean of the two Deeptamsas), is_ithsala (faster planet behind the slower one within orb_limit), ithsala_type ('poorna' within 1 degree, 'vartamana' otherwise, null when not ithsala), is_musaripha (faster planet already past, within orb_limit). Retrogression is not modelled.")
+    __properties: ClassVar[List[str]] = ["target_year", "ayanamsa", "solar_return_utc", "solar_return_jd", "natal_sun_longitude", "natal_lagna", "natal_lagna_index", "year_lord", "vara_lord", "muntha", "planets", "varshaphal_ascendant_longitude", "varshaphal_ascendant_sign", "varshaphal_ascendant_sign_index", "varsha_pati", "pancha_adhikaris", "pancha_vargeeya_bala", "tajika_aspects", "tajika_planet_pairs"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -103,6 +104,11 @@ class VarshaphalResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of varsha_pati
         if self.varsha_pati:
             _dict['varsha_pati'] = self.varsha_pati.to_dict()
+        # set to None if vara_lord (nullable) is None
+        # and model_fields_set contains the field
+        if self.vara_lord is None and "vara_lord" in self.model_fields_set:
+            _dict['vara_lord'] = None
+
         # set to None if varshaphal_ascendant_longitude (nullable) is None
         # and model_fields_set contains the field
         if self.varshaphal_ascendant_longitude is None and "varshaphal_ascendant_longitude" in self.model_fields_set:
@@ -138,6 +144,7 @@ class VarshaphalResponse(BaseModel):
             "natal_lagna": obj.get("natal_lagna"),
             "natal_lagna_index": obj.get("natal_lagna_index"),
             "year_lord": obj.get("year_lord"),
+            "vara_lord": obj.get("vara_lord"),
             "muntha": VarshaphalMuntha.from_dict(obj["muntha"]) if obj.get("muntha") is not None else None,
             "planets": dict(
                 (_k, VarshaphalPlanet.from_dict(_v))

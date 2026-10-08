@@ -56,7 +56,7 @@ class PrashnaApi:
     ) -> ApiResponsePrashnaResponse:
         """Prashna (Horary Chart)
 
-        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed.
+        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed; that house and its lord are taken by whole sign from the lagna, like the planets' houses.
 
         :param prashna_request: (required)
         :type prashna_request: PrashnaRequest
@@ -132,7 +132,7 @@ class PrashnaApi:
     ) -> ApiResponse[ApiResponsePrashnaResponse]:
         """Prashna (Horary Chart)
 
-        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed.
+        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed; that house and its lord are taken by whole sign from the lagna, like the planets' houses.
 
         :param prashna_request: (required)
         :type prashna_request: PrashnaRequest
@@ -208,7 +208,7 @@ class PrashnaApi:
     ) -> RESTResponseType:
         """Prashna (Horary Chart)
 
-        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed.
+        Computes a Prashna (Horary) chart for the exact moment a question is asked. Returns lagna, Moon analysis, house lord condition, occupants of the relevant house, and a classical verdict (favourable / unfavourable / mixed) with confidence level. Question category determines which house is analysed; that house and its lord are taken by whole sign from the lagna, like the planets' houses.
 
         :param prashna_request: (required)
         :type prashna_request: PrashnaRequest

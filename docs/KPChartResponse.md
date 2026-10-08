@@ -6,8 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ayanamsa** | **str** |  | 
+**house_basis** | **str** | How planet &#x60;house&#x60; is assigned. Always &#39;placidus_cusp_to_cusp&#39; (KP occupancy between consecutive sidereal Placidus cusps). | 
 **lagna** | [**KPLagna**](KPLagna.md) |  | 
-**planets** | **Dict[str, Optional[Dict[str, object]]]** |  | 
+**planets** | [**Dict[str, KPPlanet]**](KPPlanet.md) |  | 
 **house_cusps** | **Dict[str, Optional[Dict[str, object]]]** |  | 
 
 ## Example

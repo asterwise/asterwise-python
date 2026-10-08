@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,14 +30,17 @@ class DigitNumberAnalysisResponse(BaseModel):
     """ # noqa: E501
     input: StrictStr
     input_type: StrictStr
-    total: StrictInt
-    single_digit: StrictInt
-    is_master: StrictBool
+    total: StrictInt = Field(description="Sum of the digits in digits_used")
+    single_digit: StrictInt = Field(description="Total reduced to 1-9 (master totals reduce too, e.g. 11 → 2)")
+    is_master: StrictBool = Field(description="True when the total, or a step of its reduction, is 11, 22 or 33")
+    master_number: Optional[StrictInt] = None
+    digits_used: Optional[StrictStr] = None
+    country_code: Optional[StrictInt] = None
     theme: StrictStr
     favourable_for: List[StrictStr]
     caution: StrictStr
     harmony_score: StrictInt
-    __properties: ClassVar[List[str]] = ["input", "input_type", "total", "single_digit", "is_master", "theme", "favourable_for", "caution", "harmony_score"]
+    __properties: ClassVar[List[str]] = ["input", "input_type", "total", "single_digit", "is_master", "master_number", "digits_used", "country_code", "theme", "favourable_for", "caution", "harmony_score"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +81,21 @@ class DigitNumberAnalysisResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if master_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.master_number is None and "master_number" in self.model_fields_set:
+            _dict['master_number'] = None
+
+        # set to None if digits_used (nullable) is None
+        # and model_fields_set contains the field
+        if self.digits_used is None and "digits_used" in self.model_fields_set:
+            _dict['digits_used'] = None
+
+        # set to None if country_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.country_code is None and "country_code" in self.model_fields_set:
+            _dict['country_code'] = None
+
         return _dict
 
     @classmethod
@@ -95,6 +113,9 @@ class DigitNumberAnalysisResponse(BaseModel):
             "total": obj.get("total"),
             "single_digit": obj.get("single_digit"),
             "is_master": obj.get("is_master"),
+            "master_number": obj.get("master_number"),
+            "digits_used": obj.get("digits_used"),
+            "country_code": obj.get("country_code"),
             "theme": obj.get("theme"),
             "favourable_for": obj.get("favourable_for"),
             "caution": obj.get("caution"),

@@ -36,7 +36,8 @@ better results.
   Points in trinal houses are equalised. Per-planet objects keyed by sign name.
 
 - **bhinna_after_ekadhipatya** — BAV after both Trikona and Ekadhipatya Shodana 
-  (lordship reduction). The most refined per-planet table, keyed by sign name.
+  (lordship reduction, BPHS Ch.70; a sign counts as occupied only when one of the 
+  seven grahas is in it). The most refined per-planet table, keyed by sign name.
 
 - **sarva** — Sarva Ashtakavarga (SAV): the raw sum across all 7 planets. 
   Object keyed by sign name; 28+ bindus in a sign is considered strong.
@@ -44,8 +45,9 @@ better results.
 - **sarva_reduced** — SAV computed from the fully reduced planet tables. 
   More accurate for transit timing. Keyed by sign name.
 
-- **after_trikona** / **after_ekadhipatya** — SAV-level reductions for 
-  backward compatibility, keyed by sign name.
+- **after_trikona** / **after_ekadhipatya** — legacy: the reductions applied to the 
+  summed SAV, kept for backward compatibility. Not classical values (Shodhana is 
+  applied per planet); prefer **sarva_reduced**.
 
 **How to use bindus for transit timing:**
 When a planet transits a house in its own Bhinna chart, the number of bindus 
@@ -146,14 +148,29 @@ Ashtottari Dasha
 Computes Ashtottari Dasha periods for a given birth chart.
 
 **What is Ashtottari Dasha?**
-Ashtottari Dasha is a 108-year dasha cycle using 8 planets (excluding Ketu). 
-It is considered applicable only for specific charts where Rahu occupies a 
-Kendra (houses 1, 4, 7, 10) or Trikona (houses 1, 5, 9) from the Lagna.
+Ashtottari Dasha is a 108-year dasha cycle using 8 planets (excluding Ketu).
+It is considered applicable only for specific charts where Rahu occupies a
+Kendra (1, 4, 7, 10) or Trikona (1, 5, 9) counted from the sign of the Lagna
+lord, but not the Lagna itself (BPHS Ch.46 v.17). For a Scorpio or Aquarius
+Lagna the stronger co-lord is used, as in JHora.
 
 **Applicability check:**
 This endpoint first checks whether Ashtottari applies to the given chart.
-If Rahu is not in a Kendra or Trikona house, the response will contain 
-`applicable: false` and a reason string instead of dasha periods.
+If the condition above is not met, the response will contain
+`applicable: false` and a reason string instead of dasha periods. The
+paksha/day-night condition is not evaluated.
+
+**Starting planet and balance:**
+Counting from Ardra, the nakshatras belong to the lords in groups of 4, 3, 4,
+3, 4, 3, 4, 3 (Sun, Moon, Mars, Mercury, Saturn — with Abhijit — Jupiter,
+Rahu, Venus). The balance at birth is the lord's years times the share of its
+whole nakshatra group still ahead of the Moon (JHora's method). The first
+period starts at birth; its sub-periods are the tail of the full period, and
+it carries `dasha_start_date` and `balance_years`.
+
+**Timeline length:** mahadashas follow in order and continue into the next
+108-year cycle until the timeline reaches at least age 120 (usually 10 or 11
+mahadashas). Before 2026-10-08 only the first 8 were returned.
 
 **The 8 planets and their durations:**
 - Sun — 6 years
@@ -168,10 +185,11 @@ If Rahu is not in a Kendra or Trikona house, the response will contain
 **Levels:**
 - `levels: 1` — returns Maha Dasha periods only
 - `levels: 2` — returns Maha Dasha with Antar Dasha sub-periods (default)
+- `levels: 3`–`5` — adds Pratyantar, Sookshma and Prana (same rule at every level)
 
 **Date format:** All dates are returned in DD/MM/YYYY format.
 
-**Ayanamsa:** Default is Lahiri.
+**Ayanamsa:** Default is Lahiri; the request's `ayanamsa` is applied.
 
 ### Example
 
@@ -565,8 +583,16 @@ Computes Yogini Dasha periods for a given birth chart.
 
 **What is Yogini Dasha?**
 Yogini Dasha is a Nakshatra-based dasha system using 8 Yoginis, each ruled 
-by a planet. The total cycle is 36 years. It is considered highly accurate 
+by a planet. The total cycle is 36 years. It is considered highly accurate
 for timing events in the near term and is widely used alongside Vimshottari.
+
+**Timeline:** the opening Yogini runs from birth for its balance, then three
+full 36-year cycles follow (past age 108). The first row carries
+`dasha_start_date` (when the full period began, before birth) and
+`balance_years`; its antardashas are the tail of the full period.
+
+**Antardashas:** each lasts MD years × AD Yogini years / 36, starting from
+the Mahadasha's own Yogini (the published proportional rule).
 
 **The 8 Yoginis and their durations:**
 - Mangala (Moon) — 1 year
@@ -586,7 +612,7 @@ for timing events in the near term and is widely used alongside Vimshottari.
 
 **Date format:** All dates are returned in DD/MM/YYYY format.
 
-**Ayanamsa:** Default is Lahiri.
+**Ayanamsa:** Default is Lahiri; the request's `ayanamsa` is applied.
 
 ### Example
 

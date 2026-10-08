@@ -103,11 +103,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tarot_card_of_the_day**
-> ApiResponseCardOfDayResponse tarot_card_of_the_day(var_date=var_date, allow_reversed=allow_reversed)
+> ApiResponseCardOfDayResponse tarot_card_of_the_day(var_date=var_date, allow_reversed=allow_reversed, timezone=timezone)
 
 Card of the Day
 
-Returns a deterministic daily tarot card. The same card is returned for all requests on the same date — seeded by SHA-256 hash of the date string. Optionally provide a date (YYYY-MM-DD) to get the card for any day. Defaults to today.
+Returns a deterministic daily tarot card. The same card is returned for all requests on the same date — seeded by SHA-256 hash of the date string. Optionally provide a date (YYYY-MM-DD) to get the card for any day. "Today" is the current date in UTC unless you pass `timezone` (the caller's IANA zone, e.g. Asia/Kolkata) or an explicit `date`.
 
 ### Example
 
@@ -139,12 +139,13 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.TarotApi(api_client)
-    var_date = 'var_date_example' # str | Date in YYYY-MM-DD format. Defaults to today. (optional)
+    var_date = 'var_date_example' # str | Date in YYYY-MM-DD format. Defaults to today (UTC, or in `timezone`). Overrides timezone. (optional)
     allow_reversed = False # bool | If true, the card may appear reversed (also deterministic by date). (optional) (default to False)
+    timezone = 'timezone_example' # str | IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC. (optional)
 
     try:
         # Card of the Day
-        api_response = api_instance.tarot_card_of_the_day(var_date=var_date, allow_reversed=allow_reversed)
+        api_response = api_instance.tarot_card_of_the_day(var_date=var_date, allow_reversed=allow_reversed, timezone=timezone)
         print("The response of TarotApi->tarot_card_of_the_day:\n")
         pprint(api_response)
     except Exception as e:
@@ -158,8 +159,9 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **var_date** | **str**| Date in YYYY-MM-DD format. Defaults to today. | [optional] 
+ **var_date** | **str**| Date in YYYY-MM-DD format. Defaults to today (UTC, or in &#x60;timezone&#x60;). Overrides timezone. | [optional] 
  **allow_reversed** | **bool**| If true, the card may appear reversed (also deterministic by date). | [optional] [default to False]
+ **timezone** | **str**| IANA time zone (or ±HH:MM) whose current date is \&quot;today\&quot;, e.g. Asia/Kolkata. Default: UTC. | [optional] 
 
 ### Return type
 

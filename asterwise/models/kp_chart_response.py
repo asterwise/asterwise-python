@@ -18,9 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.kp_lagna import KPLagna
+from asterwise.models.kp_planet import KPPlanet
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,10 +31,11 @@ class KPChartResponse(BaseModel):
     KPChartResponse
     """ # noqa: E501
     ayanamsa: StrictStr
+    house_basis: StrictStr = Field(description="How planet `house` is assigned. Always 'placidus_cusp_to_cusp' (KP occupancy between consecutive sidereal Placidus cusps).")
     lagna: KPLagna
-    planets: Dict[str, Optional[Dict[str, Any]]]
+    planets: Dict[str, KPPlanet]
     house_cusps: Dict[str, Optional[Dict[str, Any]]]
-    __properties: ClassVar[List[str]] = ["ayanamsa", "lagna", "planets", "house_cusps"]
+    __properties: ClassVar[List[str]] = ["ayanamsa", "house_basis", "lagna", "planets", "house_cusps"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,6 +79,13 @@ class KPChartResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of lagna
         if self.lagna:
             _dict['lagna'] = self.lagna.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each value in planets (dict)
+        _field_dict = {}
+        if self.planets:
+            for _key_planets in self.planets:
+                if self.planets[_key_planets]:
+                    _field_dict[_key_planets] = self.planets[_key_planets].to_dict()
+            _dict['planets'] = _field_dict
         return _dict
 
     @classmethod
@@ -90,8 +99,14 @@ class KPChartResponse(BaseModel):
 
         _obj = cls.model_validate({
             "ayanamsa": obj.get("ayanamsa"),
+            "house_basis": obj.get("house_basis"),
             "lagna": KPLagna.from_dict(obj["lagna"]) if obj.get("lagna") is not None else None,
-            "planets": obj.get("planets"),
+            "planets": dict(
+                (_k, KPPlanet.from_dict(_v))
+                for _k, _v in obj["planets"].items()
+            )
+            if obj.get("planets") is not None
+            else None,
             "house_cusps": obj.get("house_cusps")
         })
         return _obj

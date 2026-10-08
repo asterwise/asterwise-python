@@ -33,7 +33,7 @@ class WesternAspect(BaseModel):
     type: StrictStr = Field(description="Aspect type: conjunction | opposition | trine | square | sextile | semisextile | semisquare | sesquiquadrate | quincunx")
     exact_angle: Union[StrictFloat, StrictInt] = Field(description="Actual angular distance between planets")
     orb: Union[StrictFloat, StrictInt] = Field(description="Difference from exact aspect angle (always positive)")
-    is_applying: StrictBool = Field(description="True if the faster planet is moving toward exact aspect (orb decreasing).")
+    is_applying: StrictBool = Field(description="True if the aspect is applying at this instant: the planets' relative motion (instantaneous speeds) is closing the orb toward exactness. False if separating or exact.")
     __properties: ClassVar[List[str]] = ["planet_a", "planet_b", "type", "exact_angle", "orb", "is_applying"]
 
     model_config = ConfigDict(

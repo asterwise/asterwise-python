@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**eastern** | **int** | Planet count in houses 7–12 | 
-**western** | **int** | Planet count in houses 1–6 | 
+**eastern** | **int** | Planet count in houses 10, 11, 12, 1, 2, 3 (the Ascendant side of the MC–IC meridian) | 
+**western** | **int** | Planet count in houses 4–9 (the Descendant side of the MC–IC meridian) | 
 **northern** | **int** | Planet count in houses 1–6 (below horizon) | 
 **southern** | **int** | Planet count in houses 7–12 (above horizon) | 
 

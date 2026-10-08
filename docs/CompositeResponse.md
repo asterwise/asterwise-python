@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **ascendant_longitude** | **float** |  | 
 **ascendant_sign** | **str** |  | 
 **ascendant_sign_index** | **int** |  | 
-**aspects** | [**List[SynastryAspectSchema]**](SynastryAspectSchema.md) |  | 
+**aspects** | [**List[CompositeAspectSchema]**](CompositeAspectSchema.md) | Aspects between planets within the composite chart | 
 
 ## Example
 

@@ -35,8 +35,8 @@ class NatalCrystalContext(BaseModel):
     ninth_sign: StrictStr = Field(description="9th house sign (English).")
     ninth_lord: StrictStr = Field(description="Lord of the 9th house (Bhagyesh — Fortune Stone).")
     yogakaraka: Optional[StrictStr] = None
-    contraindicated_lords: List[StrictStr] = Field(description="Planets that do not lord any Trikona house — their gems are contraindicated.")
-    ayanamsa: Optional[StrictStr] = 'lahiri'
+    contraindicated_lords: List[StrictStr] = Field(description="Planets whose gems are contraindicated in this chart: Dusthana (6/8/12) lords that own no Trikona, plus debilitated or combust planets. Same rule as POST /v1/astro/gemstones.")
+    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Ayanamsa the chart was cast with: the request's `ayanamsa` (until 2026-10 this always read \"lahiri\").")
     __properties: ClassVar[List[str]] = ["lagna_sign", "lagna_lord", "fifth_sign", "fifth_lord", "ninth_sign", "ninth_lord", "yogakaraka", "contraindicated_lords", "ayanamsa"]
 
     model_config = ConfigDict(

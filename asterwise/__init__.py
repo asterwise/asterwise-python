@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.9.1"
+__version__ = "0.10.0"
 
 # Define package exports
 __all__ = [
@@ -190,6 +190,7 @@ __all__ = [
     "ClassicalSource",
     "CompatibilityPersonInput",
     "CompatibilityRequest",
+    "CompositeAspectSchema",
     "CompositePlanetSchema",
     "CompositeResponse",
     "ContextVariant",
@@ -271,7 +272,9 @@ __all__ = [
     "IshtaDevtaResponse",
     "KPBirthRequest",
     "KPChartResponse",
+    "KPHouseSignificators",
     "KPLagna",
+    "KPPlanet",
     "KPRulingPlanetBody",
     "KPRulingPlanetsRequest",
     "KPRulingPlanetsResponse",
@@ -354,6 +357,7 @@ __all__ = [
     "PersonalYearPostRequest",
     "PersonalYearResponse",
     "PinnacleChallenge",
+    "PitruCombination",
     "PitruDoshaRequest",
     "PitruDoshaResponse",
     "PitruNinthLordAnalysis",
@@ -387,11 +391,14 @@ __all__ = [
     "RudrakshaAllResponse",
     "RudrakshaEntry",
     "RudrakshaSingleResponse",
+    "SadeSatiPeriod",
+    "SadeSatiPhase",
     "SadeSatiRequest",
     "SadeSatiResponse",
     "SahamEntry",
     "SahamResponse",
     "Samvat",
+    "SaturnStay",
     "SecondaryProgressionResponse",
     "SignSpan",
     "SmallPanotiPeriod",
@@ -437,6 +444,7 @@ __all__ = [
     "WesternAspectsRequest",
     "WesternAspectsResponse",
     "WesternElements",
+    "WesternEssentialDignities",
     "WesternHemisphere",
     "WesternHoroscopeChapter",
     "WesternHoroscopeContent",
@@ -637,6 +645,7 @@ from asterwise.models.choghadiya_response import ChoghadiyaResponse as Choghadiy
 from asterwise.models.classical_source import ClassicalSource as ClassicalSource
 from asterwise.models.compatibility_person_input import CompatibilityPersonInput as CompatibilityPersonInput
 from asterwise.models.compatibility_request import CompatibilityRequest as CompatibilityRequest
+from asterwise.models.composite_aspect_schema import CompositeAspectSchema as CompositeAspectSchema
 from asterwise.models.composite_planet_schema import CompositePlanetSchema as CompositePlanetSchema
 from asterwise.models.composite_response import CompositeResponse as CompositeResponse
 from asterwise.models.context_variant import ContextVariant as ContextVariant
@@ -718,7 +727,9 @@ from asterwise.models.ishta_devta_request import IshtaDevtaRequest as IshtaDevta
 from asterwise.models.ishta_devta_response import IshtaDevtaResponse as IshtaDevtaResponse
 from asterwise.models.kp_birth_request import KPBirthRequest as KPBirthRequest
 from asterwise.models.kp_chart_response import KPChartResponse as KPChartResponse
+from asterwise.models.kp_house_significators import KPHouseSignificators as KPHouseSignificators
 from asterwise.models.kp_lagna import KPLagna as KPLagna
+from asterwise.models.kp_planet import KPPlanet as KPPlanet
 from asterwise.models.kp_ruling_planet_body import KPRulingPlanetBody as KPRulingPlanetBody
 from asterwise.models.kp_ruling_planets_request import KPRulingPlanetsRequest as KPRulingPlanetsRequest
 from asterwise.models.kp_ruling_planets_response import KPRulingPlanetsResponse as KPRulingPlanetsResponse
@@ -801,6 +812,7 @@ from asterwise.models.personal_year import PersonalYear as PersonalYear
 from asterwise.models.personal_year_post_request import PersonalYearPostRequest as PersonalYearPostRequest
 from asterwise.models.personal_year_response import PersonalYearResponse as PersonalYearResponse
 from asterwise.models.pinnacle_challenge import PinnacleChallenge as PinnacleChallenge
+from asterwise.models.pitru_combination import PitruCombination as PitruCombination
 from asterwise.models.pitru_dosha_request import PitruDoshaRequest as PitruDoshaRequest
 from asterwise.models.pitru_dosha_response import PitruDoshaResponse as PitruDoshaResponse
 from asterwise.models.pitru_ninth_lord_analysis import PitruNinthLordAnalysis as PitruNinthLordAnalysis
@@ -834,11 +846,14 @@ from asterwise.models.ritu import Ritu as Ritu
 from asterwise.models.rudraksha_all_response import RudrakshaAllResponse as RudrakshaAllResponse
 from asterwise.models.rudraksha_entry import RudrakshaEntry as RudrakshaEntry
 from asterwise.models.rudraksha_single_response import RudrakshaSingleResponse as RudrakshaSingleResponse
+from asterwise.models.sade_sati_period import SadeSatiPeriod as SadeSatiPeriod
+from asterwise.models.sade_sati_phase import SadeSatiPhase as SadeSatiPhase
 from asterwise.models.sade_sati_request import SadeSatiRequest as SadeSatiRequest
 from asterwise.models.sade_sati_response import SadeSatiResponse as SadeSatiResponse
 from asterwise.models.saham_entry import SahamEntry as SahamEntry
 from asterwise.models.saham_response import SahamResponse as SahamResponse
 from asterwise.models.samvat import Samvat as Samvat
+from asterwise.models.saturn_stay import SaturnStay as SaturnStay
 from asterwise.models.secondary_progression_response import SecondaryProgressionResponse as SecondaryProgressionResponse
 from asterwise.models.sign_span import SignSpan as SignSpan
 from asterwise.models.small_panoti_period import SmallPanotiPeriod as SmallPanotiPeriod
@@ -884,6 +899,7 @@ from asterwise.models.western_aspect import WesternAspect as WesternAspect
 from asterwise.models.western_aspects_request import WesternAspectsRequest as WesternAspectsRequest
 from asterwise.models.western_aspects_response import WesternAspectsResponse as WesternAspectsResponse
 from asterwise.models.western_elements import WesternElements as WesternElements
+from asterwise.models.western_essential_dignities import WesternEssentialDignities as WesternEssentialDignities
 from asterwise.models.western_hemisphere import WesternHemisphere as WesternHemisphere
 from asterwise.models.western_horoscope_chapter import WesternHoroscopeChapter as WesternHoroscopeChapter
 from asterwise.models.western_horoscope_content import WesternHoroscopeContent as WesternHoroscopeContent

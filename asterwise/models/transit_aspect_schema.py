@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,7 +33,7 @@ class TransitAspectSchema(BaseModel):
     type: StrictStr
     exact_angle: Union[StrictFloat, StrictInt]
     orb: Union[StrictFloat, StrictInt]
-    is_applying: StrictBool
+    is_applying: StrictBool = Field(description="True if the transiting planet's instantaneous motion is closing the orb to the (fixed) natal planet. False if separating or exact.")
     __properties: ClassVar[List[str]] = ["transit_planet", "natal_planet", "type", "exact_angle", "orb", "is_applying"]
 
     model_config = ConfigDict(

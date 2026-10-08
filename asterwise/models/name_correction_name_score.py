@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,14 +29,17 @@ class NameCorrectionNameScore(BaseModel):
     NameCorrectionNameScore
     """ # noqa: E501
     name: StrictStr
-    expression: StrictInt
-    soul_urge: StrictInt
-    personality: StrictInt
-    is_master: StrictBool
+    expression: StrictInt = Field(description="Expression number: each name part reduced on its own (11, 22, 33 kept), then added and reduced — same as /v1/numerology/expression")
+    soul_urge: StrictInt = Field(description="Soul Urge (vowels), part by part — same as /v1/numerology/soul-urge")
+    personality: StrictInt = Field(description="Personality (consonants), part by part — same as /v1/numerology/personality")
+    is_master: StrictBool = Field(description="True when the Expression number is 11, 22 or 33")
     karmic_debt: Optional[StrictInt] = None
+    expression_karmic_debt: Optional[StrictInt] = None
+    soul_urge_karmic_debt: Optional[StrictInt] = None
+    personality_karmic_debt: Optional[StrictInt] = None
     compatibility: StrictStr
     harmony_score: StrictInt
-    __properties: ClassVar[List[str]] = ["name", "expression", "soul_urge", "personality", "is_master", "karmic_debt", "compatibility", "harmony_score"]
+    __properties: ClassVar[List[str]] = ["name", "expression", "soul_urge", "personality", "is_master", "karmic_debt", "expression_karmic_debt", "soul_urge_karmic_debt", "personality_karmic_debt", "compatibility", "harmony_score"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,6 +85,21 @@ class NameCorrectionNameScore(BaseModel):
         if self.karmic_debt is None and "karmic_debt" in self.model_fields_set:
             _dict['karmic_debt'] = None
 
+        # set to None if expression_karmic_debt (nullable) is None
+        # and model_fields_set contains the field
+        if self.expression_karmic_debt is None and "expression_karmic_debt" in self.model_fields_set:
+            _dict['expression_karmic_debt'] = None
+
+        # set to None if soul_urge_karmic_debt (nullable) is None
+        # and model_fields_set contains the field
+        if self.soul_urge_karmic_debt is None and "soul_urge_karmic_debt" in self.model_fields_set:
+            _dict['soul_urge_karmic_debt'] = None
+
+        # set to None if personality_karmic_debt (nullable) is None
+        # and model_fields_set contains the field
+        if self.personality_karmic_debt is None and "personality_karmic_debt" in self.model_fields_set:
+            _dict['personality_karmic_debt'] = None
+
         return _dict
 
     @classmethod
@@ -100,6 +118,9 @@ class NameCorrectionNameScore(BaseModel):
             "personality": obj.get("personality"),
             "is_master": obj.get("is_master"),
             "karmic_debt": obj.get("karmic_debt"),
+            "expression_karmic_debt": obj.get("expression_karmic_debt"),
+            "soul_urge_karmic_debt": obj.get("soul_urge_karmic_debt"),
+            "personality_karmic_debt": obj.get("personality_karmic_debt"),
             "compatibility": obj.get("compatibility"),
             "harmony_score": obj.get("harmony_score")
         })

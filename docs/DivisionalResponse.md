@@ -17,10 +17,10 @@ Name | Type | Description | Notes
 **d20** | **Dict[str, object]** | Vimshamsha — spiritual life and upasana | 
 **d24** | **Dict[str, object]** | Chaturvimshamsha — education and learning | 
 **d27** | **Dict[str, object]** | Bhamsha — strength and physical vitality | 
-**d30** | **Dict[str, object]** | Trimshamsha — misfortunes and evils | 
+**d30** | **Dict[str, object]** | Trimshamsha — misfortunes and evils. Unequal portions per BPHS: odd signs Mars 5° → Aries, Saturn 5° → Aquarius, Jupiter 8° → Sagittarius, Mercury 7° → Gemini, Venus 5° → Libra; even signs reversed into the lords&#39; even signs (Taurus, Virgo, Pisces, Capricorn, Scorpio). Every body is placed, Sun and Moon included, as in Jagannatha Hora. | 
 **d40** | **Dict[str, object]** | Khavedamsha — auspicious and inauspicious effects | 
 **d45** | **Dict[str, object]** | Akshavedamsha — all matters of life | 
-**d60** | **Dict[str, object]** | Shashtyamsha — all matters, most subtle divisional chart | 
+**d60** | **Dict[str, object]** | Shashtyamsha — all matters, most subtle divisional chart. 60 parts of 0°30&#39;, counted from the planet&#39;s own sign (BPHS; Jagannatha Hora default). | 
 **houses** | **Dict[str, object]** |  | [optional] 
 **birth_time_provided** | **bool** | Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits. | [optional] [default to True]
 

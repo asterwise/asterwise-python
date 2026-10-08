@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
 from asterwise.models.lo_shu_number_entry import LoShuNumberEntry
 from asterwise.models.lo_shu_plane_entry import LoShuPlaneEntry
@@ -35,7 +35,7 @@ class LoShuResponse(BaseModel):
     present_numbers: List[StrictInt]
     missing_numbers: List[StrictInt]
     repeated_numbers: List[StrictInt]
-    plane_analysis: Dict[str, LoShuPlaneEntry]
+    plane_analysis: Dict[str, LoShuPlaneEntry] = Field(description="The eight lines of the Lo Shu square. Rows: mental_plane 4-9-2, emotional_plane 3-5-7, practical_plane 8-1-6. Columns: thought_plane 4-3-8, will_plane 9-5-1, action_plane 2-7-6. Diagonals: diagonal_4_5_6, diagonal_2_5_8. golden_yod (3-5-7) and silver_yod (1-5-9) are deprecated duplicates of emotional_plane and will_plane, kept for v1 compatibility.")
     number_analysis: Dict[str, LoShuNumberEntry]
     __properties: ClassVar[List[str]] = ["birth_date", "grid", "present_numbers", "missing_numbers", "repeated_numbers", "plane_analysis", "number_analysis"]
 

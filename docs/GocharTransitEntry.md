@@ -16,9 +16,11 @@ Name | Type | Description | Notes
 **house_from_lagna** | **int** |  | 
 **is_favorable_from_moon** | **bool** |  | 
 **is_favorable_from_lagna** | **bool** |  | 
+**bindu_override** | **bool** | True when the bindus in ashtakavarga_score decided is_favorable_from_moon and is_favorable_from_lagna (5 or more: favourable; 3 or fewer: unfavourable) instead of the house from the Moon or Lagna. False when the score is 4 or unavailable and the house rule stands. | [optional] [default to False]
 **vedha_active** | **bool** |  | 
 **vedha_blocking_planet** | **str** |  | 
 **ashtakavarga_score** | **int** |  | 
+**ashtakavarga_score_reduced** | **int** |  | [optional] 
 **interpretation** | **str** |  | 
 **themes** | **List[str]** |  | 
 **quality** | **str** |  | 

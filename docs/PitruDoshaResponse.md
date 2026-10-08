@@ -8,7 +8,8 @@ Name | Type | Description | Notes
 **present** | **bool** |  | 
 **severity** | **str** |  | [optional] 
 **severity_note** | **str** |  | [optional] 
-**combinations_triggered** | **List[str]** |  | 
+**combinations_triggered** | **List[str]** | Names of the BPHS Ch.83 combinations that formed; details in combinations_detail. | 
+**combinations_detail** | [**List[PitruCombination]**](PitruCombination.md) | One entry per formed combination, in the order of combinations_triggered. | [optional] 
 **combinations_count** | **int** |  | 
 **sun_analysis** | [**PitruSunAnalysis**](PitruSunAnalysis.md) |  | 
 **ninth_lord_analysis** | [**PitruNinthLordAnalysis**](PitruNinthLordAnalysis.md) |  | 

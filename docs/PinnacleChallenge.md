@@ -6,8 +6,8 @@ Model for pinnacle and challenge cycles.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**number** | **int** | The pinnacle or challenge number | 
-**start_age** | **int** | Starting age for this cycle | 
+**number** | **int** | The pinnacle (1-9, 11, 22 or 33) or challenge (0-8) number | 
+**start_age** | **int** | Starting age for this cycle. The first cycle ends at 36 minus the Life Path (a master Life Path counted as its digit: 11 → 2), then 9 years each | 
 **end_age** | **int** |  | [optional] 
 **interpretation** | **str** | Interpretation for this cycle | 
 **focus_areas** | **List[str]** | Key focus areas during this cycle | [optional] 

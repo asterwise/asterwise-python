@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 KP Natal Chart
 
-Computes the KP (Krishnamurti Paddhati) natal chart using Krishnamurti ayanamsa and Placidus house system. Returns planet positions with nakshatra lord and sub-lord, and all 12 house cusps with sub-lords. Request JSON follows BirthInput: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa`.
+Computes the KP (Krishnamurti Paddhati) natal chart using Krishnamurti ayanamsa and Placidus house system. Returns planet positions with nakshatra lord and sub-lord, and all 12 house cusps with sub-lords. Planet `house` is the KP (cusp-to-cusp) house: a planet is in house h from cusp h up to, not including, cusp h+1 of the sidereal Placidus cusps, and a planet exactly on a cusp is in the house that cusp starts (no orb before a cusp). `rasi_house` is the whole-sign house from the lagna sign. Inside the polar circles, where Placidus cusps do not exist, the request fails with 422 `validation_error` instead of returning another house system; its `details` item has `type` and `issue` `no_quadrant_houses_at_this_latitude` and `input_format_ok: true` (the input is valid; the sky has no Placidus cusps there). Request JSON follows BirthInput: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`. `ayanamsa` is accepted but ignored: KP always uses the Krishnamurti ayanamsa.
 
 ### Example
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 KP Ruling Planets
 
-Computes KP Ruling Planets at a given moment (no natal birth chart). Request body: `latitude`, `longitude`, optional `target_date`, `target_time`, `target_timezone`. Returns day lord, Moon sign/nakshatra/sub lords, ascendant sign/nakshatra/sub lords, and the combined list of ruling planets in priority order.
+Computes KP Ruling Planets at a given moment (no natal birth chart). Request body: `latitude`, `longitude`, optional `target_date`, `target_time`, `target_timezone`. KP takes ruling planets at the moment of judgment, so with no `target_date` and no `target_time` the current instant is used. `target_time` alone means that time today; `target_date` alone means 12:00 on that date. Local date and time are read in `target_timezone`, which defaults to the time zone at the coordinates. `target_utc` and `target_timezone` in the response show the instant and zone used. A date not in the calendar (e.g. 2026-02-30) is rejected with 422 saying it does not exist; dates outside 1800-01-01 to 2099-12-31 are rejected with 422 too. A local time skipped by a daylight-saving change is read with the offset before the change (moved forward by the gap), a repeated time as its first occurrence; `local_time_status` says which applied. Works at every latitude, including inside the polar circles: only the ascendant is used, which needs no house cusps (the day lord still needs a sunrise). Returns day lord, Moon sign/nakshatra/sub lords, ascendant sign/nakshatra/sub lords, and the combined list of ruling planets in priority order.
 
 ### Example
 
@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 
 KP House Significators
 
-Computes KP house significators for all 12 houses. For each house returns: occupants, sign lord, planets in nakshatra of occupants (level 3), and planets in nakshatra of the sign lord (level 4). Request JSON follows BirthInput: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa`.
+Computes KP house significators for all 12 houses. For each house returns: occupants (cusp-to-cusp), the sign lord of the cusp, planets in the nakshatra of an occupant, and planets in the nakshatra of the sign lord. Krishnamurti ranks them strongest first as: planets in the star of occupants, occupants, planets in the star of the sign lord, the sign lord; `strength_order` lists them in that order. `all_significators` keeps its original order (occupants, sign lord, star of occupants, star of sign lord) and is not a ranking. Planet `house` is the KP (cusp-to-cusp) house: a planet is in house h from cusp h up to, not including, cusp h+1 of the sidereal Placidus cusps, and a planet exactly on a cusp is in the house that cusp starts (no orb before a cusp). `rasi_house` is the whole-sign house from the lagna sign. Inside the polar circles, where Placidus cusps do not exist, the request fails with 422 `validation_error` instead of returning another house system; its `details` item has `type` and `issue` `no_quadrant_houses_at_this_latitude` and `input_format_ok: true` (the input is valid; the sky has no Placidus cusps there). Request JSON follows BirthInput: `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`. `ayanamsa` is accepted but ignored: KP always uses the Krishnamurti ayanamsa.
 
 ### Example
 

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **is_reversed** | **bool** |  | 
 **active_meaning** | **str** |  | 
 **active_keywords** | **List[str]** |  | 
+**timezone** | **str** |  | [optional] 
 
 ## Example
 

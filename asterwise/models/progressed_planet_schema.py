@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -35,8 +35,9 @@ class ProgressedPlanetSchema(BaseModel):
     degree_in_sign: Union[StrictFloat, StrictInt]
     is_retrograde: StrictBool
     dignity: StrictStr
-    dignity_score: StrictInt
-    __properties: ClassVar[List[str]] = ["name", "longitude", "sign", "sign_index", "degree_in_sign", "is_retrograde", "dignity", "dignity_score"]
+    dignity_score: StrictInt = Field(description="Weight of the primary sign-level dignity only: domicile=5, exaltation=4, detriment=-5, fall=-4, peregrine=0. Triplicity, term and face are not scored, and the weights are not summed (e.g. Mercury in Virgo scores 5 for domicile, not 5+4). Full traditional scoring is in essential_dignities (natal and return charts).")
+    dignity_disputed: StrictBool = Field(description="True for outer planet (Uranus/Neptune/Pluto) exaltation/fall — no established consensus.")
+    __properties: ClassVar[List[str]] = ["name", "longitude", "sign", "sign_index", "degree_in_sign", "is_retrograde", "dignity", "dignity_score", "dignity_disputed"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -96,7 +97,8 @@ class ProgressedPlanetSchema(BaseModel):
             "degree_in_sign": obj.get("degree_in_sign"),
             "is_retrograde": obj.get("is_retrograde"),
             "dignity": obj.get("dignity"),
-            "dignity_score": obj.get("dignity_score")
+            "dignity_score": obj.get("dignity_score"),
+            "dignity_disputed": obj.get("dignity_disputed")
         })
         return _obj
 

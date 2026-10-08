@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,9 +28,9 @@ class LoShuPlaneEntry(BaseModel):
     """
     LoShuPlaneEntry
     """ # noqa: E501
-    numbers: List[StrictInt]
+    numbers: List[StrictInt] = Field(description="The three numbers of this line of the Lo Shu square (4 9 2 / 3 5 7 / 8 1 6)")
     description: StrictStr
-    complete: StrictBool
+    complete: StrictBool = Field(description="True when all three numbers appear in the birth date")
     __properties: ClassVar[List[str]] = ["numbers", "description", "complete"]
 
     model_config = ConfigDict(

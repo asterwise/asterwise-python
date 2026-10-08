@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **emotional_tone** | **str** | Primary emotional register: anxiety, transformation, auspicious, warning, grief, power, healing, clarity, confusion, or neutral. | 
 **themes** | **List[str]** | Thematic keywords used for AI synthesis and search. | 
 **context_variants** | [**List[ContextVariant]**](ContextVariant.md) | Alternative readings depending on dream context. | 
-**related_symbols** | **List[str]** | Slugs of related dream symbols. | 
+**related_symbols** | **List[str]** | Slugs of four related dream symbols: hand-picked links first, then the most similar symbols by category, themes and meaning. Every slug exists in the catalogue; links are reciprocal. | 
 
 ## Example
 

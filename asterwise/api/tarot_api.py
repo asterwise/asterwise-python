@@ -338,8 +338,9 @@ class TarotApi:
     @validate_call
     def tarot_card_of_the_day(
         self,
-        var_date: Annotated[Optional[StrictStr], Field(description="Date in YYYY-MM-DD format. Defaults to today.")] = None,
+        var_date: Annotated[Optional[StrictStr], Field(description="Date in YYYY-MM-DD format. Defaults to today (UTC, or in `timezone`). Overrides timezone.")] = None,
         allow_reversed: Annotated[Optional[StrictBool], Field(description="If true, the card may appear reversed (also deterministic by date).")] = None,
+        timezone: Annotated[Optional[StrictStr], Field(description="IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -355,12 +356,14 @@ class TarotApi:
     ) -> ApiResponseCardOfDayResponse:
         """Card of the Day
 
-        Returns a deterministic daily tarot card. The same card is returned for all requests on the same date — seeded by SHA-256 hash of the date string. Optionally provide a date (YYYY-MM-DD) to get the card for any day. Defaults to today.
+        Returns a deterministic daily tarot card. The same card is returned for all requests on the same date — seeded by SHA-256 hash of the date string. Optionally provide a date (YYYY-MM-DD) to get the card for any day. \"Today\" is the current date in UTC unless you pass `timezone` (the caller's IANA zone, e.g. Asia/Kolkata) or an explicit `date`.
 
-        :param var_date: Date in YYYY-MM-DD format. Defaults to today.
+        :param var_date: Date in YYYY-MM-DD format. Defaults to today (UTC, or in `timezone`). Overrides timezone.
         :type var_date: str
         :param allow_reversed: If true, the card may appear reversed (also deterministic by date).
         :type allow_reversed: bool
+        :param timezone: IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.
+        :type timezone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -386,6 +389,7 @@ class TarotApi:
         _param = self._tarot_card_of_the_day_serialize(
             var_date=var_date,
             allow_reversed=allow_reversed,
+            timezone=timezone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -418,8 +422,9 @@ class TarotApi:
     @validate_call
     def tarot_card_of_the_day_with_http_info(
         self,
-        var_date: Annotated[Optional[StrictStr], Field(description="Date in YYYY-MM-DD format. Defaults to today.")] = None,
+        var_date: Annotated[Optional[StrictStr], Field(description="Date in YYYY-MM-DD format. Defaults to today (UTC, or in `timezone`). Overrides timezone.")] = None,
         allow_reversed: Annotated[Optional[StrictBool], Field(description="If true, the card may appear reversed (also deterministic by date).")] = None,
+        timezone: Annotated[Optional[StrictStr], Field(description="IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -435,12 +440,14 @@ class TarotApi:
     ) -> ApiResponse[ApiResponseCardOfDayResponse]:
         """Card of the Day
 
-        Returns a deterministic daily tarot card. The same card is returned for all requests on the same date — seeded by SHA-256 hash of the date string. Optionally provide a date (YYYY-MM-DD) to get the card for any day. Defaults to today.
+        Returns a deterministic daily tarot card. The same card is returned for all requests on the same date — seeded by SHA-256 hash of the date string. Optionally provide a date (YYYY-MM-DD) to get the card for any day. \"Today\" is the current date in UTC unless you pass `timezone` (the caller's IANA zone, e.g. Asia/Kolkata) or an explicit `date`.
 
-        :param var_date: Date in YYYY-MM-DD format. Defaults to today.
+        :param var_date: Date in YYYY-MM-DD format. Defaults to today (UTC, or in `timezone`). Overrides timezone.
         :type var_date: str
         :param allow_reversed: If true, the card may appear reversed (also deterministic by date).
         :type allow_reversed: bool
+        :param timezone: IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.
+        :type timezone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -466,6 +473,7 @@ class TarotApi:
         _param = self._tarot_card_of_the_day_serialize(
             var_date=var_date,
             allow_reversed=allow_reversed,
+            timezone=timezone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -498,8 +506,9 @@ class TarotApi:
     @validate_call
     def tarot_card_of_the_day_without_preload_content(
         self,
-        var_date: Annotated[Optional[StrictStr], Field(description="Date in YYYY-MM-DD format. Defaults to today.")] = None,
+        var_date: Annotated[Optional[StrictStr], Field(description="Date in YYYY-MM-DD format. Defaults to today (UTC, or in `timezone`). Overrides timezone.")] = None,
         allow_reversed: Annotated[Optional[StrictBool], Field(description="If true, the card may appear reversed (also deterministic by date).")] = None,
+        timezone: Annotated[Optional[StrictStr], Field(description="IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -515,12 +524,14 @@ class TarotApi:
     ) -> RESTResponseType:
         """Card of the Day
 
-        Returns a deterministic daily tarot card. The same card is returned for all requests on the same date — seeded by SHA-256 hash of the date string. Optionally provide a date (YYYY-MM-DD) to get the card for any day. Defaults to today.
+        Returns a deterministic daily tarot card. The same card is returned for all requests on the same date — seeded by SHA-256 hash of the date string. Optionally provide a date (YYYY-MM-DD) to get the card for any day. \"Today\" is the current date in UTC unless you pass `timezone` (the caller's IANA zone, e.g. Asia/Kolkata) or an explicit `date`.
 
-        :param var_date: Date in YYYY-MM-DD format. Defaults to today.
+        :param var_date: Date in YYYY-MM-DD format. Defaults to today (UTC, or in `timezone`). Overrides timezone.
         :type var_date: str
         :param allow_reversed: If true, the card may appear reversed (also deterministic by date).
         :type allow_reversed: bool
+        :param timezone: IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC.
+        :type timezone: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -546,6 +557,7 @@ class TarotApi:
         _param = self._tarot_card_of_the_day_serialize(
             var_date=var_date,
             allow_reversed=allow_reversed,
+            timezone=timezone,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -575,6 +587,7 @@ class TarotApi:
         self,
         var_date,
         allow_reversed,
+        timezone,
         _request_auth,
         _content_type,
         _headers,
@@ -604,6 +617,10 @@ class TarotApi:
         if allow_reversed is not None:
             
             _query_params.append(('allow_reversed', allow_reversed))
+            
+        if timezone is not None:
+            
+            _query_params.append(('timezone', timezone))
             
         # process the header parameters
         # process the form parameters

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class RemediesResponse(BaseModel):
     """
     RemediesResponse
     """ # noqa: E501
-    recommended_remedies: List[Optional[Dict[str, Any]]]
+    recommended_remedies: List[Optional[Dict[str, Any]]] = Field(description="One row per planet needing a remedy, highest priority first. Keys: planet, dignity, rashi, house, is_dusthana_lord (the planet rules the 6th, 8th or 12th sign from the lagna — lordship only), in_dusthana_house (the planet is placed in the 6th, 8th or 12th house), is_combust (within the Sun's combustion orb, from the combustion engine; a combust planet that is not strongly placed gets dusthana-level priority), reason, mantra, repetitions, deity, gemstone, colour, metal, fast_day, charity, action_daily, action_weekly.")
     planet_dignities: List[Optional[Dict[str, Any]]]
     __properties: ClassVar[List[str]] = ["recommended_remedies", "planet_dignities"]
 

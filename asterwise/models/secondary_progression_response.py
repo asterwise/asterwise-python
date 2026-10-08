@@ -36,9 +36,9 @@ class SecondaryProgressionResponse(BaseModel):
     natal_sun_longitude: Union[StrictFloat, StrictInt]
     progressed_sun_longitude: Union[StrictFloat, StrictInt]
     progressed_planets: List[ProgressedPlanetSchema]
-    progressed_ascendant: Union[StrictFloat, StrictInt]
+    progressed_ascendant: Union[StrictFloat, StrictInt] = Field(description="Progressed Ascendant: the Ascendant that goes with progressed_mc — derived from the progressed MC's right ascension (RAMC) at the birth latitude (Placidus).")
     progressed_ascendant_sign: StrictStr
-    progressed_mc: Union[StrictFloat, StrictInt]
+    progressed_mc: Union[StrictFloat, StrictInt] = Field(description="Progressed MC: natal MC advanced by the solar arc in longitude")
     progressed_mc_sign: StrictStr
     __properties: ClassVar[List[str]] = ["target_date", "progressed_jd", "age_years", "solar_arc", "natal_sun_longitude", "progressed_sun_longitude", "progressed_planets", "progressed_ascendant", "progressed_ascendant_sign", "progressed_mc", "progressed_mc_sign"]
 

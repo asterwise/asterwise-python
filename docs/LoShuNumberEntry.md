@@ -6,7 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **int** |  | 
-**plane** | **str** |  | 
+**plane** | **str** | Legacy grouping of the numbers, unchanged since v1: &#39;mental&#39; for 1-3, &#39;physical&#39; for 4-6, &#39;spiritual&#39; for 7-9. It is not a line of the Lo Shu square; &#x60;lo_shu_plane&#x60; gives the row of the square. | 
+**lo_shu_plane** | **str** | Row of the Lo Shu square holding this number: &#39;mental&#39; (top row 4-9-2), &#39;emotional&#39; (middle row 3-5-7) or &#39;practical&#39; (bottom row 8-1-6), matching mental_plane / emotional_plane / practical_plane in &#x60;plane_analysis&#x60;. | 
 **trait** | **str** |  | 
 **status** | **str** |  | 
 **note** | **str** |  | 

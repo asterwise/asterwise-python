@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class NameNumberResponse(BaseModel):
     """
     NameNumberResponse
     """ # noqa: E501
-    number: StrictInt
+    number: StrictInt = Field(description="1-9, or master number 11, 22 or 33")
     is_master_number: StrictBool
     karmic_debt_number: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["number", "is_master_number", "karmic_debt_number"]

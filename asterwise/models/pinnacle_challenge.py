@@ -28,8 +28,8 @@ class PinnacleChallenge(BaseModel):
     """
     Model for pinnacle and challenge cycles.
     """ # noqa: E501
-    number: StrictInt = Field(description="The pinnacle or challenge number")
-    start_age: StrictInt = Field(description="Starting age for this cycle")
+    number: StrictInt = Field(description="The pinnacle (1-9, 11, 22 or 33) or challenge (0-8) number")
+    start_age: StrictInt = Field(description="Starting age for this cycle. The first cycle ends at 36 minus the Life Path (a master Life Path counted as its digit: 11 → 2), then 9 years each")
     end_age: Optional[StrictInt] = None
     interpretation: StrictStr = Field(description="Interpretation for this cycle")
     focus_areas: Optional[List[StrictStr]] = Field(default=None, description="Key focus areas during this cycle")

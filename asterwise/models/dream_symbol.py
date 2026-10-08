@@ -40,7 +40,7 @@ class DreamSymbol(BaseModel):
     emotional_tone: StrictStr = Field(description="Primary emotional register: anxiety, transformation, auspicious, warning, grief, power, healing, clarity, confusion, or neutral.")
     themes: List[StrictStr] = Field(description="Thematic keywords used for AI synthesis and search.")
     context_variants: List[ContextVariant] = Field(description="Alternative readings depending on dream context.")
-    related_symbols: List[StrictStr] = Field(description="Slugs of related dream symbols.")
+    related_symbols: List[StrictStr] = Field(description="Slugs of four related dream symbols: hand-picked links first, then the most similar symbols by category, themes and meaning. Every slug exists in the catalogue; links are reciprocal.")
     __properties: ClassVar[List[str]] = ["slug", "name", "category", "jungian_meaning", "jungian_archetype", "vedic_meaning", "vedic_auspicious", "traditions_agree", "emotional_tone", "themes", "context_variants", "related_symbols"]
 
     model_config = ConfigDict(

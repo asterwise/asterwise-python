@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 
 Western Zodiac Sign Compatibility
 
-Sign-to-sign compatibility without birth data. Based on element and modality affinity. Pass sign names as query parameters: ?sign1=Aries&sign2=Leo
+Sign-to-sign compatibility without birth data. Based on element and modality affinity (Asterwise heuristic scores). Pass sign names as query parameters: ?sign1=Aries&sign2=Leo. Only the twelve English tropical sign names are accepted (case-insensitive); anything else returns 422.
 
 ### Example
 
@@ -468,7 +468,7 @@ Name | Type | Description  | Notes
 
 Western Moon Phase Calendar
 
-Returns lunar phase data for every day in a given month. Useful for building moon phase calendars, identifying full/new moons, and auspicious timing tools. Defaults to current month if no year/month given.
+Returns lunar phase data for every day in a given month, each day computed at 18:00 UTC (same fields as the moon phase endpoint). The days of the month's New Moons, First Quarters, Full Moons and Last Quarters carry principal_phase and its exact instant (principal_phase_at, UTC): use those, not the 45-degree phase_name bands, to mark full and new moon dates. Defaults to current month (UTC) if no year/month given.
 
 ### Example
 
@@ -500,8 +500,8 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.WesternAstrologyApi(api_client)
-    year = 56 # int | Year (e.g. 2026). Defaults to current year. (optional)
-    month = 56 # int | Month number 1-12. Defaults to current month. (optional)
+    year = 56 # int | Year (e.g. 2026), 1-3000. Defaults to the current year (UTC). (optional)
+    month = 56 # int | Month number 1-12. Defaults to the current month (UTC). (optional)
 
     try:
         # Western Moon Phase Calendar
@@ -519,8 +519,8 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **year** | **int**| Year (e.g. 2026). Defaults to current year. | [optional] 
- **month** | **int**| Month number 1-12. Defaults to current month. | [optional] 
+ **year** | **int**| Year (e.g. 2026), 1-3000. Defaults to the current year (UTC). | [optional] 
+ **month** | **int**| Month number 1-12. Defaults to the current month (UTC). | [optional] 
 
 ### Return type
 
@@ -557,7 +557,7 @@ Name | Type | Description  | Notes
 
 Western Moon Phase
 
-Calculate the lunar phase for any date using the tropical zodiac. Returns phase name (New Moon, Waxing Crescent, First Quarter, Waxing Gibbous, Full Moon, Waning Gibbous, Last Quarter, Waning Crescent), phase angle, illumination percentage, moon age in days, and next major phase estimate. Defaults to today if no date given.
+Calculate the lunar phase for any date using the tropical zodiac, computed at 18:00 UTC on that date. Returns the phase name in Dane Rudhyar's eight 45-degree phases (New Moon, Waxing Crescent, First Quarter, Waxing Gibbous, Full Moon, Waning Gibbous, Last Quarter, Waning Crescent; each begins at its angle), phase angle, illumination percentage, moon age since the previous exact New Moon, the exact instant of the next principal phase, and principal_phase when a New Moon, First Quarter, Full Moon or Last Quarter falls on the UTC date. Defaults to today (UTC) if no date given.
 
 ### Example
 
@@ -589,7 +589,7 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.WesternAstrologyApi(api_client)
-    var_date = 'var_date_example' # str | Date in YYYY-MM-DD format. Defaults to today. (optional)
+    var_date = 'var_date_example' # str | Date in YYYY-MM-DD format, years 1-3000. Defaults to today (UTC). (optional)
 
     try:
         # Western Moon Phase
@@ -607,7 +607,7 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **var_date** | **str**| Date in YYYY-MM-DD format. Defaults to today. | [optional] 
+ **var_date** | **str**| Date in YYYY-MM-DD format, years 1-3000. Defaults to today (UTC). | [optional] 
 
 ### Return type
 
@@ -644,7 +644,7 @@ Name | Type | Description  | Notes
 
 Western Natal Chart — Tropical
 
-Calculate a complete Western natal chart using the tropical zodiac and Swiss Ephemeris. Returns 10 planet positions (Sun through Pluto) with tropical longitudes, Placidus (or chosen) house placements, essential dignities, all active aspects using standard modern Western orbs, and element/modality/hemisphere statistics. House system options: placidus (default), koch, equal, whole_sign.
+Calculate a complete Western natal chart using the tropical zodiac and Swiss Ephemeris. Returns 10 planet positions (Sun through Pluto) with tropical longitudes, Placidus (or chosen) house placements, sign-level dignity (dignity, dignity_score) and full traditional essential dignities after William Lilly (essential_dignities: domicile, exaltation, triplicity by the chart's day/night sect, term, face, detriment, fall, peregrine, total), all active aspects using standard modern Western orbs, and element/modality/hemisphere statistics. House system options: placidus (default), koch, equal, whole_sign.
 
 ### Example
 
@@ -820,7 +820,7 @@ Name | Type | Description  | Notes
 
 Western Secondary Progressions
 
-Secondary progressed chart using the day-for-a-year method. Each day after birth symbolises one year of life (1 ephemeris day = 1 tropical year = 365.2421904 days). Returns all 10 progressed planet positions, progressed Ascendant and MC (Solar Arc MC method), and the solar arc. Defaults to today if no target_date provided.
+Secondary progressed chart using the day-for-a-year method. Each day after birth symbolises one year of life (1 ephemeris day = 1 tropical year = 365.2421904 days). Returns all 10 progressed planet positions, the solar arc, and the progressed angles: MC = natal MC + solar arc in longitude, Ascendant derived from that MC (its RAMC) at the birth latitude. Defaults to today if no target_date provided.
 
 ### Example
 

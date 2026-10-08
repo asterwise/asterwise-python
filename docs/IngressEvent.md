@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **from_sign** | **int** | Zero-based sign index the planet is leaving, 0 for Aries through 11 for Pisces | 
 **to_sign** | **int** | Zero-based sign index the planet is entering | 
 **jd** | **float** | Julian Day number of the ingress moment | 
-**date_iso** | **str** | Date of ingress in YYYY-MM-DD format | 
+**date_iso** | **str** | Instant of ingress in UTC, ISO 8601 without an offset (YYYY-MM-DDTHH:MM:SS). Read it as UTC; datetime_utc carries the Z. | 
+**datetime_utc** | **str** |  | [optional] 
 **is_sankranti** | **bool** | True for solar ingress (Sankranti); false for all other planets. | 
 **retrograde_ingress** | **bool** | True when the planet is retrograde (speed &lt; 0) at the ingress moment. | 
 

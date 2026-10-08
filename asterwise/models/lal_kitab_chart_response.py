@@ -33,7 +33,7 @@ class LalKitabChartResponse(BaseModel):
     ayanamsa: StrictStr
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="False when no birth time was given: a sunrise chart is used, so the lagna and every house are approximate.")
     ascendant: LalKitabAscendant
-    planets: Dict[str, Dict[str, Any]]
+    planets: Dict[str, Optional[Dict[str, Any]]]
     houses: Dict[str, Optional[Dict[str, Any]]]
     rin_analysis: Dict[str, Any]
     sources: List[StrictStr]

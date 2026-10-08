@@ -378,11 +378,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **angel_today**
-> ApiResponseTodayAngelNumberResponse angel_today()
+> ApiResponseTodayAngelNumberResponse angel_today(var_date=var_date, timezone=timezone)
 
 Today's angel number
 
-Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date.
+Compute today's angel number from the current date. The date's digits are summed and reduced to a single digit (1-9), then the triple sequence of that digit is returned (e.g. digit 3 → angel number 333). The same number is returned for all callers on the same date. "Today" is the current date in UTC unless you pass `timezone` (the caller's IANA zone, e.g. Asia/Kolkata) or an explicit `date`.
 
 ### Example
 
@@ -414,10 +414,12 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.NumerologyApi(api_client)
+    var_date = 'var_date_example' # str | Date in YYYY-MM-DD format to compute the number for. Overrides timezone. (optional)
+    timezone = 'timezone_example' # str | IANA time zone (or ±HH:MM) whose current date is \"today\", e.g. Asia/Kolkata. Default: UTC. (optional)
 
     try:
         # Today's angel number
-        api_response = api_instance.angel_today()
+        api_response = api_instance.angel_today(var_date=var_date, timezone=timezone)
         print("The response of NumerologyApi->angel_today:\n")
         pprint(api_response)
     except Exception as e:
@@ -428,7 +430,11 @@ with asterwise.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **var_date** | **str**| Date in YYYY-MM-DD format to compute the number for. Overrides timezone. | [optional] 
+ **timezone** | **str**| IANA time zone (or ±HH:MM) whose current date is \&quot;today\&quot;, e.g. Asia/Kolkata. Default: UTC. | [optional] 
 
 ### Return type
 
@@ -553,7 +559,7 @@ Name | Type | Description  | Notes
 
 Business Name Numerology
 
-Scores a business name using Pythagorean expression number. Returns single digit, theme, harmony score (1-10), and recommended uses.
+Scores a business name using its Pythagorean Expression number, worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. Returns single digit, theme, harmony score (1-10), and recommended uses. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
 
 ### Example
 
@@ -816,7 +822,7 @@ Name | Type | Description  | Notes
 
 Expression (Destiny) Number
 
-Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Goodwin method). Preserves master numbers 11, 22, 33.
+Calculates the Expression (Destiny) number from the full name. Uses all letters with Pythagorean values, reducing each name part separately before summing (Decoz method). Preserves master numbers 11, 22, 33. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total (e.g. 58 → 13 → 4).
 
 ### Example
 
@@ -1167,7 +1173,7 @@ Name | Type | Description  | Notes
 
 Lo Shu Grid
 
-Builds a Lo Shu 3x3 numerology grid from a birth date. Returns the grid with digit counts, present/missing/repeated numbers, plane analysis (thought/will/action), and per-number trait interpretation.
+Builds a Lo Shu 3x3 numerology grid from a birth date. Returns the grid with digit counts, present/missing/repeated numbers, plane analysis over the eight lines of the square (rows mental/emotional/practical, columns thought/will/action, two diagonals), and per-number trait interpretation. In `number_analysis`, `plane` is the legacy v1 grouping (1-3 mental, 4-6 physical, 7-9 spiritual) and `lo_shu_plane` is the number's row of the square (mental 4-9-2, emotional 3-5-7, practical 8-1-6).
 
 ### Example
 
@@ -1518,7 +1524,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **mobile_number**
-> ApiResponseDigitNumberAnalysisResponse mobile_number(number)
+> ApiResponseDigitNumberAnalysisResponse mobile_number(number, country=country)
 
 Mobile Number Numerology (deprecated GET)
 
@@ -1554,11 +1560,12 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.NumerologyApi(api_client)
-    number = 'number_example' # str | Mobile number (digits only or with country code)
+    number = 'number_example' # str | Mobile number (digits only or with country code; the country code is not counted)
+    country = 'country_example' # str | Optional ISO 3166 alpha-2 country the number is dialled in (e.g. 'IN', 'US', 'AU'). The number is parsed in that country first, so a country code or trunk 0 written in front is dropped and that country's international prefix is understood ('14155552671' with 'US' → 4155552671; '0011 61 412 345 678' with 'AU' → 412345678). An unknown code is a 422 `validation_error` with issue `unknown_country` on field `country`. (optional)
 
     try:
         # Mobile Number Numerology (deprecated GET)
-        api_response = api_instance.mobile_number(number)
+        api_response = api_instance.mobile_number(number, country=country)
         print("The response of NumerologyApi->mobile_number:\n")
         pprint(api_response)
     except Exception as e:
@@ -1572,7 +1579,8 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **number** | **str**| Mobile number (digits only or with country code) | 
+ **number** | **str**| Mobile number (digits only or with country code; the country code is not counted) | 
+ **country** | **str**| Optional ISO 3166 alpha-2 country the number is dialled in (e.g. &#39;IN&#39;, &#39;US&#39;, &#39;AU&#39;). The number is parsed in that country first, so a country code or trunk 0 written in front is dropped and that country&#39;s international prefix is understood (&#39;14155552671&#39; with &#39;US&#39; → 4155552671; &#39;0011 61 412 345 678&#39; with &#39;AU&#39; → 412345678). An unknown code is a 422 &#x60;validation_error&#x60; with issue &#x60;unknown_country&#x60; on field &#x60;country&#x60;. | [optional] 
 
 ### Return type
 
@@ -1609,7 +1617,7 @@ Name | Type | Description  | Notes
 
 Mobile Number Numerology
 
-Analyses a mobile/phone number numerologically. Body: `number`. Sums all digits to a single number and returns theme, harmony score, and recommended uses.
+Analyses a mobile/phone number numerologically. Body: `number`, optional `country` (ISO 3166 alpha-2). Sums the digits of the national number, country code left out (libphonenumber): with `country` the number is read as dialled there first, international prefix included; a valid '+' or '00' number drops its country code; a '+' number that is not valid sums every digit after the '+', and a '00' number that is not valid is summed as written; with no prefix and no `country`, only India's code is removed (a 12-digit number starting 91) and any other number is summed as written, since the country cannot be known. Reduces to a single number and returns theme, harmony score, recommended uses, `digits_used`, `country_code` when one was left out, and `master_number` when the total passes through 11, 22 or 33. A number with no digits, or only zeros, is rejected with 422 `validation_error`, and so is an unknown `country` (issue `unknown_country`, field `country`).
 
 ### Example
 
@@ -1697,7 +1705,7 @@ Name | Type | Description  | Notes
 
 Name Correction Analysis
 
-Analyses a full name using Pythagorean numerology and suggests spelling variants that are more harmonious with the life path number. Returns current name scores and up to 8 alternatives ranked by harmony.
+Analyses a full name using Pythagorean numerology and suggests spelling variants that are more harmonious with the life path number. Expression, Soul Urge and Personality are worked part by part, the same way as /v1/numerology/expression, /soul-urge and /personality. karmic_debt (and is_master) refer to the Expression number; expression_karmic_debt, soul_urge_karmic_debt and personality_karmic_debt give each number's karmic debt (13, 14, 16 or 19 anywhere in its reduction). Returns current name scores and up to 8 alternatives ranked by harmony.
 
 ### Example
 
@@ -1785,7 +1793,7 @@ Name | Type | Description  | Notes
 
 Get number meaning by context
 
-Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Returns meaning text and optional thematic guidance fields.
+Returns interpretation details for a specific number within a numerology context. Query `context` defaults to `general` (same meanings as life path). Allowed numbers: 1-9, 11, 22 and 33 for general, life_path, expression, soul_urge and personality; 1-9 for birth_day (a master Birth Day 11 or 22 in a profile uses the 2 or 4 text) and personal_year. Any other number answers 422 `validation_error` with the allowed values in `details`. Returns meaning text and optional thematic guidance fields.
 
 ### Example
 
@@ -2315,7 +2323,7 @@ Name | Type | Description  | Notes
 
 Personality Number
 
-Calculates the Personality number from consonants in the full name. Reduces each name part separately. Represents the outer personality visible to others.
+Calculates the Personality number from consonants in the full name. Reduces each name part separately (11, 22, 33 kept). Represents the outer personality visible to others. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total.
 
 ### Example
 
@@ -2403,7 +2411,7 @@ Name | Type | Description  | Notes
 
 Soul Urge (Heart's Desire) Number
 
-Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately. Y is treated as a consonant in this implementation.
+Calculates the Soul Urge number from vowels (A, E, I, O, U) in the full name. Reduces each name part separately (11, 22, 33 kept). Y is treated as a consonant in this implementation. karmic_debt_number is 13, 14, 16 or 19 when it appears anywhere in the reduction of the total.
 
 ### Example
 
@@ -2578,7 +2586,7 @@ Name | Type | Description  | Notes
 
 Vehicle Number Numerology
 
-Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score.
+Analyses a vehicle registration number numerologically. Body: `number`. Extracts digits, sums to single number, returns theme and harmony score. `is_master` / `master_number` report a total that passes through 11, 22 or 33. A plate with no digits, or only zeros, is rejected with 422 `validation_error`.
 
 ### Example
 

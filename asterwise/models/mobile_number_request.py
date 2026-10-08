@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,8 +29,9 @@ class MobileNumberRequest(BaseModel):
     """
     POST body for mobile number numerology: the number stays out of the URL.
     """ # noqa: E501
-    number: Annotated[str, Field(min_length=5, strict=True, max_length=20)] = Field(description="Mobile number (digits only or with country code)")
-    __properties: ClassVar[List[str]] = ["number"]
+    number: Annotated[str, Field(min_length=5, strict=True, max_length=20)] = Field(description="Mobile number, digits only or with country code. The country code is not counted: the national number of a valid number is summed (libphonenumber). With `country`, the number is read as dialled in that country first, including its international prefix (Australia '0011 …', US '011 …'). A '+' number libphonenumber does not accept is summed with every digit after the '+'; a '00' number counts as international only if the rest is a valid number, otherwise it is summed as written. With no prefix and no `country`, the only code removed is India's (a 12-digit number starting 91), and every other number is summed as written, because the country cannot be known (China '180…' would look like US +1).")
+    country: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=2)]] = None
+    __properties: ClassVar[List[str]] = ["number", "country"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -71,6 +72,11 @@ class MobileNumberRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if country (nullable) is None
+        # and model_fields_set contains the field
+        if self.country is None and "country" in self.model_fields_set:
+            _dict['country'] = None
+
         return _dict
 
     @classmethod
@@ -83,7 +89,8 @@ class MobileNumberRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "number": obj.get("number")
+            "number": obj.get("number"),
+            "country": obj.get("country")
         })
         return _obj
 

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.tarot_card_schema import TarotCardSchema
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,7 +34,8 @@ class CardOfDayResponse(BaseModel):
     is_reversed: StrictBool
     active_meaning: StrictStr
     active_keywords: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["date", "card", "is_reversed", "active_meaning", "active_keywords"]
+    timezone: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["date", "card", "is_reversed", "active_meaning", "active_keywords", "timezone"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +79,11 @@ class CardOfDayResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of card
         if self.card:
             _dict['card'] = self.card.to_dict()
+        # set to None if timezone (nullable) is None
+        # and model_fields_set contains the field
+        if self.timezone is None and "timezone" in self.model_fields_set:
+            _dict['timezone'] = None
+
         return _dict
 
     @classmethod
@@ -94,7 +100,8 @@ class CardOfDayResponse(BaseModel):
             "card": TarotCardSchema.from_dict(obj["card"]) if obj.get("card") is not None else None,
             "is_reversed": obj.get("is_reversed"),
             "active_meaning": obj.get("active_meaning"),
-            "active_keywords": obj.get("active_keywords")
+            "active_keywords": obj.get("active_keywords"),
+            "timezone": obj.get("timezone")
         })
         return _obj
 

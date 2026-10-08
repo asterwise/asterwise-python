@@ -38,7 +38,7 @@ class CharDashaRequest(BaseModel):
     timezone: Optional[StrictStr] = None
     utc_offset: Optional[StrictStr] = None
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
-    cycles: Optional[Annotated[int, Field(le=3, strict=True, ge=1)]] = Field(default=1, description="Dasha cycles to compute (1-3)")
+    cycles: Optional[Annotated[int, Field(le=3, strict=True, ge=1)]] = Field(default=1, description="Dasha cycles to compute (1-3). K.N. Rao: every cycle repeats the first cycle's signs, order and years.")
     __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "cycles"]
 
     @field_validator('ayanamsa')

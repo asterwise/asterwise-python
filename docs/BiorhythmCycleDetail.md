@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **value** | **float** | Cycle value from -1.0 to +1.0 | 
 **percentage** | **float** | Cycle value as percentage | 
-**phase** | **str** | Phase label: High, Rising, Falling, or Low | 
+**phase** | **str** | Phase label: High (value above +0.5), Low (below -0.5), otherwise Rising or Falling by the direction the curve is moving that day (see trend). | 
+**trend** | **str** |  | [optional] 
 **is_critical** | **bool** | True when the cycle crosses zero | 
 **cycle_length_days** | **int** |  | [optional] 
 **description** | **str** |  | [optional] 

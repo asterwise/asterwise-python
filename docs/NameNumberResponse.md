@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**number** | **int** |  | 
+**number** | **int** | 1-9, or master number 11, 22 or 33 | 
 **is_master_number** | **bool** |  | 
 **karmic_debt_number** | **int** |  | [optional] 
 

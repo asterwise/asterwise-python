@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,9 +34,9 @@ class ZodiacCompatibilityResponse(BaseModel):
     element2: StrictStr
     modality1: StrictStr
     modality2: StrictStr
-    element_affinity: StrictStr
-    modality_affinity: StrictStr
-    overall_score: StrictInt
+    element_affinity: StrictStr = Field(description="harmonious | neutral | challenging. From an Asterwise heuristic score: same element 80, fire–air and earth–water 85, other pairs 40–50 (harmonious ≥ 78, neutral ≥ 55).")
+    modality_affinity: StrictStr = Field(description="harmonious | neutral | challenging. From an Asterwise heuristic score (cardinal–mutable 75, fixed–mutable 70, mutable–mutable 65, cardinal–cardinal and fixed–fixed 55, cardinal–fixed 50; harmonious ≥ 78, neutral ≥ 55).")
+    overall_score: StrictInt = Field(description="Mean of the element and modality heuristic scores (0–100)")
     description: StrictStr
     __properties: ClassVar[List[str]] = ["sign1", "sign2", "element1", "element2", "modality1", "modality2", "element_affinity", "modality_affinity", "overall_score", "description"]
 

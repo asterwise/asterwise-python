@@ -6,9 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **house** | **int** |  | 
-**rashi_index** | **int** |  | 
+**rashi_index** | **int** | Sign of the quesited house, counted whole sign from the lagna sign (0 &#x3D; Mesha). | 
 **rashi** | **str** |  | 
-**lord** | **str** |  | 
+**lord** | **str** | Lord of the quesited house by whole sign (lord of its sign), as BPHS and Jagannatha Hora read lordship. | 
 **lord_dignity** | **str** |  | 
 **lord_house** | **int** |  | 
 **lord_longitude** | **float** |  | 

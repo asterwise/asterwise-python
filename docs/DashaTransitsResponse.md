@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **target_date** | **str** |  | 
 **active_dasha** | **Dict[str, object]** |  | 
 **transit_positions** | **Dict[str, object]** |  | 
-**correlations** | **List[Optional[Dict[str, object]]]** |  | 
-**periods_of_significance** | **List[Optional[Dict[str, object]]]** |  | 
+**correlations** | **List[Optional[Dict[str, object]]]** | Dasha lord × transiting planet aspects: dasha_level, dasha_lord, transit_planet, aspect_type (conjunction | opposition | trine | square | special), aspect_house (int 1-12: the natal dasha lord&#39;s sign counted from the transiting planet), drishti (&#39;7th&#39;, &#39;3rd&#39;, &#39;10th&#39;, &#39;5th&#39;, &#39;9th&#39;, &#39;4th&#39;, &#39;8th&#39;; absent for a conjunction), score, natal_rashi, transit_rashi, is_retrograde, significance. Aspects are cast by the transiting planet (BPHS Ch.26). | 
+**periods_of_significance** | **List[Optional[Dict[str, object]]]** | Correlations with score ≥ 2, same shape as correlations. | 
 
 ## Example
 

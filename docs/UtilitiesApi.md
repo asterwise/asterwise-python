@@ -18,7 +18,8 @@ Resolve a city or place name to coordinates and timezone.
 Returns up to `limit` matches (default 5, at most 10). When a query is ambiguous
 (e.g. 'Fatehabad' exists in multiple states), multiple results
 are returned so the developer can present a disambiguation UI
-or use the first result.
+or use the first result. Repeat matches for one place (same city, state
+and country within 5 km) are listed once.
 
 Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **ayanamsa** | **str** |  | 
 **birth_time_provided** | **bool** | False when no birth time was given: a sunrise chart is used, so the lagna and every house are approximate. | [optional] [default to True]
 **ascendant** | [**LalKitabAscendant**](LalKitabAscendant.md) |  | 
-**planets** | **Dict[str, Dict[str, object]]** |  | 
+**planets** | **Dict[str, Optional[Dict[str, object]]]** |  | 
 **houses** | **Dict[str, Optional[Dict[str, object]]]** |  | 
 **rin_analysis** | **Dict[str, object]** |  | 
 **sources** | **List[str]** |  | 

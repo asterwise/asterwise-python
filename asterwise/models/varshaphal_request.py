@@ -38,7 +38,7 @@ class VarshaphalRequest(BaseModel):
     timezone: Optional[StrictStr] = None
     utc_offset: Optional[StrictStr] = None
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
-    target_year: Annotated[int, Field(le=2100, strict=True, ge=1800)] = Field(description="Year for solar return e.g. 2026")
+    target_year: Annotated[int, Field(le=2100, strict=True, ge=1800)] = Field(description="Varshaphal year, e.g. 2026: the solar return nearest the birthday in this year (in UT it can fall the day before or after the birthday, or on 31 December for a 1 January birthday). Each year gives a different return. Must not be before the birth year.")
     __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "target_year"]
 
     @field_validator('ayanamsa')

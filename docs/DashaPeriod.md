@@ -8,9 +8,11 @@ Name | Type | Description | Notes
 **planet** | **str** | Dasha lord for this period | 
 **start_jd** | **float** | Julian day at period start | 
 **end_jd** | **float** | Julian day at period end | 
-**start_date** | **str** | ISO-like UTC date string for period start | 
-**end_date** | **str** | ISO-like UTC date string for period end | 
+**start_date** | **str** | Period start, DD/MM/YYYY (UTC calendar date). The first Mahadasha row starts at birth. | 
+**end_date** | **str** | Period end, DD/MM/YYYY (UTC calendar date) | 
 **sub** | [**List[DashaPeriod]**](DashaPeriod.md) |  | [optional] 
+**dasha_start_date** | **str** |  | [optional] 
+**balance_years** | **float** |  | [optional] 
 **modern_summary** | **str** |  | [optional] 
 
 ## Example

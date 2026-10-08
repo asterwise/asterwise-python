@@ -40,10 +40,10 @@ class DivisionalResponse(BaseModel):
     d20: Dict[str, Any] = Field(description="Vimshamsha — spiritual life and upasana", alias="D20")
     d24: Dict[str, Any] = Field(description="Chaturvimshamsha — education and learning", alias="D24")
     d27: Dict[str, Any] = Field(description="Bhamsha — strength and physical vitality", alias="D27")
-    d30: Dict[str, Any] = Field(description="Trimshamsha — misfortunes and evils", alias="D30")
+    d30: Dict[str, Any] = Field(description="Trimshamsha — misfortunes and evils. Unequal portions per BPHS: odd signs Mars 5° → Aries, Saturn 5° → Aquarius, Jupiter 8° → Sagittarius, Mercury 7° → Gemini, Venus 5° → Libra; even signs reversed into the lords' even signs (Taurus, Virgo, Pisces, Capricorn, Scorpio). Every body is placed, Sun and Moon included, as in Jagannatha Hora.", alias="D30")
     d40: Dict[str, Any] = Field(description="Khavedamsha — auspicious and inauspicious effects", alias="D40")
     d45: Dict[str, Any] = Field(description="Akshavedamsha — all matters of life", alias="D45")
-    d60: Dict[str, Any] = Field(description="Shashtyamsha — all matters, most subtle divisional chart", alias="D60")
+    d60: Dict[str, Any] = Field(description="Shashtyamsha — all matters, most subtle divisional chart. 60 parts of 0°30', counted from the planet's own sign (BPHS; Jagannatha Hora default).", alias="D60")
     houses: Optional[Dict[str, Any]] = None
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
     __properties: ClassVar[List[str]] = ["D1", "D2", "D3", "D4", "D7", "D9", "D10", "D12", "D16", "D20", "D24", "D27", "D30", "D40", "D45", "D60", "houses", "birth_time_provided"]

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,11 +29,12 @@ class LoShuNumberEntry(BaseModel):
     LoShuNumberEntry
     """ # noqa: E501
     count: StrictInt
-    plane: StrictStr
+    plane: StrictStr = Field(description="Legacy grouping of the numbers, unchanged since v1: 'mental' for 1-3, 'physical' for 4-6, 'spiritual' for 7-9. It is not a line of the Lo Shu square; `lo_shu_plane` gives the row of the square.")
+    lo_shu_plane: StrictStr = Field(description="Row of the Lo Shu square holding this number: 'mental' (top row 4-9-2), 'emotional' (middle row 3-5-7) or 'practical' (bottom row 8-1-6), matching mental_plane / emotional_plane / practical_plane in `plane_analysis`.")
     trait: StrictStr
     status: StrictStr
     note: StrictStr
-    __properties: ClassVar[List[str]] = ["count", "plane", "trait", "status", "note"]
+    __properties: ClassVar[List[str]] = ["count", "plane", "lo_shu_plane", "trait", "status", "note"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -88,6 +89,7 @@ class LoShuNumberEntry(BaseModel):
         _obj = cls.model_validate({
             "count": obj.get("count"),
             "plane": obj.get("plane"),
+            "lo_shu_plane": obj.get("lo_shu_plane"),
             "trait": obj.get("trait"),
             "status": obj.get("status"),
             "note": obj.get("note")

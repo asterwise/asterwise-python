@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **timezone** | **str** |  | [optional] 
 **utc_offset** | **str** |  | [optional] 
 **ayanamsa** | **str** | Sidereal ayanamsa mode used in calculations | [optional] [default to 'lahiri']
-**target_year** | **int** | Year for solar return e.g. 2026 | 
+**target_year** | **int** | Varshaphal year, e.g. 2026: the solar return nearest the birthday in this year (in UT it can fall the day before or after the birthday, or on 31 December for a 1 January birthday). Each year gives a different return. Must not be before the birth year. | 
 
 ## Example
 

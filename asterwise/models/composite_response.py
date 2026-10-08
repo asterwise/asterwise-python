@@ -18,10 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Union
+from asterwise.models.composite_aspect_schema import CompositeAspectSchema
 from asterwise.models.composite_planet_schema import CompositePlanetSchema
-from asterwise.models.synastry_aspect_schema import SynastryAspectSchema
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -34,7 +34,7 @@ class CompositeResponse(BaseModel):
     ascendant_longitude: Union[StrictFloat, StrictInt]
     ascendant_sign: StrictStr
     ascendant_sign_index: StrictInt
-    aspects: List[SynastryAspectSchema]
+    aspects: List[CompositeAspectSchema] = Field(description="Aspects between planets within the composite chart")
     __properties: ClassVar[List[str]] = ["planets", "ascendant_longitude", "ascendant_sign", "ascendant_sign_index", "aspects"]
 
     model_config = ConfigDict(
@@ -106,7 +106,7 @@ class CompositeResponse(BaseModel):
             "ascendant_longitude": obj.get("ascendant_longitude"),
             "ascendant_sign": obj.get("ascendant_sign"),
             "ascendant_sign_index": obj.get("ascendant_sign_index"),
-            "aspects": [SynastryAspectSchema.from_dict(_item) for _item in obj["aspects"]] if obj.get("aspects") is not None else None
+            "aspects": [CompositeAspectSchema.from_dict(_item) for _item in obj["aspects"]] if obj.get("aspects") is not None else None
         })
         return _obj
 

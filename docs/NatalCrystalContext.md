@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **ninth_sign** | **str** | 9th house sign (English). | 
 **ninth_lord** | **str** | Lord of the 9th house (Bhagyesh — Fortune Stone). | 
 **yogakaraka** | **str** |  | [optional] 
-**contraindicated_lords** | **List[str]** | Planets that do not lord any Trikona house — their gems are contraindicated. | 
-**ayanamsa** | **str** |  | [optional] [default to 'lahiri']
+**contraindicated_lords** | **List[str]** | Planets whose gems are contraindicated in this chart: Dusthana (6/8/12) lords that own no Trikona, plus debilitated or combust planets. Same rule as POST /v1/astro/gemstones. | 
+**ayanamsa** | **str** | Ayanamsa the chart was cast with: the request&#39;s &#x60;ayanamsa&#x60; (until 2026-10 this always read \&quot;lahiri\&quot;). | [optional] [default to 'lahiri']
 
 ## Example
 

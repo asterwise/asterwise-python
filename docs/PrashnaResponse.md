@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **ayanamsa** | **str** |  | 
 **question** | **str** |  | 
 **primary_house** | **int** |  | 
-**ithsala_applying** | **bool** |  | 
-**ithsala_separating** | **bool** |  | 
+**ithsala_applying** | **bool** | Tajika Ithasala (applying) between the Lagna lord and the quesited house lord, by the Varshaphal rule: Tajika aspect by sign (same sign, 3rd/11th, 4th/10th, 5th/9th, 7th), the faster planet by mean motion (Moon, Mercury, Venus, Sun, Mars, Jupiter, Saturn) behind the slower in degrees within the mean of their Deeptamsas. Retrogression is not modelled. False when one planet rules both houses (always for &#39;self&#39;; compare lagna.lord and house_analysis.lord). | 
+**ithsala_separating** | **bool** | Tajika Musaripha (separating): the two lords in Tajika aspect within the same orb but the faster planet already past the slower one&#39;s degree. False when one planet rules both houses. | 
 **query_utc** | **str** |  | 
 **lagna** | [**PrashnaLagna**](PrashnaLagna.md) |  | 
 **house_analysis** | [**PrashnaHouseAnalysis**](PrashnaHouseAnalysis.md) |  | 

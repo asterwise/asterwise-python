@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **type** | **str** |  | 
 **exact_angle** | **float** |  | 
 **orb** | **float** |  | 
-**is_applying** | **bool** |  | 
+**is_applying** | **bool** | True if the transiting planet&#39;s instantaneous motion is closing the orb to the (fixed) natal planet. False if separating or exact. | 
 
 ## Example
 

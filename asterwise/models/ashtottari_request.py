@@ -38,7 +38,7 @@ class AshtottariRequest(BaseModel):
     timezone: Optional[StrictStr] = None
     utc_offset: Optional[StrictStr] = None
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
-    levels: Optional[Annotated[int, Field(le=2, strict=True, ge=1)]] = Field(default=2, description="Depth of sub-periods to return. 1 returns Maha Dashas only. 2 returns Maha and Antar Dashas. Maximum is 2.")
+    levels: Optional[Annotated[int, Field(le=5, strict=True, ge=1)]] = Field(default=2, description="Depth of sub-periods to return, as in Vimshottari: 1 Maha only, 2 adds Antar, 3 Pratyantar, 4 Sookshma, 5 Prana. Default 2.")
     __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "levels"]
 
     @field_validator('ayanamsa')

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **element** | **str** | Classical element: Earth, Water, Fire, Air, or All. | 
 **zodiac_signs** | **List[str]** | Associated Western zodiac signs. | 
 **vedic_planet** | **str** |  | [optional] 
-**vedic_correspondence** | **str** | &#39;navaratna&#39; (primary classical gem), &#39;uparatna&#39; (substitute gem), or &#39;none_classical&#39; (no Vedic text assigns this stone). | 
+**vedic_correspondence** | **str** | &#39;navaratna&#39; (primary classical gem, Phaladeepika table), &#39;uparatna&#39; (substitute gem — includes common modern substitutes such as Tiger&#39;s Eye for Ketu; the description says when a substitute is not classical), or &#39;none_classical&#39; (no Vedic gem use). | 
 **western_planet** | **str** |  | [optional] 
 **keywords** | **List[str]** | Primary energy keywords. | 
 **healing_physical** | **str** | Physical healing properties. | 

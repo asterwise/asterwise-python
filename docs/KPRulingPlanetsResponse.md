@@ -6,7 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ayanamsa** | **str** |  | 
-**target_utc** | **str** |  | 
+**target_utc** | **str** | The instant used, ISO 8601 UTC. | 
+**target_timezone** | **str** | Time zone used to read &#x60;target_date&#x60;/&#x60;target_time&#x60; and for the sunrise-based day lord. | 
+**local_time_status** | **str** | How &#x60;target_date&#x60;/&#x60;target_time&#x60; was read. &#39;nonexistent&#39;: the local time fell in a daylight-saving gap and was read with the offset in force before the change (moved forward by the gap). &#39;ambiguous&#39;: the local time occurred twice and the first occurrence was used. &#39;ok&#39; otherwise, including when the current instant was used. | [optional] [default to 'ok']
 **day_lord** | **str** |  | 
 **moon** | [**KPRulingPlanetBody**](KPRulingPlanetBody.md) |  | 
 **ascendant** | [**KPRulingPlanetBody**](KPRulingPlanetBody.md) |  | 

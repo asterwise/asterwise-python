@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,9 +28,9 @@ class VarshaphalMuntha(BaseModel):
     """
     VarshaphalMuntha
     """ # noqa: E501
-    rashi_index: StrictInt
+    rashi_index: StrictInt = Field(description="Muntha sign 0-11: natal lagna sign + age_years (one sign a year).")
     rashi: StrictStr
-    age_years: StrictInt
+    age_years: StrictInt = Field(description="Completed years for this varsha: target_year minus birth year (Tajika Neelakanthi), not read off the return's UTC date.")
     muntha_lord: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["rashi_index", "rashi", "age_years", "muntha_lord"]
 

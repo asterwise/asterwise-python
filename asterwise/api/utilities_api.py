@@ -61,7 +61,7 @@ class UtilitiesApi:
     ) -> ApiResponseGeocodeResponse:
         """Resolve a city or place name to latitude, longitude, and timezone
 
-        Resolve a city or place name to coordinates and timezone.  Returns up to `limit` matches (default 5, at most 10). When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
+        Resolve a city or place name to coordinates and timezone.  Returns up to `limit` matches (default 5, at most 10). When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result. Repeat matches for one place (same city, state and country within 5 km) are listed once.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
 
         :param q: City or location name. Use comma for disambiguation: 'Fatehabad,Haryana' (required)
         :type q: str
@@ -145,7 +145,7 @@ class UtilitiesApi:
     ) -> ApiResponse[ApiResponseGeocodeResponse]:
         """Resolve a city or place name to latitude, longitude, and timezone
 
-        Resolve a city or place name to coordinates and timezone.  Returns up to `limit` matches (default 5, at most 10). When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
+        Resolve a city or place name to coordinates and timezone.  Returns up to `limit` matches (default 5, at most 10). When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result. Repeat matches for one place (same city, state and country within 5 km) are listed once.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
 
         :param q: City or location name. Use comma for disambiguation: 'Fatehabad,Haryana' (required)
         :type q: str
@@ -229,7 +229,7 @@ class UtilitiesApi:
     ) -> RESTResponseType:
         """Resolve a city or place name to latitude, longitude, and timezone
 
-        Resolve a city or place name to coordinates and timezone.  Returns up to `limit` matches (default 5, at most 10). When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
+        Resolve a city or place name to coordinates and timezone.  Returns up to `limit` matches (default 5, at most 10). When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result. Repeat matches for one place (same city, state and country within 5 km) are listed once.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
 
         :param q: City or location name. Use comma for disambiguation: 'Fatehabad,Haryana' (required)
         :type q: str
