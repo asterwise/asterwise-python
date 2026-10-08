@@ -28,7 +28,7 @@ class LalKitabAscendant(BaseModel):
     """
     LalKitabAscendant
     """ # noqa: E501
-    longitude: Union[StrictFloat, StrictInt] = Field(description="Sidereal (Lahiri) ascendant longitude in degrees.")
+    longitude: Union[StrictFloat, StrictInt] = Field(description="Sidereal ascendant longitude in degrees, in the requested ayanamsa.")
     rashi_index: StrictInt = Field(description="Ascendant sign, 0 = Aries. This house is Lal Kitab house 1.")
     rashi: StrictStr
     __properties: ClassVar[List[str]] = ["longitude", "rashi_index", "rashi"]

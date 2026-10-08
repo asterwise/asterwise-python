@@ -871,7 +871,3 @@ docs/YoginiResponse.md
 docs/ZodiacCompatibilityResponse.md
 git_push.sh
 test/__init__.py
-test/test_lal_kitab_ascendant.py
-test/test_lal_kitab_not_remediable.py
-test/test_lal_kitab_rin_found.py
-test/test_lal_kitab_rin_remedy.py

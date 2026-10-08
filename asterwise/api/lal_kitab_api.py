@@ -57,7 +57,7 @@ class LalKitabApi:
     ) -> ApiResponseLalKitabChartResponse:
         """Lal Kitab Chart
 
-        Computes a Lal Kitab chart following the 1952 Lal Kitab: houses are counted from the Vedic lagna (whole sign) and the lagna house is read as house 1 (Aries). Returns the ascendant and all 9 planets with their Lal Kitab house, pakka ghar, uchcha (exalted) and neecha (debilitated) flags, fixed or doubtful effect and malefic indications, the 12 houses, and the 9 Lal Kitab debts (rin) with their remedies. Lahiri ayanamsa always used. Without a birth time a sunrise chart is used and birth_time_provided is false; houses are then approximate.
+        Computes a Lal Kitab chart following the 1952 Lal Kitab: houses are counted from the Vedic lagna (whole sign) and the lagna house is read as house 1 (Aries). Returns the ascendant and all 9 planets with their Lal Kitab house, pakka ghar, uchcha (exalted) and neecha (debilitated) flags, fixed or doubtful effect and malefic indications, the 12 houses, and the 9 Lal Kitab debts (rin) with their remedies. Ayanamsa: lahiri (default), raman or kp; tropical is rejected because Lal Kitab starts from the sidereal Indian chart. Without a birth time a sunrise chart is used and birth_time_provided is false; houses are then approximate.
 
         :param lal_kitab_request: (required)
         :type lal_kitab_request: LalKitabRequest
@@ -133,7 +133,7 @@ class LalKitabApi:
     ) -> ApiResponse[ApiResponseLalKitabChartResponse]:
         """Lal Kitab Chart
 
-        Computes a Lal Kitab chart following the 1952 Lal Kitab: houses are counted from the Vedic lagna (whole sign) and the lagna house is read as house 1 (Aries). Returns the ascendant and all 9 planets with their Lal Kitab house, pakka ghar, uchcha (exalted) and neecha (debilitated) flags, fixed or doubtful effect and malefic indications, the 12 houses, and the 9 Lal Kitab debts (rin) with their remedies. Lahiri ayanamsa always used. Without a birth time a sunrise chart is used and birth_time_provided is false; houses are then approximate.
+        Computes a Lal Kitab chart following the 1952 Lal Kitab: houses are counted from the Vedic lagna (whole sign) and the lagna house is read as house 1 (Aries). Returns the ascendant and all 9 planets with their Lal Kitab house, pakka ghar, uchcha (exalted) and neecha (debilitated) flags, fixed or doubtful effect and malefic indications, the 12 houses, and the 9 Lal Kitab debts (rin) with their remedies. Ayanamsa: lahiri (default), raman or kp; tropical is rejected because Lal Kitab starts from the sidereal Indian chart. Without a birth time a sunrise chart is used and birth_time_provided is false; houses are then approximate.
 
         :param lal_kitab_request: (required)
         :type lal_kitab_request: LalKitabRequest
@@ -209,7 +209,7 @@ class LalKitabApi:
     ) -> RESTResponseType:
         """Lal Kitab Chart
 
-        Computes a Lal Kitab chart following the 1952 Lal Kitab: houses are counted from the Vedic lagna (whole sign) and the lagna house is read as house 1 (Aries). Returns the ascendant and all 9 planets with their Lal Kitab house, pakka ghar, uchcha (exalted) and neecha (debilitated) flags, fixed or doubtful effect and malefic indications, the 12 houses, and the 9 Lal Kitab debts (rin) with their remedies. Lahiri ayanamsa always used. Without a birth time a sunrise chart is used and birth_time_provided is false; houses are then approximate.
+        Computes a Lal Kitab chart following the 1952 Lal Kitab: houses are counted from the Vedic lagna (whole sign) and the lagna house is read as house 1 (Aries). Returns the ascendant and all 9 planets with their Lal Kitab house, pakka ghar, uchcha (exalted) and neecha (debilitated) flags, fixed or doubtful effect and malefic indications, the 12 houses, and the 9 Lal Kitab debts (rin) with their remedies. Ayanamsa: lahiri (default), raman or kp; tropical is rejected because Lal Kitab starts from the sidereal Indian chart. Without a birth time a sunrise chart is used and birth_time_provided is false; houses are then approximate.
 
         :param lal_kitab_request: (required)
         :type lal_kitab_request: LalKitabRequest

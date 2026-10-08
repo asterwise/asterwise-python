@@ -1,6 +1,6 @@
 # LalKitabRequest
 
-Lal Kitab uses standard BirthInput. Ayanamsa is always Lahiri: the ayanamsa field is accepted (so requests that send it keep working) but ignored, and the schema says so.
+Lal Kitab starts from the traditional Indian (sidereal) birth chart and names no ayanamsa, so any sidereal ayanamsa is honoured; tropical is not the chart the book starts from and is rejected.
 
 ## Properties
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **longitude** | **float** |  | [optional] 
 **timezone** | **str** |  | [optional] 
 **utc_offset** | **str** |  | [optional] 
-**ayanamsa** | **str** | Ignored: Lal Kitab always uses the Lahiri ayanamsa. Accepted so requests that send it keep working. | [optional] [default to 'lahiri']
+**ayanamsa** | **str** | Sidereal ayanamsa used to cast the birth chart: lahiri (default), raman or kp. Tropical is rejected: Lal Kitab starts from the sidereal Indian chart. | [optional] [default to 'lahiri']
 
 ## Example
 
