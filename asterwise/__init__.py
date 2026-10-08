@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.8.0"
+__version__ = "0.9.0"
 
 # Define package exports
 __all__ = [
@@ -279,11 +279,15 @@ __all__ = [
     "KaalPeriod",
     "KaranaData",
     "KarmicLessonsResponse",
+    "LalKitabAscendant",
     "LalKitabChartResponse",
+    "LalKitabNotRemediable",
     "LalKitabPlanetRemedy",
     "LalKitabRemediesResponse",
     "LalKitabRemedyItem",
     "LalKitabRequest",
+    "LalKitabRinFound",
+    "LalKitabRinRemedy",
     "LifePathRequest",
     "LifePathResponse",
     "LoShuNumberEntry",
@@ -722,11 +726,15 @@ from asterwise.models.kp_significators_response import KPSignificatorsResponse a
 from asterwise.models.kaal_period import KaalPeriod as KaalPeriod
 from asterwise.models.karana_data import KaranaData as KaranaData
 from asterwise.models.karmic_lessons_response import KarmicLessonsResponse as KarmicLessonsResponse
+from asterwise.models.lal_kitab_ascendant import LalKitabAscendant as LalKitabAscendant
 from asterwise.models.lal_kitab_chart_response import LalKitabChartResponse as LalKitabChartResponse
+from asterwise.models.lal_kitab_not_remediable import LalKitabNotRemediable as LalKitabNotRemediable
 from asterwise.models.lal_kitab_planet_remedy import LalKitabPlanetRemedy as LalKitabPlanetRemedy
 from asterwise.models.lal_kitab_remedies_response import LalKitabRemediesResponse as LalKitabRemediesResponse
 from asterwise.models.lal_kitab_remedy_item import LalKitabRemedyItem as LalKitabRemedyItem
 from asterwise.models.lal_kitab_request import LalKitabRequest as LalKitabRequest
+from asterwise.models.lal_kitab_rin_found import LalKitabRinFound as LalKitabRinFound
+from asterwise.models.lal_kitab_rin_remedy import LalKitabRinRemedy as LalKitabRinRemedy
 from asterwise.models.life_path_request import LifePathRequest as LifePathRequest
 from asterwise.models.life_path_response import LifePathResponse as LifePathResponse
 from asterwise.models.lo_shu_number_entry import LoShuNumberEntry as LoShuNumberEntry

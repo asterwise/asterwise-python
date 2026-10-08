@@ -252,11 +252,15 @@ from asterwise.models.kp_significators_response import KPSignificatorsResponse
 from asterwise.models.kaal_period import KaalPeriod
 from asterwise.models.karana_data import KaranaData
 from asterwise.models.karmic_lessons_response import KarmicLessonsResponse
+from asterwise.models.lal_kitab_ascendant import LalKitabAscendant
 from asterwise.models.lal_kitab_chart_response import LalKitabChartResponse
+from asterwise.models.lal_kitab_not_remediable import LalKitabNotRemediable
 from asterwise.models.lal_kitab_planet_remedy import LalKitabPlanetRemedy
 from asterwise.models.lal_kitab_remedies_response import LalKitabRemediesResponse
 from asterwise.models.lal_kitab_remedy_item import LalKitabRemedyItem
 from asterwise.models.lal_kitab_request import LalKitabRequest
+from asterwise.models.lal_kitab_rin_found import LalKitabRinFound
+from asterwise.models.lal_kitab_rin_remedy import LalKitabRinRemedy
 from asterwise.models.life_path_request import LifePathRequest
 from asterwise.models.life_path_response import LifePathResponse
 from asterwise.models.lo_shu_number_entry import LoShuNumberEntry

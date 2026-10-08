@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,9 +28,19 @@ class LalKitabRemedyItem(BaseModel):
     """
     LalKitabRemedyItem
     """ # noqa: E501
-    type: StrictStr
-    action: StrictStr
-    __properties: ClassVar[List[str]] = ["type", "action"]
+    type: StrictStr = Field(description="donation = give something away or feed; keep = keep or wear an item; avoid = a prohibition; remedy = any other prescribed act.")
+    action: StrictStr = Field(description="The remedy, paraphrased from the cited book page.")
+    page: Optional[StrictInt] = None
+    condition: Optional[StrictStr] = None
+    note: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["type", "action", "page", "condition", "note"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['donation', 'keep', 'avoid', 'remedy']):
+            raise ValueError("must be one of enum values ('donation', 'keep', 'avoid', 'remedy')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -71,6 +81,21 @@ class LalKitabRemedyItem(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if page (nullable) is None
+        # and model_fields_set contains the field
+        if self.page is None and "page" in self.model_fields_set:
+            _dict['page'] = None
+
+        # set to None if condition (nullable) is None
+        # and model_fields_set contains the field
+        if self.condition is None and "condition" in self.model_fields_set:
+            _dict['condition'] = None
+
+        # set to None if note (nullable) is None
+        # and model_fields_set contains the field
+        if self.note is None and "note" in self.model_fields_set:
+            _dict['note'] = None
+
         return _dict
 
     @classmethod
@@ -84,7 +109,10 @@ class LalKitabRemedyItem(BaseModel):
 
         _obj = cls.model_validate({
             "type": obj.get("type"),
-            "action": obj.get("action")
+            "action": obj.get("action"),
+            "page": obj.get("page"),
+            "condition": obj.get("condition"),
+            "note": obj.get("note")
         })
         return _obj
 

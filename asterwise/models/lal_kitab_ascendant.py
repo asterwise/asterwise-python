@@ -18,26 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from asterwise.models.lal_kitab_ascendant import LalKitabAscendant
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class LalKitabChartResponse(BaseModel):
+class LalKitabAscendant(BaseModel):
     """
-    LalKitabChartResponse
+    LalKitabAscendant
     """ # noqa: E501
-    system: StrictStr
-    ayanamsa: StrictStr
-    birth_time_provided: Optional[StrictBool] = Field(default=True, description="False when no birth time was given: a sunrise chart is used, so the lagna and every house are approximate.")
-    ascendant: LalKitabAscendant
-    planets: Dict[str, Dict[str, Any]]
-    houses: Dict[str, Optional[Dict[str, Any]]]
-    rin_analysis: Dict[str, Any]
-    sources: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["system", "ayanamsa", "birth_time_provided", "ascendant", "planets", "houses", "rin_analysis", "sources"]
+    longitude: Union[StrictFloat, StrictInt] = Field(description="Sidereal (Lahiri) ascendant longitude in degrees.")
+    rashi_index: StrictInt = Field(description="Ascendant sign, 0 = Aries. This house is Lal Kitab house 1.")
+    rashi: StrictStr
+    __properties: ClassVar[List[str]] = ["longitude", "rashi_index", "rashi"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -57,7 +51,7 @@ class LalKitabChartResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of LalKitabChartResponse from a JSON string"""
+        """Create an instance of LalKitabAscendant from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,14 +72,11 @@ class LalKitabChartResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of ascendant
-        if self.ascendant:
-            _dict['ascendant'] = self.ascendant.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of LalKitabChartResponse from a dict"""
+        """Create an instance of LalKitabAscendant from a dict"""
         if obj is None:
             return None
 
@@ -93,14 +84,9 @@ class LalKitabChartResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "system": obj.get("system"),
-            "ayanamsa": obj.get("ayanamsa"),
-            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
-            "ascendant": LalKitabAscendant.from_dict(obj["ascendant"]) if obj.get("ascendant") is not None else None,
-            "planets": obj.get("planets"),
-            "houses": obj.get("houses"),
-            "rin_analysis": obj.get("rin_analysis"),
-            "sources": obj.get("sources")
+            "longitude": obj.get("longitude"),
+            "rashi_index": obj.get("rashi_index"),
+            "rashi": obj.get("rashi")
         })
         return _obj
 

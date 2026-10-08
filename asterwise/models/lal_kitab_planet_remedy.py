@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from asterwise.models.lal_kitab_remedy_item import LalKitabRemedyItem
 from typing import Optional, Set
@@ -33,12 +33,19 @@ class LalKitabPlanetRemedy(BaseModel):
     lk_house: StrictInt
     rashi: StrictStr
     pucca_ghar: StrictBool
-    kachcha_ghar: StrictBool
     uchcha: StrictBool
     neecha: StrictBool
-    remedies: List[LalKitabRemedyItem]
-    priority: StrictStr
-    __properties: ClassVar[List[str]] = ["planet", "lk_house", "rashi", "pucca_ghar", "kachcha_ghar", "uchcha", "neecha", "remedies", "priority"]
+    effect: StrictStr = Field(description="Always 'doubtful' here: only planets with a doubtful (rashi phal) effect can be remedied.")
+    malefic_reasons: List[StrictStr] = Field(description="Why this placement is generally malefic.")
+    remedies: List[LalKitabRemedyItem] = Field(description="Remedies the book gives for this planet in this house; empty when it gives none.")
+    __properties: ClassVar[List[str]] = ["planet", "lk_house", "rashi", "pucca_ghar", "uchcha", "neecha", "effect", "malefic_reasons", "remedies"]
+
+    @field_validator('effect')
+    def effect_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['doubtful']):
+            raise ValueError("must be one of enum values ('doubtful')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -102,11 +109,11 @@ class LalKitabPlanetRemedy(BaseModel):
             "lk_house": obj.get("lk_house"),
             "rashi": obj.get("rashi"),
             "pucca_ghar": obj.get("pucca_ghar"),
-            "kachcha_ghar": obj.get("kachcha_ghar"),
             "uchcha": obj.get("uchcha"),
             "neecha": obj.get("neecha"),
-            "remedies": [LalKitabRemedyItem.from_dict(_item) for _item in obj["remedies"]] if obj.get("remedies") is not None else None,
-            "priority": obj.get("priority")
+            "effect": obj.get("effect"),
+            "malefic_reasons": obj.get("malefic_reasons"),
+            "remedies": [LalKitabRemedyItem.from_dict(_item) for _item in obj["remedies"]] if obj.get("remedies") is not None else None
         })
         return _obj
 

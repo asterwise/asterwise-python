@@ -57,7 +57,7 @@ class LalKitabApi:
     ) -> ApiResponseLalKitabChartResponse:
         """Lal Kitab Chart
 
-        Computes a Lal Kitab chart using fixed sign=house mapping (Aries=House1, Taurus=House2, ..., Pisces=House12). Returns all 9 planets with Lal Kitab-specific flags: Pucca Ghar (permanent strong house), Kachcha Ghar (weak house), Uchcha (exaltation), and Neecha (debilitation). Lahiri ayanamsa always used.
+        Computes a Lal Kitab chart following the 1952 Lal Kitab: houses are counted from the Vedic lagna (whole sign) and the lagna house is read as house 1 (Aries). Returns the ascendant and all 9 planets with their Lal Kitab house, pakka ghar, uchcha (exalted) and neecha (debilitated) flags, fixed or doubtful effect and malefic indications, the 12 houses, and the 9 Lal Kitab debts (rin) with their remedies. Lahiri ayanamsa always used. Without a birth time a sunrise chart is used and birth_time_provided is false; houses are then approximate.
 
         :param lal_kitab_request: (required)
         :type lal_kitab_request: LalKitabRequest
@@ -133,7 +133,7 @@ class LalKitabApi:
     ) -> ApiResponse[ApiResponseLalKitabChartResponse]:
         """Lal Kitab Chart
 
-        Computes a Lal Kitab chart using fixed sign=house mapping (Aries=House1, Taurus=House2, ..., Pisces=House12). Returns all 9 planets with Lal Kitab-specific flags: Pucca Ghar (permanent strong house), Kachcha Ghar (weak house), Uchcha (exaltation), and Neecha (debilitation). Lahiri ayanamsa always used.
+        Computes a Lal Kitab chart following the 1952 Lal Kitab: houses are counted from the Vedic lagna (whole sign) and the lagna house is read as house 1 (Aries). Returns the ascendant and all 9 planets with their Lal Kitab house, pakka ghar, uchcha (exalted) and neecha (debilitated) flags, fixed or doubtful effect and malefic indications, the 12 houses, and the 9 Lal Kitab debts (rin) with their remedies. Lahiri ayanamsa always used. Without a birth time a sunrise chart is used and birth_time_provided is false; houses are then approximate.
 
         :param lal_kitab_request: (required)
         :type lal_kitab_request: LalKitabRequest
@@ -209,7 +209,7 @@ class LalKitabApi:
     ) -> RESTResponseType:
         """Lal Kitab Chart
 
-        Computes a Lal Kitab chart using fixed sign=house mapping (Aries=House1, Taurus=House2, ..., Pisces=House12). Returns all 9 planets with Lal Kitab-specific flags: Pucca Ghar (permanent strong house), Kachcha Ghar (weak house), Uchcha (exaltation), and Neecha (debilitation). Lahiri ayanamsa always used.
+        Computes a Lal Kitab chart following the 1952 Lal Kitab: houses are counted from the Vedic lagna (whole sign) and the lagna house is read as house 1 (Aries). Returns the ascendant and all 9 planets with their Lal Kitab house, pakka ghar, uchcha (exalted) and neecha (debilitated) flags, fixed or doubtful effect and malefic indications, the 12 houses, and the 9 Lal Kitab debts (rin) with their remedies. Lahiri ayanamsa always used. Without a birth time a sunrise chart is used and birth_time_provided is false; houses are then approximate.
 
         :param lal_kitab_request: (required)
         :type lal_kitab_request: LalKitabRequest
@@ -358,7 +358,7 @@ class LalKitabApi:
     ) -> ApiResponseLalKitabRemediesResponse:
         """Lal Kitab Remedies
 
-        Computes personalised Lal Kitab remedies from the birth chart. Returns practical remedies (donations, items to keep/bury, actions to avoid) for each planet based on its house placement. Malefic planets in Kachcha Ghar or Neecha are marked high priority.
+        Lal Kitab remedies for the planets that need them. Following the 1952 Lal Kitab, a planet is listed when its effect is doubtful (it is not in its own house, pakka ghar, or exaltation or debilitation house, or it is a companion planet) and its placement is generally malefic (an enemy's house). Planets that are malefic but have a fixed effect are listed separately as not remediable. Each remedy cites its page in Goswami & Vashisth's Lal Kitab (based on the 1952 edition). Also returns remedies for any indicated debts (rin).
 
         :param lal_kitab_request: (required)
         :type lal_kitab_request: LalKitabRequest
@@ -434,7 +434,7 @@ class LalKitabApi:
     ) -> ApiResponse[ApiResponseLalKitabRemediesResponse]:
         """Lal Kitab Remedies
 
-        Computes personalised Lal Kitab remedies from the birth chart. Returns practical remedies (donations, items to keep/bury, actions to avoid) for each planet based on its house placement. Malefic planets in Kachcha Ghar or Neecha are marked high priority.
+        Lal Kitab remedies for the planets that need them. Following the 1952 Lal Kitab, a planet is listed when its effect is doubtful (it is not in its own house, pakka ghar, or exaltation or debilitation house, or it is a companion planet) and its placement is generally malefic (an enemy's house). Planets that are malefic but have a fixed effect are listed separately as not remediable. Each remedy cites its page in Goswami & Vashisth's Lal Kitab (based on the 1952 edition). Also returns remedies for any indicated debts (rin).
 
         :param lal_kitab_request: (required)
         :type lal_kitab_request: LalKitabRequest
@@ -510,7 +510,7 @@ class LalKitabApi:
     ) -> RESTResponseType:
         """Lal Kitab Remedies
 
-        Computes personalised Lal Kitab remedies from the birth chart. Returns practical remedies (donations, items to keep/bury, actions to avoid) for each planet based on its house placement. Malefic planets in Kachcha Ghar or Neecha are marked high priority.
+        Lal Kitab remedies for the planets that need them. Following the 1952 Lal Kitab, a planet is listed when its effect is doubtful (it is not in its own house, pakka ghar, or exaltation or debilitation house, or it is a companion planet) and its placement is generally malefic (an enemy's house). Planets that are malefic but have a fixed effect are listed separately as not remediable. Each remedy cites its page in Goswami & Vashisth's Lal Kitab (based on the 1952 edition). Also returns remedies for any indicated debts (rin).
 
         :param lal_kitab_request: (required)
         :type lal_kitab_request: LalKitabRequest

@@ -5,8 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
-**action** | **str** |  | 
+**type** | **str** | donation &#x3D; give something away or feed; keep &#x3D; keep or wear an item; avoid &#x3D; a prohibition; remedy &#x3D; any other prescribed act. | 
+**action** | **str** | The remedy, paraphrased from the cited book page. | 
+**page** | **int** |  | [optional] 
+**condition** | **str** |  | [optional] 
+**note** | **str** |  | [optional] 
 
 ## Example
 

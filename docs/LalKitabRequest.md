@@ -1,6 +1,6 @@
 # LalKitabRequest
 
-Lal Kitab uses standard BirthInput. Ayanamsa is always Lahiri — the ayanamsa field from BirthInput is ignored and overridden to lahiri.
+Lal Kitab uses standard BirthInput. Ayanamsa is always Lahiri: the ayanamsa field is accepted (so requests that send it keep working) but ignored, and the schema says so.
 
 ## Properties
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **longitude** | **float** |  | [optional] 
 **timezone** | **str** |  | [optional] 
 **utc_offset** | **str** |  | [optional] 
-**ayanamsa** | **str** | Sidereal ayanamsa mode used in calculations | [optional] [default to 'lahiri']
+**ayanamsa** | **str** | Ignored: Lal Kitab always uses the Lahiri ayanamsa. Accepted so requests that send it keep working. | [optional] [default to 'lahiri']
 
 ## Example
 

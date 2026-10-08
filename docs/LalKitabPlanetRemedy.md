@@ -9,11 +9,11 @@ Name | Type | Description | Notes
 **lk_house** | **int** |  | 
 **rashi** | **str** |  | 
 **pucca_ghar** | **bool** |  | 
-**kachcha_ghar** | **bool** |  | 
 **uchcha** | **bool** |  | 
 **neecha** | **bool** |  | 
-**remedies** | [**List[LalKitabRemedyItem]**](LalKitabRemedyItem.md) |  | 
-**priority** | **str** |  | 
+**effect** | **str** | Always &#39;doubtful&#39; here: only planets with a doubtful (rashi phal) effect can be remedied. | 
+**malefic_reasons** | **List[str]** | Why this placement is generally malefic. | 
+**remedies** | [**List[LalKitabRemedyItem]**](LalKitabRemedyItem.md) | Remedies the book gives for this planet in this house; empty when it gives none. | 
 
 ## Example
 

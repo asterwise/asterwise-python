@@ -18,9 +18,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.lal_kitab_ascendant import LalKitabAscendant
+from asterwise.models.lal_kitab_not_remediable import LalKitabNotRemediable
 from asterwise.models.lal_kitab_planet_remedy import LalKitabPlanetRemedy
+from asterwise.models.lal_kitab_rin_remedy import LalKitabRinRemedy
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,8 +34,14 @@ class LalKitabRemediesResponse(BaseModel):
     """ # noqa: E501
     system: StrictStr
     ayanamsa: StrictStr
-    remedies: List[LalKitabPlanetRemedy]
-    __properties: ClassVar[List[str]] = ["system", "ayanamsa", "remedies"]
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="False when no birth time was given: a sunrise chart is used, so the lagna and every house are approximate.")
+    ascendant: LalKitabAscendant
+    remedies: List[LalKitabPlanetRemedy] = Field(description="Planets with a doubtful effect and a malefic indication, in the order Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu.")
+    not_remediable: List[LalKitabNotRemediable] = Field(description="Planets with a malefic indication but a fixed (grah phal) effect, which Lal Kitab says remedies cannot change.")
+    rin_remedies: List[LalKitabRinRemedy]
+    rule: StrictStr
+    sources: List[StrictStr]
+    __properties: ClassVar[List[str]] = ["system", "ayanamsa", "birth_time_provided", "ascendant", "remedies", "not_remediable", "rin_remedies", "rule", "sources"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +82,9 @@ class LalKitabRemediesResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of ascendant
+        if self.ascendant:
+            _dict['ascendant'] = self.ascendant.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in remedies (list)
         _items = []
         if self.remedies:
@@ -80,6 +92,20 @@ class LalKitabRemediesResponse(BaseModel):
                 if _item_remedies:
                     _items.append(_item_remedies.to_dict())
             _dict['remedies'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in not_remediable (list)
+        _items = []
+        if self.not_remediable:
+            for _item_not_remediable in self.not_remediable:
+                if _item_not_remediable:
+                    _items.append(_item_not_remediable.to_dict())
+            _dict['not_remediable'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in rin_remedies (list)
+        _items = []
+        if self.rin_remedies:
+            for _item_rin_remedies in self.rin_remedies:
+                if _item_rin_remedies:
+                    _items.append(_item_rin_remedies.to_dict())
+            _dict['rin_remedies'] = _items
         return _dict
 
     @classmethod
@@ -94,7 +120,13 @@ class LalKitabRemediesResponse(BaseModel):
         _obj = cls.model_validate({
             "system": obj.get("system"),
             "ayanamsa": obj.get("ayanamsa"),
-            "remedies": [LalKitabPlanetRemedy.from_dict(_item) for _item in obj["remedies"]] if obj.get("remedies") is not None else None
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
+            "ascendant": LalKitabAscendant.from_dict(obj["ascendant"]) if obj.get("ascendant") is not None else None,
+            "remedies": [LalKitabPlanetRemedy.from_dict(_item) for _item in obj["remedies"]] if obj.get("remedies") is not None else None,
+            "not_remediable": [LalKitabNotRemediable.from_dict(_item) for _item in obj["not_remediable"]] if obj.get("not_remediable") is not None else None,
+            "rin_remedies": [LalKitabRinRemedy.from_dict(_item) for _item in obj["rin_remedies"]] if obj.get("rin_remedies") is not None else None,
+            "rule": obj.get("rule"),
+            "sources": obj.get("sources")
         })
         return _obj
 

@@ -7,7 +7,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **system** | **str** |  | 
 **ayanamsa** | **str** |  | 
-**remedies** | [**List[LalKitabPlanetRemedy]**](LalKitabPlanetRemedy.md) |  | 
+**birth_time_provided** | **bool** | False when no birth time was given: a sunrise chart is used, so the lagna and every house are approximate. | [optional] [default to True]
+**ascendant** | [**LalKitabAscendant**](LalKitabAscendant.md) |  | 
+**remedies** | [**List[LalKitabPlanetRemedy]**](LalKitabPlanetRemedy.md) | Planets with a doubtful effect and a malefic indication, in the order Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. | 
+**not_remediable** | [**List[LalKitabNotRemediable]**](LalKitabNotRemediable.md) | Planets with a malefic indication but a fixed (grah phal) effect, which Lal Kitab says remedies cannot change. | 
+**rin_remedies** | [**List[LalKitabRinRemedy]**](LalKitabRinRemedy.md) |  | 
+**rule** | **str** |  | 
+**sources** | **List[str]** |  | 
 
 ## Example
 

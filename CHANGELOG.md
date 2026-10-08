@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## 0.9.0 — 2026-10-08
+
+Generated from the API as deployed on 2026-10-08, where Lal Kitab now follows
+the 1952 Lal Kitab: houses are counted from the lagna, and every table and
+remedy cites the book.
+
+### Changed (breaking for `lal_kitab_remedies`)
+
+- `LalKitabPlanetRemedy` drops `kachcha_ghar` and `priority` (neither is in
+  the 1952 text) and adds `effect` and `malefic_reasons`. The API no longer
+  sends the old fields, so 0.8.0 and older fail to parse this response:
+  upgrade to 0.9.0 to keep using `lal_kitab_remedies`.
+- `LalKitabRemediesResponse.remedies` lists only planets that need a remedy,
+  not all nine.
+
+### Added
+
+- `LalKitabRemediesResponse`: `ascendant`, `not_remediable`, `rin_remedies`,
+  `rule`, `sources`, `birth_time_provided`.
+- `LalKitabRemedyItem`: `page`, `condition`, `note`.
+- `LalKitabChartResponse`: `ascendant`, `sources`, `birth_time_provided`.
+- New models `LalKitabAscendant`, `LalKitabNotRemediable`, `LalKitabRinRemedy`,
+  `LalKitabRinFound`.
+
+### Fixed
+
+- `LalKitabRequest.ayanamsa` says it is ignored (Lal Kitab always uses Lahiri).
+
 ## 0.8.0 — 2026-10-06
 
 Generated from the API as deployed on 2026-10-06. Requests on the wire are

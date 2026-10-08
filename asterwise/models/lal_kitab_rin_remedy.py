@@ -18,26 +18,25 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from asterwise.models.lal_kitab_ascendant import LalKitabAscendant
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List
+from asterwise.models.lal_kitab_rin_found import LalKitabRinFound
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class LalKitabChartResponse(BaseModel):
+class LalKitabRinRemedy(BaseModel):
     """
-    LalKitabChartResponse
+    LalKitabRinRemedy
     """ # noqa: E501
-    system: StrictStr
-    ayanamsa: StrictStr
-    birth_time_provided: Optional[StrictBool] = Field(default=True, description="False when no birth time was given: a sunrise chart is used, so the lagna and every house are approximate.")
-    ascendant: LalKitabAscendant
-    planets: Dict[str, Dict[str, Any]]
-    houses: Dict[str, Optional[Dict[str, Any]]]
-    rin_analysis: Dict[str, Any]
-    sources: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["system", "ayanamsa", "birth_time_provided", "ascendant", "planets", "houses", "rin_analysis", "sources"]
+    rin: StrictStr
+    name: StrictStr
+    planet: StrictStr = Field(description="The planet the debt belongs to.")
+    houses: List[StrictInt] = Field(description="That planet's houses where an enemy indicates the debt.")
+    found: List[LalKitabRinFound] = Field(description="Enemy planets found in those houses.")
+    remedy: StrictStr
+    source: StrictStr
+    __properties: ClassVar[List[str]] = ["rin", "name", "planet", "houses", "found", "remedy", "source"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -57,7 +56,7 @@ class LalKitabChartResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of LalKitabChartResponse from a JSON string"""
+        """Create an instance of LalKitabRinRemedy from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,14 +77,18 @@ class LalKitabChartResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of ascendant
-        if self.ascendant:
-            _dict['ascendant'] = self.ascendant.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in found (list)
+        _items = []
+        if self.found:
+            for _item_found in self.found:
+                if _item_found:
+                    _items.append(_item_found.to_dict())
+            _dict['found'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of LalKitabChartResponse from a dict"""
+        """Create an instance of LalKitabRinRemedy from a dict"""
         if obj is None:
             return None
 
@@ -93,14 +96,13 @@ class LalKitabChartResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "system": obj.get("system"),
-            "ayanamsa": obj.get("ayanamsa"),
-            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
-            "ascendant": LalKitabAscendant.from_dict(obj["ascendant"]) if obj.get("ascendant") is not None else None,
-            "planets": obj.get("planets"),
+            "rin": obj.get("rin"),
+            "name": obj.get("name"),
+            "planet": obj.get("planet"),
             "houses": obj.get("houses"),
-            "rin_analysis": obj.get("rin_analysis"),
-            "sources": obj.get("sources")
+            "found": [LalKitabRinFound.from_dict(_item) for _item in obj["found"]] if obj.get("found") is not None else None,
+            "remedy": obj.get("remedy"),
+            "source": obj.get("source")
         })
         return _obj
 

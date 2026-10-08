@@ -27,7 +27,7 @@ from pydantic_core import to_jsonable_python
 
 class LalKitabRequest(BaseModel):
     """
-    Lal Kitab uses standard BirthInput. Ayanamsa is always Lahiri — the ayanamsa field from BirthInput is ignored and overridden to lahiri.
+    Lal Kitab uses standard BirthInput. Ayanamsa is always Lahiri: the ayanamsa field is accepted (so requests that send it keep working) but ignored, and the schema says so.
     """ # noqa: E501
     location: Optional[StrictStr] = None
     name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default='Chart', description="Person name associated with the birth record")
@@ -37,7 +37,7 @@ class LalKitabRequest(BaseModel):
     longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None
     timezone: Optional[StrictStr] = None
     utc_offset: Optional[StrictStr] = None
-    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
+    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Ignored: Lal Kitab always uses the Lahiri ayanamsa. Accepted so requests that send it keep working.")
     __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa"]
 
     @field_validator('ayanamsa')
