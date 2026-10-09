@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 
 Lal Kitab Remedies
 
-Lal Kitab remedies for the planets that need them. Following the 1952 Lal Kitab, a planet is listed when its effect is doubtful (it is not in its own house, pakka ghar, or exaltation or debilitation house, or it is a companion planet) and its placement is generally malefic (an enemy's house). Planets that are malefic but have a fixed effect are listed separately as not remediable. Each remedy cites its page in Goswami & Vashisth's Lal Kitab (based on the 1952 edition). Also returns remedies for any indicated debts (rin).
+Lal Kitab remedies for the planets that need them. Following the 1952 Lal Kitab, a planet is listed when its effect is doubtful (it is not in its own house, pakka ghar, or exaltation or debilitation house, or it is a companion planet) and its placement is generally malefic (an enemy's house). Planets that are malefic but have a fixed effect are listed separately as not remediable. Also returns remedies for any indicated debts (rin).
 
 ### Example
 

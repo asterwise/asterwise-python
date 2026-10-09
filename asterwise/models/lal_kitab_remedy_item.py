@@ -29,7 +29,7 @@ class LalKitabRemedyItem(BaseModel):
     LalKitabRemedyItem
     """ # noqa: E501
     type: StrictStr = Field(description="donation = give something away or feed; keep = keep or wear an item; avoid = a prohibition; remedy = any other prescribed act.")
-    action: StrictStr = Field(description="The remedy, paraphrased from the cited book page.")
+    action: StrictStr = Field(description="The remedy, in short.")
     page: Optional[StrictInt] = None
     condition: Optional[StrictStr] = None
     note: Optional[StrictStr] = None
