@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.daily_transit_response import DailyTransitResponse
 from asterwise.models.transit_aspect_schema import TransitAspectSchema
 from typing import Optional, Set
@@ -34,7 +34,9 @@ class WeeklyTransitResponse(BaseModel):
     end_date: StrictStr
     days: List[DailyTransitResponse]
     peak_aspects: List[TransitAspectSchema]
-    __properties: ClassVar[List[str]] = ["start_date", "end_date", "days", "peak_aspects"]
+    house_system: Optional[StrictStr] = Field(default='placidus', description="House system used for natal_house on each transiting planet.")
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: natal_house is then null for every transiting planet.")
+    __properties: ClassVar[List[str]] = ["start_date", "end_date", "days", "peak_aspects", "house_system", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -104,7 +106,9 @@ class WeeklyTransitResponse(BaseModel):
             "start_date": obj.get("start_date"),
             "end_date": obj.get("end_date"),
             "days": [DailyTransitResponse.from_dict(_item) for _item in obj["days"]] if obj.get("days") is not None else None,
-            "peak_aspects": [TransitAspectSchema.from_dict(_item) for _item in obj["peak_aspects"]] if obj.get("peak_aspects") is not None else None
+            "peak_aspects": [TransitAspectSchema.from_dict(_item) for _item in obj["peak_aspects"]] if obj.get("peak_aspects") is not None else None,
+            "house_system": obj.get("house_system") if obj.get("house_system") is not None else 'placidus',
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True
         })
         return _obj
 

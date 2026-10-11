@@ -627,7 +627,7 @@ Name | Type | Description  | Notes
 
 Three-Card Spread
 
-Past / Present / Future spread. Draws 3 unique cards and assigns them to positions: past (what led here), present (current situation), future (where this leads). Each position includes the card data, its orientation, the position meaning, and the active interpretation for that orientation.
+Past / Present / Future tarot spread: draws 3 unique cards, one for each position. The positions are past (what led here), present (current situation), future (where this leads). Each position includes the card data, its orientation, the position meaning, and the active interpretation for that orientation.
 
 ### Example
 

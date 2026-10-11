@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,12 +31,26 @@ class IngressEvent(BaseModel):
     planet: StrictStr = Field(description="Planet name, e.g. Sun, Mars, Rahu")
     from_sign: StrictInt = Field(description="Zero-based sign index the planet is leaving, 0 for Aries through 11 for Pisces")
     to_sign: StrictInt = Field(description="Zero-based sign index the planet is entering")
+    from_sign_name: Optional[StrictStr] = None
+    to_sign_name: Optional[StrictStr] = None
     jd: Union[StrictFloat, StrictInt] = Field(description="Julian Day number of the ingress moment")
     date_iso: StrictStr = Field(description="Instant of ingress in UTC, ISO 8601 without an offset (YYYY-MM-DDTHH:MM:SS). Read it as UTC; datetime_utc carries the Z.")
     datetime_utc: Optional[StrictStr] = None
     is_sankranti: StrictBool = Field(description="True for solar ingress (Sankranti); false for all other planets.")
     retrograde_ingress: StrictBool = Field(description="True when the planet is retrograde (speed < 0) at the ingress moment.")
-    __properties: ClassVar[List[str]] = ["planet", "from_sign", "to_sign", "jd", "date_iso", "datetime_utc", "is_sankranti", "retrograde_ingress"]
+    zodiac: Optional[StrictStr] = None
+    ayanamsa: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["planet", "from_sign", "to_sign", "from_sign_name", "to_sign_name", "jd", "date_iso", "datetime_utc", "is_sankranti", "retrograde_ingress", "zodiac", "ayanamsa"]
+
+    @field_validator('zodiac')
+    def zodiac_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['sidereal', 'tropical']):
+            raise ValueError("must be one of enum values ('sidereal', 'tropical')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,10 +91,30 @@ class IngressEvent(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if from_sign_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.from_sign_name is None and "from_sign_name" in self.model_fields_set:
+            _dict['from_sign_name'] = None
+
+        # set to None if to_sign_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.to_sign_name is None and "to_sign_name" in self.model_fields_set:
+            _dict['to_sign_name'] = None
+
         # set to None if datetime_utc (nullable) is None
         # and model_fields_set contains the field
         if self.datetime_utc is None and "datetime_utc" in self.model_fields_set:
             _dict['datetime_utc'] = None
+
+        # set to None if zodiac (nullable) is None
+        # and model_fields_set contains the field
+        if self.zodiac is None and "zodiac" in self.model_fields_set:
+            _dict['zodiac'] = None
+
+        # set to None if ayanamsa (nullable) is None
+        # and model_fields_set contains the field
+        if self.ayanamsa is None and "ayanamsa" in self.model_fields_set:
+            _dict['ayanamsa'] = None
 
         return _dict
 
@@ -97,11 +131,15 @@ class IngressEvent(BaseModel):
             "planet": obj.get("planet"),
             "from_sign": obj.get("from_sign"),
             "to_sign": obj.get("to_sign"),
+            "from_sign_name": obj.get("from_sign_name"),
+            "to_sign_name": obj.get("to_sign_name"),
             "jd": obj.get("jd"),
             "date_iso": obj.get("date_iso"),
             "datetime_utc": obj.get("datetime_utc"),
             "is_sankranti": obj.get("is_sankranti"),
-            "retrograde_ingress": obj.get("retrograde_ingress")
+            "retrograde_ingress": obj.get("retrograde_ingress"),
+            "zodiac": obj.get("zodiac"),
+            "ayanamsa": obj.get("ayanamsa")
         })
         return _obj
 

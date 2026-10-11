@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **transit_planets** | [**List[TransitPlanetRowSchema]**](TransitPlanetRowSchema.md) |  | 
 **aspects** | [**List[TransitAspectSchema]**](TransitAspectSchema.md) |  | 
 **total_aspects** | **int** |  | 
+**house_system** | **str** | House system used for natal_house on each transiting planet. | [optional] [default to 'placidus']
+**birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: natal_house is then null for every transiting planet, and natal positions were computed for 06:00 local time. | [optional] [default to True]
 
 ## Example
 

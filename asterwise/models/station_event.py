@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -33,14 +34,28 @@ class StationEvent(BaseModel):
     jd: Union[StrictFloat, StrictInt] = Field(description="Julian Day number of the station moment")
     date_iso: StrictStr = Field(description="Instant of station in UTC, ISO 8601 without an offset (YYYY-MM-DDTHH:MM:SS). Read it as UTC; datetime_utc carries the Z.")
     datetime_utc: Optional[StrictStr] = None
-    longitude: Union[StrictFloat, StrictInt] = Field(description="Sidereal longitude of the planet at the moment of station")
-    __properties: ClassVar[List[str]] = ["planet", "station_type", "jd", "date_iso", "datetime_utc", "longitude"]
+    longitude: Union[StrictFloat, StrictInt] = Field(description="Longitude of the planet at the moment of station, in the requested zodiac (sidereal by default; tropical when ayanamsa is tropical).")
+    sign: Optional[Annotated[int, Field(le=11, strict=True, ge=0)]] = None
+    sign_name: Optional[StrictStr] = None
+    zodiac: Optional[StrictStr] = None
+    ayanamsa: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["planet", "station_type", "jd", "date_iso", "datetime_utc", "longitude", "sign", "sign_name", "zodiac", "ayanamsa"]
 
     @field_validator('station_type')
     def station_type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['retrograde', 'direct']):
             raise ValueError("must be one of enum values ('retrograde', 'direct')")
+        return value
+
+    @field_validator('zodiac')
+    def zodiac_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['sidereal', 'tropical']):
+            raise ValueError("must be one of enum values ('sidereal', 'tropical')")
         return value
 
     model_config = ConfigDict(
@@ -87,6 +102,26 @@ class StationEvent(BaseModel):
         if self.datetime_utc is None and "datetime_utc" in self.model_fields_set:
             _dict['datetime_utc'] = None
 
+        # set to None if sign (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign is None and "sign" in self.model_fields_set:
+            _dict['sign'] = None
+
+        # set to None if sign_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_name is None and "sign_name" in self.model_fields_set:
+            _dict['sign_name'] = None
+
+        # set to None if zodiac (nullable) is None
+        # and model_fields_set contains the field
+        if self.zodiac is None and "zodiac" in self.model_fields_set:
+            _dict['zodiac'] = None
+
+        # set to None if ayanamsa (nullable) is None
+        # and model_fields_set contains the field
+        if self.ayanamsa is None and "ayanamsa" in self.model_fields_set:
+            _dict['ayanamsa'] = None
+
         return _dict
 
     @classmethod
@@ -104,7 +139,11 @@ class StationEvent(BaseModel):
             "jd": obj.get("jd"),
             "date_iso": obj.get("date_iso"),
             "datetime_utc": obj.get("datetime_utc"),
-            "longitude": obj.get("longitude")
+            "longitude": obj.get("longitude"),
+            "sign": obj.get("sign"),
+            "sign_name": obj.get("sign_name"),
+            "zodiac": obj.get("zodiac"),
+            "ayanamsa": obj.get("ayanamsa")
         })
         return _obj
 

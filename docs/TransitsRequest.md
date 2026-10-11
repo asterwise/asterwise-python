@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **from_date** | **str** | Start of the date range to scan, in YYYY-MM-DD format. | 
 **to_date** | **str** | End of the date range to scan, in YYYY-MM-DD format. Maximum range is 3 years (1095 days) from from_date. | 
+**ayanamsa** | **str** | Zodiac for the sign changes. lahiri (default), raman and kp are sidereal ayanamsas (Vedic). tropical is the Western zodiac with no ayanamsa, so ingresses become Western sign changes (Sun into Aries at the March equinox, Moon sign changes every ~2.5 days). Station moments do not depend on this; only their reported longitude does. | [optional] [default to 'lahiri']
 
 ## Example
 

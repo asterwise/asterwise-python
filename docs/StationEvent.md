@@ -10,7 +10,11 @@ Name | Type | Description | Notes
 **jd** | **float** | Julian Day number of the station moment | 
 **date_iso** | **str** | Instant of station in UTC, ISO 8601 without an offset (YYYY-MM-DDTHH:MM:SS). Read it as UTC; datetime_utc carries the Z. | 
 **datetime_utc** | **str** |  | [optional] 
-**longitude** | **float** | Sidereal longitude of the planet at the moment of station | 
+**longitude** | **float** | Longitude of the planet at the moment of station, in the requested zodiac (sidereal by default; tropical when ayanamsa is tropical). | 
+**sign** | **int** |  | [optional] 
+**sign_name** | **str** |  | [optional] 
+**zodiac** | **str** |  | [optional] 
+**ayanamsa** | **str** |  | [optional] 
 
 ## Example
 

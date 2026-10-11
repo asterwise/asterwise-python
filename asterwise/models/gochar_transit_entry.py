@@ -44,10 +44,14 @@ class GocharTransitEntry(BaseModel):
     vedha_blocking_planet: Optional[StrictStr]
     ashtakavarga_score: Optional[StrictInt]
     ashtakavarga_score_reduced: Optional[StrictInt] = None
-    interpretation: StrictStr
-    themes: List[StrictStr]
-    quality: StrictStr
-    __properties: ClassVar[List[str]] = ["planet", "transit_sign", "transit_sign_index", "transit_degree", "is_retrograde", "nakshatra", "nakshatra_pada", "house_from_moon", "house_from_lagna", "is_favorable_from_moon", "is_favorable_from_lagna", "bindu_override", "vedha_active", "vedha_blocking_planet", "ashtakavarga_score", "ashtakavarga_score_reduced", "interpretation", "themes", "quality"]
+    favorable_reason: Optional[StrictStr] = None
+    interpretation: StrictStr = Field(description="Reading that agrees with is_favorable_from_moon. Normally the classical text for this house from the Moon; when the bindus reverse the house rule it is favorable_reason, and the house text is in house_rule_interpretation.")
+    themes: List[StrictStr] = Field(description="Theme tags for the house from the Moon. Empty when the bindus reverse the house rule; the house tags are then only in house_rule_themes.")
+    quality: StrictStr = Field(description="Final verdict, 'favorable' or 'unfavorable'. Always matches is_favorable_from_moon, bindu override included.")
+    house_rule_quality: Optional[StrictStr] = None
+    house_rule_interpretation: Optional[StrictStr] = None
+    house_rule_themes: Optional[List[StrictStr]] = Field(default=None, description="Theme tags for this house from the Moon alone.")
+    __properties: ClassVar[List[str]] = ["planet", "transit_sign", "transit_sign_index", "transit_degree", "is_retrograde", "nakshatra", "nakshatra_pada", "house_from_moon", "house_from_lagna", "is_favorable_from_moon", "is_favorable_from_lagna", "bindu_override", "vedha_active", "vedha_blocking_planet", "ashtakavarga_score", "ashtakavarga_score_reduced", "favorable_reason", "interpretation", "themes", "quality", "house_rule_quality", "house_rule_interpretation", "house_rule_themes"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -113,6 +117,21 @@ class GocharTransitEntry(BaseModel):
         if self.ashtakavarga_score_reduced is None and "ashtakavarga_score_reduced" in self.model_fields_set:
             _dict['ashtakavarga_score_reduced'] = None
 
+        # set to None if favorable_reason (nullable) is None
+        # and model_fields_set contains the field
+        if self.favorable_reason is None and "favorable_reason" in self.model_fields_set:
+            _dict['favorable_reason'] = None
+
+        # set to None if house_rule_quality (nullable) is None
+        # and model_fields_set contains the field
+        if self.house_rule_quality is None and "house_rule_quality" in self.model_fields_set:
+            _dict['house_rule_quality'] = None
+
+        # set to None if house_rule_interpretation (nullable) is None
+        # and model_fields_set contains the field
+        if self.house_rule_interpretation is None and "house_rule_interpretation" in self.model_fields_set:
+            _dict['house_rule_interpretation'] = None
+
         return _dict
 
     @classmethod
@@ -141,9 +160,13 @@ class GocharTransitEntry(BaseModel):
             "vedha_blocking_planet": obj.get("vedha_blocking_planet"),
             "ashtakavarga_score": obj.get("ashtakavarga_score"),
             "ashtakavarga_score_reduced": obj.get("ashtakavarga_score_reduced"),
+            "favorable_reason": obj.get("favorable_reason"),
             "interpretation": obj.get("interpretation"),
             "themes": obj.get("themes"),
-            "quality": obj.get("quality")
+            "quality": obj.get("quality"),
+            "house_rule_quality": obj.get("house_rule_quality"),
+            "house_rule_interpretation": obj.get("house_rule_interpretation"),
+            "house_rule_themes": obj.get("house_rule_themes")
         })
         return _obj
 

@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **end_date** | **str** |  | 
 **days** | [**List[DailyTransitResponse]**](DailyTransitResponse.md) |  | 
 **peak_aspects** | [**List[TransitAspectSchema]**](TransitAspectSchema.md) |  | 
+**house_system** | **str** | House system used for natal_house on each transiting planet. | [optional] [default to 'placidus']
+**birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: natal_house is then null for every transiting planet. | [optional] [default to True]
 
 ## Example
 

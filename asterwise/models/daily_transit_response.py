@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.transit_aspect_schema import TransitAspectSchema
 from asterwise.models.transit_planet_row_schema import TransitPlanetRowSchema
 from typing import Optional, Set
@@ -34,7 +34,9 @@ class DailyTransitResponse(BaseModel):
     transit_planets: List[TransitPlanetRowSchema]
     aspects: List[TransitAspectSchema]
     total_aspects: StrictInt
-    __properties: ClassVar[List[str]] = ["date", "transit_planets", "aspects", "total_aspects"]
+    house_system: Optional[StrictStr] = Field(default='placidus', description="House system used for natal_house on each transiting planet.")
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: natal_house is then null for every transiting planet, and natal positions were computed for 06:00 local time.")
+    __properties: ClassVar[List[str]] = ["date", "transit_planets", "aspects", "total_aspects", "house_system", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -104,7 +106,9 @@ class DailyTransitResponse(BaseModel):
             "date": obj.get("date"),
             "transit_planets": [TransitPlanetRowSchema.from_dict(_item) for _item in obj["transit_planets"]] if obj.get("transit_planets") is not None else None,
             "aspects": [TransitAspectSchema.from_dict(_item) for _item in obj["aspects"]] if obj.get("aspects") is not None else None,
-            "total_aspects": obj.get("total_aspects")
+            "total_aspects": obj.get("total_aspects"),
+            "house_system": obj.get("house_system") if obj.get("house_system") is not None else 'placidus',
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True
         })
         return _obj
 

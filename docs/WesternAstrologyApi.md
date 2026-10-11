@@ -8,11 +8,14 @@ Method | HTTP request | Description
 [**western_compatibility**](WesternAstrologyApi.md#western_compatibility) | **POST** /v1/western/compatibility | Western Compatibility Score
 [**western_compatibility_zodiac**](WesternAstrologyApi.md#western_compatibility_zodiac) | **GET** /v1/western/compatibility/zodiac | Western Zodiac Sign Compatibility
 [**western_composite**](WesternAstrologyApi.md#western_composite) | **POST** /v1/western/composite | Western Composite Chart
+[**western_eclipses**](WesternAstrologyApi.md#western_eclipses) | **POST** /v1/western/eclipses | Eclipses
 [**western_lunar_return**](WesternAstrologyApi.md#western_lunar_return) | **POST** /v1/western/lunar-return | Western Lunar Return
 [**western_moon_calendar**](WesternAstrologyApi.md#western_moon_calendar) | **GET** /v1/western/moon/calendar | Western Moon Phase Calendar
 [**western_moon_phase**](WesternAstrologyApi.md#western_moon_phase) | **GET** /v1/western/moon/phase | Western Moon Phase
 [**western_natal_chart**](WesternAstrologyApi.md#western_natal_chart) | **POST** /v1/western/natal | Western Natal Chart — Tropical
+[**western_planetary_hours**](WesternAstrologyApi.md#western_planetary_hours) | **POST** /v1/western/planetary-hours | Planetary hours
 [**western_planetary_return**](WesternAstrologyApi.md#western_planetary_return) | **POST** /v1/western/planetary-return | Western Planetary Return
+[**western_profections**](WesternAstrologyApi.md#western_profections) | **POST** /v1/western/profections | Annual profections
 [**western_progressions_secondary**](WesternAstrologyApi.md#western_progressions_secondary) | **POST** /v1/western/progressions/secondary | Western Secondary Progressions
 [**western_progressions_solar_arc**](WesternAstrologyApi.md#western_progressions_solar_arc) | **POST** /v1/western/progressions/solar-arc | Western Solar Arc Directions
 [**western_solar_return**](WesternAstrologyApi.md#western_solar_return) | **POST** /v1/western/solar-return | Western Solar Return
@@ -20,6 +23,7 @@ Method | HTTP request | Description
 [**western_transits_daily**](WesternAstrologyApi.md#western_transits_daily) | **POST** /v1/western/transits/daily | Western Daily Transits
 [**western_transits_monthly**](WesternAstrologyApi.md#western_transits_monthly) | **POST** /v1/western/transits/monthly | Western Monthly Transits
 [**western_transits_weekly**](WesternAstrologyApi.md#western_transits_weekly) | **POST** /v1/western/transits/weekly | Western Weekly Transits
+[**western_void_of_course**](WesternAstrologyApi.md#western_void_of_course) | **POST** /v1/western/moon/void-of-course | Void-of-course Moon
 
 
 # **western_aspects**
@@ -375,12 +379,100 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **western_eclipses**
+> ApiResponseEclipsesResponse western_eclipses(eclipses_request)
+
+Eclipses
+
+Solar and lunar eclipses in a date range, past or future, up to 10 years. Each gives the type, time of greatest eclipse, start and end (UTC) and the eclipse degree in the tropical zodiac (Swiss Ephemeris). Add birth data to get, for each eclipse, the natal planets and angles within 3° of the eclipse degree by conjunction or opposition. Without a birth time the Ascendant and MC are skipped and the natal Moon is approximate.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_eclipses_response import ApiResponseEclipsesResponse
+from asterwise.models.eclipses_request import EclipsesRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.WesternAstrologyApi(api_client)
+    eclipses_request = {"from_date":"2026-01-01","to_date":"2026-12-31","birth":{"name":"Arjun Mehta","date":"1985-11-12","time":"06:45","latitude":19.076,"longitude":72.8777,"timezone":"Asia/Kolkata"}} # EclipsesRequest | 
+
+    try:
+        # Eclipses
+        api_response = api_instance.western_eclipses(eclipses_request)
+        print("The response of WesternAstrologyApi->western_eclipses:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WesternAstrologyApi->western_eclipses: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **eclipses_request** | [**EclipsesRequest**](EclipsesRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseEclipsesResponse**](ApiResponseEclipsesResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **western_lunar_return**
 > ApiResponseReturnChartResponse western_lunar_return(lunar_return_request)
 
 Western Lunar Return
 
-Next lunar return chart after a given date. Finds the next moment the Moon returns to its natal tropical longitude (~every 27.3 days) and builds a complete Western natal chart for that moment at the birth location.
+Western lunar return chart: the next moment after a given date that the Moon returns to its natal tropical longitude (about every 27.3 days). The chart is a complete Western natal chart for that moment at the birth location.
 
 ### Example
 
@@ -727,6 +819,94 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **western_planetary_hours**
+> ApiResponsePlanetaryHoursResponse western_planetary_hours(planetary_hours_request)
+
+Planetary hours
+
+The 24 planetary hours for a date and place, with the planet ruling each hour. Sunrise to sunset and sunset to the next sunrise are each split into 12 equal parts, so hours are longer by day in summer and shorter in winter. The first hour after sunrise belongs to the planet of the weekday (Sunday Sun, Monday Moon, Tuesday Mars, Wednesday Mercury, Thursday Jupiter, Friday Venus, Saturday Saturn); the rest follow the Chaldean order Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon. Same calculation as /v1/astro/panchanga/hora, with Western naming and both local and UTC times.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_planetary_hours_response import ApiResponsePlanetaryHoursResponse
+from asterwise.models.planetary_hours_request import PlanetaryHoursRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.WesternAstrologyApi(api_client)
+    planetary_hours_request = {"date":"2026-10-11","latitude":19.076,"longitude":72.8777,"timezone":"Asia/Kolkata"} # PlanetaryHoursRequest | 
+
+    try:
+        # Planetary hours
+        api_response = api_instance.western_planetary_hours(planetary_hours_request)
+        print("The response of WesternAstrologyApi->western_planetary_hours:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WesternAstrologyApi->western_planetary_hours: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **planetary_hours_request** | [**PlanetaryHoursRequest**](PlanetaryHoursRequest.md)|  | 
+
+### Return type
+
+[**ApiResponsePlanetaryHoursResponse**](ApiResponsePlanetaryHoursResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **western_planetary_return**
 > ApiResponseReturnChartResponse western_planetary_return(planetary_return_request)
 
@@ -788,6 +968,94 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ApiResponseReturnChartResponse**](ApiResponseReturnChartResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **western_profections**
+> ApiResponseProfectionsResponse western_profections(profections_request)
+
+Annual profections
+
+Annual profections for a birth chart and a date: the whole-sign house activated this year, its sign, and the lord of the year (the sign's traditional ruler). Rule: the Ascendant sign is the 1st house at birth and the activated sign moves forward one sign every birthday, so at age N the profected house is (N mod 12) + 1. A birth time is required because the count starts from the Ascendant; without one the request is rejected with a clear message. Includes where the year lord sits natally and the next twelve profection years.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_profections_response import ApiResponseProfectionsResponse
+from asterwise.models.profections_request import ProfectionsRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.WesternAstrologyApi(api_client)
+    profections_request = {"name":"Arjun Mehta","date":"1985-11-12","time":"06:45","latitude":19.076,"longitude":72.8777,"timezone":"Asia/Kolkata","target_date":"2026-10-11"} # ProfectionsRequest | 
+
+    try:
+        # Annual profections
+        api_response = api_instance.western_profections(profections_request)
+        print("The response of WesternAstrologyApi->western_profections:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WesternAstrologyApi->western_profections: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **profections_request** | [**ProfectionsRequest**](ProfectionsRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseProfectionsResponse**](ApiResponseProfectionsResponse.md)
 
 ### Authorization
 
@@ -996,7 +1264,7 @@ Name | Type | Description  | Notes
 
 Western Solar Return
 
-Solar return chart for a given year. Finds the exact moment the Sun returns to its natal tropical longitude and builds a complete Western natal chart for that moment at the birth location. Provide the year as an integer (e.g. 2026).
+Western solar return chart for a given year, cast for the exact moment the Sun returns to its natal tropical longitude. The chart is a complete Western natal chart for that moment at the birth location. Provide the year as an integer (e.g. 2026).
 
 ### Example
 
@@ -1172,7 +1440,7 @@ Name | Type | Description  | Notes
 
 Western Daily Transits
 
-Current sky positions vs natal chart. Returns all 10 planets with tropical longitudes and active aspects to natal positions using standard modern Western transit orbs: major 3°, sextile 2°, minor 1°. Defaults to today if no date given.
+Transits for one day against the natal chart: all 10 planets with tropical longitudes and their active aspects to natal positions. Orbs are the standard modern Western transit orbs: major 3°, sextile 2°, minor 1°. Each aspect carries exact_at, the UTC moment it is exact (searched 30 days either side; null if outside that window). Each transiting planet carries natal_house, the natal house it is passing through (house_system as requested; null without a birth time). Defaults to today (UTC) if no date is given.
 
 ### Example
 
@@ -1404,6 +1672,94 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ApiResponseWeeklyTransitResponse**](ApiResponseWeeklyTransitResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **western_void_of_course**
+> ApiResponseVoidOfCourseResponse western_void_of_course(void_of_course_request)
+
+Void-of-course Moon
+
+Void-of-course Moon periods in a date range (UTC). Rule used: the traditional one — the Moon is void from its last exact Ptolemaic aspect (conjunction, sextile, square, trine, opposition) to the Sun, Mercury, Venus, Mars, Jupiter or Saturn until it enters the next sign (William Lilly, Christian Astrology, 1647, p. 112). Outer planets are not counted. Each period gives start and end in UTC, the last aspect, the sign the Moon is in and the sign it enters next. Range limit 92 days.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_void_of_course_response import ApiResponseVoidOfCourseResponse
+from asterwise.models.void_of_course_request import VoidOfCourseRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.WesternAstrologyApi(api_client)
+    void_of_course_request = {"from_date":"2026-03-01","to_date":"2026-03-31"} # VoidOfCourseRequest | 
+
+    try:
+        # Void-of-course Moon
+        api_response = api_instance.western_void_of_course(void_of_course_request)
+        print("The response of WesternAstrologyApi->western_void_of_course:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WesternAstrologyApi->western_void_of_course: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **void_of_course_request** | [**VoidOfCourseRequest**](VoidOfCourseRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseVoidOfCourseResponse**](ApiResponseVoidOfCourseResponse.md)
 
 ### Authorization
 

@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.ingress_event import IngressEvent
 from asterwise.models.station_event import StationEvent
 from typing import Optional, Set
@@ -30,9 +30,21 @@ class TransitsResponse(BaseModel):
     """
     TransitsResponse
     """ # noqa: E501
-    ingresses: List[IngressEvent] = Field(description="All sign ingress events in the requested date range. Includes all 9 Vedic planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu.")
+    zodiac: Optional[StrictStr] = Field(default='sidereal', description="Zodiac used for every event: sidereal (Vedic, default) or tropical (Western).")
+    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Ayanamsa used: lahiri (default), raman, kp, or tropical (no ayanamsa).")
+    ingresses: List[IngressEvent] = Field(description="All sign ingress events in the requested date range, Moon sign changes included. Covers all 9 Vedic planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (Rahu/Ketu are the mean nodes).")
     stations: List[StationEvent] = Field(description="All retrograde and direct station events in the requested date range. Only the 7 classical planets (Sun through Saturn) have stations. Rahu and Ketu are always excluded from this list.")
-    __properties: ClassVar[List[str]] = ["ingresses", "stations"]
+    __properties: ClassVar[List[str]] = ["zodiac", "ayanamsa", "ingresses", "stations"]
+
+    @field_validator('zodiac')
+    def zodiac_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['sidereal', 'tropical']):
+            raise ValueError("must be one of enum values ('sidereal', 'tropical')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -99,6 +111,8 @@ class TransitsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "zodiac": obj.get("zodiac") if obj.get("zodiac") is not None else 'sidereal',
+            "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri',
             "ingresses": [IngressEvent.from_dict(_item) for _item in obj["ingresses"]] if obj.get("ingresses") is not None else None,
             "stations": [StationEvent.from_dict(_item) for _item in obj["stations"]] if obj.get("stations") is not None else None
         })

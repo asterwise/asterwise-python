@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **timezone** | **str** |  | [optional] 
 **utc_offset** | **str** |  | [optional] 
 **ayanamsa** | **str** | Sidereal ayanamsa mode used in calculations | [optional] [default to 'lahiri']
+**house_system** | **str** | House system for the natal houses that transiting planets are placed in (natal_house on each transit planet). Same choices as the natal chart; Placidus is the default. | [optional] [default to 'placidus']
 **start_date** | **str** |  | [optional] 
 
 ## Example

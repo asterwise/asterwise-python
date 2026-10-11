@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **exact_angle** | **float** |  | 
 **orb** | **float** |  | 
 **is_applying** | **bool** | True if the transiting planet&#39;s instantaneous motion is closing the orb to the (fixed) natal planet. False if separating or exact. | 
+**exact_at** | **str** |  | [optional] 
+**days_to_exact** | **float** |  | [optional] 
 
 ## Example
 

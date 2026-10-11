@@ -20,6 +20,7 @@ from pydantic import StrictStr
 from asterwise.models.api_response_crystal_entry import ApiResponseCrystalEntry
 from asterwise.models.api_response_crystal_list_response import ApiResponseCrystalListResponse
 from asterwise.models.api_response_crystal_recommend_response import ApiResponseCrystalRecommendResponse
+from asterwise.models.api_response_crystals_by_planet_response import ApiResponseCrystalsByPlanetResponse
 from asterwise.models.api_response_natal_crystal_response import ApiResponseNatalCrystalResponse
 from asterwise.models.crystal_recommend_request import CrystalRecommendRequest
 from asterwise.models.natal_crystal_request import NatalCrystalRequest
@@ -346,10 +347,10 @@ class CrystalsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponseCrystalListResponse:
+    ) -> ApiResponseCrystalsByPlanetResponse:
         """Crystals by Vedic planet
 
-        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes. Only Navaratna and Uparatna Vedic assignments are included — crystals without classical Vedic gemstone support are not returned here.
+        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes, each group alphabetically. Only Navaratna and Uparatna Vedic assignments are included — crystals without classical Vedic gemstone support are not returned here.
 
         :param planet: (required)
         :type planet: str
@@ -384,7 +385,7 @@ class CrystalsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseCrystalListResponse",
+            '200': "ApiResponseCrystalsByPlanetResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -422,10 +423,10 @@ class CrystalsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ApiResponseCrystalListResponse]:
+    ) -> ApiResponse[ApiResponseCrystalsByPlanetResponse]:
         """Crystals by Vedic planet
 
-        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes. Only Navaratna and Uparatna Vedic assignments are included — crystals without classical Vedic gemstone support are not returned here.
+        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes, each group alphabetically. Only Navaratna and Uparatna Vedic assignments are included — crystals without classical Vedic gemstone support are not returned here.
 
         :param planet: (required)
         :type planet: str
@@ -460,7 +461,7 @@ class CrystalsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseCrystalListResponse",
+            '200': "ApiResponseCrystalsByPlanetResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -501,7 +502,7 @@ class CrystalsApi:
     ) -> RESTResponseType:
         """Crystals by Vedic planet
 
-        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes. Only Navaratna and Uparatna Vedic assignments are included — crystals without classical Vedic gemstone support are not returned here.
+        Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes, each group alphabetically. Only Navaratna and Uparatna Vedic assignments are included — crystals without classical Vedic gemstone support are not returned here.
 
         :param planet: (required)
         :type planet: str
@@ -536,7 +537,7 @@ class CrystalsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiResponseCrystalListResponse",
+            '200': "ApiResponseCrystalsByPlanetResponse",
             '401': "ErrorResponse",
             '403': "ErrorResponse",
             '404': "ErrorResponse",
@@ -1209,7 +1210,7 @@ class CrystalsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseNatalCrystalResponse:
-        """Crystal recommendations from Vedic natal chart
+        """Natal Chart Crystal Recommendations
 
         Recommend crystals from the natal chart's functional benefics, using the same rule as POST /v1/astro/gemstones (BPHS Ch.34 lordship, whole-sign from the lagna). Recommended: the lagna lord (always auspicious) = Life Stone (+5), the Yogakaraka = supreme benefic (+5), the 9th lord = Fortune Stone (+4), the 5th lord = Lucky Stone (+3). A 5th/9th lord that also owns a Dusthana (6, 8, 12) is still recommended, with that Dusthana named in warnings[]. Contraindicated (natal_context.contraindicated_lords, never returned): Dusthana lords that own no Trikona, and debilitated or combust planets. Kendra-only and 2nd/3rd/11th lords are neither recommended nor contraindicated. Only crystals with Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
@@ -1285,7 +1286,7 @@ class CrystalsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseNatalCrystalResponse]:
-        """Crystal recommendations from Vedic natal chart
+        """Natal Chart Crystal Recommendations
 
         Recommend crystals from the natal chart's functional benefics, using the same rule as POST /v1/astro/gemstones (BPHS Ch.34 lordship, whole-sign from the lagna). Recommended: the lagna lord (always auspicious) = Life Stone (+5), the Yogakaraka = supreme benefic (+5), the 9th lord = Fortune Stone (+4), the 5th lord = Lucky Stone (+3). A 5th/9th lord that also owns a Dusthana (6, 8, 12) is still recommended, with that Dusthana named in warnings[]. Contraindicated (natal_context.contraindicated_lords, never returned): Dusthana lords that own no Trikona, and debilitated or combust planets. Kendra-only and 2nd/3rd/11th lords are neither recommended nor contraindicated. Only crystals with Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
@@ -1361,7 +1362,7 @@ class CrystalsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Crystal recommendations from Vedic natal chart
+        """Natal Chart Crystal Recommendations
 
         Recommend crystals from the natal chart's functional benefics, using the same rule as POST /v1/astro/gemstones (BPHS Ch.34 lordship, whole-sign from the lagna). Recommended: the lagna lord (always auspicious) = Life Stone (+5), the Yogakaraka = supreme benefic (+5), the 9th lord = Fortune Stone (+4), the 5th lord = Lucky Stone (+3). A 5th/9th lord that also owns a Dusthana (6, 8, 12) is still recommended, with that Dusthana named in warnings[]. Contraindicated (natal_context.contraindicated_lords, never returned): Dusthana lords that own no Trikona, and debilitated or combust planets. Kendra-only and 2nd/3rd/11th lords are neither recommended nor contraindicated. Only crystals with Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 

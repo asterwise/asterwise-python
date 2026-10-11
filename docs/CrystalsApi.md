@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**crystals_by_planet**](CrystalsApi.md#crystals_by_planet) | **GET** /v1/crystals/by-planet/{planet} | Crystals by Vedic planet
 [**crystals_list**](CrystalsApi.md#crystals_list) | **GET** /v1/crystals | Complete crystal database
 [**crystals_recommend**](CrystalsApi.md#crystals_recommend) | **POST** /v1/crystals/recommend | Crystal recommendations
-[**crystals_recommend_natal**](CrystalsApi.md#crystals_recommend_natal) | **POST** /v1/crystals/recommend/natal | Crystal recommendations from Vedic natal chart
+[**crystals_recommend_natal**](CrystalsApi.md#crystals_recommend_natal) | **POST** /v1/crystals/recommend/natal | Natal Chart Crystal Recommendations
 
 
 # **crystal**
@@ -99,11 +99,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **crystals_by_planet**
-> ApiResponseCrystalListResponse crystals_by_planet(planet)
+> ApiResponseCrystalsByPlanetResponse crystals_by_planet(planet)
 
 Crystals by Vedic planet
 
-Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes. Only Navaratna and Uparatna Vedic assignments are included — crystals without classical Vedic gemstone support are not returned here.
+Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. Results are sorted with primary Navaratna gems first, then Uparatna substitutes, each group alphabetically. Only Navaratna and Uparatna Vedic assignments are included — crystals without classical Vedic gemstone support are not returned here.
 
 ### Example
 
@@ -111,7 +111,7 @@ Returns all crystals associated with a specific Vedic planet. Planets: Sun, Moon
 
 ```python
 import asterwise
-from asterwise.models.api_response_crystal_list_response import ApiResponseCrystalListResponse
+from asterwise.models.api_response_crystals_by_planet_response import ApiResponseCrystalsByPlanetResponse
 from asterwise.rest import ApiException
 from pprint import pprint
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiResponseCrystalListResponse**](ApiResponseCrystalListResponse.md)
+[**ApiResponseCrystalsByPlanetResponse**](ApiResponseCrystalsByPlanetResponse.md)
 
 ### Authorization
 
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 # **crystals_recommend_natal**
 > ApiResponseNatalCrystalResponse crystals_recommend_natal(natal_crystal_request)
 
-Crystal recommendations from Vedic natal chart
+Natal Chart Crystal Recommendations
 
 Recommend crystals from the natal chart's functional benefics, using the same rule as POST /v1/astro/gemstones (BPHS Ch.34 lordship, whole-sign from the lagna). Recommended: the lagna lord (always auspicious) = Life Stone (+5), the Yogakaraka = supreme benefic (+5), the 9th lord = Fortune Stone (+4), the 5th lord = Lucky Stone (+3). A 5th/9th lord that also owns a Dusthana (6, 8, 12) is still recommended, with that Dusthana named in warnings[]. Contraindicated (natal_context.contraindicated_lords, never returned): Dusthana lords that own no Trikona, and debilitated or combust planets. Kendra-only and 2nd/3rd/11th lords are neither recommended nor contraindicated. Only crystals with Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
@@ -397,7 +397,7 @@ with asterwise.ApiClient(configuration) as api_client:
     natal_crystal_request = asterwise.NatalCrystalRequest() # NatalCrystalRequest | 
 
     try:
-        # Crystal recommendations from Vedic natal chart
+        # Natal Chart Crystal Recommendations
         api_response = api_instance.crystals_recommend_natal(natal_crystal_request)
         print("The response of CrystalsApi->crystals_recommend_natal:\n")
         pprint(api_response)

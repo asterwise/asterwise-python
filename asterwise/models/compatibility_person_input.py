@@ -30,7 +30,7 @@ class CompatibilityPersonInput(BaseModel):
     """
     CompatibilityPersonInput
     """ # noqa: E501
-    name: Annotated[str, Field(min_length=1, strict=True, max_length=100)] = Field(description="Name of the person in compatibility calculation")
+    name: Annotated[str, Field(min_length=1, strict=True, max_length=100)] = Field(description="Name of the person. Required, but it does not change the score: only the birth date does.")
     var_date: date = Field(description="Birth date for compatibility calculation (YYYY-MM-DD)", alias="date")
     __properties: ClassVar[List[str]] = ["name", "date"]
 

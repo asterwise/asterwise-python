@@ -4,14 +4,14 @@ All URIs are relative to *https://api.asterwise.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**geocode**](UtilitiesApi.md#geocode) | **GET** /v1/utils/geocode | Resolve a city or place name to latitude, longitude, and timezone
-[**timezone**](UtilitiesApi.md#timezone) | **GET** /v1/utils/timezone | Return the IANA timezone for a given coordinate pair
+[**geocode**](UtilitiesApi.md#geocode) | **GET** /v1/utils/geocode | Geocode a Place to Coordinates and Timezone
+[**timezone**](UtilitiesApi.md#timezone) | **GET** /v1/utils/timezone | IANA Timezone for Coordinates
 
 
 # **geocode**
 > ApiResponseGeocodeResponse geocode(q, limit=limit, country=country)
 
-Resolve a city or place name to latitude, longitude, and timezone
+Geocode a Place to Coordinates and Timezone
 
 Resolve a city or place name to coordinates and timezone.
 
@@ -61,7 +61,7 @@ with asterwise.ApiClient(configuration) as api_client:
     country = 'country_example' # str | ISO country code to narrow results, e.g. 'in', 'us' (optional)
 
     try:
-        # Resolve a city or place name to latitude, longitude, and timezone
+        # Geocode a Place to Coordinates and Timezone
         api_response = api_instance.geocode(q, limit=limit, country=country)
         print("The response of UtilitiesApi->geocode:\n")
         pprint(api_response)
@@ -113,9 +113,9 @@ Name | Type | Description  | Notes
 # **timezone**
 > ApiResponseTimezoneResponse timezone(latitude=latitude, longitude=longitude, lat=lat, lon=lon)
 
-Return the IANA timezone for a given coordinate pair
+IANA Timezone for Coordinates
 
-Get IANA timezone for a coordinate pair.
+Returns the IANA timezone (e.g. Asia/Kolkata) for a latitude and longitude pair.
 Fully offline — no external API call.
 Accepts ?latitude=&longitude= and/or ?lat=&lon= (any pair that supplies both coordinates).
 Examples: ?latitude=19.055&longitude=72.869 (Mumbai), ?lat=19.055&lon=72.869
@@ -156,7 +156,7 @@ with asterwise.ApiClient(configuration) as api_client:
     lon = 3.4 # float | Alias for longitude (optional)
 
     try:
-        # Return the IANA timezone for a given coordinate pair
+        # IANA Timezone for Coordinates
         api_response = api_instance.timezone(latitude=latitude, longitude=longitude, lat=lat, lon=lon)
         print("The response of UtilitiesApi->timezone:\n")
         pprint(api_response)

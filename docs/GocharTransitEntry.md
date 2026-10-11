@@ -21,9 +21,13 @@ Name | Type | Description | Notes
 **vedha_blocking_planet** | **str** |  | 
 **ashtakavarga_score** | **int** |  | 
 **ashtakavarga_score_reduced** | **int** |  | [optional] 
-**interpretation** | **str** |  | 
-**themes** | **List[str]** |  | 
-**quality** | **str** |  | 
+**favorable_reason** | **str** |  | [optional] 
+**interpretation** | **str** | Reading that agrees with is_favorable_from_moon. Normally the classical text for this house from the Moon; when the bindus reverse the house rule it is favorable_reason, and the house text is in house_rule_interpretation. | 
+**themes** | **List[str]** | Theme tags for the house from the Moon. Empty when the bindus reverse the house rule; the house tags are then only in house_rule_themes. | 
+**quality** | **str** | Final verdict, &#39;favorable&#39; or &#39;unfavorable&#39;. Always matches is_favorable_from_moon, bindu override included. | 
+**house_rule_quality** | **str** |  | [optional] 
+**house_rule_interpretation** | **str** |  | [optional] 
+**house_rule_themes** | **List[str]** | Theme tags for this house from the Moon alone. | [optional] 
 
 ## Example
 

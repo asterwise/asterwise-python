@@ -19,7 +19,7 @@ Method | HTTP request | Description
 [**matchmaking_dashakoot**](AstrologyApi.md#matchmaking_dashakoot) | **POST** /v1/astro/matchmaking/dashakoot | Dashakoot — 10-Koota Compatibility
 [**matchmaking_papasamyam**](AstrologyApi.md#matchmaking_papasamyam) | **POST** /v1/astro/matchmaking/papasamyam | Papasamyam — Malefic Planet Compatibility
 [**matchmaking_porutham**](AstrologyApi.md#matchmaking_porutham) | **POST** /v1/astro/matchmaking/porutham | Kerala Porutham — 10-Porutham Compatibility
-[**matchmaking_thirumana_porutham**](AstrologyApi.md#matchmaking_thirumana_porutham) | **POST** /v1/astro/matchmaking/thirumana-porutham | Tamil Thirumana Porutham — 12-Porutham Compatibility
+[**matchmaking_thirumana_porutham**](AstrologyApi.md#matchmaking_thirumana_porutham) | **POST** /v1/astro/matchmaking/thirumana-porutham | Thirumana Porutham (12 Poruthams)
 [**muhurta**](AstrologyApi.md#muhurta) | **POST** /v1/astro/muhurta | Muhurta — Auspicious Timing
 [**nakshatra**](AstrologyApi.md#nakshatra) | **GET** /v1/astro/nakshatra/{name} | Nakshatra Profile
 [**nakshatra_prediction**](AstrologyApi.md#nakshatra_prediction) | **POST** /v1/astro/nakshatra/prediction | Personal Nakshatra Prediction (Tarabala)
@@ -49,7 +49,7 @@ Method | HTTP request | Description
 
 Jaimini Charakarakas
 
-Computes all 8 Jaimini Charakarakas from the natal chart: Atmakaraka, Amatyakaraka, Bhratrikaraka, Matrikaraka, Pitrikaraka, Putrakaraka, Gnatikaraka, and Darakaraka. The planet with the highest degree in its sign becomes the Atmakaraka. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
+Computes all 8 Jaimini Charakarakas from the natal chart, from Atmakaraka to Darakaraka. The eight are Atmakaraka, Amatyakaraka, Bhratrikaraka, Matrikaraka, Pitrikaraka, Putrakaraka, Gnatikaraka, and Darakaraka. The planet with the highest degree in its sign becomes the Atmakaraka. Request JSON follows BirthInput: `name` (optional, default Chart), `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, optional `ayanamsa` (lahiri|raman|kp|tropical).
 
 ### Example
 
@@ -688,7 +688,7 @@ Name | Type | Description  | Notes
 
 Gemstone Recommendations
 
-Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord (always a functional benefic). Further slots: Yogakaraka, 5th lord, 9th lord, and Atmakaraka (also returned as `secondary`). Returns contraindicated gemstones: dusthana (6/8/12) lords that own no trikona, debilitated planets, and combust planets — the same rule as POST /v1/crystals/recommend/natal. A slot whose planet is contraindicated carries `contraindicated: true` and a `caution`; it is never a silent recommendation. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord (always a functional benefic). Further slots: Yogakaraka, 5th lord, 9th lord, and Atmakaraka. `secondary` is the first of those that is not the lagna lord's and not contraindicated. Returns contraindicated gemstones: dusthana (6/8/12) lords that own no trikona, debilitated planets, and combust planets — the same rule as POST /v1/crystals/recommend/natal. A slot whose planet is contraindicated carries `contraindicated: true` and a `caution`; it is never a silent recommendation. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
 ### Example
 
@@ -1216,7 +1216,7 @@ Name | Type | Description  | Notes
 
 Papasamyam — Malefic Planet Compatibility
 
-Computes Papasamyam between two natal charts. Scores each person based on Sun, Mars, Saturn, Rahu, Ketu in houses 1, 2, 4, 7, 8, 12 from Lagna, Moon, and Venus (#105). Compatible if score difference ≤ 11. person1 = groom, person2 = bride.
+Computes Papasamyam, the malefic-planet compatibility check, between two natal charts. Scores each person based on Sun, Mars, Saturn, Rahu, Ketu in houses 1, 2, 4, 7, 8, 12 from Lagna, Moon, and Venus (#105). Compatible if score difference ≤ 11. person1 = groom, person2 = bride.
 
 ### Example
 
@@ -1390,9 +1390,9 @@ Name | Type | Description  | Notes
 # **matchmaking_thirumana_porutham**
 > ApiResponseThirumanaPoruthamResponse matchmaking_thirumana_porutham(thirumana_porutham_request)
 
-Tamil Thirumana Porutham — 12-Porutham Compatibility
+Thirumana Porutham (12 Poruthams)
 
-Computes all 10 Tamil Thirumana Poruthams with Tamil naming convention. Includes Rajju severity classification (Siro=most severe to Pada=least severe). Rajju and Vedha are absolute vetoes. person1 = groom, person2 = bride.
+Computes the 12 Tamil Thirumana Poruthams: the 10 standard Poruthams plus Nadi and Varna, with Tamil names. Includes Rajju severity classification (Siro=most severe to Pada=least severe). Rajju and Vedha are absolute vetoes. person1 = groom, person2 = bride.
 
 ### Example
 
@@ -1428,7 +1428,7 @@ with asterwise.ApiClient(configuration) as api_client:
     thirumana_porutham_request = asterwise.ThirumanaPoruthamRequest() # ThirumanaPoruthamRequest | 
 
     try:
-        # Tamil Thirumana Porutham — 12-Porutham Compatibility
+        # Thirumana Porutham (12 Poruthams)
         api_response = api_instance.matchmaking_thirumana_porutham(thirumana_porutham_request)
         print("The response of AstrologyApi->matchmaking_thirumana_porutham:\n")
         pprint(api_response)
@@ -1568,7 +1568,7 @@ Name | Type | Description  | Notes
 
 Nakshatra Profile
 
-Returns the complete classical profile for a given nakshatra: deity, ruling planet, gana, nature, body part, profession, life themes, strengths, challenges, favorable/unfavorable activities, and body map. Accepts nakshatra name in any case with spaces or underscores.
+Returns the complete classical profile of one nakshatra, from deity and ruling planet to favourable activities and body map. The profile covers deity, ruling planet, gana, nature, body part, profession, life themes, strengths, challenges, favorable/unfavorable activities, and body map. The name is matched ignoring case, spaces, hyphens and common romanisation differences (e.g. 'uttarashadha' finds Uttara Ashadha, 'Aswini' finds Ashwini); an unknown name returns 404 with the 27 valid names.
 
 ### Example
 
@@ -1919,7 +1919,7 @@ Name | Type | Description  | Notes
 
 Monthly Panchanga calendar
 
-Panchanga for every day of a month at a location. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days.
+Panchanga for every day of a month at a location, one entry per day. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days.
 
 ### Example
 
@@ -2018,7 +2018,7 @@ Name | Type | Description  | Notes
 
 Monthly Panchanga calendar (JSON body)
 
-Same data as GET /v1/astro/panchanga/calendar. Minimum required JSON fields: `year` (1900–2100), `month` (1–12), `lat`, `lon`. Optional `timezone` defaults to Asia/Kolkata.
+Panchanga for every day of a month, the same data as GET /v1/astro/panchanga/calendar sent as a JSON body. Minimum required JSON fields: `year` (1900–2100), `month` (1–12), `lat`, `lon`. Optional `timezone` defaults to Asia/Kolkata.
 
 ### Example
 
@@ -2291,7 +2291,7 @@ Name | Type | Description  | Notes
 
 Planetary hours (Hora)
 
-Calculate all 24 Hora (planetary hours) for a given date and location using unequal seasonal division: 12 equal parts from sunrise to sunset and 12 from sunset to next sunrise. The first hora after sunrise is ruled by the sunrise-boundary Vedic vara lord; subsequent horas follow the Chaldean sequence. Response includes a convention field naming the division used.
+Calculates all 24 Hora (planetary hours) for a date and location, using unequal seasonal hours. Sunrise to sunset and sunset to next sunrise are each split into 12 equal parts. The first hora after sunrise is ruled by the sunrise-boundary Vedic vara lord; subsequent horas follow the Chaldean sequence. Response includes a convention field naming the division used.
 
 ### Example
 
@@ -2467,7 +2467,7 @@ Name | Type | Description  | Notes
 
 Tamil Panchanga
 
-Tamil-specific Panchanga for a date and location. Returns the Tamil inauspicious periods Rahu Kalam, Yamagandam and Kuligai (emagandam is the Tamil spelling of Yamagandam and repeats the same period), Nalla Neram (daytime windows free of those periods), and the Tamil solar month name derived from the Sun's sidereal position at sunrise.
+Tamil Panchanga for a date and location: Rahu Kalam, Yamagandam, Kuligai, Nalla Neram and the Tamil solar month. Rahu Kalam, Yamagandam and Kuligai are the Tamil inauspicious periods (emagandam is the Tamil spelling of Yamagandam and repeats the same period), Nalla Neram (daytime windows free of those periods), and the Tamil solar month name derived from the Sun's sidereal position at sunrise.
 
 ### Example
 
@@ -3351,7 +3351,7 @@ Name | Type | Description  | Notes
 
 Calculate yoga combinations
 
-Detect all classical Vedic yogas in a natal chart — Pancha Mahapurusha Yogas, Raja Yogas, Gajakesari, Neecha Bhanga Raja Yoga, Budhaditya, Chandra Mangala, Viparita Raja, Amala, and more. House lords are taken by whole sign from the lagna (so they are found at polar latitudes too) and aspects are full Parashari graha drishti only. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
+Detects classical Vedic yogas in a natal chart, such as Pancha Mahapurusha, Raja, Gajakesari and Neecha Bhanga Raja Yoga. Others include Budhaditya, Chandra Mangala, Viparita Raja, Amala, and more. House lords are taken by whole sign from the lagna (so they are found at polar latitudes too) and aspects are full Parashari graha drishti only. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
 
 ### Example
 

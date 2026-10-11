@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -34,7 +34,9 @@ class TransitAspectSchema(BaseModel):
     exact_angle: Union[StrictFloat, StrictInt]
     orb: Union[StrictFloat, StrictInt]
     is_applying: StrictBool = Field(description="True if the transiting planet's instantaneous motion is closing the orb to the (fixed) natal planet. False if separating or exact.")
-    __properties: ClassVar[List[str]] = ["transit_planet", "natal_planet", "type", "exact_angle", "orb", "is_applying"]
+    exact_at: Optional[StrictStr] = None
+    days_to_exact: Optional[Union[StrictFloat, StrictInt]] = None
+    __properties: ClassVar[List[str]] = ["transit_planet", "natal_planet", "type", "exact_angle", "orb", "is_applying", "exact_at", "days_to_exact"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,6 +77,16 @@ class TransitAspectSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if exact_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.exact_at is None and "exact_at" in self.model_fields_set:
+            _dict['exact_at'] = None
+
+        # set to None if days_to_exact (nullable) is None
+        # and model_fields_set contains the field
+        if self.days_to_exact is None and "days_to_exact" in self.model_fields_set:
+            _dict['days_to_exact'] = None
+
         return _dict
 
     @classmethod
@@ -92,7 +104,9 @@ class TransitAspectSchema(BaseModel):
             "type": obj.get("type"),
             "exact_angle": obj.get("exact_angle"),
             "orb": obj.get("orb"),
-            "is_applying": obj.get("is_applying")
+            "is_applying": obj.get("is_applying"),
+            "exact_at": obj.get("exact_at"),
+            "days_to_exact": obj.get("days_to_exact")
         })
         return _obj
 

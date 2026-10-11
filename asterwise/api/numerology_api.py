@@ -638,7 +638,7 @@ class NumerologyApi:
     ) -> ApiResponseAngelNumberResponse:
         """Angel number meaning
 
-        Look up the meaning of a specific angel number. Supported numbers: 000, 111–999 (single repeating digit), 1010, 1111, 1122, 1212, 1234, 2222–9999 (double repeating digit), 911. Pass the number as a string path parameter, e.g. /v1/numerology/angel/444.
+        Look up the meaning of a specific angel number such as 111, 444 or 1234. Supported numbers: 000, 111–999 (single repeating digit), 1010, 1111, 1122, 1212, 1234, 2222–9999 (double repeating digit), 911. Pass the number as a string path parameter, e.g. /v1/numerology/angel/444.
 
         :param number: (required)
         :type number: str
@@ -714,7 +714,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseAngelNumberResponse]:
         """Angel number meaning
 
-        Look up the meaning of a specific angel number. Supported numbers: 000, 111–999 (single repeating digit), 1010, 1111, 1122, 1212, 1234, 2222–9999 (double repeating digit), 911. Pass the number as a string path parameter, e.g. /v1/numerology/angel/444.
+        Look up the meaning of a specific angel number such as 111, 444 or 1234. Supported numbers: 000, 111–999 (single repeating digit), 1010, 1111, 1122, 1212, 1234, 2222–9999 (double repeating digit), 911. Pass the number as a string path parameter, e.g. /v1/numerology/angel/444.
 
         :param number: (required)
         :type number: str
@@ -790,7 +790,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Angel number meaning
 
-        Look up the meaning of a specific angel number. Supported numbers: 000, 111–999 (single repeating digit), 1010, 1111, 1122, 1212, 1234, 2222–9999 (double repeating digit), 911. Pass the number as a string path parameter, e.g. /v1/numerology/angel/444.
+        Look up the meaning of a specific angel number such as 111, 444 or 1234. Supported numbers: 000, 111–999 (single repeating digit), 1010, 1111, 1122, 1212, 1234, 2222–9999 (double repeating digit), 911. Pass the number as a string path parameter, e.g. /v1/numerology/angel/444.
 
         :param number: (required)
         :type number: str
@@ -1835,7 +1835,7 @@ class NumerologyApi:
     ) -> ApiResponseBusinessNameAnalysisResponse:
         """Business Name Numerology
 
-        Scores a business name using its Pythagorean Expression number, worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. Returns single digit, theme, harmony score (1-10), and recommended uses. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
+        Scores a business name by its Pythagorean Expression number, with theme, harmony score (1-10) and recommended uses. The number is worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
 
         :param name: Business name (required)
         :type name: str
@@ -1911,7 +1911,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseBusinessNameAnalysisResponse]:
         """Business Name Numerology
 
-        Scores a business name using its Pythagorean Expression number, worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. Returns single digit, theme, harmony score (1-10), and recommended uses. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
+        Scores a business name by its Pythagorean Expression number, with theme, harmony score (1-10) and recommended uses. The number is worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
 
         :param name: Business name (required)
         :type name: str
@@ -1987,7 +1987,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Business Name Numerology
 
-        Scores a business name using its Pythagorean Expression number, worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. Returns single digit, theme, harmony score (1-10), and recommended uses. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
+        Scores a business name by its Pythagorean Expression number, with theme, harmony score (1-10) and recommended uses. The number is worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
 
         :param name: Business name (required)
         :type name: str
@@ -6388,7 +6388,7 @@ class NumerologyApi:
     ) -> AppApiResponseApiResponseCompatibilityResponse2:
         """Calculate numerology compatibility
 
-        Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Returns score, level, and explanatory strengths/challenges.
+        Scores the numerology compatibility of two people from their Life Path numbers, which come from each person's birth `date`. Each person also sends `name` (required), which does not change the score. Returns score, level, and explanatory strengths/challenges.
 
         :param compatibility_request: (required)
         :type compatibility_request: CompatibilityRequest
@@ -6464,7 +6464,7 @@ class NumerologyApi:
     ) -> ApiResponse[AppApiResponseApiResponseCompatibilityResponse2]:
         """Calculate numerology compatibility
 
-        Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Returns score, level, and explanatory strengths/challenges.
+        Scores the numerology compatibility of two people from their Life Path numbers, which come from each person's birth `date`. Each person also sends `name` (required), which does not change the score. Returns score, level, and explanatory strengths/challenges.
 
         :param compatibility_request: (required)
         :type compatibility_request: CompatibilityRequest
@@ -6540,7 +6540,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Calculate numerology compatibility
 
-        Computes compatibility between two people from their numerology signatures. Each person uses `name` and `date` (BirthInput-aligned). Returns score, level, and explanatory strengths/challenges.
+        Scores the numerology compatibility of two people from their Life Path numbers, which come from each person's birth `date`. Each person also sends `name` (required), which does not change the score. Returns score, level, and explanatory strengths/challenges.
 
         :param compatibility_request: (required)
         :type compatibility_request: CompatibilityRequest

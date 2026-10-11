@@ -38,8 +38,9 @@ class WesternTransitRequest(BaseModel):
     timezone: Optional[StrictStr] = None
     utc_offset: Optional[StrictStr] = None
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
+    house_system: Optional[StrictStr] = Field(default='placidus', description="House system for the natal houses that transiting planets are placed in (natal_house on each transit planet). Same choices as the natal chart; Placidus is the default.")
     start_date: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "start_date"]
+    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "house_system", "start_date"]
 
     @field_validator('ayanamsa')
     def ayanamsa_validate_enum(cls, value):
@@ -49,6 +50,16 @@ class WesternTransitRequest(BaseModel):
 
         if value not in set(['lahiri', 'raman', 'kp', 'tropical']):
             raise ValueError("must be one of enum values ('lahiri', 'raman', 'kp', 'tropical')")
+        return value
+
+    @field_validator('house_system')
+    def house_system_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['placidus', 'koch', 'equal', 'whole_sign']):
+            raise ValueError("must be one of enum values ('placidus', 'koch', 'equal', 'whole_sign')")
         return value
 
     model_config = ConfigDict(
@@ -146,6 +157,7 @@ class WesternTransitRequest(BaseModel):
             "timezone": obj.get("timezone"),
             "utc_offset": obj.get("utc_offset"),
             "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri',
+            "house_system": obj.get("house_system") if obj.get("house_system") is not None else 'placidus',
             "start_date": obj.get("start_date")
         })
         return _obj

@@ -5,7 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ingresses** | [**List[IngressEvent]**](IngressEvent.md) | All sign ingress events in the requested date range. Includes all 9 Vedic planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu. | 
+**zodiac** | **str** | Zodiac used for every event: sidereal (Vedic, default) or tropical (Western). | [optional] [default to 'sidereal']
+**ayanamsa** | **str** | Ayanamsa used: lahiri (default), raman, kp, or tropical (no ayanamsa). | [optional] [default to 'lahiri']
+**ingresses** | [**List[IngressEvent]**](IngressEvent.md) | All sign ingress events in the requested date range, Moon sign changes included. Covers all 9 Vedic planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (Rahu/Ketu are the mean nodes). | 
 **stations** | [**List[StationEvent]**](StationEvent.md) | All retrograde and direct station events in the requested date range. Only the 7 classical planets (Sun through Saturn) have stations. Rahu and Ketu are always excluded from this list. | 
 
 ## Example

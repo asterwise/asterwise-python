@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
 from asterwise.models.transit_aspect_schema import TransitAspectSchema
 from typing import Optional, Set
 from typing_extensions import Self
@@ -36,7 +37,8 @@ class TransitPlanetRowSchema(BaseModel):
     degree_in_sign: Union[StrictFloat, StrictInt]
     is_retrograde: StrictBool
     aspects_to_natal: List[TransitAspectSchema]
-    __properties: ClassVar[List[str]] = ["name", "longitude", "sign", "sign_index", "degree_in_sign", "is_retrograde", "aspects_to_natal"]
+    natal_house: Optional[Annotated[int, Field(le=12, strict=True, ge=1)]] = None
+    __properties: ClassVar[List[str]] = ["name", "longitude", "sign", "sign_index", "degree_in_sign", "is_retrograde", "aspects_to_natal", "natal_house"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -84,6 +86,11 @@ class TransitPlanetRowSchema(BaseModel):
                 if _item_aspects_to_natal:
                     _items.append(_item_aspects_to_natal.to_dict())
             _dict['aspects_to_natal'] = _items
+        # set to None if natal_house (nullable) is None
+        # and model_fields_set contains the field
+        if self.natal_house is None and "natal_house" in self.model_fields_set:
+            _dict['natal_house'] = None
+
         return _dict
 
     @classmethod
@@ -102,7 +109,8 @@ class TransitPlanetRowSchema(BaseModel):
             "sign_index": obj.get("sign_index"),
             "degree_in_sign": obj.get("degree_in_sign"),
             "is_retrograde": obj.get("is_retrograde"),
-            "aspects_to_natal": [TransitAspectSchema.from_dict(_item) for _item in obj["aspects_to_natal"]] if obj.get("aspects_to_natal") is not None else None
+            "aspects_to_natal": [TransitAspectSchema.from_dict(_item) for _item in obj["aspects_to_natal"]] if obj.get("aspects_to_natal") is not None else None,
+            "natal_house": obj.get("natal_house")
         })
         return _obj
 

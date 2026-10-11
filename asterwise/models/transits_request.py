@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,7 +30,18 @@ class TransitsRequest(BaseModel):
     """ # noqa: E501
     from_date: StrictStr = Field(description="Start of the date range to scan, in YYYY-MM-DD format.")
     to_date: StrictStr = Field(description="End of the date range to scan, in YYYY-MM-DD format. Maximum range is 3 years (1095 days) from from_date.")
-    __properties: ClassVar[List[str]] = ["from_date", "to_date"]
+    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Zodiac for the sign changes. lahiri (default), raman and kp are sidereal ayanamsas (Vedic). tropical is the Western zodiac with no ayanamsa, so ingresses become Western sign changes (Sun into Aries at the March equinox, Moon sign changes every ~2.5 days). Station moments do not depend on this; only their reported longitude does.")
+    __properties: ClassVar[List[str]] = ["from_date", "to_date", "ayanamsa"]
+
+    @field_validator('ayanamsa')
+    def ayanamsa_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['lahiri', 'raman', 'kp', 'tropical']):
+            raise ValueError("must be one of enum values ('lahiri', 'raman', 'kp', 'tropical')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -84,7 +95,8 @@ class TransitsRequest(BaseModel):
 
         _obj = cls.model_validate({
             "from_date": obj.get("from_date"),
-            "to_date": obj.get("to_date")
+            "to_date": obj.get("to_date"),
+            "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri'
         })
         return _obj
 

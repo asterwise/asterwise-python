@@ -1270,7 +1270,7 @@ class AdvancedApi:
     ) -> ApiResponseTransitsResponse:
         """Planetary transits — Gochar
 
-        Scans a date range for planetary sign ingresses and retrograde/direct station events. Returns grouped transit events for supported planets. Also known as Gochar.
+        Scans a date range for planetary sign ingresses (Moon included) and retrograde/direct station events, each with its exact UTC time. Lahiri sidereal by default; set ayanamsa to 'tropical' for Western (tropical) sign changes, or 'raman' / 'kp' for those ayanamsas. Also known as Gochar.
 
         :param transits_request: (required)
         :type transits_request: TransitsRequest
@@ -1346,7 +1346,7 @@ class AdvancedApi:
     ) -> ApiResponse[ApiResponseTransitsResponse]:
         """Planetary transits — Gochar
 
-        Scans a date range for planetary sign ingresses and retrograde/direct station events. Returns grouped transit events for supported planets. Also known as Gochar.
+        Scans a date range for planetary sign ingresses (Moon included) and retrograde/direct station events, each with its exact UTC time. Lahiri sidereal by default; set ayanamsa to 'tropical' for Western (tropical) sign changes, or 'raman' / 'kp' for those ayanamsas. Also known as Gochar.
 
         :param transits_request: (required)
         :type transits_request: TransitsRequest
@@ -1422,7 +1422,7 @@ class AdvancedApi:
     ) -> RESTResponseType:
         """Planetary transits — Gochar
 
-        Scans a date range for planetary sign ingresses and retrograde/direct station events. Returns grouped transit events for supported planets. Also known as Gochar.
+        Scans a date range for planetary sign ingresses (Moon included) and retrograde/direct station events, each with its exact UTC time. Lahiri sidereal by default; set ayanamsa to 'tropical' for Western (tropical) sign changes, or 'raman' / 'kp' for those ayanamsas. Also known as Gochar.
 
         :param transits_request: (required)
         :type transits_request: TransitsRequest

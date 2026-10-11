@@ -59,7 +59,7 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseGeocodeResponse:
-        """Resolve a city or place name to latitude, longitude, and timezone
+        """Geocode a Place to Coordinates and Timezone
 
         Resolve a city or place name to coordinates and timezone.  Returns up to `limit` matches (default 5, at most 10). When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result. Repeat matches for one place (same city, state and country within 5 km) are listed once.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
 
@@ -143,7 +143,7 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseGeocodeResponse]:
-        """Resolve a city or place name to latitude, longitude, and timezone
+        """Geocode a Place to Coordinates and Timezone
 
         Resolve a city or place name to coordinates and timezone.  Returns up to `limit` matches (default 5, at most 10). When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result. Repeat matches for one place (same city, state and country within 5 km) are listed once.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
 
@@ -227,7 +227,7 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Resolve a city or place name to latitude, longitude, and timezone
+        """Geocode a Place to Coordinates and Timezone
 
         Resolve a city or place name to coordinates and timezone.  Returns up to `limit` matches (default 5, at most 10). When a query is ambiguous (e.g. 'Fatehabad' exists in multiple states), multiple results are returned so the developer can present a disambiguation UI or use the first result. Repeat matches for one place (same city, state and country within 5 km) are listed once.  Examples: ?q=Mumbai, ?q=Rome Italy, ?q=New York USA, ?q=London UK  Pass state/country for precise results: ?q=Fatehabad,Haryana or ?q=Fatehabad&country=in
 
@@ -384,9 +384,9 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseTimezoneResponse:
-        """Return the IANA timezone for a given coordinate pair
+        """IANA Timezone for Coordinates
 
-        Get IANA timezone for a coordinate pair. Fully offline — no external API call. Accepts ?latitude=&longitude= and/or ?lat=&lon= (any pair that supplies both coordinates). Examples: ?latitude=19.055&longitude=72.869 (Mumbai), ?lat=19.055&lon=72.869
+        Returns the IANA timezone (e.g. Asia/Kolkata) for a latitude and longitude pair. Fully offline — no external API call. Accepts ?latitude=&longitude= and/or ?lat=&lon= (any pair that supplies both coordinates). Examples: ?latitude=19.055&longitude=72.869 (Mumbai), ?lat=19.055&lon=72.869
 
         :param latitude: Latitude (alias: lat)
         :type latitude: float
@@ -472,9 +472,9 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseTimezoneResponse]:
-        """Return the IANA timezone for a given coordinate pair
+        """IANA Timezone for Coordinates
 
-        Get IANA timezone for a coordinate pair. Fully offline — no external API call. Accepts ?latitude=&longitude= and/or ?lat=&lon= (any pair that supplies both coordinates). Examples: ?latitude=19.055&longitude=72.869 (Mumbai), ?lat=19.055&lon=72.869
+        Returns the IANA timezone (e.g. Asia/Kolkata) for a latitude and longitude pair. Fully offline — no external API call. Accepts ?latitude=&longitude= and/or ?lat=&lon= (any pair that supplies both coordinates). Examples: ?latitude=19.055&longitude=72.869 (Mumbai), ?lat=19.055&lon=72.869
 
         :param latitude: Latitude (alias: lat)
         :type latitude: float
@@ -560,9 +560,9 @@ class UtilitiesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Return the IANA timezone for a given coordinate pair
+        """IANA Timezone for Coordinates
 
-        Get IANA timezone for a coordinate pair. Fully offline — no external API call. Accepts ?latitude=&longitude= and/or ?lat=&lon= (any pair that supplies both coordinates). Examples: ?latitude=19.055&longitude=72.869 (Mumbai), ?lat=19.055&lon=72.869
+        Returns the IANA timezone (e.g. Asia/Kolkata) for a latitude and longitude pair. Fully offline — no external API call. Accepts ?latitude=&longitude= and/or ?lat=&lon= (any pair that supplies both coordinates). Examples: ?latitude=19.055&longitude=72.869 (Mumbai), ?lat=19.055&lon=72.869
 
         :param latitude: Latitude (alias: lat)
         :type latitude: float

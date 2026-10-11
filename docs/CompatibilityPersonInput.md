@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | Name of the person in compatibility calculation | 
+**name** | **str** | Name of the person. Required, but it does not change the score: only the birth date does. | 
 **var_date** | **date** | Birth date for compatibility calculation (YYYY-MM-DD) | 
 
 ## Example

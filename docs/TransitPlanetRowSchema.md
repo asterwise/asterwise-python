@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **degree_in_sign** | **float** |  | 
 **is_retrograde** | **bool** |  | 
 **aspects_to_natal** | [**List[TransitAspectSchema]**](TransitAspectSchema.md) |  | 
+**natal_house** | **int** |  | [optional] 
 
 ## Example
 
