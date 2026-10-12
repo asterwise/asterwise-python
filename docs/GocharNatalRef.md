@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **moon_sign_index** | **int** |  | 
 **ascendant_sign** | **str** |  | 
 **ascendant_sign_index** | **int** |  | 
+**moon_tropical_sign** | **str** |  | [optional] 
+**ascendant_tropical_sign** | **str** |  | [optional] 
 
 ## Example
 

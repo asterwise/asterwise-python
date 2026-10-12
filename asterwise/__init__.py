@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.11.0"
+__version__ = "0.12.0"
 
 # Define package exports
 __all__ = [
@@ -30,8 +30,10 @@ __all__ = [
     "PrashnaApi",
     "TarotApi",
     "UtilitiesApi",
+    "VedicReferenceApi",
     "WesternApi",
     "WesternAstrologyApi",
+    "DefaultApi",
     "ApiResponse",
     "ApiClient",
     "Configuration",
@@ -116,16 +118,20 @@ __all__ = [
     "ApiResponsePrashnaResponse",
     "ApiResponseProfectionsResponse",
     "ApiResponseRahuKaalResponse",
+    "ApiResponseRangeEventsResponse",
+    "ApiResponseReferenceChartsResponse",
     "ApiResponseRemediesResponse",
     "ApiResponseReturnChartResponse",
     "ApiResponseSadeSatiResponse",
     "ApiResponseSahamResponse",
     "ApiResponseSecondaryProgressionResponse",
+    "ApiResponseSignificationsResponse",
     "ApiResponseSolarArcResponse",
     "ApiResponseSpreadResponse",
     "ApiResponseStrengthResponse",
     "ApiResponseSynastryResponse",
     "ApiResponseTamilPanchangaResponse",
+    "ApiResponseTarabalaResponse",
     "ApiResponseTarotCardSchema",
     "ApiResponseThirumanaPoruthamResponse",
     "ApiResponseTimezoneResponse",
@@ -136,9 +142,13 @@ __all__ = [
     "ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse",
     "ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse",
     "ApiResponseVarshaphalResponse",
+    "ApiResponseVedicDailyFactorsResponse",
     "ApiResponseVoidOfCourseResponse",
     "ApiResponseWeeklyTransitResponse",
     "ApiResponseWesternAspectsResponse",
+    "ApiResponseWesternDailyFactorsResponse",
+    "ApiResponseWesternDayResponse",
+    "ApiResponseWesternHoraryResponse",
     "ApiResponseWesternHoroscopeData",
     "ApiResponseWesternNatalResponse",
     "ApiResponseYesNoResponse",
@@ -184,6 +194,7 @@ __all__ = [
     "ChaldeanRequest",
     "ChaldeanResponse",
     "ChandrabalaDetail",
+    "ChandrabalaInfo",
     "CharAntardasha",
     "CharDashaRequest",
     "CharDashaResponse",
@@ -192,6 +203,7 @@ __all__ = [
     "ChartResponse",
     "ChoghadiyaPeriod",
     "ChoghadiyaResponse",
+    "CivilDay",
     "ClassicalSource",
     "CompatibilityPersonInput",
     "CompatibilityRequest",
@@ -205,6 +217,7 @@ __all__ = [
     "CrystalRecommendRequest",
     "CrystalRecommendResponse",
     "CrystalsByPlanetResponse",
+    "DailyFactor",
     "DailyScore",
     "DailyTransitResponse",
     "DashaEndpointResponse",
@@ -244,6 +257,7 @@ __all__ = [
     "EclipsesResponse",
     "ErrorCode",
     "ErrorResponse",
+    "FactorTime",
     "FestivalCalendarResponse",
     "FestivalEclipse",
     "FestivalEntry",
@@ -271,12 +285,14 @@ __all__ = [
     "HarshaBalaResponse",
     "HoraPeriod",
     "HoraResponse",
+    "HoraWindow",
     "HoroscopeChapter",
     "HoroscopeContent",
     "HoroscopeData",
     "HoroscopeLandmarkDate",
     "HoroscopePhase",
     "HouseData",
+    "HouseSignifications",
     "IngressEvent",
     "IshtaDevtaRequest",
     "IshtaDevtaResponse",
@@ -318,8 +334,11 @@ __all__ = [
     "MaturityNumberResponse",
     "MobileNumberRequest",
     "MonthlyTransitResponse",
+    "MoonNakshatraSpan",
     "MoonPhaseResponse",
     "MoonRashi",
+    "MoonSignChange",
+    "MoonSignSpan",
     "MuhurtaChandra",
     "MuhurtaCriteria",
     "MuhurtaLagna",
@@ -376,6 +395,7 @@ __all__ = [
     "PlanetNatureEntry",
     "PlanetNatureSingleResponse",
     "PlanetPosition",
+    "PlanetSignifications",
     "PlanetaryHour",
     "PlanetaryHoursRequest",
     "PlanetaryHoursResponse",
@@ -400,7 +420,11 @@ __all__ = [
     "PujaSuggestionSingleResponse",
     "PujaSuggestionsAllResponse",
     "RahuKaalResponse",
+    "RangeEvent",
+    "RangeEventsResponse",
     "RashiDrishtiEntry",
+    "ReferenceChart",
+    "ReferenceChartsResponse",
     "RemediesRequest",
     "RemediesResponse",
     "ReturnChartResponse",
@@ -418,6 +442,9 @@ __all__ = [
     "SaturnStay",
     "SecondaryProgressionResponse",
     "SignSpan",
+    "Signification",
+    "SignificationDomain",
+    "SignificationsResponse",
     "SmallPanotiPeriod",
     "SolarArcPlanetSchema",
     "SolarArcResponse",
@@ -431,7 +458,11 @@ __all__ = [
     "TamilKaalPeriod",
     "TamilNallaNeramWindow",
     "TamilPanchangaResponse",
+    "TaraInfo",
     "TarabalaDetail",
+    "TarabalaNatal",
+    "TarabalaRequest",
+    "TarabalaResponse",
     "TarotCardSchema",
     "ThirumanaPoruthamRequest",
     "ThirumanaPoruthamResponse",
@@ -454,6 +485,9 @@ __all__ = [
     "VarshaphalPlanet",
     "VarshaphalRequest",
     "VarshaphalResponse",
+    "VedicDailyFactorsRequest",
+    "VedicDailyFactorsResponse",
+    "VedicEventsRequest",
     "VehicleNumberRequest",
     "VoidOfCourseLastAspect",
     "VoidOfCoursePeriod",
@@ -464,9 +498,18 @@ __all__ = [
     "WesternAspect",
     "WesternAspectsRequest",
     "WesternAspectsResponse",
+    "WesternDailyFactorsRequest",
+    "WesternDailyFactorsResponse",
+    "WesternDayMoon",
+    "WesternDayRequest",
+    "WesternDayResponse",
+    "WesternDayVoidPeriod",
     "WesternElements",
     "WesternEssentialDignities",
+    "WesternEventsRequest",
     "WesternHemisphere",
+    "WesternHoraryRequest",
+    "WesternHoraryResponse",
     "WesternHoroscopeChapter",
     "WesternHoroscopeContent",
     "WesternHoroscopeData",
@@ -503,8 +546,10 @@ from asterwise.api.numerology_api import NumerologyApi as NumerologyApi
 from asterwise.api.prashna_api import PrashnaApi as PrashnaApi
 from asterwise.api.tarot_api import TarotApi as TarotApi
 from asterwise.api.utilities_api import UtilitiesApi as UtilitiesApi
+from asterwise.api.vedic_reference_api import VedicReferenceApi as VedicReferenceApi
 from asterwise.api.western_api import WesternApi as WesternApi
 from asterwise.api.western_astrology_api import WesternAstrologyApi as WesternAstrologyApi
+from asterwise.api.default_api import DefaultApi as DefaultApi
 
 # import ApiClient
 from asterwise.api_response import ApiResponse as ApiResponse
@@ -593,16 +638,20 @@ from asterwise.models.api_response_porutham_response import ApiResponsePoruthamR
 from asterwise.models.api_response_prashna_response import ApiResponsePrashnaResponse as ApiResponsePrashnaResponse
 from asterwise.models.api_response_profections_response import ApiResponseProfectionsResponse as ApiResponseProfectionsResponse
 from asterwise.models.api_response_rahu_kaal_response import ApiResponseRahuKaalResponse as ApiResponseRahuKaalResponse
+from asterwise.models.api_response_range_events_response import ApiResponseRangeEventsResponse as ApiResponseRangeEventsResponse
+from asterwise.models.api_response_reference_charts_response import ApiResponseReferenceChartsResponse as ApiResponseReferenceChartsResponse
 from asterwise.models.api_response_remedies_response import ApiResponseRemediesResponse as ApiResponseRemediesResponse
 from asterwise.models.api_response_return_chart_response import ApiResponseReturnChartResponse as ApiResponseReturnChartResponse
 from asterwise.models.api_response_sade_sati_response import ApiResponseSadeSatiResponse as ApiResponseSadeSatiResponse
 from asterwise.models.api_response_saham_response import ApiResponseSahamResponse as ApiResponseSahamResponse
 from asterwise.models.api_response_secondary_progression_response import ApiResponseSecondaryProgressionResponse as ApiResponseSecondaryProgressionResponse
+from asterwise.models.api_response_significations_response import ApiResponseSignificationsResponse as ApiResponseSignificationsResponse
 from asterwise.models.api_response_solar_arc_response import ApiResponseSolarArcResponse as ApiResponseSolarArcResponse
 from asterwise.models.api_response_spread_response import ApiResponseSpreadResponse as ApiResponseSpreadResponse
 from asterwise.models.api_response_strength_response import ApiResponseStrengthResponse as ApiResponseStrengthResponse
 from asterwise.models.api_response_synastry_response import ApiResponseSynastryResponse as ApiResponseSynastryResponse
 from asterwise.models.api_response_tamil_panchanga_response import ApiResponseTamilPanchangaResponse as ApiResponseTamilPanchangaResponse
+from asterwise.models.api_response_tarabala_response import ApiResponseTarabalaResponse as ApiResponseTarabalaResponse
 from asterwise.models.api_response_tarot_card_schema import ApiResponseTarotCardSchema as ApiResponseTarotCardSchema
 from asterwise.models.api_response_thirumana_porutham_response import ApiResponseThirumanaPoruthamResponse as ApiResponseThirumanaPoruthamResponse
 from asterwise.models.api_response_timezone_response import ApiResponseTimezoneResponse as ApiResponseTimezoneResponse
@@ -613,9 +662,13 @@ from asterwise.models.api_response_union_planet_nature_all_response_planet_natur
 from asterwise.models.api_response_union_puja_suggestions_all_response_puja_suggestion_single_response import ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse as ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse
 from asterwise.models.api_response_union_rudraksha_all_response_rudraksha_single_response import ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse as ApiResponseUnionRudrakshaAllResponseRudrakshaSingleResponse
 from asterwise.models.api_response_varshaphal_response import ApiResponseVarshaphalResponse as ApiResponseVarshaphalResponse
+from asterwise.models.api_response_vedic_daily_factors_response import ApiResponseVedicDailyFactorsResponse as ApiResponseVedicDailyFactorsResponse
 from asterwise.models.api_response_void_of_course_response import ApiResponseVoidOfCourseResponse as ApiResponseVoidOfCourseResponse
 from asterwise.models.api_response_weekly_transit_response import ApiResponseWeeklyTransitResponse as ApiResponseWeeklyTransitResponse
 from asterwise.models.api_response_western_aspects_response import ApiResponseWesternAspectsResponse as ApiResponseWesternAspectsResponse
+from asterwise.models.api_response_western_daily_factors_response import ApiResponseWesternDailyFactorsResponse as ApiResponseWesternDailyFactorsResponse
+from asterwise.models.api_response_western_day_response import ApiResponseWesternDayResponse as ApiResponseWesternDayResponse
+from asterwise.models.api_response_western_horary_response import ApiResponseWesternHoraryResponse as ApiResponseWesternHoraryResponse
 from asterwise.models.api_response_western_horoscope_data import ApiResponseWesternHoroscopeData as ApiResponseWesternHoroscopeData
 from asterwise.models.api_response_western_natal_response import ApiResponseWesternNatalResponse as ApiResponseWesternNatalResponse
 from asterwise.models.api_response_yes_no_response import ApiResponseYesNoResponse as ApiResponseYesNoResponse
@@ -661,6 +714,7 @@ from asterwise.models.chaldean_number_block import ChaldeanNumberBlock as Chalde
 from asterwise.models.chaldean_request import ChaldeanRequest as ChaldeanRequest
 from asterwise.models.chaldean_response import ChaldeanResponse as ChaldeanResponse
 from asterwise.models.chandrabala_detail import ChandrabalaDetail as ChandrabalaDetail
+from asterwise.models.chandrabala_info import ChandrabalaInfo as ChandrabalaInfo
 from asterwise.models.char_antardasha import CharAntardasha as CharAntardasha
 from asterwise.models.char_dasha_request import CharDashaRequest as CharDashaRequest
 from asterwise.models.char_dasha_response import CharDashaResponse as CharDashaResponse
@@ -669,6 +723,7 @@ from asterwise.models.chart_request import ChartRequest as ChartRequest
 from asterwise.models.chart_response import ChartResponse as ChartResponse
 from asterwise.models.choghadiya_period import ChoghadiyaPeriod as ChoghadiyaPeriod
 from asterwise.models.choghadiya_response import ChoghadiyaResponse as ChoghadiyaResponse
+from asterwise.models.civil_day import CivilDay as CivilDay
 from asterwise.models.classical_source import ClassicalSource as ClassicalSource
 from asterwise.models.compatibility_person_input import CompatibilityPersonInput as CompatibilityPersonInput
 from asterwise.models.compatibility_request import CompatibilityRequest as CompatibilityRequest
@@ -682,6 +737,7 @@ from asterwise.models.crystal_list_response import CrystalListResponse as Crysta
 from asterwise.models.crystal_recommend_request import CrystalRecommendRequest as CrystalRecommendRequest
 from asterwise.models.crystal_recommend_response import CrystalRecommendResponse as CrystalRecommendResponse
 from asterwise.models.crystals_by_planet_response import CrystalsByPlanetResponse as CrystalsByPlanetResponse
+from asterwise.models.daily_factor import DailyFactor as DailyFactor
 from asterwise.models.daily_score import DailyScore as DailyScore
 from asterwise.models.daily_transit_response import DailyTransitResponse as DailyTransitResponse
 from asterwise.models.dasha_endpoint_response import DashaEndpointResponse as DashaEndpointResponse
@@ -721,6 +777,7 @@ from asterwise.models.eclipses_request import EclipsesRequest as EclipsesRequest
 from asterwise.models.eclipses_response import EclipsesResponse as EclipsesResponse
 from asterwise.models.error_code import ErrorCode as ErrorCode
 from asterwise.models.error_response import ErrorResponse as ErrorResponse
+from asterwise.models.factor_time import FactorTime as FactorTime
 from asterwise.models.festival_calendar_response import FestivalCalendarResponse as FestivalCalendarResponse
 from asterwise.models.festival_eclipse import FestivalEclipse as FestivalEclipse
 from asterwise.models.festival_entry import FestivalEntry as FestivalEntry
@@ -748,12 +805,14 @@ from asterwise.models.harsha_bala_entry import HarshaBalaEntry as HarshaBalaEntr
 from asterwise.models.harsha_bala_response import HarshaBalaResponse as HarshaBalaResponse
 from asterwise.models.hora_period import HoraPeriod as HoraPeriod
 from asterwise.models.hora_response import HoraResponse as HoraResponse
+from asterwise.models.hora_window import HoraWindow as HoraWindow
 from asterwise.models.horoscope_chapter import HoroscopeChapter as HoroscopeChapter
 from asterwise.models.horoscope_content import HoroscopeContent as HoroscopeContent
 from asterwise.models.horoscope_data import HoroscopeData as HoroscopeData
 from asterwise.models.horoscope_landmark_date import HoroscopeLandmarkDate as HoroscopeLandmarkDate
 from asterwise.models.horoscope_phase import HoroscopePhase as HoroscopePhase
 from asterwise.models.house_data import HouseData as HouseData
+from asterwise.models.house_significations import HouseSignifications as HouseSignifications
 from asterwise.models.ingress_event import IngressEvent as IngressEvent
 from asterwise.models.ishta_devta_request import IshtaDevtaRequest as IshtaDevtaRequest
 from asterwise.models.ishta_devta_response import IshtaDevtaResponse as IshtaDevtaResponse
@@ -795,8 +854,11 @@ from asterwise.models.maturity_number_request import MaturityNumberRequest as Ma
 from asterwise.models.maturity_number_response import MaturityNumberResponse as MaturityNumberResponse
 from asterwise.models.mobile_number_request import MobileNumberRequest as MobileNumberRequest
 from asterwise.models.monthly_transit_response import MonthlyTransitResponse as MonthlyTransitResponse
+from asterwise.models.moon_nakshatra_span import MoonNakshatraSpan as MoonNakshatraSpan
 from asterwise.models.moon_phase_response import MoonPhaseResponse as MoonPhaseResponse
 from asterwise.models.moon_rashi import MoonRashi as MoonRashi
+from asterwise.models.moon_sign_change import MoonSignChange as MoonSignChange
+from asterwise.models.moon_sign_span import MoonSignSpan as MoonSignSpan
 from asterwise.models.muhurta_chandra import MuhurtaChandra as MuhurtaChandra
 from asterwise.models.muhurta_criteria import MuhurtaCriteria as MuhurtaCriteria
 from asterwise.models.muhurta_lagna import MuhurtaLagna as MuhurtaLagna
@@ -853,6 +915,7 @@ from asterwise.models.planet_nature_all_response import PlanetNatureAllResponse 
 from asterwise.models.planet_nature_entry import PlanetNatureEntry as PlanetNatureEntry
 from asterwise.models.planet_nature_single_response import PlanetNatureSingleResponse as PlanetNatureSingleResponse
 from asterwise.models.planet_position import PlanetPosition as PlanetPosition
+from asterwise.models.planet_significations import PlanetSignifications as PlanetSignifications
 from asterwise.models.planetary_hour import PlanetaryHour as PlanetaryHour
 from asterwise.models.planetary_hours_request import PlanetaryHoursRequest as PlanetaryHoursRequest
 from asterwise.models.planetary_hours_response import PlanetaryHoursResponse as PlanetaryHoursResponse
@@ -877,7 +940,11 @@ from asterwise.models.puja_suggestion_entry import PujaSuggestionEntry as PujaSu
 from asterwise.models.puja_suggestion_single_response import PujaSuggestionSingleResponse as PujaSuggestionSingleResponse
 from asterwise.models.puja_suggestions_all_response import PujaSuggestionsAllResponse as PujaSuggestionsAllResponse
 from asterwise.models.rahu_kaal_response import RahuKaalResponse as RahuKaalResponse
+from asterwise.models.range_event import RangeEvent as RangeEvent
+from asterwise.models.range_events_response import RangeEventsResponse as RangeEventsResponse
 from asterwise.models.rashi_drishti_entry import RashiDrishtiEntry as RashiDrishtiEntry
+from asterwise.models.reference_chart import ReferenceChart as ReferenceChart
+from asterwise.models.reference_charts_response import ReferenceChartsResponse as ReferenceChartsResponse
 from asterwise.models.remedies_request import RemediesRequest as RemediesRequest
 from asterwise.models.remedies_response import RemediesResponse as RemediesResponse
 from asterwise.models.return_chart_response import ReturnChartResponse as ReturnChartResponse
@@ -895,6 +962,9 @@ from asterwise.models.samvat import Samvat as Samvat
 from asterwise.models.saturn_stay import SaturnStay as SaturnStay
 from asterwise.models.secondary_progression_response import SecondaryProgressionResponse as SecondaryProgressionResponse
 from asterwise.models.sign_span import SignSpan as SignSpan
+from asterwise.models.signification import Signification as Signification
+from asterwise.models.signification_domain import SignificationDomain as SignificationDomain
+from asterwise.models.significations_response import SignificationsResponse as SignificationsResponse
 from asterwise.models.small_panoti_period import SmallPanotiPeriod as SmallPanotiPeriod
 from asterwise.models.solar_arc_planet_schema import SolarArcPlanetSchema as SolarArcPlanetSchema
 from asterwise.models.solar_arc_response import SolarArcResponse as SolarArcResponse
@@ -908,7 +978,11 @@ from asterwise.models.synastry_response import SynastryResponse as SynastryRespo
 from asterwise.models.tamil_kaal_period import TamilKaalPeriod as TamilKaalPeriod
 from asterwise.models.tamil_nalla_neram_window import TamilNallaNeramWindow as TamilNallaNeramWindow
 from asterwise.models.tamil_panchanga_response import TamilPanchangaResponse as TamilPanchangaResponse
+from asterwise.models.tara_info import TaraInfo as TaraInfo
 from asterwise.models.tarabala_detail import TarabalaDetail as TarabalaDetail
+from asterwise.models.tarabala_natal import TarabalaNatal as TarabalaNatal
+from asterwise.models.tarabala_request import TarabalaRequest as TarabalaRequest
+from asterwise.models.tarabala_response import TarabalaResponse as TarabalaResponse
 from asterwise.models.tarot_card_schema import TarotCardSchema as TarotCardSchema
 from asterwise.models.thirumana_porutham_request import ThirumanaPoruthamRequest as ThirumanaPoruthamRequest
 from asterwise.models.thirumana_porutham_response import ThirumanaPoruthamResponse as ThirumanaPoruthamResponse
@@ -931,6 +1005,9 @@ from asterwise.models.varshaphal_muntha import VarshaphalMuntha as VarshaphalMun
 from asterwise.models.varshaphal_planet import VarshaphalPlanet as VarshaphalPlanet
 from asterwise.models.varshaphal_request import VarshaphalRequest as VarshaphalRequest
 from asterwise.models.varshaphal_response import VarshaphalResponse as VarshaphalResponse
+from asterwise.models.vedic_daily_factors_request import VedicDailyFactorsRequest as VedicDailyFactorsRequest
+from asterwise.models.vedic_daily_factors_response import VedicDailyFactorsResponse as VedicDailyFactorsResponse
+from asterwise.models.vedic_events_request import VedicEventsRequest as VedicEventsRequest
 from asterwise.models.vehicle_number_request import VehicleNumberRequest as VehicleNumberRequest
 from asterwise.models.void_of_course_last_aspect import VoidOfCourseLastAspect as VoidOfCourseLastAspect
 from asterwise.models.void_of_course_period import VoidOfCoursePeriod as VoidOfCoursePeriod
@@ -941,9 +1018,18 @@ from asterwise.models.western_angle import WesternAngle as WesternAngle
 from asterwise.models.western_aspect import WesternAspect as WesternAspect
 from asterwise.models.western_aspects_request import WesternAspectsRequest as WesternAspectsRequest
 from asterwise.models.western_aspects_response import WesternAspectsResponse as WesternAspectsResponse
+from asterwise.models.western_daily_factors_request import WesternDailyFactorsRequest as WesternDailyFactorsRequest
+from asterwise.models.western_daily_factors_response import WesternDailyFactorsResponse as WesternDailyFactorsResponse
+from asterwise.models.western_day_moon import WesternDayMoon as WesternDayMoon
+from asterwise.models.western_day_request import WesternDayRequest as WesternDayRequest
+from asterwise.models.western_day_response import WesternDayResponse as WesternDayResponse
+from asterwise.models.western_day_void_period import WesternDayVoidPeriod as WesternDayVoidPeriod
 from asterwise.models.western_elements import WesternElements as WesternElements
 from asterwise.models.western_essential_dignities import WesternEssentialDignities as WesternEssentialDignities
+from asterwise.models.western_events_request import WesternEventsRequest as WesternEventsRequest
 from asterwise.models.western_hemisphere import WesternHemisphere as WesternHemisphere
+from asterwise.models.western_horary_request import WesternHoraryRequest as WesternHoraryRequest
+from asterwise.models.western_horary_response import WesternHoraryResponse as WesternHoraryResponse
 from asterwise.models.western_horoscope_chapter import WesternHoroscopeChapter as WesternHoroscopeChapter
 from asterwise.models.western_horoscope_content import WesternHoroscopeContent as WesternHoroscopeContent
 from asterwise.models.western_horoscope_data import WesternHoroscopeData as WesternHoroscopeData

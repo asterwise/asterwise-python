@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **total_score** | **float** | Overall Guna Milan score out of 36 | 
-**breakdown** | **Dict[str, float]** | Per-koota score breakdown | 
+**breakdown** | **Dict[str, Optional[float]]** | Per-koota score breakdown | 
 **compatibility_level** | **str** | Textual compatibility band derived from score | 
 **doshas** | **Dict[str, object]** | Detected compatibility doshas | 
 **dosha_cancellations** | **Dict[str, object]** | Traditional dosha cancellation flags | 

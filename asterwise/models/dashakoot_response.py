@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from asterwise.models.dashakoot_doshas import DashakootDoshas
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,6 +29,9 @@ class DashakootResponse(BaseModel):
     """
     DashakootResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True only when both people supplied a birth time. See person1_birth_time_provided and person2_birth_time_provided.")
+    person1_birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when person 1 supplied a birth time.")
+    person2_birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when person 2 supplied a birth time.")
     total_score: Union[StrictFloat, StrictInt]
     max_score: Union[StrictFloat, StrictInt]
     percentage: Union[StrictFloat, StrictInt]
@@ -37,7 +40,7 @@ class DashakootResponse(BaseModel):
     max_per_koota: Dict[str, Union[StrictFloat, StrictInt]]
     doshas: DashakootDoshas
     supplementary: Dict[str, Any]
-    __properties: ClassVar[List[str]] = ["total_score", "max_score", "percentage", "compatibility_level", "breakdown", "max_per_koota", "doshas", "supplementary"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "total_score", "max_score", "percentage", "compatibility_level", "breakdown", "max_per_koota", "doshas", "supplementary"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -93,6 +96,9 @@ class DashakootResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
+            "person1_birth_time_provided": obj.get("person1_birth_time_provided") if obj.get("person1_birth_time_provided") is not None else True,
+            "person2_birth_time_provided": obj.get("person2_birth_time_provided") if obj.get("person2_birth_time_provided") is not None else True,
             "total_score": obj.get("total_score"),
             "max_score": obj.get("max_score"),
             "percentage": obj.get("percentage"),

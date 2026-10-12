@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.kaal_period import KaalPeriod
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,13 +29,29 @@ class RahuKaalResponse(BaseModel):
     """
     RahuKaalResponse
     """ # noqa: E501
+    status: Optional[StrictStr] = Field(default='ok', description="ok, or no_sunrise when the place has no sunrise or sunset on that date (polar latitudes): the window fields are then null.")
+    status_detail: Optional[StrictStr] = None
     var_date: StrictStr = Field(description="Date for which Rahu Kaal is calculated (YYYY-MM-DD).", alias="date")
-    sunrise: StrictStr = Field(description="Sunrise time in HH:MM local time.")
-    sunset: StrictStr = Field(description="Sunset time in HH:MM local time.")
-    rahu_kaal: KaalPeriod = Field(description="Rahu Kaal period — inauspicious for new beginnings.")
-    gulika_kaal: KaalPeriod = Field(description="Gulika Kaal (Mandi) period — inauspicious.")
-    yamaganda_kaal: KaalPeriod = Field(description="Yamaganda Kaal period — inauspicious.")
-    __properties: ClassVar[List[str]] = ["date", "sunrise", "sunset", "rahu_kaal", "gulika_kaal", "yamaganda_kaal"]
+    sunrise: Optional[StrictStr] = None
+    sunrise_at: Optional[StrictStr] = None
+    sunrise_utc: Optional[StrictStr] = None
+    sunset: Optional[StrictStr] = None
+    sunset_at: Optional[StrictStr] = None
+    sunset_utc: Optional[StrictStr] = None
+    rahu_kaal: Optional[KaalPeriod] = None
+    gulika_kaal: Optional[KaalPeriod] = None
+    yamaganda_kaal: Optional[KaalPeriod] = None
+    __properties: ClassVar[List[str]] = ["status", "status_detail", "date", "sunrise", "sunrise_at", "sunrise_utc", "sunset", "sunset_at", "sunset_utc", "rahu_kaal", "gulika_kaal", "yamaganda_kaal"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['ok', 'no_sunrise']):
+            raise ValueError("must be one of enum values ('ok', 'no_sunrise')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -85,6 +101,56 @@ class RahuKaalResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of yamaganda_kaal
         if self.yamaganda_kaal:
             _dict['yamaganda_kaal'] = self.yamaganda_kaal.to_dict()
+        # set to None if status_detail (nullable) is None
+        # and model_fields_set contains the field
+        if self.status_detail is None and "status_detail" in self.model_fields_set:
+            _dict['status_detail'] = None
+
+        # set to None if sunrise (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise is None and "sunrise" in self.model_fields_set:
+            _dict['sunrise'] = None
+
+        # set to None if sunrise_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise_at is None and "sunrise_at" in self.model_fields_set:
+            _dict['sunrise_at'] = None
+
+        # set to None if sunrise_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise_utc is None and "sunrise_utc" in self.model_fields_set:
+            _dict['sunrise_utc'] = None
+
+        # set to None if sunset (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset is None and "sunset" in self.model_fields_set:
+            _dict['sunset'] = None
+
+        # set to None if sunset_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset_at is None and "sunset_at" in self.model_fields_set:
+            _dict['sunset_at'] = None
+
+        # set to None if sunset_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset_utc is None and "sunset_utc" in self.model_fields_set:
+            _dict['sunset_utc'] = None
+
+        # set to None if rahu_kaal (nullable) is None
+        # and model_fields_set contains the field
+        if self.rahu_kaal is None and "rahu_kaal" in self.model_fields_set:
+            _dict['rahu_kaal'] = None
+
+        # set to None if gulika_kaal (nullable) is None
+        # and model_fields_set contains the field
+        if self.gulika_kaal is None and "gulika_kaal" in self.model_fields_set:
+            _dict['gulika_kaal'] = None
+
+        # set to None if yamaganda_kaal (nullable) is None
+        # and model_fields_set contains the field
+        if self.yamaganda_kaal is None and "yamaganda_kaal" in self.model_fields_set:
+            _dict['yamaganda_kaal'] = None
+
         return _dict
 
     @classmethod
@@ -97,9 +163,15 @@ class RahuKaalResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "status": obj.get("status") if obj.get("status") is not None else 'ok',
+            "status_detail": obj.get("status_detail"),
             "date": obj.get("date"),
             "sunrise": obj.get("sunrise"),
+            "sunrise_at": obj.get("sunrise_at"),
+            "sunrise_utc": obj.get("sunrise_utc"),
             "sunset": obj.get("sunset"),
+            "sunset_at": obj.get("sunset_at"),
+            "sunset_utc": obj.get("sunset_utc"),
             "rahu_kaal": KaalPeriod.from_dict(obj["rahu_kaal"]) if obj.get("rahu_kaal") is not None else None,
             "gulika_kaal": KaalPeriod.from_dict(obj["gulika_kaal"]) if obj.get("gulika_kaal") is not None else None,
             "yamaganda_kaal": KaalPeriod.from_dict(obj["yamaganda_kaal"]) if obj.get("yamaganda_kaal") is not None else None

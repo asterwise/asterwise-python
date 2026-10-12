@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time. | [optional] [default to True]
 **primary** | **Dict[str, object]** | Lagna lord&#39;s gem: planet, reason, gemstone, substitute_gemstone, metal, colour, note. The lagna lord is always a functional benefic (BPHS Ch.34), so this is never withheld for lordship; it can still be contraindicated when the planet is debilitated or combust. Every slot also carries &#x60;contraindicated&#x60; (bool) and &#x60;caution&#x60; (string or null): when the slot&#39;s planet appears in &#x60;contraindicated&#x60;, the slot says &#x60;contraindicated: true&#x60; with a caution — do not wear that gem for this role. A 5th/9th lord that also owns a dusthana keeps &#x60;contraindicated: false&#x60; with a caution naming the dusthana. | 
 **secondary** | **Dict[str, object]** |  | [optional] 
 **yogakaraka_gem** | **Dict[str, object]** |  | [optional] 

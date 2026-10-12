@@ -11,7 +11,11 @@ Name | Type | Description | Notes
 **ruling_planet** | **str** | Planet ruling this Choghadiya period. | 
 **suitable_for** | **str** | Activities suited to this period. | 
 **start** | **str** | Period start time in HH:MM local time. | 
+**start_at** | **str** |  | [optional] 
+**start_utc** | **str** |  | [optional] 
 **end** | **str** | Period end time in HH:MM local time. | 
+**end_at** | **str** |  | [optional] 
+**end_utc** | **str** |  | [optional] 
 **is_current** | **bool** | True if this period is currently active. | 
 
 ## Example

@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from asterwise.models.planetary_hour import PlanetaryHour
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,20 +29,32 @@ class PlanetaryHoursResponse(BaseModel):
     """
     PlanetaryHoursResponse
     """ # noqa: E501
+    status: Optional[StrictStr] = Field(default='ok', description="ok, or no_sunrise when the place has no sunrise or sunset on that date (polar latitudes): the hour fields are then null.")
+    status_detail: Optional[StrictStr] = None
     var_date: StrictStr = Field(alias="date")
-    weekday: StrictStr = Field(description="Weekday of the date, e.g. Sunday.")
-    day_ruler: StrictStr = Field(description="Planet of the weekday; it rules the first hour after sunrise.")
-    convention: StrictStr = Field(description="unequal_seasonal: day and night each split into 12 equal parts from real sunrise and sunset.")
-    sunrise_local: StrictStr
-    sunset_local: StrictStr
-    next_sunrise_local: StrictStr
-    sunrise_utc: StrictStr
-    sunset_utc: StrictStr
-    next_sunrise_utc: StrictStr
-    day_hour_minutes: Union[StrictFloat, StrictInt] = Field(description="Length of one day hour in minutes.")
-    night_hour_minutes: Union[StrictFloat, StrictInt] = Field(description="Length of one night hour in minutes.")
-    hours: List[PlanetaryHour]
-    __properties: ClassVar[List[str]] = ["date", "weekday", "day_ruler", "convention", "sunrise_local", "sunset_local", "next_sunrise_local", "sunrise_utc", "sunset_utc", "next_sunrise_utc", "day_hour_minutes", "night_hour_minutes", "hours"]
+    weekday: Optional[StrictStr] = None
+    day_ruler: Optional[StrictStr] = None
+    convention: Optional[StrictStr] = None
+    sunrise_local: Optional[StrictStr] = None
+    sunset_local: Optional[StrictStr] = None
+    next_sunrise_local: Optional[StrictStr] = None
+    sunrise_utc: Optional[StrictStr] = None
+    sunset_utc: Optional[StrictStr] = None
+    next_sunrise_utc: Optional[StrictStr] = None
+    day_hour_minutes: Optional[Union[StrictFloat, StrictInt]] = None
+    night_hour_minutes: Optional[Union[StrictFloat, StrictInt]] = None
+    hours: Optional[List[PlanetaryHour]] = None
+    __properties: ClassVar[List[str]] = ["status", "status_detail", "date", "weekday", "day_ruler", "convention", "sunrise_local", "sunset_local", "next_sunrise_local", "sunrise_utc", "sunset_utc", "next_sunrise_utc", "day_hour_minutes", "night_hour_minutes", "hours"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['ok', 'no_sunrise']):
+            raise ValueError("must be one of enum values ('ok', 'no_sunrise')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -90,6 +102,71 @@ class PlanetaryHoursResponse(BaseModel):
                 if _item_hours:
                     _items.append(_item_hours.to_dict())
             _dict['hours'] = _items
+        # set to None if status_detail (nullable) is None
+        # and model_fields_set contains the field
+        if self.status_detail is None and "status_detail" in self.model_fields_set:
+            _dict['status_detail'] = None
+
+        # set to None if weekday (nullable) is None
+        # and model_fields_set contains the field
+        if self.weekday is None and "weekday" in self.model_fields_set:
+            _dict['weekday'] = None
+
+        # set to None if day_ruler (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_ruler is None and "day_ruler" in self.model_fields_set:
+            _dict['day_ruler'] = None
+
+        # set to None if convention (nullable) is None
+        # and model_fields_set contains the field
+        if self.convention is None and "convention" in self.model_fields_set:
+            _dict['convention'] = None
+
+        # set to None if sunrise_local (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise_local is None and "sunrise_local" in self.model_fields_set:
+            _dict['sunrise_local'] = None
+
+        # set to None if sunset_local (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset_local is None and "sunset_local" in self.model_fields_set:
+            _dict['sunset_local'] = None
+
+        # set to None if next_sunrise_local (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_sunrise_local is None and "next_sunrise_local" in self.model_fields_set:
+            _dict['next_sunrise_local'] = None
+
+        # set to None if sunrise_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise_utc is None and "sunrise_utc" in self.model_fields_set:
+            _dict['sunrise_utc'] = None
+
+        # set to None if sunset_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset_utc is None and "sunset_utc" in self.model_fields_set:
+            _dict['sunset_utc'] = None
+
+        # set to None if next_sunrise_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_sunrise_utc is None and "next_sunrise_utc" in self.model_fields_set:
+            _dict['next_sunrise_utc'] = None
+
+        # set to None if day_hour_minutes (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_hour_minutes is None and "day_hour_minutes" in self.model_fields_set:
+            _dict['day_hour_minutes'] = None
+
+        # set to None if night_hour_minutes (nullable) is None
+        # and model_fields_set contains the field
+        if self.night_hour_minutes is None and "night_hour_minutes" in self.model_fields_set:
+            _dict['night_hour_minutes'] = None
+
+        # set to None if hours (nullable) is None
+        # and model_fields_set contains the field
+        if self.hours is None and "hours" in self.model_fields_set:
+            _dict['hours'] = None
+
         return _dict
 
     @classmethod
@@ -102,6 +179,8 @@ class PlanetaryHoursResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "status": obj.get("status") if obj.get("status") is not None else 'ok',
+            "status_detail": obj.get("status_detail"),
             "date": obj.get("date"),
             "weekday": obj.get("weekday"),
             "day_ruler": obj.get("day_ruler"),

@@ -31,6 +31,7 @@ class PitruDoshaResponse(BaseModel):
     """
     PitruDoshaResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     present: StrictBool
     severity: Optional[StrictStr] = None
     severity_note: Optional[StrictStr] = None
@@ -44,7 +45,7 @@ class PitruDoshaResponse(BaseModel):
     interpretation: StrictStr
     classical_symptoms: List[StrictStr]
     remedies: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["present", "severity", "severity_note", "combinations_triggered", "combinations_detail", "combinations_count", "sun_analysis", "ninth_lord_analysis", "all_factors", "cancellations", "interpretation", "classical_symptoms", "remedies"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "present", "severity", "severity_note", "combinations_triggered", "combinations_detail", "combinations_count", "sun_analysis", "ninth_lord_analysis", "all_factors", "cancellations", "interpretation", "classical_symptoms", "remedies"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -120,6 +121,7 @@ class PitruDoshaResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "present": obj.get("present"),
             "severity": obj.get("severity"),
             "severity_note": obj.get("severity_note"),

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **timezone** | **str** |  | [optional] 
 **utc_offset** | **str** |  | [optional] 
 **ayanamsa** | **str** | Sidereal ayanamsa mode used in calculations | [optional] [default to 'lahiri']
+**day** | **str** | sunrise (default): the panchanga day runs from this date&#39;s sunrise to the next. civil: also return civil_day, the windows that fall between local midnight and midnight of this date, for calendar-day apps. The sunrise-day fields are unchanged. | [optional] [default to 'sunrise']
 
 ## Example
 

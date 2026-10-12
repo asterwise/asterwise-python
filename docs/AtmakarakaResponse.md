@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time. | [optional] [default to True]
 **karaka_to_planet** | **Dict[str, str]** |  | 
 **planet_to_karaka** | **Dict[str, str]** |  | 
 **atmakaraka** | **str** |  | 

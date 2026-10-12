@@ -37,7 +37,7 @@ class ProgressionRequest(BaseModel):
     longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None
     timezone: Optional[StrictStr] = None
     utc_offset: Optional[StrictStr] = None
-    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
+    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Ignored on Western endpoints: positions are always tropical (no ayanamsa). Accepted so one birth object can be sent to Vedic and Western endpoints alike.")
     target_date: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "target_date"]
 

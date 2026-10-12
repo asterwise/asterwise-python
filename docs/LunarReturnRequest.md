@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **longitude** | **float** |  | [optional] 
 **timezone** | **str** |  | [optional] 
 **utc_offset** | **str** |  | [optional] 
-**ayanamsa** | **str** | Sidereal ayanamsa mode used in calculations | [optional] [default to 'lahiri']
+**ayanamsa** | **str** | Ignored on Western endpoints: positions are always tropical (no ayanamsa). Accepted so one birth object can be sent to Vedic and Western endpoints alike. | [optional] [default to 'lahiri']
 **after_date** | **str** |  | [optional] 
 
 ## Example

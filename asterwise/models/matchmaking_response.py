@@ -29,7 +29,7 @@ class MatchmakingResponse(BaseModel):
     MatchmakingResponse
     """ # noqa: E501
     total_score: Union[StrictFloat, StrictInt] = Field(description="Overall Guna Milan score out of 36")
-    breakdown: Dict[str, Union[StrictFloat, StrictInt]] = Field(description="Per-koota score breakdown")
+    breakdown: Dict[str, Optional[Union[StrictFloat, StrictInt]]] = Field(description="Per-koota score breakdown")
     compatibility_level: StrictStr = Field(description="Textual compatibility band derived from score")
     doshas: Dict[str, Any] = Field(description="Detected compatibility doshas")
     dosha_cancellations: Dict[str, Any] = Field(description="Traditional dosha cancellation flags")

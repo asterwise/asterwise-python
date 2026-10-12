@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.bhadra_window import BhadraWindow
 from asterwise.models.day_parts import DayParts
+from asterwise.models.hora_window import HoraWindow
 from asterwise.models.nakshatra_window import NakshatraWindow
 from asterwise.models.time_window import TimeWindow
 from typing import Optional, Set
@@ -50,7 +51,8 @@ class DayTimings(BaseModel):
     bhadra: List[BhadraWindow] = Field(description="Vishti karana during the day, split where the Moon changes sign.")
     panchaka: List[TimeWindow] = Field(description="Moon in Kumbha or Meena (Dhanishta pada 3 to Revati).")
     day_parts: DayParts = Field(description="The day in five equal parts, used for festival timing.")
-    __properties: ClassVar[List[str]] = ["brahma_muhurta", "pratah_sandhya", "abhijit", "vijaya_muhurta", "godhuli_muhurta", "sayahna_sandhya", "nishita_muhurta", "madhyahna", "pradosh", "rahu_kaal", "gulika_kaal", "yamaganda_kaal", "durmuhurta", "varjyam", "amrit_kaal", "bhadra", "panchaka", "day_parts"]
+    horas: Optional[List[HoraWindow]] = None
+    __properties: ClassVar[List[str]] = ["brahma_muhurta", "pratah_sandhya", "abhijit", "vijaya_muhurta", "godhuli_muhurta", "sayahna_sandhya", "nishita_muhurta", "madhyahna", "pradosh", "rahu_kaal", "gulika_kaal", "yamaganda_kaal", "durmuhurta", "varjyam", "amrit_kaal", "bhadra", "panchaka", "day_parts", "horas"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -162,10 +164,22 @@ class DayTimings(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of day_parts
         if self.day_parts:
             _dict['day_parts'] = self.day_parts.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in horas (list)
+        _items = []
+        if self.horas:
+            for _item_horas in self.horas:
+                if _item_horas:
+                    _items.append(_item_horas.to_dict())
+            _dict['horas'] = _items
         # set to None if abhijit (nullable) is None
         # and model_fields_set contains the field
         if self.abhijit is None and "abhijit" in self.model_fields_set:
             _dict['abhijit'] = None
+
+        # set to None if horas (nullable) is None
+        # and model_fields_set contains the field
+        if self.horas is None and "horas" in self.model_fields_set:
+            _dict['horas'] = None
 
         return _dict
 
@@ -196,7 +210,8 @@ class DayTimings(BaseModel):
             "amrit_kaal": [NakshatraWindow.from_dict(_item) for _item in obj["amrit_kaal"]] if obj.get("amrit_kaal") is not None else None,
             "bhadra": [BhadraWindow.from_dict(_item) for _item in obj["bhadra"]] if obj.get("bhadra") is not None else None,
             "panchaka": [TimeWindow.from_dict(_item) for _item in obj["panchaka"]] if obj.get("panchaka") is not None else None,
-            "day_parts": DayParts.from_dict(obj["day_parts"]) if obj.get("day_parts") is not None else None
+            "day_parts": DayParts.from_dict(obj["day_parts"]) if obj.get("day_parts") is not None else None,
+            "horas": [HoraWindow.from_dict(_item) for _item in obj["horas"]] if obj.get("horas") is not None else None
         })
         return _obj
 

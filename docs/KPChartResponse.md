@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time. | [optional] [default to True]
 **ayanamsa** | **str** |  | 
 **house_basis** | **str** | How planet &#x60;house&#x60; is assigned. Always &#39;placidus_cusp_to_cusp&#39; (KP occupancy between consecutive sidereal Placidus cusps). | 
 **lagna** | [**KPLagna**](KPLagna.md) |  | 

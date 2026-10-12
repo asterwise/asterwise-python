@@ -9,6 +9,9 @@ Name | Type | Description | Notes
 **transit_sign** | **str** |  | 
 **transit_sign_index** | **int** |  | 
 **transit_degree** | **float** |  | 
+**transit_tropical_longitude** | **float** |  | [optional] 
+**transit_tropical_sign** | **str** |  | [optional] 
+**transit_tropical_sign_index** | **int** |  | [optional] 
 **is_retrograde** | **bool** |  | 
 **nakshatra** | **str** |  | 
 **nakshatra_pada** | **int** |  | 

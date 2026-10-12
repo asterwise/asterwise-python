@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,12 +28,13 @@ class DashaTransitsResponse(BaseModel):
     """
     DashaTransitsResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     target_date: StrictStr
     active_dasha: Dict[str, Any]
     transit_positions: Dict[str, Any]
     correlations: List[Optional[Dict[str, Any]]] = Field(description="Dasha lord × transiting planet aspects: dasha_level, dasha_lord, transit_planet, aspect_type (conjunction | opposition | trine | square | special), aspect_house (int 1-12: the natal dasha lord's sign counted from the transiting planet), drishti ('7th', '3rd', '10th', '5th', '9th', '4th', '8th'; absent for a conjunction), score, natal_rashi, transit_rashi, is_retrograde, significance. Aspects are cast by the transiting planet (BPHS Ch.26).")
     periods_of_significance: List[Optional[Dict[str, Any]]] = Field(description="Correlations with score ≥ 2, same shape as correlations.")
-    __properties: ClassVar[List[str]] = ["target_date", "active_dasha", "transit_positions", "correlations", "periods_of_significance"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_date", "active_dasha", "transit_positions", "correlations", "periods_of_significance"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,6 +87,7 @@ class DashaTransitsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "target_date": obj.get("target_date"),
             "active_dasha": obj.get("active_dasha"),
             "transit_positions": obj.get("transit_positions"),

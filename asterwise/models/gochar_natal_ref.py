@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -32,7 +32,9 @@ class GocharNatalRef(BaseModel):
     moon_sign_index: StrictInt
     ascendant_sign: StrictStr
     ascendant_sign_index: StrictInt
-    __properties: ClassVar[List[str]] = ["moon_sign", "moon_sign_index", "ascendant_sign", "ascendant_sign_index"]
+    moon_tropical_sign: Optional[StrictStr] = None
+    ascendant_tropical_sign: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["moon_sign", "moon_sign_index", "ascendant_sign", "ascendant_sign_index", "moon_tropical_sign", "ascendant_tropical_sign"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +75,16 @@ class GocharNatalRef(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if moon_tropical_sign (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_tropical_sign is None and "moon_tropical_sign" in self.model_fields_set:
+            _dict['moon_tropical_sign'] = None
+
+        # set to None if ascendant_tropical_sign (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_tropical_sign is None and "ascendant_tropical_sign" in self.model_fields_set:
+            _dict['ascendant_tropical_sign'] = None
+
         return _dict
 
     @classmethod
@@ -88,7 +100,9 @@ class GocharNatalRef(BaseModel):
             "moon_sign": obj.get("moon_sign"),
             "moon_sign_index": obj.get("moon_sign_index"),
             "ascendant_sign": obj.get("ascendant_sign"),
-            "ascendant_sign_index": obj.get("ascendant_sign_index")
+            "ascendant_sign_index": obj.get("ascendant_sign_index"),
+            "moon_tropical_sign": obj.get("moon_tropical_sign"),
+            "ascendant_tropical_sign": obj.get("ascendant_tropical_sign")
         })
         return _obj
 

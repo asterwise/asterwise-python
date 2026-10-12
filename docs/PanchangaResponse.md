@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **nakshatra** | [**NakshatraData**](NakshatraData.md) | Lunar mansion the Moon occupies at the given moment | 
 **yoga** | [**YogaData**](YogaData.md) | Luni-solar yoga — combined Sun and Moon longitude divided into 27 parts | 
 **karana** | [**KaranaData**](KaranaData.md) | Half of a tithi — the smaller unit of lunar time | 
+**civil_day** | [**CivilDay**](CivilDay.md) |  | [optional] 
 
 ## Example
 

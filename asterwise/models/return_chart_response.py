@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from asterwise.models.western_natal_response import WesternNatalResponse
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,12 +29,13 @@ class ReturnChartResponse(BaseModel):
     """
     ReturnChartResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: the return chart is then cast from a 06:00 natal chart and its houses are approximate.")
     planet: StrictStr
     natal_longitude: Union[StrictFloat, StrictInt] = Field(description="Natal longitude of the return planet (tropical)")
     return_utc: StrictStr = Field(description="Exact UTC moment of return (ISO 8601)")
     return_jd: Union[StrictFloat, StrictInt] = Field(description="Julian Day of return moment")
     chart: WesternNatalResponse = Field(description="Full Western natal chart calculated for the return moment")
-    __properties: ClassVar[List[str]] = ["planet", "natal_longitude", "return_utc", "return_jd", "chart"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "planet", "natal_longitude", "return_utc", "return_jd", "chart"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -90,6 +91,7 @@ class ReturnChartResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "planet": obj.get("planet"),
             "natal_longitude": obj.get("natal_longitude"),
             "return_utc": obj.get("return_utc"),

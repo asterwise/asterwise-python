@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.kp_lagna import KPLagna
 from asterwise.models.kp_planet import KPPlanet
@@ -30,12 +30,13 @@ class KPChartResponse(BaseModel):
     """
     KPChartResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     ayanamsa: StrictStr
     house_basis: StrictStr = Field(description="How planet `house` is assigned. Always 'placidus_cusp_to_cusp' (KP occupancy between consecutive sidereal Placidus cusps).")
     lagna: KPLagna
     planets: Dict[str, KPPlanet]
     house_cusps: Dict[str, Optional[Dict[str, Any]]]
-    __properties: ClassVar[List[str]] = ["ayanamsa", "house_basis", "lagna", "planets", "house_cusps"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "ayanamsa", "house_basis", "lagna", "planets", "house_cusps"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -98,6 +99,7 @@ class KPChartResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "ayanamsa": obj.get("ayanamsa"),
             "house_basis": obj.get("house_basis"),
             "lagna": KPLagna.from_dict(obj["lagna"]) if obj.get("lagna") is not None else None,

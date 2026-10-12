@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time. | [optional] [default to True]
 **lagna_north** | **str** | North Indian Lagna chart SVG string | 
 **lagna_south** | **str** | South Indian Lagna chart SVG string | 
 **navamsa_north** | **str** | North Indian Navamsa (D9) chart SVG string | 

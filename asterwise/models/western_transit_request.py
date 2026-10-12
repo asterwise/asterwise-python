@@ -37,10 +37,12 @@ class WesternTransitRequest(BaseModel):
     longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None
     timezone: Optional[StrictStr] = None
     utc_offset: Optional[StrictStr] = None
-    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
+    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Ignored on Western endpoints: positions are always tropical (no ayanamsa). Accepted so one birth object can be sent to Vedic and Western endpoints alike.")
     house_system: Optional[StrictStr] = Field(default='placidus', description="House system for the natal houses that transiting planets are placed in (natal_house on each transit planet). Same choices as the natal chart; Placidus is the default.")
+    snapshot_time: Optional[StrictStr] = None
+    snapshot_timezone: Optional[StrictStr] = None
     start_date: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "house_system", "start_date"]
+    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "house_system", "snapshot_time", "snapshot_timezone", "start_date"]
 
     @field_validator('ayanamsa')
     def ayanamsa_validate_enum(cls, value):
@@ -131,6 +133,16 @@ class WesternTransitRequest(BaseModel):
         if self.utc_offset is None and "utc_offset" in self.model_fields_set:
             _dict['utc_offset'] = None
 
+        # set to None if snapshot_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.snapshot_time is None and "snapshot_time" in self.model_fields_set:
+            _dict['snapshot_time'] = None
+
+        # set to None if snapshot_timezone (nullable) is None
+        # and model_fields_set contains the field
+        if self.snapshot_timezone is None and "snapshot_timezone" in self.model_fields_set:
+            _dict['snapshot_timezone'] = None
+
         # set to None if start_date (nullable) is None
         # and model_fields_set contains the field
         if self.start_date is None and "start_date" in self.model_fields_set:
@@ -158,6 +170,8 @@ class WesternTransitRequest(BaseModel):
             "utc_offset": obj.get("utc_offset"),
             "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri',
             "house_system": obj.get("house_system") if obj.get("house_system") is not None else 'placidus',
+            "snapshot_time": obj.get("snapshot_time"),
+            "snapshot_timezone": obj.get("snapshot_timezone"),
             "start_date": obj.get("start_date")
         })
         return _obj

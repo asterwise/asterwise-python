@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.hora_period import HoraPeriod
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,13 +29,31 @@ class HoraResponse(BaseModel):
     """
     HoraResponse
     """ # noqa: E501
+    status: Optional[StrictStr] = Field(default='ok', description="ok, or no_sunrise when the place has no sunrise or sunset on that date (polar latitudes): the window fields are then null.")
+    status_detail: Optional[StrictStr] = None
     var_date: StrictStr = Field(description="Date for which Hora is calculated (YYYY-MM-DD).", alias="date")
-    convention: StrictStr = Field(description="Hora division used. ``unequal_seasonal`` = 12 day + 12 night parts from real sunrise/sunset (panchanga / electional).")
-    sunrise: StrictStr = Field(description="Sunrise time in HH:MM local time.")
-    sunset: StrictStr = Field(description="Sunset time in HH:MM local time.")
-    next_sunrise: StrictStr = Field(description="Next day sunrise time in HH:MM local time.")
-    horas: List[HoraPeriod] = Field(description="24 planetary hours: 12 from sunrise to sunset, then 12 from sunset to next sunrise.")
-    __properties: ClassVar[List[str]] = ["date", "convention", "sunrise", "sunset", "next_sunrise", "horas"]
+    convention: Optional[StrictStr] = None
+    sunrise: Optional[StrictStr] = None
+    sunrise_at: Optional[StrictStr] = None
+    sunrise_utc: Optional[StrictStr] = None
+    sunset: Optional[StrictStr] = None
+    sunset_at: Optional[StrictStr] = None
+    sunset_utc: Optional[StrictStr] = None
+    next_sunrise: Optional[StrictStr] = None
+    next_sunrise_at: Optional[StrictStr] = None
+    next_sunrise_utc: Optional[StrictStr] = None
+    horas: Optional[List[HoraPeriod]] = None
+    __properties: ClassVar[List[str]] = ["status", "status_detail", "date", "convention", "sunrise", "sunrise_at", "sunrise_utc", "sunset", "sunset_at", "sunset_utc", "next_sunrise", "next_sunrise_at", "next_sunrise_utc", "horas"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['ok', 'no_sunrise']):
+            raise ValueError("must be one of enum values ('ok', 'no_sunrise')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -83,6 +101,66 @@ class HoraResponse(BaseModel):
                 if _item_horas:
                     _items.append(_item_horas.to_dict())
             _dict['horas'] = _items
+        # set to None if status_detail (nullable) is None
+        # and model_fields_set contains the field
+        if self.status_detail is None and "status_detail" in self.model_fields_set:
+            _dict['status_detail'] = None
+
+        # set to None if convention (nullable) is None
+        # and model_fields_set contains the field
+        if self.convention is None and "convention" in self.model_fields_set:
+            _dict['convention'] = None
+
+        # set to None if sunrise (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise is None and "sunrise" in self.model_fields_set:
+            _dict['sunrise'] = None
+
+        # set to None if sunrise_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise_at is None and "sunrise_at" in self.model_fields_set:
+            _dict['sunrise_at'] = None
+
+        # set to None if sunrise_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise_utc is None and "sunrise_utc" in self.model_fields_set:
+            _dict['sunrise_utc'] = None
+
+        # set to None if sunset (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset is None and "sunset" in self.model_fields_set:
+            _dict['sunset'] = None
+
+        # set to None if sunset_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset_at is None and "sunset_at" in self.model_fields_set:
+            _dict['sunset_at'] = None
+
+        # set to None if sunset_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset_utc is None and "sunset_utc" in self.model_fields_set:
+            _dict['sunset_utc'] = None
+
+        # set to None if next_sunrise (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_sunrise is None and "next_sunrise" in self.model_fields_set:
+            _dict['next_sunrise'] = None
+
+        # set to None if next_sunrise_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_sunrise_at is None and "next_sunrise_at" in self.model_fields_set:
+            _dict['next_sunrise_at'] = None
+
+        # set to None if next_sunrise_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_sunrise_utc is None and "next_sunrise_utc" in self.model_fields_set:
+            _dict['next_sunrise_utc'] = None
+
+        # set to None if horas (nullable) is None
+        # and model_fields_set contains the field
+        if self.horas is None and "horas" in self.model_fields_set:
+            _dict['horas'] = None
+
         return _dict
 
     @classmethod
@@ -95,11 +173,19 @@ class HoraResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "status": obj.get("status") if obj.get("status") is not None else 'ok',
+            "status_detail": obj.get("status_detail"),
             "date": obj.get("date"),
             "convention": obj.get("convention"),
             "sunrise": obj.get("sunrise"),
+            "sunrise_at": obj.get("sunrise_at"),
+            "sunrise_utc": obj.get("sunrise_utc"),
             "sunset": obj.get("sunset"),
+            "sunset_at": obj.get("sunset_at"),
+            "sunset_utc": obj.get("sunset_utc"),
             "next_sunrise": obj.get("next_sunrise"),
+            "next_sunrise_at": obj.get("next_sunrise_at"),
+            "next_sunrise_utc": obj.get("next_sunrise_utc"),
             "horas": [HoraPeriod.from_dict(_item) for _item in obj["horas"]] if obj.get("horas") is not None else None
         })
         return _obj

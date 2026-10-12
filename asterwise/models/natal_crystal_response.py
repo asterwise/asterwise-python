@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.natal_crystal_context import NatalCrystalContext
 from asterwise.models.natal_crystal_entry import NatalCrystalEntry
 from typing import Optional, Set
@@ -30,10 +30,11 @@ class NatalCrystalResponse(BaseModel):
     """
     NatalCrystalResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     natal_context: NatalCrystalContext
     total: StrictInt
     crystals: List[NatalCrystalEntry]
-    __properties: ClassVar[List[str]] = ["natal_context", "total", "crystals"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "natal_context", "total", "crystals"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -96,6 +97,7 @@ class NatalCrystalResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "natal_context": NatalCrystalContext.from_dict(obj["natal_context"]) if obj.get("natal_context") is not None else None,
             "total": obj.get("total"),
             "crystals": [NatalCrystalEntry.from_dict(_item) for _item in obj["crystals"]] if obj.get("crystals") is not None else None

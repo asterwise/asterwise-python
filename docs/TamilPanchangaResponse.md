@@ -7,7 +7,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_date** | **str** | Date for which Tamil Panchanga is calculated (YYYY-MM-DD). | 
 **sunrise** | **str** | Sunrise time in HH:MM local time. | 
+**sunrise_at** | **str** |  | [optional] 
+**sunrise_utc** | **str** |  | [optional] 
 **sunset** | **str** | Sunset time in HH:MM local time. | 
+**sunset_at** | **str** |  | [optional] 
+**sunset_utc** | **str** |  | [optional] 
 **tamil_month** | **str** | Tamil solar month name based on Sun&#39;s sidereal sign at sunrise. | 
 **rahu_kalam** | [**TamilKaalPeriod**](TamilKaalPeriod.md) | Rahu Kalam — inauspicious period, avoid new beginnings. | 
 **yamagandam** | [**TamilKaalPeriod**](TamilKaalPeriod.md) | Yamagandam — inauspicious period associated with Yama. | 

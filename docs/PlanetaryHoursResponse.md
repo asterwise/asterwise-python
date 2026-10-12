@@ -5,19 +5,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**status** | **str** | ok, or no_sunrise when the place has no sunrise or sunset on that date (polar latitudes): the hour fields are then null. | [optional] [default to 'ok']
+**status_detail** | **str** |  | [optional] 
 **var_date** | **str** |  | 
-**weekday** | **str** | Weekday of the date, e.g. Sunday. | 
-**day_ruler** | **str** | Planet of the weekday; it rules the first hour after sunrise. | 
-**convention** | **str** | unequal_seasonal: day and night each split into 12 equal parts from real sunrise and sunset. | 
-**sunrise_local** | **str** |  | 
-**sunset_local** | **str** |  | 
-**next_sunrise_local** | **str** |  | 
-**sunrise_utc** | **str** |  | 
-**sunset_utc** | **str** |  | 
-**next_sunrise_utc** | **str** |  | 
-**day_hour_minutes** | **float** | Length of one day hour in minutes. | 
-**night_hour_minutes** | **float** | Length of one night hour in minutes. | 
-**hours** | [**List[PlanetaryHour]**](PlanetaryHour.md) |  | 
+**weekday** | **str** |  | [optional] 
+**day_ruler** | **str** |  | [optional] 
+**convention** | **str** |  | [optional] 
+**sunrise_local** | **str** |  | [optional] 
+**sunset_local** | **str** |  | [optional] 
+**next_sunrise_local** | **str** |  | [optional] 
+**sunrise_utc** | **str** |  | [optional] 
+**sunset_utc** | **str** |  | [optional] 
+**next_sunrise_utc** | **str** |  | [optional] 
+**day_hour_minutes** | **float** |  | [optional] 
+**night_hour_minutes** | **float** |  | [optional] 
+**hours** | [**List[PlanetaryHour]**](PlanetaryHour.md) |  | [optional] 
 
 ## Example
 

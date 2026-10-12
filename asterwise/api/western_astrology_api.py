@@ -17,7 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-from typing import Optional
+from typing import Optional, Union
 from typing_extensions import Annotated
 from asterwise.models.api_response_composite_response import ApiResponseCompositeResponse
 from asterwise.models.api_response_daily_transit_response import ApiResponseDailyTransitResponse
@@ -27,13 +27,18 @@ from asterwise.models.api_response_monthly_transit_response import ApiResponseMo
 from asterwise.models.api_response_moon_phase_response import ApiResponseMoonPhaseResponse
 from asterwise.models.api_response_planetary_hours_response import ApiResponsePlanetaryHoursResponse
 from asterwise.models.api_response_profections_response import ApiResponseProfectionsResponse
+from asterwise.models.api_response_range_events_response import ApiResponseRangeEventsResponse
 from asterwise.models.api_response_return_chart_response import ApiResponseReturnChartResponse
 from asterwise.models.api_response_secondary_progression_response import ApiResponseSecondaryProgressionResponse
+from asterwise.models.api_response_significations_response import ApiResponseSignificationsResponse
 from asterwise.models.api_response_solar_arc_response import ApiResponseSolarArcResponse
 from asterwise.models.api_response_synastry_response import ApiResponseSynastryResponse
 from asterwise.models.api_response_void_of_course_response import ApiResponseVoidOfCourseResponse
 from asterwise.models.api_response_weekly_transit_response import ApiResponseWeeklyTransitResponse
 from asterwise.models.api_response_western_aspects_response import ApiResponseWesternAspectsResponse
+from asterwise.models.api_response_western_daily_factors_response import ApiResponseWesternDailyFactorsResponse
+from asterwise.models.api_response_western_day_response import ApiResponseWesternDayResponse
+from asterwise.models.api_response_western_horary_response import ApiResponseWesternHoraryResponse
 from asterwise.models.api_response_western_natal_response import ApiResponseWesternNatalResponse
 from asterwise.models.api_response_zodiac_compatibility_response import ApiResponseZodiacCompatibilityResponse
 from asterwise.models.app_api_response_api_response_compatibility_response1 import AppApiResponseApiResponseCompatibilityResponse1
@@ -47,6 +52,10 @@ from asterwise.models.solar_return_request import SolarReturnRequest
 from asterwise.models.two_person_request import TwoPersonRequest
 from asterwise.models.void_of_course_request import VoidOfCourseRequest
 from asterwise.models.western_aspects_request import WesternAspectsRequest
+from asterwise.models.western_daily_factors_request import WesternDailyFactorsRequest
+from asterwise.models.western_day_request import WesternDayRequest
+from asterwise.models.western_events_request import WesternEventsRequest
+from asterwise.models.western_horary_request import WesternHoraryRequest
 from asterwise.models.western_natal_request import WesternNatalRequest
 from asterwise.models.western_transit_request import WesternTransitRequest
 
@@ -1279,6 +1288,966 @@ class WesternAstrologyApi:
 
 
     @validate_call
+    def western_daily_factors(
+        self,
+        western_daily_factors_request: WesternDailyFactorsRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseWesternDailyFactorsResponse:
+        """Western daily factors
+
+        Every Western factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict Lilly's rules give, the rule's source, the significations it touches and the time it holds. Covers every transit-to-natal aspect with its exact time, each transiting planet's sign, dignity and natal house, the Moon's phase, sign changes and void-of-course periods, the planetary hours, and the lord of the year from annual profections. Uranus, Neptune and Pluto carry no verdict because the classical texts give none.
+
+        :param western_daily_factors_request: (required)
+        :type western_daily_factors_request: WesternDailyFactorsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_daily_factors_serialize(
+            western_daily_factors_request=western_daily_factors_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternDailyFactorsResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def western_daily_factors_with_http_info(
+        self,
+        western_daily_factors_request: WesternDailyFactorsRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseWesternDailyFactorsResponse]:
+        """Western daily factors
+
+        Every Western factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict Lilly's rules give, the rule's source, the significations it touches and the time it holds. Covers every transit-to-natal aspect with its exact time, each transiting planet's sign, dignity and natal house, the Moon's phase, sign changes and void-of-course periods, the planetary hours, and the lord of the year from annual profections. Uranus, Neptune and Pluto carry no verdict because the classical texts give none.
+
+        :param western_daily_factors_request: (required)
+        :type western_daily_factors_request: WesternDailyFactorsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_daily_factors_serialize(
+            western_daily_factors_request=western_daily_factors_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternDailyFactorsResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def western_daily_factors_without_preload_content(
+        self,
+        western_daily_factors_request: WesternDailyFactorsRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Western daily factors
+
+        Every Western factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict Lilly's rules give, the rule's source, the significations it touches and the time it holds. Covers every transit-to-natal aspect with its exact time, each transiting planet's sign, dignity and natal house, the Moon's phase, sign changes and void-of-course periods, the planetary hours, and the lord of the year from annual profections. Uranus, Neptune and Pluto carry no verdict because the classical texts give none.
+
+        :param western_daily_factors_request: (required)
+        :type western_daily_factors_request: WesternDailyFactorsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_daily_factors_serialize(
+            western_daily_factors_request=western_daily_factors_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternDailyFactorsResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _western_daily_factors_serialize(
+        self,
+        western_daily_factors_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if western_daily_factors_request is not None:
+            _body_params = western_daily_factors_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/western/daily-factors',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def western_day(
+        self,
+        western_day_request: WesternDayRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseWesternDayResponse:
+        """Western day view
+
+        One calendar day at a place, Western style: planetary hours, void-of-course Moon periods, Moon sign changes and the Moon phase. The day runs from local midnight to midnight; every planetary hour that falls in it is listed, with the void-of-course periods that overlap it and the Moon's tropical sign at the start and end. Same engines as /v1/western/planetary-hours and /v1/western/moon/void-of-course, in one call. Western counterpart of the panchanga civil day.
+
+        :param western_day_request: (required)
+        :type western_day_request: WesternDayRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_day_serialize(
+            western_day_request=western_day_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternDayResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def western_day_with_http_info(
+        self,
+        western_day_request: WesternDayRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseWesternDayResponse]:
+        """Western day view
+
+        One calendar day at a place, Western style: planetary hours, void-of-course Moon periods, Moon sign changes and the Moon phase. The day runs from local midnight to midnight; every planetary hour that falls in it is listed, with the void-of-course periods that overlap it and the Moon's tropical sign at the start and end. Same engines as /v1/western/planetary-hours and /v1/western/moon/void-of-course, in one call. Western counterpart of the panchanga civil day.
+
+        :param western_day_request: (required)
+        :type western_day_request: WesternDayRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_day_serialize(
+            western_day_request=western_day_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternDayResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def western_day_without_preload_content(
+        self,
+        western_day_request: WesternDayRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Western day view
+
+        One calendar day at a place, Western style: planetary hours, void-of-course Moon periods, Moon sign changes and the Moon phase. The day runs from local midnight to midnight; every planetary hour that falls in it is listed, with the void-of-course periods that overlap it and the Moon's tropical sign at the start and end. Same engines as /v1/western/planetary-hours and /v1/western/moon/void-of-course, in one call. Western counterpart of the panchanga civil day.
+
+        :param western_day_request: (required)
+        :type western_day_request: WesternDayRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_day_serialize(
+            western_day_request=western_day_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternDayResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _western_day_serialize(
+        self,
+        western_day_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if western_day_request is not None:
+            _body_params = western_day_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/western/day',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def western_day_get(
+        self,
+        var_date: Annotated[StrictStr, Field(description="Date, YYYY-MM-DD (local civil date at the place).")],
+        location: Annotated[Optional[StrictStr], Field(description="City name, used when latitude/longitude/timezone are not given.")] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone, e.g. Europe/London.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseWesternDayResponse:
+        """Western day view (GET)
+
+        Same answer as the POST route with the same fields as query parameters; cacheable (public, 10 minutes).
+
+        :param var_date: Date, YYYY-MM-DD (local civil date at the place). (required)
+        :type var_date: str
+        :param location: City name, used when latitude/longitude/timezone are not given.
+        :type location: str
+        :param latitude:
+        :type latitude: float
+        :param longitude:
+        :type longitude: float
+        :param timezone: IANA timezone, e.g. Europe/London.
+        :type timezone: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_day_get_serialize(
+            var_date=var_date,
+            location=location,
+            latitude=latitude,
+            longitude=longitude,
+            timezone=timezone,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternDayResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def western_day_get_with_http_info(
+        self,
+        var_date: Annotated[StrictStr, Field(description="Date, YYYY-MM-DD (local civil date at the place).")],
+        location: Annotated[Optional[StrictStr], Field(description="City name, used when latitude/longitude/timezone are not given.")] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone, e.g. Europe/London.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseWesternDayResponse]:
+        """Western day view (GET)
+
+        Same answer as the POST route with the same fields as query parameters; cacheable (public, 10 minutes).
+
+        :param var_date: Date, YYYY-MM-DD (local civil date at the place). (required)
+        :type var_date: str
+        :param location: City name, used when latitude/longitude/timezone are not given.
+        :type location: str
+        :param latitude:
+        :type latitude: float
+        :param longitude:
+        :type longitude: float
+        :param timezone: IANA timezone, e.g. Europe/London.
+        :type timezone: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_day_get_serialize(
+            var_date=var_date,
+            location=location,
+            latitude=latitude,
+            longitude=longitude,
+            timezone=timezone,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternDayResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def western_day_get_without_preload_content(
+        self,
+        var_date: Annotated[StrictStr, Field(description="Date, YYYY-MM-DD (local civil date at the place).")],
+        location: Annotated[Optional[StrictStr], Field(description="City name, used when latitude/longitude/timezone are not given.")] = None,
+        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
+        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone, e.g. Europe/London.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Western day view (GET)
+
+        Same answer as the POST route with the same fields as query parameters; cacheable (public, 10 minutes).
+
+        :param var_date: Date, YYYY-MM-DD (local civil date at the place). (required)
+        :type var_date: str
+        :param location: City name, used when latitude/longitude/timezone are not given.
+        :type location: str
+        :param latitude:
+        :type latitude: float
+        :param longitude:
+        :type longitude: float
+        :param timezone: IANA timezone, e.g. Europe/London.
+        :type timezone: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_day_get_serialize(
+            var_date=var_date,
+            location=location,
+            latitude=latitude,
+            longitude=longitude,
+            timezone=timezone,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternDayResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _western_day_get_serialize(
+        self,
+        var_date,
+        location,
+        latitude,
+        longitude,
+        timezone,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if var_date is not None:
+            
+            _query_params.append(('date', var_date))
+            
+        if location is not None:
+            
+            _query_params.append(('location', location))
+            
+        if latitude is not None:
+            
+            _query_params.append(('latitude', latitude))
+            
+        if longitude is not None:
+            
+            _query_params.append(('longitude', longitude))
+            
+        if timezone is not None:
+            
+            _query_params.append(('timezone', timezone))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/western/day',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def western_eclipses(
         self,
         eclipses_request: EclipsesRequest,
@@ -1564,6 +2533,608 @@ class WesternAstrologyApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/western/eclipses',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def western_events(
+        self,
+        western_events_request: WesternEventsRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseRangeEventsResponse:
+        """Western events over a date range
+
+        One timeline of everything that happens to a chart over 1 to 31 days, each event with its exact time. Exact major aspects from the transiting planets to the natal planets and angles, tropical sign ingresses and stations (Sun to Saturn), Moon sign changes, void-of-course periods, New and Full Moons and quarters, eclipses with their contacts, and the profection year turning on the birthday. Each event carries the verdict Lilly's rules give, or null; Uranus, Neptune and Pluto carry none. No weighting.
+
+        :param western_events_request: (required)
+        :type western_events_request: WesternEventsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_events_serialize(
+            western_events_request=western_events_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseRangeEventsResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def western_events_with_http_info(
+        self,
+        western_events_request: WesternEventsRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseRangeEventsResponse]:
+        """Western events over a date range
+
+        One timeline of everything that happens to a chart over 1 to 31 days, each event with its exact time. Exact major aspects from the transiting planets to the natal planets and angles, tropical sign ingresses and stations (Sun to Saturn), Moon sign changes, void-of-course periods, New and Full Moons and quarters, eclipses with their contacts, and the profection year turning on the birthday. Each event carries the verdict Lilly's rules give, or null; Uranus, Neptune and Pluto carry none. No weighting.
+
+        :param western_events_request: (required)
+        :type western_events_request: WesternEventsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_events_serialize(
+            western_events_request=western_events_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseRangeEventsResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def western_events_without_preload_content(
+        self,
+        western_events_request: WesternEventsRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Western events over a date range
+
+        One timeline of everything that happens to a chart over 1 to 31 days, each event with its exact time. Exact major aspects from the transiting planets to the natal planets and angles, tropical sign ingresses and stations (Sun to Saturn), Moon sign changes, void-of-course periods, New and Full Moons and quarters, eclipses with their contacts, and the profection year turning on the birthday. Each event carries the verdict Lilly's rules give, or null; Uranus, Neptune and Pluto carry none. No weighting.
+
+        :param western_events_request: (required)
+        :type western_events_request: WesternEventsRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_events_serialize(
+            western_events_request=western_events_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseRangeEventsResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _western_events_serialize(
+        self,
+        western_events_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if western_events_request is not None:
+            _body_params = western_events_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/western/events',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def western_horary(
+        self,
+        western_horary_request: WesternHoraryRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseWesternHoraryResponse:
+        """Western horary chart facts
+
+        The chart of a question's moment with the facts Lilly's horary method reads, each rule named. House rulers (traditional rulers), the significators (lord of the 1st and the Moon for the querent, lord of the quesited house), their aspects with Lilly's orbs and whether an applying aspect perfects before a sign change, the Moon's last and next aspects and void-of-course state, combustion, and the considerations before judgement (radicality by the hour lord, early or late Ascendant, Saturn in the 7th, the Moon in the Via Combusta). The yes or no is left to the reader. Christian Astrology (1647).
+
+        :param western_horary_request: (required)
+        :type western_horary_request: WesternHoraryRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_horary_serialize(
+            western_horary_request=western_horary_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternHoraryResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def western_horary_with_http_info(
+        self,
+        western_horary_request: WesternHoraryRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseWesternHoraryResponse]:
+        """Western horary chart facts
+
+        The chart of a question's moment with the facts Lilly's horary method reads, each rule named. House rulers (traditional rulers), the significators (lord of the 1st and the Moon for the querent, lord of the quesited house), their aspects with Lilly's orbs and whether an applying aspect perfects before a sign change, the Moon's last and next aspects and void-of-course state, combustion, and the considerations before judgement (radicality by the hour lord, early or late Ascendant, Saturn in the 7th, the Moon in the Via Combusta). The yes or no is left to the reader. Christian Astrology (1647).
+
+        :param western_horary_request: (required)
+        :type western_horary_request: WesternHoraryRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_horary_serialize(
+            western_horary_request=western_horary_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternHoraryResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def western_horary_without_preload_content(
+        self,
+        western_horary_request: WesternHoraryRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Western horary chart facts
+
+        The chart of a question's moment with the facts Lilly's horary method reads, each rule named. House rulers (traditional rulers), the significators (lord of the 1st and the Moon for the querent, lord of the quesited house), their aspects with Lilly's orbs and whether an applying aspect perfects before a sign change, the Moon's last and next aspects and void-of-course state, combustion, and the considerations before judgement (radicality by the hour lord, early or late Ascendant, Saturn in the 7th, the Moon in the Via Combusta). The yes or no is left to the reader. Christian Astrology (1647).
+
+        :param western_horary_request: (required)
+        :type western_horary_request: WesternHoraryRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_horary_serialize(
+            western_horary_request=western_horary_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternHoraryResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _western_horary_serialize(
+        self,
+        western_horary_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if western_horary_request is not None:
+            _body_params = western_horary_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/western/horary',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -4284,6 +5855,279 @@ class WesternAstrologyApi:
 
 
     @validate_call
+    def western_significations(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseSignificationsResponse:
+        """Western significations (Lilly)
+
+        What each house and planet signifies in William Lilly's Christian Astrology (1647), as a fixed list with stable ids: the twelve houses (pp. 50-56) and the seven planets (pp. 57-83: kinds of people, professions, manners when well and ill dignified). Uranus, Neptune and Pluto are left out because Lilly has none. Two levels: a domain (relationships, work, wealth …) and the signification itself. Ids are stable: never renamed, removed or reused; a retired entry stays with deprecated=true and replaced_by. The list says what the texts say; it does not decide what counts as love, work or energy for an app, so each app keeps its own mapping. Cacheable for a day.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_significations_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseSignificationsResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def western_significations_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseSignificationsResponse]:
+        """Western significations (Lilly)
+
+        What each house and planet signifies in William Lilly's Christian Astrology (1647), as a fixed list with stable ids: the twelve houses (pp. 50-56) and the seven planets (pp. 57-83: kinds of people, professions, manners when well and ill dignified). Uranus, Neptune and Pluto are left out because Lilly has none. Two levels: a domain (relationships, work, wealth …) and the signification itself. Ids are stable: never renamed, removed or reused; a retired entry stays with deprecated=true and replaced_by. The list says what the texts say; it does not decide what counts as love, work or energy for an app, so each app keeps its own mapping. Cacheable for a day.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_significations_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseSignificationsResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def western_significations_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Western significations (Lilly)
+
+        What each house and planet signifies in William Lilly's Christian Astrology (1647), as a fixed list with stable ids: the twelve houses (pp. 50-56) and the seven planets (pp. 57-83: kinds of people, professions, manners when well and ill dignified). Uranus, Neptune and Pluto are left out because Lilly has none. Two levels: a domain (relationships, work, wealth …) and the signification itself. Ids are stable: never renamed, removed or reused; a retired entry stays with deprecated=true and replaced_by. The list says what the texts say; it does not decide what counts as love, work or energy for an app, so each app keeps its own mapping. Cacheable for a day.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_significations_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseSignificationsResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _western_significations_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/western/significations',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def western_solar_return(
         self,
         solar_return_request: SolarReturnRequest,
@@ -4904,7 +6748,7 @@ class WesternAstrologyApi:
     ) -> ApiResponseDailyTransitResponse:
         """Western Daily Transits
 
-        Transits for one day against the natal chart: all 10 planets with tropical longitudes and their active aspects to natal positions. Orbs are the standard modern Western transit orbs: major 3°, sextile 2°, minor 1°. Each aspect carries exact_at, the UTC moment it is exact (searched 30 days either side; null if outside that window). Each transiting planet carries natal_house, the natal house it is passing through (house_system as requested; null without a birth time). Defaults to today (UTC) if no date is given.
+        Transits for one day against the natal chart: all 10 planets with tropical longitudes and their active aspects to natal positions. Orbs are the standard modern Western transit orbs: major 3°, sextile 2°, minor 1°. Each aspect carries exact_at, the UTC moment it is exact (searched 30 days either side; null if outside that window). Each transiting planet carries natal_house, the natal house it is passing through (house_system as requested; null without a birth time). The sky is read at 12:00 UTC unless snapshot_time (and snapshot_timezone) give the user's own clock time; snapshot_utc says which instant was used. Defaults to today (UTC) if no date is given.
 
         :param western_transit_request: (required)
         :type western_transit_request: WesternTransitRequest
@@ -4980,7 +6824,7 @@ class WesternAstrologyApi:
     ) -> ApiResponse[ApiResponseDailyTransitResponse]:
         """Western Daily Transits
 
-        Transits for one day against the natal chart: all 10 planets with tropical longitudes and their active aspects to natal positions. Orbs are the standard modern Western transit orbs: major 3°, sextile 2°, minor 1°. Each aspect carries exact_at, the UTC moment it is exact (searched 30 days either side; null if outside that window). Each transiting planet carries natal_house, the natal house it is passing through (house_system as requested; null without a birth time). Defaults to today (UTC) if no date is given.
+        Transits for one day against the natal chart: all 10 planets with tropical longitudes and their active aspects to natal positions. Orbs are the standard modern Western transit orbs: major 3°, sextile 2°, minor 1°. Each aspect carries exact_at, the UTC moment it is exact (searched 30 days either side; null if outside that window). Each transiting planet carries natal_house, the natal house it is passing through (house_system as requested; null without a birth time). The sky is read at 12:00 UTC unless snapshot_time (and snapshot_timezone) give the user's own clock time; snapshot_utc says which instant was used. Defaults to today (UTC) if no date is given.
 
         :param western_transit_request: (required)
         :type western_transit_request: WesternTransitRequest
@@ -5056,7 +6900,7 @@ class WesternAstrologyApi:
     ) -> RESTResponseType:
         """Western Daily Transits
 
-        Transits for one day against the natal chart: all 10 planets with tropical longitudes and their active aspects to natal positions. Orbs are the standard modern Western transit orbs: major 3°, sextile 2°, minor 1°. Each aspect carries exact_at, the UTC moment it is exact (searched 30 days either side; null if outside that window). Each transiting planet carries natal_house, the natal house it is passing through (house_system as requested; null without a birth time). Defaults to today (UTC) if no date is given.
+        Transits for one day against the natal chart: all 10 planets with tropical longitudes and their active aspects to natal positions. Orbs are the standard modern Western transit orbs: major 3°, sextile 2°, minor 1°. Each aspect carries exact_at, the UTC moment it is exact (searched 30 days either side; null if outside that window). Each transiting planet carries natal_house, the natal house it is passing through (house_system as requested; null without a birth time). The sky is read at 12:00 UTC unless snapshot_time (and snapshot_timezone) give the user's own clock time; snapshot_utc says which instant was used. Defaults to today (UTC) if no date is given.
 
         :param western_transit_request: (required)
         :type western_transit_request: WesternTransitRequest

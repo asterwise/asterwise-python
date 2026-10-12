@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time. | [optional] [default to True]
 **target_date** | **str** |  | 
 **transit_moon** | [**TransitMoonRef**](TransitMoonRef.md) |  | 
 **tarabala** | [**TarabalaDetail**](TarabalaDetail.md) |  | 

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.char_mahadasha import CharMahadasha
 from typing import Optional, Set
@@ -29,6 +29,7 @@ class CharDashaResponse(BaseModel):
     """
     CharDashaResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     atmakaraka: Optional[StrictStr]
     start_rashi: StrictStr
     start_rashi_index: StrictInt
@@ -36,7 +37,7 @@ class CharDashaResponse(BaseModel):
     current_mahadasha: Optional[StrictStr]
     current_antardasha: Optional[StrictStr]
     periods: List[CharMahadasha]
-    __properties: ClassVar[List[str]] = ["atmakaraka", "start_rashi", "start_rashi_index", "karakas", "current_mahadasha", "current_antardasha", "periods"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "atmakaraka", "start_rashi", "start_rashi_index", "karakas", "current_mahadasha", "current_antardasha", "periods"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -111,6 +112,7 @@ class CharDashaResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "atmakaraka": obj.get("atmakaraka"),
             "start_rashi": obj.get("start_rashi"),
             "start_rashi_index": obj.get("start_rashi_index"),

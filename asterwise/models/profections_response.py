@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from asterwise.models.profected_sign_planet_schema import ProfectedSignPlanetSchema
@@ -32,6 +32,7 @@ class ProfectionsResponse(BaseModel):
     """
     ProfectionsResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     target_date: StrictStr
     age: StrictInt = Field(description="Completed years of life on target_date.")
     year_start: StrictStr
@@ -46,7 +47,7 @@ class ProfectionsResponse(BaseModel):
     natal_planets_in_profected_sign: List[ProfectedSignPlanetSchema]
     upcoming_years: List[ProfectionYearSchema] = Field(description="This year and the next eleven.")
     house_system_note: StrictStr
-    __properties: ClassVar[List[str]] = ["target_date", "age", "year_start", "year_end", "ascendant_sign", "ascendant_sign_index", "profected_house", "profected_sign", "profected_sign_index", "year_lord", "year_lord_natal", "natal_planets_in_profected_sign", "upcoming_years", "house_system_note"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_date", "age", "year_start", "year_end", "ascendant_sign", "ascendant_sign_index", "profected_house", "profected_sign", "profected_sign_index", "year_lord", "year_lord_natal", "natal_planets_in_profected_sign", "upcoming_years", "house_system_note"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -121,6 +122,7 @@ class ProfectionsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "target_date": obj.get("target_date"),
             "age": obj.get("age"),
             "year_start": obj.get("year_start"),

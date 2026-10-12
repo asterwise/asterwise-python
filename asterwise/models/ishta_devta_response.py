@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,6 +28,7 @@ class IshtaDevtaResponse(BaseModel):
     """
     IshtaDevtaResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     atmakaraka: StrictStr
     karakamsha_lagna: StrictStr
     karakamsha_lagna_index: StrictInt
@@ -42,7 +43,7 @@ class IshtaDevtaResponse(BaseModel):
     description: StrictStr
     method: StrictStr
     d9_positions: Dict[str, Any]
-    __properties: ClassVar[List[str]] = ["atmakaraka", "karakamsha_lagna", "karakamsha_lagna_index", "jivanmuktamsa_planet", "navamsa_lagna", "navamsa_lagna_index", "twelfth_house_sign", "twelfth_house_index", "planets_in_12th", "ishta_devta_planet", "deity", "description", "method", "d9_positions"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "atmakaraka", "karakamsha_lagna", "karakamsha_lagna_index", "jivanmuktamsa_planet", "navamsa_lagna", "navamsa_lagna_index", "twelfth_house_sign", "twelfth_house_index", "planets_in_12th", "ishta_devta_planet", "deity", "description", "method", "d9_positions"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -100,6 +101,7 @@ class IshtaDevtaResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "atmakaraka": obj.get("atmakaraka"),
             "karakamsha_lagna": obj.get("karakamsha_lagna"),
             "karakamsha_lagna_index": obj.get("karakamsha_lagna_index"),

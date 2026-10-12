@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.birth_nakshatra_ref import BirthNakshatraRef
 from asterwise.models.chandrabala_detail import ChandrabalaDetail
@@ -36,6 +36,7 @@ class NakshatraPredictionResponse(BaseModel):
     """
     NakshatraPredictionResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     target_date: StrictStr
     transit_moon: TransitMoonRef
     tarabala: TarabalaDetail
@@ -46,7 +47,7 @@ class NakshatraPredictionResponse(BaseModel):
     birth_nakshatra: BirthNakshatraRef
     natal_moon_sign_index: StrictInt
     transit_nakshatras: Optional[List[TransitNakshatraTara]] = None
-    __properties: ClassVar[List[str]] = ["target_date", "transit_moon", "tarabala", "chandrabala", "daily_score", "transit_nakshatra_quality", "nakshatra_activities", "birth_nakshatra", "natal_moon_sign_index", "transit_nakshatras"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_date", "transit_moon", "tarabala", "chandrabala", "daily_score", "transit_nakshatra_quality", "nakshatra_activities", "birth_nakshatra", "natal_moon_sign_index", "transit_nakshatras"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -132,6 +133,7 @@ class NakshatraPredictionResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "target_date": obj.get("target_date"),
             "transit_moon": TransitMoonRef.from_dict(obj["transit_moon"]) if obj.get("transit_moon") is not None else None,
             "tarabala": TarabalaDetail.from_dict(obj["tarabala"]) if obj.get("tarabala") is not None else None,

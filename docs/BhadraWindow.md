@@ -7,6 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **start** | **str** | Start. ISO 8601 local time with UTC offset, e.g. 2026-11-06T10:31:09+05:30. | 
 **end** | **str** | End. ISO 8601 local time with UTC offset, e.g. 2026-11-06T10:31:09+05:30. | 
+**start_utc** | **str** |  | [optional] 
+**end_utc** | **str** |  | [optional] 
+**nature** | **str** |  | [optional] 
 **residence** | **str** | Prithvi, Swarga or Patala, from the Moon&#39;s sign. | 
 **residence_english** | **str** |  | 
 **is_on_earth** | **bool** | Bhadra is held harmful when it resides on earth (Moon in Karka, Simha, Kumbha or Meena). | 

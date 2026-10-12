@@ -33,11 +33,14 @@ class DayKarana(BaseModel):
     is_vriddhi: StrictBool = Field(description="Runs through two consecutive sunrises, so it is the sunrise limb of two days (flagged on both).")
     start: StrictStr = Field(description="Start. ISO 8601 local time with UTC offset, e.g. 2026-11-06T10:31:09+05:30.")
     end: StrictStr = Field(description="End. ISO 8601 local time with UTC offset, e.g. 2026-11-06T10:31:09+05:30.")
+    start_utc: Optional[StrictStr] = None
+    end_utc: Optional[StrictStr] = None
+    nature: Optional[StrictStr] = None
     number: StrictInt = Field(description="1 to 60 within the lunar month.")
     name: StrictStr
     lord: Optional[StrictStr] = None
     is_vishti: StrictBool = Field(description="Vishti karana, also called Bhadra.")
-    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "number", "name", "lord", "is_vishti"]
+    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "start_utc", "end_utc", "nature", "number", "name", "lord", "is_vishti"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +81,21 @@ class DayKarana(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if start_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_utc is None and "start_utc" in self.model_fields_set:
+            _dict['start_utc'] = None
+
+        # set to None if end_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.end_utc is None and "end_utc" in self.model_fields_set:
+            _dict['end_utc'] = None
+
+        # set to None if nature (nullable) is None
+        # and model_fields_set contains the field
+        if self.nature is None and "nature" in self.model_fields_set:
+            _dict['nature'] = None
+
         # set to None if lord (nullable) is None
         # and model_fields_set contains the field
         if self.lord is None and "lord" in self.model_fields_set:
@@ -100,6 +118,9 @@ class DayKarana(BaseModel):
             "is_vriddhi": obj.get("is_vriddhi"),
             "start": obj.get("start"),
             "end": obj.get("end"),
+            "start_utc": obj.get("start_utc"),
+            "end_utc": obj.get("end_utc"),
+            "nature": obj.get("nature"),
             "number": obj.get("number"),
             "name": obj.get("name"),
             "lord": obj.get("lord"),

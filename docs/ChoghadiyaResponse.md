@@ -5,11 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**status** | **str** | ok, or no_sunrise when the place has no sunrise or sunset on that date (polar latitudes): the window fields are then null. | [optional] [default to 'ok']
+**status_detail** | **str** |  | [optional] 
 **var_date** | **str** | Date for which Choghadiya is calculated (YYYY-MM-DD). | 
-**sunrise** | **str** | Sunrise time in HH:MM local time. | 
-**sunset** | **str** | Sunset time in HH:MM local time. | 
-**day_choghadiya** | [**List[ChoghadiyaPeriod]**](ChoghadiyaPeriod.md) | 8 Choghadiya periods from sunrise to sunset. | 
-**night_choghadiya** | [**List[ChoghadiyaPeriod]**](ChoghadiyaPeriod.md) | 8 Choghadiya periods from sunset to next sunrise. | 
+**sunrise** | **str** |  | [optional] 
+**sunrise_at** | **str** |  | [optional] 
+**sunrise_utc** | **str** |  | [optional] 
+**sunset** | **str** |  | [optional] 
+**sunset_at** | **str** |  | [optional] 
+**sunset_utc** | **str** |  | [optional] 
+**day_choghadiya** | [**List[ChoghadiyaPeriod]**](ChoghadiyaPeriod.md) |  | [optional] 
+**night_choghadiya** | [**List[ChoghadiyaPeriod]**](ChoghadiyaPeriod.md) |  | [optional] 
 
 ## Example
 

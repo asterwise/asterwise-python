@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.ghatak_parameters import GhatakParameters
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,12 +29,13 @@ class GhatChakraResponse(BaseModel):
     """
     GhatChakraResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     janma_rasi: StrictStr
     janma_rasi_index: StrictInt
     ghatak_parameters: GhatakParameters
     guidance: StrictStr
     avoidance_guidance: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["janma_rasi", "janma_rasi_index", "ghatak_parameters", "guidance", "avoidance_guidance"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "janma_rasi", "janma_rasi_index", "ghatak_parameters", "guidance", "avoidance_guidance"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -90,6 +91,7 @@ class GhatChakraResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "janma_rasi": obj.get("janma_rasi"),
             "janma_rasi_index": obj.get("janma_rasi_index"),
             "ghatak_parameters": GhatakParameters.from_dict(obj["ghatak_parameters"]) if obj.get("ghatak_parameters") is not None else None,

@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_date** | **str** |  | 
+**snapshot_utc** | **str** |  | [optional] 
 **transit_planets** | [**List[TransitPlanetRowSchema]**](TransitPlanetRowSchema.md) |  | 
 **aspects** | [**List[TransitAspectSchema]**](TransitAspectSchema.md) |  | 
 **total_aspects** | **int** |  | 

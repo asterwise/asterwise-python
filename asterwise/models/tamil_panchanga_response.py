@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.tamil_kaal_period import TamilKaalPeriod
 from asterwise.models.tamil_nalla_neram_window import TamilNallaNeramWindow
 from typing import Optional, Set
@@ -32,14 +32,18 @@ class TamilPanchangaResponse(BaseModel):
     """ # noqa: E501
     var_date: StrictStr = Field(description="Date for which Tamil Panchanga is calculated (YYYY-MM-DD).", alias="date")
     sunrise: StrictStr = Field(description="Sunrise time in HH:MM local time.")
+    sunrise_at: Optional[StrictStr] = None
+    sunrise_utc: Optional[StrictStr] = None
     sunset: StrictStr = Field(description="Sunset time in HH:MM local time.")
+    sunset_at: Optional[StrictStr] = None
+    sunset_utc: Optional[StrictStr] = None
     tamil_month: StrictStr = Field(description="Tamil solar month name based on Sun's sidereal sign at sunrise.")
     rahu_kalam: TamilKaalPeriod = Field(description="Rahu Kalam — inauspicious period, avoid new beginnings.")
     yamagandam: TamilKaalPeriod = Field(description="Yamagandam — inauspicious period associated with Yama.")
     kuligai: TamilKaalPeriod = Field(description="Kuligai (Gulika) — inauspicious period associated with Mandi.")
     emagandam: TamilKaalPeriod = Field(description="Emagandam: the Tamil spelling of Yamagandam, the same period (kept for existing clients).")
     nalla_neram: List[TamilNallaNeramWindow] = Field(description="Daytime windows free of Rahu Kalam, Yamagandam and Kuligai.")
-    __properties: ClassVar[List[str]] = ["date", "sunrise", "sunset", "tamil_month", "rahu_kalam", "yamagandam", "kuligai", "emagandam", "nalla_neram"]
+    __properties: ClassVar[List[str]] = ["date", "sunrise", "sunrise_at", "sunrise_utc", "sunset", "sunset_at", "sunset_utc", "tamil_month", "rahu_kalam", "yamagandam", "kuligai", "emagandam", "nalla_neram"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -99,6 +103,26 @@ class TamilPanchangaResponse(BaseModel):
                 if _item_nalla_neram:
                     _items.append(_item_nalla_neram.to_dict())
             _dict['nalla_neram'] = _items
+        # set to None if sunrise_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise_at is None and "sunrise_at" in self.model_fields_set:
+            _dict['sunrise_at'] = None
+
+        # set to None if sunrise_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise_utc is None and "sunrise_utc" in self.model_fields_set:
+            _dict['sunrise_utc'] = None
+
+        # set to None if sunset_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset_at is None and "sunset_at" in self.model_fields_set:
+            _dict['sunset_at'] = None
+
+        # set to None if sunset_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset_utc is None and "sunset_utc" in self.model_fields_set:
+            _dict['sunset_utc'] = None
+
         return _dict
 
     @classmethod
@@ -113,7 +137,11 @@ class TamilPanchangaResponse(BaseModel):
         _obj = cls.model_validate({
             "date": obj.get("date"),
             "sunrise": obj.get("sunrise"),
+            "sunrise_at": obj.get("sunrise_at"),
+            "sunrise_utc": obj.get("sunrise_utc"),
             "sunset": obj.get("sunset"),
+            "sunset_at": obj.get("sunset_at"),
+            "sunset_utc": obj.get("sunset_utc"),
             "tamil_month": obj.get("tamil_month"),
             "rahu_kalam": TamilKaalPeriod.from_dict(obj["rahu_kalam"]) if obj.get("rahu_kalam") is not None else None,
             "yamagandam": TamilKaalPeriod.from_dict(obj["yamagandam"]) if obj.get("yamagandam") is not None else None,

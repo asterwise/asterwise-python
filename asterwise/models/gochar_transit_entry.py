@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -32,6 +33,9 @@ class GocharTransitEntry(BaseModel):
     transit_sign: StrictStr
     transit_sign_index: StrictInt
     transit_degree: Union[StrictFloat, StrictInt]
+    transit_tropical_longitude: Optional[Union[StrictFloat, StrictInt]] = None
+    transit_tropical_sign: Optional[StrictStr] = None
+    transit_tropical_sign_index: Optional[Annotated[int, Field(le=11, strict=True, ge=0)]] = None
     is_retrograde: StrictBool
     nakshatra: Optional[StrictStr]
     nakshatra_pada: Optional[StrictInt]
@@ -51,7 +55,7 @@ class GocharTransitEntry(BaseModel):
     house_rule_quality: Optional[StrictStr] = None
     house_rule_interpretation: Optional[StrictStr] = None
     house_rule_themes: Optional[List[StrictStr]] = Field(default=None, description="Theme tags for this house from the Moon alone.")
-    __properties: ClassVar[List[str]] = ["planet", "transit_sign", "transit_sign_index", "transit_degree", "is_retrograde", "nakshatra", "nakshatra_pada", "house_from_moon", "house_from_lagna", "is_favorable_from_moon", "is_favorable_from_lagna", "bindu_override", "vedha_active", "vedha_blocking_planet", "ashtakavarga_score", "ashtakavarga_score_reduced", "favorable_reason", "interpretation", "themes", "quality", "house_rule_quality", "house_rule_interpretation", "house_rule_themes"]
+    __properties: ClassVar[List[str]] = ["planet", "transit_sign", "transit_sign_index", "transit_degree", "transit_tropical_longitude", "transit_tropical_sign", "transit_tropical_sign_index", "is_retrograde", "nakshatra", "nakshatra_pada", "house_from_moon", "house_from_lagna", "is_favorable_from_moon", "is_favorable_from_lagna", "bindu_override", "vedha_active", "vedha_blocking_planet", "ashtakavarga_score", "ashtakavarga_score_reduced", "favorable_reason", "interpretation", "themes", "quality", "house_rule_quality", "house_rule_interpretation", "house_rule_themes"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -92,6 +96,21 @@ class GocharTransitEntry(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if transit_tropical_longitude (nullable) is None
+        # and model_fields_set contains the field
+        if self.transit_tropical_longitude is None and "transit_tropical_longitude" in self.model_fields_set:
+            _dict['transit_tropical_longitude'] = None
+
+        # set to None if transit_tropical_sign (nullable) is None
+        # and model_fields_set contains the field
+        if self.transit_tropical_sign is None and "transit_tropical_sign" in self.model_fields_set:
+            _dict['transit_tropical_sign'] = None
+
+        # set to None if transit_tropical_sign_index (nullable) is None
+        # and model_fields_set contains the field
+        if self.transit_tropical_sign_index is None and "transit_tropical_sign_index" in self.model_fields_set:
+            _dict['transit_tropical_sign_index'] = None
+
         # set to None if nakshatra (nullable) is None
         # and model_fields_set contains the field
         if self.nakshatra is None and "nakshatra" in self.model_fields_set:
@@ -148,6 +167,9 @@ class GocharTransitEntry(BaseModel):
             "transit_sign": obj.get("transit_sign"),
             "transit_sign_index": obj.get("transit_sign_index"),
             "transit_degree": obj.get("transit_degree"),
+            "transit_tropical_longitude": obj.get("transit_tropical_longitude"),
+            "transit_tropical_sign": obj.get("transit_tropical_sign"),
+            "transit_tropical_sign_index": obj.get("transit_tropical_sign_index"),
             "is_retrograde": obj.get("is_retrograde"),
             "nakshatra": obj.get("nakshatra"),
             "nakshatra_pada": obj.get("nakshatra_pada"),

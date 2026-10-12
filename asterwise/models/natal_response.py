@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
 from asterwise.models.bhava_madhya_entry import BhavaMadhyaEntry
 from asterwise.models.birth_moment import BirthMoment
 from asterwise.models.house_data import HouseData
@@ -42,7 +43,7 @@ class NatalResponse(BaseModel):
     ayanamsa_used: StrictStr = Field(description="Ayanamsa mode used for the chart")
     birth_moment: Optional[BirthMoment] = None
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
-    interpretation: Optional[List[Optional[Dict[str, Any]]]] = None
+    interpretation: Optional[List[Dict[str, Any]]] = None
     ascendant_sign_interpretation: Optional[Dict[str, Any]] = None
     moon_sign: Optional[StrictStr] = None
     moon_nakshatra: Optional[StrictStr] = None
@@ -55,7 +56,11 @@ class NatalResponse(BaseModel):
     rashi_drishti: Optional[List[RashiDrishtiEntry]] = None
     arudha_padas: Optional[Dict[str, Optional[Dict[str, Any]]]] = None
     upapada_lagna: Optional[UpapadaLagna] = None
-    __properties: ClassVar[List[str]] = ["planets", "houses", "ascendant", "ascendant_sign", "ayanamsa_value", "ayanamsa_used", "birth_moment", "birth_time_provided", "interpretation", "ascendant_sign_interpretation", "moon_sign", "moon_nakshatra", "moon_sign_interpretation", "moon_nakshatra_interpretation", "avakahada", "bhava_madhya", "bhava_sandhi", "graha_drishti", "rashi_drishti", "arudha_padas", "upapada_lagna"]
+    ascendant_tropical_longitude: Optional[Union[StrictFloat, StrictInt]] = None
+    ascendant_tropical_sign: Optional[StrictStr] = None
+    ascendant_tropical_sign_index: Optional[Annotated[int, Field(le=11, strict=True, ge=0)]] = None
+    moon_tropical_sign: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["planets", "houses", "ascendant", "ascendant_sign", "ayanamsa_value", "ayanamsa_used", "birth_moment", "birth_time_provided", "interpretation", "ascendant_sign_interpretation", "moon_sign", "moon_nakshatra", "moon_sign_interpretation", "moon_nakshatra_interpretation", "avakahada", "bhava_madhya", "bhava_sandhi", "graha_drishti", "rashi_drishti", "arudha_padas", "upapada_lagna", "ascendant_tropical_longitude", "ascendant_tropical_sign", "ascendant_tropical_sign_index", "moon_tropical_sign"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -207,6 +212,26 @@ class NatalResponse(BaseModel):
         if self.upapada_lagna is None and "upapada_lagna" in self.model_fields_set:
             _dict['upapada_lagna'] = None
 
+        # set to None if ascendant_tropical_longitude (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_tropical_longitude is None and "ascendant_tropical_longitude" in self.model_fields_set:
+            _dict['ascendant_tropical_longitude'] = None
+
+        # set to None if ascendant_tropical_sign (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_tropical_sign is None and "ascendant_tropical_sign" in self.model_fields_set:
+            _dict['ascendant_tropical_sign'] = None
+
+        # set to None if ascendant_tropical_sign_index (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_tropical_sign_index is None and "ascendant_tropical_sign_index" in self.model_fields_set:
+            _dict['ascendant_tropical_sign_index'] = None
+
+        # set to None if moon_tropical_sign (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_tropical_sign is None and "moon_tropical_sign" in self.model_fields_set:
+            _dict['moon_tropical_sign'] = None
+
         return _dict
 
     @classmethod
@@ -239,7 +264,11 @@ class NatalResponse(BaseModel):
             "graha_drishti": obj.get("graha_drishti"),
             "rashi_drishti": [RashiDrishtiEntry.from_dict(_item) for _item in obj["rashi_drishti"]] if obj.get("rashi_drishti") is not None else None,
             "arudha_padas": obj.get("arudha_padas"),
-            "upapada_lagna": UpapadaLagna.from_dict(obj["upapada_lagna"]) if obj.get("upapada_lagna") is not None else None
+            "upapada_lagna": UpapadaLagna.from_dict(obj["upapada_lagna"]) if obj.get("upapada_lagna") is not None else None,
+            "ascendant_tropical_longitude": obj.get("ascendant_tropical_longitude"),
+            "ascendant_tropical_sign": obj.get("ascendant_tropical_sign"),
+            "ascendant_tropical_sign_index": obj.get("ascendant_tropical_sign_index"),
+            "moon_tropical_sign": obj.get("moon_tropical_sign")
         })
         return _obj
 

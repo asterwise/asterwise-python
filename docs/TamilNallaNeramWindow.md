@@ -6,7 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **start** | **str** | Auspicious window start in HH:MM local time. | 
+**start_at** | **str** |  | [optional] 
+**start_utc** | **str** |  | [optional] 
 **end** | **str** | Auspicious window end in HH:MM local time. | 
+**end_at** | **str** |  | [optional] 
+**end_utc** | **str** |  | [optional] 
 
 ## Example
 

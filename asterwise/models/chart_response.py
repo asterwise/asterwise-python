@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,12 +28,13 @@ class ChartResponse(BaseModel):
     """
     ChartResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     lagna_north: StrictStr = Field(description="North Indian Lagna chart SVG string")
     lagna_south: StrictStr = Field(description="South Indian Lagna chart SVG string")
     navamsa_north: StrictStr = Field(description="North Indian Navamsa (D9) chart SVG string")
     navamsa_south: StrictStr = Field(description="South Indian Navamsa (D9) chart SVG string")
     legend: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["lagna_north", "lagna_south", "navamsa_north", "navamsa_south", "legend"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "lagna_north", "lagna_south", "navamsa_north", "navamsa_south", "legend"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -91,6 +92,7 @@ class ChartResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "lagna_north": obj.get("lagna_north"),
             "lagna_south": obj.get("lagna_south"),
             "navamsa_north": obj.get("navamsa_north"),

@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from asterwise.models.ayana import Ayana
+from asterwise.models.civil_day import CivilDay
 from asterwise.models.day_karana import DayKarana
 from asterwise.models.day_nakshatra import DayNakshatra
 from asterwise.models.day_timings import DayTimings
@@ -71,7 +72,8 @@ class PanchangaResponse(BaseModel):
     nakshatra: NakshatraData = Field(description="Lunar mansion the Moon occupies at the given moment")
     yoga: YogaData = Field(description="Luni-solar yoga — combined Sun and Moon longitude divided into 27 parts")
     karana: KaranaData = Field(description="Half of a tithi — the smaller unit of lunar time")
-    __properties: ClassVar[List[str]] = ["date", "timezone", "sunrise", "sunset", "next_sunrise", "moonrise", "moonset", "day_duration_minutes", "night_duration_minutes", "paksha", "tithis", "nakshatras", "yogas", "karanas", "sun_rashi", "moon_rashi", "sun_nakshatra", "masa", "samvat", "ritu", "ayana", "timings", "tithi", "vara", "nakshatra", "yoga", "karana"]
+    civil_day: Optional[CivilDay] = None
+    __properties: ClassVar[List[str]] = ["date", "timezone", "sunrise", "sunset", "next_sunrise", "moonrise", "moonset", "day_duration_minutes", "night_duration_minutes", "paksha", "tithis", "nakshatras", "yogas", "karanas", "sun_rashi", "moon_rashi", "sun_nakshatra", "masa", "samvat", "ritu", "ayana", "timings", "tithi", "vara", "nakshatra", "yoga", "karana", "civil_day"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -191,6 +193,9 @@ class PanchangaResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of karana
         if self.karana:
             _dict['karana'] = self.karana.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of civil_day
+        if self.civil_day:
+            _dict['civil_day'] = self.civil_day.to_dict()
         # set to None if var_date (nullable) is None
         # and model_fields_set contains the field
         if self.var_date is None and "var_date" in self.model_fields_set:
@@ -301,6 +306,11 @@ class PanchangaResponse(BaseModel):
         if self.timings is None and "timings" in self.model_fields_set:
             _dict['timings'] = None
 
+        # set to None if civil_day (nullable) is None
+        # and model_fields_set contains the field
+        if self.civil_day is None and "civil_day" in self.model_fields_set:
+            _dict['civil_day'] = None
+
         return _dict
 
     @classmethod
@@ -339,7 +349,8 @@ class PanchangaResponse(BaseModel):
             "vara": VaraData.from_dict(obj["vara"]) if obj.get("vara") is not None else None,
             "nakshatra": NakshatraData.from_dict(obj["nakshatra"]) if obj.get("nakshatra") is not None else None,
             "yoga": YogaData.from_dict(obj["yoga"]) if obj.get("yoga") is not None else None,
-            "karana": KaranaData.from_dict(obj["karana"]) if obj.get("karana") is not None else None
+            "karana": KaranaData.from_dict(obj["karana"]) if obj.get("karana") is not None else None,
+            "civil_day": CivilDay.from_dict(obj["civil_day"]) if obj.get("civil_day") is not None else None
         })
         return _obj
 

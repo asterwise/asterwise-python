@@ -42,7 +42,10 @@ class PlanetPosition(BaseModel):
     rasi_house: Optional[Annotated[int, Field(le=12, strict=True, ge=0)]] = None
     bhava_chalit_house: Optional[Annotated[int, Field(le=12, strict=True, ge=1)]] = None
     house_system_note: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["planet", "sign", "sign_num", "degree", "nakshatra", "nakshatra_pada", "is_retrograde", "is_combust", "is_deep_combust", "house", "rasi_house", "bhava_chalit_house", "house_system_note"]
+    tropical_longitude: Optional[Union[StrictFloat, StrictInt]] = None
+    tropical_sign: Optional[StrictStr] = None
+    tropical_sign_index: Optional[Annotated[int, Field(le=11, strict=True, ge=0)]] = None
+    __properties: ClassVar[List[str]] = ["planet", "sign", "sign_num", "degree", "nakshatra", "nakshatra_pada", "is_retrograde", "is_combust", "is_deep_combust", "house", "rasi_house", "bhava_chalit_house", "house_system_note", "tropical_longitude", "tropical_sign", "tropical_sign_index"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -98,6 +101,21 @@ class PlanetPosition(BaseModel):
         if self.house_system_note is None and "house_system_note" in self.model_fields_set:
             _dict['house_system_note'] = None
 
+        # set to None if tropical_longitude (nullable) is None
+        # and model_fields_set contains the field
+        if self.tropical_longitude is None and "tropical_longitude" in self.model_fields_set:
+            _dict['tropical_longitude'] = None
+
+        # set to None if tropical_sign (nullable) is None
+        # and model_fields_set contains the field
+        if self.tropical_sign is None and "tropical_sign" in self.model_fields_set:
+            _dict['tropical_sign'] = None
+
+        # set to None if tropical_sign_index (nullable) is None
+        # and model_fields_set contains the field
+        if self.tropical_sign_index is None and "tropical_sign_index" in self.model_fields_set:
+            _dict['tropical_sign_index'] = None
+
         return _dict
 
     @classmethod
@@ -122,7 +140,10 @@ class PlanetPosition(BaseModel):
             "house": obj.get("house"),
             "rasi_house": obj.get("rasi_house"),
             "bhava_chalit_house": obj.get("bhava_chalit_house"),
-            "house_system_note": obj.get("house_system_note")
+            "house_system_note": obj.get("house_system_note"),
+            "tropical_longitude": obj.get("tropical_longitude"),
+            "tropical_sign": obj.get("tropical_sign"),
+            "tropical_sign_index": obj.get("tropical_sign_index")
         })
         return _obj
 

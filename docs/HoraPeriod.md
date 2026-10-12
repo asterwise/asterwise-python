@@ -8,7 +8,11 @@ Name | Type | Description | Notes
 **hora** | **int** | Hora number, 1 to 24. | 
 **ruling_planet** | **str** | Planet ruling this hora. | 
 **start** | **str** | Hora start time in HH:MM local time. | 
+**start_at** | **str** |  | [optional] 
+**start_utc** | **str** |  | [optional] 
 **end** | **str** | Hora end time in HH:MM local time. | 
+**end_at** | **str** |  | [optional] 
+**end_utc** | **str** |  | [optional] 
 **quality** | **str** | Activities suited to this planetary hora. | 
 **is_current** | **bool** | True if this hora is currently active. | 
 

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **ayanamsa_used** | **str** | Ayanamsa mode used for the chart | 
 **birth_moment** | [**BirthMoment**](BirthMoment.md) |  | [optional] 
 **birth_time_provided** | **bool** | Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits. | [optional] [default to True]
-**interpretation** | **List[Optional[Dict[str, object]]]** |  | [optional] 
+**interpretation** | **List[Dict[str, object]]** |  | [optional] 
 **ascendant_sign_interpretation** | **Dict[str, object]** |  | [optional] 
 **moon_sign** | **str** |  | [optional] 
 **moon_nakshatra** | **str** |  | [optional] 
@@ -26,6 +26,10 @@ Name | Type | Description | Notes
 **rashi_drishti** | [**List[RashiDrishtiEntry]**](RashiDrishtiEntry.md) |  | [optional] 
 **arudha_padas** | **Dict[str, Optional[Dict[str, object]]]** |  | [optional] 
 **upapada_lagna** | [**UpapadaLagna**](UpapadaLagna.md) |  | [optional] 
+**ascendant_tropical_longitude** | **float** |  | [optional] 
+**ascendant_tropical_sign** | **str** |  | [optional] 
+**ascendant_tropical_sign_index** | **int** |  | [optional] 
+**moon_tropical_sign** | **str** |  | [optional] 
 
 ## Example
 

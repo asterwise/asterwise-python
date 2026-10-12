@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from asterwise.models.varsha_pati import VarshaPati
 from asterwise.models.varshaphal_muntha import VarshaphalMuntha
@@ -31,6 +31,7 @@ class VarshaphalResponse(BaseModel):
     """
     VarshaphalResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     target_year: StrictInt
     ayanamsa: StrictStr
     solar_return_utc: StrictStr = Field(description="Solar return instant (UTC, to the minute): the Sun back on its natal longitude, the return nearest the birthday in target_year.")
@@ -50,7 +51,7 @@ class VarshaphalResponse(BaseModel):
     pancha_vargeeya_bala: Dict[str, Union[StrictFloat, StrictInt]]
     tajika_aspects: List[Optional[Dict[str, Any]]]
     tajika_planet_pairs: List[Optional[Dict[str, Any]]] = Field(description="Pairs of the seven grahas (no Rahu/Ketu) in Tajika aspect by sign: same sign (conjunction), 3rd/11th (mitra), 4th/10th (vikrama), 5th/9th (labha), 7th (shatru). Keys: planet_a, planet_b, house_a, house_b (whole-sign houses from the Varsha lagna), diff_ab, diff_ba, aspect_ab, aspect_ba, faster_planet (by mean motion: Moon, Mercury, Venus, Sun, Mars, Jupiter, Saturn), orb_degrees (gap between their degrees within sign), orb_limit (mean of the two Deeptamsas), is_ithsala (faster planet behind the slower one within orb_limit), ithsala_type ('poorna' within 1 degree, 'vartamana' otherwise, null when not ithsala), is_musaripha (faster planet already past, within orb_limit). Retrogression is not modelled.")
-    __properties: ClassVar[List[str]] = ["target_year", "ayanamsa", "solar_return_utc", "solar_return_jd", "natal_sun_longitude", "natal_lagna", "natal_lagna_index", "year_lord", "vara_lord", "muntha", "planets", "varshaphal_ascendant_longitude", "varshaphal_ascendant_sign", "varshaphal_ascendant_sign_index", "varsha_pati", "pancha_adhikaris", "pancha_vargeeya_bala", "tajika_aspects", "tajika_planet_pairs"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_year", "ayanamsa", "solar_return_utc", "solar_return_jd", "natal_sun_longitude", "natal_lagna", "natal_lagna_index", "year_lord", "vara_lord", "muntha", "planets", "varshaphal_ascendant_longitude", "varshaphal_ascendant_sign", "varshaphal_ascendant_sign_index", "varsha_pati", "pancha_adhikaris", "pancha_vargeeya_bala", "tajika_aspects", "tajika_planet_pairs"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -136,6 +137,7 @@ class VarshaphalResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "target_year": obj.get("target_year"),
             "ayanamsa": obj.get("ayanamsa"),
             "solar_return_utc": obj.get("solar_return_utc"),

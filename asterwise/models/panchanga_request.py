@@ -38,7 +38,8 @@ class PanchangaRequest(BaseModel):
     timezone: Optional[StrictStr] = None
     utc_offset: Optional[StrictStr] = None
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
-    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa"]
+    day: Optional[StrictStr] = Field(default='sunrise', description="sunrise (default): the panchanga day runs from this date's sunrise to the next. civil: also return civil_day, the windows that fall between local midnight and midnight of this date, for calendar-day apps. The sunrise-day fields are unchanged.")
+    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "day"]
 
     @field_validator('ayanamsa')
     def ayanamsa_validate_enum(cls, value):
@@ -48,6 +49,16 @@ class PanchangaRequest(BaseModel):
 
         if value not in set(['lahiri', 'raman', 'kp', 'tropical']):
             raise ValueError("must be one of enum values ('lahiri', 'raman', 'kp', 'tropical')")
+        return value
+
+    @field_validator('day')
+    def day_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['sunrise', 'civil']):
+            raise ValueError("must be one of enum values ('sunrise', 'civil')")
         return value
 
     model_config = ConfigDict(
@@ -144,7 +155,8 @@ class PanchangaRequest(BaseModel):
             "longitude": obj.get("longitude"),
             "timezone": obj.get("timezone"),
             "utc_offset": obj.get("utc_offset"),
-            "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri'
+            "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri',
+            "day": obj.get("day") if obj.get("day") is not None else 'sunrise'
         })
         return _obj
 

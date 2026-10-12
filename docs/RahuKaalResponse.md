@@ -5,12 +5,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**status** | **str** | ok, or no_sunrise when the place has no sunrise or sunset on that date (polar latitudes): the window fields are then null. | [optional] [default to 'ok']
+**status_detail** | **str** |  | [optional] 
 **var_date** | **str** | Date for which Rahu Kaal is calculated (YYYY-MM-DD). | 
-**sunrise** | **str** | Sunrise time in HH:MM local time. | 
-**sunset** | **str** | Sunset time in HH:MM local time. | 
-**rahu_kaal** | [**KaalPeriod**](KaalPeriod.md) | Rahu Kaal period — inauspicious for new beginnings. | 
-**gulika_kaal** | [**KaalPeriod**](KaalPeriod.md) | Gulika Kaal (Mandi) period — inauspicious. | 
-**yamaganda_kaal** | [**KaalPeriod**](KaalPeriod.md) | Yamaganda Kaal period — inauspicious. | 
+**sunrise** | **str** |  | [optional] 
+**sunrise_at** | **str** |  | [optional] 
+**sunrise_utc** | **str** |  | [optional] 
+**sunset** | **str** |  | [optional] 
+**sunset_at** | **str** |  | [optional] 
+**sunset_utc** | **str** |  | [optional] 
+**rahu_kaal** | [**KaalPeriod**](KaalPeriod.md) |  | [optional] 
+**gulika_kaal** | [**KaalPeriod**](KaalPeriod.md) |  | [optional] 
+**yamaganda_kaal** | [**KaalPeriod**](KaalPeriod.md) |  | [optional] 
 
 ## Example
 

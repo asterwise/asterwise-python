@@ -12,6 +12,8 @@ from asterwise.api.numerology_api import NumerologyApi
 from asterwise.api.prashna_api import PrashnaApi
 from asterwise.api.tarot_api import TarotApi
 from asterwise.api.utilities_api import UtilitiesApi
+from asterwise.api.vedic_reference_api import VedicReferenceApi
 from asterwise.api.western_api import WesternApi
 from asterwise.api.western_astrology_api import WesternAstrologyApi
+from asterwise.api.default_api import DefaultApi
 

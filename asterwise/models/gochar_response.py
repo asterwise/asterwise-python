@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.gochar_natal_ref import GocharNatalRef
 from asterwise.models.gochar_summary import GocharSummary
 from asterwise.models.gochar_transit_entry import GocharTransitEntry
@@ -31,11 +31,12 @@ class GocharResponse(BaseModel):
     """
     GocharResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     natal: GocharNatalRef
     target_date: StrictStr
     transits: List[GocharTransitEntry]
     summary: GocharSummary
-    __properties: ClassVar[List[str]] = ["natal", "target_date", "transits", "summary"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "natal", "target_date", "transits", "summary"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -101,6 +102,7 @@ class GocharResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "natal": GocharNatalRef.from_dict(obj["natal"]) if obj.get("natal") is not None else None,
             "target_date": obj.get("target_date"),
             "transits": [GocharTransitEntry.from_dict(_item) for _item in obj["transits"]] if obj.get("transits") is not None else None,

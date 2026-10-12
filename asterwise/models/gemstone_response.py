@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,6 +28,7 @@ class GemstoneResponse(BaseModel):
     """
     GemstoneResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     primary: Dict[str, Any] = Field(description="Lagna lord's gem: planet, reason, gemstone, substitute_gemstone, metal, colour, note. The lagna lord is always a functional benefic (BPHS Ch.34), so this is never withheld for lordship; it can still be contraindicated when the planet is debilitated or combust. Every slot also carries `contraindicated` (bool) and `caution` (string or null): when the slot's planet appears in `contraindicated`, the slot says `contraindicated: true` with a caution — do not wear that gem for this role. A 5th/9th lord that also owns a dusthana keeps `contraindicated: false` with a caution naming the dusthana.")
     secondary: Optional[Dict[str, Any]] = None
     yogakaraka_gem: Optional[Dict[str, Any]] = None
@@ -36,7 +37,7 @@ class GemstoneResponse(BaseModel):
     atmakaraka_gem: Optional[Dict[str, Any]] = None
     contraindicated: List[Optional[Dict[str, Any]]] = Field(description="Planets whose gem must not be worn in this chart (planet, gemstone, reason): dusthana (6/8/12) lords that own no trikona, debilitated planets, combust planets. Same rule as POST /v1/crystals/recommend/natal.")
     note: StrictStr
-    __properties: ClassVar[List[str]] = ["primary", "secondary", "yogakaraka_gem", "fifth_lord_gem", "ninth_lord_gem", "atmakaraka_gem", "contraindicated", "note"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "primary", "secondary", "yogakaraka_gem", "fifth_lord_gem", "ninth_lord_gem", "atmakaraka_gem", "contraindicated", "note"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -114,6 +115,7 @@ class GemstoneResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "primary": obj.get("primary"),
             "secondary": obj.get("secondary"),
             "yogakaraka_gem": obj.get("yogakaraka_gem"),

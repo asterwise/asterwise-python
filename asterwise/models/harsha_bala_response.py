@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from asterwise.models.harsha_bala_entry import HarshaBalaEntry
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,13 +29,14 @@ class HarshaBalaResponse(BaseModel):
     """
     HarshaBalaResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     target_year: StrictInt
     ayanamsa: StrictStr
     solar_return_utc: StrictStr
     is_day_return: StrictBool
     varshaphal_ascendant_longitude: Union[StrictFloat, StrictInt]
     planets: List[HarshaBalaEntry]
-    __properties: ClassVar[List[str]] = ["target_year", "ayanamsa", "solar_return_utc", "is_day_return", "varshaphal_ascendant_longitude", "planets"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_year", "ayanamsa", "solar_return_utc", "is_day_return", "varshaphal_ascendant_longitude", "planets"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -95,6 +96,7 @@ class HarshaBalaResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "target_year": obj.get("target_year"),
             "ayanamsa": obj.get("ayanamsa"),
             "solar_return_utc": obj.get("solar_return_utc"),

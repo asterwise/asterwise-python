@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from asterwise.models.progressed_planet_schema import ProgressedPlanetSchema
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,6 +29,7 @@ class SecondaryProgressionResponse(BaseModel):
     """
     SecondaryProgressionResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     target_date: StrictStr
     progressed_jd: Union[StrictFloat, StrictInt]
     age_years: Union[StrictFloat, StrictInt] = Field(description="Age in tropical years at target date")
@@ -40,7 +41,7 @@ class SecondaryProgressionResponse(BaseModel):
     progressed_ascendant_sign: StrictStr
     progressed_mc: Union[StrictFloat, StrictInt] = Field(description="Progressed MC: natal MC advanced by the solar arc in longitude")
     progressed_mc_sign: StrictStr
-    __properties: ClassVar[List[str]] = ["target_date", "progressed_jd", "age_years", "solar_arc", "natal_sun_longitude", "progressed_sun_longitude", "progressed_planets", "progressed_ascendant", "progressed_ascendant_sign", "progressed_mc", "progressed_mc_sign"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_date", "progressed_jd", "age_years", "solar_arc", "natal_sun_longitude", "progressed_sun_longitude", "progressed_planets", "progressed_ascendant", "progressed_ascendant_sign", "progressed_mc", "progressed_mc_sign"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -100,6 +101,7 @@ class SecondaryProgressionResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "target_date": obj.get("target_date"),
             "progressed_jd": obj.get("progressed_jd"),
             "age_years": obj.get("age_years"),

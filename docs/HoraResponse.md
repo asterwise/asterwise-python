@@ -5,12 +5,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**status** | **str** | ok, or no_sunrise when the place has no sunrise or sunset on that date (polar latitudes): the window fields are then null. | [optional] [default to 'ok']
+**status_detail** | **str** |  | [optional] 
 **var_date** | **str** | Date for which Hora is calculated (YYYY-MM-DD). | 
-**convention** | **str** | Hora division used. &#x60;&#x60;unequal_seasonal&#x60;&#x60; &#x3D; 12 day + 12 night parts from real sunrise/sunset (panchanga / electional). | 
-**sunrise** | **str** | Sunrise time in HH:MM local time. | 
-**sunset** | **str** | Sunset time in HH:MM local time. | 
-**next_sunrise** | **str** | Next day sunrise time in HH:MM local time. | 
-**horas** | [**List[HoraPeriod]**](HoraPeriod.md) | 24 planetary hours: 12 from sunrise to sunset, then 12 from sunset to next sunrise. | 
+**convention** | **str** |  | [optional] 
+**sunrise** | **str** |  | [optional] 
+**sunrise_at** | **str** |  | [optional] 
+**sunrise_utc** | **str** |  | [optional] 
+**sunset** | **str** |  | [optional] 
+**sunset_at** | **str** |  | [optional] 
+**sunset_utc** | **str** |  | [optional] 
+**next_sunrise** | **str** |  | [optional] 
+**next_sunrise_at** | **str** |  | [optional] 
+**next_sunrise_utc** | **str** |  | [optional] 
+**horas** | [**List[HoraPeriod]**](HoraPeriod.md) |  | [optional] 
 
 ## Example
 

@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: the return chart is then cast from a 06:00 natal chart and its houses are approximate. | [optional] [default to True]
 **planet** | **str** |  | 
 **natal_longitude** | **float** | Natal longitude of the return planet (tropical) | 
 **return_utc** | **str** | Exact UTC moment of return (ISO 8601) | 

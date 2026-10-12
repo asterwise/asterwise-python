@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.kp_house_significators import KPHouseSignificators
 from typing import Optional, Set
@@ -29,10 +29,11 @@ class KPSignificatorsResponse(BaseModel):
     """
     KPSignificatorsResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     ayanamsa: StrictStr
     significators: Dict[str, KPHouseSignificators]
     planet_significators: Dict[str, Optional[Dict[str, Any]]]
-    __properties: ClassVar[List[str]] = ["ayanamsa", "significators", "planet_significators"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "ayanamsa", "significators", "planet_significators"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -92,6 +93,7 @@ class KPSignificatorsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "ayanamsa": obj.get("ayanamsa"),
             "significators": dict(
                 (_k, KPHouseSignificators.from_dict(_v))

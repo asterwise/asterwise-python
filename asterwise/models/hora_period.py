@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,10 +31,14 @@ class HoraPeriod(BaseModel):
     hora: StrictInt = Field(description="Hora number, 1 to 24.")
     ruling_planet: StrictStr = Field(description="Planet ruling this hora.")
     start: StrictStr = Field(description="Hora start time in HH:MM local time.")
+    start_at: Optional[StrictStr] = None
+    start_utc: Optional[StrictStr] = None
     end: StrictStr = Field(description="Hora end time in HH:MM local time.")
+    end_at: Optional[StrictStr] = None
+    end_utc: Optional[StrictStr] = None
     quality: StrictStr = Field(description="Activities suited to this planetary hora.")
     is_current: StrictBool = Field(description="True if this hora is currently active.")
-    __properties: ClassVar[List[str]] = ["hora", "ruling_planet", "start", "end", "quality", "is_current"]
+    __properties: ClassVar[List[str]] = ["hora", "ruling_planet", "start", "start_at", "start_utc", "end", "end_at", "end_utc", "quality", "is_current"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,6 +79,26 @@ class HoraPeriod(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if start_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_at is None and "start_at" in self.model_fields_set:
+            _dict['start_at'] = None
+
+        # set to None if start_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_utc is None and "start_utc" in self.model_fields_set:
+            _dict['start_utc'] = None
+
+        # set to None if end_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.end_at is None and "end_at" in self.model_fields_set:
+            _dict['end_at'] = None
+
+        # set to None if end_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.end_utc is None and "end_utc" in self.model_fields_set:
+            _dict['end_utc'] = None
+
         return _dict
 
     @classmethod
@@ -90,7 +114,11 @@ class HoraPeriod(BaseModel):
             "hora": obj.get("hora"),
             "ruling_planet": obj.get("ruling_planet"),
             "start": obj.get("start"),
+            "start_at": obj.get("start_at"),
+            "start_utc": obj.get("start_utc"),
             "end": obj.get("end"),
+            "end_at": obj.get("end_at"),
+            "end_utc": obj.get("end_utc"),
             "quality": obj.get("quality"),
             "is_current": obj.get("is_current")
         })

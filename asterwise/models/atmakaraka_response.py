@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,13 +28,14 @@ class AtmakarakaResponse(BaseModel):
     """
     AtmakarakaResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     karaka_to_planet: Dict[str, StrictStr]
     planet_to_karaka: Dict[str, StrictStr]
     atmakaraka: StrictStr
     atmakaraka_sign: StrictStr
     atmakaraka_nakshatra: Optional[StrictStr]
     details: Dict[str, Any]
-    __properties: ClassVar[List[str]] = ["karaka_to_planet", "planet_to_karaka", "atmakaraka", "atmakaraka_sign", "atmakaraka_nakshatra", "details"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "karaka_to_planet", "planet_to_karaka", "atmakaraka", "atmakaraka_sign", "atmakaraka_nakshatra", "details"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -92,6 +93,7 @@ class AtmakarakaResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "karaka_to_planet": obj.get("karaka_to_planet"),
             "planet_to_karaka": obj.get("planet_to_karaka"),
             "atmakaraka": obj.get("atmakaraka"),

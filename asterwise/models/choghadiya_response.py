@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.choghadiya_period import ChoghadiyaPeriod
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,12 +29,28 @@ class ChoghadiyaResponse(BaseModel):
     """
     ChoghadiyaResponse
     """ # noqa: E501
+    status: Optional[StrictStr] = Field(default='ok', description="ok, or no_sunrise when the place has no sunrise or sunset on that date (polar latitudes): the window fields are then null.")
+    status_detail: Optional[StrictStr] = None
     var_date: StrictStr = Field(description="Date for which Choghadiya is calculated (YYYY-MM-DD).", alias="date")
-    sunrise: StrictStr = Field(description="Sunrise time in HH:MM local time.")
-    sunset: StrictStr = Field(description="Sunset time in HH:MM local time.")
-    day_choghadiya: List[ChoghadiyaPeriod] = Field(description="8 Choghadiya periods from sunrise to sunset.")
-    night_choghadiya: List[ChoghadiyaPeriod] = Field(description="8 Choghadiya periods from sunset to next sunrise.")
-    __properties: ClassVar[List[str]] = ["date", "sunrise", "sunset", "day_choghadiya", "night_choghadiya"]
+    sunrise: Optional[StrictStr] = None
+    sunrise_at: Optional[StrictStr] = None
+    sunrise_utc: Optional[StrictStr] = None
+    sunset: Optional[StrictStr] = None
+    sunset_at: Optional[StrictStr] = None
+    sunset_utc: Optional[StrictStr] = None
+    day_choghadiya: Optional[List[ChoghadiyaPeriod]] = None
+    night_choghadiya: Optional[List[ChoghadiyaPeriod]] = None
+    __properties: ClassVar[List[str]] = ["status", "status_detail", "date", "sunrise", "sunrise_at", "sunrise_utc", "sunset", "sunset_at", "sunset_utc", "day_choghadiya", "night_choghadiya"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['ok', 'no_sunrise']):
+            raise ValueError("must be one of enum values ('ok', 'no_sunrise')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -89,6 +105,51 @@ class ChoghadiyaResponse(BaseModel):
                 if _item_night_choghadiya:
                     _items.append(_item_night_choghadiya.to_dict())
             _dict['night_choghadiya'] = _items
+        # set to None if status_detail (nullable) is None
+        # and model_fields_set contains the field
+        if self.status_detail is None and "status_detail" in self.model_fields_set:
+            _dict['status_detail'] = None
+
+        # set to None if sunrise (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise is None and "sunrise" in self.model_fields_set:
+            _dict['sunrise'] = None
+
+        # set to None if sunrise_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise_at is None and "sunrise_at" in self.model_fields_set:
+            _dict['sunrise_at'] = None
+
+        # set to None if sunrise_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunrise_utc is None and "sunrise_utc" in self.model_fields_set:
+            _dict['sunrise_utc'] = None
+
+        # set to None if sunset (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset is None and "sunset" in self.model_fields_set:
+            _dict['sunset'] = None
+
+        # set to None if sunset_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset_at is None and "sunset_at" in self.model_fields_set:
+            _dict['sunset_at'] = None
+
+        # set to None if sunset_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.sunset_utc is None and "sunset_utc" in self.model_fields_set:
+            _dict['sunset_utc'] = None
+
+        # set to None if day_choghadiya (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_choghadiya is None and "day_choghadiya" in self.model_fields_set:
+            _dict['day_choghadiya'] = None
+
+        # set to None if night_choghadiya (nullable) is None
+        # and model_fields_set contains the field
+        if self.night_choghadiya is None and "night_choghadiya" in self.model_fields_set:
+            _dict['night_choghadiya'] = None
+
         return _dict
 
     @classmethod
@@ -101,9 +162,15 @@ class ChoghadiyaResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "status": obj.get("status") if obj.get("status") is not None else 'ok',
+            "status_detail": obj.get("status_detail"),
             "date": obj.get("date"),
             "sunrise": obj.get("sunrise"),
+            "sunrise_at": obj.get("sunrise_at"),
+            "sunrise_utc": obj.get("sunrise_utc"),
             "sunset": obj.get("sunset"),
+            "sunset_at": obj.get("sunset_at"),
+            "sunset_utc": obj.get("sunset_utc"),
             "day_choghadiya": [ChoghadiyaPeriod.from_dict(_item) for _item in obj["day_choghadiya"]] if obj.get("day_choghadiya") is not None else None,
             "night_choghadiya": [ChoghadiyaPeriod.from_dict(_item) for _item in obj["night_choghadiya"]] if obj.get("night_choghadiya") is not None else None
         })

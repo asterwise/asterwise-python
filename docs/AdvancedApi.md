@@ -8,7 +8,10 @@ Method | HTTP request | Description
 [**ashtottari_dasha**](AdvancedApi.md#ashtottari_dasha) | **POST** /v1/astro/ashtottari | Ashtottari Dasha
 [**divisional_charts**](AdvancedApi.md#divisional_charts) | **POST** /v1/astro/divisional | Divisional charts — Varga
 [**strength**](AdvancedApi.md#strength) | **POST** /v1/astro/strength | Calculate planetary strength suite
+[**tarabala**](AdvancedApi.md#tarabala) | **POST** /v1/astro/tarabala | Tarabala and Chandrabala
 [**transits**](AdvancedApi.md#transits) | **POST** /v1/astro/transits | Planetary transits — Gochar
+[**vedic_daily_factors**](AdvancedApi.md#vedic_daily_factors) | **POST** /v1/astro/daily-factors | Vedic daily factors
+[**vedic_events**](AdvancedApi.md#vedic_events) | **POST** /v1/astro/events | Vedic events over a date range
 [**yogini_dasha**](AdvancedApi.md#yogini_dasha) | **POST** /v1/astro/yogini | Yogini Dasha
 
 
@@ -486,6 +489,94 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **tarabala**
+> ApiResponseTarabalaResponse tarabala(tarabala_request)
+
+Tarabala and Chandrabala
+
+Tarabala and Chandrabala for any date, with the Moon's star and sign change times. For every Moon nakshatra and Moon sign in the range (1 to 31 civil days) it gives the exact start and end, the tara counted from the birth nakshatra with its name and whether it is favourable, and the Moon's house from the natal Moon sign with the chandrabala verdict (Muhurta Chintamani rules). Needs the birth Moon, so a birth time makes it exact; without one the natal Moon may be a star off.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_tarabala_response import ApiResponseTarabalaResponse
+from asterwise.models.tarabala_request import TarabalaRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.AdvancedApi(api_client)
+    tarabala_request = {"name":"Arjun Mehta","date":"1985-11-12","time":"06:45","latitude":19.076,"longitude":72.8777,"timezone":"Asia/Kolkata","target_date":"2026-10-12","days":7} # TarabalaRequest | 
+
+    try:
+        # Tarabala and Chandrabala
+        api_response = api_instance.tarabala(tarabala_request)
+        print("The response of AdvancedApi->tarabala:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AdvancedApi->tarabala: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tarabala_request** | [**TarabalaRequest**](TarabalaRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseTarabalaResponse**](ApiResponseTarabalaResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **transits**
 > ApiResponseTransitsResponse transits(transits_request)
 
@@ -562,6 +653,182 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Transit ingress and station event collections |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **vedic_daily_factors**
+> ApiResponseVedicDailyFactorsResponse vedic_daily_factors(vedic_daily_factors_request)
+
+Vedic daily factors
+
+Every classical factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict its own rule gives, the rule's source, the significations it touches and the time it holds. Covers the nine gochar transits with bindus and vedha, Sade Sati, Chandra Ashtama, Tarabala and Chandrabala with the Moon's change times, the active Vimshottari dasha lords and the transits aspecting them, same-sign contacts to natal planets with the exact degree crossing, the day's tithi, yoga, karana and vara, and the Moon's phase. No weighting and no score: the caller decides what matters.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_vedic_daily_factors_response import ApiResponseVedicDailyFactorsResponse
+from asterwise.models.vedic_daily_factors_request import VedicDailyFactorsRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.AdvancedApi(api_client)
+    vedic_daily_factors_request = {"name":"Arjun Mehta","date":"1985-11-12","time":"06:45","latitude":19.076,"longitude":72.8777,"timezone":"Asia/Kolkata","target_date":"2026-10-12"} # VedicDailyFactorsRequest | 
+
+    try:
+        # Vedic daily factors
+        api_response = api_instance.vedic_daily_factors(vedic_daily_factors_request)
+        print("The response of AdvancedApi->vedic_daily_factors:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AdvancedApi->vedic_daily_factors: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vedic_daily_factors_request** | [**VedicDailyFactorsRequest**](VedicDailyFactorsRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseVedicDailyFactorsResponse**](ApiResponseVedicDailyFactorsResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **vedic_events**
+> ApiResponseRangeEventsResponse vedic_events(vedic_events_request)
+
+Vedic events over a date range
+
+One timeline of everything that happens to a chart over 1 to 31 days, each event with its exact time. Sidereal sign ingresses with the new sign's house from the natal Moon, stations, Moon nakshatra changes with Tarabala, Moon sign changes with Chandrabala, exact degree conjunctions with natal planets, eclipses with their contacts, and Vimshottari dasha changes (to the day). Each event carries the verdict its own rule gives, or null. No weighting.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_range_events_response import ApiResponseRangeEventsResponse
+from asterwise.models.vedic_events_request import VedicEventsRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.AdvancedApi(api_client)
+    vedic_events_request = {"name":"Arjun Mehta","date":"1985-11-12","time":"06:45","latitude":19.076,"longitude":72.8777,"timezone":"Asia/Kolkata","from_date":"2026-10-12","days":7} # VedicEventsRequest | 
+
+    try:
+        # Vedic events over a date range
+        api_response = api_instance.vedic_events(vedic_events_request)
+        print("The response of AdvancedApi->vedic_events:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AdvancedApi->vedic_events: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vedic_events_request** | [**VedicEventsRequest**](VedicEventsRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseRangeEventsResponse**](ApiResponseRangeEventsResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful Response |  -  |
 **401** | Authentication failed |  -  |
 **403** | Authorization failed |  -  |
 **404** | Resource not found |  -  |

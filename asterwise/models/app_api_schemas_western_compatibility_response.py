@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.synastry_aspect_schema import SynastryAspectSchema
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,6 +29,9 @@ class AppApiSchemasWesternCompatibilityResponse(BaseModel):
     """
     AppApiSchemasWesternCompatibilityResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True only when both people supplied a birth time. See person1_birth_time_provided and person2_birth_time_provided.")
+    person1_birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when person 1 supplied a birth time.")
+    person2_birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when person 2 supplied a birth time.")
     overall_score: StrictInt
     element_score: StrictInt
     aspect_score: StrictInt
@@ -40,7 +43,7 @@ class AppApiSchemasWesternCompatibilityResponse(BaseModel):
     person1_moon: StrictStr
     person2_moon: StrictStr
     key_aspects: List[SynastryAspectSchema]
-    __properties: ClassVar[List[str]] = ["overall_score", "element_score", "aspect_score", "sun_sign_affinity", "moon_sign_affinity", "rising_sign_affinity", "person1_sun", "person2_sun", "person1_moon", "person2_moon", "key_aspects"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "overall_score", "element_score", "aspect_score", "sun_sign_affinity", "moon_sign_affinity", "rising_sign_affinity", "person1_sun", "person2_sun", "person1_moon", "person2_moon", "key_aspects"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -100,6 +103,9 @@ class AppApiSchemasWesternCompatibilityResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
+            "person1_birth_time_provided": obj.get("person1_birth_time_provided") if obj.get("person1_birth_time_provided") is not None else True,
+            "person2_birth_time_provided": obj.get("person2_birth_time_provided") if obj.get("person2_birth_time_provided") is not None else True,
             "overall_score": obj.get("overall_score"),
             "element_score": obj.get("element_score"),
             "aspect_score": obj.get("aspect_score"),

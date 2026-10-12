@@ -6,7 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **start** | **str** | Rahu Kaal start time in HH:MM local time. | 
+**start_at** | **str** |  | [optional] 
+**start_utc** | **str** |  | [optional] 
 **end** | **str** | Rahu Kaal end time in HH:MM local time. | 
+**end_at** | **str** |  | [optional] 
+**end_utc** | **str** |  | [optional] 
 
 ## Example
 

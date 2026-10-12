@@ -5,6 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**birth_time_provided** | **bool** | True only when both people supplied a birth time. See person1_birth_time_provided and person2_birth_time_provided. | [optional] [default to True]
+**person1_birth_time_provided** | **bool** | True when person 1 supplied a birth time. | [optional] [default to True]
+**person2_birth_time_provided** | **bool** | True when person 2 supplied a birth time. | [optional] [default to True]
 **total_passed** | **int** |  | 
 **total_poruthams** | **int** |  | 
 **compatibility_level** | **str** |  | 

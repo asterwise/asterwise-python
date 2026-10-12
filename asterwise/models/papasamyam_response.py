@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,13 +28,16 @@ class PapasamyamResponse(BaseModel):
     """
     PapasamyamResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True only when both people supplied a birth time. See person1_birth_time_provided and person2_birth_time_provided.")
+    person1_birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when person 1 supplied a birth time.")
+    person2_birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when person 2 supplied a birth time.")
     person1: Dict[str, Any]
     person2: Dict[str, Any]
     score_difference: Union[StrictFloat, StrictInt]
     compatible: StrictBool
     compatibility_level: StrictStr
     threshold: Union[StrictFloat, StrictInt]
-    __properties: ClassVar[List[str]] = ["person1", "person2", "score_difference", "compatible", "compatibility_level", "threshold"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "person1", "person2", "score_difference", "compatible", "compatibility_level", "threshold"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -87,6 +90,9 @@ class PapasamyamResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
+            "person1_birth_time_provided": obj.get("person1_birth_time_provided") if obj.get("person1_birth_time_provided") is not None else True,
+            "person2_birth_time_provided": obj.get("person2_birth_time_provided") if obj.get("person2_birth_time_provided") is not None else True,
             "person1": obj.get("person1"),
             "person2": obj.get("person2"),
             "score_difference": obj.get("score_difference"),

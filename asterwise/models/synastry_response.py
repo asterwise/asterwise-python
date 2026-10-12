@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.synastry_aspect_schema import SynastryAspectSchema
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,9 +29,12 @@ class SynastryResponse(BaseModel):
     """
     SynastryResponse
     """ # noqa: E501
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True only when both people supplied a birth time. See person1_birth_time_provided and person2_birth_time_provided.")
+    person1_birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when person 1 supplied a birth time.")
+    person2_birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when person 2 supplied a birth time.")
     aspects: List[SynastryAspectSchema]
     total_aspects: StrictInt
-    __properties: ClassVar[List[str]] = ["aspects", "total_aspects"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "aspects", "total_aspects"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -91,6 +94,9 @@ class SynastryResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
+            "person1_birth_time_provided": obj.get("person1_birth_time_provided") if obj.get("person1_birth_time_provided") is not None else True,
+            "person2_birth_time_provided": obj.get("person2_birth_time_provided") if obj.get("person2_birth_time_provided") is not None else True,
             "aspects": [SynastryAspectSchema.from_dict(_item) for _item in obj["aspects"]] if obj.get("aspects") is not None else None,
             "total_aspects": obj.get("total_aspects")
         })

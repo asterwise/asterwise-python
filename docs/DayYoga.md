@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **is_vriddhi** | **bool** | Runs through two consecutive sunrises, so it is the sunrise limb of two days (flagged on both). | 
 **start** | **str** | Start. ISO 8601 local time with UTC offset, e.g. 2026-11-06T10:31:09+05:30. | 
 **end** | **str** | End. ISO 8601 local time with UTC offset, e.g. 2026-11-06T10:31:09+05:30. | 
+**start_utc** | **str** |  | [optional] 
+**end_utc** | **str** |  | [optional] 
+**nature** | **str** |  | [optional] 
 **index** | **int** |  | 
 **number** | **int** |  | 
 **name** | **str** |  | 

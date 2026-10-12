@@ -31,12 +31,13 @@ class DailyTransitResponse(BaseModel):
     DailyTransitResponse
     """ # noqa: E501
     var_date: StrictStr = Field(alias="date")
+    snapshot_utc: Optional[StrictStr] = None
     transit_planets: List[TransitPlanetRowSchema]
     aspects: List[TransitAspectSchema]
     total_aspects: StrictInt
     house_system: Optional[StrictStr] = Field(default='placidus', description="House system used for natal_house on each transiting planet.")
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: natal_house is then null for every transiting planet, and natal positions were computed for 06:00 local time.")
-    __properties: ClassVar[List[str]] = ["date", "transit_planets", "aspects", "total_aspects", "house_system", "birth_time_provided"]
+    __properties: ClassVar[List[str]] = ["date", "snapshot_utc", "transit_planets", "aspects", "total_aspects", "house_system", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -91,6 +92,11 @@ class DailyTransitResponse(BaseModel):
                 if _item_aspects:
                     _items.append(_item_aspects.to_dict())
             _dict['aspects'] = _items
+        # set to None if snapshot_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.snapshot_utc is None and "snapshot_utc" in self.model_fields_set:
+            _dict['snapshot_utc'] = None
+
         return _dict
 
     @classmethod
@@ -104,6 +110,7 @@ class DailyTransitResponse(BaseModel):
 
         _obj = cls.model_validate({
             "date": obj.get("date"),
+            "snapshot_utc": obj.get("snapshot_utc"),
             "transit_planets": [TransitPlanetRowSchema.from_dict(_item) for _item in obj["transit_planets"]] if obj.get("transit_planets") is not None else None,
             "aspects": [TransitAspectSchema.from_dict(_item) for _item in obj["aspects"]] if obj.get("aspects") is not None else None,
             "total_aspects": obj.get("total_aspects"),

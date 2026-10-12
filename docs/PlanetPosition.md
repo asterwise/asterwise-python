@@ -18,6 +18,9 @@ Name | Type | Description | Notes
 **rasi_house** | **int** |  | [optional] 
 **bhava_chalit_house** | **int** |  | [optional] 
 **house_system_note** | **str** |  | [optional] 
+**tropical_longitude** | **float** |  | [optional] 
+**tropical_sign** | **str** |  | [optional] 
+**tropical_sign_index** | **int** |  | [optional] 
 
 ## Example
 

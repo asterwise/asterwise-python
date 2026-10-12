@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -33,12 +33,15 @@ class DayTithi(BaseModel):
     is_vriddhi: StrictBool = Field(description="Runs through two consecutive sunrises, so it is the sunrise limb of two days (flagged on both).")
     start: StrictStr = Field(description="Start. ISO 8601 local time with UTC offset, e.g. 2026-11-06T10:31:09+05:30.")
     end: StrictStr = Field(description="End. ISO 8601 local time with UTC offset, e.g. 2026-11-06T10:31:09+05:30.")
+    start_utc: Optional[StrictStr] = None
+    end_utc: Optional[StrictStr] = None
+    nature: Optional[StrictStr] = None
     number: StrictInt = Field(description="1 to 30 (1-15 Shukla, 16-30 Krishna).")
     name: StrictStr
     paksha: StrictStr = Field(description="Shukla or Krishna.")
     fivefold: StrictStr = Field(description="Nanda, Bhadra, Jaya, Rikta or Purna.")
     is_chidra: StrictBool
-    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "number", "name", "paksha", "fivefold", "is_chidra"]
+    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "start_utc", "end_utc", "nature", "number", "name", "paksha", "fivefold", "is_chidra"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,6 +82,21 @@ class DayTithi(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if start_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_utc is None and "start_utc" in self.model_fields_set:
+            _dict['start_utc'] = None
+
+        # set to None if end_utc (nullable) is None
+        # and model_fields_set contains the field
+        if self.end_utc is None and "end_utc" in self.model_fields_set:
+            _dict['end_utc'] = None
+
+        # set to None if nature (nullable) is None
+        # and model_fields_set contains the field
+        if self.nature is None and "nature" in self.model_fields_set:
+            _dict['nature'] = None
+
         return _dict
 
     @classmethod
@@ -96,6 +114,9 @@ class DayTithi(BaseModel):
             "is_vriddhi": obj.get("is_vriddhi"),
             "start": obj.get("start"),
             "end": obj.get("end"),
+            "start_utc": obj.get("start_utc"),
+            "end_utc": obj.get("end_utc"),
+            "nature": obj.get("nature"),
             "number": obj.get("number"),
             "name": obj.get("name"),
             "paksha": obj.get("paksha"),
