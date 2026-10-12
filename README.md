@@ -67,7 +67,7 @@ Get a free API key at [asterwise.com](https://asterwise.com).
 - **HMAC-signed responses** for auditability
 - **Panchanga as printed panchangs show it**: every tithi, nakshatra, yoga and karana of the day with start and end times, the festival and vrat calendar, and muhurta search with exact ISO times
 - **Typed responses**: every method returns a model generated from the OpenAPI document (`.to_dict()` gives a plain dict)
-- **MCP server** with **108 tools** for Claude and Cursor integration
+- **MCP server** with **118 tools** for Claude and Cursor integration
 
 ## Examples
 
