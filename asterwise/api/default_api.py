@@ -411,7 +411,7 @@ class DefaultApi:
         longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone, e.g. Asia/Kolkata.")] = None,
         time: Annotated[Optional[StrictStr], Field(description="Optional local time HH:MM; without it the day is the sunrise-to-sunrise day beginning on the date.")] = None,
-        ayanamsa: Optional[StrictStr] = None,
+        ayanamsa: Annotated[Optional[StrictStr], Field(description="Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint")] = None,
         day: Annotated[Optional[StrictStr], Field(description="civil also returns civil_day: the windows between local midnight and midnight.")] = None,
         _request_timeout: Union[
             None,
@@ -442,7 +442,7 @@ class DefaultApi:
         :type timezone: str
         :param time: Optional local time HH:MM; without it the day is the sunrise-to-sunrise day beginning on the date.
         :type time: str
-        :param ayanamsa:
+        :param ayanamsa: Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint
         :type ayanamsa: str
         :param day: civil also returns civil_day: the windows between local midnight and midnight.
         :type day: str
@@ -515,7 +515,7 @@ class DefaultApi:
         longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone, e.g. Asia/Kolkata.")] = None,
         time: Annotated[Optional[StrictStr], Field(description="Optional local time HH:MM; without it the day is the sunrise-to-sunrise day beginning on the date.")] = None,
-        ayanamsa: Optional[StrictStr] = None,
+        ayanamsa: Annotated[Optional[StrictStr], Field(description="Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint")] = None,
         day: Annotated[Optional[StrictStr], Field(description="civil also returns civil_day: the windows between local midnight and midnight.")] = None,
         _request_timeout: Union[
             None,
@@ -546,7 +546,7 @@ class DefaultApi:
         :type timezone: str
         :param time: Optional local time HH:MM; without it the day is the sunrise-to-sunrise day beginning on the date.
         :type time: str
-        :param ayanamsa:
+        :param ayanamsa: Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint
         :type ayanamsa: str
         :param day: civil also returns civil_day: the windows between local midnight and midnight.
         :type day: str
@@ -619,7 +619,7 @@ class DefaultApi:
         longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone, e.g. Asia/Kolkata.")] = None,
         time: Annotated[Optional[StrictStr], Field(description="Optional local time HH:MM; without it the day is the sunrise-to-sunrise day beginning on the date.")] = None,
-        ayanamsa: Optional[StrictStr] = None,
+        ayanamsa: Annotated[Optional[StrictStr], Field(description="Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint")] = None,
         day: Annotated[Optional[StrictStr], Field(description="civil also returns civil_day: the windows between local midnight and midnight.")] = None,
         _request_timeout: Union[
             None,
@@ -650,7 +650,7 @@ class DefaultApi:
         :type timezone: str
         :param time: Optional local time HH:MM; without it the day is the sunrise-to-sunrise day beginning on the date.
         :type time: str
-        :param ayanamsa:
+        :param ayanamsa: Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint
         :type ayanamsa: str
         :param day: civil also returns civil_day: the windows between local midnight and midnight.
         :type day: str

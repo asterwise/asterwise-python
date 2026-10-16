@@ -37,7 +37,7 @@ class MuhurtaRequest(BaseModel):
     latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None
     longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None
     timezone: Optional[StrictStr] = None
-    ayanamsa: Optional[StrictStr] = 'lahiri'
+    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint")
     top_n: Optional[Annotated[int, Field(le=50, strict=True, ge=1)]] = Field(default=5, description="Number of windows to return (1-50)")
     max_windows_per_day: Optional[Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(default=1, description="At most this many windows per day, so results spread across dates (1-10).")
     min_duration_minutes: Optional[Annotated[int, Field(le=240, strict=True, ge=1)]] = Field(default=15, description="Drop windows shorter than this (1-240 minutes).")

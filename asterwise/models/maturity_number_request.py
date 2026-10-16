@@ -30,7 +30,7 @@ class MaturityNumberRequest(BaseModel):
     """
     MaturityNumberRequest
     """ # noqa: E501
-    name: Annotated[str, Field(min_length=1, strict=True, max_length=200)]
+    name: Annotated[str, Field(min_length=1, strict=True, max_length=200)] = Field(description="Full name, used for the Expression number.")
     var_date: date = Field(description="Birth date", alias="date")
     __properties: ClassVar[List[str]] = ["name", "date"]
 

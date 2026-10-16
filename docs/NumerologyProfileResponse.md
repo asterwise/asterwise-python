@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **personal_year** | [**PersonalYear**](PersonalYear.md) |  | [optional] 
 **pinnacles** | [**List[PinnacleChallenge]**](PinnacleChallenge.md) | Life pinnacle cycles | [optional] 
 **challenges** | [**List[PinnacleChallenge]**](PinnacleChallenge.md) | Life challenge cycles | [optional] 
-**lucky_numbers** | **List[int]** | Lucky numbers, no repeats: first the Life Path, Expression, Soul Urge, Personality and Birth Day (these may be master numbers 11, 22, 33), then digits 1-9 from the birth date in ascending order, topped up with unused digits 1-9 (at most 9 are guaranteed) | [optional] 
+**lucky_numbers** | **List[int]** | Six lucky numbers, no repeats: first the Life Path, Expression, Soul Urge, Personality and Birth Day (these may be master numbers 11, 22, 33), then digits 1-9 from the birth date in ascending order, topped up with unused digits 1-9 (at most 9 are guaranteed) | [optional] 
 **summary** | **str** | Overall numerology summary | 
 **key_traits** | **List[str]** | Key personality traits | [optional] 
 

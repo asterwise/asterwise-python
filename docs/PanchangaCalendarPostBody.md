@@ -5,12 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**year** | **int** |  | 
-**month** | **int** |  | 
-**lat** | **float** |  | 
-**lon** | **float** |  | 
+**year** | **int** | Year, 1900-2100. | 
+**month** | **int** | Month, 1-12. | 
+**location** | **str** |  | [optional] 
+**lat** | **float** |  | [optional] 
+**lon** | **float** |  | [optional] 
 **timezone** | **str** | IANA timezone for the location | [optional] [default to 'Asia/Kolkata']
-**ayanamsa** | **str** |  | [optional] [default to 'lahiri']
+**ayanamsa** | **str** | Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint | [optional] [default to 'lahiri']
 
 ## Example
 

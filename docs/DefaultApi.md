@@ -150,7 +150,7 @@ with asterwise.ApiClient(configuration) as api_client:
     longitude = 3.4 # float | Longitude in decimal degrees, east positive. (optional)
     timezone = 'timezone_example' # str | IANA timezone, e.g. Asia/Kolkata. (optional)
     time = 'time_example' # str | Optional local time HH:MM; without it the day is the sunrise-to-sunrise day beginning on the date. (optional)
-    ayanamsa = lahiri # str |  (optional) (default to lahiri)
+    ayanamsa = lahiri # str | Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint (optional) (default to lahiri)
     day = sunrise # str | civil also returns civil_day: the windows between local midnight and midnight. (optional) (default to sunrise)
 
     try:
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
  **longitude** | **float**| Longitude in decimal degrees, east positive. | [optional] 
  **timezone** | **str**| IANA timezone, e.g. Asia/Kolkata. | [optional] 
  **time** | **str**| Optional local time HH:MM; without it the day is the sunrise-to-sunrise day beginning on the date. | [optional] 
- **ayanamsa** | **str**|  | [optional] [default to lahiri]
+ **ayanamsa** | **str**| Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint | [optional] [default to lahiri]
  **day** | **str**| civil also returns civil_day: the windows between local midnight and midnight. | [optional] [default to sunrise]
 
 ### Return type

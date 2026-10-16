@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | 
+**name** | **str** | Full name, used for the Expression number. | 
 **var_date** | **date** | Birth date | 
 
 ## Example

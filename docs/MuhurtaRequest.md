@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **latitude** | **float** |  | [optional] 
 **longitude** | **float** |  | [optional] 
 **timezone** | **str** |  | [optional] 
-**ayanamsa** | **str** |  | [optional] [default to 'lahiri']
+**ayanamsa** | **str** | Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint | [optional] [default to 'lahiri']
 **top_n** | **int** | Number of windows to return (1-50) | [optional] [default to 5]
 **max_windows_per_day** | **int** | At most this many windows per day, so results spread across dates (1-10). | [optional] [default to 1]
 **min_duration_minutes** | **int** | Drop windows shorter than this (1-240 minutes). | [optional] [default to 15]

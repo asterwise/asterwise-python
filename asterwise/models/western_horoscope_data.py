@@ -31,7 +31,7 @@ class WesternHoroscopeData(BaseModel):
     """ # noqa: E501
     content: WesternHoroscopeContent
     generated_at: Optional[StrictStr] = None
-    period_key: StrictStr = Field(description="Period identifier (date, week, month, or year key)")
+    period_key: StrictStr = Field(description="The period this horoscope covers, on the India Standard Time calendar: YYYY-MM-DD (daily), YYYY-Www, the ISO week of that week's Monday (weekly), YYYY-MM (monthly) or YYYY (yearly).")
     horizon: StrictStr = Field(description="Horizon: daily, weekly, monthly, or yearly")
     sun_sign: StrictStr = Field(description="Normalised English tropical Sun sign slug")
     zodiac_type: StrictStr = Field(description="Always western for these endpoints")

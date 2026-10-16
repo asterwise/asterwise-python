@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **content** | [**HoroscopeContent**](HoroscopeContent.md) |  | 
 **generated_at** | **str** |  | [optional] 
-**period_key** | **str** | Period identifier (date, week, month, or year key) | 
+**period_key** | **str** | The period this horoscope covers, on the India Standard Time calendar: YYYY-MM-DD (daily), YYYY-Www, the ISO week of that week&#39;s Monday (weekly), YYYY-MM (monthly) or YYYY (yearly). | 
 **horizon** | **str** | Horizon: daily, weekly, monthly, or yearly | 
 **moon_sign** | **str** | Normalised English Moon sign slug | 
 

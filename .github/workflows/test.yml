@@ -28,3 +28,7 @@ jobs:
       - name: Test with pytest
         run: |
           pytest --cov=asterwise
+
+      - name: README and package description match the live API counts
+        if: matrix.python-version == '3.12'
+        run: python scripts/check_readme_counts.py

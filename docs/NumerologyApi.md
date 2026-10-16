@@ -10,8 +10,8 @@ Method | HTTP request | Description
 [**angel_personal**](NumerologyApi.md#angel_personal) | **POST** /v1/numerology/angel/personal | Personal angel number
 [**angel_today**](NumerologyApi.md#angel_today) | **GET** /v1/numerology/angel/today | Today&#39;s angel number
 [**balance_number**](NumerologyApi.md#balance_number) | **POST** /v1/numerology/balance | Balance Number
-[**business_name**](NumerologyApi.md#business_name) | **GET** /v1/numerology/business-name | Business Name Numerology
-[**business_name_post**](NumerologyApi.md#business_name_post) | **POST** /v1/numerology/business-name | Business Name Numerology (JSON body)
+[**business_name**](NumerologyApi.md#business_name) | **GET** /v1/numerology/business-name | Business Name Numerology (GET)
+[**business_name_post**](NumerologyApi.md#business_name_post) | **POST** /v1/numerology/business-name | Business Name Numerology
 [**chaldean**](NumerologyApi.md#chaldean) | **POST** /v1/numerology/chaldean | Chaldean Numerology Profile
 [**expression_number**](NumerologyApi.md#expression_number) | **POST** /v1/numerology/expression | Expression (Destiny) Number
 [**karmic_lessons**](NumerologyApi.md#karmic_lessons) | **POST** /v1/numerology/karmic-lessons | Karmic Lessons
@@ -557,9 +557,9 @@ Name | Type | Description  | Notes
 # **business_name**
 > ApiResponseBusinessNameAnalysisResponse business_name(name)
 
-Business Name Numerology
+Business Name Numerology (GET)
 
-Scores a business name by its Pythagorean Expression number, with theme, harmony score (1-10) and recommended uses. The number is worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
+Same answer as POST /v1/numerology/business-name, with `name` as a query parameter.
 
 ### Example
 
@@ -594,7 +594,7 @@ with asterwise.ApiClient(configuration) as api_client:
     name = 'name_example' # str | Business name
 
     try:
-        # Business Name Numerology
+        # Business Name Numerology (GET)
         api_response = api_instance.business_name(name)
         print("The response of NumerologyApi->business_name:\n")
         pprint(api_response)
@@ -644,9 +644,9 @@ Name | Type | Description  | Notes
 # **business_name_post**
 > ApiResponseBusinessNameAnalysisResponse business_name_post(business_name_post_request)
 
-Business Name Numerology (JSON body)
+Business Name Numerology
 
-Same analysis as GET /v1/numerology/business-name for clients that send a JSON body (e.g. MCP): `{ "name": "..." }`.
+Scores a business name by its Pythagorean Expression number, with theme, harmony score (1-10) and recommended uses. The number is worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
 
 ### Example
 
@@ -682,7 +682,7 @@ with asterwise.ApiClient(configuration) as api_client:
     business_name_post_request = asterwise.BusinessNamePostRequest() # BusinessNamePostRequest | 
 
     try:
-        # Business Name Numerology (JSON body)
+        # Business Name Numerology
         api_response = api_instance.business_name_post(business_name_post_request)
         print("The response of NumerologyApi->business_name_post:\n")
         pprint(api_response)

@@ -406,7 +406,7 @@ class AstrologyApi:
     @validate_call
     def ayanamsha(
         self,
-        var_date: Optional[date] = None,
+        var_date: Annotated[Optional[date], Field(description="Date, YYYY-MM-DD. Omit for today's UTC date.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -424,7 +424,7 @@ class AstrologyApi:
 
         Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Tropical) for a given date. Each system returns the value in decimal degrees and DMS (degrees/minutes/seconds) format. Pass ?date=YYYY-MM-DD for a specific date. Omit ?date to get today's values (today's UTC date). Lahiri is the Indian government standard and default for Jyotish.
 
-        :param var_date:
+        :param var_date: Date, YYYY-MM-DD. Omit for today's UTC date.
         :type var_date: date
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -482,7 +482,7 @@ class AstrologyApi:
     @validate_call
     def ayanamsha_with_http_info(
         self,
-        var_date: Optional[date] = None,
+        var_date: Annotated[Optional[date], Field(description="Date, YYYY-MM-DD. Omit for today's UTC date.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -500,7 +500,7 @@ class AstrologyApi:
 
         Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Tropical) for a given date. Each system returns the value in decimal degrees and DMS (degrees/minutes/seconds) format. Pass ?date=YYYY-MM-DD for a specific date. Omit ?date to get today's values (today's UTC date). Lahiri is the Indian government standard and default for Jyotish.
 
-        :param var_date:
+        :param var_date: Date, YYYY-MM-DD. Omit for today's UTC date.
         :type var_date: date
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -558,7 +558,7 @@ class AstrologyApi:
     @validate_call
     def ayanamsha_without_preload_content(
         self,
-        var_date: Optional[date] = None,
+        var_date: Annotated[Optional[date], Field(description="Date, YYYY-MM-DD. Omit for today's UTC date.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -576,7 +576,7 @@ class AstrologyApi:
 
         Returns ayanamsha values for all four supported systems (Lahiri, Raman, KP, Tropical) for a given date. Each system returns the value in decimal degrees and DMS (degrees/minutes/seconds) format. Pass ?date=YYYY-MM-DD for a specific date. Omit ?date to get today's values (today's UTC date). Lahiri is the Indian government standard and default for Jyotish.
 
-        :param var_date:
+        :param var_date: Date, YYYY-MM-DD. Omit for today's UTC date.
         :type var_date: date
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3731,7 +3731,7 @@ class AstrologyApi:
     ) -> ApiResponseDashakootResponse:
         """Dashakoot — 10-Koota Compatibility
 
-        Computes all 10 kootas for two persons: the standard 8 Ashtakoot kootas plus Mahendra and Stree Deergha. Returns total score out of 38, per-koota breakdown, dosha analysis (Nadi, Bhakoot, Rajju, Vedha), and compatibility level.
+        Scores the South Indian Dashakoot match out of 10: ten poruthams, each 1 when it agrees and 0 when it does not. The poruthams are Dina, Gana, Mahendra, Stree Deergha, Yoni, Rasi, Rasi Adhipati, Vashya, Rajju and Vedha. Returns the per-porutham breakdown, the percentage, a compatibility level (Excellent 8+, Good 6+, Average 5+, otherwise Poor), and Nadi, Bhakoot, Rajju and Vedha dosha flags. Nadi and Bhakoot are reported but not scored.
 
         :param dashakoot_request: (required)
         :type dashakoot_request: DashakootRequest
@@ -3807,7 +3807,7 @@ class AstrologyApi:
     ) -> ApiResponse[ApiResponseDashakootResponse]:
         """Dashakoot — 10-Koota Compatibility
 
-        Computes all 10 kootas for two persons: the standard 8 Ashtakoot kootas plus Mahendra and Stree Deergha. Returns total score out of 38, per-koota breakdown, dosha analysis (Nadi, Bhakoot, Rajju, Vedha), and compatibility level.
+        Scores the South Indian Dashakoot match out of 10: ten poruthams, each 1 when it agrees and 0 when it does not. The poruthams are Dina, Gana, Mahendra, Stree Deergha, Yoni, Rasi, Rasi Adhipati, Vashya, Rajju and Vedha. Returns the per-porutham breakdown, the percentage, a compatibility level (Excellent 8+, Good 6+, Average 5+, otherwise Poor), and Nadi, Bhakoot, Rajju and Vedha dosha flags. Nadi and Bhakoot are reported but not scored.
 
         :param dashakoot_request: (required)
         :type dashakoot_request: DashakootRequest
@@ -3883,7 +3883,7 @@ class AstrologyApi:
     ) -> RESTResponseType:
         """Dashakoot — 10-Koota Compatibility
 
-        Computes all 10 kootas for two persons: the standard 8 Ashtakoot kootas plus Mahendra and Stree Deergha. Returns total score out of 38, per-koota breakdown, dosha analysis (Nadi, Bhakoot, Rajju, Vedha), and compatibility level.
+        Scores the South Indian Dashakoot match out of 10: ten poruthams, each 1 when it agrees and 0 when it does not. The poruthams are Dina, Gana, Mahendra, Stree Deergha, Yoni, Rasi, Rasi Adhipati, Vashya, Rajju and Vedha. Returns the per-porutham breakdown, the percentage, a compatibility level (Excellent 8+, Good 6+, Average 5+, otherwise Poor), and Nadi, Bhakoot, Rajju and Vedha dosha flags. Nadi and Bhakoot are reported but not scored.
 
         :param dashakoot_request: (required)
         :type dashakoot_request: DashakootRequest
@@ -6414,10 +6414,10 @@ class AstrologyApi:
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Year")],
         month: Annotated[int, Field(le=12, strict=True, ge=1, description="Month (1-12)")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone (required with lat/lon; ignored when using location alone)")] = None,
-        ayanamsa: Optional[StrictStr] = None,
+        ayanamsa: Annotated[Optional[StrictStr], Field(description="Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6431,9 +6431,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponsePanchangaCalendarResponse:
-        """Monthly Panchanga calendar
+        """Monthly Panchanga calendar (GET)
 
-        Panchanga for every day of a month at a location, one entry per day. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days.
+        Same answer as POST /v1/astro/panchanga/calendar, with the same fields as query parameters (`latitude` and `longitude` for `lat` and `lon`).
 
         :param year: Year (required)
         :type year: int
@@ -6441,13 +6441,13 @@ class AstrologyApi:
         :type month: int
         :param location: City name
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone (required with lat/lon; ignored when using location alone)
         :type timezone: str
-        :param ayanamsa:
+        :param ayanamsa: Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint
         :type ayanamsa: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6514,10 +6514,10 @@ class AstrologyApi:
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Year")],
         month: Annotated[int, Field(le=12, strict=True, ge=1, description="Month (1-12)")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone (required with lat/lon; ignored when using location alone)")] = None,
-        ayanamsa: Optional[StrictStr] = None,
+        ayanamsa: Annotated[Optional[StrictStr], Field(description="Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6531,9 +6531,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponsePanchangaCalendarResponse]:
-        """Monthly Panchanga calendar
+        """Monthly Panchanga calendar (GET)
 
-        Panchanga for every day of a month at a location, one entry per day. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days.
+        Same answer as POST /v1/astro/panchanga/calendar, with the same fields as query parameters (`latitude` and `longitude` for `lat` and `lon`).
 
         :param year: Year (required)
         :type year: int
@@ -6541,13 +6541,13 @@ class AstrologyApi:
         :type month: int
         :param location: City name
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone (required with lat/lon; ignored when using location alone)
         :type timezone: str
-        :param ayanamsa:
+        :param ayanamsa: Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint
         :type ayanamsa: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6614,10 +6614,10 @@ class AstrologyApi:
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Year")],
         month: Annotated[int, Field(le=12, strict=True, ge=1, description="Month (1-12)")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone (required with lat/lon; ignored when using location alone)")] = None,
-        ayanamsa: Optional[StrictStr] = None,
+        ayanamsa: Annotated[Optional[StrictStr], Field(description="Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6631,9 +6631,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Monthly Panchanga calendar
+        """Monthly Panchanga calendar (GET)
 
-        Panchanga for every day of a month at a location, one entry per day. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days.
+        Same answer as POST /v1/astro/panchanga/calendar, with the same fields as query parameters (`latitude` and `longitude` for `lat` and `lon`).
 
         :param year: Year (required)
         :type year: int
@@ -6641,13 +6641,13 @@ class AstrologyApi:
         :type month: int
         :param location: City name
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone (required with lat/lon; ignored when using location alone)
         :type timezone: str
-        :param ayanamsa:
+        :param ayanamsa: Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint
         :type ayanamsa: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6817,9 +6817,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponsePanchangaCalendarResponse:
-        """Monthly Panchanga calendar (JSON body)
+        """Monthly Panchanga calendar
 
-        Panchanga for every day of a month, the same data as GET /v1/astro/panchanga/calendar sent as a JSON body. Minimum required JSON fields: `year` (1900–2100), `month` (1–12), `lat`, `lon`. Optional `timezone` defaults to Asia/Kolkata.
+        Panchanga for every day of a month at a location, one entry per day. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days. Give `year` (1900-2100), `month` (1-12) and either `location` (a city name) or `lat` and `lon` (also accepted as `latitude` and `longitude`); `timezone` defaults to Asia/Kolkata.
 
         :param panchanga_calendar_post_body: (required)
         :type panchanga_calendar_post_body: PanchangaCalendarPostBody
@@ -6893,9 +6893,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponsePanchangaCalendarResponse]:
-        """Monthly Panchanga calendar (JSON body)
+        """Monthly Panchanga calendar
 
-        Panchanga for every day of a month, the same data as GET /v1/astro/panchanga/calendar sent as a JSON body. Minimum required JSON fields: `year` (1900–2100), `month` (1–12), `lat`, `lon`. Optional `timezone` defaults to Asia/Kolkata.
+        Panchanga for every day of a month at a location, one entry per day. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days. Give `year` (1900-2100), `month` (1-12) and either `location` (a city name) or `lat` and `lon` (also accepted as `latitude` and `longitude`); `timezone` defaults to Asia/Kolkata.
 
         :param panchanga_calendar_post_body: (required)
         :type panchanga_calendar_post_body: PanchangaCalendarPostBody
@@ -6969,9 +6969,9 @@ class AstrologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Monthly Panchanga calendar (JSON body)
+        """Monthly Panchanga calendar
 
-        Panchanga for every day of a month, the same data as GET /v1/astro/panchanga/calendar sent as a JSON body. Minimum required JSON fields: `year` (1900–2100), `month` (1–12), `lat`, `lon`. Optional `timezone` defaults to Asia/Kolkata.
+        Panchanga for every day of a month at a location, one entry per day. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days. Give `year` (1900-2100), `month` (1-12) and either `location` (a city name) or `lat` and `lon` (also accepted as `latitude` and `longitude`); `timezone` defaults to Asia/Kolkata.
 
         :param panchanga_calendar_post_body: (required)
         :type panchanga_calendar_post_body: PanchangaCalendarPostBody
@@ -7407,8 +7407,8 @@ class AstrologyApi:
         self,
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Calendar year")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
         categories: Annotated[Optional[StrictStr], Field(description="Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. 'festival,vrat,period' for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or 'eclipse' for eclipses.")] = None,
         _request_timeout: Union[
@@ -7432,9 +7432,9 @@ class AstrologyApi:
         :type year: int
         :param location: City name
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone
         :type timezone: str
@@ -7503,8 +7503,8 @@ class AstrologyApi:
         self,
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Calendar year")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
         categories: Annotated[Optional[StrictStr], Field(description="Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. 'festival,vrat,period' for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or 'eclipse' for eclipses.")] = None,
         _request_timeout: Union[
@@ -7528,9 +7528,9 @@ class AstrologyApi:
         :type year: int
         :param location: City name
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone
         :type timezone: str
@@ -7599,8 +7599,8 @@ class AstrologyApi:
         self,
         year: Annotated[int, Field(le=2100, strict=True, ge=1900, description="Calendar year")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
         categories: Annotated[Optional[StrictStr], Field(description="Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. 'festival,vrat,period' for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or 'eclipse' for eclipses.")] = None,
         _request_timeout: Union[
@@ -7624,9 +7624,9 @@ class AstrologyApi:
         :type year: int
         :param location: City name
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone
         :type timezone: str
@@ -8384,8 +8384,8 @@ class AstrologyApi:
         self,
         var_date: Annotated[StrictStr, Field(description="Date in YYYY-MM-DD format")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
         _request_timeout: Union[
             None,
@@ -8408,9 +8408,9 @@ class AstrologyApi:
         :type var_date: str
         :param location: City name
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone
         :type timezone: str
@@ -8476,8 +8476,8 @@ class AstrologyApi:
         self,
         var_date: Annotated[StrictStr, Field(description="Date in YYYY-MM-DD format")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
         _request_timeout: Union[
             None,
@@ -8500,9 +8500,9 @@ class AstrologyApi:
         :type var_date: str
         :param location: City name
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone
         :type timezone: str
@@ -8568,8 +8568,8 @@ class AstrologyApi:
         self,
         var_date: Annotated[StrictStr, Field(description="Date in YYYY-MM-DD format")],
         location: Annotated[Optional[StrictStr], Field(description="City name")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone")] = None,
         _request_timeout: Union[
             None,
@@ -8592,9 +8592,9 @@ class AstrologyApi:
         :type var_date: str
         :param location: City name
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone
         :type timezone: str
@@ -9041,7 +9041,7 @@ class AstrologyApi:
     @validate_call
     def planet_nature(
         self,
-        planet: Optional[StrictStr] = None,
+        planet: Annotated[Optional[StrictStr], Field(description="One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9059,7 +9059,7 @@ class AstrologyApi:
 
         Returns classical graha properties for all nine planets or a single planet. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
 
-        :param planet:
+        :param planet: One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.
         :type planet: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9117,7 +9117,7 @@ class AstrologyApi:
     @validate_call
     def planet_nature_with_http_info(
         self,
-        planet: Optional[StrictStr] = None,
+        planet: Annotated[Optional[StrictStr], Field(description="One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9135,7 +9135,7 @@ class AstrologyApi:
 
         Returns classical graha properties for all nine planets or a single planet. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
 
-        :param planet:
+        :param planet: One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.
         :type planet: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9193,7 +9193,7 @@ class AstrologyApi:
     @validate_call
     def planet_nature_without_preload_content(
         self,
-        planet: Optional[StrictStr] = None,
+        planet: Annotated[Optional[StrictStr], Field(description="One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9211,7 +9211,7 @@ class AstrologyApi:
 
         Returns classical graha properties for all nine planets or a single planet. Includes tattva, guna, gender, caste, direction, color, deity, ruling day, metal, body part governed, and naisargika maitri (natural friends, enemies, neutrals). Pass ?planet=Sun (or Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu) for a single planet. Omit ?planet to get all nine planets.
 
-        :param planet:
+        :param planet: One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.
         :type planet: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9331,7 +9331,7 @@ class AstrologyApi:
     @validate_call
     def puja_suggestions(
         self,
-        planet: Optional[StrictStr] = None,
+        planet: Annotated[Optional[StrictStr], Field(description="One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9349,7 +9349,7 @@ class AstrologyApi:
 
         Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
 
-        :param planet:
+        :param planet: One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.
         :type planet: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9407,7 +9407,7 @@ class AstrologyApi:
     @validate_call
     def puja_suggestions_with_http_info(
         self,
-        planet: Optional[StrictStr] = None,
+        planet: Annotated[Optional[StrictStr], Field(description="One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9425,7 +9425,7 @@ class AstrologyApi:
 
         Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
 
-        :param planet:
+        :param planet: One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.
         :type planet: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9483,7 +9483,7 @@ class AstrologyApi:
     @validate_call
     def puja_suggestions_without_preload_content(
         self,
-        planet: Optional[StrictStr] = None,
+        planet: Annotated[Optional[StrictStr], Field(description="One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9501,7 +9501,7 @@ class AstrologyApi:
 
         Returns classical puja recommendations for planetary propitiation. Each planet has a specific puja, presiding deity, day of the week, offerings, grain, and mantra. Pass ?planet=Saturn for a single planet. Omit ?planet to get all nine planets.
 
-        :param planet:
+        :param planet: One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.
         :type planet: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9922,7 +9922,7 @@ class AstrologyApi:
     @validate_call
     def rudraksha(
         self,
-        planet: Optional[StrictStr] = None,
+        planet: Annotated[Optional[StrictStr], Field(description="One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9940,7 +9940,7 @@ class AstrologyApi:
 
         Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, how the bead is worn (strung at the neck or wrist, not on a finger), and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
 
-        :param planet:
+        :param planet: One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.
         :type planet: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -9998,7 +9998,7 @@ class AstrologyApi:
     @validate_call
     def rudraksha_with_http_info(
         self,
-        planet: Optional[StrictStr] = None,
+        planet: Annotated[Optional[StrictStr], Field(description="One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10016,7 +10016,7 @@ class AstrologyApi:
 
         Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, how the bead is worn (strung at the neck or wrist, not on a finger), and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
 
-        :param planet:
+        :param planet: One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.
         :type planet: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -10074,7 +10074,7 @@ class AstrologyApi:
     @validate_call
     def rudraksha_without_preload_content(
         self,
-        planet: Optional[StrictStr] = None,
+        planet: Annotated[Optional[StrictStr], Field(description="One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10092,7 +10092,7 @@ class AstrologyApi:
 
         Returns Rudraksha bead recommendations per planet. Each planet maps to a specific mukhi (face count) with presiding deity, exact beej mantra, recommended metal, wearing day, how the bead is worn (strung at the neck or wrist, not on a finger), and classical notes including the important distinction that mukhi assignments are attributed to deities in tradition — planetary correspondence is traditional astrological synthesis. Pass ?planet=Jupiter for a single planet. Omit ?planet to get all nine planets.
 
-        :param planet:
+        :param planet: One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine.
         :type planet: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

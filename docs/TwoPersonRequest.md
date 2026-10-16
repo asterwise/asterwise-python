@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**person1** | [**BirthInput**](BirthInput.md) |  | 
-**person2** | [**BirthInput**](BirthInput.md) |  | 
+**person1** | [**BirthInput**](BirthInput.md) | Birth data of the first person. | 
+**person2** | [**BirthInput**](BirthInput.md) | Birth data of the second person. | 
 
 ## Example
 

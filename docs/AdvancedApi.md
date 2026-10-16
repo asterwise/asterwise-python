@@ -758,7 +758,7 @@ Name | Type | Description  | Notes
 
 Vedic events over a date range
 
-One timeline of everything that happens to a chart over 1 to 31 days, each event with its exact time. Sidereal sign ingresses with the new sign's house from the natal Moon, stations, Moon nakshatra changes with Tarabala, Moon sign changes with Chandrabala, exact degree conjunctions with natal planets, eclipses with their contacts, and Vimshottari dasha changes (to the day). Each event carries the verdict its own rule gives, or null. No weighting.
+One timeline of everything that happens to a chart over 1 to 31 days, each event with its exact time. Sidereal sign ingresses with the new sign's house from the natal Moon, stations, Moon nakshatra changes with Tarabala, Moon sign changes with Chandrabala, exact degree conjunctions with natal planets, eclipses with their contacts, Purnima and Amavasya (the exact full and new Moon, with the tithi's start and end), and Vimshottari dasha changes (to the day). Each event carries the verdict its own rule gives, or null. No weighting.
 
 ### Example
 

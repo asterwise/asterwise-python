@@ -682,8 +682,8 @@ class WesternAstrologyApi:
     @validate_call
     def western_compatibility_zodiac(
         self,
-        sign1: StrictStr,
-        sign2: StrictStr,
+        sign1: Annotated[StrictStr, Field(description="First sign: an English tropical sign name such as Aries (case-insensitive).")],
+        sign2: Annotated[StrictStr, Field(description="Second sign: an English tropical sign name such as Leo (case-insensitive).")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -701,9 +701,9 @@ class WesternAstrologyApi:
 
         Sign-to-sign compatibility without birth data. Based on element and modality affinity (Asterwise heuristic scores). Pass sign names as query parameters: ?sign1=Aries&sign2=Leo. Only the twelve English tropical sign names are accepted (case-insensitive); anything else returns 422.
 
-        :param sign1: (required)
+        :param sign1: First sign: an English tropical sign name such as Aries (case-insensitive). (required)
         :type sign1: str
-        :param sign2: (required)
+        :param sign2: Second sign: an English tropical sign name such as Leo (case-insensitive). (required)
         :type sign2: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -762,8 +762,8 @@ class WesternAstrologyApi:
     @validate_call
     def western_compatibility_zodiac_with_http_info(
         self,
-        sign1: StrictStr,
-        sign2: StrictStr,
+        sign1: Annotated[StrictStr, Field(description="First sign: an English tropical sign name such as Aries (case-insensitive).")],
+        sign2: Annotated[StrictStr, Field(description="Second sign: an English tropical sign name such as Leo (case-insensitive).")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -781,9 +781,9 @@ class WesternAstrologyApi:
 
         Sign-to-sign compatibility without birth data. Based on element and modality affinity (Asterwise heuristic scores). Pass sign names as query parameters: ?sign1=Aries&sign2=Leo. Only the twelve English tropical sign names are accepted (case-insensitive); anything else returns 422.
 
-        :param sign1: (required)
+        :param sign1: First sign: an English tropical sign name such as Aries (case-insensitive). (required)
         :type sign1: str
-        :param sign2: (required)
+        :param sign2: Second sign: an English tropical sign name such as Leo (case-insensitive). (required)
         :type sign2: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -842,8 +842,8 @@ class WesternAstrologyApi:
     @validate_call
     def western_compatibility_zodiac_without_preload_content(
         self,
-        sign1: StrictStr,
-        sign2: StrictStr,
+        sign1: Annotated[StrictStr, Field(description="First sign: an English tropical sign name such as Aries (case-insensitive).")],
+        sign2: Annotated[StrictStr, Field(description="Second sign: an English tropical sign name such as Leo (case-insensitive).")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -861,9 +861,9 @@ class WesternAstrologyApi:
 
         Sign-to-sign compatibility without birth data. Based on element and modality affinity (Asterwise heuristic scores). Pass sign names as query parameters: ?sign1=Aries&sign2=Leo. Only the twelve English tropical sign names are accepted (case-insensitive); anything else returns 422.
 
-        :param sign1: (required)
+        :param sign1: First sign: an English tropical sign name such as Aries (case-insensitive). (required)
         :type sign1: str
-        :param sign2: (required)
+        :param sign2: Second sign: an English tropical sign name such as Leo (case-insensitive). (required)
         :type sign2: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1894,8 +1894,8 @@ class WesternAstrologyApi:
         self,
         var_date: Annotated[StrictStr, Field(description="Date, YYYY-MM-DD (local civil date at the place).")],
         location: Annotated[Optional[StrictStr], Field(description="City name, used when latitude/longitude/timezone are not given.")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone, e.g. Europe/London.")] = None,
         _request_timeout: Union[
             None,
@@ -1918,9 +1918,9 @@ class WesternAstrologyApi:
         :type var_date: str
         :param location: City name, used when latitude/longitude/timezone are not given.
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone, e.g. Europe/London.
         :type timezone: str
@@ -1986,8 +1986,8 @@ class WesternAstrologyApi:
         self,
         var_date: Annotated[StrictStr, Field(description="Date, YYYY-MM-DD (local civil date at the place).")],
         location: Annotated[Optional[StrictStr], Field(description="City name, used when latitude/longitude/timezone are not given.")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone, e.g. Europe/London.")] = None,
         _request_timeout: Union[
             None,
@@ -2010,9 +2010,9 @@ class WesternAstrologyApi:
         :type var_date: str
         :param location: City name, used when latitude/longitude/timezone are not given.
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone, e.g. Europe/London.
         :type timezone: str
@@ -2078,8 +2078,8 @@ class WesternAstrologyApi:
         self,
         var_date: Annotated[StrictStr, Field(description="Date, YYYY-MM-DD (local civil date at the place).")],
         location: Annotated[Optional[StrictStr], Field(description="City name, used when latitude/longitude/timezone are not given.")] = None,
-        latitude: Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None,
-        longitude: Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None,
+        latitude: Annotated[Optional[Union[Annotated[float, Field(le=90, strict=True, ge=-90)], Annotated[int, Field(le=90, strict=True, ge=-90)]]], Field(description="Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.")] = None,
+        longitude: Annotated[Optional[Union[Annotated[float, Field(le=180, strict=True, ge=-180)], Annotated[int, Field(le=180, strict=True, ge=-180)]]], Field(description="Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.")] = None,
         timezone: Annotated[Optional[StrictStr], Field(description="IANA timezone, e.g. Europe/London.")] = None,
         _request_timeout: Union[
             None,
@@ -2102,9 +2102,9 @@ class WesternAstrologyApi:
         :type var_date: str
         :param location: City name, used when latitude/longitude/timezone are not given.
         :type location: str
-        :param latitude:
+        :param latitude: Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location.
         :type latitude: float
-        :param longitude:
+        :param longitude: Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location.
         :type longitude: float
         :param timezone: IANA timezone, e.g. Europe/London.
         :type timezone: str

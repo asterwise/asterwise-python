@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from asterwise.models.birth_input import BirthInput
 from typing import Optional, Set
@@ -29,8 +29,8 @@ class TwoPersonRequest(BaseModel):
     """
     TwoPersonRequest
     """ # noqa: E501
-    person1: BirthInput
-    person2: BirthInput
+    person1: BirthInput = Field(description="Birth data of the first person.")
+    person2: BirthInput = Field(description="Birth data of the second person.")
     __properties: ClassVar[List[str]] = ["person1", "person2"]
 
     model_config = ConfigDict(

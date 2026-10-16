@@ -29,13 +29,14 @@ class PanchangaCalendarPostBody(BaseModel):
     """
     PanchangaCalendarPostBody
     """ # noqa: E501
-    year: Annotated[int, Field(le=2100, strict=True, ge=1900)]
-    month: Annotated[int, Field(le=12, strict=True, ge=1)]
-    lat: Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]
-    lon: Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]
+    year: Annotated[int, Field(le=2100, strict=True, ge=1900)] = Field(description="Year, 1900-2100.")
+    month: Annotated[int, Field(le=12, strict=True, ge=1)] = Field(description="Month, 1-12.")
+    location: Optional[StrictStr] = None
+    lat: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None
+    lon: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None
     timezone: Optional[StrictStr] = Field(default='Asia/Kolkata', description="IANA timezone for the location")
-    ayanamsa: Optional[StrictStr] = 'lahiri'
-    __properties: ClassVar[List[str]] = ["year", "month", "lat", "lon", "timezone", "ayanamsa"]
+    ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint")
+    __properties: ClassVar[List[str]] = ["year", "month", "location", "lat", "lon", "timezone", "ayanamsa"]
 
     @field_validator('ayanamsa')
     def ayanamsa_validate_enum(cls, value):
@@ -86,6 +87,21 @@ class PanchangaCalendarPostBody(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if location (nullable) is None
+        # and model_fields_set contains the field
+        if self.location is None and "location" in self.model_fields_set:
+            _dict['location'] = None
+
+        # set to None if lat (nullable) is None
+        # and model_fields_set contains the field
+        if self.lat is None and "lat" in self.model_fields_set:
+            _dict['lat'] = None
+
+        # set to None if lon (nullable) is None
+        # and model_fields_set contains the field
+        if self.lon is None and "lon" in self.model_fields_set:
+            _dict['lon'] = None
+
         return _dict
 
     @classmethod
@@ -100,6 +116,7 @@ class PanchangaCalendarPostBody(BaseModel):
         _obj = cls.model_validate({
             "year": obj.get("year"),
             "month": obj.get("month"),
+            "location": obj.get("location"),
             "lat": obj.get("lat"),
             "lon": obj.get("lon"),
             "timezone": obj.get("timezone") if obj.get("timezone") is not None else 'Asia/Kolkata',

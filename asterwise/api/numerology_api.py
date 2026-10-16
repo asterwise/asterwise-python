@@ -1833,9 +1833,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseBusinessNameAnalysisResponse:
-        """Business Name Numerology
+        """Business Name Numerology (GET)
 
-        Scores a business name by its Pythagorean Expression number, with theme, harmony score (1-10) and recommended uses. The number is worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
+        Same answer as POST /v1/numerology/business-name, with `name` as a query parameter.
 
         :param name: Business name (required)
         :type name: str
@@ -1909,9 +1909,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseBusinessNameAnalysisResponse]:
-        """Business Name Numerology
+        """Business Name Numerology (GET)
 
-        Scores a business name by its Pythagorean Expression number, with theme, harmony score (1-10) and recommended uses. The number is worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
+        Same answer as POST /v1/numerology/business-name, with `name` as a query parameter.
 
         :param name: Business name (required)
         :type name: str
@@ -1985,9 +1985,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Business Name Numerology
+        """Business Name Numerology (GET)
 
-        Scores a business name by its Pythagorean Expression number, with theme, harmony score (1-10) and recommended uses. The number is worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
+        Same answer as POST /v1/numerology/business-name, with `name` as a query parameter.
 
         :param name: Business name (required)
         :type name: str
@@ -2123,9 +2123,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponseBusinessNameAnalysisResponse:
-        """Business Name Numerology (JSON body)
+        """Business Name Numerology
 
-        Same analysis as GET /v1/numerology/business-name for clients that send a JSON body (e.g. MCP): `{ \"name\": \"...\" }`.
+        Scores a business name by its Pythagorean Expression number, with theme, harmony score (1-10) and recommended uses. The number is worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
 
         :param business_name_post_request: (required)
         :type business_name_post_request: BusinessNamePostRequest
@@ -2199,9 +2199,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ApiResponseBusinessNameAnalysisResponse]:
-        """Business Name Numerology (JSON body)
+        """Business Name Numerology
 
-        Same analysis as GET /v1/numerology/business-name for clients that send a JSON body (e.g. MCP): `{ \"name\": \"...\" }`.
+        Scores a business name by its Pythagorean Expression number, with theme, harmony score (1-10) and recommended uses. The number is worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
 
         :param business_name_post_request: (required)
         :type business_name_post_request: BusinessNamePostRequest
@@ -2275,9 +2275,9 @@ class NumerologyApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Business Name Numerology (JSON body)
+        """Business Name Numerology
 
-        Same analysis as GET /v1/numerology/business-name for clients that send a JSON body (e.g. MCP): `{ \"name\": \"...\" }`.
+        Scores a business name by its Pythagorean Expression number, with theme, harmony score (1-10) and recommended uses. The number is worked part by part like /v1/numerology/expression: each word is reduced on its own (11, 22, 33 kept), then the words are added and reduced. A name with no letters (e.g. '123') is rejected with 422 `validation_error`.
 
         :param business_name_post_request: (required)
         :type business_name_post_request: BusinessNamePostRequest

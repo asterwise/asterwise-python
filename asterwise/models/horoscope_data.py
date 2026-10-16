@@ -31,7 +31,7 @@ class HoroscopeData(BaseModel):
     """ # noqa: E501
     content: HoroscopeContent
     generated_at: Optional[StrictStr] = None
-    period_key: StrictStr = Field(description="Period identifier (date, week, month, or year key)")
+    period_key: StrictStr = Field(description="The period this horoscope covers, on the India Standard Time calendar: YYYY-MM-DD (daily), YYYY-Www, the ISO week of that week's Monday (weekly), YYYY-MM (monthly) or YYYY (yearly).")
     horizon: StrictStr = Field(description="Horizon: daily, weekly, monthly, or yearly")
     moon_sign: StrictStr = Field(description="Normalised English Moon sign slug")
     __properties: ClassVar[List[str]] = ["content", "generated_at", "period_key", "horizon", "moon_sign"]

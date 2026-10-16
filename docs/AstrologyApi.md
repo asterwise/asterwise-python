@@ -25,8 +25,8 @@ Method | HTTP request | Description
 [**nakshatra_prediction**](AstrologyApi.md#nakshatra_prediction) | **POST** /v1/astro/nakshatra/prediction | Personal Nakshatra Prediction (Tarabala)
 [**natal_chart**](AstrologyApi.md#natal_chart) | **POST** /v1/astro/natal | Natal Chart — Janam Kundali
 [**panchanga**](AstrologyApi.md#panchanga) | **POST** /v1/astro/panchanga | Daily Panchanga
-[**panchanga_calendar**](AstrologyApi.md#panchanga_calendar) | **GET** /v1/astro/panchanga/calendar | Monthly Panchanga calendar
-[**panchanga_calendar_post**](AstrologyApi.md#panchanga_calendar_post) | **POST** /v1/astro/panchanga/calendar | Monthly Panchanga calendar (JSON body)
+[**panchanga_calendar**](AstrologyApi.md#panchanga_calendar) | **GET** /v1/astro/panchanga/calendar | Monthly Panchanga calendar (GET)
+[**panchanga_calendar_post**](AstrologyApi.md#panchanga_calendar_post) | **POST** /v1/astro/panchanga/calendar | Monthly Panchanga calendar
 [**panchanga_choghadiya**](AstrologyApi.md#panchanga_choghadiya) | **POST** /v1/astro/panchanga/choghadiya | Choghadiya periods
 [**panchanga_festivals**](AstrologyApi.md#panchanga_festivals) | **GET** /v1/astro/panchanga/festivals | Hindu festival and vrat calendar
 [**panchanga_hora**](AstrologyApi.md#panchanga_hora) | **POST** /v1/astro/panchanga/hora | Planetary hours (Hora)
@@ -169,7 +169,7 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.AstrologyApi(api_client)
-    var_date = '2013-10-20' # date |  (optional)
+    var_date = '2013-10-20' # date | Date, YYYY-MM-DD. Omit for today's UTC date. (optional)
 
     try:
         # Ayanamsha Values
@@ -187,7 +187,7 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **var_date** | **date**|  | [optional] 
+ **var_date** | **date**| Date, YYYY-MM-DD. Omit for today&#39;s UTC date. | [optional] 
 
 ### Return type
 
@@ -1128,7 +1128,7 @@ Name | Type | Description  | Notes
 
 Dashakoot — 10-Koota Compatibility
 
-Computes all 10 kootas for two persons: the standard 8 Ashtakoot kootas plus Mahendra and Stree Deergha. Returns total score out of 38, per-koota breakdown, dosha analysis (Nadi, Bhakoot, Rajju, Vedha), and compatibility level.
+Scores the South Indian Dashakoot match out of 10: ten poruthams, each 1 when it agrees and 0 when it does not. The poruthams are Dina, Gana, Mahendra, Stree Deergha, Yoni, Rasi, Rasi Adhipati, Vashya, Rajju and Vedha. Returns the per-porutham breakdown, the percentage, a compatibility level (Excellent 8+, Good 6+, Average 5+, otherwise Poor), and Nadi, Bhakoot, Rajju and Vedha dosha flags. Nadi and Bhakoot are reported but not scored.
 
 ### Example
 
@@ -1917,9 +1917,9 @@ Name | Type | Description  | Notes
 # **panchanga_calendar**
 > ApiResponsePanchangaCalendarResponse panchanga_calendar(year, month, location=location, latitude=latitude, longitude=longitude, timezone=timezone, ayanamsa=ayanamsa)
 
-Monthly Panchanga calendar
+Monthly Panchanga calendar (GET)
 
-Panchanga for every day of a month at a location, one entry per day. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days.
+Same answer as POST /v1/astro/panchanga/calendar, with the same fields as query parameters (`latitude` and `longitude` for `lat` and `lon`).
 
 ### Example
 
@@ -1954,13 +1954,13 @@ with asterwise.ApiClient(configuration) as api_client:
     year = 56 # int | Year
     month = 56 # int | Month (1-12)
     location = 'location_example' # str | City name (optional)
-    latitude = 3.4 # float |  (optional)
-    longitude = 3.4 # float |  (optional)
+    latitude = 3.4 # float | Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location. (optional)
+    longitude = 3.4 # float | Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location. (optional)
     timezone = 'timezone_example' # str | IANA timezone (required with lat/lon; ignored when using location alone) (optional)
-    ayanamsa = lahiri # str |  (optional) (default to lahiri)
+    ayanamsa = lahiri # str | Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint (optional) (default to lahiri)
 
     try:
-        # Monthly Panchanga calendar
+        # Monthly Panchanga calendar (GET)
         api_response = api_instance.panchanga_calendar(year, month, location=location, latitude=latitude, longitude=longitude, timezone=timezone, ayanamsa=ayanamsa)
         print("The response of AstrologyApi->panchanga_calendar:\n")
         pprint(api_response)
@@ -1978,10 +1978,10 @@ Name | Type | Description  | Notes
  **year** | **int**| Year | 
  **month** | **int**| Month (1-12) | 
  **location** | **str**| City name | [optional] 
- **latitude** | **float**|  | [optional] 
- **longitude** | **float**|  | [optional] 
+ **latitude** | **float**| Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location. | [optional] 
+ **longitude** | **float**| Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location. | [optional] 
  **timezone** | **str**| IANA timezone (required with lat/lon; ignored when using location alone) | [optional] 
- **ayanamsa** | **str**|  | [optional] [default to lahiri]
+ **ayanamsa** | **str**| Ayanamsa system: lahiri (default), raman, kp, or tropical for a zero offset, as on every other chart endpoint | [optional] [default to lahiri]
 
 ### Return type
 
@@ -2016,9 +2016,9 @@ Name | Type | Description  | Notes
 # **panchanga_calendar_post**
 > ApiResponsePanchangaCalendarResponse panchanga_calendar_post(panchanga_calendar_post_body)
 
-Monthly Panchanga calendar (JSON body)
+Monthly Panchanga calendar
 
-Panchanga for every day of a month, the same data as GET /v1/astro/panchanga/calendar sent as a JSON body. Minimum required JSON fields: `year` (1900–2100), `month` (1–12), `lat`, `lon`. Optional `timezone` defaults to Asia/Kolkata.
+Panchanga for every day of a month at a location, one entry per day. Each day keeps the sunrise tithi, vara, nakshatra, yoga, karana and Rahu Kaal, and adds sunrise, sunset, moonrise, moonset, paksha, the lunar month (amanta and purnimanta, with Adhik months), Bhadra windows, and every tithi, nakshatra, yoga and karana active between that sunrise and the next with ISO start and end times. A kshaya tithi (one no sunrise touches) appears on the day it runs, flagged is_kshaya; a tithi that holds two sunrises is flagged is_vriddhi on both days. Give `year` (1900-2100), `month` (1-12) and either `location` (a city name) or `lat` and `lon` (also accepted as `latitude` and `longitude`); `timezone` defaults to Asia/Kolkata.
 
 ### Example
 
@@ -2054,7 +2054,7 @@ with asterwise.ApiClient(configuration) as api_client:
     panchanga_calendar_post_body = asterwise.PanchangaCalendarPostBody() # PanchangaCalendarPostBody | 
 
     try:
-        # Monthly Panchanga calendar (JSON body)
+        # Monthly Panchanga calendar
         api_response = api_instance.panchanga_calendar_post(panchanga_calendar_post_body)
         print("The response of AstrologyApi->panchanga_calendar_post:\n")
         pprint(api_response)
@@ -2228,8 +2228,8 @@ with asterwise.ApiClient(configuration) as api_client:
     api_instance = asterwise.AstrologyApi(api_client)
     year = 56 # int | Calendar year
     location = 'location_example' # str | City name (optional)
-    latitude = 3.4 # float |  (optional)
-    longitude = 3.4 # float |  (optional)
+    latitude = 3.4 # float | Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location. (optional)
+    longitude = 3.4 # float | Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location. (optional)
     timezone = 'timezone_example' # str | IANA timezone (optional)
     categories = 'categories_example' # str | Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. 'festival,vrat,period' for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or 'eclipse' for eclipses. (optional)
 
@@ -2251,8 +2251,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **year** | **int**| Calendar year | 
  **location** | **str**| City name | [optional] 
- **latitude** | **float**|  | [optional] 
- **longitude** | **float**|  | [optional] 
+ **latitude** | **float**| Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location. | [optional] 
+ **longitude** | **float**| Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location. | [optional] 
  **timezone** | **str**| IANA timezone | [optional] 
  **categories** | **str**| Comma-separated subset of festival, vrat, sankranti, eclipse, period. Default: festival (the named festivals). Pass e.g. &#39;festival,vrat,period&#39; for Ekadashis, Pradosh, Sankashti, Purnima and Amavasya, Adhik Maas and Pitru Paksha, or &#39;eclipse&#39; for eclipses. | [optional] 
 
@@ -2501,8 +2501,8 @@ with asterwise.ApiClient(configuration) as api_client:
     api_instance = asterwise.AstrologyApi(api_client)
     var_date = 'var_date_example' # str | Date in YYYY-MM-DD format
     location = 'location_example' # str | City name (optional)
-    latitude = 3.4 # float |  (optional)
-    longitude = 3.4 # float |  (optional)
+    latitude = 3.4 # float | Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location. (optional)
+    longitude = 3.4 # float | Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location. (optional)
     timezone = 'timezone_example' # str | IANA timezone (optional)
 
     try:
@@ -2523,8 +2523,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **var_date** | **str**| Date in YYYY-MM-DD format | 
  **location** | **str**| City name | [optional] 
- **latitude** | **float**|  | [optional] 
- **longitude** | **float**|  | [optional] 
+ **latitude** | **float**| Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location. | [optional] 
+ **longitude** | **float**| Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location. | [optional] 
  **timezone** | **str**| IANA timezone | [optional] 
 
 ### Return type
@@ -2682,7 +2682,7 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.AstrologyApi(api_client)
-    planet = 'planet_example' # str |  (optional)
+    planet = 'planet_example' # str | One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine. (optional)
 
     try:
         # Graha Nature
@@ -2700,7 +2700,7 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **planet** | **str**|  | [optional] 
+ **planet** | **str**| One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine. | [optional] 
 
 ### Return type
 
@@ -2769,7 +2769,7 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.AstrologyApi(api_client)
-    planet = 'planet_example' # str |  (optional)
+    planet = 'planet_example' # str | One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine. (optional)
 
     try:
         # Puja Suggestions
@@ -2787,7 +2787,7 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **planet** | **str**|  | [optional] 
+ **planet** | **str**| One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine. | [optional] 
 
 ### Return type
 
@@ -2944,7 +2944,7 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.AstrologyApi(api_client)
-    planet = 'planet_example' # str |  (optional)
+    planet = 'planet_example' # str | One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine. (optional)
 
     try:
         # Rudraksha Recommendations
@@ -2962,7 +2962,7 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **planet** | **str**|  | [optional] 
+ **planet** | **str**| One of Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu (case-sensitive). Omit for all nine. | [optional] 
 
 ### Return type
 

@@ -245,8 +245,8 @@ configuration = asterwise.Configuration(
 with asterwise.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = asterwise.WesternAstrologyApi(api_client)
-    sign1 = 'sign1_example' # str | 
-    sign2 = 'sign2_example' # str | 
+    sign1 = 'sign1_example' # str | First sign: an English tropical sign name such as Aries (case-insensitive).
+    sign2 = 'sign2_example' # str | Second sign: an English tropical sign name such as Leo (case-insensitive).
 
     try:
         # Western Zodiac Sign Compatibility
@@ -264,8 +264,8 @@ with asterwise.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sign1** | **str**|  | 
- **sign2** | **str**|  | 
+ **sign1** | **str**| First sign: an English tropical sign name such as Aries (case-insensitive). | 
+ **sign2** | **str**| Second sign: an English tropical sign name such as Leo (case-insensitive). | 
 
 ### Return type
 
@@ -600,8 +600,8 @@ with asterwise.ApiClient(configuration) as api_client:
     api_instance = asterwise.WesternAstrologyApi(api_client)
     var_date = 'var_date_example' # str | Date, YYYY-MM-DD (local civil date at the place).
     location = 'location_example' # str | City name, used when latitude/longitude/timezone are not given. (optional)
-    latitude = 3.4 # float |  (optional)
-    longitude = 3.4 # float |  (optional)
+    latitude = 3.4 # float | Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location. (optional)
+    longitude = 3.4 # float | Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location. (optional)
     timezone = 'timezone_example' # str | IANA timezone, e.g. Europe/London. (optional)
 
     try:
@@ -622,8 +622,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **var_date** | **str**| Date, YYYY-MM-DD (local civil date at the place). | 
  **location** | **str**| City name, used when latitude/longitude/timezone are not given. | [optional] 
- **latitude** | **float**|  | [optional] 
- **longitude** | **float**|  | [optional] 
+ **latitude** | **float**| Latitude in decimal degrees, north positive. Use with longitude and timezone instead of location. | [optional] 
+ **longitude** | **float**| Longitude in decimal degrees, east positive. Use with latitude and timezone instead of location. | [optional] 
  **timezone** | **str**| IANA timezone, e.g. Europe/London. | [optional] 
 
 ### Return type

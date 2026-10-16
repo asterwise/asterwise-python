@@ -39,7 +39,7 @@ class NumerologyProfileResponse(BaseModel):
     personal_year: Optional[PersonalYear] = None
     pinnacles: Optional[List[PinnacleChallenge]] = Field(default=None, description="Life pinnacle cycles")
     challenges: Optional[List[PinnacleChallenge]] = Field(default=None, description="Life challenge cycles")
-    lucky_numbers: Optional[List[StrictInt]] = Field(default=None, description="Lucky numbers, no repeats: first the Life Path, Expression, Soul Urge, Personality and Birth Day (these may be master numbers 11, 22, 33), then digits 1-9 from the birth date in ascending order, topped up with unused digits 1-9 (at most 9 are guaranteed)")
+    lucky_numbers: Optional[List[StrictInt]] = Field(default=None, description="Six lucky numbers, no repeats: first the Life Path, Expression, Soul Urge, Personality and Birth Day (these may be master numbers 11, 22, 33), then digits 1-9 from the birth date in ascending order, topped up with unused digits 1-9 (at most 9 are guaranteed)")
     summary: StrictStr = Field(description="Overall numerology summary")
     key_traits: Optional[List[StrictStr]] = Field(default=None, description="Key personality traits")
     __properties: ClassVar[List[str]] = ["life_path", "expression", "soul_urge", "personality", "birth_day", "personal_year", "pinnacles", "challenges", "lucky_numbers", "summary", "key_traits"]
