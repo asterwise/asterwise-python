@@ -155,7 +155,7 @@ Ashtottari Dasha is a 108-year dasha cycle using 8 planets (excluding Ketu).
 It is considered applicable only for specific charts where Rahu occupies a
 Kendra (1, 4, 7, 10) or Trikona (1, 5, 9) counted from the sign of the Lagna
 lord, but not the Lagna itself (BPHS Ch.46 v.17). For a Scorpio or Aquarius
-Lagna the stronger co-lord is used, as in JHora.
+Lagna the stronger co-lord is used.
 
 **Applicability check:**
 This endpoint first checks whether Ashtottari applies to the given chart.
@@ -167,7 +167,7 @@ paksha/day-night condition is not evaluated.
 Counting from Ardra, the nakshatras belong to the lords in groups of 4, 3, 4,
 3, 4, 3, 4, 3 (Sun, Moon, Mars, Mercury, Saturn — with Abhijit — Jupiter,
 Rahu, Venus). The balance at birth is the lord's years times the share of its
-whole nakshatra group still ahead of the Moon (JHora's method). The first
+whole nakshatra group still ahead of the Moon. The first
 period starts at birth; its sub-periods are the tail of the full period, and
 it carries `dasha_start_date` and `balance_years`.
 

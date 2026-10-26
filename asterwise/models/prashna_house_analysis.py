@@ -31,7 +31,7 @@ class PrashnaHouseAnalysis(BaseModel):
     house: StrictInt
     rashi_index: StrictInt = Field(description="Sign of the quesited house, counted whole sign from the lagna sign (0 = Mesha).")
     rashi: StrictStr
-    lord: StrictStr = Field(description="Lord of the quesited house by whole sign (lord of its sign), as BPHS and Jagannatha Hora read lordship.")
+    lord: StrictStr = Field(description="Lord of the quesited house by whole sign (lord of its sign), as BPHS reads lordship.")
     lord_dignity: StrictStr
     lord_house: StrictInt
     lord_longitude: Union[StrictFloat, StrictInt]

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Published reference charts
 
-Test charts with reference values from an independent source, so anyone can check the maths. The 25 edge cases of the verification harness (clock changes, southern hemisphere, polar night and day, the date line, 45-minute zones, historical offsets, leap day, the range limits) and a sample of random charts, each with the sidereal longitudes, signs, nakshatras and ascendant from PyJHora (a port of Jagannatha Hora), plus a Moon-on-a-nakshatra-boundary case from a direct Swiss Ephemeris call and an unknown-birth-time behaviour case. Send each input to /v1/astro/natal and compare.
+Test charts with reference values from an independent source, so anyone can check the maths. The 25 edge cases of the verification harness (clock changes, southern hemisphere, polar night and day, the date line, 45-minute zones, historical offsets, leap day, the range limits) and a sample of random charts, each with the sidereal longitudes, signs, nakshatras and ascendant from an independent reference implementation, plus a Moon-on-a-nakshatra-boundary case from a direct Swiss Ephemeris call and an unknown-birth-time behaviour case. Send each input to /v1/astro/natal and compare.
 
 ### Example
 
