@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 
 Generate Kundali chart SVG
 
-Generate Vedic astrological chart SVGs. Returns North Indian and South Indian style charts for both Lagna (D1) and Navamsa (D9), as SVG strings. Each planet shows abbreviation, degree°minutes', and superscripts for Vakri (ᴿ), Asta (ᶜ), and Vargottama (ᵛ). Returns North Indian (Uttar Bharatiya) and South Indian (Dakshina Bharatiya) Kundali charts as inline SVG. Also returns Navamsa (D9) chart. The response contains SVG strings for each chart style. To render them:
+Generate Vedic astrological chart SVGs. Returns North Indian and South Indian style charts for both Lagna (D1) and Navamsa (D9), as SVG strings. Each planet shows abbreviation, degree°minutes', and its marks. Returns North Indian (Uttar Bharatiya) and South Indian (Dakshina Bharatiya) Kundali charts as inline SVG. Also returns Navamsa (D9) chart. Send `vargas` (any of D1, D2, D3, D4, D7, D9, D10, D12, D16, D20, D24, D27, D30, D40, D45, D60) and `styles` (north, south, east) to also get those divisional charts in `vargas`. Marks: R (Vakri) and ↑/↓ (exalted/debilitated in that chart's sign, BPHS Ch. 3) on every drawing; C (Asta) and V (Vargottama) on D1 and D9 only. Options: show_degrees, theme (light/dark), colors, transparent, show_details (name, date, time, place). The response contains SVG strings for each chart style. To render them:
 
 1. In browser: create an HTML file,
    paste the SVG string directly
@@ -600,7 +600,7 @@ Name | Type | Description  | Notes
 
 Calculate dosha report
 
-Detect all major Vedic doshas in a natal chart — Mangal Dosha, Kaal Sarp Dosha, Gandmool, Grahan, Guru Chandal, Kemdrum, Shrapit, and Pitru Dosha. Present doshas include cancellation analysis, classical interpretation, keywords, and traditional remedies. Aspects are full Parashari graha drishti counted from the aspecting planet's sign (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu 7); house lords are whole sign from the lagna. A Jupiter or Venus aspect or conjunction cancels Mangal Dosha only when that planet is strong — not debilitated and not combust; one that does not count is listed in mangal_dosha.details.benefic_aspects_not_counted.
+Detect the Vedic doshas in a natal chart, with cancellations. Covered: Mangal, Kaal Sarp (with its named type), Kala Amrita, Gandmool, Grahan, Guru Chandal, Kemadruma, Shrapit, Shani, Paap Kartari, Pitru and Gulika. A conjunction is the same sign; no degree orb decides a dosha. Aspects are full Parashari graha drishti counted from the aspecting planet's sign (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu 7); house lords are whole sign from the lagna. Mangal Dosha is checked from the Lagna, Moon and Venus: `present` is after cancellation, `details.present_by_placement` is Mars's placement alone, and `details.cancellations` lists only real cancellations. Kemadruma follows BPHS 37.11 (`details.formed`, then cancellations). Pitru Dosha is present only when a BPHS 83.20–83.30 father's-curse combination forms; general Sun / 9th-lord conditions are listed as `details.indicators`. Gulika follows BPHS 3.66–67 for day and night births. With an unknown birth time, buckets that depend on the Lagna carry `needs_birth_time: true`.
 
 ### Example
 
@@ -2562,7 +2562,7 @@ Name | Type | Description  | Notes
 
 Pitru Dosha (Pitru Shapa)
 
-Detects and analyses Pitru Dosha (Pitru Shapa — Ancestral Curse) from the natal chart using all five classical combinations that indicate Pitru Dosha presence. Returns presence flag, severity (mild/moderate/severe), which of the 5 classical combinations are triggered, Sun and 9th lord analysis, afflicting planets, cancellation conditions (Jupiter protective), classical symptoms, and classical remedies. Primary classical symptom: denial of progeny or difficulties with children. The 9th, 5th and lagna lords are taken by whole sign from the lagna; aspects are full Parashari graha drishti (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu and Ketu 7). This is a standalone endpoint providing deeper analysis than the pitru_dosha field in /v1/astro/doshas.
+Detects Pitru Dosha (Pitru Shapa, the father's curse) from the eleven combinations of BPHS 83.20–83.30, each read literally. `present` is true only when at least one combination forms; `combinations_detail` names the verse and the chart factors. Conjunction is the same sign; aspects are full Parashari graha drishti (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu 7); malefics are the chart's natural malefics (Sun, Mars, Saturn, Rahu, Ketu, a waning Moon, a Mercury joined by a malefic). House lords are whole sign from the lagna. General Sun and 9th-lord conditions are listed as `indicators` and never make the dosha present. BPHS gives no grading, so `severity` is null and `combinations_count` says how many combinations formed. Remedies are those of BPHS 83.31–83.32. The same rule fills the pitru_dosha bucket of /v1/astro/dosha.
 
 ### Example
 
@@ -3351,7 +3351,7 @@ Name | Type | Description  | Notes
 
 Calculate yoga combinations
 
-Detects classical Vedic yogas in a natal chart, such as Pancha Mahapurusha, Raja, Gajakesari and Neecha Bhanga Raja Yoga. Others include Budhaditya, Chandra Mangala, Viparita Raja, Amala, and more. House lords are taken by whole sign from the lagna (so they are found at polar latitudes too) and aspects are full Parashari graha drishti only. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords.
+Detects classical Vedic yogas in a natal chart, such as Pancha Mahapurusha, Raja, Gajakesari and Neecha Bhanga Raja Yoga. Others include Budhaditya, Chandra Mangala, Viparita Raja, Amala, and more. House lords are taken by whole sign from the lagna (so they are found at polar latitudes too) and aspects are full Parashari graha drishti only. Each detected yoga returns formation conditions, the classical texts it is drawn from, a modern summary, and keywords. When no birth time is given, yogas that depend on the lagna are marked needs_birth_time.
 
 ### Example
 

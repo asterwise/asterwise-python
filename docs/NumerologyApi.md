@@ -1440,7 +1440,7 @@ Name | Type | Description  | Notes
 
 Maturity (Realization) Number
 
-Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces around age 30-35. Requires both name and birth date.
+Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces from around age 35. Requires both name and birth date.
 
 ### Example
 

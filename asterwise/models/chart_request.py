@@ -18,9 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
+from asterwise.models.chart_colors import ChartColors
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -38,7 +39,14 @@ class ChartRequest(BaseModel):
     timezone: Optional[StrictStr] = None
     utc_offset: Optional[StrictStr] = None
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
-    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa"]
+    vargas: Optional[Annotated[List[StrictStr], Field(min_length=1, max_length=16)]] = None
+    styles: Optional[Annotated[List[StrictStr], Field(min_length=1, max_length=3)]] = Field(default=None, description="Chart styles for `vargas`: north (diamond), south (fixed-sign grid), east (Bengali, fixed signs with Aries at the top middle). Applies to `vargas` only: the classic lagna_*/navamsa_* fields are always north and south.")
+    show_degrees: Optional[StrictBool] = Field(default=True, description="Show each graha's degree and minutes in its sign (and the Lagna degree).")
+    theme: Optional[StrictStr] = Field(default='light', description="Colour preset.")
+    colors: Optional[ChartColors] = None
+    transparent: Optional[StrictBool] = Field(default=False, description="No background fill, so the chart sits on your own page colour.")
+    show_details: Optional[StrictBool] = Field(default=False, description="Print the name (when sent), birth date, time and place under the title; cut to 80 characters.")
+    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "vargas", "styles", "show_degrees", "theme", "colors", "transparent", "show_details"]
 
     @field_validator('ayanamsa')
     def ayanamsa_validate_enum(cls, value):
@@ -48,6 +56,38 @@ class ChartRequest(BaseModel):
 
         if value not in set(['lahiri', 'raman', 'kp', 'tropical']):
             raise ValueError("must be one of enum values ('lahiri', 'raman', 'kp', 'tropical')")
+        return value
+
+    @field_validator('vargas')
+    def vargas_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        for i in value:
+            if i not in set(['D1', 'D2', 'D3', 'D4', 'D7', 'D9', 'D10', 'D12', 'D16', 'D20', 'D24', 'D27', 'D30', 'D40', 'D45', 'D60']):
+                raise ValueError("each list item must be one of ('D1', 'D2', 'D3', 'D4', 'D7', 'D9', 'D10', 'D12', 'D16', 'D20', 'D24', 'D27', 'D30', 'D40', 'D45', 'D60')")
+        return value
+
+    @field_validator('styles')
+    def styles_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        for i in value:
+            if i not in set(['north', 'south', 'east']):
+                raise ValueError("each list item must be one of ('north', 'south', 'east')")
+        return value
+
+    @field_validator('theme')
+    def theme_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['light', 'dark']):
+            raise ValueError("must be one of enum values ('light', 'dark')")
         return value
 
     model_config = ConfigDict(
@@ -89,6 +129,9 @@ class ChartRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of colors
+        if self.colors:
+            _dict['colors'] = self.colors.to_dict()
         # set to None if location (nullable) is None
         # and model_fields_set contains the field
         if self.location is None and "location" in self.model_fields_set:
@@ -119,6 +162,16 @@ class ChartRequest(BaseModel):
         if self.utc_offset is None and "utc_offset" in self.model_fields_set:
             _dict['utc_offset'] = None
 
+        # set to None if vargas (nullable) is None
+        # and model_fields_set contains the field
+        if self.vargas is None and "vargas" in self.model_fields_set:
+            _dict['vargas'] = None
+
+        # set to None if colors (nullable) is None
+        # and model_fields_set contains the field
+        if self.colors is None and "colors" in self.model_fields_set:
+            _dict['colors'] = None
+
         return _dict
 
     @classmethod
@@ -139,7 +192,14 @@ class ChartRequest(BaseModel):
             "longitude": obj.get("longitude"),
             "timezone": obj.get("timezone"),
             "utc_offset": obj.get("utc_offset"),
-            "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri'
+            "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri',
+            "vargas": obj.get("vargas"),
+            "styles": obj.get("styles"),
+            "show_degrees": obj.get("show_degrees") if obj.get("show_degrees") is not None else True,
+            "theme": obj.get("theme") if obj.get("theme") is not None else 'light',
+            "colors": ChartColors.from_dict(obj["colors"]) if obj.get("colors") is not None else None,
+            "transparent": obj.get("transparent") if obj.get("transparent") is not None else False,
+            "show_details": obj.get("show_details") if obj.get("show_details") is not None else False
         })
         return _obj
 

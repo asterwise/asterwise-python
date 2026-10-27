@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **lagna_south** | **str** | South Indian Lagna chart SVG string | 
 **navamsa_north** | **str** | North Indian Navamsa (D9) chart SVG string | 
 **navamsa_south** | **str** | South Indian Navamsa (D9) chart SVG string | 
+**vargas** | [**Dict[str, VargaChartSVGs]**](VargaChartSVGs.md) |  | [optional] 
 **legend** | **str** |  | [optional] 
 
 ## Example

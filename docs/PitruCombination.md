@@ -5,10 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**combination** | **str** | Name, e.g. &#39;Purvajanma Shapa Combination 2&#39; (BPHS Ch.83). | 
+**combination** | **str** | Name, e.g. &#39;Pitru Shapa (BPHS 83.24)&#39;. | 
+**verse** | **str** |  | [optional] 
 **description** | **str** | What formed the combination in this chart. | 
 **factors** | **List[str]** | The chart factors that met the combination&#39;s conditions. | 
-**weight** | **int** | Severity weight this combination adds (2 or 3). | 
+**weight** | **int** | Always 1: each BPHS 83 combination counts once (BPHS gives no weighting). | 
 
 ## Example
 

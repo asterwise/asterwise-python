@@ -43,10 +43,12 @@ better results.
   seven grahas is in it). The most refined per-planet table, keyed by sign name.
 
 - **sarva** — Sarva Ashtakavarga (SAV): the raw sum across all 7 planets. 
-  Object keyed by sign name; 28+ bindus in a sign is considered strong.
+  Object keyed by sign name. The 12 signs share 337 bindus, about 28 each, so a
+  sign with more than 28 is above average.
 
-- **sarva_reduced** — SAV computed from the fully reduced planet tables. 
-  More accurate for transit timing. Keyed by sign name.
+- **sarva_reduced** — SAV computed from the fully reduced planet tables, the 
+  input to Shodhya Pinda. Transit grading uses the raw tables, not these. 
+  Keyed by sign name.
 
 - **after_trikona** / **after_ekadhipatya** — legacy: the reductions applied to the 
   summed SAV, kept for backward compatibility. Not classical values (Shodhana is 
@@ -55,8 +57,8 @@ better results.
 **How to use bindus for transit timing:**
 When a planet transits a house in its own Bhinna chart, the number of bindus 
 in that house indicates how favourable the transit will be. 8 bindus is maximum, 
-0 is minimum. In the SAV, 30+ bindus in a house indicates strong positive results 
-during transits through that house.
+0 is minimum. In the SAV, a sign with more than 28 bindus (the average) is 
+favourable for transits, and the more bindus, the better.
 
 **Ayanamsa:** All positions are sidereal. Default is Lahiri.
 

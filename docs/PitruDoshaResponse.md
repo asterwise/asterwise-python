@@ -14,11 +14,13 @@ Name | Type | Description | Notes
 **combinations_count** | **int** |  | 
 **sun_analysis** | [**PitruSunAnalysis**](PitruSunAnalysis.md) |  | 
 **ninth_lord_analysis** | [**PitruNinthLordAnalysis**](PitruNinthLordAnalysis.md) |  | 
-**all_factors** | **List[str]** |  | 
+**all_factors** | **List[str]** | Chart factors of the formed verse combinations only. | 
+**indicators** | **List[str]** | General Sun and 9th-lord conditions (debilitated, in house 6/8/12, joined or aspected by a malefic). Context only: they are not a BPHS 83 combination and never make the dosha present. | [optional] 
 **cancellations** | **List[str]** |  | 
 **interpretation** | **str** |  | 
 **classical_symptoms** | **List[str]** |  | 
 **remedies** | **List[str]** |  | 
+**source** | **str** |  | [optional] 
 
 ## Example
 

@@ -37,8 +37,9 @@ class PoruthamResponse(BaseModel):
     rajju_veto: StrictBool
     vedha_veto: StrictBool
     hard_veto: StrictBool
+    minimum_poruthams_met: Optional[StrictBool] = None
     breakdown: Dict[str, Any]
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "total_passed", "total_poruthams", "compatibility_level", "rajju_veto", "vedha_veto", "hard_veto", "breakdown"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "total_passed", "total_poruthams", "compatibility_level", "rajju_veto", "vedha_veto", "hard_veto", "minimum_poruthams_met", "breakdown"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,6 +80,11 @@ class PoruthamResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if minimum_poruthams_met (nullable) is None
+        # and model_fields_set contains the field
+        if self.minimum_poruthams_met is None and "minimum_poruthams_met" in self.model_fields_set:
+            _dict['minimum_poruthams_met'] = None
+
         return _dict
 
     @classmethod
@@ -100,6 +106,7 @@ class PoruthamResponse(BaseModel):
             "rajju_veto": obj.get("rajju_veto"),
             "vedha_veto": obj.get("vedha_veto"),
             "hard_veto": obj.get("hard_veto"),
+            "minimum_poruthams_met": obj.get("minimum_poruthams_met"),
             "breakdown": obj.get("breakdown")
         })
         return _obj

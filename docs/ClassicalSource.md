@@ -1,6 +1,6 @@
 # ClassicalSource
 
-A classical text the yoga's definition and results are drawn from. Only the text and, where unambiguous, the section topic are given; chapter and verse numbers differ between editions.
+A classical text the yoga's definition and results are drawn from. Only the text and the section topic are given; chapter and verse numbers differ between editions.
 
 ## Properties
 

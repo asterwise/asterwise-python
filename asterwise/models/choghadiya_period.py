@@ -40,7 +40,8 @@ class ChoghadiyaPeriod(BaseModel):
     end_at: Optional[StrictStr] = None
     end_utc: Optional[StrictStr] = None
     is_current: StrictBool = Field(description="True if this period is currently active.")
-    __properties: ClassVar[List[str]] = ["period", "name", "type", "ruling_planet", "suitable_for", "start", "start_at", "start_utc", "end", "end_at", "end_utc", "is_current"]
+    vela: Optional[List[StrictStr]] = Field(default=None, description="Barred ardha-prahara labels on this slot: 'Vaar Vela' (day and night), 'Kaal Vela' (day, Saturn's eighth) or 'Kaal Ratri' (night, Saturn's eighth). Avoid auspicious work in these. Empty when none.")
+    __properties: ClassVar[List[str]] = ["period", "name", "type", "ruling_planet", "suitable_for", "start", "start_at", "start_utc", "end", "end_at", "end_utc", "is_current", "vela"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -124,7 +125,8 @@ class ChoghadiyaPeriod(BaseModel):
             "end": obj.get("end"),
             "end_at": obj.get("end_at"),
             "end_utc": obj.get("end_utc"),
-            "is_current": obj.get("is_current")
+            "is_current": obj.get("is_current"),
+            "vela": obj.get("vela")
         })
         return _obj
 

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,11 +28,12 @@ class PitruCombination(BaseModel):
     """
     PitruCombination
     """ # noqa: E501
-    combination: StrictStr = Field(description="Name, e.g. 'Purvajanma Shapa Combination 2' (BPHS Ch.83).")
+    combination: StrictStr = Field(description="Name, e.g. 'Pitru Shapa (BPHS 83.24)'.")
+    verse: Optional[StrictStr] = None
     description: StrictStr = Field(description="What formed the combination in this chart.")
     factors: List[StrictStr] = Field(description="The chart factors that met the combination's conditions.")
-    weight: StrictInt = Field(description="Severity weight this combination adds (2 or 3).")
-    __properties: ClassVar[List[str]] = ["combination", "description", "factors", "weight"]
+    weight: StrictInt = Field(description="Always 1: each BPHS 83 combination counts once (BPHS gives no weighting).")
+    __properties: ClassVar[List[str]] = ["combination", "verse", "description", "factors", "weight"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +74,11 @@ class PitruCombination(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if verse (nullable) is None
+        # and model_fields_set contains the field
+        if self.verse is None and "verse" in self.model_fields_set:
+            _dict['verse'] = None
+
         return _dict
 
     @classmethod
@@ -86,6 +92,7 @@ class PitruCombination(BaseModel):
 
         _obj = cls.model_validate({
             "combination": obj.get("combination"),
+            "verse": obj.get("verse"),
             "description": obj.get("description"),
             "factors": obj.get("factors"),
             "weight": obj.get("weight")

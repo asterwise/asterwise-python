@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.12.2"
+__version__ = "0.13.0"
 
 # Define package exports
 __all__ = [
@@ -98,6 +98,7 @@ __all__ = [
     "ApiResponseMonthlyTransitResponse",
     "ApiResponseMoonPhaseResponse",
     "ApiResponseMuhurtaResponse",
+    "ApiResponseMyUsageResponse",
     "ApiResponseNakshatraPredictionResponse",
     "ApiResponseNakshatraProfileResponse",
     "ApiResponseNameCorrectionResponse",
@@ -199,6 +200,7 @@ __all__ = [
     "CharDashaRequest",
     "CharDashaResponse",
     "CharMahadasha",
+    "ChartColors",
     "ChartRequest",
     "ChartResponse",
     "ChoghadiyaPeriod",
@@ -348,6 +350,7 @@ __all__ = [
     "MuhurtaResponse",
     "MuhurtaTara",
     "MuhurtaWindow",
+    "MyUsageResponse",
     "Nakshatra",
     "NakshatraActivities",
     "NakshatraData",
@@ -480,6 +483,7 @@ __all__ = [
     "TwoPersonRequest",
     "UpapadaLagna",
     "VaraData",
+    "VargaChartSVGs",
     "VarshaPati",
     "VarshaphalMuntha",
     "VarshaphalPlanet",
@@ -498,6 +502,7 @@ __all__ = [
     "WesternAspect",
     "WesternAspectsRequest",
     "WesternAspectsResponse",
+    "WesternBirthInput",
     "WesternDailyFactorsRequest",
     "WesternDailyFactorsResponse",
     "WesternDayMoon",
@@ -519,6 +524,7 @@ __all__ = [
     "WesternNatalRequest",
     "WesternNatalResponse",
     "WesternPlanetPosition",
+    "WesternPoint",
     "WesternTransitRequest",
     "YearLordNatalSchema",
     "YesNoRequest",
@@ -618,6 +624,7 @@ from asterwise.models.api_response_maturity_number_response import ApiResponseMa
 from asterwise.models.api_response_monthly_transit_response import ApiResponseMonthlyTransitResponse as ApiResponseMonthlyTransitResponse
 from asterwise.models.api_response_moon_phase_response import ApiResponseMoonPhaseResponse as ApiResponseMoonPhaseResponse
 from asterwise.models.api_response_muhurta_response import ApiResponseMuhurtaResponse as ApiResponseMuhurtaResponse
+from asterwise.models.api_response_my_usage_response import ApiResponseMyUsageResponse as ApiResponseMyUsageResponse
 from asterwise.models.api_response_nakshatra_prediction_response import ApiResponseNakshatraPredictionResponse as ApiResponseNakshatraPredictionResponse
 from asterwise.models.api_response_nakshatra_profile_response import ApiResponseNakshatraProfileResponse as ApiResponseNakshatraProfileResponse
 from asterwise.models.api_response_name_correction_response import ApiResponseNameCorrectionResponse as ApiResponseNameCorrectionResponse
@@ -719,6 +726,7 @@ from asterwise.models.char_antardasha import CharAntardasha as CharAntardasha
 from asterwise.models.char_dasha_request import CharDashaRequest as CharDashaRequest
 from asterwise.models.char_dasha_response import CharDashaResponse as CharDashaResponse
 from asterwise.models.char_mahadasha import CharMahadasha as CharMahadasha
+from asterwise.models.chart_colors import ChartColors as ChartColors
 from asterwise.models.chart_request import ChartRequest as ChartRequest
 from asterwise.models.chart_response import ChartResponse as ChartResponse
 from asterwise.models.choghadiya_period import ChoghadiyaPeriod as ChoghadiyaPeriod
@@ -868,6 +876,7 @@ from asterwise.models.muhurta_request import MuhurtaRequest as MuhurtaRequest
 from asterwise.models.muhurta_response import MuhurtaResponse as MuhurtaResponse
 from asterwise.models.muhurta_tara import MuhurtaTara as MuhurtaTara
 from asterwise.models.muhurta_window import MuhurtaWindow as MuhurtaWindow
+from asterwise.models.my_usage_response import MyUsageResponse as MyUsageResponse
 from asterwise.models.nakshatra import Nakshatra as Nakshatra
 from asterwise.models.nakshatra_activities import NakshatraActivities as NakshatraActivities
 from asterwise.models.nakshatra_data import NakshatraData as NakshatraData
@@ -1000,6 +1009,7 @@ from asterwise.models.transits_response import TransitsResponse as TransitsRespo
 from asterwise.models.two_person_request import TwoPersonRequest as TwoPersonRequest
 from asterwise.models.upapada_lagna import UpapadaLagna as UpapadaLagna
 from asterwise.models.vara_data import VaraData as VaraData
+from asterwise.models.varga_chart_svgs import VargaChartSVGs as VargaChartSVGs
 from asterwise.models.varsha_pati import VarshaPati as VarshaPati
 from asterwise.models.varshaphal_muntha import VarshaphalMuntha as VarshaphalMuntha
 from asterwise.models.varshaphal_planet import VarshaphalPlanet as VarshaphalPlanet
@@ -1018,6 +1028,7 @@ from asterwise.models.western_angle import WesternAngle as WesternAngle
 from asterwise.models.western_aspect import WesternAspect as WesternAspect
 from asterwise.models.western_aspects_request import WesternAspectsRequest as WesternAspectsRequest
 from asterwise.models.western_aspects_response import WesternAspectsResponse as WesternAspectsResponse
+from asterwise.models.western_birth_input import WesternBirthInput as WesternBirthInput
 from asterwise.models.western_daily_factors_request import WesternDailyFactorsRequest as WesternDailyFactorsRequest
 from asterwise.models.western_daily_factors_response import WesternDailyFactorsResponse as WesternDailyFactorsResponse
 from asterwise.models.western_day_moon import WesternDayMoon as WesternDayMoon
@@ -1039,6 +1050,7 @@ from asterwise.models.western_modalities import WesternModalities as WesternModa
 from asterwise.models.western_natal_request import WesternNatalRequest as WesternNatalRequest
 from asterwise.models.western_natal_response import WesternNatalResponse as WesternNatalResponse
 from asterwise.models.western_planet_position import WesternPlanetPosition as WesternPlanetPosition
+from asterwise.models.western_point import WesternPoint as WesternPoint
 from asterwise.models.western_transit_request import WesternTransitRequest as WesternTransitRequest
 from asterwise.models.year_lord_natal_schema import YearLordNatalSchema as YearLordNatalSchema
 from asterwise.models.yes_no_request import YesNoRequest as YesNoRequest

@@ -14,6 +14,13 @@ Name | Type | Description | Notes
 **timezone** | **str** |  | [optional] 
 **utc_offset** | **str** |  | [optional] 
 **ayanamsa** | **str** | Sidereal ayanamsa mode used in calculations | [optional] [default to 'lahiri']
+**vargas** | **List[str]** |  | [optional] 
+**styles** | **List[str]** | Chart styles for &#x60;vargas&#x60;: north (diamond), south (fixed-sign grid), east (Bengali, fixed signs with Aries at the top middle). Applies to &#x60;vargas&#x60; only: the classic lagna_*/navamsa_* fields are always north and south. | [optional] [default to [north, south]]
+**show_degrees** | **bool** | Show each graha&#39;s degree and minutes in its sign (and the Lagna degree). | [optional] [default to True]
+**theme** | **str** | Colour preset. | [optional] [default to 'light']
+**colors** | [**ChartColors**](ChartColors.md) |  | [optional] 
+**transparent** | **bool** | No background fill, so the chart sits on your own page colour. | [optional] [default to False]
+**show_details** | **bool** | Print the name (when sent), birth date, time and place under the title; cut to 80 characters. | [optional] [default to False]
 
 ## Example
 

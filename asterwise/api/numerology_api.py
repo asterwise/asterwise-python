@@ -4870,7 +4870,7 @@ class NumerologyApi:
     ) -> ApiResponseMaturityNumberResponse:
         """Maturity (Realization) Number
 
-        Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces around age 30-35. Requires both name and birth date.
+        Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces from around age 35. Requires both name and birth date.
 
         :param maturity_number_request: (required)
         :type maturity_number_request: MaturityNumberRequest
@@ -4946,7 +4946,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponseMaturityNumberResponse]:
         """Maturity (Realization) Number
 
-        Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces around age 30-35. Requires both name and birth date.
+        Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces from around age 35. Requires both name and birth date.
 
         :param maturity_number_request: (required)
         :type maturity_number_request: MaturityNumberRequest
@@ -5022,7 +5022,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Maturity (Realization) Number
 
-        Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces around age 30-35. Requires both name and birth date.
+        Calculates the Maturity number from Life Path + Expression. Represents the underlying wish or desire that surfaces from around age 35. Requires both name and birth date.
 
         :param maturity_number_request: (required)
         :type maturity_number_request: MaturityNumberRequest

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **total_score** | **float** | Overall Guna Milan score out of 36 | 
 **breakdown** | **Dict[str, Optional[float]]** | Per-koota score breakdown | 
-**compatibility_level** | **str** | Textual compatibility band derived from score | 
+**compatibility_level** | **str** | Verdict on the published Ashtakoota bands: Excellent, Very Good, Ordinary or Not Recommended. Nadi 0 is never recommended; Bhakoot 0 is never Excellent. | 
 **doshas** | **Dict[str, object]** | Detected compatibility doshas | 
 **dosha_cancellations** | **Dict[str, object]** | Traditional dosha cancellation flags | 
 **analysis** | **Dict[str, object]** | Additional high-level matchmaking analysis details | 

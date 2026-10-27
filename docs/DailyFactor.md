@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Stable factor id, e.g. gochar.saturn, tarabala.12, natal_contact.saturn.moon. | 
-**group** | **str** | gochar, sade_sati, chandra_ashtama, tarabala, chandrabala, dasha, dasha_transit, natal_contact, panchanga, moon_phase. | 
+**id** | **str** | Stable factor id, e.g. gochar.saturn or natal_contact.saturn.moon (Vedic), aspect.sun.sextile.moon (Western). | 
+**group** | **str** | Vedic: gochar, sade_sati, chandra_ashtama, tarabala, chandrabala, dasha, dasha_transit, natal_contact, panchanga, moon_phase. Western: aspect, transit, moon_phase, void_of_course, planetary_hour, profection. | 
 **name** | **str** |  | 
 **planet** | **str** |  | [optional] 
 **frame** | **str** | What the houses or distances are counted from. See frames. | 

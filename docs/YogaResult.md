@@ -9,8 +9,9 @@ Name | Type | Description | Notes
 **category** | **str** | Yoga category bucket | 
 **formation** | **str** | Formation condition | 
 **modern_summary** | **str** | Modern interpretation summary | 
-**keywords** | **List[str]** | Interpretation keywords | [optional] 
+**keywords** | **List[Optional[str]]** | Interpretation keywords | [optional] 
 **classical_sources** | [**List[ClassicalSource]**](ClassicalSource.md) | Classical texts this yoga is drawn from (empty when the yoga comes from general tradition rather than a named text) | [optional] 
+**needs_birth_time** | **bool** | True when this yoga depends on the lagna (houses or house lordship counted from the ascendant) and no birth time was given, so the result may change with the real birth time. Yogas read only from the Moon or from signs are never marked. | [optional] [default to False]
 
 ## Example
 

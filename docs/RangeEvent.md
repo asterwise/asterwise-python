@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **title** | **str** |  | 
 **time_utc** | **str** | ISO 8601 UTC with Z. | 
 **time_local** | **str** | ISO 8601 local time with offset, in target_timezone. | 
-**time_precision** | **str** | second, or day for events known only to the day (dasha changes, profection years). | 
+**time_precision** | **str** | second, or day for events known only to the day (Vedic dasha changes, Western profection years). | 
 **detail** | **Dict[str, object]** |  | 
 **verdict** | **str** |  | [optional] 
 **verdict_rule** | **str** |  | [optional] 

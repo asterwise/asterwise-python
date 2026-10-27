@@ -30,7 +30,7 @@ class MatchmakingResponse(BaseModel):
     """ # noqa: E501
     total_score: Union[StrictFloat, StrictInt] = Field(description="Overall Guna Milan score out of 36")
     breakdown: Dict[str, Optional[Union[StrictFloat, StrictInt]]] = Field(description="Per-koota score breakdown")
-    compatibility_level: StrictStr = Field(description="Textual compatibility band derived from score")
+    compatibility_level: StrictStr = Field(description="Verdict on the published Ashtakoota bands: Excellent, Very Good, Ordinary or Not Recommended. Nadi 0 is never recommended; Bhakoot 0 is never Excellent.")
     doshas: Dict[str, Any] = Field(description="Detected compatibility doshas")
     dosha_cancellations: Dict[str, Any] = Field(description="Traditional dosha cancellation flags")
     analysis: Dict[str, Any] = Field(description="Additional high-level matchmaking analysis details")

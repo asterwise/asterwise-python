@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.classical_source import ClassicalSource
 from typing import Optional, Set
@@ -33,9 +33,10 @@ class YogaResult(BaseModel):
     category: StrictStr = Field(description="Yoga category bucket")
     formation: StrictStr = Field(description="Formation condition")
     modern_summary: StrictStr = Field(description="Modern interpretation summary")
-    keywords: Optional[List[StrictStr]] = Field(default=None, description="Interpretation keywords")
+    keywords: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Interpretation keywords")
     classical_sources: Optional[List[ClassicalSource]] = Field(default=None, description="Classical texts this yoga is drawn from (empty when the yoga comes from general tradition rather than a named text)")
-    __properties: ClassVar[List[str]] = ["yoga_name", "category", "formation", "modern_summary", "keywords", "classical_sources"]
+    needs_birth_time: Optional[StrictBool] = Field(default=False, description="True when this yoga depends on the lagna (houses or house lordship counted from the ascendant) and no birth time was given, so the result may change with the real birth time. Yogas read only from the Moon or from signs are never marked.")
+    __properties: ClassVar[List[str]] = ["yoga_name", "category", "formation", "modern_summary", "keywords", "classical_sources", "needs_birth_time"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -100,7 +101,8 @@ class YogaResult(BaseModel):
             "formation": obj.get("formation"),
             "modern_summary": obj.get("modern_summary"),
             "keywords": obj.get("keywords"),
-            "classical_sources": [ClassicalSource.from_dict(_item) for _item in obj["classical_sources"]] if obj.get("classical_sources") is not None else None
+            "classical_sources": [ClassicalSource.from_dict(_item) for _item in obj["classical_sources"]] if obj.get("classical_sources") is not None else None,
+            "needs_birth_time": obj.get("needs_birth_time") if obj.get("needs_birth_time") is not None else False
         })
         return _obj
 

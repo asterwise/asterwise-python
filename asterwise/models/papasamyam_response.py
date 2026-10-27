@@ -36,8 +36,9 @@ class PapasamyamResponse(BaseModel):
     score_difference: Union[StrictFloat, StrictInt]
     compatible: StrictBool
     compatibility_level: StrictStr
-    threshold: Union[StrictFloat, StrictInt]
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "person1", "person2", "score_difference", "compatible", "compatibility_level", "threshold"]
+    imbalance: Optional[StrictStr] = None
+    threshold: Union[StrictFloat, StrictInt] = Field(description="How far the bride's score may exceed the groom's (0: not at all).")
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "person1", "person2", "score_difference", "compatible", "compatibility_level", "imbalance", "threshold"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +79,11 @@ class PapasamyamResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if imbalance (nullable) is None
+        # and model_fields_set contains the field
+        if self.imbalance is None and "imbalance" in self.model_fields_set:
+            _dict['imbalance'] = None
+
         return _dict
 
     @classmethod
@@ -98,6 +104,7 @@ class PapasamyamResponse(BaseModel):
             "score_difference": obj.get("score_difference"),
             "compatible": obj.get("compatible"),
             "compatibility_level": obj.get("compatibility_level"),
+            "imbalance": obj.get("imbalance"),
             "threshold": obj.get("threshold")
         })
         return _obj

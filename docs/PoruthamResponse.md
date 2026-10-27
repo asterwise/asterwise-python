@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **rajju_veto** | **bool** |  | 
 **vedha_veto** | **bool** |  | 
 **hard_veto** | **bool** |  | 
+**minimum_poruthams_met** | **bool** |  | [optional] 
 **breakdown** | **Dict[str, object]** |  | 
 
 ## Example

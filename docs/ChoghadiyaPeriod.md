@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **end_at** | **str** |  | [optional] 
 **end_utc** | **str** |  | [optional] 
 **is_current** | **bool** | True if this period is currently active. | 
+**vela** | **List[str]** | Barred ardha-prahara labels on this slot: &#39;Vaar Vela&#39; (day and night), &#39;Kaal Vela&#39; (day, Saturn&#39;s eighth) or &#39;Kaal Ratri&#39; (night, Saturn&#39;s eighth). Avoid auspicious work in these. Empty when none. | [optional] 
 
 ## Example
 

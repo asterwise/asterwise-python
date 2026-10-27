@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.varga_chart_svgs import VargaChartSVGs
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -33,8 +34,9 @@ class ChartResponse(BaseModel):
     lagna_south: StrictStr = Field(description="South Indian Lagna chart SVG string")
     navamsa_north: StrictStr = Field(description="North Indian Navamsa (D9) chart SVG string")
     navamsa_south: StrictStr = Field(description="South Indian Navamsa (D9) chart SVG string")
+    vargas: Optional[Dict[str, VargaChartSVGs]] = None
     legend: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "lagna_north", "lagna_south", "navamsa_north", "navamsa_south", "legend"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "lagna_north", "lagna_south", "navamsa_north", "navamsa_south", "vargas", "legend"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,6 +77,18 @@ class ChartResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each value in vargas (dict)
+        _field_dict = {}
+        if self.vargas:
+            for _key_vargas in self.vargas:
+                if self.vargas[_key_vargas]:
+                    _field_dict[_key_vargas] = self.vargas[_key_vargas].to_dict()
+            _dict['vargas'] = _field_dict
+        # set to None if vargas (nullable) is None
+        # and model_fields_set contains the field
+        if self.vargas is None and "vargas" in self.model_fields_set:
+            _dict['vargas'] = None
+
         # set to None if legend (nullable) is None
         # and model_fields_set contains the field
         if self.legend is None and "legend" in self.model_fields_set:
@@ -97,6 +111,12 @@ class ChartResponse(BaseModel):
             "lagna_south": obj.get("lagna_south"),
             "navamsa_north": obj.get("navamsa_north"),
             "navamsa_south": obj.get("navamsa_south"),
+            "vargas": dict(
+                (_k, VargaChartSVGs.from_dict(_v))
+                for _k, _v in obj["vargas"].items()
+            )
+            if obj.get("vargas") is not None
+            else None,
             "legend": obj.get("legend")
         })
         return _obj

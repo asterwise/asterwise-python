@@ -31,10 +31,11 @@ class DoshaResult(BaseModel):
     present: Optional[StrictBool] = None
     types: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Dosha subtypes or tags detected for this dosha")
     details: Optional[Dict[str, Any]] = Field(default=None, description="Structured diagnostic details for dosha evaluation")
+    needs_birth_time: Optional[StrictBool] = None
     interpretation_summary: Optional[StrictStr] = None
     keywords: Optional[List[StrictStr]] = None
     remedies: Optional[List[StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["present", "types", "details", "interpretation_summary", "keywords", "remedies"]
+    __properties: ClassVar[List[str]] = ["present", "types", "details", "needs_birth_time", "interpretation_summary", "keywords", "remedies"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -80,6 +81,11 @@ class DoshaResult(BaseModel):
         if self.present is None and "present" in self.model_fields_set:
             _dict['present'] = None
 
+        # set to None if needs_birth_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.needs_birth_time is None and "needs_birth_time" in self.model_fields_set:
+            _dict['needs_birth_time'] = None
+
         # set to None if interpretation_summary (nullable) is None
         # and model_fields_set contains the field
         if self.interpretation_summary is None and "interpretation_summary" in self.model_fields_set:
@@ -110,6 +116,7 @@ class DoshaResult(BaseModel):
             "present": obj.get("present"),
             "types": obj.get("types"),
             "details": obj.get("details"),
+            "needs_birth_time": obj.get("needs_birth_time"),
             "interpretation_summary": obj.get("interpretation_summary"),
             "keywords": obj.get("keywords"),
             "remedies": obj.get("remedies")

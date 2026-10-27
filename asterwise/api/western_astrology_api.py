@@ -4067,7 +4067,7 @@ class WesternAstrologyApi:
     ) -> ApiResponseWesternNatalResponse:
         """Western Natal Chart — Tropical
 
-        Calculate a complete Western natal chart using the tropical zodiac and Swiss Ephemeris. Returns 10 planet positions (Sun through Pluto) with tropical longitudes, Placidus (or chosen) house placements, sign-level dignity (dignity, dignity_score) and full traditional essential dignities after William Lilly (essential_dignities: domicile, exaltation, triplicity by the chart's day/night sect, term, face, detriment, fall, peregrine, total), all active aspects using standard modern Western orbs, and element/modality/hemisphere statistics. House system options: placidus (default), koch, equal, whole_sign.
+        Calculate a complete Western natal chart using the tropical zodiac and Swiss Ephemeris. Returns 10 planet positions (Sun through Pluto) plus the lunar nodes (mean and true), mean Black Moon Lilith and Chiron in `points`, with tropical longitudes, Placidus (or chosen) house placements, sign-level dignity (dignity, dignity_score) and full traditional essential dignities after William Lilly (essential_dignities: domicile, exaltation, triplicity by the chart's day/night sect, term, face, detriment, fall, peregrine, total), all active aspects using standard modern Western orbs, and element/modality/hemisphere statistics. House system options: placidus (default), koch, equal, whole_sign.
 
         :param western_natal_request: (required)
         :type western_natal_request: WesternNatalRequest
@@ -4143,7 +4143,7 @@ class WesternAstrologyApi:
     ) -> ApiResponse[ApiResponseWesternNatalResponse]:
         """Western Natal Chart — Tropical
 
-        Calculate a complete Western natal chart using the tropical zodiac and Swiss Ephemeris. Returns 10 planet positions (Sun through Pluto) with tropical longitudes, Placidus (or chosen) house placements, sign-level dignity (dignity, dignity_score) and full traditional essential dignities after William Lilly (essential_dignities: domicile, exaltation, triplicity by the chart's day/night sect, term, face, detriment, fall, peregrine, total), all active aspects using standard modern Western orbs, and element/modality/hemisphere statistics. House system options: placidus (default), koch, equal, whole_sign.
+        Calculate a complete Western natal chart using the tropical zodiac and Swiss Ephemeris. Returns 10 planet positions (Sun through Pluto) plus the lunar nodes (mean and true), mean Black Moon Lilith and Chiron in `points`, with tropical longitudes, Placidus (or chosen) house placements, sign-level dignity (dignity, dignity_score) and full traditional essential dignities after William Lilly (essential_dignities: domicile, exaltation, triplicity by the chart's day/night sect, term, face, detriment, fall, peregrine, total), all active aspects using standard modern Western orbs, and element/modality/hemisphere statistics. House system options: placidus (default), koch, equal, whole_sign.
 
         :param western_natal_request: (required)
         :type western_natal_request: WesternNatalRequest
@@ -4219,7 +4219,7 @@ class WesternAstrologyApi:
     ) -> RESTResponseType:
         """Western Natal Chart — Tropical
 
-        Calculate a complete Western natal chart using the tropical zodiac and Swiss Ephemeris. Returns 10 planet positions (Sun through Pluto) with tropical longitudes, Placidus (or chosen) house placements, sign-level dignity (dignity, dignity_score) and full traditional essential dignities after William Lilly (essential_dignities: domicile, exaltation, triplicity by the chart's day/night sect, term, face, detriment, fall, peregrine, total), all active aspects using standard modern Western orbs, and element/modality/hemisphere statistics. House system options: placidus (default), koch, equal, whole_sign.
+        Calculate a complete Western natal chart using the tropical zodiac and Swiss Ephemeris. Returns 10 planet positions (Sun through Pluto) plus the lunar nodes (mean and true), mean Black Moon Lilith and Chiron in `points`, with tropical longitudes, Placidus (or chosen) house placements, sign-level dignity (dignity, dignity_score) and full traditional essential dignities after William Lilly (essential_dignities: domicile, exaltation, triplicity by the chart's day/night sect, term, face, detriment, fall, peregrine, total), all active aspects using standard modern Western orbs, and element/modality/hemisphere statistics. House system options: placidus (default), koch, equal, whole_sign.
 
         :param western_natal_request: (required)
         :type western_natal_request: WesternNatalRequest

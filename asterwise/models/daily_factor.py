@@ -29,8 +29,8 @@ class DailyFactor(BaseModel):
     """
     DailyFactor
     """ # noqa: E501
-    id: StrictStr = Field(description="Stable factor id, e.g. gochar.saturn, tarabala.12, natal_contact.saturn.moon.")
-    group: StrictStr = Field(description="gochar, sade_sati, chandra_ashtama, tarabala, chandrabala, dasha, dasha_transit, natal_contact, panchanga, moon_phase.")
+    id: StrictStr = Field(description="Stable factor id, e.g. gochar.saturn or natal_contact.saturn.moon (Vedic), aspect.sun.sextile.moon (Western).")
+    group: StrictStr = Field(description="Vedic: gochar, sade_sati, chandra_ashtama, tarabala, chandrabala, dasha, dasha_transit, natal_contact, panchanga, moon_phase. Western: aspect, transit, moon_phase, void_of_course, planetary_hour, profection.")
     name: StrictStr
     planet: Optional[StrictStr] = None
     frame: StrictStr = Field(description="What the houses or distances are counted from. See frames.")

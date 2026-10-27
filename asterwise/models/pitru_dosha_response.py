@@ -40,12 +40,14 @@ class PitruDoshaResponse(BaseModel):
     combinations_count: StrictInt
     sun_analysis: PitruSunAnalysis
     ninth_lord_analysis: PitruNinthLordAnalysis
-    all_factors: List[StrictStr]
+    all_factors: List[StrictStr] = Field(description="Chart factors of the formed verse combinations only.")
+    indicators: Optional[List[StrictStr]] = Field(default=None, description="General Sun and 9th-lord conditions (debilitated, in house 6/8/12, joined or aspected by a malefic). Context only: they are not a BPHS 83 combination and never make the dosha present.")
     cancellations: List[StrictStr]
     interpretation: StrictStr
     classical_symptoms: List[StrictStr]
     remedies: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "present", "severity", "severity_note", "combinations_triggered", "combinations_detail", "combinations_count", "sun_analysis", "ninth_lord_analysis", "all_factors", "cancellations", "interpretation", "classical_symptoms", "remedies"]
+    source: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "present", "severity", "severity_note", "combinations_triggered", "combinations_detail", "combinations_count", "sun_analysis", "ninth_lord_analysis", "all_factors", "indicators", "cancellations", "interpretation", "classical_symptoms", "remedies", "source"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -109,6 +111,11 @@ class PitruDoshaResponse(BaseModel):
         if self.severity_note is None and "severity_note" in self.model_fields_set:
             _dict['severity_note'] = None
 
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
+
         return _dict
 
     @classmethod
@@ -131,10 +138,12 @@ class PitruDoshaResponse(BaseModel):
             "sun_analysis": PitruSunAnalysis.from_dict(obj["sun_analysis"]) if obj.get("sun_analysis") is not None else None,
             "ninth_lord_analysis": PitruNinthLordAnalysis.from_dict(obj["ninth_lord_analysis"]) if obj.get("ninth_lord_analysis") is not None else None,
             "all_factors": obj.get("all_factors"),
+            "indicators": obj.get("indicators"),
             "cancellations": obj.get("cancellations"),
             "interpretation": obj.get("interpretation"),
             "classical_symptoms": obj.get("classical_symptoms"),
-            "remedies": obj.get("remedies")
+            "remedies": obj.get("remedies"),
+            "source": obj.get("source")
         })
         return _obj
 

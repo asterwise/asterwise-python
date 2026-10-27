@@ -33,7 +33,7 @@ class RangeEvent(BaseModel):
     title: StrictStr
     time_utc: StrictStr = Field(description="ISO 8601 UTC with Z.")
     time_local: StrictStr = Field(description="ISO 8601 local time with offset, in target_timezone.")
-    time_precision: StrictStr = Field(description="second, or day for events known only to the day (dasha changes, profection years).")
+    time_precision: StrictStr = Field(description="second, or day for events known only to the day (Vedic dasha changes, Western profection years).")
     detail: Dict[str, Any]
     verdict: Optional[StrictStr] = None
     verdict_rule: Optional[StrictStr] = None

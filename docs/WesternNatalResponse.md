@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **ascendant** | [**WesternAngle**](WesternAngle.md) |  | 
 **mc** | [**WesternAngle**](WesternAngle.md) | Midheaven (Medium Coeli) | 
 **planets** | [**List[WesternPlanetPosition]**](WesternPlanetPosition.md) |  | 
+**points** | [**List[WesternPoint]**](WesternPoint.md) | Lunar nodes (mean and true; each South Node is its North Node + 180°), mean Black Moon Lilith (the Moon&#39;s mean apogee) and Chiron, with sign and house. Kept apart from &#x60;planets&#x60;: they are not in &#x60;aspects&#x60; or the element, modality and hemisphere counts. Chiron is omitted for moments before 1800-01-01 01:20 UT, where its ephemeris file starts. | [optional] 
 **houses** | [**List[WesternHouseCusp]**](WesternHouseCusp.md) |  | 
 **aspects** | [**List[WesternAspect]**](WesternAspect.md) |  | 
 **elements** | [**WesternElements**](WesternElements.md) |  | 

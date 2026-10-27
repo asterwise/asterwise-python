@@ -13,7 +13,8 @@ Name | Type | Description | Notes
 **score_difference** | **float** |  | 
 **compatible** | **bool** |  | 
 **compatibility_level** | **str** |  | 
-**threshold** | **float** |  | 
+**imbalance** | **str** |  | [optional] 
+**threshold** | **float** | How far the bride&#39;s score may exceed the groom&#39;s (0: not at all). | 
 
 ## Example
 

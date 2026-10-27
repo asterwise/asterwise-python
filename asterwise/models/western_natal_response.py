@@ -27,6 +27,7 @@ from asterwise.models.western_hemisphere import WesternHemisphere
 from asterwise.models.western_house_cusp import WesternHouseCusp
 from asterwise.models.western_modalities import WesternModalities
 from asterwise.models.western_planet_position import WesternPlanetPosition
+from asterwise.models.western_point import WesternPoint
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -40,6 +41,7 @@ class WesternNatalResponse(BaseModel):
     ascendant: WesternAngle
     mc: WesternAngle = Field(description="Midheaven (Medium Coeli)")
     planets: List[WesternPlanetPosition]
+    points: Optional[List[WesternPoint]] = Field(default=None, description="Lunar nodes (mean and true; each South Node is its North Node + 180°), mean Black Moon Lilith (the Moon's mean apogee) and Chiron, with sign and house. Kept apart from `planets`: they are not in `aspects` or the element, modality and hemisphere counts. Chiron is omitted for moments before 1800-01-01 01:20 UT, where its ephemeris file starts.")
     houses: List[WesternHouseCusp]
     aspects: List[WesternAspect]
     elements: WesternElements
@@ -49,7 +51,7 @@ class WesternNatalResponse(BaseModel):
     ayanamsa_used: Optional[StrictStr] = 'tropical'
     sect: Optional[StrictStr] = None
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
-    __properties: ClassVar[List[str]] = ["zodiac", "house_system", "ascendant", "mc", "planets", "houses", "aspects", "elements", "modalities", "hemisphere", "ayanamsa_value", "ayanamsa_used", "sect", "birth_time_provided"]
+    __properties: ClassVar[List[str]] = ["zodiac", "house_system", "ascendant", "mc", "planets", "points", "houses", "aspects", "elements", "modalities", "hemisphere", "ayanamsa_value", "ayanamsa_used", "sect", "birth_time_provided"]
 
     @field_validator('sect')
     def sect_validate_enum(cls, value):
@@ -113,6 +115,13 @@ class WesternNatalResponse(BaseModel):
                 if _item_planets:
                     _items.append(_item_planets.to_dict())
             _dict['planets'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in points (list)
+        _items = []
+        if self.points:
+            for _item_points in self.points:
+                if _item_points:
+                    _items.append(_item_points.to_dict())
+            _dict['points'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in houses (list)
         _items = []
         if self.houses:
@@ -158,6 +167,7 @@ class WesternNatalResponse(BaseModel):
             "ascendant": WesternAngle.from_dict(obj["ascendant"]) if obj.get("ascendant") is not None else None,
             "mc": WesternAngle.from_dict(obj["mc"]) if obj.get("mc") is not None else None,
             "planets": [WesternPlanetPosition.from_dict(_item) for _item in obj["planets"]] if obj.get("planets") is not None else None,
+            "points": [WesternPoint.from_dict(_item) for _item in obj["points"]] if obj.get("points") is not None else None,
             "houses": [WesternHouseCusp.from_dict(_item) for _item in obj["houses"]] if obj.get("houses") is not None else None,
             "aspects": [WesternAspect.from_dict(_item) for _item in obj["aspects"]] if obj.get("aspects") is not None else None,
             "elements": WesternElements.from_dict(obj["elements"]) if obj.get("elements") is not None else None,

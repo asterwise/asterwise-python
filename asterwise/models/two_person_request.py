@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
-from asterwise.models.birth_input import BirthInput
+from asterwise.models.western_birth_input import WesternBirthInput
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,8 +29,8 @@ class TwoPersonRequest(BaseModel):
     """
     TwoPersonRequest
     """ # noqa: E501
-    person1: BirthInput = Field(description="Birth data of the first person.")
-    person2: BirthInput = Field(description="Birth data of the second person.")
+    person1: WesternBirthInput = Field(description="Birth data of the first person.")
+    person2: WesternBirthInput = Field(description="Birth data of the second person.")
     __properties: ClassVar[List[str]] = ["person1", "person2"]
 
     model_config = ConfigDict(
@@ -90,8 +90,8 @@ class TwoPersonRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "person1": BirthInput.from_dict(obj["person1"]) if obj.get("person1") is not None else None,
-            "person2": BirthInput.from_dict(obj["person2"]) if obj.get("person2") is not None else None
+            "person1": WesternBirthInput.from_dict(obj["person1"]) if obj.get("person1") is not None else None,
+            "person2": WesternBirthInput.from_dict(obj["person2"]) if obj.get("person2") is not None else None
         })
         return _obj
 
