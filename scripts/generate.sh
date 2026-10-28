@@ -136,6 +136,25 @@ run_generator() {
         --skip-validate-spec
 }
 
+
+# Hand-written UsageApi (asterwise/usage_api.py): the SDK spec leaves out the
+# /v1/keys/ account routes, so re-export it from the package root after
+# every regeneration.
+export_usage_api() {
+    python3 - "${REPO_ROOT}/asterwise/__init__.py" <<'PY2'
+import sys
+from pathlib import Path
+
+init = Path(sys.argv[1])
+text = init.read_text(encoding="utf-8")
+if "from asterwise.usage_api import" not in text:
+    text = text.replace("__all__ = [\n", '__all__ = [\n    "UsageApi",\n', 1)
+    text = text.rstrip("\n") + "\n\n# Hand-written (see asterwise/usage_api.py)\nfrom asterwise.usage_api import UsageApi as UsageApi\n"
+    init.write_text(text, encoding="utf-8")
+    print("==> UsageApi re-exported from asterwise/__init__.py")
+PY2
+}
+
 # Optional dry-run mode
 if [[ "${1:-}" == "--check" ]]; then
     echo "==> Dry-run mode: regenerating to /tmp/asterwise-py-check and diffing"
@@ -156,6 +175,7 @@ fi
 # In-place regeneration
 echo "==> Regenerating in place..."
 run_generator .
+export_usage_api
 
 echo ""
 echo "==> Regeneration complete."

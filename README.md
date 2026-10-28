@@ -59,6 +59,8 @@ Get a free API key at [asterwise.com](https://asterwise.com).
 
 *143 typed SDK methods across 15 API classes covering **129 REST endpoints** (5 endpoints keep a deprecated GET method next to the POST one; 9 endpoints also answer on GET with the same fields as query parameters).*
 
+*Plus `UsageApi.get_my_usage` for your account's usage ([Check your usage](#check-your-usage)); it reads your account, so it is not counted as an endpoint.*
+
 ## What makes Asterwise different
 
 - **Classical interpretation text** alongside the calculations on chart endpoints (natal chart, dasha, yogas, doshas)
@@ -95,6 +97,18 @@ with asterwise.ApiClient(configuration) as client:
         asterwise.SpreadRequest(question="What should I focus on this month?")
     )
 ```
+
+## Check your usage
+
+```python
+from asterwise import UsageApi
+
+with asterwise.ApiClient(configuration) as client:
+    usage = UsageApi(client).get_my_usage().data
+    print(usage.calls_used, usage.calls_limit, usage.burst_limit, usage.reset_date)
+```
+
+This call is not billed and does not use your plan's limits.
 
 ## Requirements
 

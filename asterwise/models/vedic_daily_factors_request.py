@@ -39,7 +39,7 @@ class VedicDailyFactorsRequest(BaseModel):
     utc_offset: Optional[StrictStr] = None
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
     target_date: Optional[StrictStr] = None
-    target_time: Optional[StrictStr] = None
+    target_time: Optional[Annotated[str, Field(strict=True)]] = None
     target_timezone: Optional[StrictStr] = None
     target_latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None
     target_longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None
@@ -53,6 +53,16 @@ class VedicDailyFactorsRequest(BaseModel):
 
         if value not in set(['lahiri', 'raman', 'kp', 'tropical']):
             raise ValueError("must be one of enum values ('lahiri', 'raman', 'kp', 'tropical')")
+        return value
+
+    @field_validator('target_time')
+    def target_time_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^([01][0-9]|2[0-3]):[0-5][0-9]$", value):
+            raise ValueError(r"must validate the regular expression /^([01][0-9]|2[0-3]):[0-5][0-9]$/")
         return value
 
     model_config = ConfigDict(

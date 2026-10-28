@@ -19,6 +19,7 @@ __version__ = "0.13.0"
 
 # Define package exports
 __all__ = [
+    "UsageApi",
     "AdvancedApi",
     "AstrologyApi",
     "CrystalsApi",
@@ -1065,3 +1066,5 @@ from asterwise.models.yogini_request import YoginiRequest as YoginiRequest
 from asterwise.models.yogini_response import YoginiResponse as YoginiResponse
 from asterwise.models.zodiac_compatibility_response import ZodiacCompatibilityResponse as ZodiacCompatibilityResponse
 
+# Hand-written (see asterwise/usage_api.py)
+from asterwise.usage_api import UsageApi as UsageApi

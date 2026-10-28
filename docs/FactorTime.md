@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**kind** | **str** | state: holds for the whole day; span: start to end; instant: one moment. | 
+**kind** | **str** | state: the value read at at_utc (the instant_utc moment), which can change later in the day; a state with no at_utc holds for the whole day. span: start to end. instant: one moment. | 
 **start** | **str** |  | [optional] 
 **end** | **str** |  | [optional] 
 **start_utc** | **str** |  | [optional] 
