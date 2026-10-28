@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ayanamsa** | **str** | Ignored on Western endpoints: positions are always tropical (no ayanamsa). Accepted so one birth object can be sent to Vedic and Western endpoints alike. | [optional] [default to 'lahiri']
 **house_system** | **str** | Natal house system for the natal_house of each transiting planet. | [optional] [default to 'placidus']
 **target_date** | **str** |  | [optional] 
+**target_time** | **str** |  | [optional] 
 **target_timezone** | **str** |  | [optional] 
 **target_latitude** | **float** |  | [optional] 
 **target_longitude** | **float** |  | [optional] 

@@ -32,7 +32,7 @@ class VedicDailyFactorsResponse(BaseModel):
     birth_time_provided: StrictBool
     var_date: StrictStr = Field(alias="date")
     timezone: StrictStr
-    instant_utc: StrictStr = Field(description="The moment used for the day's transit snapshot: local noon.")
+    instant_utc: StrictStr = Field(description="The moment the day's sky is read: target_time (12:00 by default) on target_date in target_timezone, in UTC.")
     natal: Dict[str, Any]
     frames: Dict[str, StrictStr]
     factors: List[DailyFactor]

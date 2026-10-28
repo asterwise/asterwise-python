@@ -672,7 +672,7 @@ Name | Type | Description  | Notes
 
 Vedic daily factors
 
-Every classical factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict its own rule gives, the rule's source, the significations it touches and the time it holds. Covers the nine gochar transits with bindus and vedha, Sade Sati, Chandra Ashtama, Tarabala and Chandrabala with the Moon's change times, the active Vimshottari dasha lords and the transits aspecting them, same-sign contacts to natal planets with the exact degree crossing, the day's tithi, yoga, karana and vara, and the Moon's phase. No weighting and no score: the caller decides what matters.
+Every classical factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict its own rule gives, the rule's source, the significations it touches and the time it holds. Covers the nine gochar transits with bindus and vedha, Sade Sati, Chandra Ashtama, Tarabala and Chandrabala with the Moon's change times, the active Vimshottari dasha lords and the transits aspecting them, same-sign contacts to natal planets with the exact degree crossing, the day's tithi, yoga, karana and vara, and the Moon's phase. Transits are read at target_time (local 12:00 by default) on the day. No weighting and no score: the caller decides what matters.
 
 ### Example
 

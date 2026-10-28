@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **yogas** | [**List[DayYoga]**](DayYoga.md) |  | [optional] 
 **karanas** | [**List[DayKarana]**](DayKarana.md) |  | [optional] 
 **bhadra** | [**List[BhadraWindow]**](BhadraWindow.md) |  | [optional] 
+**moon_rashi** | [**List[SignSpan]**](SignSpan.md) |  | [optional] 
 
 ## Example
 

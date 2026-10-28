@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **birth_time_provided** | **bool** |  | 
 **var_date** | **str** |  | 
 **timezone** | **str** |  | 
-**instant_utc** | **str** | The moment used for the day&#39;s transit snapshot: local noon. | 
+**instant_utc** | **str** | The moment the day&#39;s sky is read: target_time (12:00 by default) on target_date in target_timezone, in UTC. | 
 **natal** | **Dict[str, object]** |  | 
 **frames** | **Dict[str, str]** |  | 
 **factors** | [**List[DailyFactor]**](DailyFactor.md) |  | 

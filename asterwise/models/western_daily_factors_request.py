@@ -40,10 +40,11 @@ class WesternDailyFactorsRequest(BaseModel):
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Ignored on Western endpoints: positions are always tropical (no ayanamsa). Accepted so one birth object can be sent to Vedic and Western endpoints alike.")
     house_system: Optional[StrictStr] = Field(default='placidus', description="Natal house system for the natal_house of each transiting planet.")
     target_date: Optional[StrictStr] = None
+    target_time: Optional[StrictStr] = None
     target_timezone: Optional[StrictStr] = None
     target_latitude: Optional[Union[Annotated[float, Field(le=90.0, strict=True, ge=-90.0)], Annotated[int, Field(le=90, strict=True, ge=-90)]]] = None
     target_longitude: Optional[Union[Annotated[float, Field(le=180.0, strict=True, ge=-180.0)], Annotated[int, Field(le=180, strict=True, ge=-180)]]] = None
-    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "house_system", "target_date", "target_timezone", "target_latitude", "target_longitude"]
+    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "house_system", "target_date", "target_time", "target_timezone", "target_latitude", "target_longitude"]
 
     @field_validator('ayanamsa')
     def ayanamsa_validate_enum(cls, value):
@@ -139,6 +140,11 @@ class WesternDailyFactorsRequest(BaseModel):
         if self.target_date is None and "target_date" in self.model_fields_set:
             _dict['target_date'] = None
 
+        # set to None if target_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_time is None and "target_time" in self.model_fields_set:
+            _dict['target_time'] = None
+
         # set to None if target_timezone (nullable) is None
         # and model_fields_set contains the field
         if self.target_timezone is None and "target_timezone" in self.model_fields_set:
@@ -177,6 +183,7 @@ class WesternDailyFactorsRequest(BaseModel):
             "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri',
             "house_system": obj.get("house_system") if obj.get("house_system") is not None else 'placidus',
             "target_date": obj.get("target_date"),
+            "target_time": obj.get("target_time"),
             "target_timezone": obj.get("target_timezone"),
             "target_latitude": obj.get("target_latitude"),
             "target_longitude": obj.get("target_longitude")

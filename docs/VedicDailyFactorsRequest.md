@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **utc_offset** | **str** |  | [optional] 
 **ayanamsa** | **str** | Sidereal ayanamsa mode used in calculations | [optional] [default to 'lahiri']
 **target_date** | **str** |  | [optional] 
+**target_time** | **str** |  | [optional] 
 **target_timezone** | **str** |  | [optional] 
 **target_latitude** | **float** |  | [optional] 
 **target_longitude** | **float** |  | [optional] 

@@ -1306,7 +1306,7 @@ class WesternAstrologyApi:
     ) -> ApiResponseWesternDailyFactorsResponse:
         """Western daily factors
 
-        Every Western factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict Lilly's rules give, the rule's source, the significations it touches and the time it holds. Covers every transit-to-natal aspect with its exact time, each transiting planet's sign, dignity and natal house, the Moon's phase, sign changes and void-of-course periods, the planetary hours, and the lord of the year from annual profections. Uranus, Neptune and Pluto carry no verdict because the classical texts give none.
+        Every Western factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict Lilly's rules give, the rule's source, the significations it touches and the time it holds. Covers every transit-to-natal aspect with its exact time, each transiting planet's sign, dignity and natal house, the Moon's phase, sign changes and void-of-course periods, the planetary hours, and the lord of the year from annual profections. Transits are read at target_time (local 12:00 by default) on the day. Uranus, Neptune and Pluto carry no verdict because the classical texts give none.
 
         :param western_daily_factors_request: (required)
         :type western_daily_factors_request: WesternDailyFactorsRequest
@@ -1382,7 +1382,7 @@ class WesternAstrologyApi:
     ) -> ApiResponse[ApiResponseWesternDailyFactorsResponse]:
         """Western daily factors
 
-        Every Western factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict Lilly's rules give, the rule's source, the significations it touches and the time it holds. Covers every transit-to-natal aspect with its exact time, each transiting planet's sign, dignity and natal house, the Moon's phase, sign changes and void-of-course periods, the planetary hours, and the lord of the year from annual profections. Uranus, Neptune and Pluto carry no verdict because the classical texts give none.
+        Every Western factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict Lilly's rules give, the rule's source, the significations it touches and the time it holds. Covers every transit-to-natal aspect with its exact time, each transiting planet's sign, dignity and natal house, the Moon's phase, sign changes and void-of-course periods, the planetary hours, and the lord of the year from annual profections. Transits are read at target_time (local 12:00 by default) on the day. Uranus, Neptune and Pluto carry no verdict because the classical texts give none.
 
         :param western_daily_factors_request: (required)
         :type western_daily_factors_request: WesternDailyFactorsRequest
@@ -1458,7 +1458,7 @@ class WesternAstrologyApi:
     ) -> RESTResponseType:
         """Western daily factors
 
-        Every Western factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict Lilly's rules give, the rule's source, the significations it touches and the time it holds. Covers every transit-to-natal aspect with its exact time, each transiting planet's sign, dignity and natal house, the Moon's phase, sign changes and void-of-course periods, the planetary hours, and the lord of the year from annual profections. Uranus, Neptune and Pluto carry no verdict because the classical texts give none.
+        Every Western factor for one person on one day, in one shape, with no weighting. Each factor carries its raw value and range, its frame, the verdict Lilly's rules give, the rule's source, the significations it touches and the time it holds. Covers every transit-to-natal aspect with its exact time, each transiting planet's sign, dignity and natal house, the Moon's phase, sign changes and void-of-course periods, the planetary hours, and the lord of the year from annual profections. Transits are read at target_time (local 12:00 by default) on the day. Uranus, Neptune and Pluto carry no verdict because the classical texts give none.
 
         :param western_daily_factors_request: (required)
         :type western_daily_factors_request: WesternDailyFactorsRequest

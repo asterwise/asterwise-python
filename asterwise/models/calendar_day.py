@@ -32,6 +32,7 @@ from asterwise.models.day_nakshatra import DayNakshatra
 from asterwise.models.day_tithi import DayTithi
 from asterwise.models.day_yoga import DayYoga
 from asterwise.models.masa import Masa
+from asterwise.models.sign_span import SignSpan
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -58,7 +59,8 @@ class CalendarDay(BaseModel):
     yogas: Optional[List[DayYoga]] = None
     karanas: Optional[List[DayKarana]] = None
     bhadra: Optional[List[BhadraWindow]] = None
-    __properties: ClassVar[List[str]] = ["date", "tithi", "vara", "nakshatra", "yoga", "karana", "rahu_kaal", "sunrise", "sunset", "moonrise", "moonset", "paksha", "masa", "tithis", "nakshatras", "yogas", "karanas", "bhadra"]
+    moon_rashi: Optional[List[SignSpan]] = None
+    __properties: ClassVar[List[str]] = ["date", "tithi", "vara", "nakshatra", "yoga", "karana", "rahu_kaal", "sunrise", "sunset", "moonrise", "moonset", "paksha", "masa", "tithis", "nakshatras", "yogas", "karanas", "bhadra", "moon_rashi"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -155,6 +157,13 @@ class CalendarDay(BaseModel):
                 if _item_bhadra:
                     _items.append(_item_bhadra.to_dict())
             _dict['bhadra'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in moon_rashi (list)
+        _items = []
+        if self.moon_rashi:
+            for _item_moon_rashi in self.moon_rashi:
+                if _item_moon_rashi:
+                    _items.append(_item_moon_rashi.to_dict())
+            _dict['moon_rashi'] = _items
         # set to None if sunrise (nullable) is None
         # and model_fields_set contains the field
         if self.sunrise is None and "sunrise" in self.model_fields_set:
@@ -210,6 +219,11 @@ class CalendarDay(BaseModel):
         if self.bhadra is None and "bhadra" in self.model_fields_set:
             _dict['bhadra'] = None
 
+        # set to None if moon_rashi (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_rashi is None and "moon_rashi" in self.model_fields_set:
+            _dict['moon_rashi'] = None
+
         return _dict
 
     @classmethod
@@ -239,7 +253,8 @@ class CalendarDay(BaseModel):
             "nakshatras": [DayNakshatra.from_dict(_item) for _item in obj["nakshatras"]] if obj.get("nakshatras") is not None else None,
             "yogas": [DayYoga.from_dict(_item) for _item in obj["yogas"]] if obj.get("yogas") is not None else None,
             "karanas": [DayKarana.from_dict(_item) for _item in obj["karanas"]] if obj.get("karanas") is not None else None,
-            "bhadra": [BhadraWindow.from_dict(_item) for _item in obj["bhadra"]] if obj.get("bhadra") is not None else None
+            "bhadra": [BhadraWindow.from_dict(_item) for _item in obj["bhadra"]] if obj.get("bhadra") is not None else None,
+            "moon_rashi": [SignSpan.from_dict(_item) for _item in obj["moon_rashi"]] if obj.get("moon_rashi") is not None else None
         })
         return _obj
 
