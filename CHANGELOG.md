@@ -15,8 +15,9 @@ changed.
 
 ### Development
 
-- `filelock` 4.2.1 or newer in the development tools (it comes in with
-  tox). It isn't part of the installed package.
+- `filelock` 4.2.1 or newer in the development tools on Python 3.11 and
+  newer (it comes in with tox; 4.2.1 doesn't support 3.10). It isn't part of
+  the installed package.
 
 ## 0.13.0 — 2026-10-28
 
