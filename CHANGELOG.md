@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.13.1 — 2026-10-29
+
+Generated from the API as deployed on 2026-10-29. No methods or models
+changed.
+
+### Changed
+
+- `chart_svg` help text matches the API: it lists the `vargas` field and the
+  ↑ (exalted) and ↓ (debilitated) marks in the legend.
+- API keys work once the account's email is confirmed. Until then calls
+  return 403 `email_not_verified` (already one of the SDK's error codes);
+  confirm the email and the same key works.
+
+### Development
+
+- `filelock` 4.2.1 or newer in the development tools (it comes in with
+  tox). It isn't part of the installed package.
+
 ## 0.13.0 — 2026-10-28
 
 Generated from the API as deployed on 2026-10-28 (chart drawings and
