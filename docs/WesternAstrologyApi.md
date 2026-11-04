@@ -5,6 +5,7 @@ All URIs are relative to *https://api.asterwise.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**western_aspects**](WesternAstrologyApi.md#western_aspects) | **POST** /v1/western/aspects | Western Aspect Grid
+[**western_chart**](WesternAstrologyApi.md#western_chart) | **POST** /v1/western/chart | Western natal wheel — SVG
 [**western_compatibility**](WesternAstrologyApi.md#western_compatibility) | **POST** /v1/western/compatibility | Western Compatibility Score
 [**western_compatibility_zodiac**](WesternAstrologyApi.md#western_compatibility_zodiac) | **GET** /v1/western/compatibility/zodiac | Western Zodiac Sign Compatibility
 [**western_composite**](WesternAstrologyApi.md#western_composite) | **POST** /v1/western/composite | Western Composite Chart
@@ -108,6 +109,94 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful Response |  -  |
+**401** | Authentication failed |  -  |
+**403** | Authorization failed |  -  |
+**404** | Resource not found |  -  |
+**413** | Payload too large |  -  |
+**422** | Validation error |  -  |
+**429** | Rate limit exceeded |  -  |
+**500** | Internal error |  -  |
+**502** | Upstream provider error |  -  |
+**503** | Service unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **western_chart**
+> ApiResponseWesternChartResponse western_chart(western_chart_request)
+
+Western natal wheel — SVG
+
+Draw a Western (tropical) natal chart wheel as SVG. It shows the sign ring, house cusps (placidus, koch, equal or whole_sign) with the AC/DC and MC/IC axes, the 10 planets, the lunar nodes, Chiron and Black Moon Lilith, and aspect lines. The Ascendant is at 9 o'clock and the zodiac runs counter-clockwise. Each body has a tick at its exact longitude; crowded glyphs are spread apart with a leader line. Positions, cusps and aspects are the ones POST /v1/western/natal returns. Without a birth time the wheel has no houses and puts 0° Aries on the left; positions are then for 06:00 local time, so the Moon can be several degrees off.
+
+### Example
+
+* Bearer (API Key) Authentication (BearerAuth):
+
+```python
+import asterwise
+from asterwise.models.api_response_western_chart_response import ApiResponseWesternChartResponse
+from asterwise.models.western_chart_request import WesternChartRequest
+from asterwise.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.asterwise.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = asterwise.Configuration(
+    host = "https://api.asterwise.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): BearerAuth
+configuration = asterwise.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with asterwise.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = asterwise.WesternAstrologyApi(api_client)
+    western_chart_request = {"name":"Arjun Mehta","date":"1985-11-12","time":"06:45","location":"Mumbai","house_system":"placidus"} # WesternChartRequest | 
+
+    try:
+        # Western natal wheel — SVG
+        api_response = api_instance.western_chart(western_chart_request)
+        print("The response of WesternAstrologyApi->western_chart:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WesternAstrologyApi->western_chart: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **western_chart_request** | [**WesternChartRequest**](WesternChartRequest.md)|  | 
+
+### Return type
+
+[**ApiResponseWesternChartResponse**](ApiResponseWesternChartResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Western natal wheel SVG |  -  |
 **401** | Authentication failed |  -  |
 **403** | Authorization failed |  -  |
 **404** | Resource not found |  -  |

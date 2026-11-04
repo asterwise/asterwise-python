@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.14.0"
+__version__ = "0.15.0"
 
 # Define package exports
 __all__ = [
@@ -148,6 +148,7 @@ __all__ = [
     "ApiResponseVoidOfCourseResponse",
     "ApiResponseWeeklyTransitResponse",
     "ApiResponseWesternAspectsResponse",
+    "ApiResponseWesternChartResponse",
     "ApiResponseWesternDailyFactorsResponse",
     "ApiResponseWesternDayResponse",
     "ApiResponseWesternHoraryResponse",
@@ -504,6 +505,9 @@ __all__ = [
     "WesternAspectsRequest",
     "WesternAspectsResponse",
     "WesternBirthInput",
+    "WesternChartColors",
+    "WesternChartRequest",
+    "WesternChartResponse",
     "WesternDailyFactorsRequest",
     "WesternDailyFactorsResponse",
     "WesternDayMoon",
@@ -674,6 +678,7 @@ from asterwise.models.api_response_vedic_daily_factors_response import ApiRespon
 from asterwise.models.api_response_void_of_course_response import ApiResponseVoidOfCourseResponse as ApiResponseVoidOfCourseResponse
 from asterwise.models.api_response_weekly_transit_response import ApiResponseWeeklyTransitResponse as ApiResponseWeeklyTransitResponse
 from asterwise.models.api_response_western_aspects_response import ApiResponseWesternAspectsResponse as ApiResponseWesternAspectsResponse
+from asterwise.models.api_response_western_chart_response import ApiResponseWesternChartResponse as ApiResponseWesternChartResponse
 from asterwise.models.api_response_western_daily_factors_response import ApiResponseWesternDailyFactorsResponse as ApiResponseWesternDailyFactorsResponse
 from asterwise.models.api_response_western_day_response import ApiResponseWesternDayResponse as ApiResponseWesternDayResponse
 from asterwise.models.api_response_western_horary_response import ApiResponseWesternHoraryResponse as ApiResponseWesternHoraryResponse
@@ -1030,6 +1035,9 @@ from asterwise.models.western_aspect import WesternAspect as WesternAspect
 from asterwise.models.western_aspects_request import WesternAspectsRequest as WesternAspectsRequest
 from asterwise.models.western_aspects_response import WesternAspectsResponse as WesternAspectsResponse
 from asterwise.models.western_birth_input import WesternBirthInput as WesternBirthInput
+from asterwise.models.western_chart_colors import WesternChartColors as WesternChartColors
+from asterwise.models.western_chart_request import WesternChartRequest as WesternChartRequest
+from asterwise.models.western_chart_response import WesternChartResponse as WesternChartResponse
 from asterwise.models.western_daily_factors_request import WesternDailyFactorsRequest as WesternDailyFactorsRequest
 from asterwise.models.western_daily_factors_response import WesternDailyFactorsResponse as WesternDailyFactorsResponse
 from asterwise.models.western_day_moon import WesternDayMoon as WesternDayMoon

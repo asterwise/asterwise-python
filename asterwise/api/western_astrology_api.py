@@ -36,6 +36,7 @@ from asterwise.models.api_response_synastry_response import ApiResponseSynastryR
 from asterwise.models.api_response_void_of_course_response import ApiResponseVoidOfCourseResponse
 from asterwise.models.api_response_weekly_transit_response import ApiResponseWeeklyTransitResponse
 from asterwise.models.api_response_western_aspects_response import ApiResponseWesternAspectsResponse
+from asterwise.models.api_response_western_chart_response import ApiResponseWesternChartResponse
 from asterwise.models.api_response_western_daily_factors_response import ApiResponseWesternDailyFactorsResponse
 from asterwise.models.api_response_western_day_response import ApiResponseWesternDayResponse
 from asterwise.models.api_response_western_horary_response import ApiResponseWesternHoraryResponse
@@ -52,6 +53,7 @@ from asterwise.models.solar_return_request import SolarReturnRequest
 from asterwise.models.two_person_request import TwoPersonRequest
 from asterwise.models.void_of_course_request import VoidOfCourseRequest
 from asterwise.models.western_aspects_request import WesternAspectsRequest
+from asterwise.models.western_chart_request import WesternChartRequest
 from asterwise.models.western_daily_factors_request import WesternDailyFactorsRequest
 from asterwise.models.western_day_request import WesternDayRequest
 from asterwise.models.western_events_request import WesternEventsRequest
@@ -363,6 +365,307 @@ class WesternAstrologyApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/western/aspects',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def western_chart(
+        self,
+        western_chart_request: WesternChartRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponseWesternChartResponse:
+        """Western natal wheel — SVG
+
+        Draw a Western (tropical) natal chart wheel as SVG. It shows the sign ring, house cusps (placidus, koch, equal or whole_sign) with the AC/DC and MC/IC axes, the 10 planets, the lunar nodes, Chiron and Black Moon Lilith, and aspect lines. The Ascendant is at 9 o'clock and the zodiac runs counter-clockwise. Each body has a tick at its exact longitude; crowded glyphs are spread apart with a leader line. Positions, cusps and aspects are the ones POST /v1/western/natal returns. Without a birth time the wheel has no houses and puts 0° Aries on the left; positions are then for 06:00 local time, so the Moon can be several degrees off.
+
+        :param western_chart_request: (required)
+        :type western_chart_request: WesternChartRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_chart_serialize(
+            western_chart_request=western_chart_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternChartResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def western_chart_with_http_info(
+        self,
+        western_chart_request: WesternChartRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ApiResponseWesternChartResponse]:
+        """Western natal wheel — SVG
+
+        Draw a Western (tropical) natal chart wheel as SVG. It shows the sign ring, house cusps (placidus, koch, equal or whole_sign) with the AC/DC and MC/IC axes, the 10 planets, the lunar nodes, Chiron and Black Moon Lilith, and aspect lines. The Ascendant is at 9 o'clock and the zodiac runs counter-clockwise. Each body has a tick at its exact longitude; crowded glyphs are spread apart with a leader line. Positions, cusps and aspects are the ones POST /v1/western/natal returns. Without a birth time the wheel has no houses and puts 0° Aries on the left; positions are then for 06:00 local time, so the Moon can be several degrees off.
+
+        :param western_chart_request: (required)
+        :type western_chart_request: WesternChartRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_chart_serialize(
+            western_chart_request=western_chart_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternChartResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def western_chart_without_preload_content(
+        self,
+        western_chart_request: WesternChartRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Western natal wheel — SVG
+
+        Draw a Western (tropical) natal chart wheel as SVG. It shows the sign ring, house cusps (placidus, koch, equal or whole_sign) with the AC/DC and MC/IC axes, the 10 planets, the lunar nodes, Chiron and Black Moon Lilith, and aspect lines. The Ascendant is at 9 o'clock and the zodiac runs counter-clockwise. Each body has a tick at its exact longitude; crowded glyphs are spread apart with a leader line. Positions, cusps and aspects are the ones POST /v1/western/natal returns. Without a birth time the wheel has no houses and puts 0° Aries on the left; positions are then for 06:00 local time, so the Moon can be several degrees off.
+
+        :param western_chart_request: (required)
+        :type western_chart_request: WesternChartRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._western_chart_serialize(
+            western_chart_request=western_chart_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ApiResponseWesternChartResponse",
+            '401': "ErrorResponse",
+            '403': "ErrorResponse",
+            '404': "ErrorResponse",
+            '413': "ErrorResponse",
+            '422': "ErrorResponse",
+            '429': "ErrorResponse",
+            '500': "ErrorResponse",
+            '502': "ErrorResponse",
+            '503': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _western_chart_serialize(
+        self,
+        western_chart_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if western_chart_request is not None:
+            _body_params = western_chart_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'BearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/western/chart',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
