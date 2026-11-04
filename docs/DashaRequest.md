@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **utc_offset** | **str** |  | [optional] 
 **ayanamsa** | **str** | Sidereal ayanamsa mode used in calculations | [optional] [default to 'lahiri']
 **levels** | **int** | Depth of dasha hierarchy to compute (1 to 5) | [optional] [default to 2]
+**from_date** | **str** |  | [optional] 
+**to_date** | **str** |  | [optional] 
 
 ## Example
 

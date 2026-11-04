@@ -39,7 +39,9 @@ class DashaRequest(BaseModel):
     utc_offset: Optional[StrictStr] = None
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Sidereal ayanamsa mode used in calculations")
     levels: Optional[Annotated[int, Field(le=5, strict=True, ge=1)]] = Field(default=2, description="Depth of dasha hierarchy to compute (1 to 5)")
-    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "levels"]
+    from_date: Optional[StrictStr] = None
+    to_date: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["location", "name", "date", "time", "latitude", "longitude", "timezone", "utc_offset", "ayanamsa", "levels", "from_date", "to_date"]
 
     @field_validator('ayanamsa')
     def ayanamsa_validate_enum(cls, value):
@@ -120,6 +122,16 @@ class DashaRequest(BaseModel):
         if self.utc_offset is None and "utc_offset" in self.model_fields_set:
             _dict['utc_offset'] = None
 
+        # set to None if from_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.from_date is None and "from_date" in self.model_fields_set:
+            _dict['from_date'] = None
+
+        # set to None if to_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.to_date is None and "to_date" in self.model_fields_set:
+            _dict['to_date'] = None
+
         return _dict
 
     @classmethod
@@ -141,7 +153,9 @@ class DashaRequest(BaseModel):
             "timezone": obj.get("timezone"),
             "utc_offset": obj.get("utc_offset"),
             "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri',
-            "levels": obj.get("levels") if obj.get("levels") is not None else 2
+            "levels": obj.get("levels") if obj.get("levels") is not None else 2,
+            "from_date": obj.get("from_date"),
+            "to_date": obj.get("to_date")
         })
         return _obj
 
