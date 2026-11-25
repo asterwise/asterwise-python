@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,14 +29,24 @@ class MuhurtaCriteria(BaseModel):
     MuhurtaCriteria
     """ # noqa: E501
     nakshatras: List[StrictStr]
+    nakshatra_ids: Optional[List[StrictStr]] = None
+    nakshatra_labels: Optional[List[StrictStr]] = None
     recommended_nakshatras: List[StrictStr]
+    recommended_nakshatra_ids: Optional[List[StrictStr]] = None
+    recommended_nakshatra_labels: Optional[List[StrictStr]] = None
     tithis: List[StrictStr]
+    tithi_ids: Optional[List[StrictStr]] = None
+    tithi_labels: Optional[List[StrictStr]] = None
     weekdays: List[StrictStr]
+    weekday_ids: Optional[List[StrictStr]] = None
+    weekday_labels: Optional[List[StrictStr]] = None
     preferred_lagnas: List[StrictStr]
+    preferred_lagna_ids: Optional[List[StrictStr]] = None
+    preferred_lagna_labels: Optional[List[StrictStr]] = None
     avoided_seasons: List[StrictStr]
     avoided_periods: List[StrictStr]
     daytime_only: StrictBool
-    __properties: ClassVar[List[str]] = ["nakshatras", "recommended_nakshatras", "tithis", "weekdays", "preferred_lagnas", "avoided_seasons", "avoided_periods", "daytime_only"]
+    __properties: ClassVar[List[str]] = ["nakshatras", "nakshatra_ids", "nakshatra_labels", "recommended_nakshatras", "recommended_nakshatra_ids", "recommended_nakshatra_labels", "tithis", "tithi_ids", "tithi_labels", "weekdays", "weekday_ids", "weekday_labels", "preferred_lagnas", "preferred_lagna_ids", "preferred_lagna_labels", "avoided_seasons", "avoided_periods", "daytime_only"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,6 +87,56 @@ class MuhurtaCriteria(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if nakshatra_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_ids is None and "nakshatra_ids" in self.model_fields_set:
+            _dict['nakshatra_ids'] = None
+
+        # set to None if nakshatra_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_labels is None and "nakshatra_labels" in self.model_fields_set:
+            _dict['nakshatra_labels'] = None
+
+        # set to None if recommended_nakshatra_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.recommended_nakshatra_ids is None and "recommended_nakshatra_ids" in self.model_fields_set:
+            _dict['recommended_nakshatra_ids'] = None
+
+        # set to None if recommended_nakshatra_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.recommended_nakshatra_labels is None and "recommended_nakshatra_labels" in self.model_fields_set:
+            _dict['recommended_nakshatra_labels'] = None
+
+        # set to None if tithi_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.tithi_ids is None and "tithi_ids" in self.model_fields_set:
+            _dict['tithi_ids'] = None
+
+        # set to None if tithi_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.tithi_labels is None and "tithi_labels" in self.model_fields_set:
+            _dict['tithi_labels'] = None
+
+        # set to None if weekday_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.weekday_ids is None and "weekday_ids" in self.model_fields_set:
+            _dict['weekday_ids'] = None
+
+        # set to None if weekday_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.weekday_labels is None and "weekday_labels" in self.model_fields_set:
+            _dict['weekday_labels'] = None
+
+        # set to None if preferred_lagna_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.preferred_lagna_ids is None and "preferred_lagna_ids" in self.model_fields_set:
+            _dict['preferred_lagna_ids'] = None
+
+        # set to None if preferred_lagna_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.preferred_lagna_labels is None and "preferred_lagna_labels" in self.model_fields_set:
+            _dict['preferred_lagna_labels'] = None
+
         return _dict
 
     @classmethod
@@ -90,10 +150,20 @@ class MuhurtaCriteria(BaseModel):
 
         _obj = cls.model_validate({
             "nakshatras": obj.get("nakshatras"),
+            "nakshatra_ids": obj.get("nakshatra_ids"),
+            "nakshatra_labels": obj.get("nakshatra_labels"),
             "recommended_nakshatras": obj.get("recommended_nakshatras"),
+            "recommended_nakshatra_ids": obj.get("recommended_nakshatra_ids"),
+            "recommended_nakshatra_labels": obj.get("recommended_nakshatra_labels"),
             "tithis": obj.get("tithis"),
+            "tithi_ids": obj.get("tithi_ids"),
+            "tithi_labels": obj.get("tithi_labels"),
             "weekdays": obj.get("weekdays"),
+            "weekday_ids": obj.get("weekday_ids"),
+            "weekday_labels": obj.get("weekday_labels"),
             "preferred_lagnas": obj.get("preferred_lagnas"),
+            "preferred_lagna_ids": obj.get("preferred_lagna_ids"),
+            "preferred_lagna_labels": obj.get("preferred_lagna_labels"),
             "avoided_seasons": obj.get("avoided_seasons"),
             "avoided_periods": obj.get("avoided_periods"),
             "daytime_only": obj.get("daytime_only")

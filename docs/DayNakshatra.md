@@ -16,7 +16,11 @@ Name | Type | Description | Notes
 **index** | **int** | 0 &#x3D; Ashwini ... 26 &#x3D; Revati. | 
 **number** | **int** | 1 to 27. | 
 **name** | **str** |  | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **lord** | **str** | Vimshottari lord. | 
+**lord_id** | **str** |  | [optional] 
+**lord_label** | **str** |  | [optional] 
 **padas** | [**List[DayPada]**](DayPada.md) |  | [optional] 
 
 ## Example

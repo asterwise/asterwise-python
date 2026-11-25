@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **index** | **int** |  | 
 **number** | **int** |  | 
 **name** | **str** |  | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **is_inauspicious** | **bool** |  | 
 
 ## Example

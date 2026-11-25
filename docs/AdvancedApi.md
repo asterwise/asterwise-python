@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ashtottari_dasha**
-> ApiResponseAshtottariEndpointResponse ashtottari_dasha(ashtottari_request)
+> ApiResponseUnionAshtottariEndpointResponseAshtottariNotApplicableResponse ashtottari_dasha(ashtottari_request)
 
 Ashtottari Dasha
 
@@ -162,8 +162,15 @@ Lagna the stronger co-lord is used.
 **Applicability check:**
 This endpoint first checks whether Ashtottari applies to the given chart.
 If the condition above is not met, the response will contain
-`applicable: false` and a reason string instead of dasha periods. The
-paksha/day-night condition is not evaluated.
+`applicable: false` and a reason string instead of dasha periods.
+
+Every response carries `niyama` with both classical conditions:
+`rahu_condition` (BPHS Ch.46 v.17, the one applied, as P.V.R. Narasimha Rao
+applies it) and `paksha_condition` (BPHS Ch.46 v.23: a day
+birth in Krishna paksha or a night birth in Shukla paksha), with
+`birth_period` and `paksha`. The v.23 rule is reported, not applied; when it
+alone is met the reason says so. It is null when the birth time is unknown or
+the Sun does not rise or set at the latitude.
 
 **Starting planet and balance:**
 Counting from Ardra, the nakshatras belong to the lords in groups of 4, 3, 4,
@@ -202,7 +209,7 @@ mahadashas). Before 2026-10-08 only the first 8 were returned.
 
 ```python
 import asterwise
-from asterwise.models.api_response_ashtottari_endpoint_response import ApiResponseAshtottariEndpointResponse
+from asterwise.models.api_response_union_ashtottari_endpoint_response_ashtottari_not_applicable_response import ApiResponseUnionAshtottariEndpointResponseAshtottariNotApplicableResponse
 from asterwise.models.ashtottari_request import AshtottariRequest
 from asterwise.rest import ApiException
 from pprint import pprint
@@ -249,7 +256,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiResponseAshtottariEndpointResponse**](ApiResponseAshtottariEndpointResponse.md)
+[**ApiResponseUnionAshtottariEndpointResponseAshtottariNotApplicableResponse**](ApiResponseUnionAshtottariEndpointResponseAshtottariNotApplicableResponse.md)
 
 ### Authorization
 

@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **moon_longitude** | **float** | Tropical longitude of the Moon at maximum. | 
 **eclipse_longitude** | **float** | The eclipse degree: Sun for a solar eclipse, Moon for a lunar one. | 
 **sign** | **str** |  | 
+**sign_id** | **str** |  | [optional] 
+**sign_label** | **str** |  | [optional] 
 **sign_index** | **int** |  | 
 **degree_in_sign** | **float** |  | 
 **natal_contacts** | [**List[EclipseNatalContact]**](EclipseNatalContact.md) | Natal points within 3° of the eclipse degree (empty without birth data). | [optional] 

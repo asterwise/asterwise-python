@@ -6,10 +6,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **rashi_index** | **int** |  | 
 **longitude** | **float** |  | 
 **nakshatra_lord** | **str** |  | 
+**nakshatra_lord_id** | **str** |  | [optional] 
+**nakshatra_lord_label** | **str** |  | [optional] 
 **sub_lord** | **str** |  | 
+**sub_lord_id** | **str** |  | [optional] 
+**sub_lord_label** | **str** |  | [optional] 
 
 ## Example
 

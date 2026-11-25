@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **end_utc** | **str** |  | [optional] 
 **nature** | **str** |  | [optional] 
 **residence** | **str** | Prithvi, Swarga or Patala, from the Moon&#39;s sign. | 
+**residence_id** | **str** |  | [optional] 
+**residence_label** | **str** |  | [optional] 
 **residence_english** | **str** |  | 
 **is_on_earth** | **bool** | Bhadra is held harmful when it resides on earth (Moon in Karka, Simha, Kumbha or Meena). | 
 

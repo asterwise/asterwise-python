@@ -39,9 +39,13 @@ class SecondaryProgressionResponse(BaseModel):
     progressed_planets: List[ProgressedPlanetSchema]
     progressed_ascendant: Union[StrictFloat, StrictInt] = Field(description="Progressed Ascendant: the Ascendant that goes with progressed_mc — derived from the progressed MC's right ascension (RAMC) at the birth latitude (Placidus).")
     progressed_ascendant_sign: StrictStr
+    progressed_ascendant_sign_id: Optional[StrictStr] = None
+    progressed_ascendant_sign_label: Optional[StrictStr] = None
     progressed_mc: Union[StrictFloat, StrictInt] = Field(description="Progressed MC: natal MC advanced by the solar arc in longitude")
     progressed_mc_sign: StrictStr
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_date", "progressed_jd", "age_years", "solar_arc", "natal_sun_longitude", "progressed_sun_longitude", "progressed_planets", "progressed_ascendant", "progressed_ascendant_sign", "progressed_mc", "progressed_mc_sign"]
+    progressed_mc_sign_id: Optional[StrictStr] = None
+    progressed_mc_sign_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_date", "progressed_jd", "age_years", "solar_arc", "natal_sun_longitude", "progressed_sun_longitude", "progressed_planets", "progressed_ascendant", "progressed_ascendant_sign", "progressed_ascendant_sign_id", "progressed_ascendant_sign_label", "progressed_mc", "progressed_mc_sign", "progressed_mc_sign_id", "progressed_mc_sign_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -89,6 +93,26 @@ class SecondaryProgressionResponse(BaseModel):
                 if _item_progressed_planets:
                     _items.append(_item_progressed_planets.to_dict())
             _dict['progressed_planets'] = _items
+        # set to None if progressed_ascendant_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.progressed_ascendant_sign_id is None and "progressed_ascendant_sign_id" in self.model_fields_set:
+            _dict['progressed_ascendant_sign_id'] = None
+
+        # set to None if progressed_ascendant_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.progressed_ascendant_sign_label is None and "progressed_ascendant_sign_label" in self.model_fields_set:
+            _dict['progressed_ascendant_sign_label'] = None
+
+        # set to None if progressed_mc_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.progressed_mc_sign_id is None and "progressed_mc_sign_id" in self.model_fields_set:
+            _dict['progressed_mc_sign_id'] = None
+
+        # set to None if progressed_mc_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.progressed_mc_sign_label is None and "progressed_mc_sign_label" in self.model_fields_set:
+            _dict['progressed_mc_sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -111,8 +135,12 @@ class SecondaryProgressionResponse(BaseModel):
             "progressed_planets": [ProgressedPlanetSchema.from_dict(_item) for _item in obj["progressed_planets"]] if obj.get("progressed_planets") is not None else None,
             "progressed_ascendant": obj.get("progressed_ascendant"),
             "progressed_ascendant_sign": obj.get("progressed_ascendant_sign"),
+            "progressed_ascendant_sign_id": obj.get("progressed_ascendant_sign_id"),
+            "progressed_ascendant_sign_label": obj.get("progressed_ascendant_sign_label"),
             "progressed_mc": obj.get("progressed_mc"),
-            "progressed_mc_sign": obj.get("progressed_mc_sign")
+            "progressed_mc_sign": obj.get("progressed_mc_sign"),
+            "progressed_mc_sign_id": obj.get("progressed_mc_sign_id"),
+            "progressed_mc_sign_label": obj.get("progressed_mc_sign_label")
         })
         return _obj
 

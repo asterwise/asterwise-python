@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **number** | **int** |  | 
 **name** | **str** |  | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 
 ## Example
 

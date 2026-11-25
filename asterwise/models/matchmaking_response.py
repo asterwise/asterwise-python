@@ -29,8 +29,11 @@ class MatchmakingResponse(BaseModel):
     MatchmakingResponse
     """ # noqa: E501
     total_score: Union[StrictFloat, StrictInt] = Field(description="Overall Guna Milan score out of 36")
-    breakdown: Dict[str, Optional[Union[StrictFloat, StrictInt]]] = Field(description="Per-koota score breakdown")
+    breakdown: Dict[str, Optional[Union[StrictFloat, StrictInt]]] = Field(description="Deprecated, removed on 2026-12-21: per-koota score keyed by the old names (Varna, Vashya, Tara, Yoni, GrahaMaitri, Gana, Bhakoot, Nadi). Use kootas.")
+    kootas: Optional[Dict[str, Optional[Union[StrictFloat, StrictInt]]]] = Field(default=None, description="Per-koota score, keyed by fixed id: varna, vashya, tara, yoni, graha_maitri, gana, bhakoot, nadi. doshas.bhakoot_dosha_type_id is the fixed id of doshas.bhakoot_dosha_type when that is present.")
     compatibility_level: StrictStr = Field(description="Verdict on the published Ashtakoota bands: Excellent, Very Good, Ordinary or Not Recommended. Nadi 0 is never recommended; Bhakoot 0 is never Excellent.")
+    compatibility_level_id: Optional[StrictStr] = None
+    compatibility_level_label: Optional[StrictStr] = None
     doshas: Dict[str, Any] = Field(description="Detected compatibility doshas")
     dosha_cancellations: Dict[str, Any] = Field(description="Traditional dosha cancellation flags")
     analysis: Dict[str, Any] = Field(description="Additional high-level matchmaking analysis details")
@@ -39,7 +42,7 @@ class MatchmakingResponse(BaseModel):
     supplementary_checks: Optional[Dict[str, Any]] = None
     compatibility_narrative: Optional[Dict[str, Any]] = None
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided for both persons. False when either person's birth time was not supplied or treated as unknown.")
-    __properties: ClassVar[List[str]] = ["total_score", "breakdown", "compatibility_level", "doshas", "dosha_cancellations", "analysis", "classical_vetoes", "mangal_compatibility", "supplementary_checks", "compatibility_narrative", "birth_time_provided"]
+    __properties: ClassVar[List[str]] = ["total_score", "breakdown", "kootas", "compatibility_level", "compatibility_level_id", "compatibility_level_label", "doshas", "dosha_cancellations", "analysis", "classical_vetoes", "mangal_compatibility", "supplementary_checks", "compatibility_narrative", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -80,6 +83,16 @@ class MatchmakingResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if compatibility_level_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.compatibility_level_id is None and "compatibility_level_id" in self.model_fields_set:
+            _dict['compatibility_level_id'] = None
+
+        # set to None if compatibility_level_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.compatibility_level_label is None and "compatibility_level_label" in self.model_fields_set:
+            _dict['compatibility_level_label'] = None
+
         # set to None if classical_vetoes (nullable) is None
         # and model_fields_set contains the field
         if self.classical_vetoes is None and "classical_vetoes" in self.model_fields_set:
@@ -114,7 +127,10 @@ class MatchmakingResponse(BaseModel):
         _obj = cls.model_validate({
             "total_score": obj.get("total_score"),
             "breakdown": obj.get("breakdown"),
+            "kootas": obj.get("kootas"),
             "compatibility_level": obj.get("compatibility_level"),
+            "compatibility_level_id": obj.get("compatibility_level_id"),
+            "compatibility_level_label": obj.get("compatibility_level_label"),
             "doshas": obj.get("doshas"),
             "dosha_cancellations": obj.get("dosha_cancellations"),
             "analysis": obj.get("analysis"),

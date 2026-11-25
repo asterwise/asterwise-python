@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,9 +30,11 @@ class BhavaMadhyaEntry(BaseModel):
     """ # noqa: E501
     house: StrictInt = Field(description="House number 1-12")
     sign: StrictStr = Field(description="Sanskrit sign name")
+    sign_id: Optional[StrictStr] = None
+    sign_label: Optional[StrictStr] = None
     sign_num: StrictInt = Field(description="Sign index 0-11")
     degree: Union[StrictFloat, StrictInt] = Field(description="Ecliptic longitude in degrees")
-    __properties: ClassVar[List[str]] = ["house", "sign", "sign_num", "degree"]
+    __properties: ClassVar[List[str]] = ["house", "sign", "sign_id", "sign_label", "sign_num", "degree"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +75,16 @@ class BhavaMadhyaEntry(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_id is None and "sign_id" in self.model_fields_set:
+            _dict['sign_id'] = None
+
+        # set to None if sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_label is None and "sign_label" in self.model_fields_set:
+            _dict['sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -87,6 +99,8 @@ class BhavaMadhyaEntry(BaseModel):
         _obj = cls.model_validate({
             "house": obj.get("house"),
             "sign": obj.get("sign"),
+            "sign_id": obj.get("sign_id"),
+            "sign_label": obj.get("sign_label"),
             "sign_num": obj.get("sign_num"),
             "degree": obj.get("degree")
         })

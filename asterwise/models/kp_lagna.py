@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,11 +29,17 @@ class KPLagna(BaseModel):
     KPLagna
     """ # noqa: E501
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     rashi_index: StrictInt
     longitude: Union[StrictFloat, StrictInt]
     nakshatra_lord: StrictStr
+    nakshatra_lord_id: Optional[StrictStr] = None
+    nakshatra_lord_label: Optional[StrictStr] = None
     sub_lord: StrictStr
-    __properties: ClassVar[List[str]] = ["rashi", "rashi_index", "longitude", "nakshatra_lord", "sub_lord"]
+    sub_lord_id: Optional[StrictStr] = None
+    sub_lord_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["rashi", "rashi_id", "rashi_label", "rashi_index", "longitude", "nakshatra_lord", "nakshatra_lord_id", "nakshatra_lord_label", "sub_lord", "sub_lord_id", "sub_lord_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,6 +80,36 @@ class KPLagna(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
+        # set to None if nakshatra_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_lord_id is None and "nakshatra_lord_id" in self.model_fields_set:
+            _dict['nakshatra_lord_id'] = None
+
+        # set to None if nakshatra_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_lord_label is None and "nakshatra_lord_label" in self.model_fields_set:
+            _dict['nakshatra_lord_label'] = None
+
+        # set to None if sub_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sub_lord_id is None and "sub_lord_id" in self.model_fields_set:
+            _dict['sub_lord_id'] = None
+
+        # set to None if sub_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sub_lord_label is None and "sub_lord_label" in self.model_fields_set:
+            _dict['sub_lord_label'] = None
+
         return _dict
 
     @classmethod
@@ -87,10 +123,16 @@ class KPLagna(BaseModel):
 
         _obj = cls.model_validate({
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "rashi_index": obj.get("rashi_index"),
             "longitude": obj.get("longitude"),
             "nakshatra_lord": obj.get("nakshatra_lord"),
-            "sub_lord": obj.get("sub_lord")
+            "nakshatra_lord_id": obj.get("nakshatra_lord_id"),
+            "nakshatra_lord_label": obj.get("nakshatra_lord_label"),
+            "sub_lord": obj.get("sub_lord"),
+            "sub_lord_id": obj.get("sub_lord_id"),
+            "sub_lord_label": obj.get("sub_lord_label")
         })
         return _obj
 

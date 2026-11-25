@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.15.0"
+__version__ = "0.16.0"
 
 # Define package exports
 __all__ = [
@@ -49,7 +49,6 @@ __all__ = [
     "AngelNumbersListResponse",
     "ApiResponseAngelNumberResponse",
     "ApiResponseAshtakavargaResponse",
-    "ApiResponseAshtottariEndpointResponse",
     "ApiResponseAtmakarakaResponse",
     "ApiResponseAyanamshaResponse",
     "ApiResponseBusinessNameAnalysisResponse",
@@ -139,6 +138,7 @@ __all__ = [
     "ApiResponseTimezoneResponse",
     "ApiResponseTodayAngelNumberResponse",
     "ApiResponseTransitsResponse",
+    "ApiResponseUnionAshtottariEndpointResponseAshtottariNotApplicableResponse",
     "ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse",
     "ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse",
     "ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse",
@@ -165,6 +165,8 @@ __all__ = [
     "AshtakavargaRequest",
     "AshtakavargaResponse",
     "AshtottariEndpointResponse",
+    "AshtottariNiyama",
+    "AshtottariNotApplicableResponse",
     "AshtottariPeriod",
     "AshtottariRequest",
     "AshtottariResponse",
@@ -236,6 +238,7 @@ __all__ = [
     "Data1",
     "Data2",
     "Data3",
+    "Data4",
     "DayKarana",
     "DayNakshatra",
     "DayPada",
@@ -579,7 +582,6 @@ from asterwise.models.angel_numbers_list_data import AngelNumbersListData as Ang
 from asterwise.models.angel_numbers_list_response import AngelNumbersListResponse as AngelNumbersListResponse
 from asterwise.models.api_response_angel_number_response import ApiResponseAngelNumberResponse as ApiResponseAngelNumberResponse
 from asterwise.models.api_response_ashtakavarga_response import ApiResponseAshtakavargaResponse as ApiResponseAshtakavargaResponse
-from asterwise.models.api_response_ashtottari_endpoint_response import ApiResponseAshtottariEndpointResponse as ApiResponseAshtottariEndpointResponse
 from asterwise.models.api_response_atmakaraka_response import ApiResponseAtmakarakaResponse as ApiResponseAtmakarakaResponse
 from asterwise.models.api_response_ayanamsha_response import ApiResponseAyanamshaResponse as ApiResponseAyanamshaResponse
 from asterwise.models.api_response_business_name_analysis_response import ApiResponseBusinessNameAnalysisResponse as ApiResponseBusinessNameAnalysisResponse
@@ -669,6 +671,7 @@ from asterwise.models.api_response_thirumana_porutham_response import ApiRespons
 from asterwise.models.api_response_timezone_response import ApiResponseTimezoneResponse as ApiResponseTimezoneResponse
 from asterwise.models.api_response_today_angel_number_response import ApiResponseTodayAngelNumberResponse as ApiResponseTodayAngelNumberResponse
 from asterwise.models.api_response_transits_response import ApiResponseTransitsResponse as ApiResponseTransitsResponse
+from asterwise.models.api_response_union_ashtottari_endpoint_response_ashtottari_not_applicable_response import ApiResponseUnionAshtottariEndpointResponseAshtottariNotApplicableResponse as ApiResponseUnionAshtottariEndpointResponseAshtottariNotApplicableResponse
 from asterwise.models.api_response_union_biorhythm_single_day_response_biorhythm_range_response import ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse as ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse
 from asterwise.models.api_response_union_planet_nature_all_response_planet_nature_single_response import ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse as ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse
 from asterwise.models.api_response_union_puja_suggestions_all_response_puja_suggestion_single_response import ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse as ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse
@@ -695,6 +698,8 @@ from asterwise.models.app_api_schemas_western_compatibility_response import AppA
 from asterwise.models.ashtakavarga_request import AshtakavargaRequest as AshtakavargaRequest
 from asterwise.models.ashtakavarga_response import AshtakavargaResponse as AshtakavargaResponse
 from asterwise.models.ashtottari_endpoint_response import AshtottariEndpointResponse as AshtottariEndpointResponse
+from asterwise.models.ashtottari_niyama import AshtottariNiyama as AshtottariNiyama
+from asterwise.models.ashtottari_not_applicable_response import AshtottariNotApplicableResponse as AshtottariNotApplicableResponse
 from asterwise.models.ashtottari_period import AshtottariPeriod as AshtottariPeriod
 from asterwise.models.ashtottari_request import AshtottariRequest as AshtottariRequest
 from asterwise.models.ashtottari_response import AshtottariResponse as AshtottariResponse
@@ -766,6 +771,7 @@ from asterwise.models.data import Data as Data
 from asterwise.models.data1 import Data1 as Data1
 from asterwise.models.data2 import Data2 as Data2
 from asterwise.models.data3 import Data3 as Data3
+from asterwise.models.data4 import Data4 as Data4
 from asterwise.models.day_karana import DayKarana as DayKarana
 from asterwise.models.day_nakshatra import DayNakshatra as DayNakshatra
 from asterwise.models.day_pada import DayPada as DayPada

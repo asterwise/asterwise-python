@@ -7,9 +7,17 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **longitude** | **float** |  | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **sign_lord** | **str** |  | 
+**sign_lord_id** | **str** |  | [optional] 
+**sign_lord_label** | **str** |  | [optional] 
 **nakshatra_lord** | **str** |  | 
+**nakshatra_lord_id** | **str** |  | [optional] 
+**nakshatra_lord_label** | **str** |  | [optional] 
 **sub_lord** | **str** |  | 
+**sub_lord_id** | **str** |  | [optional] 
+**sub_lord_label** | **str** |  | [optional] 
 
 ## Example
 

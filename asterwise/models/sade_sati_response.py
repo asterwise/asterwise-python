@@ -32,6 +32,8 @@ class SadeSatiResponse(BaseModel):
     """ # noqa: E501
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
     natal_moon_sign: StrictStr
+    natal_moon_sign_id: Optional[StrictStr] = None
+    natal_moon_sign_label: Optional[StrictStr] = None
     natal_moon_sign_index: StrictInt
     sade_sati_signs: Dict[str, Any]
     is_currently_active: Optional[StrictBool] = None
@@ -46,7 +48,7 @@ class SadeSatiResponse(BaseModel):
     current_small_panoti_position: Optional[StrictInt] = None
     mitigated_by_own_sign: Optional[StrictBool] = None
     mitigated_by_exaltation: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "natal_moon_sign", "natal_moon_sign_index", "sade_sati_signs", "is_currently_active", "current_phase", "current_phase_description", "intensity_score", "intensity_label", "next_sade_sati", "all_periods", "small_panoti", "is_small_panoti_active", "current_small_panoti_position", "mitigated_by_own_sign", "mitigated_by_exaltation"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "natal_moon_sign", "natal_moon_sign_id", "natal_moon_sign_label", "natal_moon_sign_index", "sade_sati_signs", "is_currently_active", "current_phase", "current_phase_description", "intensity_score", "intensity_label", "next_sade_sati", "all_periods", "small_panoti", "is_small_panoti_active", "current_small_panoti_position", "mitigated_by_own_sign", "mitigated_by_exaltation"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -101,6 +103,16 @@ class SadeSatiResponse(BaseModel):
                 if _item_small_panoti:
                     _items.append(_item_small_panoti.to_dict())
             _dict['small_panoti'] = _items
+        # set to None if natal_moon_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.natal_moon_sign_id is None and "natal_moon_sign_id" in self.model_fields_set:
+            _dict['natal_moon_sign_id'] = None
+
+        # set to None if natal_moon_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.natal_moon_sign_label is None and "natal_moon_sign_label" in self.model_fields_set:
+            _dict['natal_moon_sign_label'] = None
+
         # set to None if is_currently_active (nullable) is None
         # and model_fields_set contains the field
         if self.is_currently_active is None and "is_currently_active" in self.model_fields_set:
@@ -170,6 +182,8 @@ class SadeSatiResponse(BaseModel):
         _obj = cls.model_validate({
             "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "natal_moon_sign": obj.get("natal_moon_sign"),
+            "natal_moon_sign_id": obj.get("natal_moon_sign_id"),
+            "natal_moon_sign_label": obj.get("natal_moon_sign_label"),
             "natal_moon_sign_index": obj.get("natal_moon_sign_index"),
             "sade_sati_signs": obj.get("sade_sati_signs"),
             "is_currently_active": obj.get("is_currently_active"),

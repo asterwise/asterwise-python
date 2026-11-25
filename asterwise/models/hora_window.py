@@ -36,8 +36,10 @@ class HoraWindow(BaseModel):
     nature: Optional[StrictStr] = None
     hora: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(description="1-12 day hours from sunrise, 13-24 night hours from sunset.")
     planet: StrictStr = Field(description="Planet ruling the hour (weekday lord first, then the Chaldean order).")
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     period: StrictStr = Field(description="day or night")
-    __properties: ClassVar[List[str]] = ["start", "end", "start_utc", "end_utc", "nature", "hora", "planet", "period"]
+    __properties: ClassVar[List[str]] = ["start", "end", "start_utc", "end_utc", "nature", "hora", "planet", "planet_id", "planet_label", "period"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -93,6 +95,16 @@ class HoraWindow(BaseModel):
         if self.nature is None and "nature" in self.model_fields_set:
             _dict['nature'] = None
 
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         return _dict
 
     @classmethod
@@ -112,6 +124,8 @@ class HoraWindow(BaseModel):
             "nature": obj.get("nature"),
             "hora": obj.get("hora"),
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "period": obj.get("period")
         })
         return _obj

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,8 +29,12 @@ class Ayana(BaseModel):
     Ayana
     """ # noqa: E501
     vedic: StrictStr = Field(description="From the sidereal Sun (Uttarayana from Makara Sankranti).")
+    vedic_id: Optional[StrictStr] = None
+    vedic_label: Optional[StrictStr] = None
     drik: StrictStr = Field(description="From the tropical Sun (Uttarayana from the winter solstice).")
-    __properties: ClassVar[List[str]] = ["vedic", "drik"]
+    drik_id: Optional[StrictStr] = None
+    drik_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["vedic", "vedic_id", "vedic_label", "drik", "drik_id", "drik_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -71,6 +75,26 @@ class Ayana(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if vedic_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.vedic_id is None and "vedic_id" in self.model_fields_set:
+            _dict['vedic_id'] = None
+
+        # set to None if vedic_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.vedic_label is None and "vedic_label" in self.model_fields_set:
+            _dict['vedic_label'] = None
+
+        # set to None if drik_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.drik_id is None and "drik_id" in self.model_fields_set:
+            _dict['drik_id'] = None
+
+        # set to None if drik_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.drik_label is None and "drik_label" in self.model_fields_set:
+            _dict['drik_label'] = None
+
         return _dict
 
     @classmethod
@@ -84,7 +108,11 @@ class Ayana(BaseModel):
 
         _obj = cls.model_validate({
             "vedic": obj.get("vedic"),
-            "drik": obj.get("drik")
+            "vedic_id": obj.get("vedic_id"),
+            "vedic_label": obj.get("vedic_label"),
+            "drik": obj.get("drik"),
+            "drik_id": obj.get("drik_id"),
+            "drik_label": obj.get("drik_label")
         })
         return _obj
 

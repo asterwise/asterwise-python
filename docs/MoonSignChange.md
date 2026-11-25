@@ -8,7 +8,11 @@ Name | Type | Description | Notes
 **at_utc** | **str** |  | 
 **at_local** | **str** |  | 
 **from_sign** | **str** |  | 
+**from_sign_id** | **str** |  | [optional] 
+**from_sign_label** | **str** |  | [optional] 
 **to_sign** | **str** |  | 
+**to_sign_id** | **str** |  | [optional] 
+**to_sign_label** | **str** |  | [optional] 
 
 ## Example
 

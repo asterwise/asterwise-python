@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**label** | **str** |  | [optional] 
 **id** | **str** | Unique slug identifier e.g. &#39;the-fool&#39; | 
 **name** | **str** | Full card name e.g. &#39;The Fool&#39; | 
 **arcana_type** | **str** | &#39;major&#39; or &#39;minor&#39; | 

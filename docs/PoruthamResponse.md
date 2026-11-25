@@ -11,11 +11,14 @@ Name | Type | Description | Notes
 **total_passed** | **int** |  | 
 **total_poruthams** | **int** |  | 
 **compatibility_level** | **str** |  | 
+**compatibility_level_id** | **str** |  | [optional] 
+**compatibility_level_label** | **str** |  | [optional] 
 **rajju_veto** | **bool** |  | 
 **vedha_veto** | **bool** |  | 
 **hard_veto** | **bool** |  | 
 **minimum_poruthams_met** | **bool** |  | [optional] 
-**breakdown** | **Dict[str, object]** |  | 
+**breakdown** | **Dict[str, object]** | Deprecated, removed on 2026-12-21: the same results keyed by the old names (Dinam, Ganam, Rasiyathipaty, Vasya, ...). Use poruthams. | 
+**poruthams** | **Dict[str, object]** | Each porutham&#39;s result, keyed by fixed id: dina, gana, mahendra, stree_deergha, yoni, rasi, rasi_adhipati, rajju, vedha, vashya. | [optional] 
 
 ## Example
 

@@ -7,7 +7,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **number** | **int** | Weekday number, 1 to 7 | 
 **name** | **str** | Weekday name in Sanskrit, e.g. Ravivar, Somvar | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **lord** | **str** | Planetary lord of the weekday, e.g. Sun, Moon | 
+**lord_id** | **str** |  | [optional] 
+**lord_label** | **str** |  | [optional] 
 **end_time** | **str** |  | [optional] 
 
 ## Example

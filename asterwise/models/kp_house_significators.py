@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,12 +30,24 @@ class KPHouseSignificators(BaseModel):
     """ # noqa: E501
     house: StrictInt
     sign_lord: StrictStr = Field(description="Lord of the sign on the cusp (the house owner).")
+    sign_lord_id: Optional[StrictStr] = None
+    sign_lord_label: Optional[StrictStr] = None
     occupants: List[StrictStr] = Field(description="Planets in the house (cusp to cusp).")
+    occupant_ids: Optional[List[StrictStr]] = None
+    occupant_labels: Optional[List[StrictStr]] = None
     nak_of_occupants: List[StrictStr] = Field(description="Planets in the nakshatra (star) of an occupant.")
+    nak_of_occupant_ids: Optional[List[StrictStr]] = None
+    nak_of_occupant_labels: Optional[List[StrictStr]] = None
     nak_of_lord: List[StrictStr] = Field(description="Planets in the nakshatra of the cusp sign lord.")
+    nak_of_lord_ids: Optional[List[StrictStr]] = None
+    nak_of_lord_labels: Optional[List[StrictStr]] = None
     all_significators: List[StrictStr] = Field(description="Union in the original order: occupants, sign lord, star of occupants, star of sign lord. Not a ranking; see `strength_order`.")
+    all_significator_ids: Optional[List[StrictStr]] = None
+    all_significator_labels: Optional[List[StrictStr]] = None
     strength_order: List[StrictStr] = Field(description="The same planets ranked strongest first per Krishnamurti: planets in the star of occupants, occupants, planets in the star of the sign lord, the sign lord. Each planet appears once, at its strongest level.")
-    __properties: ClassVar[List[str]] = ["house", "sign_lord", "occupants", "nak_of_occupants", "nak_of_lord", "all_significators", "strength_order"]
+    strength_order_ids: Optional[List[StrictStr]] = None
+    strength_order_labels: Optional[List[StrictStr]] = None
+    __properties: ClassVar[List[str]] = ["house", "sign_lord", "sign_lord_id", "sign_lord_label", "occupants", "occupant_ids", "occupant_labels", "nak_of_occupants", "nak_of_occupant_ids", "nak_of_occupant_labels", "nak_of_lord", "nak_of_lord_ids", "nak_of_lord_labels", "all_significators", "all_significator_ids", "all_significator_labels", "strength_order", "strength_order_ids", "strength_order_labels"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,6 +88,66 @@ class KPHouseSignificators(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if sign_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_lord_id is None and "sign_lord_id" in self.model_fields_set:
+            _dict['sign_lord_id'] = None
+
+        # set to None if sign_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_lord_label is None and "sign_lord_label" in self.model_fields_set:
+            _dict['sign_lord_label'] = None
+
+        # set to None if occupant_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.occupant_ids is None and "occupant_ids" in self.model_fields_set:
+            _dict['occupant_ids'] = None
+
+        # set to None if occupant_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.occupant_labels is None and "occupant_labels" in self.model_fields_set:
+            _dict['occupant_labels'] = None
+
+        # set to None if nak_of_occupant_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.nak_of_occupant_ids is None and "nak_of_occupant_ids" in self.model_fields_set:
+            _dict['nak_of_occupant_ids'] = None
+
+        # set to None if nak_of_occupant_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.nak_of_occupant_labels is None and "nak_of_occupant_labels" in self.model_fields_set:
+            _dict['nak_of_occupant_labels'] = None
+
+        # set to None if nak_of_lord_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.nak_of_lord_ids is None and "nak_of_lord_ids" in self.model_fields_set:
+            _dict['nak_of_lord_ids'] = None
+
+        # set to None if nak_of_lord_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.nak_of_lord_labels is None and "nak_of_lord_labels" in self.model_fields_set:
+            _dict['nak_of_lord_labels'] = None
+
+        # set to None if all_significator_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.all_significator_ids is None and "all_significator_ids" in self.model_fields_set:
+            _dict['all_significator_ids'] = None
+
+        # set to None if all_significator_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.all_significator_labels is None and "all_significator_labels" in self.model_fields_set:
+            _dict['all_significator_labels'] = None
+
+        # set to None if strength_order_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.strength_order_ids is None and "strength_order_ids" in self.model_fields_set:
+            _dict['strength_order_ids'] = None
+
+        # set to None if strength_order_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.strength_order_labels is None and "strength_order_labels" in self.model_fields_set:
+            _dict['strength_order_labels'] = None
+
         return _dict
 
     @classmethod
@@ -90,11 +162,23 @@ class KPHouseSignificators(BaseModel):
         _obj = cls.model_validate({
             "house": obj.get("house"),
             "sign_lord": obj.get("sign_lord"),
+            "sign_lord_id": obj.get("sign_lord_id"),
+            "sign_lord_label": obj.get("sign_lord_label"),
             "occupants": obj.get("occupants"),
+            "occupant_ids": obj.get("occupant_ids"),
+            "occupant_labels": obj.get("occupant_labels"),
             "nak_of_occupants": obj.get("nak_of_occupants"),
+            "nak_of_occupant_ids": obj.get("nak_of_occupant_ids"),
+            "nak_of_occupant_labels": obj.get("nak_of_occupant_labels"),
             "nak_of_lord": obj.get("nak_of_lord"),
+            "nak_of_lord_ids": obj.get("nak_of_lord_ids"),
+            "nak_of_lord_labels": obj.get("nak_of_lord_labels"),
             "all_significators": obj.get("all_significators"),
-            "strength_order": obj.get("strength_order")
+            "all_significator_ids": obj.get("all_significator_ids"),
+            "all_significator_labels": obj.get("all_significator_labels"),
+            "strength_order": obj.get("strength_order"),
+            "strength_order_ids": obj.get("strength_order_ids"),
+            "strength_order_labels": obj.get("strength_order_labels")
         })
         return _obj
 

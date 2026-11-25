@@ -38,10 +38,16 @@ class DayTithi(BaseModel):
     nature: Optional[StrictStr] = None
     number: StrictInt = Field(description="1 to 30 (1-15 Shukla, 16-30 Krishna).")
     name: StrictStr
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     paksha: StrictStr = Field(description="Shukla or Krishna.")
+    paksha_id: Optional[StrictStr] = None
+    paksha_label: Optional[StrictStr] = None
     fivefold: StrictStr = Field(description="Nanda, Bhadra, Jaya, Rikta or Purna.")
+    fivefold_id: Optional[StrictStr] = None
+    fivefold_label: Optional[StrictStr] = None
     is_chidra: StrictBool
-    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "start_utc", "end_utc", "nature", "number", "name", "paksha", "fivefold", "is_chidra"]
+    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "start_utc", "end_utc", "nature", "number", "name", "id", "label", "paksha", "paksha_id", "paksha_label", "fivefold", "fivefold_id", "fivefold_label", "is_chidra"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -97,6 +103,36 @@ class DayTithi(BaseModel):
         if self.nature is None and "nature" in self.model_fields_set:
             _dict['nature'] = None
 
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
+        # set to None if paksha_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_id is None and "paksha_id" in self.model_fields_set:
+            _dict['paksha_id'] = None
+
+        # set to None if paksha_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_label is None and "paksha_label" in self.model_fields_set:
+            _dict['paksha_label'] = None
+
+        # set to None if fivefold_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.fivefold_id is None and "fivefold_id" in self.model_fields_set:
+            _dict['fivefold_id'] = None
+
+        # set to None if fivefold_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.fivefold_label is None and "fivefold_label" in self.model_fields_set:
+            _dict['fivefold_label'] = None
+
         return _dict
 
     @classmethod
@@ -119,8 +155,14 @@ class DayTithi(BaseModel):
             "nature": obj.get("nature"),
             "number": obj.get("number"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "paksha": obj.get("paksha"),
+            "paksha_id": obj.get("paksha_id"),
+            "paksha_label": obj.get("paksha_label"),
             "fivefold": obj.get("fivefold"),
+            "fivefold_id": obj.get("fivefold_id"),
+            "fivefold_label": obj.get("fivefold_label"),
             "is_chidra": obj.get("is_chidra")
         })
         return _obj

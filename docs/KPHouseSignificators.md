@@ -7,11 +7,23 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **house** | **int** |  | 
 **sign_lord** | **str** | Lord of the sign on the cusp (the house owner). | 
+**sign_lord_id** | **str** |  | [optional] 
+**sign_lord_label** | **str** |  | [optional] 
 **occupants** | **List[str]** | Planets in the house (cusp to cusp). | 
+**occupant_ids** | **List[str]** |  | [optional] 
+**occupant_labels** | **List[str]** |  | [optional] 
 **nak_of_occupants** | **List[str]** | Planets in the nakshatra (star) of an occupant. | 
+**nak_of_occupant_ids** | **List[str]** |  | [optional] 
+**nak_of_occupant_labels** | **List[str]** |  | [optional] 
 **nak_of_lord** | **List[str]** | Planets in the nakshatra of the cusp sign lord. | 
+**nak_of_lord_ids** | **List[str]** |  | [optional] 
+**nak_of_lord_labels** | **List[str]** |  | [optional] 
 **all_significators** | **List[str]** | Union in the original order: occupants, sign lord, star of occupants, star of sign lord. Not a ranking; see &#x60;strength_order&#x60;. | 
+**all_significator_ids** | **List[str]** |  | [optional] 
+**all_significator_labels** | **List[str]** |  | [optional] 
 **strength_order** | **List[str]** | The same planets ranked strongest first per Krishnamurti: planets in the star of occupants, occupants, planets in the star of the sign lord, the sign lord. Each planet appears once, at its strongest level. | 
+**strength_order_ids** | **List[str]** |  | [optional] 
+**strength_order_labels** | **List[str]** |  | [optional] 
 
 ## Example
 

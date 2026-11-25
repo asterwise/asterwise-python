@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,12 +31,18 @@ class PrashnaHouseAnalysis(BaseModel):
     house: StrictInt
     rashi_index: StrictInt = Field(description="Sign of the quesited house, counted whole sign from the lagna sign (0 = Mesha).")
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     lord: StrictStr = Field(description="Lord of the quesited house by whole sign (lord of its sign), as BPHS reads lordship.")
+    lord_id: Optional[StrictStr] = None
+    lord_label: Optional[StrictStr] = None
     lord_dignity: StrictStr
     lord_house: StrictInt
     lord_longitude: Union[StrictFloat, StrictInt]
     occupants: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["house", "rashi_index", "rashi", "lord", "lord_dignity", "lord_house", "lord_longitude", "occupants"]
+    occupant_ids: Optional[List[StrictStr]] = None
+    occupant_labels: Optional[List[StrictStr]] = None
+    __properties: ClassVar[List[str]] = ["house", "rashi_index", "rashi", "rashi_id", "rashi_label", "lord", "lord_id", "lord_label", "lord_dignity", "lord_house", "lord_longitude", "occupants", "occupant_ids", "occupant_labels"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,6 +83,36 @@ class PrashnaHouseAnalysis(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
+        # set to None if lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.lord_id is None and "lord_id" in self.model_fields_set:
+            _dict['lord_id'] = None
+
+        # set to None if lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.lord_label is None and "lord_label" in self.model_fields_set:
+            _dict['lord_label'] = None
+
+        # set to None if occupant_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.occupant_ids is None and "occupant_ids" in self.model_fields_set:
+            _dict['occupant_ids'] = None
+
+        # set to None if occupant_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.occupant_labels is None and "occupant_labels" in self.model_fields_set:
+            _dict['occupant_labels'] = None
+
         return _dict
 
     @classmethod
@@ -92,11 +128,17 @@ class PrashnaHouseAnalysis(BaseModel):
             "house": obj.get("house"),
             "rashi_index": obj.get("rashi_index"),
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "lord": obj.get("lord"),
+            "lord_id": obj.get("lord_id"),
+            "lord_label": obj.get("lord_label"),
             "lord_dignity": obj.get("lord_dignity"),
             "lord_house": obj.get("lord_house"),
             "lord_longitude": obj.get("lord_longitude"),
-            "occupants": obj.get("occupants")
+            "occupants": obj.get("occupants"),
+            "occupant_ids": obj.get("occupant_ids"),
+            "occupant_labels": obj.get("occupant_labels")
         })
         return _obj
 

@@ -34,10 +34,12 @@ class SadeSatiPhase(BaseModel):
     start: StrictStr = Field(description="Saturn's first entry into the phase sign.")
     end: StrictStr = Field(description="Saturn's final exit from the phase sign, after any retrograde return.")
     saturn_sign: StrictStr
+    saturn_sign_id: Optional[StrictStr] = None
+    saturn_sign_label: Optional[StrictStr] = None
     intensity: StrictStr
     segments: Optional[List[SaturnStay]] = Field(default=None, description="Every stay of Saturn in the phase sign; phases can interleave around a retrograde loop.")
     is_interrupted: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["name", "description", "start", "end", "saturn_sign", "intensity", "segments", "is_interrupted"]
+    __properties: ClassVar[List[str]] = ["name", "description", "start", "end", "saturn_sign", "saturn_sign_id", "saturn_sign_label", "intensity", "segments", "is_interrupted"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -85,6 +87,16 @@ class SadeSatiPhase(BaseModel):
                 if _item_segments:
                     _items.append(_item_segments.to_dict())
             _dict['segments'] = _items
+        # set to None if saturn_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.saturn_sign_id is None and "saturn_sign_id" in self.model_fields_set:
+            _dict['saturn_sign_id'] = None
+
+        # set to None if saturn_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.saturn_sign_label is None and "saturn_sign_label" in self.model_fields_set:
+            _dict['saturn_sign_label'] = None
+
         # set to None if is_interrupted (nullable) is None
         # and model_fields_set contains the field
         if self.is_interrupted is None and "is_interrupted" in self.model_fields_set:
@@ -107,6 +119,8 @@ class SadeSatiPhase(BaseModel):
             "start": obj.get("start"),
             "end": obj.get("end"),
             "saturn_sign": obj.get("saturn_sign"),
+            "saturn_sign_id": obj.get("saturn_sign_id"),
+            "saturn_sign_label": obj.get("saturn_sign_label"),
             "intensity": obj.get("intensity"),
             "segments": [SaturnStay.from_dict(_item) for _item in obj["segments"]] if obj.get("segments") is not None else None,
             "is_interrupted": obj.get("is_interrupted")

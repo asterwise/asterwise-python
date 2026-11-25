@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **house** | **int** |  | 
 **id** | **str** |  | 
 **name** | **str** |  | 
+**name_id** | **str** |  | [optional] 
+**name_label** | **str** |  | [optional] 
 **label** | **str** |  | 
 **source** | **str** |  | 
 **significations** | [**List[Signification]**](Signification.md) |  | 

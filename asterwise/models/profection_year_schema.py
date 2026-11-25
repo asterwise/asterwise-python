@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,9 +34,13 @@ class ProfectionYearSchema(BaseModel):
     year_end: StrictStr = Field(description="Next birthday (exclusive).")
     profected_house: Annotated[int, Field(le=12, strict=True, ge=1)] = Field(description="Whole-sign house activated this year, counted from the Ascendant.")
     profected_sign: StrictStr
+    profected_sign_id: Optional[StrictStr] = None
+    profected_sign_label: Optional[StrictStr] = None
     profected_sign_index: Annotated[int, Field(le=11, strict=True, ge=0)]
     year_lord: StrictStr = Field(description="Traditional ruler of the profected sign (lord of the year).")
-    __properties: ClassVar[List[str]] = ["age", "year_start", "year_end", "profected_house", "profected_sign", "profected_sign_index", "year_lord"]
+    year_lord_id: Optional[StrictStr] = None
+    year_lord_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["age", "year_start", "year_end", "profected_house", "profected_sign", "profected_sign_id", "profected_sign_label", "profected_sign_index", "year_lord", "year_lord_id", "year_lord_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,6 +81,26 @@ class ProfectionYearSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if profected_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.profected_sign_id is None and "profected_sign_id" in self.model_fields_set:
+            _dict['profected_sign_id'] = None
+
+        # set to None if profected_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.profected_sign_label is None and "profected_sign_label" in self.model_fields_set:
+            _dict['profected_sign_label'] = None
+
+        # set to None if year_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.year_lord_id is None and "year_lord_id" in self.model_fields_set:
+            _dict['year_lord_id'] = None
+
+        # set to None if year_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.year_lord_label is None and "year_lord_label" in self.model_fields_set:
+            _dict['year_lord_label'] = None
+
         return _dict
 
     @classmethod
@@ -94,8 +118,12 @@ class ProfectionYearSchema(BaseModel):
             "year_end": obj.get("year_end"),
             "profected_house": obj.get("profected_house"),
             "profected_sign": obj.get("profected_sign"),
+            "profected_sign_id": obj.get("profected_sign_id"),
+            "profected_sign_label": obj.get("profected_sign_label"),
             "profected_sign_index": obj.get("profected_sign_index"),
-            "year_lord": obj.get("year_lord")
+            "year_lord": obj.get("year_lord"),
+            "year_lord_id": obj.get("year_lord_id"),
+            "year_lord_label": obj.get("year_lord_label")
         })
         return _obj
 

@@ -32,22 +32,28 @@ class ProfectionsResponse(BaseModel):
     """
     ProfectionsResponse
     """ # noqa: E501
-    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Always true: this endpoint requires the birth time and has no sunrise fallback, so house, Ascendant and Moon-dependent results use the time you sent.")
     target_date: StrictStr
     age: StrictInt = Field(description="Completed years of life on target_date.")
     year_start: StrictStr
     year_end: StrictStr
     ascendant_sign: StrictStr
+    ascendant_sign_id: Optional[StrictStr] = None
+    ascendant_sign_label: Optional[StrictStr] = None
     ascendant_sign_index: StrictInt
     profected_house: Annotated[int, Field(le=12, strict=True, ge=1)]
     profected_sign: StrictStr
+    profected_sign_id: Optional[StrictStr] = None
+    profected_sign_label: Optional[StrictStr] = None
     profected_sign_index: StrictInt
     year_lord: StrictStr = Field(description="Lord of the year: traditional ruler of the profected sign (Ptolemy, Tetrabiblos I.17).")
+    year_lord_id: Optional[StrictStr] = None
+    year_lord_label: Optional[StrictStr] = None
     year_lord_natal: Optional[YearLordNatalSchema] = None
     natal_planets_in_profected_sign: List[ProfectedSignPlanetSchema]
     upcoming_years: List[ProfectionYearSchema] = Field(description="This year and the next eleven.")
     house_system_note: StrictStr
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_date", "age", "year_start", "year_end", "ascendant_sign", "ascendant_sign_index", "profected_house", "profected_sign", "profected_sign_index", "year_lord", "year_lord_natal", "natal_planets_in_profected_sign", "upcoming_years", "house_system_note"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_date", "age", "year_start", "year_end", "ascendant_sign", "ascendant_sign_id", "ascendant_sign_label", "ascendant_sign_index", "profected_house", "profected_sign", "profected_sign_id", "profected_sign_label", "profected_sign_index", "year_lord", "year_lord_id", "year_lord_label", "year_lord_natal", "natal_planets_in_profected_sign", "upcoming_years", "house_system_note"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -105,6 +111,36 @@ class ProfectionsResponse(BaseModel):
                 if _item_upcoming_years:
                     _items.append(_item_upcoming_years.to_dict())
             _dict['upcoming_years'] = _items
+        # set to None if ascendant_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_sign_id is None and "ascendant_sign_id" in self.model_fields_set:
+            _dict['ascendant_sign_id'] = None
+
+        # set to None if ascendant_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_sign_label is None and "ascendant_sign_label" in self.model_fields_set:
+            _dict['ascendant_sign_label'] = None
+
+        # set to None if profected_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.profected_sign_id is None and "profected_sign_id" in self.model_fields_set:
+            _dict['profected_sign_id'] = None
+
+        # set to None if profected_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.profected_sign_label is None and "profected_sign_label" in self.model_fields_set:
+            _dict['profected_sign_label'] = None
+
+        # set to None if year_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.year_lord_id is None and "year_lord_id" in self.model_fields_set:
+            _dict['year_lord_id'] = None
+
+        # set to None if year_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.year_lord_label is None and "year_lord_label" in self.model_fields_set:
+            _dict['year_lord_label'] = None
+
         # set to None if year_lord_natal (nullable) is None
         # and model_fields_set contains the field
         if self.year_lord_natal is None and "year_lord_natal" in self.model_fields_set:
@@ -128,11 +164,17 @@ class ProfectionsResponse(BaseModel):
             "year_start": obj.get("year_start"),
             "year_end": obj.get("year_end"),
             "ascendant_sign": obj.get("ascendant_sign"),
+            "ascendant_sign_id": obj.get("ascendant_sign_id"),
+            "ascendant_sign_label": obj.get("ascendant_sign_label"),
             "ascendant_sign_index": obj.get("ascendant_sign_index"),
             "profected_house": obj.get("profected_house"),
             "profected_sign": obj.get("profected_sign"),
+            "profected_sign_id": obj.get("profected_sign_id"),
+            "profected_sign_label": obj.get("profected_sign_label"),
             "profected_sign_index": obj.get("profected_sign_index"),
             "year_lord": obj.get("year_lord"),
+            "year_lord_id": obj.get("year_lord_id"),
+            "year_lord_label": obj.get("year_lord_label"),
             "year_lord_natal": YearLordNatalSchema.from_dict(obj["year_lord_natal"]) if obj.get("year_lord_natal") is not None else None,
             "natal_planets_in_profected_sign": [ProfectedSignPlanetSchema.from_dict(_item) for _item in obj["natal_planets_in_profected_sign"]] if obj.get("natal_planets_in_profected_sign") is not None else None,
             "upcoming_years": [ProfectionYearSchema.from_dict(_item) for _item in obj["upcoming_years"]] if obj.get("upcoming_years") is not None else None,

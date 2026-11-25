@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **day** | **str** |  | 
+**day_id** | **str** |  | [optional] 
+**day_label** | **str** |  | [optional] 
 **description** | **str** |  | 
 
 ## Example

@@ -12,8 +12,12 @@ Name | Type | Description | Notes
 **max_score** | **float** |  | 
 **percentage** | **float** |  | 
 **compatibility_level** | **str** |  | 
-**breakdown** | **Dict[str, float]** |  | 
-**max_per_koota** | **Dict[str, float]** |  | 
+**compatibility_level_id** | **str** |  | [optional] 
+**compatibility_level_label** | **str** |  | [optional] 
+**breakdown** | **Dict[str, float]** | Deprecated, removed on 2026-12-21: points per koota keyed by the old names (Dina, Gana, Mahendra, StreeDeergha, Yoni, Rasi, RasiAdhipati, Vashya, Rajju, Vedha). Use kootas. | 
+**max_per_koota** | **Dict[str, float]** | Deprecated, removed on 2026-12-21: maximum points per koota keyed by the old names. Use koota_max. | 
+**kootas** | **Dict[str, float]** | Points per koota, keyed by fixed id: dina, gana, mahendra, stree_deergha, yoni, rasi, rasi_adhipati, vashya, rajju, vedha. | [optional] 
+**koota_max** | **Dict[str, float]** | Maximum points per koota, keyed like kootas. | [optional] 
 **doshas** | [**DashakootDoshas**](DashakootDoshas.md) |  | 
 **supplementary** | **Dict[str, object]** |  | 
 

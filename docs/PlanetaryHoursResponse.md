@@ -9,7 +9,11 @@ Name | Type | Description | Notes
 **status_detail** | **str** |  | [optional] 
 **var_date** | **str** |  | 
 **weekday** | **str** |  | [optional] 
+**weekday_id** | **str** |  | [optional] 
+**weekday_label** | **str** |  | [optional] 
 **day_ruler** | **str** |  | [optional] 
+**day_ruler_id** | **str** |  | [optional] 
+**day_ruler_label** | **str** |  | [optional] 
 **convention** | **str** |  | [optional] 
 **sunrise_local** | **str** |  | [optional] 
 **sunset_local** | **str** |  | [optional] 

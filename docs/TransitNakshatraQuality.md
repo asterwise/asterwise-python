@@ -6,7 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **nakshatra** | **str** |  | 
+**nakshatra_id** | **str** |  | [optional] 
+**nakshatra_label** | **str** |  | [optional] 
 **quality_type** | **str** |  | 
+**quality_type_id** | **str** |  | [optional] 
+**quality_type_label** | **str** |  | [optional] 
 **english** | **str** |  | 
 **auspicious_for** | **List[str]** |  | 
 **inauspicious_for** | **List[str]** |  | 

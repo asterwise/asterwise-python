@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Nakshatra name. | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **index** | **int** | Zero-based nakshatra index, 0 to 26. | 
 **pada** | **int** | Pada number, 1 to 4. | 
 **end_time** | **str** |  | [optional] 

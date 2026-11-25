@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,9 +30,11 @@ class MasaName(BaseModel):
     """ # noqa: E501
     index: StrictInt = Field(description="1 = Chaitra ... 12 = Phalguna.")
     name: StrictStr
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     display_name: StrictStr = Field(description="Name with 'Adhik' prefix for an intercalary month.")
     is_adhik: StrictBool
-    __properties: ClassVar[List[str]] = ["index", "name", "display_name", "is_adhik"]
+    __properties: ClassVar[List[str]] = ["index", "name", "id", "label", "display_name", "is_adhik"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +75,16 @@ class MasaName(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         return _dict
 
     @classmethod
@@ -87,6 +99,8 @@ class MasaName(BaseModel):
         _obj = cls.model_validate({
             "index": obj.get("index"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "display_name": obj.get("display_name"),
             "is_adhik": obj.get("is_adhik")
         })

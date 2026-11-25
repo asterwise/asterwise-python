@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **natal_point** | **str** | Natal planet, Ascendant or MC. | 
+**natal_point_id** | **str** |  | [optional] 
+**natal_point_label** | **str** |  | [optional] 
 **natal_longitude** | **float** |  | 
 **aspect** | **str** | How the eclipse degree meets the natal point: same degree (conjunction) or opposite (opposition). | 
 **orb** | **float** | Distance from exact, in degrees (0–3). | 

@@ -6,18 +6,11 @@ The endpoint response payload
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**birth_date** | **str** |  | 
-**target_date** | **str** |  | 
-**days_since_birth** | **int** |  | 
-**cycles** | [**Dict[str, BiorhythmCycleDetail]**](BiorhythmCycleDetail.md) |  | 
-**critical_today** | **List[str]** |  | 
-**has_critical_day** | **bool** |  | 
-**composite_score** | **float** |  | 
-**note** | **str** |  | 
-**start_date** | **str** |  | 
-**end_date** | **str** |  | 
-**days** | **int** |  | 
-**daily** | [**List[BiorhythmDailyEntry]**](BiorhythmDailyEntry.md) |  | 
+**periods** | [**AshtottariResponse**](AshtottariResponse.md) |  | 
+**niyama** | [**AshtottariNiyama**](AshtottariNiyama.md) |  | 
+**birth_time_provided** | **bool** | Whether a precise birth time was provided (see the applicable answer). | [optional] [default to True]
+**applicable** | **bool** | False when Ashtottari Dasha does not apply to this chart | [optional] [default to False]
+**reason** | **str** | Explanation of why the system does not apply | [optional] [default to 'Ashtottari Dasha applies only when Rahu is in a Kendra (1, 4, 7, 10) or Trikona (1, 5, 9) counted from the sign of the Lagna lord, and Rahu is not in the Lagna itself (BPHS Ch.46 v.17)']
 
 ## Example
 

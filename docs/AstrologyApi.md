@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 Jaimini Char Dasha
 
-Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Method: K.N. Rao, as in his own dated case notes. The sequence runs forward when the 9th sign from the Lagna is savya (Aries, Taurus, Gemini, Libra, Scorpio, Sagittarius) and backward otherwise; period years count to the sign lord (savya forward, apasavya backward) minus one, 12 for the lord in its own rashi, with no year added or taken off for an exalted or debilitated lord (some software adds or subtracts one). Scorpio and Aquarius count to the co-lord outside the sign, or with both outside to the one with more planets, then the one further advanced. With `cycles` 2 or 3, every cycle repeats the first cycle's years. Antardashas are 12 equal parts (each as many months as the mahadasha has years); K.N. Rao: they run forward or backward by the 9th sign from the mahadasha sign (the same rule the Lagna uses), starting from the next sign, and the mahadasha sign's own antardasha comes last. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+Computes Jaimini Char Dasha — a sign-based dasha system from the Jaimini school of astrology. Returns mahadasha and antardasha periods starting from the ascendant (Lagna), with the current active mahadasha and antardasha highlighted. Method: K.N. Rao, as in his own dated case notes. The sequence runs forward when the 9th sign from the Lagna is savya (Aries, Taurus, Gemini, Libra, Scorpio, Sagittarius) and backward otherwise; period years count to the sign lord (savya forward, apasavya backward) minus one, 12 for the lord in its own rashi, with no year added or taken off for an exalted or debilitated lord (some software adds or subtracts one). Scorpio and Aquarius count to the co-lord outside the sign, or with both outside to the one with more planets, then the one further advanced. With `cycles` 2 or 3, every cycle repeats the first cycle's years. Antardashas are 12 equal parts (each as many months as the mahadasha has years); K.N. Rao: they run forward or backward by the 9th sign from the mahadasha sign (the same rule the Lagna uses), starting from the next sign, and the mahadasha sign's own antardasha comes last. A year is 365.2425 days counted from the birth moment (the dates in K.N. Rao's case notes), so periods start within a day of the birthday. Request JSON follows BirthInput plus `cycles` (1–3): `name`, `date` (YYYY-MM-DD), `time` (HH:MM, required), either `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
 ### Example
 
@@ -602,7 +602,7 @@ Name | Type | Description  | Notes
 
 Calculate dosha report
 
-Detect the Vedic doshas in a natal chart, with cancellations. Covered: Mangal, Kaal Sarp (with its named type), Kala Amrita, Gandmool, Grahan, Guru Chandal, Kemadruma, Shrapit, Shani, Paap Kartari, Pitru and Gulika. A conjunction is the same sign; no degree orb decides a dosha. Aspects are full Parashari graha drishti counted from the aspecting planet's sign (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu 7); house lords are whole sign from the lagna. Mangal Dosha is checked from the Lagna, Moon and Venus: `present` is after cancellation, `details.present_by_placement` is Mars's placement alone, and `details.cancellations` lists only real cancellations. Kemadruma follows BPHS 37.11 (`details.formed`, then cancellations). Pitru Dosha is present only when a BPHS 83.20–83.30 father's-curse combination forms; general Sun / 9th-lord conditions are listed as `details.indicators`. Gulika follows BPHS 3.66–67 for day and night births. With an unknown birth time, buckets that depend on the Lagna carry `needs_birth_time: true`.
+Detect the Vedic doshas in a natal chart, with cancellations. Covered: Mangal, Kaal Sarp (with its named type), Kaal Amrit, Gandmool, Grahan, Guru Chandal, Kemadruma, Shrapit, Shani, Paap Kartari, Pitru and Gulika. A conjunction is the same sign; no degree orb decides a dosha. Aspects are full Parashari graha drishti counted from the aspecting planet's sign (Mars 4/7/8, Jupiter 5/7/9, Saturn 3/7/10, Rahu 7); house lords are whole sign from the lagna. Mangal Dosha is checked from the Lagna, Moon and Venus: `present` is after cancellation, `details.present_by_placement` is Mars's placement alone, and `details.cancellations` lists only real cancellations. Kemadruma follows BPHS 37.11 (`details.formed`, then cancellations). Pitru Dosha is present only when a BPHS 83.20–83.30 father's-curse combination forms; general Sun / 9th-lord conditions are listed as `details.indicators`. Gulika follows BPHS 3.66–67 for day and night births. With an unknown birth time, buckets that depend on the Lagna carry `needs_birth_time: true`.
 
 ### Example
 
@@ -690,7 +690,7 @@ Name | Type | Description  | Notes
 
 Gemstone Recommendations
 
-Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord (always a functional benefic). Further slots: Yogakaraka, 5th lord, 9th lord, and Atmakaraka. `secondary` is the first of those that is not the lagna lord's and not contraindicated. Returns contraindicated gemstones: dusthana (6/8/12) lords that own no trikona, debilitated planets, and combust planets — the same rule as POST /v1/crystals/recommend/natal. A slot whose planet is contraindicated carries `contraindicated: true` and a `caution`; it is never a silent recommendation. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
+Recommends gemstones based on the natal chart. Primary gemstone strengthens the Lagna lord (always a functional benefic). Further slots: Yogakaraka, 5th lord, 9th lord, and Atmakaraka. `secondary` is the first of those that is not the lagna lord's and not contraindicated. Returns contraindicated gemstones: dusthana (6/8/12) and 3rd/11th lords that own no trikona (Laghu Parashari sl. 6), debilitated planets, and combust planets — the same rule as POST /v1/crystals/recommend/natal. A slot whose planet is contraindicated carries `contraindicated: true` and a `caution`; it is never a silent recommendation. Request JSON follows BirthInput: `name`, `date`, `time`, `location` or `latitude`/`longitude`/`timezone`, `ayanamsa`.
 
 ### Example
 
@@ -1218,7 +1218,7 @@ Name | Type | Description  | Notes
 
 Papasamyam — Malefic Planet Compatibility
 
-Computes Papasamyam, the malefic-planet compatibility check, between two natal charts. Scores each person based on Sun, Mars, Saturn, Rahu, Ketu in houses 1, 2, 4, 7, 8, 12 from Lagna, Moon, and Venus (#105). Compatible if score difference ≤ 11. person1 = groom, person2 = bride.
+Computes Papasamyam, the malefic-planet compatibility check, between two natal charts. Scores each person based on Sun, Mars, Saturn, Rahu, Ketu in houses 1, 2, 4, 7, 8, 12 from Lagna, Moon, and Venus. Compatible when the bride's total is not above the groom's (threshold 0). person1 = groom, person2 = bride.
 
 ### Example
 
@@ -1657,7 +1657,7 @@ Name | Type | Description  | Notes
 
 Personal Nakshatra Prediction (Tarabala)
 
-Returns a personalised daily prediction using Tarabala and Chandrabala for the day at the birth place (sunrise to next sunrise). The top-level tara is the one at sunrise; transit_nakshatras lists every nakshatra the Moon passes through that day with its tara. The tara names the round of nine: the first tara is Janma at count 1 (Moon in the birth nakshatra), Anujanma at 10 and Trijanma at 19. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Ati-Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/ Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today.
+Returns a personalised daily prediction using Tarabala and Chandrabala for the day at the birth place (sunrise to next sunrise). The top-level tara is the one at sunrise; transit_nakshatras lists every nakshatra the Moon passes through that day with its tara. The tara names the round of nine: the first tara is Janma at count 1 (Moon in the birth nakshatra), Anujanma at 10 and Trijanma at 19. Tarabala measures the auspiciousness of the current day for an individual by assessing the relationship between their natal Moon nakshatra and the daily transit Moon nakshatra. Nine Taras from Janma (birth) to Parama Mitra (great friend). Chandrabala measures the transit Moon's house from natal Moon. Also returns the transit nakshatra's quality type (Dhruva/Chara/Ugra/Tikshna/Kshipra/Mridu/Mishra) with auspicious and inauspicious activities for today.
 
 ### Example
 
@@ -3265,7 +3265,7 @@ Name | Type | Description  | Notes
 
 Varshaphal — Tajika Saham Points
 
-Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + C, plus 30° when C is not on the arc from B forward to A (Tajika Neelakanthi). C is the Varsha ascendant except for Mitra (Venus) and Santapa (the 6th house, ascendant + 150°). For a night return A and B swap, except Vyapara. Day formulas: Punya Moon-Sun, Vidya Sun-Moon, Yashas Jupiter-Punya, Mitra Jupiter-Punya+Venus, Mahatmya Punya-Mars, Asha Saturn-Mars, Karmakarya Mars-Mercury, Vyapara Mars-Saturn, Vivaha Venus-Saturn, Santapa Saturn-Moon+6th house. Yashas, Mitra and Mahatmya use Punya Saham as an operand — computed first.
+Computes all 10 Tajika Saham (sensitive points) for a Varshaphal chart. Sahams are the Tajika equivalent of Arabic Parts — mathematically derived points that focus on specific life themes for the year. Formula: A - B + C, plus 30° when C is not on the arc from B forward to A (Tajika Neelakanthi; the test is by longitude). C is the Varsha ascendant except for Mitra (Venus) and Santapa (the Sripati 6th house cusp). For a night return A and B swap, except Vyapara, Vivaha and Santapa. Day formulas: Punya Moon-Sun, Vidya Sun-Moon, Yashas Jupiter-Punya, Mitra Vidya-Punya+Venus, Mahatmya Punya-Mars, Asha Saturn-Venus, Karmakarya Mars-Mercury, Vyapara Mars-Mercury, Vivaha Venus-Saturn, Santapa Saturn-Moon+6th house. Yashas, Mitra and Mahatmya use Punya (and Mitra Vidya) Saham as an operand — computed first.
 
 ### Example
 

@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet** | **str** |  | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **house** | **int** |  | 
 
 ## Example

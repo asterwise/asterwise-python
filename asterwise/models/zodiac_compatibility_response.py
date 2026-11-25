@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,7 +29,11 @@ class ZodiacCompatibilityResponse(BaseModel):
     ZodiacCompatibilityResponse
     """ # noqa: E501
     sign1: StrictStr
+    sign1_id: Optional[StrictStr] = None
+    sign1_label: Optional[StrictStr] = None
     sign2: StrictStr
+    sign2_id: Optional[StrictStr] = None
+    sign2_label: Optional[StrictStr] = None
     element1: StrictStr
     element2: StrictStr
     modality1: StrictStr
@@ -38,7 +42,7 @@ class ZodiacCompatibilityResponse(BaseModel):
     modality_affinity: StrictStr = Field(description="harmonious | neutral | challenging. From an Asterwise heuristic score (cardinal–mutable 75, fixed–mutable 70, mutable–mutable 65, cardinal–cardinal and fixed–fixed 55, cardinal–fixed 50; harmonious ≥ 78, neutral ≥ 55).")
     overall_score: StrictInt = Field(description="Mean of the element and modality heuristic scores (0–100)")
     description: StrictStr
-    __properties: ClassVar[List[str]] = ["sign1", "sign2", "element1", "element2", "modality1", "modality2", "element_affinity", "modality_affinity", "overall_score", "description"]
+    __properties: ClassVar[List[str]] = ["sign1", "sign1_id", "sign1_label", "sign2", "sign2_id", "sign2_label", "element1", "element2", "modality1", "modality2", "element_affinity", "modality_affinity", "overall_score", "description"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,6 +83,26 @@ class ZodiacCompatibilityResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if sign1_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign1_id is None and "sign1_id" in self.model_fields_set:
+            _dict['sign1_id'] = None
+
+        # set to None if sign1_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign1_label is None and "sign1_label" in self.model_fields_set:
+            _dict['sign1_label'] = None
+
+        # set to None if sign2_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign2_id is None and "sign2_id" in self.model_fields_set:
+            _dict['sign2_id'] = None
+
+        # set to None if sign2_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign2_label is None and "sign2_label" in self.model_fields_set:
+            _dict['sign2_label'] = None
+
         return _dict
 
     @classmethod
@@ -92,7 +116,11 @@ class ZodiacCompatibilityResponse(BaseModel):
 
         _obj = cls.model_validate({
             "sign1": obj.get("sign1"),
+            "sign1_id": obj.get("sign1_id"),
+            "sign1_label": obj.get("sign1_label"),
             "sign2": obj.get("sign2"),
+            "sign2_id": obj.get("sign2_id"),
+            "sign2_label": obj.get("sign2_label"),
             "element1": obj.get("element1"),
             "element2": obj.get("element2"),
             "modality1": obj.get("modality1"),

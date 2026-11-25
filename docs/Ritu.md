@@ -6,8 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **vedic** | **str** | Season from the lunar month. | 
+**vedic_id** | **str** |  | [optional] 
+**vedic_label** | **str** |  | [optional] 
 **vedic_english** | **str** |  | 
 **drik** | **str** | Season from the tropical Sun. | 
+**drik_id** | **str** |  | [optional] 
+**drik_label** | **str** |  | [optional] 
 **drik_english** | **str** |  | 
 
 ## Example

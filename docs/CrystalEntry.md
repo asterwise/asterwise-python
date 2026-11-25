@@ -5,22 +5,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**label** | **str** |  | [optional] 
 **slug** | **str** | URL-safe identifier, e.g. &#39;amethyst&#39;, &#39;blue-sapphire&#39;. | 
 **name** | **str** | Display name of the crystal. | 
 **colors** | **List[str]** | Primary colours of this crystal. | 
 **hardness_mohs** | **float** | Hardness on the Mohs scale (1-10). | 
 **chakras** | **List[str]** | Associated chakras. | 
+**chakra_ids** | **List[str]** |  | [optional] 
+**chakra_labels** | **List[str]** |  | [optional] 
 **element** | **str** | Classical element: Earth, Water, Fire, Air, or All. | 
+**element_id** | **str** |  | [optional] 
+**element_label** | **str** |  | [optional] 
 **zodiac_signs** | **List[str]** | Associated Western zodiac signs. | 
+**zodiac_sign_ids** | **List[str]** |  | [optional] 
+**zodiac_sign_labels** | **List[str]** |  | [optional] 
 **vedic_planet** | **str** |  | [optional] 
+**vedic_planet_id** | **str** |  | [optional] 
+**vedic_planet_label** | **str** |  | [optional] 
 **vedic_correspondence** | **str** | &#39;navaratna&#39; (primary classical gem, Phaladeepika table), &#39;uparatna&#39; (substitute gem — includes common modern substitutes such as Tiger&#39;s Eye for Ketu; the description says when a substitute is not classical), or &#39;none_classical&#39; (no Vedic gem use). | 
 **western_planet** | **str** |  | [optional] 
+**western_planet_id** | **str** |  | [optional] 
+**western_planet_label** | **str** |  | [optional] 
 **keywords** | **List[str]** | Primary energy keywords. | 
 **healing_physical** | **str** | Physical healing properties. | 
 **healing_emotional** | **str** | Emotional healing properties. | 
 **healing_spiritual** | **str** | Spiritual healing properties. | 
 **description** | **str** | Overview description. | 
-**origins** | **List[str]** | Primary geographic origins. | 
+**origins** | **List[str]** | Deprecated, removed on 2026-12-21: places the stone is said to be mined. It has no source and is not translated; do not rely on it. | 
 **affirmation** | **str** | Affirmation for working with this crystal. | 
 **caution** | **str** |  | [optional] 
 

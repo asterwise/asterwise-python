@@ -29,7 +29,11 @@ class YoginiPeriod(BaseModel):
     YoginiPeriod
     """ # noqa: E501
     yogini: StrictStr = Field(description="Name of the Yogini ruling this period, e.g. Mangala, Pingala, Dhanya")
+    yogini_id: Optional[StrictStr] = None
+    yogini_label: Optional[StrictStr] = None
     planet: StrictStr = Field(description="Planetary lord of this Yogini")
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     start_jd: Union[StrictFloat, StrictInt] = Field(description="Start of period as Julian Day number")
     end_jd: Union[StrictFloat, StrictInt] = Field(description="End of period as Julian Day number")
     start_date: StrictStr = Field(description="Start date in DD/MM/YYYY format")
@@ -37,7 +41,7 @@ class YoginiPeriod(BaseModel):
     sub: Optional[List[Any]] = None
     dasha_start_date: Optional[StrictStr] = None
     balance_years: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties: ClassVar[List[str]] = ["yogini", "planet", "start_jd", "end_jd", "start_date", "end_date", "sub", "dasha_start_date", "balance_years"]
+    __properties: ClassVar[List[str]] = ["yogini", "yogini_id", "yogini_label", "planet", "planet_id", "planet_label", "start_jd", "end_jd", "start_date", "end_date", "sub", "dasha_start_date", "balance_years"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +82,26 @@ class YoginiPeriod(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if yogini_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.yogini_id is None and "yogini_id" in self.model_fields_set:
+            _dict['yogini_id'] = None
+
+        # set to None if yogini_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.yogini_label is None and "yogini_label" in self.model_fields_set:
+            _dict['yogini_label'] = None
+
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         # set to None if sub (nullable) is None
         # and model_fields_set contains the field
         if self.sub is None and "sub" in self.model_fields_set:
@@ -106,7 +130,11 @@ class YoginiPeriod(BaseModel):
 
         _obj = cls.model_validate({
             "yogini": obj.get("yogini"),
+            "yogini_id": obj.get("yogini_id"),
+            "yogini_label": obj.get("yogini_label"),
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "start_jd": obj.get("start_jd"),
             "end_jd": obj.get("end_jd"),
             "start_date": obj.get("start_date"),

@@ -29,9 +29,13 @@ class CalendarVara(BaseModel):
     CalendarVara
     """ # noqa: E501
     name: StrictStr = Field(description="Weekday name in Sanskrit.")
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     number: StrictInt = Field(description="Weekday number, 1 to 7.")
     lord: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["name", "number", "lord"]
+    lord_id: Optional[StrictStr] = None
+    lord_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["name", "id", "label", "number", "lord", "lord_id", "lord_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -72,10 +76,30 @@ class CalendarVara(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         # set to None if lord (nullable) is None
         # and model_fields_set contains the field
         if self.lord is None and "lord" in self.model_fields_set:
             _dict['lord'] = None
+
+        # set to None if lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.lord_id is None and "lord_id" in self.model_fields_set:
+            _dict['lord_id'] = None
+
+        # set to None if lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.lord_label is None and "lord_label" in self.model_fields_set:
+            _dict['lord_label'] = None
 
         return _dict
 
@@ -90,8 +114,12 @@ class CalendarVara(BaseModel):
 
         _obj = cls.model_validate({
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "number": obj.get("number"),
-            "lord": obj.get("lord")
+            "lord": obj.get("lord"),
+            "lord_id": obj.get("lord_id"),
+            "lord_label": obj.get("lord_label")
         })
         return _obj
 

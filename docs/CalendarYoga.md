@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Yoga name. | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **index** | **int** | Zero-based yoga index, 0 to 26. | 
 **is_inauspicious** | **bool** | True if this yoga is inauspicious. | 
 **end_time** | **str** |  | [optional] 

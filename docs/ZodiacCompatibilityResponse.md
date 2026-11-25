@@ -6,7 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sign1** | **str** |  | 
+**sign1_id** | **str** |  | [optional] 
+**sign1_label** | **str** |  | [optional] 
 **sign2** | **str** |  | 
+**sign2_id** | **str** |  | [optional] 
+**sign2_label** | **str** |  | [optional] 
 **element1** | **str** |  | 
 **element2** | **str** |  | 
 **modality1** | **str** |  | 

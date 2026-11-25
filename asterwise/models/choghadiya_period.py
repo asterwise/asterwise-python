@@ -30,8 +30,14 @@ class ChoghadiyaPeriod(BaseModel):
     """ # noqa: E501
     period: StrictInt = Field(description="Period number, 1 to 8.")
     name: StrictStr = Field(description="Choghadiya name, e.g. Amrit, Shubh, Kaal.")
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     type: StrictStr = Field(description="Classification: highly auspicious, auspicious, or inauspicious.")
+    type_id: Optional[StrictStr] = None
+    type_label: Optional[StrictStr] = None
     ruling_planet: StrictStr = Field(description="Planet ruling this Choghadiya period.")
+    ruling_planet_id: Optional[StrictStr] = None
+    ruling_planet_label: Optional[StrictStr] = None
     suitable_for: StrictStr = Field(description="Activities suited to this period.")
     start: StrictStr = Field(description="Period start time in HH:MM local time.")
     start_at: Optional[StrictStr] = None
@@ -41,7 +47,9 @@ class ChoghadiyaPeriod(BaseModel):
     end_utc: Optional[StrictStr] = None
     is_current: StrictBool = Field(description="True if this period is currently active.")
     vela: Optional[List[StrictStr]] = Field(default=None, description="Barred ardha-prahara labels on this slot: 'Vaar Vela' (day and night), 'Kaal Vela' (day, Saturn's eighth) or 'Kaal Ratri' (night, Saturn's eighth). Avoid auspicious work in these. Empty when none.")
-    __properties: ClassVar[List[str]] = ["period", "name", "type", "ruling_planet", "suitable_for", "start", "start_at", "start_utc", "end", "end_at", "end_utc", "is_current", "vela"]
+    vela_ids: Optional[List[StrictStr]] = None
+    vela_labels: Optional[List[StrictStr]] = None
+    __properties: ClassVar[List[str]] = ["period", "name", "id", "label", "type", "type_id", "type_label", "ruling_planet", "ruling_planet_id", "ruling_planet_label", "suitable_for", "start", "start_at", "start_utc", "end", "end_at", "end_utc", "is_current", "vela", "vela_ids", "vela_labels"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,6 +90,36 @@ class ChoghadiyaPeriod(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
+        # set to None if type_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.type_id is None and "type_id" in self.model_fields_set:
+            _dict['type_id'] = None
+
+        # set to None if type_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.type_label is None and "type_label" in self.model_fields_set:
+            _dict['type_label'] = None
+
+        # set to None if ruling_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.ruling_planet_id is None and "ruling_planet_id" in self.model_fields_set:
+            _dict['ruling_planet_id'] = None
+
+        # set to None if ruling_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.ruling_planet_label is None and "ruling_planet_label" in self.model_fields_set:
+            _dict['ruling_planet_label'] = None
+
         # set to None if start_at (nullable) is None
         # and model_fields_set contains the field
         if self.start_at is None and "start_at" in self.model_fields_set:
@@ -102,6 +140,16 @@ class ChoghadiyaPeriod(BaseModel):
         if self.end_utc is None and "end_utc" in self.model_fields_set:
             _dict['end_utc'] = None
 
+        # set to None if vela_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.vela_ids is None and "vela_ids" in self.model_fields_set:
+            _dict['vela_ids'] = None
+
+        # set to None if vela_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.vela_labels is None and "vela_labels" in self.model_fields_set:
+            _dict['vela_labels'] = None
+
         return _dict
 
     @classmethod
@@ -116,8 +164,14 @@ class ChoghadiyaPeriod(BaseModel):
         _obj = cls.model_validate({
             "period": obj.get("period"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "type": obj.get("type"),
+            "type_id": obj.get("type_id"),
+            "type_label": obj.get("type_label"),
             "ruling_planet": obj.get("ruling_planet"),
+            "ruling_planet_id": obj.get("ruling_planet_id"),
+            "ruling_planet_label": obj.get("ruling_planet_label"),
             "suitable_for": obj.get("suitable_for"),
             "start": obj.get("start"),
             "start_at": obj.get("start_at"),
@@ -126,7 +180,9 @@ class ChoghadiyaPeriod(BaseModel):
             "end_at": obj.get("end_at"),
             "end_utc": obj.get("end_utc"),
             "is_current": obj.get("is_current"),
-            "vela": obj.get("vela")
+            "vela": obj.get("vela"),
+            "vela_ids": obj.get("vela_ids"),
+            "vela_labels": obj.get("vela_labels")
         })
         return _obj
 

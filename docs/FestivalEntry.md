@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**label** | **str** |  | [optional] 
 **name** | **str** | Festival name. | 
 **var_date** | **str** | Festival date in YYYY-MM-DD format (start date for a period). | 
 **type** | **str** | &#39;solar&#39; (sankranti-based), &#39;tithi&#39; (lunar day-based) or &#39;eclipse&#39;. | 
@@ -15,6 +16,8 @@ Name | Type | Description | Notes
 **end_date** | **str** |  | [optional] 
 **masa** | [**FestivalMasa**](FestivalMasa.md) |  | [optional] 
 **paksha** | **str** |  | [optional] 
+**paksha_id** | **str** |  | [optional] 
+**paksha_label** | **str** |  | [optional] 
 **tithi** | [**FestivalTithi**](FestivalTithi.md) |  | [optional] 
 **rule** | **str** |  | [optional] 
 **observance_window** | [**FestivalWindow**](FestivalWindow.md) |  | [optional] 

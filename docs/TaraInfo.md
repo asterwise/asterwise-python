@@ -9,9 +9,13 @@ Name | Type | Description | Notes
 **tara_number** | **int** |  | 
 **cycle** | **int** | Which round of nine the count falls in. | 
 **cycle_name** | **str** |  | 
-**name** | **str** | Tara name: Janma, Sampat, Vipat, Kshema, Pratyak, Sadhana, Naidhana, Mitra, Ati-Mitra (Anujanma/Trijanma for the 10th and 19th). | 
+**cycle_name_id** | **str** |  | [optional] 
+**cycle_name_label** | **str** |  | [optional] 
+**name** | **str** | Tara name: Janma, Sampat, Vipat, Kshema, Pratyak, Sadhana, Naidhana, Mitra, Parama Mitra (Anujanma/Trijanma for the 10th and 19th). | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **meaning** | **str** |  | 
-**is_favorable** | **bool** | True for Sampat, Kshema, Sadhana, Mitra and Ati-Mitra. | 
+**is_favorable** | **bool** | True for Sampat, Kshema, Sadhana, Mitra and Parama Mitra. | 
 **is_moon_in_birth_nakshatra** | **bool** |  | 
 
 ## Example

@@ -31,27 +31,35 @@ class VarshaphalResponse(BaseModel):
     """
     VarshaphalResponse
     """ # noqa: E501
-    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Always true: this endpoint requires the birth time and has no sunrise fallback, so house, Ascendant and Moon-dependent results use the time you sent.")
     target_year: StrictInt
     ayanamsa: StrictStr
     solar_return_utc: StrictStr = Field(description="Solar return instant (UTC, to the minute): the Sun back on its natal longitude, the return nearest the birthday in target_year.")
     solar_return_jd: Union[StrictFloat, StrictInt]
     natal_sun_longitude: Union[StrictFloat, StrictInt]
     natal_lagna: StrictStr
+    natal_lagna_id: Optional[StrictStr] = None
+    natal_lagna_label: Optional[StrictStr] = None
     natal_lagna_index: StrictInt
     year_lord: StrictStr = Field(description="Weekday (vara) lord at the solar-return instant, sunrise to sunrise at the birth place. Historical name: this is NOT the Tajika year lord. The year lord (Varsha Pati / Varsheshwara) is varsha_pati.planet. Same value as vara_lord.")
+    year_lord_id: Optional[StrictStr] = None
+    year_lord_label: Optional[StrictStr] = None
     vara_lord: Optional[StrictStr] = None
+    vara_lord_id: Optional[StrictStr] = None
+    vara_lord_label: Optional[StrictStr] = None
     muntha: VarshaphalMuntha
     planets: Dict[str, VarshaphalPlanet]
     varshaphal_ascendant_longitude: Optional[Union[StrictFloat, StrictInt]] = None
     varshaphal_ascendant_sign: Optional[StrictStr] = None
+    varshaphal_ascendant_sign_id: Optional[StrictStr] = None
+    varshaphal_ascendant_sign_label: Optional[StrictStr] = None
     varshaphal_ascendant_sign_index: Optional[StrictInt] = None
     varsha_pati: VarshaPati
     pancha_adhikaris: List[Optional[Dict[str, Any]]]
     pancha_vargeeya_bala: Dict[str, Union[StrictFloat, StrictInt]]
     tajika_aspects: List[Optional[Dict[str, Any]]]
-    tajika_planet_pairs: List[Optional[Dict[str, Any]]] = Field(description="Pairs of the seven grahas (no Rahu/Ketu) in Tajika aspect by sign: same sign (conjunction), 3rd/11th (mitra), 4th/10th (vikrama), 5th/9th (labha), 7th (shatru). Keys: planet_a, planet_b, house_a, house_b (whole-sign houses from the Varsha lagna), diff_ab, diff_ba, aspect_ab, aspect_ba, faster_planet (by mean motion: Moon, Mercury, Venus, Sun, Mars, Jupiter, Saturn), orb_degrees (gap between their degrees within sign), orb_limit (mean of the two Deeptamsas), is_ithsala (faster planet behind the slower one within orb_limit), ithsala_type ('poorna' within 1 degree, 'vartamana' otherwise, null when not ithsala), is_musaripha (faster planet already past, within orb_limit). Retrogression is not modelled.")
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_year", "ayanamsa", "solar_return_utc", "solar_return_jd", "natal_sun_longitude", "natal_lagna", "natal_lagna_index", "year_lord", "vara_lord", "muntha", "planets", "varshaphal_ascendant_longitude", "varshaphal_ascendant_sign", "varshaphal_ascendant_sign_index", "varsha_pati", "pancha_adhikaris", "pancha_vargeeya_bala", "tajika_aspects", "tajika_planet_pairs"]
+    tajika_planet_pairs: List[Optional[Dict[str, Any]]] = Field(description="Pairs of the seven grahas (no Rahu/Ketu) in Tajika aspect by sign: same sign (conjunction), 3rd/11th (mitra), 4th/10th (vikrama), 5th/9th (labha), 7th (shatru). Keys: planet_a, planet_b, house_a, house_b (whole-sign houses from the Varsha lagna), diff_ab, diff_ba, aspect_ab, aspect_ba, faster_planet (by true daily motion at the solar return, as Tajika Neelakanthi's commentators require), orb_degrees (gap between their degrees within sign), orb_limit (mean of the two Deeptamsas), is_ithsala (the gap is closing by the two planets' true motions, within orb_limit; with both direct, the faster planet is behind), ithsala_type ('poorna' within 1 degree, 'vartamana' otherwise, null when not ithsala), is_vakra (an ithsala with a retrograde planet: vakra-ithasala), is_musaripha (within orb_limit but the gap is opening).")
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_year", "ayanamsa", "solar_return_utc", "solar_return_jd", "natal_sun_longitude", "natal_lagna", "natal_lagna_id", "natal_lagna_label", "natal_lagna_index", "year_lord", "year_lord_id", "year_lord_label", "vara_lord", "vara_lord_id", "vara_lord_label", "muntha", "planets", "varshaphal_ascendant_longitude", "varshaphal_ascendant_sign", "varshaphal_ascendant_sign_id", "varshaphal_ascendant_sign_label", "varshaphal_ascendant_sign_index", "varsha_pati", "pancha_adhikaris", "pancha_vargeeya_bala", "tajika_aspects", "tajika_planet_pairs"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -105,10 +113,40 @@ class VarshaphalResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of varsha_pati
         if self.varsha_pati:
             _dict['varsha_pati'] = self.varsha_pati.to_dict()
+        # set to None if natal_lagna_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.natal_lagna_id is None and "natal_lagna_id" in self.model_fields_set:
+            _dict['natal_lagna_id'] = None
+
+        # set to None if natal_lagna_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.natal_lagna_label is None and "natal_lagna_label" in self.model_fields_set:
+            _dict['natal_lagna_label'] = None
+
+        # set to None if year_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.year_lord_id is None and "year_lord_id" in self.model_fields_set:
+            _dict['year_lord_id'] = None
+
+        # set to None if year_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.year_lord_label is None and "year_lord_label" in self.model_fields_set:
+            _dict['year_lord_label'] = None
+
         # set to None if vara_lord (nullable) is None
         # and model_fields_set contains the field
         if self.vara_lord is None and "vara_lord" in self.model_fields_set:
             _dict['vara_lord'] = None
+
+        # set to None if vara_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.vara_lord_id is None and "vara_lord_id" in self.model_fields_set:
+            _dict['vara_lord_id'] = None
+
+        # set to None if vara_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.vara_lord_label is None and "vara_lord_label" in self.model_fields_set:
+            _dict['vara_lord_label'] = None
 
         # set to None if varshaphal_ascendant_longitude (nullable) is None
         # and model_fields_set contains the field
@@ -119,6 +157,16 @@ class VarshaphalResponse(BaseModel):
         # and model_fields_set contains the field
         if self.varshaphal_ascendant_sign is None and "varshaphal_ascendant_sign" in self.model_fields_set:
             _dict['varshaphal_ascendant_sign'] = None
+
+        # set to None if varshaphal_ascendant_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.varshaphal_ascendant_sign_id is None and "varshaphal_ascendant_sign_id" in self.model_fields_set:
+            _dict['varshaphal_ascendant_sign_id'] = None
+
+        # set to None if varshaphal_ascendant_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.varshaphal_ascendant_sign_label is None and "varshaphal_ascendant_sign_label" in self.model_fields_set:
+            _dict['varshaphal_ascendant_sign_label'] = None
 
         # set to None if varshaphal_ascendant_sign_index (nullable) is None
         # and model_fields_set contains the field
@@ -144,9 +192,15 @@ class VarshaphalResponse(BaseModel):
             "solar_return_jd": obj.get("solar_return_jd"),
             "natal_sun_longitude": obj.get("natal_sun_longitude"),
             "natal_lagna": obj.get("natal_lagna"),
+            "natal_lagna_id": obj.get("natal_lagna_id"),
+            "natal_lagna_label": obj.get("natal_lagna_label"),
             "natal_lagna_index": obj.get("natal_lagna_index"),
             "year_lord": obj.get("year_lord"),
+            "year_lord_id": obj.get("year_lord_id"),
+            "year_lord_label": obj.get("year_lord_label"),
             "vara_lord": obj.get("vara_lord"),
+            "vara_lord_id": obj.get("vara_lord_id"),
+            "vara_lord_label": obj.get("vara_lord_label"),
             "muntha": VarshaphalMuntha.from_dict(obj["muntha"]) if obj.get("muntha") is not None else None,
             "planets": dict(
                 (_k, VarshaphalPlanet.from_dict(_v))
@@ -156,6 +210,8 @@ class VarshaphalResponse(BaseModel):
             else None,
             "varshaphal_ascendant_longitude": obj.get("varshaphal_ascendant_longitude"),
             "varshaphal_ascendant_sign": obj.get("varshaphal_ascendant_sign"),
+            "varshaphal_ascendant_sign_id": obj.get("varshaphal_ascendant_sign_id"),
+            "varshaphal_ascendant_sign_label": obj.get("varshaphal_ascendant_sign_label"),
             "varshaphal_ascendant_sign_index": obj.get("varshaphal_ascendant_sign_index"),
             "varsha_pati": VarshaPati.from_dict(obj["varsha_pati"]) if obj.get("varsha_pati") is not None else None,
             "pancha_adhikaris": obj.get("pancha_adhikaris"),

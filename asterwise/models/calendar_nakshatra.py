@@ -29,10 +29,12 @@ class CalendarNakshatra(BaseModel):
     CalendarNakshatra
     """ # noqa: E501
     name: StrictStr = Field(description="Nakshatra name.")
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     index: StrictInt = Field(description="Zero-based nakshatra index, 0 to 26.")
     pada: StrictInt = Field(description="Pada number, 1 to 4.")
     end_time: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["name", "index", "pada", "end_time"]
+    __properties: ClassVar[List[str]] = ["name", "id", "label", "index", "pada", "end_time"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +75,16 @@ class CalendarNakshatra(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         # set to None if end_time (nullable) is None
         # and model_fields_set contains the field
         if self.end_time is None and "end_time" in self.model_fields_set:
@@ -91,6 +103,8 @@ class CalendarNakshatra(BaseModel):
 
         _obj = cls.model_validate({
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "index": obj.get("index"),
             "pada": obj.get("pada"),
             "end_time": obj.get("end_time")

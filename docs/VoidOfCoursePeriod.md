@@ -9,8 +9,12 @@ Name | Type | Description | Notes
 **end_utc** | **str** | When it ends: the Moon enters the next sign, UTC. | 
 **duration_hours** | **float** | Length of the void period in hours. | 
 **moon_sign** | **str** | Sign the Moon is in while void. | 
+**moon_sign_id** | **str** |  | [optional] 
+**moon_sign_label** | **str** |  | [optional] 
 **moon_sign_index** | **int** |  | 
 **next_sign** | **str** | Sign the Moon enters at end_utc. | 
+**next_sign_id** | **str** |  | [optional] 
+**next_sign_label** | **str** |  | [optional] 
 **next_sign_index** | **int** |  | 
 **last_aspect** | [**VoidOfCourseLastAspect**](VoidOfCourseLastAspect.md) |  | [optional] 
 **whole_sign_void** | **bool** | True when the Moon made no exact aspect at all while in the sign, so it was void for the whole passage. | 

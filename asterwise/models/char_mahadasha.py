@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.char_antardasha import CharAntardasha
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,12 +30,14 @@ class CharMahadasha(BaseModel):
     CharMahadasha
     """ # noqa: E501
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     rashi_index: StrictInt
     years: StrictInt = Field(description="Mahadasha length (K.N. Rao): signs counted from the rashi to its lord (forward for savya, backward for apasavya rashis) minus one, 12 when the lord is in the rashi; no year is added or taken off for an exalted or debilitated lord. Range 1–12. Scorpio and Aquarius: the co-lord outside the sign; with both outside, the one with more planets, then the one further advanced in its sign. Every cycle repeats the first cycle's years.")
     start_date: StrictStr
     end_date: StrictStr
     antardashas: List[CharAntardasha] = Field(description="The 12 antardashas, each lasting as many months as the mahadasha has years (K.N. Rao). They run forward when the 9th sign from the mahadasha sign is savya (Aries, Taurus, Gemini, Libra, Scorpio, Sagittarius) and backward otherwise, starting from the next sign; the mahadasha sign's own antardasha is the last.")
-    __properties: ClassVar[List[str]] = ["rashi", "rashi_index", "years", "start_date", "end_date", "antardashas"]
+    __properties: ClassVar[List[str]] = ["rashi", "rashi_id", "rashi_label", "rashi_index", "years", "start_date", "end_date", "antardashas"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -83,6 +85,16 @@ class CharMahadasha(BaseModel):
                 if _item_antardashas:
                     _items.append(_item_antardashas.to_dict())
             _dict['antardashas'] = _items
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
         return _dict
 
     @classmethod
@@ -96,6 +108,8 @@ class CharMahadasha(BaseModel):
 
         _obj = cls.model_validate({
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "rashi_index": obj.get("rashi_index"),
             "years": obj.get("years"),
             "start_date": obj.get("start_date"),

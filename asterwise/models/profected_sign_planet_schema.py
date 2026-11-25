@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,9 +29,11 @@ class ProfectedSignPlanetSchema(BaseModel):
     ProfectedSignPlanetSchema
     """ # noqa: E501
     planet: StrictStr
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     degree_in_sign: Union[StrictFloat, StrictInt]
     is_retrograde: StrictBool
-    __properties: ClassVar[List[str]] = ["planet", "degree_in_sign", "is_retrograde"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "degree_in_sign", "is_retrograde"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -72,6 +74,16 @@ class ProfectedSignPlanetSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         return _dict
 
     @classmethod
@@ -85,6 +97,8 @@ class ProfectedSignPlanetSchema(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "degree_in_sign": obj.get("degree_in_sign"),
             "is_retrograde": obj.get("is_retrograde")
         })

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.muhurta_criteria import MuhurtaCriteria
 from asterwise.models.muhurta_window import MuhurtaWindow
 from typing import Optional, Set
@@ -32,6 +32,8 @@ class MuhurtaResponse(BaseModel):
     """ # noqa: E501
     event_type: StrictStr
     activity: StrictStr
+    activity_id: Optional[StrictStr] = None
+    activity_label: Optional[StrictStr] = None
     from_date: StrictStr
     to_date: StrictStr
     timezone: StrictStr
@@ -42,7 +44,7 @@ class MuhurtaResponse(BaseModel):
     excluded_minutes: Dict[str, StrictInt] = Field(description="Minutes ruled out, by first reason: chaturmas, adhik_maas, pitru_paksha, kharmas, holashtak, guru_asta, shukra_asta, panchaka, night, weekday, tithi, nakshatra, yoga, rahu_kaal, yamaganda, gulika, durmuhurta, varjyam, bhadra, tarabala, chandrabala.")
     top_windows: List[MuhurtaWindow]
     notes: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["event_type", "activity", "from_date", "to_date", "timezone", "ayanamsa", "criteria", "total_windows_found", "total_windows_evaluated", "excluded_minutes", "top_windows", "notes"]
+    __properties: ClassVar[List[str]] = ["event_type", "activity", "activity_id", "activity_label", "from_date", "to_date", "timezone", "ayanamsa", "criteria", "total_windows_found", "total_windows_evaluated", "excluded_minutes", "top_windows", "notes"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -93,6 +95,16 @@ class MuhurtaResponse(BaseModel):
                 if _item_top_windows:
                     _items.append(_item_top_windows.to_dict())
             _dict['top_windows'] = _items
+        # set to None if activity_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.activity_id is None and "activity_id" in self.model_fields_set:
+            _dict['activity_id'] = None
+
+        # set to None if activity_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.activity_label is None and "activity_label" in self.model_fields_set:
+            _dict['activity_label'] = None
+
         return _dict
 
     @classmethod
@@ -107,6 +119,8 @@ class MuhurtaResponse(BaseModel):
         _obj = cls.model_validate({
             "event_type": obj.get("event_type"),
             "activity": obj.get("activity"),
+            "activity_id": obj.get("activity_id"),
+            "activity_label": obj.get("activity_label"),
             "from_date": obj.get("from_date"),
             "to_date": obj.get("to_date"),
             "timezone": obj.get("timezone"),

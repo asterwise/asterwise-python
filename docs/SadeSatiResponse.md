@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time. | [optional] [default to True]
 **natal_moon_sign** | **str** |  | 
+**natal_moon_sign_id** | **str** |  | [optional] 
+**natal_moon_sign_label** | **str** |  | [optional] 
 **natal_moon_sign_index** | **int** |  | 
 **sade_sati_signs** | **Dict[str, object]** |  | 
 **is_currently_active** | **bool** |  | [optional] 

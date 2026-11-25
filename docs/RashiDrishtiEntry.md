@@ -6,8 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **from_sign** | **str** | Aspecting sign (Sanskrit) | 
+**from_sign_id** | **str** |  | [optional] 
+**from_sign_label** | **str** |  | [optional] 
 **from_sign_num** | **int** | Aspecting sign index 0-11 | 
 **to_sign** | **str** | Aspected sign (Sanskrit) | 
+**to_sign_id** | **str** |  | [optional] 
+**to_sign_label** | **str** |  | [optional] 
 **to_sign_num** | **int** | Aspected sign index 0-11 | 
 
 ## Example

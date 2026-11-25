@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet** | **str** | Planetary lord of this Dasha period | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **start_jd** | **float** | Start of period as Julian Day number | 
 **end_jd** | **float** | End of period as Julian Day number | 
 **start_date** | **str** | Start date in DD/MM/YYYY format | 

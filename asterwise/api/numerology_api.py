@@ -926,7 +926,7 @@ class NumerologyApi:
     ) -> ApiResponsePersonalAngelNumberResponse:
         """Personal angel number
 
-        Compute your personal angel number from your birth date. Uses the Pythagorean Life Path number (digit-fusing method) as the base. Life Path 1-9 maps to the triple sequence (e.g. LP 4 → 444). Master numbers 11, 22, 33 map to 1111, 2222, 3333 respectively.
+        Compute your personal angel number from your birth date. Uses the Pythagorean Life Path number (Hans Decoz: month, day and year each reduced first) as the base. Life Path 1-9 maps to the triple sequence (e.g. LP 4 → 444). Master numbers 11, 22, 33 map to 1111, 2222, 3333 respectively.
 
         :param personal_angel_number_request: (required)
         :type personal_angel_number_request: PersonalAngelNumberRequest
@@ -1002,7 +1002,7 @@ class NumerologyApi:
     ) -> ApiResponse[ApiResponsePersonalAngelNumberResponse]:
         """Personal angel number
 
-        Compute your personal angel number from your birth date. Uses the Pythagorean Life Path number (digit-fusing method) as the base. Life Path 1-9 maps to the triple sequence (e.g. LP 4 → 444). Master numbers 11, 22, 33 map to 1111, 2222, 3333 respectively.
+        Compute your personal angel number from your birth date. Uses the Pythagorean Life Path number (Hans Decoz: month, day and year each reduced first) as the base. Life Path 1-9 maps to the triple sequence (e.g. LP 4 → 444). Master numbers 11, 22, 33 map to 1111, 2222, 3333 respectively.
 
         :param personal_angel_number_request: (required)
         :type personal_angel_number_request: PersonalAngelNumberRequest
@@ -1078,7 +1078,7 @@ class NumerologyApi:
     ) -> RESTResponseType:
         """Personal angel number
 
-        Compute your personal angel number from your birth date. Uses the Pythagorean Life Path number (digit-fusing method) as the base. Life Path 1-9 maps to the triple sequence (e.g. LP 4 → 444). Master numbers 11, 22, 33 map to 1111, 2222, 3333 respectively.
+        Compute your personal angel number from your birth date. Uses the Pythagorean Life Path number (Hans Decoz: month, day and year each reduced first) as the base. Life Path 1-9 maps to the triple sequence (e.g. LP 4 → 444). Master numbers 11, 22, 33 map to 1111, 2222, 3333 respectively.
 
         :param personal_angel_number_request: (required)
         :type personal_angel_number_request: PersonalAngelNumberRequest

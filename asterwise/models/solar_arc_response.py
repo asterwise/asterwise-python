@@ -38,9 +38,13 @@ class SolarArcResponse(BaseModel):
     directed_planets: List[SolarArcPlanetSchema]
     directed_ascendant: Union[StrictFloat, StrictInt]
     directed_ascendant_sign: StrictStr
+    directed_ascendant_sign_id: Optional[StrictStr] = None
+    directed_ascendant_sign_label: Optional[StrictStr] = None
     directed_mc: Union[StrictFloat, StrictInt]
     directed_mc_sign: StrictStr
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_date", "solar_arc", "age_years", "natal_sun_longitude", "progressed_sun_longitude", "directed_planets", "directed_ascendant", "directed_ascendant_sign", "directed_mc", "directed_mc_sign"]
+    directed_mc_sign_id: Optional[StrictStr] = None
+    directed_mc_sign_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "target_date", "solar_arc", "age_years", "natal_sun_longitude", "progressed_sun_longitude", "directed_planets", "directed_ascendant", "directed_ascendant_sign", "directed_ascendant_sign_id", "directed_ascendant_sign_label", "directed_mc", "directed_mc_sign", "directed_mc_sign_id", "directed_mc_sign_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -88,6 +92,26 @@ class SolarArcResponse(BaseModel):
                 if _item_directed_planets:
                     _items.append(_item_directed_planets.to_dict())
             _dict['directed_planets'] = _items
+        # set to None if directed_ascendant_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.directed_ascendant_sign_id is None and "directed_ascendant_sign_id" in self.model_fields_set:
+            _dict['directed_ascendant_sign_id'] = None
+
+        # set to None if directed_ascendant_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.directed_ascendant_sign_label is None and "directed_ascendant_sign_label" in self.model_fields_set:
+            _dict['directed_ascendant_sign_label'] = None
+
+        # set to None if directed_mc_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.directed_mc_sign_id is None and "directed_mc_sign_id" in self.model_fields_set:
+            _dict['directed_mc_sign_id'] = None
+
+        # set to None if directed_mc_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.directed_mc_sign_label is None and "directed_mc_sign_label" in self.model_fields_set:
+            _dict['directed_mc_sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -109,8 +133,12 @@ class SolarArcResponse(BaseModel):
             "directed_planets": [SolarArcPlanetSchema.from_dict(_item) for _item in obj["directed_planets"]] if obj.get("directed_planets") is not None else None,
             "directed_ascendant": obj.get("directed_ascendant"),
             "directed_ascendant_sign": obj.get("directed_ascendant_sign"),
+            "directed_ascendant_sign_id": obj.get("directed_ascendant_sign_id"),
+            "directed_ascendant_sign_label": obj.get("directed_ascendant_sign_label"),
             "directed_mc": obj.get("directed_mc"),
-            "directed_mc_sign": obj.get("directed_mc_sign")
+            "directed_mc_sign": obj.get("directed_mc_sign"),
+            "directed_mc_sign_id": obj.get("directed_mc_sign_id"),
+            "directed_mc_sign_label": obj.get("directed_mc_sign_label")
         })
         return _obj
 

@@ -6,22 +6,32 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet** | **str** |  | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **transit_sign** | **str** |  | 
+**transit_sign_id** | **str** |  | [optional] 
+**transit_sign_label** | **str** |  | [optional] 
 **transit_sign_index** | **int** |  | 
 **transit_degree** | **float** |  | 
 **transit_tropical_longitude** | **float** |  | [optional] 
 **transit_tropical_sign** | **str** |  | [optional] 
+**transit_tropical_sign_id** | **str** |  | [optional] 
+**transit_tropical_sign_label** | **str** |  | [optional] 
 **transit_tropical_sign_index** | **int** |  | [optional] 
 **is_retrograde** | **bool** |  | 
 **nakshatra** | **str** |  | 
+**nakshatra_id** | **str** |  | [optional] 
+**nakshatra_label** | **str** |  | [optional] 
 **nakshatra_pada** | **int** |  | 
 **house_from_moon** | **int** |  | 
 **house_from_lagna** | **int** |  | 
 **is_favorable_from_moon** | **bool** |  | 
 **is_favorable_from_lagna** | **bool** |  | 
-**bindu_override** | **bool** | True when the bindus in ashtakavarga_score decided is_favorable_from_moon and is_favorable_from_lagna (5 or more: favourable; 3 or fewer: unfavourable) instead of the house from the Moon or Lagna. False when the score is 4 or unavailable and the house rule stands. | [optional] [default to False]
+**bindu_override** | **bool** | True when the bindus in ashtakavarga_score decided is_favorable_from_moon and is_favorable_from_lagna (5 or more: favourable; 3 or fewer: unfavourable) instead of the house from the Moon or Lagna (Phaladeepika 26.41: more bindus give good results even in the 6th, 8th or 12th; 23.11: 0-3 bindus give death, loss, expense, fear). False when the score is 4 or unavailable and the house rule stands. | [optional] [default to False]
 **vedha_active** | **bool** |  | 
 **vedha_blocking_planet** | **str** |  | 
+**vedha_blocking_planet_id** | **str** |  | [optional] 
+**vedha_blocking_planet_label** | **str** |  | [optional] 
 **ashtakavarga_score** | **int** |  | 
 **ashtakavarga_score_reduced** | **int** |  | [optional] 
 **favorable_reason** | **str** |  | [optional] 

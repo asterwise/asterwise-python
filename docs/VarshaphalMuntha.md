@@ -7,8 +7,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rashi_index** | **int** | Muntha sign 0-11: natal lagna sign + age_years (one sign a year). | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **age_years** | **int** | Completed years for this varsha: target_year minus birth year (Tajika Neelakanthi), not read off the return&#39;s UTC date. | 
 **muntha_lord** | **str** |  | [optional] 
+**muntha_lord_id** | **str** |  | [optional] 
+**muntha_lord_label** | **str** |  | [optional] 
 
 ## Example
 

@@ -6,7 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **vedic** | **str** | From the sidereal Sun (Uttarayana from Makara Sankranti). | 
+**vedic_id** | **str** |  | [optional] 
+**vedic_label** | **str** |  | [optional] 
 **drik** | **str** | From the tropical Sun (Uttarayana from the winter solstice). | 
+**drik_id** | **str** |  | [optional] 
+**drik_label** | **str** |  | [optional] 
 
 ## Example
 

@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **mantra** | **str** |  | 
 **metal** | **str** |  | 
 **wearing_day** | **str** |  | 
+**wearing_day_id** | **str** |  | [optional] 
+**wearing_day_label** | **str** |  | [optional] 
 **mala_beads** | **int** |  | 
 **wearing_finger** | **str** | Legacy field, kept for compatibility. Rudraksha is not worn on a finger, so this is always &#39;Not applicable (worn on neck or wrist)&#39;. See how_to_wear. | 
 **how_to_wear** | **str** | How the bead is worn: strung on thread or capped in the listed metal, at the neck (pendant or mala) or on the wrist (Shiva Purana Vidyeshvara Samhita Ch.25). | 

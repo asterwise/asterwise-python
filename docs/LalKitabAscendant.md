@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **longitude** | **float** | Sidereal ascendant longitude in degrees, in the requested ayanamsa. | 
 **rashi_index** | **int** | Ascendant sign, 0 &#x3D; Aries. This house is Lal Kitab house 1. | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 
 ## Example
 

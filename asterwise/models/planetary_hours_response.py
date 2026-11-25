@@ -33,7 +33,11 @@ class PlanetaryHoursResponse(BaseModel):
     status_detail: Optional[StrictStr] = None
     var_date: StrictStr = Field(alias="date")
     weekday: Optional[StrictStr] = None
+    weekday_id: Optional[StrictStr] = None
+    weekday_label: Optional[StrictStr] = None
     day_ruler: Optional[StrictStr] = None
+    day_ruler_id: Optional[StrictStr] = None
+    day_ruler_label: Optional[StrictStr] = None
     convention: Optional[StrictStr] = None
     sunrise_local: Optional[StrictStr] = None
     sunset_local: Optional[StrictStr] = None
@@ -44,7 +48,7 @@ class PlanetaryHoursResponse(BaseModel):
     day_hour_minutes: Optional[Union[StrictFloat, StrictInt]] = None
     night_hour_minutes: Optional[Union[StrictFloat, StrictInt]] = None
     hours: Optional[List[PlanetaryHour]] = None
-    __properties: ClassVar[List[str]] = ["status", "status_detail", "date", "weekday", "day_ruler", "convention", "sunrise_local", "sunset_local", "next_sunrise_local", "sunrise_utc", "sunset_utc", "next_sunrise_utc", "day_hour_minutes", "night_hour_minutes", "hours"]
+    __properties: ClassVar[List[str]] = ["status", "status_detail", "date", "weekday", "weekday_id", "weekday_label", "day_ruler", "day_ruler_id", "day_ruler_label", "convention", "sunrise_local", "sunset_local", "next_sunrise_local", "sunrise_utc", "sunset_utc", "next_sunrise_utc", "day_hour_minutes", "night_hour_minutes", "hours"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -112,10 +116,30 @@ class PlanetaryHoursResponse(BaseModel):
         if self.weekday is None and "weekday" in self.model_fields_set:
             _dict['weekday'] = None
 
+        # set to None if weekday_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.weekday_id is None and "weekday_id" in self.model_fields_set:
+            _dict['weekday_id'] = None
+
+        # set to None if weekday_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.weekday_label is None and "weekday_label" in self.model_fields_set:
+            _dict['weekday_label'] = None
+
         # set to None if day_ruler (nullable) is None
         # and model_fields_set contains the field
         if self.day_ruler is None and "day_ruler" in self.model_fields_set:
             _dict['day_ruler'] = None
+
+        # set to None if day_ruler_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_ruler_id is None and "day_ruler_id" in self.model_fields_set:
+            _dict['day_ruler_id'] = None
+
+        # set to None if day_ruler_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_ruler_label is None and "day_ruler_label" in self.model_fields_set:
+            _dict['day_ruler_label'] = None
 
         # set to None if convention (nullable) is None
         # and model_fields_set contains the field
@@ -183,7 +207,11 @@ class PlanetaryHoursResponse(BaseModel):
             "status_detail": obj.get("status_detail"),
             "date": obj.get("date"),
             "weekday": obj.get("weekday"),
+            "weekday_id": obj.get("weekday_id"),
+            "weekday_label": obj.get("weekday_label"),
             "day_ruler": obj.get("day_ruler"),
+            "day_ruler_id": obj.get("day_ruler_id"),
+            "day_ruler_label": obj.get("day_ruler_label"),
             "convention": obj.get("convention"),
             "sunrise_local": obj.get("sunrise_local"),
             "sunset_local": obj.get("sunset_local"),

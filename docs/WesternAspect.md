@@ -6,7 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet_a** | **str** |  | 
+**planet_a_id** | **str** |  | [optional] 
+**planet_a_label** | **str** |  | [optional] 
 **planet_b** | **str** |  | 
+**planet_b_id** | **str** |  | [optional] 
+**planet_b_label** | **str** |  | [optional] 
 **type** | **str** | Aspect type: conjunction | opposition | trine | square | sextile | semisextile | semisquare | sesquiquadrate | quincunx | 
 **exact_angle** | **float** | Actual angular distance between planets | 
 **orb** | **float** | Difference from exact aspect angle (always positive) | 

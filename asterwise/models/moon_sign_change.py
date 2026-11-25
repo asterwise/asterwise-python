@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,8 +31,12 @@ class MoonSignChange(BaseModel):
     at_utc: StrictStr
     at_local: StrictStr
     from_sign: StrictStr
+    from_sign_id: Optional[StrictStr] = None
+    from_sign_label: Optional[StrictStr] = None
     to_sign: StrictStr
-    __properties: ClassVar[List[str]] = ["at_utc", "at_local", "from_sign", "to_sign"]
+    to_sign_id: Optional[StrictStr] = None
+    to_sign_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["at_utc", "at_local", "from_sign", "from_sign_id", "from_sign_label", "to_sign", "to_sign_id", "to_sign_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +77,26 @@ class MoonSignChange(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if from_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.from_sign_id is None and "from_sign_id" in self.model_fields_set:
+            _dict['from_sign_id'] = None
+
+        # set to None if from_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.from_sign_label is None and "from_sign_label" in self.model_fields_set:
+            _dict['from_sign_label'] = None
+
+        # set to None if to_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.to_sign_id is None and "to_sign_id" in self.model_fields_set:
+            _dict['to_sign_id'] = None
+
+        # set to None if to_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.to_sign_label is None and "to_sign_label" in self.model_fields_set:
+            _dict['to_sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -88,7 +112,11 @@ class MoonSignChange(BaseModel):
             "at_utc": obj.get("at_utc"),
             "at_local": obj.get("at_local"),
             "from_sign": obj.get("from_sign"),
-            "to_sign": obj.get("to_sign")
+            "from_sign_id": obj.get("from_sign_id"),
+            "from_sign_label": obj.get("from_sign_label"),
+            "to_sign": obj.get("to_sign"),
+            "to_sign_id": obj.get("to_sign_id"),
+            "to_sign_label": obj.get("to_sign_label")
         })
         return _obj
 

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -33,11 +33,13 @@ class RudrakshaEntry(BaseModel):
     mantra: StrictStr
     metal: StrictStr
     wearing_day: StrictStr
+    wearing_day_id: Optional[StrictStr] = None
+    wearing_day_label: Optional[StrictStr] = None
     mala_beads: StrictInt
     wearing_finger: StrictStr = Field(description="Legacy field, kept for compatibility. Rudraksha is not worn on a finger, so this is always 'Not applicable (worn on neck or wrist)'. See how_to_wear.")
     how_to_wear: StrictStr = Field(description="How the bead is worn: strung on thread or capped in the listed metal, at the neck (pendant or mala) or on the wrist (Shiva Purana Vidyeshvara Samhita Ch.25).")
     benefits: StrictStr
-    __properties: ClassVar[List[str]] = ["mukhi", "presiding_deity", "mantra", "metal", "wearing_day", "mala_beads", "wearing_finger", "how_to_wear", "benefits"]
+    __properties: ClassVar[List[str]] = ["mukhi", "presiding_deity", "mantra", "metal", "wearing_day", "wearing_day_id", "wearing_day_label", "mala_beads", "wearing_finger", "how_to_wear", "benefits"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +80,16 @@ class RudrakshaEntry(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if wearing_day_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.wearing_day_id is None and "wearing_day_id" in self.model_fields_set:
+            _dict['wearing_day_id'] = None
+
+        # set to None if wearing_day_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.wearing_day_label is None and "wearing_day_label" in self.model_fields_set:
+            _dict['wearing_day_label'] = None
+
         return _dict
 
     @classmethod
@@ -95,6 +107,8 @@ class RudrakshaEntry(BaseModel):
             "mantra": obj.get("mantra"),
             "metal": obj.get("metal"),
             "wearing_day": obj.get("wearing_day"),
+            "wearing_day_id": obj.get("wearing_day_id"),
+            "wearing_day_label": obj.get("wearing_day_label"),
             "mala_beads": obj.get("mala_beads"),
             "wearing_finger": obj.get("wearing_finger"),
             "how_to_wear": obj.get("how_to_wear"),

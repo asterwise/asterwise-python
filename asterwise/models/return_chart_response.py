@@ -31,11 +31,13 @@ class ReturnChartResponse(BaseModel):
     """ # noqa: E501
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: the return chart is then cast from a 06:00 natal chart and its houses are approximate.")
     planet: StrictStr
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     natal_longitude: Union[StrictFloat, StrictInt] = Field(description="Natal longitude of the return planet (tropical)")
     return_utc: StrictStr = Field(description="Exact UTC moment of return (ISO 8601)")
     return_jd: Union[StrictFloat, StrictInt] = Field(description="Julian Day of return moment")
     chart: WesternNatalResponse = Field(description="Full Western natal chart calculated for the return moment")
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "planet", "natal_longitude", "return_utc", "return_jd", "chart"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "planet", "planet_id", "planet_label", "natal_longitude", "return_utc", "return_jd", "chart"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,6 +81,16 @@ class ReturnChartResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of chart
         if self.chart:
             _dict['chart'] = self.chart.to_dict()
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         return _dict
 
     @classmethod
@@ -93,6 +105,8 @@ class ReturnChartResponse(BaseModel):
         _obj = cls.model_validate({
             "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "natal_longitude": obj.get("natal_longitude"),
             "return_utc": obj.get("return_utc"),
             "return_jd": obj.get("return_jd"),

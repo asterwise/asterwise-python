@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,9 +29,11 @@ class TransitMoonRef(BaseModel):
     TransitMoonRef
     """ # noqa: E501
     nakshatra: StrictStr
+    nakshatra_id: Optional[StrictStr] = None
+    nakshatra_label: Optional[StrictStr] = None
     nakshatra_index: StrictInt
     rashi_index: StrictInt
-    __properties: ClassVar[List[str]] = ["nakshatra", "nakshatra_index", "rashi_index"]
+    __properties: ClassVar[List[str]] = ["nakshatra", "nakshatra_id", "nakshatra_label", "nakshatra_index", "rashi_index"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -72,6 +74,16 @@ class TransitMoonRef(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if nakshatra_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_id is None and "nakshatra_id" in self.model_fields_set:
+            _dict['nakshatra_id'] = None
+
+        # set to None if nakshatra_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_label is None and "nakshatra_label" in self.model_fields_set:
+            _dict['nakshatra_label'] = None
+
         return _dict
 
     @classmethod
@@ -85,6 +97,8 @@ class TransitMoonRef(BaseModel):
 
         _obj = cls.model_validate({
             "nakshatra": obj.get("nakshatra"),
+            "nakshatra_id": obj.get("nakshatra_id"),
+            "nakshatra_label": obj.get("nakshatra_label"),
             "nakshatra_index": obj.get("nakshatra_index"),
             "rashi_index": obj.get("rashi_index")
         })

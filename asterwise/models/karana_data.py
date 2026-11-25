@@ -30,10 +30,12 @@ class KaranaData(BaseModel):
     """ # noqa: E501
     number: StrictInt = Field(description="Karana number, 1 to 60")
     name: StrictStr = Field(description="Karana name")
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     degrees_elapsed: Union[StrictFloat, StrictInt] = Field(description="Degrees completed within the current karana")
     degrees_remaining: Union[StrictFloat, StrictInt] = Field(description="Degrees remaining until the next karana")
     end_time: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["number", "name", "degrees_elapsed", "degrees_remaining", "end_time"]
+    __properties: ClassVar[List[str]] = ["number", "name", "id", "label", "degrees_elapsed", "degrees_remaining", "end_time"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,6 +76,16 @@ class KaranaData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         # set to None if end_time (nullable) is None
         # and model_fields_set contains the field
         if self.end_time is None and "end_time" in self.model_fields_set:
@@ -93,6 +105,8 @@ class KaranaData(BaseModel):
         _obj = cls.model_validate({
             "number": obj.get("number"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "degrees_elapsed": obj.get("degrees_elapsed"),
             "degrees_remaining": obj.get("degrees_remaining"),
             "end_time": obj.get("end_time")

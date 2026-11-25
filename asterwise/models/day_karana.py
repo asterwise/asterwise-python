@@ -38,9 +38,13 @@ class DayKarana(BaseModel):
     nature: Optional[StrictStr] = None
     number: StrictInt = Field(description="1 to 60 within the lunar month.")
     name: StrictStr
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     lord: Optional[StrictStr] = None
+    lord_id: Optional[StrictStr] = None
+    lord_label: Optional[StrictStr] = None
     is_vishti: StrictBool = Field(description="Vishti karana, also called Bhadra.")
-    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "start_utc", "end_utc", "nature", "number", "name", "lord", "is_vishti"]
+    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "start_utc", "end_utc", "nature", "number", "name", "id", "label", "lord", "lord_id", "lord_label", "is_vishti"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -96,10 +100,30 @@ class DayKarana(BaseModel):
         if self.nature is None and "nature" in self.model_fields_set:
             _dict['nature'] = None
 
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         # set to None if lord (nullable) is None
         # and model_fields_set contains the field
         if self.lord is None and "lord" in self.model_fields_set:
             _dict['lord'] = None
+
+        # set to None if lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.lord_id is None and "lord_id" in self.model_fields_set:
+            _dict['lord_id'] = None
+
+        # set to None if lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.lord_label is None and "lord_label" in self.model_fields_set:
+            _dict['lord_label'] = None
 
         return _dict
 
@@ -123,7 +147,11 @@ class DayKarana(BaseModel):
             "nature": obj.get("nature"),
             "number": obj.get("number"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "lord": obj.get("lord"),
+            "lord_id": obj.get("lord_id"),
+            "lord_label": obj.get("lord_label"),
             "is_vishti": obj.get("is_vishti")
         })
         return _obj

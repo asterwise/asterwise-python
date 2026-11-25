@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.signification import Signification
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,9 +30,11 @@ class PlanetSignifications(BaseModel):
     PlanetSignifications
     """ # noqa: E501
     planet: StrictStr
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     id: StrictStr
     significations: List[Signification]
-    __properties: ClassVar[List[str]] = ["planet", "id", "significations"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "id", "significations"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -80,6 +82,16 @@ class PlanetSignifications(BaseModel):
                 if _item_significations:
                     _items.append(_item_significations.to_dict())
             _dict['significations'] = _items
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         return _dict
 
     @classmethod
@@ -93,6 +105,8 @@ class PlanetSignifications(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "id": obj.get("id"),
             "significations": [Signification.from_dict(_item) for _item in obj["significations"]] if obj.get("significations") is not None else None
         })

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,9 +31,11 @@ class HouseData(BaseModel):
     """ # noqa: E501
     house: Annotated[int, Field(le=12, strict=True, ge=1)] = Field(description="House number in the natal chart")
     sign: StrictStr = Field(description="Sign occupying the house cusp")
+    sign_id: Optional[StrictStr] = None
+    sign_label: Optional[StrictStr] = None
     sign_num: StrictInt = Field(description="Zero-based zodiac sign index for house cusp")
     degree: Union[StrictFloat, StrictInt] = Field(description="House cusp degree within sign")
-    __properties: ClassVar[List[str]] = ["house", "sign", "sign_num", "degree"]
+    __properties: ClassVar[List[str]] = ["house", "sign", "sign_id", "sign_label", "sign_num", "degree"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,6 +76,16 @@ class HouseData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_id is None and "sign_id" in self.model_fields_set:
+            _dict['sign_id'] = None
+
+        # set to None if sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_label is None and "sign_label" in self.model_fields_set:
+            _dict['sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -88,6 +100,8 @@ class HouseData(BaseModel):
         _obj = cls.model_validate({
             "house": obj.get("house"),
             "sign": obj.get("sign"),
+            "sign_id": obj.get("sign_id"),
+            "sign_label": obj.get("sign_label"),
             "sign_num": obj.get("sign_num"),
             "degree": obj.get("degree")
         })

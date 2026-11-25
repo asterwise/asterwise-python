@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,7 +31,9 @@ class DailyScore(BaseModel):
     score: StrictInt
     max_score: StrictInt
     label: StrictStr
-    __properties: ClassVar[List[str]] = ["score", "max_score", "label"]
+    label_id: Optional[StrictStr] = None
+    label_text: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["score", "max_score", "label", "label_id", "label_text"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -72,6 +74,16 @@ class DailyScore(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if label_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.label_id is None and "label_id" in self.model_fields_set:
+            _dict['label_id'] = None
+
+        # set to None if label_text (nullable) is None
+        # and model_fields_set contains the field
+        if self.label_text is None and "label_text" in self.model_fields_set:
+            _dict['label_text'] = None
+
         return _dict
 
     @classmethod
@@ -86,7 +98,9 @@ class DailyScore(BaseModel):
         _obj = cls.model_validate({
             "score": obj.get("score"),
             "max_score": obj.get("max_score"),
-            "label": obj.get("label")
+            "label": obj.get("label"),
+            "label_id": obj.get("label_id"),
+            "label_text": obj.get("label_text")
         })
         return _obj
 

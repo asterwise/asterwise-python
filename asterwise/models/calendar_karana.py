@@ -29,9 +29,11 @@ class CalendarKarana(BaseModel):
     CalendarKarana
     """ # noqa: E501
     name: StrictStr = Field(description="Karana name.")
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     number: StrictInt = Field(description="Karana number.")
     end_time: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["name", "number", "end_time"]
+    __properties: ClassVar[List[str]] = ["name", "id", "label", "number", "end_time"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -72,6 +74,16 @@ class CalendarKarana(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         # set to None if end_time (nullable) is None
         # and model_fields_set contains the field
         if self.end_time is None and "end_time" in self.model_fields_set:
@@ -90,6 +102,8 @@ class CalendarKarana(BaseModel):
 
         _obj = cls.model_validate({
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "number": obj.get("number"),
             "end_time": obj.get("end_time")
         })

@@ -30,6 +30,8 @@ class MoonPhaseResponse(BaseModel):
     """ # noqa: E501
     var_date: StrictStr = Field(description="Date in YYYY-MM-DD format", alias="date")
     phase_name: StrictStr = Field(description="Phase at 18:00 UTC on the date, in Dane Rudhyar's eight 45-degree phases: each phase begins at its angle (New Moon 0-45, Waxing Crescent 45-90, First Quarter 90-135, Waxing Gibbous 135-180, Full Moon 180-225, Waning Gibbous 225-270, Last Quarter 270-315, Waning Crescent 315-360), so the day before a full moon reads Waxing Gibbous. Use principal_phase for the day of an exact phase.")
+    phase_name_id: Optional[StrictStr] = None
+    phase_name_label: Optional[StrictStr] = None
     phase_angle: Union[StrictFloat, StrictInt] = Field(description="Sun-Moon elongation in degrees (0-360) at 18:00 UTC. 0=New Moon, 180=Full Moon")
     illumination_pct: Union[StrictFloat, StrictInt] = Field(description="Percentage of Moon disk illuminated (0-100)")
     moon_age_days: Union[StrictFloat, StrictInt] = Field(description="Days from the previous exact New Moon to 18:00 UTC on the date (0 to about 29.8)")
@@ -37,12 +39,16 @@ class MoonPhaseResponse(BaseModel):
     sun_longitude: Union[StrictFloat, StrictInt] = Field(description="Tropical ecliptic longitude of Sun (0-360)")
     is_waxing: StrictBool = Field(description="True if Moon is waxing (phase_angle < 180)")
     next_phase_name: StrictStr = Field(description="Name of the next principal phase (New Moon, First Quarter, Full Moon, Last Quarter) after 18:00 UTC on the date")
+    next_phase_name_id: Optional[StrictStr] = None
+    next_phase_name_label: Optional[StrictStr] = None
     next_phase_date: Optional[StrictStr] = None
     next_phase_at: Optional[StrictStr] = None
     computed_at: Optional[StrictStr] = None
     principal_phase: Optional[StrictStr] = None
+    principal_phase_id: Optional[StrictStr] = None
+    principal_phase_label: Optional[StrictStr] = None
     principal_phase_at: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["date", "phase_name", "phase_angle", "illumination_pct", "moon_age_days", "moon_longitude", "sun_longitude", "is_waxing", "next_phase_name", "next_phase_date", "next_phase_at", "computed_at", "principal_phase", "principal_phase_at"]
+    __properties: ClassVar[List[str]] = ["date", "phase_name", "phase_name_id", "phase_name_label", "phase_angle", "illumination_pct", "moon_age_days", "moon_longitude", "sun_longitude", "is_waxing", "next_phase_name", "next_phase_name_id", "next_phase_name_label", "next_phase_date", "next_phase_at", "computed_at", "principal_phase", "principal_phase_id", "principal_phase_label", "principal_phase_at"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -83,6 +89,26 @@ class MoonPhaseResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if phase_name_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.phase_name_id is None and "phase_name_id" in self.model_fields_set:
+            _dict['phase_name_id'] = None
+
+        # set to None if phase_name_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.phase_name_label is None and "phase_name_label" in self.model_fields_set:
+            _dict['phase_name_label'] = None
+
+        # set to None if next_phase_name_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_phase_name_id is None and "next_phase_name_id" in self.model_fields_set:
+            _dict['next_phase_name_id'] = None
+
+        # set to None if next_phase_name_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_phase_name_label is None and "next_phase_name_label" in self.model_fields_set:
+            _dict['next_phase_name_label'] = None
+
         # set to None if next_phase_date (nullable) is None
         # and model_fields_set contains the field
         if self.next_phase_date is None and "next_phase_date" in self.model_fields_set:
@@ -103,6 +129,16 @@ class MoonPhaseResponse(BaseModel):
         if self.principal_phase is None and "principal_phase" in self.model_fields_set:
             _dict['principal_phase'] = None
 
+        # set to None if principal_phase_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.principal_phase_id is None and "principal_phase_id" in self.model_fields_set:
+            _dict['principal_phase_id'] = None
+
+        # set to None if principal_phase_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.principal_phase_label is None and "principal_phase_label" in self.model_fields_set:
+            _dict['principal_phase_label'] = None
+
         # set to None if principal_phase_at (nullable) is None
         # and model_fields_set contains the field
         if self.principal_phase_at is None and "principal_phase_at" in self.model_fields_set:
@@ -122,6 +158,8 @@ class MoonPhaseResponse(BaseModel):
         _obj = cls.model_validate({
             "date": obj.get("date"),
             "phase_name": obj.get("phase_name"),
+            "phase_name_id": obj.get("phase_name_id"),
+            "phase_name_label": obj.get("phase_name_label"),
             "phase_angle": obj.get("phase_angle"),
             "illumination_pct": obj.get("illumination_pct"),
             "moon_age_days": obj.get("moon_age_days"),
@@ -129,10 +167,14 @@ class MoonPhaseResponse(BaseModel):
             "sun_longitude": obj.get("sun_longitude"),
             "is_waxing": obj.get("is_waxing"),
             "next_phase_name": obj.get("next_phase_name"),
+            "next_phase_name_id": obj.get("next_phase_name_id"),
+            "next_phase_name_label": obj.get("next_phase_name_label"),
             "next_phase_date": obj.get("next_phase_date"),
             "next_phase_at": obj.get("next_phase_at"),
             "computed_at": obj.get("computed_at"),
             "principal_phase": obj.get("principal_phase"),
+            "principal_phase_id": obj.get("principal_phase_id"),
+            "principal_phase_label": obj.get("principal_phase_label"),
             "principal_phase_at": obj.get("principal_phase_at")
         })
         return _obj

@@ -7,7 +7,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **number** | **int** | Tithi number, 1 to 30 | 
 **name** | **str** | Tithi name, e.g. Pratipada, Purnima, Amavasya | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **paksha** | **str** | Paksha — Shukla (waxing) or Krishna (waning) | 
+**paksha_id** | **str** |  | [optional] 
+**paksha_label** | **str** |  | [optional] 
 **degrees_elapsed** | **float** | Degrees completed within the current tithi | 
 **degrees_remaining** | **float** | Degrees remaining until the next tithi | 
 **end_time** | **str** |  | [optional] 

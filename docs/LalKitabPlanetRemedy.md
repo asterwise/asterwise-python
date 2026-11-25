@@ -6,8 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet** | **str** |  | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **lk_house** | **int** |  | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **pucca_ghar** | **bool** |  | 
 **uchcha** | **bool** |  | 
 **neecha** | **bool** |  | 

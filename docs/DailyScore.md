@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **score** | **int** |  | 
 **max_score** | **int** |  | 
 **label** | **str** |  | 
+**label_id** | **str** |  | [optional] 
+**label_text** | **str** |  | [optional] 
 
 ## Example
 

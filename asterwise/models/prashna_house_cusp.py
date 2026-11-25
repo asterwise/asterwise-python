@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,9 +30,13 @@ class PrashnaHouseCusp(BaseModel):
     """ # noqa: E501
     rashi_index: StrictInt
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     lord: StrictStr = Field(description="Lord of the sign on this quadrant cusp. House lordship in house_analysis is whole sign and can differ.")
+    lord_id: Optional[StrictStr] = None
+    lord_label: Optional[StrictStr] = None
     longitude: Union[StrictFloat, StrictInt]
-    __properties: ClassVar[List[str]] = ["rashi_index", "rashi", "lord", "longitude"]
+    __properties: ClassVar[List[str]] = ["rashi_index", "rashi", "rashi_id", "rashi_label", "lord", "lord_id", "lord_label", "longitude"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +77,26 @@ class PrashnaHouseCusp(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
+        # set to None if lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.lord_id is None and "lord_id" in self.model_fields_set:
+            _dict['lord_id'] = None
+
+        # set to None if lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.lord_label is None and "lord_label" in self.model_fields_set:
+            _dict['lord_label'] = None
+
         return _dict
 
     @classmethod
@@ -87,7 +111,11 @@ class PrashnaHouseCusp(BaseModel):
         _obj = cls.model_validate({
             "rashi_index": obj.get("rashi_index"),
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "lord": obj.get("lord"),
+            "lord_id": obj.get("lord_id"),
+            "lord_label": obj.get("lord_label"),
             "longitude": obj.get("longitude")
         })
         return _obj

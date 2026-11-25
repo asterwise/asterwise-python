@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,13 +29,15 @@ class YearLordNatalSchema(BaseModel):
     YearLordNatalSchema
     """ # noqa: E501
     sign: StrictStr
+    sign_id: Optional[StrictStr] = None
+    sign_label: Optional[StrictStr] = None
     sign_index: StrictInt
     degree_in_sign: Union[StrictFloat, StrictInt]
     whole_sign_house: StrictInt = Field(description="Natal whole-sign house of the year lord, counted from the Ascendant sign.")
     house: StrictInt = Field(description="Natal house of the year lord in the requested house_system.")
     is_retrograde: StrictBool
     dignity: StrictStr
-    __properties: ClassVar[List[str]] = ["sign", "sign_index", "degree_in_sign", "whole_sign_house", "house", "is_retrograde", "dignity"]
+    __properties: ClassVar[List[str]] = ["sign", "sign_id", "sign_label", "sign_index", "degree_in_sign", "whole_sign_house", "house", "is_retrograde", "dignity"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,6 +78,16 @@ class YearLordNatalSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_id is None and "sign_id" in self.model_fields_set:
+            _dict['sign_id'] = None
+
+        # set to None if sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_label is None and "sign_label" in self.model_fields_set:
+            _dict['sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -89,6 +101,8 @@ class YearLordNatalSchema(BaseModel):
 
         _obj = cls.model_validate({
             "sign": obj.get("sign"),
+            "sign_id": obj.get("sign_id"),
+            "sign_label": obj.get("sign_label"),
             "sign_index": obj.get("sign_index"),
             "degree_in_sign": obj.get("degree_in_sign"),
             "whole_sign_house": obj.get("whole_sign_house"),

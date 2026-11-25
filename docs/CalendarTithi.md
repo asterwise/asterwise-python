@@ -6,8 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Tithi name. | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **number** | **int** | Tithi number, 1 to 30. | 
 **paksha** | **str** | Shukla or Krishna. | 
+**paksha_id** | **str** |  | [optional] 
+**paksha_label** | **str** |  | [optional] 
 **end_time** | **str** |  | [optional] 
 
 ## Example

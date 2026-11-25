@@ -29,15 +29,23 @@ class CharDashaResponse(BaseModel):
     """
     CharDashaResponse
     """ # noqa: E501
-    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Always true: this endpoint requires the birth time and has no sunrise fallback, so house, Ascendant and Moon-dependent results use the time you sent.")
     atmakaraka: Optional[StrictStr]
+    atmakaraka_id: Optional[StrictStr] = None
+    atmakaraka_label: Optional[StrictStr] = None
     start_rashi: StrictStr
+    start_rashi_id: Optional[StrictStr] = None
+    start_rashi_label: Optional[StrictStr] = None
     start_rashi_index: StrictInt
     karakas: Dict[str, StrictStr]
     current_mahadasha: Optional[StrictStr]
+    current_mahadasha_id: Optional[StrictStr] = None
+    current_mahadasha_label: Optional[StrictStr] = None
     current_antardasha: Optional[StrictStr]
+    current_antardasha_id: Optional[StrictStr] = None
+    current_antardasha_label: Optional[StrictStr] = None
     periods: List[CharMahadasha]
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "atmakaraka", "start_rashi", "start_rashi_index", "karakas", "current_mahadasha", "current_antardasha", "periods"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "atmakaraka", "atmakaraka_id", "atmakaraka_label", "start_rashi", "start_rashi_id", "start_rashi_label", "start_rashi_index", "karakas", "current_mahadasha", "current_mahadasha_id", "current_mahadasha_label", "current_antardasha", "current_antardasha_id", "current_antardasha_label", "periods"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -90,15 +98,55 @@ class CharDashaResponse(BaseModel):
         if self.atmakaraka is None and "atmakaraka" in self.model_fields_set:
             _dict['atmakaraka'] = None
 
+        # set to None if atmakaraka_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.atmakaraka_id is None and "atmakaraka_id" in self.model_fields_set:
+            _dict['atmakaraka_id'] = None
+
+        # set to None if atmakaraka_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.atmakaraka_label is None and "atmakaraka_label" in self.model_fields_set:
+            _dict['atmakaraka_label'] = None
+
+        # set to None if start_rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_rashi_id is None and "start_rashi_id" in self.model_fields_set:
+            _dict['start_rashi_id'] = None
+
+        # set to None if start_rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_rashi_label is None and "start_rashi_label" in self.model_fields_set:
+            _dict['start_rashi_label'] = None
+
         # set to None if current_mahadasha (nullable) is None
         # and model_fields_set contains the field
         if self.current_mahadasha is None and "current_mahadasha" in self.model_fields_set:
             _dict['current_mahadasha'] = None
 
+        # set to None if current_mahadasha_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_mahadasha_id is None and "current_mahadasha_id" in self.model_fields_set:
+            _dict['current_mahadasha_id'] = None
+
+        # set to None if current_mahadasha_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_mahadasha_label is None and "current_mahadasha_label" in self.model_fields_set:
+            _dict['current_mahadasha_label'] = None
+
         # set to None if current_antardasha (nullable) is None
         # and model_fields_set contains the field
         if self.current_antardasha is None and "current_antardasha" in self.model_fields_set:
             _dict['current_antardasha'] = None
+
+        # set to None if current_antardasha_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_antardasha_id is None and "current_antardasha_id" in self.model_fields_set:
+            _dict['current_antardasha_id'] = None
+
+        # set to None if current_antardasha_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_antardasha_label is None and "current_antardasha_label" in self.model_fields_set:
+            _dict['current_antardasha_label'] = None
 
         return _dict
 
@@ -114,11 +162,19 @@ class CharDashaResponse(BaseModel):
         _obj = cls.model_validate({
             "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "atmakaraka": obj.get("atmakaraka"),
+            "atmakaraka_id": obj.get("atmakaraka_id"),
+            "atmakaraka_label": obj.get("atmakaraka_label"),
             "start_rashi": obj.get("start_rashi"),
+            "start_rashi_id": obj.get("start_rashi_id"),
+            "start_rashi_label": obj.get("start_rashi_label"),
             "start_rashi_index": obj.get("start_rashi_index"),
             "karakas": obj.get("karakas"),
             "current_mahadasha": obj.get("current_mahadasha"),
+            "current_mahadasha_id": obj.get("current_mahadasha_id"),
+            "current_mahadasha_label": obj.get("current_mahadasha_label"),
             "current_antardasha": obj.get("current_antardasha"),
+            "current_antardasha_id": obj.get("current_antardasha_id"),
+            "current_antardasha_label": obj.get("current_antardasha_label"),
             "periods": [CharMahadasha.from_dict(_item) for _item in obj["periods"]] if obj.get("periods") is not None else None
         })
         return _obj

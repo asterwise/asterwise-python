@@ -11,8 +11,12 @@ Name | Type | Description | Notes
 **longitude** | **float** |  | 
 **rashi_index** | **int** |  | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **degree_in_sign** | **float** |  | 
 **saham_lord** | **str** | Classical lord of the sign where this Saham falls. | 
+**saham_lord_id** | **str** |  | [optional] 
+**saham_lord_label** | **str** |  | [optional] 
 **formula_used** | **str** | Day or night formula and planet operands used. | 
 
 ## Example

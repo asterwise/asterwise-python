@@ -15,7 +15,11 @@ Name | Type | Description | Notes
 **nature** | **str** |  | [optional] 
 **number** | **int** | 1 to 60 within the lunar month. | 
 **name** | **str** |  | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **lord** | **str** |  | [optional] 
+**lord_id** | **str** |  | [optional] 
+**lord_label** | **str** |  | [optional] 
 **is_vishti** | **bool** | Vishti karana, also called Bhadra. | 
 
 ## Example

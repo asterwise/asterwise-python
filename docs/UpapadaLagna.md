@@ -8,10 +8,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sign_index** | **int** | Upapada Lagna sign index 0–11 | 
 **sign_name** | **str** | Sanskrit sign name of Upapada Lagna | 
+**sign_name_id** | **str** |  | [optional] 
+**sign_name_label** | **str** |  | [optional] 
 **upapada_lord** | **str** | Lord of the Upapada sign | 
+**upapada_lord_id** | **str** |  | [optional] 
+**upapada_lord_label** | **str** |  | [optional] 
 **second_from_upapada_sign_index** | **int** | Sign index 0–11 of the sign second from Upapada Lagna | 
 **second_from_upapada_sign_name** | **str** |  | [optional] 
+**second_from_upapada_sign_name_id** | **str** |  | [optional] 
+**second_from_upapada_sign_name_label** | **str** |  | [optional] 
 **planets_in_second_from_upapada** | **List[str]** | Grahas occupying the sign second from Upapada | [optional] 
+**planets_in_second_from_upapada_ids** | **List[str]** |  | [optional] 
+**planets_in_second_from_upapada_labels** | **List[str]** |  | [optional] 
 **has_benefic_in_second_from_upapada** | **bool** | True if a benefic occupies the 2nd-from-Upapada sign | 
 **has_malefic_in_second_from_upapada** | **bool** | True if a malefic occupies the 2nd-from-Upapada sign | 
 

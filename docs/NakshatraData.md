@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **index** | **int** | Zero-based nakshatra index, 0 to 26 | 
 **name** | **str** | Nakshatra name, e.g. Ashwini, Revati | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **pada** | **int** | Pada number, 1 to 4 | 
 **degrees_elapsed** | **float** | Degrees completed within the current nakshatra | 
 **degrees_remaining** | **float** | Degrees remaining until the next nakshatra | 

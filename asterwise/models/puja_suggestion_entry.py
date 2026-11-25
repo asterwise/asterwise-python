@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,10 +31,12 @@ class PujaSuggestionEntry(BaseModel):
     puja_name: StrictStr
     deity: StrictStr
     day: StrictStr
+    day_id: Optional[StrictStr] = None
+    day_label: Optional[StrictStr] = None
     offerings: List[StrictStr]
     grain: StrictStr
     mantra: StrictStr
-    __properties: ClassVar[List[str]] = ["puja_name", "deity", "day", "offerings", "grain", "mantra"]
+    __properties: ClassVar[List[str]] = ["puja_name", "deity", "day", "day_id", "day_label", "offerings", "grain", "mantra"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,6 +77,16 @@ class PujaSuggestionEntry(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if day_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_id is None and "day_id" in self.model_fields_set:
+            _dict['day_id'] = None
+
+        # set to None if day_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_label is None and "day_label" in self.model_fields_set:
+            _dict['day_label'] = None
+
         return _dict
 
     @classmethod
@@ -90,6 +102,8 @@ class PujaSuggestionEntry(BaseModel):
             "puja_name": obj.get("puja_name"),
             "deity": obj.get("deity"),
             "day": obj.get("day"),
+            "day_id": obj.get("day_id"),
+            "day_label": obj.get("day_label"),
             "offerings": obj.get("offerings"),
             "grain": obj.get("grain"),
             "mantra": obj.get("mantra")

@@ -11,7 +11,11 @@ Name | Type | Description | Notes
 **bhakoot_cancelled** | **bool** |  | 
 **rajju_dosha** | **bool** |  | 
 **rajju_group_boy** | **str** |  | 
+**rajju_group_boy_id** | **str** |  | [optional] 
+**rajju_group_boy_label** | **str** |  | [optional] 
 **rajju_group_girl** | **str** |  | 
+**rajju_group_girl_id** | **str** |  | [optional] 
+**rajju_group_girl_label** | **str** |  | [optional] 
 **vedha_dosha** | **bool** |  | 
 **vedha_pair** | **str** |  | 
 

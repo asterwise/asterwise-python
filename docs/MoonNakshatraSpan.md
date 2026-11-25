@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **index** | **int** |  | 
 **number** | **int** |  | 
 **name** | **str** |  | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **start** | **str** | When the Moon entered this nakshatra. ISO 8601 local time with UTC offset. | 
 **end** | **str** | When it leaves. ISO 8601 local time with UTC offset. | 
 **start_utc** | **str** |  | 

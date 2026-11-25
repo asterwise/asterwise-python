@@ -36,9 +36,13 @@ class PapasamyamResponse(BaseModel):
     score_difference: Union[StrictFloat, StrictInt]
     compatible: StrictBool
     compatibility_level: StrictStr
+    compatibility_level_id: Optional[StrictStr] = None
+    compatibility_level_label: Optional[StrictStr] = None
     imbalance: Optional[StrictStr] = None
+    imbalance_id: Optional[StrictStr] = None
+    imbalance_label: Optional[StrictStr] = None
     threshold: Union[StrictFloat, StrictInt] = Field(description="How far the bride's score may exceed the groom's (0: not at all).")
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "person1", "person2", "score_difference", "compatible", "compatibility_level", "imbalance", "threshold"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "person1", "person2", "score_difference", "compatible", "compatibility_level", "compatibility_level_id", "compatibility_level_label", "imbalance", "imbalance_id", "imbalance_label", "threshold"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,10 +83,30 @@ class PapasamyamResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if compatibility_level_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.compatibility_level_id is None and "compatibility_level_id" in self.model_fields_set:
+            _dict['compatibility_level_id'] = None
+
+        # set to None if compatibility_level_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.compatibility_level_label is None and "compatibility_level_label" in self.model_fields_set:
+            _dict['compatibility_level_label'] = None
+
         # set to None if imbalance (nullable) is None
         # and model_fields_set contains the field
         if self.imbalance is None and "imbalance" in self.model_fields_set:
             _dict['imbalance'] = None
+
+        # set to None if imbalance_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.imbalance_id is None and "imbalance_id" in self.model_fields_set:
+            _dict['imbalance_id'] = None
+
+        # set to None if imbalance_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.imbalance_label is None and "imbalance_label" in self.model_fields_set:
+            _dict['imbalance_label'] = None
 
         return _dict
 
@@ -104,7 +128,11 @@ class PapasamyamResponse(BaseModel):
             "score_difference": obj.get("score_difference"),
             "compatible": obj.get("compatible"),
             "compatibility_level": obj.get("compatibility_level"),
+            "compatibility_level_id": obj.get("compatibility_level_id"),
+            "compatibility_level_label": obj.get("compatibility_level_label"),
             "imbalance": obj.get("imbalance"),
+            "imbalance_id": obj.get("imbalance_id"),
+            "imbalance_label": obj.get("imbalance_label"),
             "threshold": obj.get("threshold")
         })
         return _obj

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,14 +31,17 @@ class WesternPoint(BaseModel):
     """ # noqa: E501
     id: StrictStr = Field(description="Stable point id")
     name: StrictStr = Field(description="Display name")
+    label: Optional[StrictStr] = None
     longitude: Union[StrictFloat, StrictInt] = Field(description="Tropical ecliptic longitude 0–360°")
     sign: StrictStr = Field(description="Zodiac sign name")
+    sign_id: Optional[StrictStr] = None
+    sign_label: Optional[StrictStr] = None
     sign_index: Annotated[int, Field(le=11, strict=True, ge=0)] = Field(description="Sign index 0=Aries … 11=Pisces")
     degree_in_sign: Union[StrictFloat, StrictInt] = Field(description="Degrees within sign 0–29.999")
     house: Annotated[int, Field(le=12, strict=True, ge=1)] = Field(description="House number (Placidus or chosen system)")
     is_retrograde: StrictBool = Field(description="True when the point moves backwards. The mean nodes are always retrograde.")
     speed: Union[StrictFloat, StrictInt] = Field(description="Daily motion in degrees per day (negative = retrograde)")
-    __properties: ClassVar[List[str]] = ["id", "name", "longitude", "sign", "sign_index", "degree_in_sign", "house", "is_retrograde", "speed"]
+    __properties: ClassVar[List[str]] = ["id", "name", "label", "longitude", "sign", "sign_id", "sign_label", "sign_index", "degree_in_sign", "house", "is_retrograde", "speed"]
 
     @field_validator('id')
     def id_validate_enum(cls, value):
@@ -86,6 +89,21 @@ class WesternPoint(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
+        # set to None if sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_id is None and "sign_id" in self.model_fields_set:
+            _dict['sign_id'] = None
+
+        # set to None if sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_label is None and "sign_label" in self.model_fields_set:
+            _dict['sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -100,8 +118,11 @@ class WesternPoint(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "name": obj.get("name"),
+            "label": obj.get("label"),
             "longitude": obj.get("longitude"),
             "sign": obj.get("sign"),
+            "sign_id": obj.get("sign_id"),
+            "sign_label": obj.get("sign_label"),
             "sign_index": obj.get("sign_index"),
             "degree_in_sign": obj.get("degree_in_sign"),
             "house": obj.get("house"),

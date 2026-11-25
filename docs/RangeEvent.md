@@ -7,7 +7,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **kind** | **str** | Event kind; see kinds in the response. | 
 **planet** | **str** |  | [optional] 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **title** | **str** |  | 
+**title_id** | **str** |  | [optional] 
+**title_label** | **str** |  | [optional] 
 **time_utc** | **str** | ISO 8601 UTC with Z. | 
 **time_local** | **str** | ISO 8601 local time with offset, in target_timezone. | 
 **time_precision** | **str** | second, or day for events known only to the day (Vedic dasha changes, Western profection years). | 

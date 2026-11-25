@@ -38,12 +38,14 @@ class TamilPanchangaResponse(BaseModel):
     sunset_at: Optional[StrictStr] = None
     sunset_utc: Optional[StrictStr] = None
     tamil_month: StrictStr = Field(description="Tamil solar month name based on Sun's sidereal sign at sunrise.")
+    tamil_month_id: Optional[StrictStr] = None
+    tamil_month_label: Optional[StrictStr] = None
     rahu_kalam: TamilKaalPeriod = Field(description="Rahu Kalam — inauspicious period, avoid new beginnings.")
     yamagandam: TamilKaalPeriod = Field(description="Yamagandam — inauspicious period associated with Yama.")
     kuligai: TamilKaalPeriod = Field(description="Kuligai (Gulika) — inauspicious period associated with Mandi.")
     emagandam: TamilKaalPeriod = Field(description="Emagandam: the Tamil spelling of Yamagandam, the same period (kept for existing clients).")
     nalla_neram: List[TamilNallaNeramWindow] = Field(description="Daytime windows free of Rahu Kalam, Yamagandam and Kuligai.")
-    __properties: ClassVar[List[str]] = ["date", "sunrise", "sunrise_at", "sunrise_utc", "sunset", "sunset_at", "sunset_utc", "tamil_month", "rahu_kalam", "yamagandam", "kuligai", "emagandam", "nalla_neram"]
+    __properties: ClassVar[List[str]] = ["date", "sunrise", "sunrise_at", "sunrise_utc", "sunset", "sunset_at", "sunset_utc", "tamil_month", "tamil_month_id", "tamil_month_label", "rahu_kalam", "yamagandam", "kuligai", "emagandam", "nalla_neram"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -123,6 +125,16 @@ class TamilPanchangaResponse(BaseModel):
         if self.sunset_utc is None and "sunset_utc" in self.model_fields_set:
             _dict['sunset_utc'] = None
 
+        # set to None if tamil_month_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.tamil_month_id is None and "tamil_month_id" in self.model_fields_set:
+            _dict['tamil_month_id'] = None
+
+        # set to None if tamil_month_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.tamil_month_label is None and "tamil_month_label" in self.model_fields_set:
+            _dict['tamil_month_label'] = None
+
         return _dict
 
     @classmethod
@@ -143,6 +155,8 @@ class TamilPanchangaResponse(BaseModel):
             "sunset_at": obj.get("sunset_at"),
             "sunset_utc": obj.get("sunset_utc"),
             "tamil_month": obj.get("tamil_month"),
+            "tamil_month_id": obj.get("tamil_month_id"),
+            "tamil_month_label": obj.get("tamil_month_label"),
             "rahu_kalam": TamilKaalPeriod.from_dict(obj["rahu_kalam"]) if obj.get("rahu_kalam") is not None else None,
             "yamagandam": TamilKaalPeriod.from_dict(obj["yamagandam"]) if obj.get("yamagandam") is not None else None,
             "kuligai": TamilKaalPeriod.from_dict(obj["kuligai"]) if obj.get("kuligai") is not None else None,

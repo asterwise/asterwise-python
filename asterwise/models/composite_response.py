@@ -34,11 +34,13 @@ class CompositeResponse(BaseModel):
     person1_birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when person 1 supplied a birth time.")
     person2_birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when person 2 supplied a birth time.")
     planets: List[CompositePlanetSchema]
-    ascendant_longitude: Union[StrictFloat, StrictInt]
+    ascendant_longitude: Union[StrictFloat, StrictInt] = Field(description="Midpoint of the two natal Ascendants (shorter arc): the midpoint method. The reference-place method (Ascendant derived from the composite MC for a chosen latitude) is not computed.")
     ascendant_sign: StrictStr
+    ascendant_sign_id: Optional[StrictStr] = None
+    ascendant_sign_label: Optional[StrictStr] = None
     ascendant_sign_index: StrictInt
     aspects: List[CompositeAspectSchema] = Field(description="Aspects between planets within the composite chart")
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "planets", "ascendant_longitude", "ascendant_sign", "ascendant_sign_index", "aspects"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "planets", "ascendant_longitude", "ascendant_sign", "ascendant_sign_id", "ascendant_sign_label", "ascendant_sign_index", "aspects"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -93,6 +95,16 @@ class CompositeResponse(BaseModel):
                 if _item_aspects:
                     _items.append(_item_aspects.to_dict())
             _dict['aspects'] = _items
+        # set to None if ascendant_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_sign_id is None and "ascendant_sign_id" in self.model_fields_set:
+            _dict['ascendant_sign_id'] = None
+
+        # set to None if ascendant_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_sign_label is None and "ascendant_sign_label" in self.model_fields_set:
+            _dict['ascendant_sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -111,6 +123,8 @@ class CompositeResponse(BaseModel):
             "planets": [CompositePlanetSchema.from_dict(_item) for _item in obj["planets"]] if obj.get("planets") is not None else None,
             "ascendant_longitude": obj.get("ascendant_longitude"),
             "ascendant_sign": obj.get("ascendant_sign"),
+            "ascendant_sign_id": obj.get("ascendant_sign_id"),
+            "ascendant_sign_label": obj.get("ascendant_sign_label"),
             "ascendant_sign_index": obj.get("ascendant_sign_index"),
             "aspects": [CompositeAspectSchema.from_dict(_item) for _item in obj["aspects"]] if obj.get("aspects") is not None else None
         })

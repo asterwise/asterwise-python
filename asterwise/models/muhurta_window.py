@@ -37,11 +37,19 @@ class MuhurtaWindow(BaseModel):
     end: StrictStr = Field(description="End, HH:MM local time. Kept from the earlier Choghadiya-slot response; prefer end_at.")
     score: StrictInt = Field(description="0-100.")
     choghadiya: StrictStr = Field(description="Choghadiya at the window's start.")
+    choghadiya_id: Optional[StrictStr] = None
+    choghadiya_label: Optional[StrictStr] = None
     choghadiya_type: StrictStr
     yoga: StrictStr = Field(description="Panchanga yoga name.")
+    yoga_id: Optional[StrictStr] = None
+    yoga_label: Optional[StrictStr] = None
     vara: StrictStr = Field(description="Weekday name (Sanskrit).")
+    vara_id: Optional[StrictStr] = None
+    vara_label: Optional[StrictStr] = None
     vara_number: StrictInt = Field(description="1 = Sunday ... 7 = Saturday.")
     tithi: StrictStr = Field(description="Tithi name; see paksha and tithi_number.")
+    tithi_id: Optional[StrictStr] = None
+    tithi_label: Optional[StrictStr] = None
     tithi_number: StrictInt = Field(description="1-30 (16-30 Krishna).")
     reason: StrictStr = Field(description="Reasons joined into one line. Kept from the earlier Choghadiya-slot response; prefer reasons.")
     is_rahu_kaal: StrictBool = Field(description="Always false: Rahu Kaal is excluded from every window.")
@@ -54,20 +62,30 @@ class MuhurtaWindow(BaseModel):
     panchanga_day: StrictStr = Field(description="Same as date: the sunrise date of the panchanga day.")
     duration_minutes: Union[StrictFloat, StrictInt]
     grade: StrictStr = Field(description="Excellent (85+), Good (70+) or Acceptable.")
+    grade_id: Optional[StrictStr] = None
+    grade_label: Optional[StrictStr] = None
     paksha: StrictStr
+    paksha_id: Optional[StrictStr] = None
+    paksha_label: Optional[StrictStr] = None
     nakshatra: MuhurtaNamed
     yoga_number: StrictInt
     karana: StrictStr
+    karana_id: Optional[StrictStr] = None
+    karana_label: Optional[StrictStr] = None
     vara_lord: StrictStr
+    vara_lord_id: Optional[StrictStr] = None
+    vara_lord_label: Optional[StrictStr] = None
     lagna: Optional[MuhurtaLagna] = None
     masa: StrictStr = Field(description="Amanta lunar month.")
+    masa_id: Optional[StrictStr] = None
+    masa_label: Optional[StrictStr] = None
     is_guru_pushya: StrictBool
     is_ravi_pushya: StrictBool
     reasons: List[StrictStr] = Field(description="What makes the window good.")
     cautions: List[StrictStr] = Field(description="Weaker points of an otherwise valid window.")
     tarabala: Optional[List[MuhurtaTara]] = None
     chandrabala: Optional[List[MuhurtaChandra]] = None
-    __properties: ClassVar[List[str]] = ["date", "start", "end", "score", "choghadiya", "choghadiya_type", "yoga", "vara", "vara_number", "tithi", "tithi_number", "reason", "is_rahu_kaal", "is_abhijit", "is_amrita_siddhi", "is_sarvartha_siddhi", "start_at", "end_at", "civil_date", "panchanga_day", "duration_minutes", "grade", "paksha", "nakshatra", "yoga_number", "karana", "vara_lord", "lagna", "masa", "is_guru_pushya", "is_ravi_pushya", "reasons", "cautions", "tarabala", "chandrabala"]
+    __properties: ClassVar[List[str]] = ["date", "start", "end", "score", "choghadiya", "choghadiya_id", "choghadiya_label", "choghadiya_type", "yoga", "yoga_id", "yoga_label", "vara", "vara_id", "vara_label", "vara_number", "tithi", "tithi_id", "tithi_label", "tithi_number", "reason", "is_rahu_kaal", "is_abhijit", "is_amrita_siddhi", "is_sarvartha_siddhi", "start_at", "end_at", "civil_date", "panchanga_day", "duration_minutes", "grade", "grade_id", "grade_label", "paksha", "paksha_id", "paksha_label", "nakshatra", "yoga_number", "karana", "karana_id", "karana_label", "vara_lord", "vara_lord_id", "vara_lord_label", "lagna", "masa", "masa_id", "masa_label", "is_guru_pushya", "is_ravi_pushya", "reasons", "cautions", "tarabala", "chandrabala"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -128,10 +146,100 @@ class MuhurtaWindow(BaseModel):
                 if _item_chandrabala:
                     _items.append(_item_chandrabala.to_dict())
             _dict['chandrabala'] = _items
+        # set to None if choghadiya_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.choghadiya_id is None and "choghadiya_id" in self.model_fields_set:
+            _dict['choghadiya_id'] = None
+
+        # set to None if choghadiya_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.choghadiya_label is None and "choghadiya_label" in self.model_fields_set:
+            _dict['choghadiya_label'] = None
+
+        # set to None if yoga_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.yoga_id is None and "yoga_id" in self.model_fields_set:
+            _dict['yoga_id'] = None
+
+        # set to None if yoga_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.yoga_label is None and "yoga_label" in self.model_fields_set:
+            _dict['yoga_label'] = None
+
+        # set to None if vara_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.vara_id is None and "vara_id" in self.model_fields_set:
+            _dict['vara_id'] = None
+
+        # set to None if vara_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.vara_label is None and "vara_label" in self.model_fields_set:
+            _dict['vara_label'] = None
+
+        # set to None if tithi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.tithi_id is None and "tithi_id" in self.model_fields_set:
+            _dict['tithi_id'] = None
+
+        # set to None if tithi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.tithi_label is None and "tithi_label" in self.model_fields_set:
+            _dict['tithi_label'] = None
+
+        # set to None if grade_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.grade_id is None and "grade_id" in self.model_fields_set:
+            _dict['grade_id'] = None
+
+        # set to None if grade_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.grade_label is None and "grade_label" in self.model_fields_set:
+            _dict['grade_label'] = None
+
+        # set to None if paksha_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_id is None and "paksha_id" in self.model_fields_set:
+            _dict['paksha_id'] = None
+
+        # set to None if paksha_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_label is None and "paksha_label" in self.model_fields_set:
+            _dict['paksha_label'] = None
+
+        # set to None if karana_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.karana_id is None and "karana_id" in self.model_fields_set:
+            _dict['karana_id'] = None
+
+        # set to None if karana_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.karana_label is None and "karana_label" in self.model_fields_set:
+            _dict['karana_label'] = None
+
+        # set to None if vara_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.vara_lord_id is None and "vara_lord_id" in self.model_fields_set:
+            _dict['vara_lord_id'] = None
+
+        # set to None if vara_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.vara_lord_label is None and "vara_lord_label" in self.model_fields_set:
+            _dict['vara_lord_label'] = None
+
         # set to None if lagna (nullable) is None
         # and model_fields_set contains the field
         if self.lagna is None and "lagna" in self.model_fields_set:
             _dict['lagna'] = None
+
+        # set to None if masa_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.masa_id is None and "masa_id" in self.model_fields_set:
+            _dict['masa_id'] = None
+
+        # set to None if masa_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.masa_label is None and "masa_label" in self.model_fields_set:
+            _dict['masa_label'] = None
 
         # set to None if tarabala (nullable) is None
         # and model_fields_set contains the field
@@ -160,11 +268,19 @@ class MuhurtaWindow(BaseModel):
             "end": obj.get("end"),
             "score": obj.get("score"),
             "choghadiya": obj.get("choghadiya"),
+            "choghadiya_id": obj.get("choghadiya_id"),
+            "choghadiya_label": obj.get("choghadiya_label"),
             "choghadiya_type": obj.get("choghadiya_type"),
             "yoga": obj.get("yoga"),
+            "yoga_id": obj.get("yoga_id"),
+            "yoga_label": obj.get("yoga_label"),
             "vara": obj.get("vara"),
+            "vara_id": obj.get("vara_id"),
+            "vara_label": obj.get("vara_label"),
             "vara_number": obj.get("vara_number"),
             "tithi": obj.get("tithi"),
+            "tithi_id": obj.get("tithi_id"),
+            "tithi_label": obj.get("tithi_label"),
             "tithi_number": obj.get("tithi_number"),
             "reason": obj.get("reason"),
             "is_rahu_kaal": obj.get("is_rahu_kaal"),
@@ -177,13 +293,23 @@ class MuhurtaWindow(BaseModel):
             "panchanga_day": obj.get("panchanga_day"),
             "duration_minutes": obj.get("duration_minutes"),
             "grade": obj.get("grade"),
+            "grade_id": obj.get("grade_id"),
+            "grade_label": obj.get("grade_label"),
             "paksha": obj.get("paksha"),
+            "paksha_id": obj.get("paksha_id"),
+            "paksha_label": obj.get("paksha_label"),
             "nakshatra": MuhurtaNamed.from_dict(obj["nakshatra"]) if obj.get("nakshatra") is not None else None,
             "yoga_number": obj.get("yoga_number"),
             "karana": obj.get("karana"),
+            "karana_id": obj.get("karana_id"),
+            "karana_label": obj.get("karana_label"),
             "vara_lord": obj.get("vara_lord"),
+            "vara_lord_id": obj.get("vara_lord_id"),
+            "vara_lord_label": obj.get("vara_lord_label"),
             "lagna": MuhurtaLagna.from_dict(obj["lagna"]) if obj.get("lagna") is not None else None,
             "masa": obj.get("masa"),
+            "masa_id": obj.get("masa_id"),
+            "masa_label": obj.get("masa_label"),
             "is_guru_pushya": obj.get("is_guru_pushya"),
             "is_ravi_pushya": obj.get("is_ravi_pushya"),
             "reasons": obj.get("reasons"),

@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **present** | **bool** |  | [optional] 
 **types** | **List[Optional[str]]** | Dosha subtypes or tags detected for this dosha | [optional] 
+**type_ids** | **List[Optional[str]]** | Fixed ids of the entries in types, in the same order (e.g. \&quot;anant\&quot; for Anant Kaal Sarp). Safe to store and compare; the display names in types may change spelling. | [optional] 
+**type_labels** | **List[str]** |  | [optional] 
 **details** | **Dict[str, object]** | Structured diagnostic details for dosha evaluation | [optional] 
 **needs_birth_time** | **bool** |  | [optional] 
 **interpretation_summary** | **str** |  | [optional] 

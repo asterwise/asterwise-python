@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.lal_kitab_rin_found import LalKitabRinFound
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,11 +32,13 @@ class LalKitabRinRemedy(BaseModel):
     rin: StrictStr
     name: StrictStr
     planet: StrictStr = Field(description="The planet the debt belongs to.")
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     houses: List[StrictInt] = Field(description="That planet's houses where an enemy indicates the debt.")
     found: List[LalKitabRinFound] = Field(description="Enemy planets found in those houses.")
     remedy: StrictStr
     source: StrictStr
-    __properties: ClassVar[List[str]] = ["rin", "name", "planet", "houses", "found", "remedy", "source"]
+    __properties: ClassVar[List[str]] = ["rin", "name", "planet", "planet_id", "planet_label", "houses", "found", "remedy", "source"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -84,6 +86,16 @@ class LalKitabRinRemedy(BaseModel):
                 if _item_found:
                     _items.append(_item_found.to_dict())
             _dict['found'] = _items
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         return _dict
 
     @classmethod
@@ -99,6 +111,8 @@ class LalKitabRinRemedy(BaseModel):
             "rin": obj.get("rin"),
             "name": obj.get("name"),
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "houses": obj.get("houses"),
             "found": [LalKitabRinFound.from_dict(_item) for _item in obj["found"]] if obj.get("found") is not None else None,
             "remedy": obj.get("remedy"),

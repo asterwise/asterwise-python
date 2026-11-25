@@ -7,8 +7,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Stable point id | 
 **name** | **str** | Display name | 
+**label** | **str** |  | [optional] 
 **longitude** | **float** | Tropical ecliptic longitude 0–360° | 
 **sign** | **str** | Zodiac sign name | 
+**sign_id** | **str** |  | [optional] 
+**sign_label** | **str** |  | [optional] 
 **sign_index** | **int** | Sign index 0&#x3D;Aries … 11&#x3D;Pisces | 
 **degree_in_sign** | **float** | Degrees within sign 0–29.999 | 
 **house** | **int** | House number (Placidus or chosen system) | 

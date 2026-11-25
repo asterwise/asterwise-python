@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**doshas** | [**Dict[str, DoshaResult]**](DoshaResult.md) |  | 
+**doshas** | [**Dict[str, DoshaResult]**](DoshaResult.md) | Every dosha, keyed by fixed id. Three keys were renamed on 2026-11-19 (kala_sarpa -&gt; kaal_sarp, kala_amrita -&gt; kaal_amrit, paap_kartari -&gt; papa_kartari); until 2026-12-21 the old keys are returned too, with the same content: count only one of each pair. | 
 **birth_time_provided** | **bool** | Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits. | [optional] [default to True]
 
 ## Example

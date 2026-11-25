@@ -39,10 +39,12 @@ class EclipseEventSchema(BaseModel):
     moon_longitude: Union[StrictFloat, StrictInt] = Field(description="Tropical longitude of the Moon at maximum.")
     eclipse_longitude: Union[StrictFloat, StrictInt] = Field(description="The eclipse degree: Sun for a solar eclipse, Moon for a lunar one.")
     sign: StrictStr
+    sign_id: Optional[StrictStr] = None
+    sign_label: Optional[StrictStr] = None
     sign_index: Annotated[int, Field(le=11, strict=True, ge=0)]
     degree_in_sign: Union[StrictFloat, StrictInt]
     natal_contacts: Optional[List[EclipseNatalContact]] = Field(default=None, description="Natal points within 3° of the eclipse degree (empty without birth data).")
-    __properties: ClassVar[List[str]] = ["kind", "type", "max_utc", "begin_utc", "end_utc", "sun_longitude", "moon_longitude", "eclipse_longitude", "sign", "sign_index", "degree_in_sign", "natal_contacts"]
+    __properties: ClassVar[List[str]] = ["kind", "type", "max_utc", "begin_utc", "end_utc", "sun_longitude", "moon_longitude", "eclipse_longitude", "sign", "sign_id", "sign_label", "sign_index", "degree_in_sign", "natal_contacts"]
 
     @field_validator('kind')
     def kind_validate_enum(cls, value):
@@ -107,6 +109,16 @@ class EclipseEventSchema(BaseModel):
         if self.end_utc is None and "end_utc" in self.model_fields_set:
             _dict['end_utc'] = None
 
+        # set to None if sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_id is None and "sign_id" in self.model_fields_set:
+            _dict['sign_id'] = None
+
+        # set to None if sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_label is None and "sign_label" in self.model_fields_set:
+            _dict['sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -128,6 +140,8 @@ class EclipseEventSchema(BaseModel):
             "moon_longitude": obj.get("moon_longitude"),
             "eclipse_longitude": obj.get("eclipse_longitude"),
             "sign": obj.get("sign"),
+            "sign_id": obj.get("sign_id"),
+            "sign_label": obj.get("sign_label"),
             "sign_index": obj.get("sign_index"),
             "degree_in_sign": obj.get("degree_in_sign"),
             "natal_contacts": [EclipseNatalContact.from_dict(_item) for _item in obj["natal_contacts"]] if obj.get("natal_contacts") is not None else None

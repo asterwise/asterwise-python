@@ -6,10 +6,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet** | **str** | Planet name | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **sign** | **str** | Zodiac sign name where the planet is placed | 
+**sign_id** | **str** |  | [optional] 
+**sign_label** | **str** |  | [optional] 
 **sign_num** | **int** | Zero-based zodiac sign index | 
 **degree** | **float** | Sidereal longitude in degrees | 
 **nakshatra** | **str** | Nakshatra name for planetary placement | 
+**nakshatra_id** | **str** |  | [optional] 
+**nakshatra_label** | **str** |  | [optional] 
 **nakshatra_pada** | **int** | Nakshatra pada index | 
 **is_retrograde** | **bool** | Whether the planet is retrograde | 
 **is_combust** | **bool** | True if the planet is within its combustion orb of the Sun | [optional] [default to False]
@@ -20,6 +26,8 @@ Name | Type | Description | Notes
 **house_system_note** | **str** |  | [optional] 
 **tropical_longitude** | **float** |  | [optional] 
 **tropical_sign** | **str** |  | [optional] 
+**tropical_sign_id** | **str** |  | [optional] 
+**tropical_sign_label** | **str** |  | [optional] 
 **tropical_sign_index** | **int** |  | [optional] 
 
 ## Example

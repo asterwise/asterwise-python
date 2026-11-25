@@ -10,9 +10,13 @@ Name | Type | Description | Notes
 **target_timezone** | **str** | Time zone used to read &#x60;target_date&#x60;/&#x60;target_time&#x60; and for the sunrise-based day lord. | 
 **local_time_status** | **str** | How &#x60;target_date&#x60;/&#x60;target_time&#x60; was read. &#39;nonexistent&#39;: the local time fell in a daylight-saving gap and was read with the offset in force before the change (moved forward by the gap). &#39;ambiguous&#39;: the local time occurred twice and the first occurrence was used. &#39;ok&#39; otherwise, including when the current instant was used. | [optional] [default to 'ok']
 **day_lord** | **str** |  | 
+**day_lord_id** | **str** |  | [optional] 
+**day_lord_label** | **str** |  | [optional] 
 **moon** | [**KPRulingPlanetBody**](KPRulingPlanetBody.md) |  | 
 **ascendant** | [**KPRulingPlanetBody**](KPRulingPlanetBody.md) |  | 
 **ruling_planets** | **List[str]** |  | 
+**ruling_planet_ids** | **List[str]** |  | [optional] 
+**ruling_planet_labels** | **List[str]** |  | [optional] 
 
 ## Example
 

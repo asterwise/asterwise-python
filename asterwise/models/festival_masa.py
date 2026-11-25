@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,9 +29,13 @@ class FestivalMasa(BaseModel):
     FestivalMasa
     """ # noqa: E501
     amanta: StrictStr = Field(description="Amanta month name (with 'Adhik' for an intercalary month).")
+    amanta_id: Optional[StrictStr] = None
+    amanta_label: Optional[StrictStr] = None
     purnimanta: StrictStr = Field(description="Purnimanta month name.")
+    purnimanta_id: Optional[StrictStr] = None
+    purnimanta_label: Optional[StrictStr] = None
     is_adhik: StrictBool
-    __properties: ClassVar[List[str]] = ["amanta", "purnimanta", "is_adhik"]
+    __properties: ClassVar[List[str]] = ["amanta", "amanta_id", "amanta_label", "purnimanta", "purnimanta_id", "purnimanta_label", "is_adhik"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -72,6 +76,26 @@ class FestivalMasa(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if amanta_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.amanta_id is None and "amanta_id" in self.model_fields_set:
+            _dict['amanta_id'] = None
+
+        # set to None if amanta_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.amanta_label is None and "amanta_label" in self.model_fields_set:
+            _dict['amanta_label'] = None
+
+        # set to None if purnimanta_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.purnimanta_id is None and "purnimanta_id" in self.model_fields_set:
+            _dict['purnimanta_id'] = None
+
+        # set to None if purnimanta_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.purnimanta_label is None and "purnimanta_label" in self.model_fields_set:
+            _dict['purnimanta_label'] = None
+
         return _dict
 
     @classmethod
@@ -85,7 +109,11 @@ class FestivalMasa(BaseModel):
 
         _obj = cls.model_validate({
             "amanta": obj.get("amanta"),
+            "amanta_id": obj.get("amanta_id"),
+            "amanta_label": obj.get("amanta_label"),
             "purnimanta": obj.get("purnimanta"),
+            "purnimanta_id": obj.get("purnimanta_id"),
+            "purnimanta_label": obj.get("purnimanta_label"),
             "is_adhik": obj.get("is_adhik")
         })
         return _obj

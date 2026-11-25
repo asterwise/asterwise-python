@@ -36,11 +36,15 @@ class DashakootResponse(BaseModel):
     max_score: Union[StrictFloat, StrictInt]
     percentage: Union[StrictFloat, StrictInt]
     compatibility_level: StrictStr
-    breakdown: Dict[str, Union[StrictFloat, StrictInt]]
-    max_per_koota: Dict[str, Union[StrictFloat, StrictInt]]
+    compatibility_level_id: Optional[StrictStr] = None
+    compatibility_level_label: Optional[StrictStr] = None
+    breakdown: Dict[str, Union[StrictFloat, StrictInt]] = Field(description="Deprecated, removed on 2026-12-21: points per koota keyed by the old names (Dina, Gana, Mahendra, StreeDeergha, Yoni, Rasi, RasiAdhipati, Vashya, Rajju, Vedha). Use kootas.")
+    max_per_koota: Dict[str, Union[StrictFloat, StrictInt]] = Field(description="Deprecated, removed on 2026-12-21: maximum points per koota keyed by the old names. Use koota_max.")
+    kootas: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = Field(default=None, description="Points per koota, keyed by fixed id: dina, gana, mahendra, stree_deergha, yoni, rasi, rasi_adhipati, vashya, rajju, vedha.")
+    koota_max: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = Field(default=None, description="Maximum points per koota, keyed like kootas.")
     doshas: DashakootDoshas
     supplementary: Dict[str, Any]
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "total_score", "max_score", "percentage", "compatibility_level", "breakdown", "max_per_koota", "doshas", "supplementary"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "total_score", "max_score", "percentage", "compatibility_level", "compatibility_level_id", "compatibility_level_label", "breakdown", "max_per_koota", "kootas", "koota_max", "doshas", "supplementary"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -84,6 +88,16 @@ class DashakootResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of doshas
         if self.doshas:
             _dict['doshas'] = self.doshas.to_dict()
+        # set to None if compatibility_level_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.compatibility_level_id is None and "compatibility_level_id" in self.model_fields_set:
+            _dict['compatibility_level_id'] = None
+
+        # set to None if compatibility_level_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.compatibility_level_label is None and "compatibility_level_label" in self.model_fields_set:
+            _dict['compatibility_level_label'] = None
+
         return _dict
 
     @classmethod
@@ -103,8 +117,12 @@ class DashakootResponse(BaseModel):
             "max_score": obj.get("max_score"),
             "percentage": obj.get("percentage"),
             "compatibility_level": obj.get("compatibility_level"),
+            "compatibility_level_id": obj.get("compatibility_level_id"),
+            "compatibility_level_label": obj.get("compatibility_level_label"),
             "breakdown": obj.get("breakdown"),
             "max_per_koota": obj.get("max_per_koota"),
+            "kootas": obj.get("kootas"),
+            "koota_max": obj.get("koota_max"),
             "doshas": DashakootDoshas.from_dict(obj["doshas"]) if obj.get("doshas") is not None else None,
             "supplementary": obj.get("supplementary")
         })

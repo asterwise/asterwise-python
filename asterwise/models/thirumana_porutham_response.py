@@ -34,14 +34,19 @@ class ThirumanaPoruthamResponse(BaseModel):
     total_passed: StrictInt
     total_poruthams: StrictInt
     compatibility_level: StrictStr
+    compatibility_level_id: Optional[StrictStr] = None
+    compatibility_level_label: Optional[StrictStr] = None
     rajju_veto: StrictBool
     vedha_veto: StrictBool
     hard_veto: StrictBool
     rajju_severity: StrictInt
     rajju_severity_label: Optional[StrictStr]
+    rajju_severity_label_id: Optional[StrictStr] = None
+    rajju_severity_label_text: Optional[StrictStr] = None
     tradition: StrictStr
-    breakdown: Dict[str, Any]
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "total_passed", "total_poruthams", "compatibility_level", "rajju_veto", "vedha_veto", "hard_veto", "rajju_severity", "rajju_severity_label", "tradition", "breakdown"]
+    breakdown: Dict[str, Any] = Field(description="Deprecated, removed on 2026-12-21: the same results keyed by the old names (\"Dina Porutham\" ... \"Varna Porutham\"). Use poruthams.")
+    poruthams: Optional[Dict[str, Any]] = Field(default=None, description="Each porutham's result, keyed by fixed id: dina, gana, mahendra, stree_deergha, yoni, rasi, rasi_adhipati, rajju, vedha, vashya, nadi, varna.")
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "total_passed", "total_poruthams", "compatibility_level", "compatibility_level_id", "compatibility_level_label", "rajju_veto", "vedha_veto", "hard_veto", "rajju_severity", "rajju_severity_label", "rajju_severity_label_id", "rajju_severity_label_text", "tradition", "breakdown", "poruthams"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,10 +87,30 @@ class ThirumanaPoruthamResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if compatibility_level_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.compatibility_level_id is None and "compatibility_level_id" in self.model_fields_set:
+            _dict['compatibility_level_id'] = None
+
+        # set to None if compatibility_level_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.compatibility_level_label is None and "compatibility_level_label" in self.model_fields_set:
+            _dict['compatibility_level_label'] = None
+
         # set to None if rajju_severity_label (nullable) is None
         # and model_fields_set contains the field
         if self.rajju_severity_label is None and "rajju_severity_label" in self.model_fields_set:
             _dict['rajju_severity_label'] = None
+
+        # set to None if rajju_severity_label_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rajju_severity_label_id is None and "rajju_severity_label_id" in self.model_fields_set:
+            _dict['rajju_severity_label_id'] = None
+
+        # set to None if rajju_severity_label_text (nullable) is None
+        # and model_fields_set contains the field
+        if self.rajju_severity_label_text is None and "rajju_severity_label_text" in self.model_fields_set:
+            _dict['rajju_severity_label_text'] = None
 
         return _dict
 
@@ -105,13 +130,18 @@ class ThirumanaPoruthamResponse(BaseModel):
             "total_passed": obj.get("total_passed"),
             "total_poruthams": obj.get("total_poruthams"),
             "compatibility_level": obj.get("compatibility_level"),
+            "compatibility_level_id": obj.get("compatibility_level_id"),
+            "compatibility_level_label": obj.get("compatibility_level_label"),
             "rajju_veto": obj.get("rajju_veto"),
             "vedha_veto": obj.get("vedha_veto"),
             "hard_veto": obj.get("hard_veto"),
             "rajju_severity": obj.get("rajju_severity"),
             "rajju_severity_label": obj.get("rajju_severity_label"),
+            "rajju_severity_label_id": obj.get("rajju_severity_label_id"),
+            "rajju_severity_label_text": obj.get("rajju_severity_label_text"),
             "tradition": obj.get("tradition"),
-            "breakdown": obj.get("breakdown")
+            "breakdown": obj.get("breakdown"),
+            "poruthams": obj.get("poruthams")
         })
         return _obj
 

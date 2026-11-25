@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **houses** | [**List[HouseData]**](HouseData.md) | Computed house cusp placements | 
 **ascendant** | **float** | Ascendant longitude in degrees | 
 **ascendant_sign** | **str** | Ascendant sign name | 
+**ascendant_sign_id** | **str** |  | [optional] 
+**ascendant_sign_label** | **str** |  | [optional] 
 **ayanamsa_value** | **float** | Numerical ayanamsa value used in calculations | 
 **ayanamsa_used** | **str** | Ayanamsa mode used for the chart | 
 **birth_moment** | [**BirthMoment**](BirthMoment.md) |  | [optional] 
@@ -16,7 +18,11 @@ Name | Type | Description | Notes
 **interpretation** | **List[Dict[str, object]]** |  | [optional] 
 **ascendant_sign_interpretation** | **Dict[str, object]** |  | [optional] 
 **moon_sign** | **str** |  | [optional] 
+**moon_sign_id** | **str** |  | [optional] 
+**moon_sign_label** | **str** |  | [optional] 
 **moon_nakshatra** | **str** |  | [optional] 
+**moon_nakshatra_id** | **str** |  | [optional] 
+**moon_nakshatra_label** | **str** |  | [optional] 
 **moon_sign_interpretation** | **Dict[str, object]** |  | [optional] 
 **moon_nakshatra_interpretation** | **Dict[str, object]** |  | [optional] 
 **avakahada** | **Dict[str, object]** |  | [optional] 
@@ -28,8 +34,12 @@ Name | Type | Description | Notes
 **upapada_lagna** | [**UpapadaLagna**](UpapadaLagna.md) |  | [optional] 
 **ascendant_tropical_longitude** | **float** |  | [optional] 
 **ascendant_tropical_sign** | **str** |  | [optional] 
+**ascendant_tropical_sign_id** | **str** |  | [optional] 
+**ascendant_tropical_sign_label** | **str** |  | [optional] 
 **ascendant_tropical_sign_index** | **int** |  | [optional] 
 **moon_tropical_sign** | **str** |  | [optional] 
+**moon_tropical_sign_id** | **str** |  | [optional] 
+**moon_tropical_sign_label** | **str** |  | [optional] 
 
 ## Example
 

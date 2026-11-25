@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **event_type** | **str** |  | 
 **activity** | **str** |  | 
+**activity_id** | **str** |  | [optional] 
+**activity_label** | **str** |  | [optional] 
 **from_date** | **str** |  | 
 **to_date** | **str** |  | 
 **timezone** | **str** |  | 

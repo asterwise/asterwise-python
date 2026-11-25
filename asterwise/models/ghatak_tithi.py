@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,9 +29,11 @@ class GhatakTithi(BaseModel):
     GhatakTithi
     """ # noqa: E501
     group: StrictStr
+    group_id: Optional[StrictStr] = None
+    group_label: Optional[StrictStr] = None
     tithi_numbers: List[StrictInt]
     description: StrictStr
-    __properties: ClassVar[List[str]] = ["group", "tithi_numbers", "description"]
+    __properties: ClassVar[List[str]] = ["group", "group_id", "group_label", "tithi_numbers", "description"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -72,6 +74,16 @@ class GhatakTithi(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if group_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.group_id is None and "group_id" in self.model_fields_set:
+            _dict['group_id'] = None
+
+        # set to None if group_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.group_label is None and "group_label" in self.model_fields_set:
+            _dict['group_label'] = None
+
         return _dict
 
     @classmethod
@@ -85,6 +97,8 @@ class GhatakTithi(BaseModel):
 
         _obj = cls.model_validate({
             "group": obj.get("group"),
+            "group_id": obj.get("group_id"),
+            "group_label": obj.get("group_label"),
             "tithi_numbers": obj.get("tithi_numbers"),
             "description": obj.get("description")
         })

@@ -30,11 +30,15 @@ class TithiData(BaseModel):
     """ # noqa: E501
     number: StrictInt = Field(description="Tithi number, 1 to 30")
     name: StrictStr = Field(description="Tithi name, e.g. Pratipada, Purnima, Amavasya")
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     paksha: StrictStr = Field(description="Paksha — Shukla (waxing) or Krishna (waning)")
+    paksha_id: Optional[StrictStr] = None
+    paksha_label: Optional[StrictStr] = None
     degrees_elapsed: Union[StrictFloat, StrictInt] = Field(description="Degrees completed within the current tithi")
     degrees_remaining: Union[StrictFloat, StrictInt] = Field(description="Degrees remaining until the next tithi")
     end_time: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["number", "name", "paksha", "degrees_elapsed", "degrees_remaining", "end_time"]
+    __properties: ClassVar[List[str]] = ["number", "name", "id", "label", "paksha", "paksha_id", "paksha_label", "degrees_elapsed", "degrees_remaining", "end_time"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,6 +79,26 @@ class TithiData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
+        # set to None if paksha_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_id is None and "paksha_id" in self.model_fields_set:
+            _dict['paksha_id'] = None
+
+        # set to None if paksha_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_label is None and "paksha_label" in self.model_fields_set:
+            _dict['paksha_label'] = None
+
         # set to None if end_time (nullable) is None
         # and model_fields_set contains the field
         if self.end_time is None and "end_time" in self.model_fields_set:
@@ -94,7 +118,11 @@ class TithiData(BaseModel):
         _obj = cls.model_validate({
             "number": obj.get("number"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "paksha": obj.get("paksha"),
+            "paksha_id": obj.get("paksha_id"),
+            "paksha_label": obj.get("paksha_label"),
             "degrees_elapsed": obj.get("degrees_elapsed"),
             "degrees_remaining": obj.get("degrees_remaining"),
             "end_time": obj.get("end_time")

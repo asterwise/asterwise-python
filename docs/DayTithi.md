@@ -15,8 +15,14 @@ Name | Type | Description | Notes
 **nature** | **str** |  | [optional] 
 **number** | **int** | 1 to 30 (1-15 Shukla, 16-30 Krishna). | 
 **name** | **str** |  | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **paksha** | **str** | Shukla or Krishna. | 
+**paksha_id** | **str** |  | [optional] 
+**paksha_label** | **str** |  | [optional] 
 **fivefold** | **str** | Nanda, Bhadra, Jaya, Rikta or Purna. | 
+**fivefold_id** | **str** |  | [optional] 
+**fivefold_label** | **str** |  | [optional] 
 **is_chidra** | **bool** |  | 
 
 ## Example

@@ -25,7 +25,6 @@ asterwise/models/angel_numbers_list_data.py
 asterwise/models/angel_numbers_list_response.py
 asterwise/models/api_response_angel_number_response.py
 asterwise/models/api_response_ashtakavarga_response.py
-asterwise/models/api_response_ashtottari_endpoint_response.py
 asterwise/models/api_response_atmakaraka_response.py
 asterwise/models/api_response_ayanamsha_response.py
 asterwise/models/api_response_business_name_analysis_response.py
@@ -115,6 +114,7 @@ asterwise/models/api_response_thirumana_porutham_response.py
 asterwise/models/api_response_timezone_response.py
 asterwise/models/api_response_today_angel_number_response.py
 asterwise/models/api_response_transits_response.py
+asterwise/models/api_response_union_ashtottari_endpoint_response_ashtottari_not_applicable_response.py
 asterwise/models/api_response_union_biorhythm_single_day_response_biorhythm_range_response.py
 asterwise/models/api_response_union_planet_nature_all_response_planet_nature_single_response.py
 asterwise/models/api_response_union_puja_suggestions_all_response_puja_suggestion_single_response.py
@@ -124,6 +124,7 @@ asterwise/models/api_response_vedic_daily_factors_response.py
 asterwise/models/api_response_void_of_course_response.py
 asterwise/models/api_response_weekly_transit_response.py
 asterwise/models/api_response_western_aspects_response.py
+asterwise/models/api_response_western_chart_response.py
 asterwise/models/api_response_western_daily_factors_response.py
 asterwise/models/api_response_western_day_response.py
 asterwise/models/api_response_western_horary_response.py
@@ -140,6 +141,8 @@ asterwise/models/app_api_schemas_western_compatibility_response.py
 asterwise/models/ashtakavarga_request.py
 asterwise/models/ashtakavarga_response.py
 asterwise/models/ashtottari_endpoint_response.py
+asterwise/models/ashtottari_niyama.py
+asterwise/models/ashtottari_not_applicable_response.py
 asterwise/models/ashtottari_period.py
 asterwise/models/ashtottari_request.py
 asterwise/models/ashtottari_response.py
@@ -211,6 +214,7 @@ asterwise/models/data.py
 asterwise/models/data1.py
 asterwise/models/data2.py
 asterwise/models/data3.py
+asterwise/models/data4.py
 asterwise/models/day_karana.py
 asterwise/models/day_nakshatra.py
 asterwise/models/day_pada.py
@@ -480,6 +484,9 @@ asterwise/models/western_aspect.py
 asterwise/models/western_aspects_request.py
 asterwise/models/western_aspects_response.py
 asterwise/models/western_birth_input.py
+asterwise/models/western_chart_colors.py
+asterwise/models/western_chart_request.py
+asterwise/models/western_chart_response.py
 asterwise/models/western_daily_factors_request.py
 asterwise/models/western_daily_factors_response.py
 asterwise/models/western_day_moon.py
@@ -523,7 +530,6 @@ docs/AngelNumbersListData.md
 docs/AngelNumbersListResponse.md
 docs/ApiResponseAngelNumberResponse.md
 docs/ApiResponseAshtakavargaResponse.md
-docs/ApiResponseAshtottariEndpointResponse.md
 docs/ApiResponseAtmakarakaResponse.md
 docs/ApiResponseAyanamshaResponse.md
 docs/ApiResponseBusinessNameAnalysisResponse.md
@@ -613,6 +619,7 @@ docs/ApiResponseThirumanaPoruthamResponse.md
 docs/ApiResponseTimezoneResponse.md
 docs/ApiResponseTodayAngelNumberResponse.md
 docs/ApiResponseTransitsResponse.md
+docs/ApiResponseUnionAshtottariEndpointResponseAshtottariNotApplicableResponse.md
 docs/ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse.md
 docs/ApiResponseUnionPlanetNatureAllResponsePlanetNatureSingleResponse.md
 docs/ApiResponseUnionPujaSuggestionsAllResponsePujaSuggestionSingleResponse.md
@@ -622,6 +629,7 @@ docs/ApiResponseVedicDailyFactorsResponse.md
 docs/ApiResponseVoidOfCourseResponse.md
 docs/ApiResponseWeeklyTransitResponse.md
 docs/ApiResponseWesternAspectsResponse.md
+docs/ApiResponseWesternChartResponse.md
 docs/ApiResponseWesternDailyFactorsResponse.md
 docs/ApiResponseWesternDayResponse.md
 docs/ApiResponseWesternHoraryResponse.md
@@ -638,6 +646,8 @@ docs/AppApiSchemasWesternCompatibilityResponse.md
 docs/AshtakavargaRequest.md
 docs/AshtakavargaResponse.md
 docs/AshtottariEndpointResponse.md
+docs/AshtottariNiyama.md
+docs/AshtottariNotApplicableResponse.md
 docs/AshtottariPeriod.md
 docs/AshtottariRequest.md
 docs/AshtottariResponse.md
@@ -711,6 +721,7 @@ docs/Data.md
 docs/Data1.md
 docs/Data2.md
 docs/Data3.md
+docs/Data4.md
 docs/DayKarana.md
 docs/DayNakshatra.md
 docs/DayPada.md
@@ -992,6 +1003,9 @@ docs/WesternAspectsRequest.md
 docs/WesternAspectsResponse.md
 docs/WesternAstrologyApi.md
 docs/WesternBirthInput.md
+docs/WesternChartColors.md
+docs/WesternChartRequest.md
+docs/WesternChartResponse.md
 docs/WesternDailyFactorsRequest.md
 docs/WesternDailyFactorsResponse.md
 docs/WesternDayMoon.md
@@ -1029,9 +1043,7 @@ docs/YoginiResponse.md
 docs/ZodiacCompatibilityResponse.md
 git_push.sh
 test/__init__.py
-test/test_api_response_my_usage_response.py
-test/test_chart_colors.py
-test/test_my_usage_response.py
-test/test_varga_chart_svgs.py
-test/test_western_birth_input.py
-test/test_western_point.py
+test/test_api_response_union_ashtottari_endpoint_response_ashtottari_not_applicable_response.py
+test/test_ashtottari_niyama.py
+test/test_ashtottari_not_applicable_response.py
+test/test_data4.py

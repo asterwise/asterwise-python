@@ -10,8 +10,12 @@ Name | Type | Description | Notes
 **year_end** | **str** | Next birthday (exclusive). | 
 **profected_house** | **int** | Whole-sign house activated this year, counted from the Ascendant. | 
 **profected_sign** | **str** |  | 
+**profected_sign_id** | **str** |  | [optional] 
+**profected_sign_label** | **str** |  | [optional] 
 **profected_sign_index** | **int** |  | 
 **year_lord** | **str** | Traditional ruler of the profected sign (lord of the year). | 
+**year_lord_id** | **str** |  | [optional] 
+**year_lord_label** | **str** |  | [optional] 
 
 ## Example
 

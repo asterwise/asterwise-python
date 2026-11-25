@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **house** | **int** | House number in the natal chart | 
 **sign** | **str** | Sign occupying the house cusp | 
+**sign_id** | **str** |  | [optional] 
+**sign_label** | **str** |  | [optional] 
 **sign_num** | **int** | Zero-based zodiac sign index for house cusp | 
 **degree** | **float** | House cusp degree within sign | 
 

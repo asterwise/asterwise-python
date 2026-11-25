@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **house** | **int** |  | 
 **cusp_longitude** | **float** | Tropical ecliptic longitude of house cusp | 
 **sign** | **str** |  | 
+**sign_id** | **str** |  | [optional] 
+**sign_label** | **str** |  | [optional] 
 **sign_index** | **int** |  | 
 **degree_in_sign** | **float** |  | 
 

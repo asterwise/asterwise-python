@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **start** | **str** | Saturn&#39;s first entry into the phase sign. | 
 **end** | **str** | Saturn&#39;s final exit from the phase sign, after any retrograde return. | 
 **saturn_sign** | **str** |  | 
+**saturn_sign_id** | **str** |  | [optional] 
+**saturn_sign_label** | **str** |  | [optional] 
 **intensity** | **str** |  | 
 **segments** | [**List[SaturnStay]**](SaturnStay.md) | Every stay of Saturn in the phase sign; phases can interleave around a retrograde loop. | [optional] 
 **is_interrupted** | **bool** |  | [optional] 

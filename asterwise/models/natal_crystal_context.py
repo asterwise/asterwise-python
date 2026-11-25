@@ -29,15 +29,31 @@ class NatalCrystalContext(BaseModel):
     NatalCrystalContext
     """ # noqa: E501
     lagna_sign: StrictStr = Field(description="Ascendant sign (English).")
+    lagna_sign_id: Optional[StrictStr] = None
+    lagna_sign_label: Optional[StrictStr] = None
     lagna_lord: StrictStr = Field(description="Lord of the 1st house.")
+    lagna_lord_id: Optional[StrictStr] = None
+    lagna_lord_label: Optional[StrictStr] = None
     fifth_sign: StrictStr = Field(description="5th house sign (English).")
+    fifth_sign_id: Optional[StrictStr] = None
+    fifth_sign_label: Optional[StrictStr] = None
     fifth_lord: StrictStr = Field(description="Lord of the 5th house (Panchamesh — Lucky Stone).")
+    fifth_lord_id: Optional[StrictStr] = None
+    fifth_lord_label: Optional[StrictStr] = None
     ninth_sign: StrictStr = Field(description="9th house sign (English).")
+    ninth_sign_id: Optional[StrictStr] = None
+    ninth_sign_label: Optional[StrictStr] = None
     ninth_lord: StrictStr = Field(description="Lord of the 9th house (Bhagyesh — Fortune Stone).")
+    ninth_lord_id: Optional[StrictStr] = None
+    ninth_lord_label: Optional[StrictStr] = None
     yogakaraka: Optional[StrictStr] = None
-    contraindicated_lords: List[StrictStr] = Field(description="Planets whose gems are contraindicated in this chart: Dusthana (6/8/12) lords that own no Trikona, plus debilitated or combust planets. Same rule as POST /v1/astro/gemstones.")
+    yogakaraka_id: Optional[StrictStr] = None
+    yogakaraka_label: Optional[StrictStr] = None
+    contraindicated_lords: List[StrictStr] = Field(description="Planets whose gems are contraindicated in this chart: Dusthana (6/8/12) and 3rd/11th lords that own no Trikona, plus debilitated or combust planets. Same rule as POST /v1/astro/gemstones.")
+    contraindicated_lord_ids: Optional[List[StrictStr]] = None
+    contraindicated_lord_labels: Optional[List[StrictStr]] = None
     ayanamsa: Optional[StrictStr] = Field(default='lahiri', description="Ayanamsa the chart was cast with: the request's `ayanamsa` (until 2026-10 this always read \"lahiri\").")
-    __properties: ClassVar[List[str]] = ["lagna_sign", "lagna_lord", "fifth_sign", "fifth_lord", "ninth_sign", "ninth_lord", "yogakaraka", "contraindicated_lords", "ayanamsa"]
+    __properties: ClassVar[List[str]] = ["lagna_sign", "lagna_sign_id", "lagna_sign_label", "lagna_lord", "lagna_lord_id", "lagna_lord_label", "fifth_sign", "fifth_sign_id", "fifth_sign_label", "fifth_lord", "fifth_lord_id", "fifth_lord_label", "ninth_sign", "ninth_sign_id", "ninth_sign_label", "ninth_lord", "ninth_lord_id", "ninth_lord_label", "yogakaraka", "yogakaraka_id", "yogakaraka_label", "contraindicated_lords", "contraindicated_lord_ids", "contraindicated_lord_labels", "ayanamsa"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,10 +94,90 @@ class NatalCrystalContext(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if lagna_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.lagna_sign_id is None and "lagna_sign_id" in self.model_fields_set:
+            _dict['lagna_sign_id'] = None
+
+        # set to None if lagna_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.lagna_sign_label is None and "lagna_sign_label" in self.model_fields_set:
+            _dict['lagna_sign_label'] = None
+
+        # set to None if lagna_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.lagna_lord_id is None and "lagna_lord_id" in self.model_fields_set:
+            _dict['lagna_lord_id'] = None
+
+        # set to None if lagna_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.lagna_lord_label is None and "lagna_lord_label" in self.model_fields_set:
+            _dict['lagna_lord_label'] = None
+
+        # set to None if fifth_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.fifth_sign_id is None and "fifth_sign_id" in self.model_fields_set:
+            _dict['fifth_sign_id'] = None
+
+        # set to None if fifth_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.fifth_sign_label is None and "fifth_sign_label" in self.model_fields_set:
+            _dict['fifth_sign_label'] = None
+
+        # set to None if fifth_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.fifth_lord_id is None and "fifth_lord_id" in self.model_fields_set:
+            _dict['fifth_lord_id'] = None
+
+        # set to None if fifth_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.fifth_lord_label is None and "fifth_lord_label" in self.model_fields_set:
+            _dict['fifth_lord_label'] = None
+
+        # set to None if ninth_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.ninth_sign_id is None and "ninth_sign_id" in self.model_fields_set:
+            _dict['ninth_sign_id'] = None
+
+        # set to None if ninth_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.ninth_sign_label is None and "ninth_sign_label" in self.model_fields_set:
+            _dict['ninth_sign_label'] = None
+
+        # set to None if ninth_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.ninth_lord_id is None and "ninth_lord_id" in self.model_fields_set:
+            _dict['ninth_lord_id'] = None
+
+        # set to None if ninth_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.ninth_lord_label is None and "ninth_lord_label" in self.model_fields_set:
+            _dict['ninth_lord_label'] = None
+
         # set to None if yogakaraka (nullable) is None
         # and model_fields_set contains the field
         if self.yogakaraka is None and "yogakaraka" in self.model_fields_set:
             _dict['yogakaraka'] = None
+
+        # set to None if yogakaraka_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.yogakaraka_id is None and "yogakaraka_id" in self.model_fields_set:
+            _dict['yogakaraka_id'] = None
+
+        # set to None if yogakaraka_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.yogakaraka_label is None and "yogakaraka_label" in self.model_fields_set:
+            _dict['yogakaraka_label'] = None
+
+        # set to None if contraindicated_lord_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.contraindicated_lord_ids is None and "contraindicated_lord_ids" in self.model_fields_set:
+            _dict['contraindicated_lord_ids'] = None
+
+        # set to None if contraindicated_lord_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.contraindicated_lord_labels is None and "contraindicated_lord_labels" in self.model_fields_set:
+            _dict['contraindicated_lord_labels'] = None
 
         return _dict
 
@@ -96,13 +192,29 @@ class NatalCrystalContext(BaseModel):
 
         _obj = cls.model_validate({
             "lagna_sign": obj.get("lagna_sign"),
+            "lagna_sign_id": obj.get("lagna_sign_id"),
+            "lagna_sign_label": obj.get("lagna_sign_label"),
             "lagna_lord": obj.get("lagna_lord"),
+            "lagna_lord_id": obj.get("lagna_lord_id"),
+            "lagna_lord_label": obj.get("lagna_lord_label"),
             "fifth_sign": obj.get("fifth_sign"),
+            "fifth_sign_id": obj.get("fifth_sign_id"),
+            "fifth_sign_label": obj.get("fifth_sign_label"),
             "fifth_lord": obj.get("fifth_lord"),
+            "fifth_lord_id": obj.get("fifth_lord_id"),
+            "fifth_lord_label": obj.get("fifth_lord_label"),
             "ninth_sign": obj.get("ninth_sign"),
+            "ninth_sign_id": obj.get("ninth_sign_id"),
+            "ninth_sign_label": obj.get("ninth_sign_label"),
             "ninth_lord": obj.get("ninth_lord"),
+            "ninth_lord_id": obj.get("ninth_lord_id"),
+            "ninth_lord_label": obj.get("ninth_lord_label"),
             "yogakaraka": obj.get("yogakaraka"),
+            "yogakaraka_id": obj.get("yogakaraka_id"),
+            "yogakaraka_label": obj.get("yogakaraka_label"),
             "contraindicated_lords": obj.get("contraindicated_lords"),
+            "contraindicated_lord_ids": obj.get("contraindicated_lord_ids"),
+            "contraindicated_lord_labels": obj.get("contraindicated_lord_labels"),
             "ayanamsa": obj.get("ayanamsa") if obj.get("ayanamsa") is not None else 'lahiri'
         })
         return _obj

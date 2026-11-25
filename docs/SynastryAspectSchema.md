@@ -6,7 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **person1_planet** | **str** |  | 
+**person1_planet_id** | **str** |  | [optional] 
+**person1_planet_label** | **str** |  | [optional] 
 **person2_planet** | **str** |  | 
+**person2_planet_id** | **str** |  | [optional] 
+**person2_planet_label** | **str** |  | [optional] 
 **type** | **str** |  | 
 **exact_angle** | **float** |  | 
 **orb** | **float** |  | 

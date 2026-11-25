@@ -30,6 +30,8 @@ class HoraPeriod(BaseModel):
     """ # noqa: E501
     hora: StrictInt = Field(description="Hora number, 1 to 24.")
     ruling_planet: StrictStr = Field(description="Planet ruling this hora.")
+    ruling_planet_id: Optional[StrictStr] = None
+    ruling_planet_label: Optional[StrictStr] = None
     start: StrictStr = Field(description="Hora start time in HH:MM local time.")
     start_at: Optional[StrictStr] = None
     start_utc: Optional[StrictStr] = None
@@ -38,7 +40,7 @@ class HoraPeriod(BaseModel):
     end_utc: Optional[StrictStr] = None
     quality: StrictStr = Field(description="Activities suited to this planetary hora.")
     is_current: StrictBool = Field(description="True if this hora is currently active.")
-    __properties: ClassVar[List[str]] = ["hora", "ruling_planet", "start", "start_at", "start_utc", "end", "end_at", "end_utc", "quality", "is_current"]
+    __properties: ClassVar[List[str]] = ["hora", "ruling_planet", "ruling_planet_id", "ruling_planet_label", "start", "start_at", "start_utc", "end", "end_at", "end_utc", "quality", "is_current"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,6 +81,16 @@ class HoraPeriod(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if ruling_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.ruling_planet_id is None and "ruling_planet_id" in self.model_fields_set:
+            _dict['ruling_planet_id'] = None
+
+        # set to None if ruling_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.ruling_planet_label is None and "ruling_planet_label" in self.model_fields_set:
+            _dict['ruling_planet_label'] = None
+
         # set to None if start_at (nullable) is None
         # and model_fields_set contains the field
         if self.start_at is None and "start_at" in self.model_fields_set:
@@ -113,6 +125,8 @@ class HoraPeriod(BaseModel):
         _obj = cls.model_validate({
             "hora": obj.get("hora"),
             "ruling_planet": obj.get("ruling_planet"),
+            "ruling_planet_id": obj.get("ruling_planet_id"),
+            "ruling_planet_label": obj.get("ruling_planet_label"),
             "start": obj.get("start"),
             "start_at": obj.get("start_at"),
             "start_utc": obj.get("start_utc"),

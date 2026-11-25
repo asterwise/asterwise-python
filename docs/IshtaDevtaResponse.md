@@ -5,17 +5,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time. | [optional] [default to True]
+**birth_time_provided** | **bool** | Always true: this endpoint requires the birth time and has no sunrise fallback, so house, Ascendant and Moon-dependent results use the time you sent. | [optional] [default to True]
 **atmakaraka** | **str** |  | 
+**atmakaraka_id** | **str** |  | [optional] 
+**atmakaraka_label** | **str** |  | [optional] 
 **karakamsha_lagna** | **str** |  | 
+**karakamsha_lagna_id** | **str** |  | [optional] 
+**karakamsha_lagna_label** | **str** |  | [optional] 
 **karakamsha_lagna_index** | **int** |  | 
 **jivanmuktamsa_planet** | **str** |  | [optional] 
+**jivanmuktamsa_planet_id** | **str** |  | [optional] 
+**jivanmuktamsa_planet_label** | **str** |  | [optional] 
 **navamsa_lagna** | **str** |  | 
+**navamsa_lagna_id** | **str** |  | [optional] 
+**navamsa_lagna_label** | **str** |  | [optional] 
 **navamsa_lagna_index** | **int** |  | 
 **twelfth_house_sign** | **str** |  | 
+**twelfth_house_sign_id** | **str** |  | [optional] 
+**twelfth_house_sign_label** | **str** |  | [optional] 
 **twelfth_house_index** | **int** |  | 
 **planets_in_12th** | **List[str]** |  | 
+**planets_in_12th_ids** | **List[str]** |  | [optional] 
+**planets_in_12th_labels** | **List[str]** |  | [optional] 
 **ishta_devta_planet** | **str** |  | 
+**ishta_devta_planet_id** | **str** |  | [optional] 
+**ishta_devta_planet_label** | **str** |  | [optional] 
 **deity** | **str** |  | 
 **description** | **str** |  | 
 **method** | **str** |  | 

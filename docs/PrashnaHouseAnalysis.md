@@ -8,11 +8,17 @@ Name | Type | Description | Notes
 **house** | **int** |  | 
 **rashi_index** | **int** | Sign of the quesited house, counted whole sign from the lagna sign (0 &#x3D; Mesha). | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **lord** | **str** | Lord of the quesited house by whole sign (lord of its sign), as BPHS reads lordship. | 
+**lord_id** | **str** |  | [optional] 
+**lord_label** | **str** |  | [optional] 
 **lord_dignity** | **str** |  | 
 **lord_house** | **int** |  | 
 **lord_longitude** | **float** |  | 
 **occupants** | **List[str]** |  | 
+**occupant_ids** | **List[str]** |  | [optional] 
+**occupant_labels** | **List[str]** |  | [optional] 
 
 ## Example
 

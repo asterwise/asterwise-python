@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from asterwise.models.signification import Signification
 from typing import Optional, Set
@@ -33,10 +33,12 @@ class HouseSignifications(BaseModel):
     house: Annotated[int, Field(le=12, strict=True, ge=1)]
     id: StrictStr
     name: StrictStr
+    name_id: Optional[StrictStr] = None
+    name_label: Optional[StrictStr] = None
     label: StrictStr
     source: StrictStr
     significations: List[Signification]
-    __properties: ClassVar[List[str]] = ["house", "id", "name", "label", "source", "significations"]
+    __properties: ClassVar[List[str]] = ["house", "id", "name", "name_id", "name_label", "label", "source", "significations"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -84,6 +86,16 @@ class HouseSignifications(BaseModel):
                 if _item_significations:
                     _items.append(_item_significations.to_dict())
             _dict['significations'] = _items
+        # set to None if name_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.name_id is None and "name_id" in self.model_fields_set:
+            _dict['name_id'] = None
+
+        # set to None if name_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.name_label is None and "name_label" in self.model_fields_set:
+            _dict['name_label'] = None
+
         return _dict
 
     @classmethod
@@ -99,6 +111,8 @@ class HouseSignifications(BaseModel):
             "house": obj.get("house"),
             "id": obj.get("id"),
             "name": obj.get("name"),
+            "name_id": obj.get("name_id"),
+            "name_label": obj.get("name_label"),
             "label": obj.get("label"),
             "source": obj.get("source"),
             "significations": [Signification.from_dict(_item) for _item in obj["significations"]] if obj.get("significations") is not None else None

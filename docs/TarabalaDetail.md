@@ -5,11 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tara_number** | **int** | 1-9: Janma, Sampat, Vipat, Kshema, Pratyak, Sadhana, Naidhana, Mitra, Ati-Mitra. | 
+**tara_number** | **int** | 1-9: Janma, Sampat, Vipat, Kshema, Pratyak, Sadhana, Naidhana, Mitra, Parama Mitra. | 
 **count_from_birth** | **int** | 1-27, counting the birth nakshatra as 1. | 
 **cycle** | **int** |  | [optional] 
 **cycle_name** | **str** |  | [optional] 
+**cycle_name_id** | **str** |  | [optional] 
+**cycle_name_label** | **str** |  | [optional] 
 **name** | **str** | Tara name; the first tara of rounds 2 and 3 is Anujanma and Trijanma. | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **meaning** | **str** |  | 
 **is_favorable** | **bool** |  | 
 **is_moon_in_birth_nakshatra** | **bool** |  | [optional] 

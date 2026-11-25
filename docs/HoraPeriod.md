@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **hora** | **int** | Hora number, 1 to 24. | 
 **ruling_planet** | **str** | Planet ruling this hora. | 
+**ruling_planet_id** | **str** |  | [optional] 
+**ruling_planet_label** | **str** |  | [optional] 
 **start** | **str** | Hora start time in HH:MM local time. | 
 **start_at** | **str** |  | [optional] 
 **start_utc** | **str** |  | [optional] 

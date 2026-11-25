@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **puja_name** | **str** |  | 
 **deity** | **str** |  | 
 **day** | **str** |  | 
+**day_id** | **str** |  | [optional] 
+**day_label** | **str** |  | [optional] 
 **offerings** | **List[str]** |  | 
 **grain** | **str** |  | 
 **mantra** | **str** |  | 

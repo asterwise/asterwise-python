@@ -6,8 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **longitude** | **float** |  | 
 **sign** | **str** |  | 
+**sign_id** | **str** |  | [optional] 
+**sign_label** | **str** |  | [optional] 
 **sign_index** | **int** |  | 
 **degree_in_sign** | **float** |  | 
 **is_retrograde** | **bool** |  | 

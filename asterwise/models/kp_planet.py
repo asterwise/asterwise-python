@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,14 +31,20 @@ class KPPlanet(BaseModel):
     longitude: Union[StrictFloat, StrictInt] = Field(description="Sidereal longitude (KP ayanamsa), degrees 0-360.")
     rashi_index: StrictInt = Field(description="Sign index, 0 = Mesha … 11 = Meena.")
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     degree: Union[StrictFloat, StrictInt] = Field(description="Degrees within the sign.")
     is_retrograde: StrictBool = Field(description="True when the longitude speed is negative. Rahu and Ketu are the mean node, which is always retrograde.")
     house: StrictInt = Field(description="KP house (1-12), cusp to cusp: from cusp h up to, not including, cusp h+1 of the sidereal Placidus cusps. A planet exactly on a cusp is in the house that cusp starts.")
     rasi_house: StrictInt = Field(description="Whole-sign house (1-12) counted from the lagna sign, for comparison with Parashari charts.")
     nakshatra_index: StrictInt = Field(description="Nakshatra index 0-26.")
     nakshatra_lord: StrictStr = Field(description="Star lord (nakshatra lord).")
+    nakshatra_lord_id: Optional[StrictStr] = None
+    nakshatra_lord_label: Optional[StrictStr] = None
     sub_lord: StrictStr = Field(description="KP sub-lord.")
-    __properties: ClassVar[List[str]] = ["longitude", "rashi_index", "rashi", "degree", "is_retrograde", "house", "rasi_house", "nakshatra_index", "nakshatra_lord", "sub_lord"]
+    sub_lord_id: Optional[StrictStr] = None
+    sub_lord_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["longitude", "rashi_index", "rashi", "rashi_id", "rashi_label", "degree", "is_retrograde", "house", "rasi_house", "nakshatra_index", "nakshatra_lord", "nakshatra_lord_id", "nakshatra_lord_label", "sub_lord", "sub_lord_id", "sub_lord_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,6 +85,36 @@ class KPPlanet(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
+        # set to None if nakshatra_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_lord_id is None and "nakshatra_lord_id" in self.model_fields_set:
+            _dict['nakshatra_lord_id'] = None
+
+        # set to None if nakshatra_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_lord_label is None and "nakshatra_lord_label" in self.model_fields_set:
+            _dict['nakshatra_lord_label'] = None
+
+        # set to None if sub_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sub_lord_id is None and "sub_lord_id" in self.model_fields_set:
+            _dict['sub_lord_id'] = None
+
+        # set to None if sub_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sub_lord_label is None and "sub_lord_label" in self.model_fields_set:
+            _dict['sub_lord_label'] = None
+
         return _dict
 
     @classmethod
@@ -94,13 +130,19 @@ class KPPlanet(BaseModel):
             "longitude": obj.get("longitude"),
             "rashi_index": obj.get("rashi_index"),
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "degree": obj.get("degree"),
             "is_retrograde": obj.get("is_retrograde"),
             "house": obj.get("house"),
             "rasi_house": obj.get("rasi_house"),
             "nakshatra_index": obj.get("nakshatra_index"),
             "nakshatra_lord": obj.get("nakshatra_lord"),
-            "sub_lord": obj.get("sub_lord")
+            "nakshatra_lord_id": obj.get("nakshatra_lord_id"),
+            "nakshatra_lord_label": obj.get("nakshatra_lord_label"),
+            "sub_lord": obj.get("sub_lord"),
+            "sub_lord_id": obj.get("sub_lord_id"),
+            "sub_lord_label": obj.get("sub_lord_label")
         })
         return _obj
 

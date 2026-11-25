@@ -30,7 +30,7 @@ class NatalCrystalResponse(BaseModel):
     """
     NatalCrystalResponse
     """ # noqa: E501
-    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Always true: this endpoint requires the birth time and has no sunrise fallback, so house, Ascendant and Moon-dependent results use the time you sent.")
     natal_context: NatalCrystalContext
     total: StrictInt
     crystals: List[NatalCrystalEntry]

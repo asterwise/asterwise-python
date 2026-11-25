@@ -30,12 +30,14 @@ class DoshaResult(BaseModel):
     """ # noqa: E501
     present: Optional[StrictBool] = None
     types: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Dosha subtypes or tags detected for this dosha")
+    type_ids: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Fixed ids of the entries in types, in the same order (e.g. \"anant\" for Anant Kaal Sarp). Safe to store and compare; the display names in types may change spelling.")
+    type_labels: Optional[List[StrictStr]] = None
     details: Optional[Dict[str, Any]] = Field(default=None, description="Structured diagnostic details for dosha evaluation")
     needs_birth_time: Optional[StrictBool] = None
     interpretation_summary: Optional[StrictStr] = None
     keywords: Optional[List[StrictStr]] = None
     remedies: Optional[List[StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["present", "types", "details", "needs_birth_time", "interpretation_summary", "keywords", "remedies"]
+    __properties: ClassVar[List[str]] = ["present", "types", "type_ids", "type_labels", "details", "needs_birth_time", "interpretation_summary", "keywords", "remedies"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -81,6 +83,11 @@ class DoshaResult(BaseModel):
         if self.present is None and "present" in self.model_fields_set:
             _dict['present'] = None
 
+        # set to None if type_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.type_labels is None and "type_labels" in self.model_fields_set:
+            _dict['type_labels'] = None
+
         # set to None if needs_birth_time (nullable) is None
         # and model_fields_set contains the field
         if self.needs_birth_time is None and "needs_birth_time" in self.model_fields_set:
@@ -115,6 +122,8 @@ class DoshaResult(BaseModel):
         _obj = cls.model_validate({
             "present": obj.get("present"),
             "types": obj.get("types"),
+            "type_ids": obj.get("type_ids"),
+            "type_labels": obj.get("type_labels"),
             "details": obj.get("details"),
             "needs_birth_time": obj.get("needs_birth_time"),
             "interpretation_summary": obj.get("interpretation_summary"),

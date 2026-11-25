@@ -34,7 +34,9 @@ class NakshatraWindow(BaseModel):
     end_utc: Optional[StrictStr] = None
     nature: Optional[StrictStr] = None
     nakshatra: StrictStr
-    __properties: ClassVar[List[str]] = ["start", "end", "start_utc", "end_utc", "nature", "nakshatra"]
+    nakshatra_id: Optional[StrictStr] = None
+    nakshatra_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["start", "end", "start_utc", "end_utc", "nature", "nakshatra", "nakshatra_id", "nakshatra_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -90,6 +92,16 @@ class NakshatraWindow(BaseModel):
         if self.nature is None and "nature" in self.model_fields_set:
             _dict['nature'] = None
 
+        # set to None if nakshatra_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_id is None and "nakshatra_id" in self.model_fields_set:
+            _dict['nakshatra_id'] = None
+
+        # set to None if nakshatra_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_label is None and "nakshatra_label" in self.model_fields_set:
+            _dict['nakshatra_label'] = None
+
         return _dict
 
     @classmethod
@@ -107,7 +119,9 @@ class NakshatraWindow(BaseModel):
             "start_utc": obj.get("start_utc"),
             "end_utc": obj.get("end_utc"),
             "nature": obj.get("nature"),
-            "nakshatra": obj.get("nakshatra")
+            "nakshatra": obj.get("nakshatra"),
+            "nakshatra_id": obj.get("nakshatra_id"),
+            "nakshatra_label": obj.get("nakshatra_label")
         })
         return _obj
 

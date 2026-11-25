@@ -6,19 +6,37 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tattva** | **str** |  | 
+**tattva_id** | **str** |  | [optional] 
+**tattva_label** | **str** |  | [optional] 
 **guna** | **str** |  | 
+**guna_id** | **str** |  | [optional] 
+**guna_label** | **str** |  | [optional] 
 **gender** | **str** |  | 
+**gender_id** | **str** |  | [optional] 
+**gender_label** | **str** |  | [optional] 
 **caste** | **str** |  | 
+**caste_id** | **str** |  | [optional] 
+**caste_label** | **str** |  | [optional] 
 **nature** | **str** |  | 
 **direction** | **str** |  | 
+**direction_id** | **str** |  | [optional] 
+**direction_label** | **str** |  | [optional] 
 **color** | **str** |  | 
 **deity** | **str** |  | 
 **day** | **str** |  | 
+**day_id** | **str** |  | [optional] 
+**day_label** | **str** |  | [optional] 
 **metal** | **str** |  | 
 **body_part** | **str** |  | 
 **friends** | **List[str]** |  | 
+**friend_ids** | **List[str]** |  | [optional] 
+**friend_labels** | **List[str]** |  | [optional] 
 **enemies** | **List[str]** |  | 
+**enemy_ids** | **List[str]** |  | [optional] 
+**enemy_labels** | **List[str]** |  | [optional] 
 **neutrals** | **List[str]** |  | 
+**neutral_ids** | **List[str]** |  | [optional] 
+**neutral_labels** | **List[str]** |  | [optional] 
 **planet** | **str** |  | 
 
 ## Example

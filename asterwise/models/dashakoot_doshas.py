@@ -34,10 +34,14 @@ class DashakootDoshas(BaseModel):
     bhakoot_cancelled: StrictBool
     rajju_dosha: StrictBool
     rajju_group_boy: Optional[StrictStr]
+    rajju_group_boy_id: Optional[StrictStr] = None
+    rajju_group_boy_label: Optional[StrictStr] = None
     rajju_group_girl: Optional[StrictStr]
+    rajju_group_girl_id: Optional[StrictStr] = None
+    rajju_group_girl_label: Optional[StrictStr] = None
     vedha_dosha: StrictBool
     vedha_pair: Optional[StrictStr]
-    __properties: ClassVar[List[str]] = ["nadi_dosha", "nadi_cancelled", "bhakoot_dosha", "bhakoot_cancelled", "rajju_dosha", "rajju_group_boy", "rajju_group_girl", "vedha_dosha", "vedha_pair"]
+    __properties: ClassVar[List[str]] = ["nadi_dosha", "nadi_cancelled", "bhakoot_dosha", "bhakoot_cancelled", "rajju_dosha", "rajju_group_boy", "rajju_group_boy_id", "rajju_group_boy_label", "rajju_group_girl", "rajju_group_girl_id", "rajju_group_girl_label", "vedha_dosha", "vedha_pair"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -83,10 +87,30 @@ class DashakootDoshas(BaseModel):
         if self.rajju_group_boy is None and "rajju_group_boy" in self.model_fields_set:
             _dict['rajju_group_boy'] = None
 
+        # set to None if rajju_group_boy_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rajju_group_boy_id is None and "rajju_group_boy_id" in self.model_fields_set:
+            _dict['rajju_group_boy_id'] = None
+
+        # set to None if rajju_group_boy_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rajju_group_boy_label is None and "rajju_group_boy_label" in self.model_fields_set:
+            _dict['rajju_group_boy_label'] = None
+
         # set to None if rajju_group_girl (nullable) is None
         # and model_fields_set contains the field
         if self.rajju_group_girl is None and "rajju_group_girl" in self.model_fields_set:
             _dict['rajju_group_girl'] = None
+
+        # set to None if rajju_group_girl_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rajju_group_girl_id is None and "rajju_group_girl_id" in self.model_fields_set:
+            _dict['rajju_group_girl_id'] = None
+
+        # set to None if rajju_group_girl_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rajju_group_girl_label is None and "rajju_group_girl_label" in self.model_fields_set:
+            _dict['rajju_group_girl_label'] = None
 
         # set to None if vedha_pair (nullable) is None
         # and model_fields_set contains the field
@@ -111,7 +135,11 @@ class DashakootDoshas(BaseModel):
             "bhakoot_cancelled": obj.get("bhakoot_cancelled"),
             "rajju_dosha": obj.get("rajju_dosha"),
             "rajju_group_boy": obj.get("rajju_group_boy"),
+            "rajju_group_boy_id": obj.get("rajju_group_boy_id"),
+            "rajju_group_boy_label": obj.get("rajju_group_boy_label"),
             "rajju_group_girl": obj.get("rajju_group_girl"),
+            "rajju_group_girl_id": obj.get("rajju_group_girl_id"),
+            "rajju_group_girl_label": obj.get("rajju_group_girl_label"),
             "vedha_dosha": obj.get("vedha_dosha"),
             "vedha_pair": obj.get("vedha_pair")
         })

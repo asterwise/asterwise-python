@@ -1,5 +1,48 @@
 # CHANGELOG
 
+## 0.16.0 — 2026-11-26
+
+Generated from the API as deployed on 2026-11-26.
+
+### Added
+
+- **A fixed id beside every name.** Every name in an answer (planet, sign,
+  nakshatra, house lord, yoga, dosha, koota, tarot card, crystal and the
+  rest) now has a typed id next to it: `sign` with `sign_id`, `planets` with
+  `planet_ids`, a record's `name` with `id`. Ids are lower case and never
+  translated, so match on them instead of the display name.
+  The full list is on the Names and IDs page: https://docs.asterwise.com/reference/names-and-ids/
+- **Name labels, ready for other languages.** Each name can also carry its
+  name in the answer's language: `<field>_label` (or `<field>_labels` for a
+  list), `label` on a named record (`name_label` when the record already has
+  a `label`), `label_text` for a field that is itself called `label`,
+  `yoga_label`, `type_labels` on doshas and `compatibility_level_label`. The
+  response envelope gains `key_labels` for maps keyed by names or ids. These
+  fields are only sent when an answer is in a language other than English.
+  Every answer is English today, so they stay empty (`None`) for now.
+- Ashtottari Dasha: `niyama` reports both classical conditions
+  (`rahu_condition`, BPHS 46.17, the one applied; `paksha_condition`,
+  BPHS 46.23, reported only). New models `AshtottariNiyama` and
+  `AshtottariNotApplicableResponse`.
+- Western events: lunation events carry `title_id` (for example `full_moon`).
+- Matchmaking: `kootas` (Ashtakoota, Dashakoot) and `poruthams` (Porutham,
+  Thirumana Porutham), each koota or porutham under its id, with `koota_max`
+  on Dashakoot. They replace `breakdown` and `max_per_koota`, which stay
+  until 2026-12-21.
+
+### Changed
+
+- `ashtottari_dasha` now returns either the dasha periods or the
+  not-applicable answer (`applicable: false` with `reason`), matching what
+  the API sends. Before, a chart where Ashtottari does not apply could not
+  be read into the typed model.
+- Crystals: `origins` is deprecated and will be removed on 2026-12-21.
+- Method help texts follow the current API descriptions.
+- The generated holder classes for answers with two shapes (`Data`,
+  `Data1` and so on) are numbered again, because Ashtottari became one of
+  them. Import the named models (for example `BiorhythmRangeResponse`)
+  instead of the numbered holders.
+
 ## 0.15.0 — 2026-11-04
 
 Generated from the API as deployed on 2026-11-04.

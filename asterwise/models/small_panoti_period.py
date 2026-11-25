@@ -32,6 +32,8 @@ class SmallPanotiPeriod(BaseModel):
     panoti_number: StrictInt
     sign_index: StrictInt
     sign: StrictStr
+    sign_id: Optional[StrictStr] = None
+    sign_label: Optional[StrictStr] = None
     position_from_moon: StrictInt
     start: StrictStr = Field(description="Saturn's first entry into the sign.")
     end: StrictStr = Field(description="Saturn's final exit from the sign, after any retrograde return.")
@@ -39,7 +41,7 @@ class SmallPanotiPeriod(BaseModel):
     duration_years: Union[StrictFloat, StrictInt]
     segments: Optional[List[SaturnStay]] = Field(default=None, description="Every stay of Saturn in the sign; more than one when it retrogrades out and back in.")
     is_interrupted: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["panoti_number", "sign_index", "sign", "position_from_moon", "start", "end", "is_currently_active", "duration_years", "segments", "is_interrupted"]
+    __properties: ClassVar[List[str]] = ["panoti_number", "sign_index", "sign", "sign_id", "sign_label", "position_from_moon", "start", "end", "is_currently_active", "duration_years", "segments", "is_interrupted"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -87,6 +89,16 @@ class SmallPanotiPeriod(BaseModel):
                 if _item_segments:
                     _items.append(_item_segments.to_dict())
             _dict['segments'] = _items
+        # set to None if sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_id is None and "sign_id" in self.model_fields_set:
+            _dict['sign_id'] = None
+
+        # set to None if sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_label is None and "sign_label" in self.model_fields_set:
+            _dict['sign_label'] = None
+
         # set to None if is_interrupted (nullable) is None
         # and model_fields_set contains the field
         if self.is_interrupted is None and "is_interrupted" in self.model_fields_set:
@@ -107,6 +119,8 @@ class SmallPanotiPeriod(BaseModel):
             "panoti_number": obj.get("panoti_number"),
             "sign_index": obj.get("sign_index"),
             "sign": obj.get("sign"),
+            "sign_id": obj.get("sign_id"),
+            "sign_label": obj.get("sign_label"),
             "position_from_moon": obj.get("position_from_moon"),
             "start": obj.get("start"),
             "end": obj.get("end"),

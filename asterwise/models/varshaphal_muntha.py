@@ -30,9 +30,13 @@ class VarshaphalMuntha(BaseModel):
     """ # noqa: E501
     rashi_index: StrictInt = Field(description="Muntha sign 0-11: natal lagna sign + age_years (one sign a year).")
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     age_years: StrictInt = Field(description="Completed years for this varsha: target_year minus birth year (Tajika Neelakanthi), not read off the return's UTC date.")
     muntha_lord: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["rashi_index", "rashi", "age_years", "muntha_lord"]
+    muntha_lord_id: Optional[StrictStr] = None
+    muntha_lord_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["rashi_index", "rashi", "rashi_id", "rashi_label", "age_years", "muntha_lord", "muntha_lord_id", "muntha_lord_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,10 +77,30 @@ class VarshaphalMuntha(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
         # set to None if muntha_lord (nullable) is None
         # and model_fields_set contains the field
         if self.muntha_lord is None and "muntha_lord" in self.model_fields_set:
             _dict['muntha_lord'] = None
+
+        # set to None if muntha_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.muntha_lord_id is None and "muntha_lord_id" in self.model_fields_set:
+            _dict['muntha_lord_id'] = None
+
+        # set to None if muntha_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.muntha_lord_label is None and "muntha_lord_label" in self.model_fields_set:
+            _dict['muntha_lord_label'] = None
 
         return _dict
 
@@ -92,8 +116,12 @@ class VarshaphalMuntha(BaseModel):
         _obj = cls.model_validate({
             "rashi_index": obj.get("rashi_index"),
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "age_years": obj.get("age_years"),
-            "muntha_lord": obj.get("muntha_lord")
+            "muntha_lord": obj.get("muntha_lord"),
+            "muntha_lord_id": obj.get("muntha_lord_id"),
+            "muntha_lord_label": obj.get("muntha_lord_label")
         })
         return _obj
 

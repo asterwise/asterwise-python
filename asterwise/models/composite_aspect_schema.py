@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,13 +29,21 @@ class CompositeAspectSchema(BaseModel):
     Aspect between two planets of the one composite (midpoint) chart.
     """ # noqa: E501
     planet_a: StrictStr = Field(description="First composite planet")
+    planet_a_id: Optional[StrictStr] = None
+    planet_a_label: Optional[StrictStr] = None
     planet_b: StrictStr = Field(description="Second composite planet")
+    planet_b_id: Optional[StrictStr] = None
+    planet_b_label: Optional[StrictStr] = None
     person1_planet: StrictStr = Field(description="Legacy name for planet_a, kept for compatibility. Both planets belong to the composite chart, not to person 1 or person 2.")
+    person1_planet_id: Optional[StrictStr] = None
+    person1_planet_label: Optional[StrictStr] = None
     person2_planet: StrictStr = Field(description="Legacy name for planet_b, kept for compatibility (see person1_planet).")
+    person2_planet_id: Optional[StrictStr] = None
+    person2_planet_label: Optional[StrictStr] = None
     type: StrictStr
     exact_angle: Union[StrictFloat, StrictInt]
     orb: Union[StrictFloat, StrictInt]
-    __properties: ClassVar[List[str]] = ["planet_a", "planet_b", "person1_planet", "person2_planet", "type", "exact_angle", "orb"]
+    __properties: ClassVar[List[str]] = ["planet_a", "planet_a_id", "planet_a_label", "planet_b", "planet_b_id", "planet_b_label", "person1_planet", "person1_planet_id", "person1_planet_label", "person2_planet", "person2_planet_id", "person2_planet_label", "type", "exact_angle", "orb"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,6 +84,46 @@ class CompositeAspectSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if planet_a_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_a_id is None and "planet_a_id" in self.model_fields_set:
+            _dict['planet_a_id'] = None
+
+        # set to None if planet_a_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_a_label is None and "planet_a_label" in self.model_fields_set:
+            _dict['planet_a_label'] = None
+
+        # set to None if planet_b_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_b_id is None and "planet_b_id" in self.model_fields_set:
+            _dict['planet_b_id'] = None
+
+        # set to None if planet_b_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_b_label is None and "planet_b_label" in self.model_fields_set:
+            _dict['planet_b_label'] = None
+
+        # set to None if person1_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.person1_planet_id is None and "person1_planet_id" in self.model_fields_set:
+            _dict['person1_planet_id'] = None
+
+        # set to None if person1_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.person1_planet_label is None and "person1_planet_label" in self.model_fields_set:
+            _dict['person1_planet_label'] = None
+
+        # set to None if person2_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.person2_planet_id is None and "person2_planet_id" in self.model_fields_set:
+            _dict['person2_planet_id'] = None
+
+        # set to None if person2_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.person2_planet_label is None and "person2_planet_label" in self.model_fields_set:
+            _dict['person2_planet_label'] = None
+
         return _dict
 
     @classmethod
@@ -89,9 +137,17 @@ class CompositeAspectSchema(BaseModel):
 
         _obj = cls.model_validate({
             "planet_a": obj.get("planet_a"),
+            "planet_a_id": obj.get("planet_a_id"),
+            "planet_a_label": obj.get("planet_a_label"),
             "planet_b": obj.get("planet_b"),
+            "planet_b_id": obj.get("planet_b_id"),
+            "planet_b_label": obj.get("planet_b_label"),
             "person1_planet": obj.get("person1_planet"),
+            "person1_planet_id": obj.get("person1_planet_id"),
+            "person1_planet_label": obj.get("person1_planet_label"),
             "person2_planet": obj.get("person2_planet"),
+            "person2_planet_id": obj.get("person2_planet_id"),
+            "person2_planet_label": obj.get("person2_planet_label"),
             "type": obj.get("type"),
             "exact_angle": obj.get("exact_angle"),
             "orb": obj.get("orb")

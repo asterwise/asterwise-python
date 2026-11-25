@@ -7,8 +7,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **period** | **int** | Period number, 1 to 8. | 
 **name** | **str** | Choghadiya name, e.g. Amrit, Shubh, Kaal. | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **type** | **str** | Classification: highly auspicious, auspicious, or inauspicious. | 
+**type_id** | **str** |  | [optional] 
+**type_label** | **str** |  | [optional] 
 **ruling_planet** | **str** | Planet ruling this Choghadiya period. | 
+**ruling_planet_id** | **str** |  | [optional] 
+**ruling_planet_label** | **str** |  | [optional] 
 **suitable_for** | **str** | Activities suited to this period. | 
 **start** | **str** | Period start time in HH:MM local time. | 
 **start_at** | **str** |  | [optional] 
@@ -18,6 +24,8 @@ Name | Type | Description | Notes
 **end_utc** | **str** |  | [optional] 
 **is_current** | **bool** | True if this period is currently active. | 
 **vela** | **List[str]** | Barred ardha-prahara labels on this slot: &#39;Vaar Vela&#39; (day and night), &#39;Kaal Vela&#39; (day, Saturn&#39;s eighth) or &#39;Kaal Ratri&#39; (night, Saturn&#39;s eighth). Avoid auspicious work in these. Empty when none. | [optional] 
+**vela_ids** | **List[str]** |  | [optional] 
+**vela_labels** | **List[str]** |  | [optional] 
 
 ## Example
 

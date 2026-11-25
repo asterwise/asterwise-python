@@ -29,10 +29,14 @@ class CalendarTithi(BaseModel):
     CalendarTithi
     """ # noqa: E501
     name: StrictStr = Field(description="Tithi name.")
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     number: StrictInt = Field(description="Tithi number, 1 to 30.")
     paksha: StrictStr = Field(description="Shukla or Krishna.")
+    paksha_id: Optional[StrictStr] = None
+    paksha_label: Optional[StrictStr] = None
     end_time: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["name", "number", "paksha", "end_time"]
+    __properties: ClassVar[List[str]] = ["name", "id", "label", "number", "paksha", "paksha_id", "paksha_label", "end_time"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +77,26 @@ class CalendarTithi(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
+        # set to None if paksha_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_id is None and "paksha_id" in self.model_fields_set:
+            _dict['paksha_id'] = None
+
+        # set to None if paksha_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_label is None and "paksha_label" in self.model_fields_set:
+            _dict['paksha_label'] = None
+
         # set to None if end_time (nullable) is None
         # and model_fields_set contains the field
         if self.end_time is None and "end_time" in self.model_fields_set:
@@ -91,8 +115,12 @@ class CalendarTithi(BaseModel):
 
         _obj = cls.model_validate({
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "number": obj.get("number"),
             "paksha": obj.get("paksha"),
+            "paksha_id": obj.get("paksha_id"),
+            "paksha_label": obj.get("paksha_label"),
             "end_time": obj.get("end_time")
         })
         return _obj

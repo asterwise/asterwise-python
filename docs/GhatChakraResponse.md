@@ -5,8 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time. | [optional] [default to True]
+**birth_time_provided** | **bool** | Always true: this endpoint requires the birth time and has no sunrise fallback, so house, Ascendant and Moon-dependent results use the time you sent. | [optional] [default to True]
 **janma_rasi** | **str** |  | 
+**janma_rasi_id** | **str** |  | [optional] 
+**janma_rasi_label** | **str** |  | [optional] 
 **janma_rasi_index** | **int** |  | 
 **ghatak_parameters** | [**GhatakParameters**](GhatakParameters.md) |  | 
 **guidance** | **str** |  | 

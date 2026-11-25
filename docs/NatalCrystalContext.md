@@ -6,13 +6,29 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **lagna_sign** | **str** | Ascendant sign (English). | 
+**lagna_sign_id** | **str** |  | [optional] 
+**lagna_sign_label** | **str** |  | [optional] 
 **lagna_lord** | **str** | Lord of the 1st house. | 
+**lagna_lord_id** | **str** |  | [optional] 
+**lagna_lord_label** | **str** |  | [optional] 
 **fifth_sign** | **str** | 5th house sign (English). | 
+**fifth_sign_id** | **str** |  | [optional] 
+**fifth_sign_label** | **str** |  | [optional] 
 **fifth_lord** | **str** | Lord of the 5th house (Panchamesh — Lucky Stone). | 
+**fifth_lord_id** | **str** |  | [optional] 
+**fifth_lord_label** | **str** |  | [optional] 
 **ninth_sign** | **str** | 9th house sign (English). | 
+**ninth_sign_id** | **str** |  | [optional] 
+**ninth_sign_label** | **str** |  | [optional] 
 **ninth_lord** | **str** | Lord of the 9th house (Bhagyesh — Fortune Stone). | 
+**ninth_lord_id** | **str** |  | [optional] 
+**ninth_lord_label** | **str** |  | [optional] 
 **yogakaraka** | **str** |  | [optional] 
-**contraindicated_lords** | **List[str]** | Planets whose gems are contraindicated in this chart: Dusthana (6/8/12) lords that own no Trikona, plus debilitated or combust planets. Same rule as POST /v1/astro/gemstones. | 
+**yogakaraka_id** | **str** |  | [optional] 
+**yogakaraka_label** | **str** |  | [optional] 
+**contraindicated_lords** | **List[str]** | Planets whose gems are contraindicated in this chart: Dusthana (6/8/12) and 3rd/11th lords that own no Trikona, plus debilitated or combust planets. Same rule as POST /v1/astro/gemstones. | 
+**contraindicated_lord_ids** | **List[str]** |  | [optional] 
+**contraindicated_lord_labels** | **List[str]** |  | [optional] 
 **ayanamsa** | **str** | Ayanamsa the chart was cast with: the request&#39;s &#x60;ayanamsa&#x60; (until 2026-10 this always read \&quot;lahiri\&quot;). | [optional] [default to 'lahiri']
 
 ## Example

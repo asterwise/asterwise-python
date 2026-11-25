@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **yoga_name** | **str** | Detected yoga name | 
+**yoga_id** | **str** | Fixed id of the yoga (e.g. \&quot;gajakesari_yoga\&quot;, \&quot;raja_yoga\&quot;). The same for every chart and every variant of the label, so it is safe to store and compare; yoga_name carries the chart&#39;s details and may change wording. | [optional] [default to '']
+**yoga_label** | **str** |  | [optional] 
 **category** | **str** | Yoga category bucket | 
 **formation** | **str** | Formation condition | 
 **modern_summary** | **str** | Modern interpretation summary | 

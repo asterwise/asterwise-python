@@ -29,21 +29,39 @@ class PlanetNatureSingleResponse(BaseModel):
     PlanetNatureSingleResponse
     """ # noqa: E501
     tattva: Optional[StrictStr]
+    tattva_id: Optional[StrictStr] = None
+    tattva_label: Optional[StrictStr] = None
     guna: StrictStr
+    guna_id: Optional[StrictStr] = None
+    guna_label: Optional[StrictStr] = None
     gender: StrictStr
+    gender_id: Optional[StrictStr] = None
+    gender_label: Optional[StrictStr] = None
     caste: StrictStr
+    caste_id: Optional[StrictStr] = None
+    caste_label: Optional[StrictStr] = None
     nature: StrictStr
     direction: StrictStr
+    direction_id: Optional[StrictStr] = None
+    direction_label: Optional[StrictStr] = None
     color: StrictStr
     deity: StrictStr
     day: StrictStr
+    day_id: Optional[StrictStr] = None
+    day_label: Optional[StrictStr] = None
     metal: StrictStr
     body_part: StrictStr
     friends: List[StrictStr]
+    friend_ids: Optional[List[StrictStr]] = None
+    friend_labels: Optional[List[StrictStr]] = None
     enemies: List[StrictStr]
+    enemy_ids: Optional[List[StrictStr]] = None
+    enemy_labels: Optional[List[StrictStr]] = None
     neutrals: List[StrictStr]
+    neutral_ids: Optional[List[StrictStr]] = None
+    neutral_labels: Optional[List[StrictStr]] = None
     planet: StrictStr
-    __properties: ClassVar[List[str]] = ["tattva", "guna", "gender", "caste", "nature", "direction", "color", "deity", "day", "metal", "body_part", "friends", "enemies", "neutrals", "planet"]
+    __properties: ClassVar[List[str]] = ["tattva", "tattva_id", "tattva_label", "guna", "guna_id", "guna_label", "gender", "gender_id", "gender_label", "caste", "caste_id", "caste_label", "nature", "direction", "direction_id", "direction_label", "color", "deity", "day", "day_id", "day_label", "metal", "body_part", "friends", "friend_ids", "friend_labels", "enemies", "enemy_ids", "enemy_labels", "neutrals", "neutral_ids", "neutral_labels", "planet"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -89,6 +107,96 @@ class PlanetNatureSingleResponse(BaseModel):
         if self.tattva is None and "tattva" in self.model_fields_set:
             _dict['tattva'] = None
 
+        # set to None if tattva_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.tattva_id is None and "tattva_id" in self.model_fields_set:
+            _dict['tattva_id'] = None
+
+        # set to None if tattva_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.tattva_label is None and "tattva_label" in self.model_fields_set:
+            _dict['tattva_label'] = None
+
+        # set to None if guna_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.guna_id is None and "guna_id" in self.model_fields_set:
+            _dict['guna_id'] = None
+
+        # set to None if guna_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.guna_label is None and "guna_label" in self.model_fields_set:
+            _dict['guna_label'] = None
+
+        # set to None if gender_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.gender_id is None and "gender_id" in self.model_fields_set:
+            _dict['gender_id'] = None
+
+        # set to None if gender_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.gender_label is None and "gender_label" in self.model_fields_set:
+            _dict['gender_label'] = None
+
+        # set to None if caste_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.caste_id is None and "caste_id" in self.model_fields_set:
+            _dict['caste_id'] = None
+
+        # set to None if caste_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.caste_label is None and "caste_label" in self.model_fields_set:
+            _dict['caste_label'] = None
+
+        # set to None if direction_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.direction_id is None and "direction_id" in self.model_fields_set:
+            _dict['direction_id'] = None
+
+        # set to None if direction_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.direction_label is None and "direction_label" in self.model_fields_set:
+            _dict['direction_label'] = None
+
+        # set to None if day_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_id is None and "day_id" in self.model_fields_set:
+            _dict['day_id'] = None
+
+        # set to None if day_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_label is None and "day_label" in self.model_fields_set:
+            _dict['day_label'] = None
+
+        # set to None if friend_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.friend_ids is None and "friend_ids" in self.model_fields_set:
+            _dict['friend_ids'] = None
+
+        # set to None if friend_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.friend_labels is None and "friend_labels" in self.model_fields_set:
+            _dict['friend_labels'] = None
+
+        # set to None if enemy_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.enemy_ids is None and "enemy_ids" in self.model_fields_set:
+            _dict['enemy_ids'] = None
+
+        # set to None if enemy_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.enemy_labels is None and "enemy_labels" in self.model_fields_set:
+            _dict['enemy_labels'] = None
+
+        # set to None if neutral_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.neutral_ids is None and "neutral_ids" in self.model_fields_set:
+            _dict['neutral_ids'] = None
+
+        # set to None if neutral_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.neutral_labels is None and "neutral_labels" in self.model_fields_set:
+            _dict['neutral_labels'] = None
+
         return _dict
 
     @classmethod
@@ -102,19 +210,37 @@ class PlanetNatureSingleResponse(BaseModel):
 
         _obj = cls.model_validate({
             "tattva": obj.get("tattva"),
+            "tattva_id": obj.get("tattva_id"),
+            "tattva_label": obj.get("tattva_label"),
             "guna": obj.get("guna"),
+            "guna_id": obj.get("guna_id"),
+            "guna_label": obj.get("guna_label"),
             "gender": obj.get("gender"),
+            "gender_id": obj.get("gender_id"),
+            "gender_label": obj.get("gender_label"),
             "caste": obj.get("caste"),
+            "caste_id": obj.get("caste_id"),
+            "caste_label": obj.get("caste_label"),
             "nature": obj.get("nature"),
             "direction": obj.get("direction"),
+            "direction_id": obj.get("direction_id"),
+            "direction_label": obj.get("direction_label"),
             "color": obj.get("color"),
             "deity": obj.get("deity"),
             "day": obj.get("day"),
+            "day_id": obj.get("day_id"),
+            "day_label": obj.get("day_label"),
             "metal": obj.get("metal"),
             "body_part": obj.get("body_part"),
             "friends": obj.get("friends"),
+            "friend_ids": obj.get("friend_ids"),
+            "friend_labels": obj.get("friend_labels"),
             "enemies": obj.get("enemies"),
+            "enemy_ids": obj.get("enemy_ids"),
+            "enemy_labels": obj.get("enemy_labels"),
             "neutrals": obj.get("neutrals"),
+            "neutral_ids": obj.get("neutral_ids"),
+            "neutral_labels": obj.get("neutral_labels"),
             "planet": obj.get("planet")
         })
         return _obj

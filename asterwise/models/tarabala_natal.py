@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,9 +30,13 @@ class TarabalaNatal(BaseModel):
     """ # noqa: E501
     moon_nakshatra_index: StrictInt
     moon_nakshatra: StrictStr
+    moon_nakshatra_id: Optional[StrictStr] = None
+    moon_nakshatra_label: Optional[StrictStr] = None
     moon_sign_index: StrictInt
     moon_sign: StrictStr
-    __properties: ClassVar[List[str]] = ["moon_nakshatra_index", "moon_nakshatra", "moon_sign_index", "moon_sign"]
+    moon_sign_id: Optional[StrictStr] = None
+    moon_sign_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["moon_nakshatra_index", "moon_nakshatra", "moon_nakshatra_id", "moon_nakshatra_label", "moon_sign_index", "moon_sign", "moon_sign_id", "moon_sign_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +77,26 @@ class TarabalaNatal(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if moon_nakshatra_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_nakshatra_id is None and "moon_nakshatra_id" in self.model_fields_set:
+            _dict['moon_nakshatra_id'] = None
+
+        # set to None if moon_nakshatra_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_nakshatra_label is None and "moon_nakshatra_label" in self.model_fields_set:
+            _dict['moon_nakshatra_label'] = None
+
+        # set to None if moon_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_sign_id is None and "moon_sign_id" in self.model_fields_set:
+            _dict['moon_sign_id'] = None
+
+        # set to None if moon_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_sign_label is None and "moon_sign_label" in self.model_fields_set:
+            _dict['moon_sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -87,8 +111,12 @@ class TarabalaNatal(BaseModel):
         _obj = cls.model_validate({
             "moon_nakshatra_index": obj.get("moon_nakshatra_index"),
             "moon_nakshatra": obj.get("moon_nakshatra"),
+            "moon_nakshatra_id": obj.get("moon_nakshatra_id"),
+            "moon_nakshatra_label": obj.get("moon_nakshatra_label"),
             "moon_sign_index": obj.get("moon_sign_index"),
-            "moon_sign": obj.get("moon_sign")
+            "moon_sign": obj.get("moon_sign"),
+            "moon_sign_id": obj.get("moon_sign_id"),
+            "moon_sign_label": obj.get("moon_sign_label")
         })
         return _obj
 

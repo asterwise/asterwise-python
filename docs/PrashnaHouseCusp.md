@@ -7,7 +7,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rashi_index** | **int** |  | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **lord** | **str** | Lord of the sign on this quadrant cusp. House lordship in house_analysis is whole sign and can differ. | 
+**lord_id** | **str** |  | [optional] 
+**lord_label** | **str** |  | [optional] 
 **longitude** | **float** |  | 
 
 ## Example

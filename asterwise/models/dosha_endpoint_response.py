@@ -29,7 +29,7 @@ class DoshaEndpointResponse(BaseModel):
     """
     DoshaEndpointResponse
     """ # noqa: E501
-    doshas: Dict[str, DoshaResult]
+    doshas: Dict[str, DoshaResult] = Field(description="Every dosha, keyed by fixed id. Three keys were renamed on 2026-11-19 (kala_sarpa -> kaal_sarp, kala_amrita -> kaal_amrit, paap_kartari -> papa_kartari); until 2026-12-21 the old keys are returned too, with the same content: count only one of each pair.")
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
     __properties: ClassVar[List[str]] = ["doshas", "birth_time_provided"]
 

@@ -6,8 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **total_score** | **float** | Overall Guna Milan score out of 36 | 
-**breakdown** | **Dict[str, Optional[float]]** | Per-koota score breakdown | 
+**breakdown** | **Dict[str, Optional[float]]** | Deprecated, removed on 2026-12-21: per-koota score keyed by the old names (Varna, Vashya, Tara, Yoni, GrahaMaitri, Gana, Bhakoot, Nadi). Use kootas. | 
+**kootas** | **Dict[str, Optional[float]]** | Per-koota score, keyed by fixed id: varna, vashya, tara, yoni, graha_maitri, gana, bhakoot, nadi. doshas.bhakoot_dosha_type_id is the fixed id of doshas.bhakoot_dosha_type when that is present. | [optional] 
 **compatibility_level** | **str** | Verdict on the published Ashtakoota bands: Excellent, Very Good, Ordinary or Not Recommended. Nadi 0 is never recommended; Bhakoot 0 is never Excellent. | 
+**compatibility_level_id** | **str** |  | [optional] 
+**compatibility_level_label** | **str** |  | [optional] 
 **doshas** | **Dict[str, object]** | Detected compatibility doshas | 
 **dosha_cancellations** | **Dict[str, object]** | Traditional dosha cancellation flags | 
 **analysis** | **Dict[str, object]** | Additional high-level matchmaking analysis details | 

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,13 +31,17 @@ class PrashnaMoon(BaseModel):
     longitude: Union[StrictFloat, StrictInt]
     rashi_index: StrictInt
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     nakshatra: StrictStr
+    nakshatra_id: Optional[StrictStr] = None
+    nakshatra_label: Optional[StrictStr] = None
     phase: StrictStr
     dignity: StrictStr
     void_of_course: StrictBool
     afflicted_moon: StrictBool
     applying_to_benefic: StrictBool
-    __properties: ClassVar[List[str]] = ["longitude", "rashi_index", "rashi", "nakshatra", "phase", "dignity", "void_of_course", "afflicted_moon", "applying_to_benefic"]
+    __properties: ClassVar[List[str]] = ["longitude", "rashi_index", "rashi", "rashi_id", "rashi_label", "nakshatra", "nakshatra_id", "nakshatra_label", "phase", "dignity", "void_of_course", "afflicted_moon", "applying_to_benefic"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +82,26 @@ class PrashnaMoon(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
+        # set to None if nakshatra_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_id is None and "nakshatra_id" in self.model_fields_set:
+            _dict['nakshatra_id'] = None
+
+        # set to None if nakshatra_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_label is None and "nakshatra_label" in self.model_fields_set:
+            _dict['nakshatra_label'] = None
+
         return _dict
 
     @classmethod
@@ -93,7 +117,11 @@ class PrashnaMoon(BaseModel):
             "longitude": obj.get("longitude"),
             "rashi_index": obj.get("rashi_index"),
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "nakshatra": obj.get("nakshatra"),
+            "nakshatra_id": obj.get("nakshatra_id"),
+            "nakshatra_label": obj.get("nakshatra_label"),
             "phase": obj.get("phase"),
             "dignity": obj.get("dignity"),
             "void_of_course": obj.get("void_of_course"),

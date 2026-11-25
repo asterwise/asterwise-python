@@ -6,11 +6,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet** | **str** |  | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **harsha_bala** | **int** | Harsha Bala score for this planet (0-20). | 
 **max_harsha_bala** | **int** |  | [optional] [default to 20]
 **varsha_house** | **int** | Planet&#39;s whole-sign house in the Varshaphal chart, counted from the Varsha Ascendant&#39;s sign. | 
 **rashi_index** | **int** |  | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **components** | **Dict[str, object]** | Breakdown of the 4 Harsha Bala components. | 
 **interpretation** | **str** |  | 
 

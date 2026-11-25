@@ -40,9 +40,13 @@ class DayNakshatra(BaseModel):
     index: StrictInt = Field(description="0 = Ashwini ... 26 = Revati.")
     number: StrictInt = Field(description="1 to 27.")
     name: StrictStr
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     lord: StrictStr = Field(description="Vimshottari lord.")
+    lord_id: Optional[StrictStr] = None
+    lord_label: Optional[StrictStr] = None
     padas: Optional[List[DayPada]] = None
-    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "start_utc", "end_utc", "nature", "index", "number", "name", "lord", "padas"]
+    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "start_utc", "end_utc", "nature", "index", "number", "name", "id", "label", "lord", "lord_id", "lord_label", "padas"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -105,6 +109,26 @@ class DayNakshatra(BaseModel):
         if self.nature is None and "nature" in self.model_fields_set:
             _dict['nature'] = None
 
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
+        # set to None if lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.lord_id is None and "lord_id" in self.model_fields_set:
+            _dict['lord_id'] = None
+
+        # set to None if lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.lord_label is None and "lord_label" in self.model_fields_set:
+            _dict['lord_label'] = None
+
         # set to None if padas (nullable) is None
         # and model_fields_set contains the field
         if self.padas is None and "padas" in self.model_fields_set:
@@ -133,7 +157,11 @@ class DayNakshatra(BaseModel):
             "index": obj.get("index"),
             "number": obj.get("number"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "lord": obj.get("lord"),
+            "lord_id": obj.get("lord_id"),
+            "lord_label": obj.get("lord_label"),
             "padas": [DayPada.from_dict(_item) for _item in obj["padas"]] if obj.get("padas") is not None else None
         })
         return _obj

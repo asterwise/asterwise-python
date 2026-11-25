@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **number** | **int** | 1 to 30. | 
 **name** | **str** |  | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **start** | **str** | Tithi start, ISO 8601 local time. | 
 **end** | **str** | Tithi end, ISO 8601 local time. | 
 

@@ -34,9 +34,11 @@ class BhadraWindow(BaseModel):
     end_utc: Optional[StrictStr] = None
     nature: Optional[StrictStr] = None
     residence: StrictStr = Field(description="Prithvi, Swarga or Patala, from the Moon's sign.")
+    residence_id: Optional[StrictStr] = None
+    residence_label: Optional[StrictStr] = None
     residence_english: StrictStr
     is_on_earth: StrictBool = Field(description="Bhadra is held harmful when it resides on earth (Moon in Karka, Simha, Kumbha or Meena).")
-    __properties: ClassVar[List[str]] = ["start", "end", "start_utc", "end_utc", "nature", "residence", "residence_english", "is_on_earth"]
+    __properties: ClassVar[List[str]] = ["start", "end", "start_utc", "end_utc", "nature", "residence", "residence_id", "residence_label", "residence_english", "is_on_earth"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -92,6 +94,16 @@ class BhadraWindow(BaseModel):
         if self.nature is None and "nature" in self.model_fields_set:
             _dict['nature'] = None
 
+        # set to None if residence_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.residence_id is None and "residence_id" in self.model_fields_set:
+            _dict['residence_id'] = None
+
+        # set to None if residence_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.residence_label is None and "residence_label" in self.model_fields_set:
+            _dict['residence_label'] = None
+
         return _dict
 
     @classmethod
@@ -110,6 +122,8 @@ class BhadraWindow(BaseModel):
             "end_utc": obj.get("end_utc"),
             "nature": obj.get("nature"),
             "residence": obj.get("residence"),
+            "residence_id": obj.get("residence_id"),
+            "residence_label": obj.get("residence_label"),
             "residence_english": obj.get("residence_english"),
             "is_on_earth": obj.get("is_on_earth")
         })

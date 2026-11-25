@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **success** | **bool** | True if the request succeeded | [optional] [default to True]
 **message** | **str** | Human-readable status message | [optional] [default to 'success']
-**data** | [**Data2**](Data2.md) |  | 
+**data** | [**Data3**](Data3.md) |  | 
+**key_labels** | **Dict[str, str]** |  | [optional] 
 
 ## Example
 

@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **index** | **int** |  | 
 **name** | **str** | Sidereal sign (Sanskrit name). | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **start** | **str** |  | 
 **end** | **str** |  | 
 **start_utc** | **str** |  | 

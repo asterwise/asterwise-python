@@ -7,9 +7,17 @@ Aspect between two planets of the one composite (midpoint) chart.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet_a** | **str** | First composite planet | 
+**planet_a_id** | **str** |  | [optional] 
+**planet_a_label** | **str** |  | [optional] 
 **planet_b** | **str** | Second composite planet | 
+**planet_b_id** | **str** |  | [optional] 
+**planet_b_label** | **str** |  | [optional] 
 **person1_planet** | **str** | Legacy name for planet_a, kept for compatibility. Both planets belong to the composite chart, not to person 1 or person 2. | 
+**person1_planet_id** | **str** |  | [optional] 
+**person1_planet_label** | **str** |  | [optional] 
 **person2_planet** | **str** | Legacy name for planet_b, kept for compatibility (see person1_planet). | 
+**person2_planet_id** | **str** |  | [optional] 
+**person2_planet_label** | **str** |  | [optional] 
 **type** | **str** |  | 
 **exact_angle** | **float** |  | 
 **orb** | **float** |  | 

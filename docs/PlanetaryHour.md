@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **hour** | **int** | 1–12 are day hours (sunrise to sunset), 13–24 night hours. | 
 **period** | **str** |  | 
 **planet** | **str** | Planet ruling this hour. | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **start_local** | **str** | Start, local time with UTC offset (ISO 8601). | 
 **end_local** | **str** | End, local time with UTC offset (ISO 8601). | 
 **start_utc** | **str** | Start in UTC (ISO 8601 with Z). | 

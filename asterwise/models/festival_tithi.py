@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,9 +30,11 @@ class FestivalTithi(BaseModel):
     """ # noqa: E501
     number: StrictInt = Field(description="1 to 30.")
     name: StrictStr
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     start: StrictStr = Field(description="Tithi start, ISO 8601 local time.")
     end: StrictStr = Field(description="Tithi end, ISO 8601 local time.")
-    __properties: ClassVar[List[str]] = ["number", "name", "start", "end"]
+    __properties: ClassVar[List[str]] = ["number", "name", "id", "label", "start", "end"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +75,16 @@ class FestivalTithi(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         return _dict
 
     @classmethod
@@ -87,6 +99,8 @@ class FestivalTithi(BaseModel):
         _obj = cls.model_validate({
             "number": obj.get("number"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "start": obj.get("start"),
             "end": obj.get("end")
         })

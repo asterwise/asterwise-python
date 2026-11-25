@@ -29,6 +29,8 @@ class AshtottariPeriod(BaseModel):
     AshtottariPeriod
     """ # noqa: E501
     planet: StrictStr = Field(description="Planetary lord of this Dasha period")
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     start_jd: Union[StrictFloat, StrictInt] = Field(description="Start of period as Julian Day number")
     end_jd: Union[StrictFloat, StrictInt] = Field(description="End of period as Julian Day number")
     start_date: StrictStr = Field(description="Start date in DD/MM/YYYY format")
@@ -36,7 +38,7 @@ class AshtottariPeriod(BaseModel):
     sub: Optional[List[Any]] = None
     dasha_start_date: Optional[StrictStr] = None
     balance_years: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties: ClassVar[List[str]] = ["planet", "start_jd", "end_jd", "start_date", "end_date", "sub", "dasha_start_date", "balance_years"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "start_jd", "end_jd", "start_date", "end_date", "sub", "dasha_start_date", "balance_years"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,6 +79,16 @@ class AshtottariPeriod(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         # set to None if sub (nullable) is None
         # and model_fields_set contains the field
         if self.sub is None and "sub" in self.model_fields_set:
@@ -105,6 +117,8 @@ class AshtottariPeriod(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "start_jd": obj.get("start_jd"),
             "end_jd": obj.get("end_jd"),
             "start_date": obj.get("start_date"),

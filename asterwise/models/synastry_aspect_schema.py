@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,11 +29,15 @@ class SynastryAspectSchema(BaseModel):
     SynastryAspectSchema
     """ # noqa: E501
     person1_planet: StrictStr
+    person1_planet_id: Optional[StrictStr] = None
+    person1_planet_label: Optional[StrictStr] = None
     person2_planet: StrictStr
+    person2_planet_id: Optional[StrictStr] = None
+    person2_planet_label: Optional[StrictStr] = None
     type: StrictStr
     exact_angle: Union[StrictFloat, StrictInt]
     orb: Union[StrictFloat, StrictInt]
-    __properties: ClassVar[List[str]] = ["person1_planet", "person2_planet", "type", "exact_angle", "orb"]
+    __properties: ClassVar[List[str]] = ["person1_planet", "person1_planet_id", "person1_planet_label", "person2_planet", "person2_planet_id", "person2_planet_label", "type", "exact_angle", "orb"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,6 +78,26 @@ class SynastryAspectSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if person1_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.person1_planet_id is None and "person1_planet_id" in self.model_fields_set:
+            _dict['person1_planet_id'] = None
+
+        # set to None if person1_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.person1_planet_label is None and "person1_planet_label" in self.model_fields_set:
+            _dict['person1_planet_label'] = None
+
+        # set to None if person2_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.person2_planet_id is None and "person2_planet_id" in self.model_fields_set:
+            _dict['person2_planet_id'] = None
+
+        # set to None if person2_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.person2_planet_label is None and "person2_planet_label" in self.model_fields_set:
+            _dict['person2_planet_label'] = None
+
         return _dict
 
     @classmethod
@@ -87,7 +111,11 @@ class SynastryAspectSchema(BaseModel):
 
         _obj = cls.model_validate({
             "person1_planet": obj.get("person1_planet"),
+            "person1_planet_id": obj.get("person1_planet_id"),
+            "person1_planet_label": obj.get("person1_planet_label"),
             "person2_planet": obj.get("person2_planet"),
+            "person2_planet_id": obj.get("person2_planet_id"),
+            "person2_planet_label": obj.get("person2_planet_label"),
             "type": obj.get("type"),
             "exact_angle": obj.get("exact_angle"),
             "orb": obj.get("orb")

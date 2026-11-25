@@ -39,11 +39,19 @@ class AppApiSchemasWesternCompatibilityResponse(BaseModel):
     moon_sign_affinity: StrictStr
     rising_sign_affinity: StrictStr
     person1_sun: StrictStr
+    person1_sun_id: Optional[StrictStr] = None
+    person1_sun_label: Optional[StrictStr] = None
     person2_sun: StrictStr
+    person2_sun_id: Optional[StrictStr] = None
+    person2_sun_label: Optional[StrictStr] = None
     person1_moon: StrictStr
+    person1_moon_id: Optional[StrictStr] = None
+    person1_moon_label: Optional[StrictStr] = None
     person2_moon: StrictStr
+    person2_moon_id: Optional[StrictStr] = None
+    person2_moon_label: Optional[StrictStr] = None
     key_aspects: List[SynastryAspectSchema]
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "overall_score", "element_score", "aspect_score", "sun_sign_affinity", "moon_sign_affinity", "rising_sign_affinity", "person1_sun", "person2_sun", "person1_moon", "person2_moon", "key_aspects"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "person1_birth_time_provided", "person2_birth_time_provided", "overall_score", "element_score", "aspect_score", "sun_sign_affinity", "moon_sign_affinity", "rising_sign_affinity", "person1_sun", "person1_sun_id", "person1_sun_label", "person2_sun", "person2_sun_id", "person2_sun_label", "person1_moon", "person1_moon_id", "person1_moon_label", "person2_moon", "person2_moon_id", "person2_moon_label", "key_aspects"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -91,6 +99,46 @@ class AppApiSchemasWesternCompatibilityResponse(BaseModel):
                 if _item_key_aspects:
                     _items.append(_item_key_aspects.to_dict())
             _dict['key_aspects'] = _items
+        # set to None if person1_sun_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.person1_sun_id is None and "person1_sun_id" in self.model_fields_set:
+            _dict['person1_sun_id'] = None
+
+        # set to None if person1_sun_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.person1_sun_label is None and "person1_sun_label" in self.model_fields_set:
+            _dict['person1_sun_label'] = None
+
+        # set to None if person2_sun_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.person2_sun_id is None and "person2_sun_id" in self.model_fields_set:
+            _dict['person2_sun_id'] = None
+
+        # set to None if person2_sun_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.person2_sun_label is None and "person2_sun_label" in self.model_fields_set:
+            _dict['person2_sun_label'] = None
+
+        # set to None if person1_moon_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.person1_moon_id is None and "person1_moon_id" in self.model_fields_set:
+            _dict['person1_moon_id'] = None
+
+        # set to None if person1_moon_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.person1_moon_label is None and "person1_moon_label" in self.model_fields_set:
+            _dict['person1_moon_label'] = None
+
+        # set to None if person2_moon_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.person2_moon_id is None and "person2_moon_id" in self.model_fields_set:
+            _dict['person2_moon_id'] = None
+
+        # set to None if person2_moon_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.person2_moon_label is None and "person2_moon_label" in self.model_fields_set:
+            _dict['person2_moon_label'] = None
+
         return _dict
 
     @classmethod
@@ -113,9 +161,17 @@ class AppApiSchemasWesternCompatibilityResponse(BaseModel):
             "moon_sign_affinity": obj.get("moon_sign_affinity"),
             "rising_sign_affinity": obj.get("rising_sign_affinity"),
             "person1_sun": obj.get("person1_sun"),
+            "person1_sun_id": obj.get("person1_sun_id"),
+            "person1_sun_label": obj.get("person1_sun_label"),
             "person2_sun": obj.get("person2_sun"),
+            "person2_sun_id": obj.get("person2_sun_id"),
+            "person2_sun_label": obj.get("person2_sun_label"),
             "person1_moon": obj.get("person1_moon"),
+            "person1_moon_id": obj.get("person1_moon_id"),
+            "person1_moon_label": obj.get("person1_moon_label"),
             "person2_moon": obj.get("person2_moon"),
+            "person2_moon_id": obj.get("person2_moon_id"),
+            "person2_moon_label": obj.get("person2_moon_label"),
             "key_aspects": [SynastryAspectSchema.from_dict(_item) for _item in obj["key_aspects"]] if obj.get("key_aspects") is not None else None
         })
         return _obj

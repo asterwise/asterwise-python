@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet** | **str** | Planet of the Moon&#39;s last exact aspect in the sign. | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **aspect** | **str** | Aspect type: conjunction, sextile, square, trine or opposition. | 
 **exact_at** | **str** | UTC moment that aspect was exact (ISO 8601 with Z). | 
 

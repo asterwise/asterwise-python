@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **group** | **str** | Vedic: gochar, sade_sati, chandra_ashtama, tarabala, chandrabala, dasha, dasha_transit, natal_contact, panchanga, moon_phase. Western: aspect, transit, moon_phase, void_of_course, planetary_hour, profection. | 
 **name** | **str** |  | 
 **planet** | **str** |  | [optional] 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **frame** | **str** | What the houses or distances are counted from. See frames. | 
 **value** | **Dict[str, object]** | The raw numbers and flags of this factor. | 
 **ranges** | **Dict[str, object]** | The documented range of each numeric value, e.g. bindus [0, 8]. | 

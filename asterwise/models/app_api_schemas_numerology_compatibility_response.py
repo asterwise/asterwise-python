@@ -32,11 +32,13 @@ class AppApiSchemasNumerologyCompatibilityResponse(BaseModel):
     life_path_2: StrictInt = Field(description="Second person's life path number")
     compatibility_score: StrictInt = Field(description="Compatibility score (1-10)")
     compatibility_level: StrictStr = Field(description="Compatibility level (Excellent, Good, Fair, Challenging)")
+    compatibility_level_id: Optional[StrictStr] = None
+    compatibility_level_label: Optional[StrictStr] = None
     interpretation: StrictStr = Field(description="Detailed compatibility interpretation")
     strengths: Optional[List[StrictStr]] = Field(default=None, description="Relationship strengths")
     challenges: Optional[List[StrictStr]] = Field(default=None, description="Potential challenges")
     advice: StrictStr = Field(description="Relationship advice")
-    __properties: ClassVar[List[str]] = ["life_path_1", "life_path_2", "compatibility_score", "compatibility_level", "interpretation", "strengths", "challenges", "advice"]
+    __properties: ClassVar[List[str]] = ["life_path_1", "life_path_2", "compatibility_score", "compatibility_level", "compatibility_level_id", "compatibility_level_label", "interpretation", "strengths", "challenges", "advice"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,6 +79,16 @@ class AppApiSchemasNumerologyCompatibilityResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if compatibility_level_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.compatibility_level_id is None and "compatibility_level_id" in self.model_fields_set:
+            _dict['compatibility_level_id'] = None
+
+        # set to None if compatibility_level_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.compatibility_level_label is None and "compatibility_level_label" in self.model_fields_set:
+            _dict['compatibility_level_label'] = None
+
         return _dict
 
     @classmethod
@@ -93,6 +105,8 @@ class AppApiSchemasNumerologyCompatibilityResponse(BaseModel):
             "life_path_2": obj.get("life_path_2"),
             "compatibility_score": obj.get("compatibility_score"),
             "compatibility_level": obj.get("compatibility_level"),
+            "compatibility_level_id": obj.get("compatibility_level_id"),
+            "compatibility_level_label": obj.get("compatibility_level_label"),
             "interpretation": obj.get("interpretation"),
             "strengths": obj.get("strengths"),
             "challenges": obj.get("challenges"),

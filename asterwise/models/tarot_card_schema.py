@@ -28,6 +28,7 @@ class TarotCardSchema(BaseModel):
     """
     TarotCardSchema
     """ # noqa: E501
+    label: Optional[StrictStr] = None
     id: StrictStr = Field(description="Unique slug identifier e.g. 'the-fool'")
     name: StrictStr = Field(description="Full card name e.g. 'The Fool'")
     arcana_type: StrictStr = Field(description="'major' or 'minor'")
@@ -41,7 +42,7 @@ class TarotCardSchema(BaseModel):
     reversed_meaning: StrictStr = Field(description="Full reversed interpretation")
     yes_no: StrictStr = Field(description="Yes/No polarity: 'yes', 'no', or 'maybe'")
     description: StrictStr = Field(description="Visual description of the card imagery")
-    __properties: ClassVar[List[str]] = ["id", "name", "arcana_type", "suit", "number", "element", "astrology_correspondence", "keywords_upright", "keywords_reversed", "upright_meaning", "reversed_meaning", "yes_no", "description"]
+    __properties: ClassVar[List[str]] = ["label", "id", "name", "arcana_type", "suit", "number", "element", "astrology_correspondence", "keywords_upright", "keywords_reversed", "upright_meaning", "reversed_meaning", "yes_no", "description"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,6 +83,11 @@ class TarotCardSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         # set to None if suit (nullable) is None
         # and model_fields_set contains the field
         if self.suit is None and "suit" in self.model_fields_set:
@@ -99,6 +105,7 @@ class TarotCardSchema(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "label": obj.get("label"),
             "id": obj.get("id"),
             "name": obj.get("name"),
             "arcana_type": obj.get("arcana_type"),

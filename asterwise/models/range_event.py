@@ -30,7 +30,11 @@ class RangeEvent(BaseModel):
     """ # noqa: E501
     kind: StrictStr = Field(description="Event kind; see kinds in the response.")
     planet: Optional[StrictStr] = None
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     title: StrictStr
+    title_id: Optional[StrictStr] = None
+    title_label: Optional[StrictStr] = None
     time_utc: StrictStr = Field(description="ISO 8601 UTC with Z.")
     time_local: StrictStr = Field(description="ISO 8601 local time with offset, in target_timezone.")
     time_precision: StrictStr = Field(description="second, or day for events known only to the day (Vedic dasha changes, Western profection years).")
@@ -40,7 +44,7 @@ class RangeEvent(BaseModel):
     rule_source: Optional[StrictStr] = None
     significations: List[StrictStr]
     depends_on_birth_time: StrictBool
-    __properties: ClassVar[List[str]] = ["kind", "planet", "title", "time_utc", "time_local", "time_precision", "detail", "verdict", "verdict_rule", "rule_source", "significations", "depends_on_birth_time"]
+    __properties: ClassVar[List[str]] = ["kind", "planet", "planet_id", "planet_label", "title", "title_id", "title_label", "time_utc", "time_local", "time_precision", "detail", "verdict", "verdict_rule", "rule_source", "significations", "depends_on_birth_time"]
 
     @field_validator('verdict')
     def verdict_validate_enum(cls, value):
@@ -96,6 +100,26 @@ class RangeEvent(BaseModel):
         if self.planet is None and "planet" in self.model_fields_set:
             _dict['planet'] = None
 
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
+        # set to None if title_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.title_id is None and "title_id" in self.model_fields_set:
+            _dict['title_id'] = None
+
+        # set to None if title_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.title_label is None and "title_label" in self.model_fields_set:
+            _dict['title_label'] = None
+
         # set to None if verdict (nullable) is None
         # and model_fields_set contains the field
         if self.verdict is None and "verdict" in self.model_fields_set:
@@ -125,7 +149,11 @@ class RangeEvent(BaseModel):
         _obj = cls.model_validate({
             "kind": obj.get("kind"),
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "title": obj.get("title"),
+            "title_id": obj.get("title_id"),
+            "title_label": obj.get("title_label"),
             "time_utc": obj.get("time_utc"),
             "time_local": obj.get("time_local"),
             "time_precision": obj.get("time_precision"),

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -34,10 +34,14 @@ class SahamEntry(BaseModel):
     longitude: Union[StrictFloat, StrictInt]
     rashi_index: StrictInt
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     degree_in_sign: Union[StrictFloat, StrictInt]
     saham_lord: StrictStr = Field(description="Classical lord of the sign where this Saham falls.")
+    saham_lord_id: Optional[StrictStr] = None
+    saham_lord_label: Optional[StrictStr] = None
     formula_used: StrictStr = Field(description="Day or night formula and planet operands used.")
-    __properties: ClassVar[List[str]] = ["slug", "name", "theme", "longitude", "rashi_index", "rashi", "degree_in_sign", "saham_lord", "formula_used"]
+    __properties: ClassVar[List[str]] = ["slug", "name", "theme", "longitude", "rashi_index", "rashi", "rashi_id", "rashi_label", "degree_in_sign", "saham_lord", "saham_lord_id", "saham_lord_label", "formula_used"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +82,26 @@ class SahamEntry(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
+        # set to None if saham_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.saham_lord_id is None and "saham_lord_id" in self.model_fields_set:
+            _dict['saham_lord_id'] = None
+
+        # set to None if saham_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.saham_lord_label is None and "saham_lord_label" in self.model_fields_set:
+            _dict['saham_lord_label'] = None
+
         return _dict
 
     @classmethod
@@ -96,8 +120,12 @@ class SahamEntry(BaseModel):
             "longitude": obj.get("longitude"),
             "rashi_index": obj.get("rashi_index"),
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "degree_in_sign": obj.get("degree_in_sign"),
             "saham_lord": obj.get("saham_lord"),
+            "saham_lord_id": obj.get("saham_lord_id"),
+            "saham_lord_label": obj.get("saham_lord_label"),
             "formula_used": obj.get("formula_used")
         })
         return _obj

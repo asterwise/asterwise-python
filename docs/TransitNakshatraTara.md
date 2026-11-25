@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **nakshatra** | **str** |  | 
+**nakshatra_id** | **str** |  | [optional] 
+**nakshatra_label** | **str** |  | [optional] 
 **nakshatra_index** | **int** |  | 
 **start** | **str** | ISO 8601 local time. | 
 **end** | **str** | ISO 8601 local time. | 

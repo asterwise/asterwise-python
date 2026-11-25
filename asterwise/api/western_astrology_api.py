@@ -1308,7 +1308,7 @@ class WesternAstrologyApi:
     ) -> ApiResponseCompositeResponse:
         """Western Composite Chart
 
-        Midpoint composite chart for two people using modern Western midpoint technique. Each composite planet is the midpoint of the two natal positions. Returns composite planets with dignities and internal aspects.
+        Midpoint composite chart for two people using modern Western midpoint technique. Each composite planet is the midpoint of the two natal positions, and the composite Ascendant the midpoint of the two natal Ascendants (the midpoint method; no MC or houses are returned). Returns composite planets with dignities and internal aspects.
 
         :param two_person_request: (required)
         :type two_person_request: TwoPersonRequest
@@ -1384,7 +1384,7 @@ class WesternAstrologyApi:
     ) -> ApiResponse[ApiResponseCompositeResponse]:
         """Western Composite Chart
 
-        Midpoint composite chart for two people using modern Western midpoint technique. Each composite planet is the midpoint of the two natal positions. Returns composite planets with dignities and internal aspects.
+        Midpoint composite chart for two people using modern Western midpoint technique. Each composite planet is the midpoint of the two natal positions, and the composite Ascendant the midpoint of the two natal Ascendants (the midpoint method; no MC or houses are returned). Returns composite planets with dignities and internal aspects.
 
         :param two_person_request: (required)
         :type two_person_request: TwoPersonRequest
@@ -1460,7 +1460,7 @@ class WesternAstrologyApi:
     ) -> RESTResponseType:
         """Western Composite Chart
 
-        Midpoint composite chart for two people using modern Western midpoint technique. Each composite planet is the midpoint of the two natal positions. Returns composite planets with dignities and internal aspects.
+        Midpoint composite chart for two people using modern Western midpoint technique. Each composite planet is the midpoint of the two natal positions, and the composite Ascendant the midpoint of the two natal Ascendants (the midpoint method; no MC or houses are returned). Returns composite planets with dignities and internal aspects.
 
         :param two_person_request: (required)
         :type two_person_request: TwoPersonRequest

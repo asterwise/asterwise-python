@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,11 +29,15 @@ class TransitNakshatraQuality(BaseModel):
     TransitNakshatraQuality
     """ # noqa: E501
     nakshatra: StrictStr
+    nakshatra_id: Optional[StrictStr] = None
+    nakshatra_label: Optional[StrictStr] = None
     quality_type: StrictStr
+    quality_type_id: Optional[StrictStr] = None
+    quality_type_label: Optional[StrictStr] = None
     english: StrictStr
     auspicious_for: List[StrictStr]
     inauspicious_for: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["nakshatra", "quality_type", "english", "auspicious_for", "inauspicious_for"]
+    __properties: ClassVar[List[str]] = ["nakshatra", "nakshatra_id", "nakshatra_label", "quality_type", "quality_type_id", "quality_type_label", "english", "auspicious_for", "inauspicious_for"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,6 +78,26 @@ class TransitNakshatraQuality(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if nakshatra_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_id is None and "nakshatra_id" in self.model_fields_set:
+            _dict['nakshatra_id'] = None
+
+        # set to None if nakshatra_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_label is None and "nakshatra_label" in self.model_fields_set:
+            _dict['nakshatra_label'] = None
+
+        # set to None if quality_type_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.quality_type_id is None and "quality_type_id" in self.model_fields_set:
+            _dict['quality_type_id'] = None
+
+        # set to None if quality_type_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.quality_type_label is None and "quality_type_label" in self.model_fields_set:
+            _dict['quality_type_label'] = None
+
         return _dict
 
     @classmethod
@@ -87,7 +111,11 @@ class TransitNakshatraQuality(BaseModel):
 
         _obj = cls.model_validate({
             "nakshatra": obj.get("nakshatra"),
+            "nakshatra_id": obj.get("nakshatra_id"),
+            "nakshatra_label": obj.get("nakshatra_label"),
             "quality_type": obj.get("quality_type"),
+            "quality_type_id": obj.get("quality_type_id"),
+            "quality_type_label": obj.get("quality_type_label"),
             "english": obj.get("english"),
             "auspicious_for": obj.get("auspicious_for"),
             "inauspicious_for": obj.get("inauspicious_for")

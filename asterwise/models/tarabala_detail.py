@@ -28,16 +28,20 @@ class TarabalaDetail(BaseModel):
     """
     TarabalaDetail
     """ # noqa: E501
-    tara_number: StrictInt = Field(description="1-9: Janma, Sampat, Vipat, Kshema, Pratyak, Sadhana, Naidhana, Mitra, Ati-Mitra.")
+    tara_number: StrictInt = Field(description="1-9: Janma, Sampat, Vipat, Kshema, Pratyak, Sadhana, Naidhana, Mitra, Parama Mitra.")
     count_from_birth: StrictInt = Field(description="1-27, counting the birth nakshatra as 1.")
     cycle: Optional[StrictInt] = None
     cycle_name: Optional[StrictStr] = None
+    cycle_name_id: Optional[StrictStr] = None
+    cycle_name_label: Optional[StrictStr] = None
     name: StrictStr = Field(description="Tara name; the first tara of rounds 2 and 3 is Anujanma and Trijanma.")
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     meaning: StrictStr
     is_favorable: StrictBool
     is_moon_in_birth_nakshatra: Optional[StrictBool] = None
     interpretation: StrictStr
-    __properties: ClassVar[List[str]] = ["tara_number", "count_from_birth", "cycle", "cycle_name", "name", "meaning", "is_favorable", "is_moon_in_birth_nakshatra", "interpretation"]
+    __properties: ClassVar[List[str]] = ["tara_number", "count_from_birth", "cycle", "cycle_name", "cycle_name_id", "cycle_name_label", "name", "id", "label", "meaning", "is_favorable", "is_moon_in_birth_nakshatra", "interpretation"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -88,6 +92,26 @@ class TarabalaDetail(BaseModel):
         if self.cycle_name is None and "cycle_name" in self.model_fields_set:
             _dict['cycle_name'] = None
 
+        # set to None if cycle_name_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.cycle_name_id is None and "cycle_name_id" in self.model_fields_set:
+            _dict['cycle_name_id'] = None
+
+        # set to None if cycle_name_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.cycle_name_label is None and "cycle_name_label" in self.model_fields_set:
+            _dict['cycle_name_label'] = None
+
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         # set to None if is_moon_in_birth_nakshatra (nullable) is None
         # and model_fields_set contains the field
         if self.is_moon_in_birth_nakshatra is None and "is_moon_in_birth_nakshatra" in self.model_fields_set:
@@ -109,7 +133,11 @@ class TarabalaDetail(BaseModel):
             "count_from_birth": obj.get("count_from_birth"),
             "cycle": obj.get("cycle"),
             "cycle_name": obj.get("cycle_name"),
+            "cycle_name_id": obj.get("cycle_name_id"),
+            "cycle_name_label": obj.get("cycle_name_label"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "meaning": obj.get("meaning"),
             "is_favorable": obj.get("is_favorable"),
             "is_moon_in_birth_nakshatra": obj.get("is_moon_in_birth_nakshatra"),

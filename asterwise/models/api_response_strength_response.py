@@ -31,7 +31,8 @@ class ApiResponseStrengthResponse(BaseModel):
     success: Optional[StrictBool] = Field(default=True, description="True if the request succeeded")
     message: Optional[StrictStr] = Field(default='success', description="Human-readable status message")
     data: Dict[str, Any] = Field(description="The endpoint response payload")
-    __properties: ClassVar[List[str]] = ["success", "message", "data"]
+    key_labels: Optional[Dict[str, StrictStr]] = None
+    __properties: ClassVar[List[str]] = ["success", "message", "data", "key_labels"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -72,6 +73,11 @@ class ApiResponseStrengthResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if key_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.key_labels is None and "key_labels" in self.model_fields_set:
+            _dict['key_labels'] = None
+
         return _dict
 
     @classmethod
@@ -86,7 +92,8 @@ class ApiResponseStrengthResponse(BaseModel):
         _obj = cls.model_validate({
             "success": obj.get("success") if obj.get("success") is not None else True,
             "message": obj.get("message") if obj.get("message") is not None else 'success',
-            "data": obj.get("data")
+            "data": obj.get("data"),
+            "key_labels": obj.get("key_labels")
         })
         return _obj
 

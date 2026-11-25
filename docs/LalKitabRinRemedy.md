@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **rin** | **str** |  | 
 **name** | **str** |  | 
 **planet** | **str** | The planet the debt belongs to. | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **houses** | **List[int]** | That planet&#39;s houses where an enemy indicates the debt. | 
 **found** | [**List[LalKitabRinFound]**](LalKitabRinFound.md) | Enemy planets found in those houses. | 
 **remedy** | **str** |  | 

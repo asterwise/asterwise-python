@@ -9,7 +9,11 @@ Name | Type | Description | Notes
 **end_utc** | **str** |  | 
 **duration_hours** | **float** |  | 
 **moon_sign** | **str** |  | 
+**moon_sign_id** | **str** |  | [optional] 
+**moon_sign_label** | **str** |  | [optional] 
 **next_sign** | **str** |  | 
+**next_sign_id** | **str** |  | [optional] 
+**next_sign_label** | **str** |  | [optional] 
 **last_aspect** | [**VoidOfCourseLastAspect**](VoidOfCourseLastAspect.md) |  | [optional] 
 **whole_sign_void** | **bool** |  | 
 

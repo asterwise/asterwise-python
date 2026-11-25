@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **panoti_number** | **int** |  | 
 **sign_index** | **int** |  | 
 **sign** | **str** |  | 
+**sign_id** | **str** |  | [optional] 
+**sign_label** | **str** |  | [optional] 
 **position_from_moon** | **int** |  | 
 **start** | **str** | Saturn&#39;s first entry into the sign. | 
 **end** | **str** | Saturn&#39;s final exit from the sign, after any retrograde return. | 

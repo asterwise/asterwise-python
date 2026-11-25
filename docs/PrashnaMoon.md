@@ -8,7 +8,11 @@ Name | Type | Description | Notes
 **longitude** | **float** |  | 
 **rashi_index** | **int** |  | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **nakshatra** | **str** |  | 
+**nakshatra_id** | **str** |  | [optional] 
+**nakshatra_label** | **str** |  | [optional] 
 **phase** | **str** |  | 
 **dignity** | **str** |  | 
 **void_of_course** | **bool** |  | 

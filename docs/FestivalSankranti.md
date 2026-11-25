@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rashi** | **str** | Sidereal sign the Sun enters. | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **moment** | **str** | Ingress instant, ISO 8601 local time. | 
 
 ## Example

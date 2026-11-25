@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -32,7 +32,9 @@ class Samvat(BaseModel):
     shaka: StrictInt = Field(description="Shaka Samvat.")
     gujarati: StrictInt = Field(description="Gujarati Vikram Samvat (year begins at Kartika Shukla Pratipada).")
     samvatsara: StrictStr = Field(description="Name of the Shaka year in the 60-year Chandramana cycle.")
-    __properties: ClassVar[List[str]] = ["vikram", "shaka", "gujarati", "samvatsara"]
+    samvatsara_id: Optional[StrictStr] = None
+    samvatsara_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["vikram", "shaka", "gujarati", "samvatsara", "samvatsara_id", "samvatsara_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +75,16 @@ class Samvat(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if samvatsara_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.samvatsara_id is None and "samvatsara_id" in self.model_fields_set:
+            _dict['samvatsara_id'] = None
+
+        # set to None if samvatsara_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.samvatsara_label is None and "samvatsara_label" in self.model_fields_set:
+            _dict['samvatsara_label'] = None
+
         return _dict
 
     @classmethod
@@ -88,7 +100,9 @@ class Samvat(BaseModel):
             "vikram": obj.get("vikram"),
             "shaka": obj.get("shaka"),
             "gujarati": obj.get("gujarati"),
-            "samvatsara": obj.get("samvatsara")
+            "samvatsara": obj.get("samvatsara"),
+            "samvatsara_id": obj.get("samvatsara_id"),
+            "samvatsara_label": obj.get("samvatsara_label")
         })
         return _obj
 

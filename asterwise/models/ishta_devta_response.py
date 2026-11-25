@@ -28,22 +28,36 @@ class IshtaDevtaResponse(BaseModel):
     """
     IshtaDevtaResponse
     """ # noqa: E501
-    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Always true: this endpoint requires the birth time and has no sunrise fallback, so house, Ascendant and Moon-dependent results use the time you sent.")
     atmakaraka: StrictStr
+    atmakaraka_id: Optional[StrictStr] = None
+    atmakaraka_label: Optional[StrictStr] = None
     karakamsha_lagna: StrictStr
+    karakamsha_lagna_id: Optional[StrictStr] = None
+    karakamsha_lagna_label: Optional[StrictStr] = None
     karakamsha_lagna_index: StrictInt
     jivanmuktamsa_planet: Optional[StrictStr] = None
+    jivanmuktamsa_planet_id: Optional[StrictStr] = None
+    jivanmuktamsa_planet_label: Optional[StrictStr] = None
     navamsa_lagna: StrictStr
+    navamsa_lagna_id: Optional[StrictStr] = None
+    navamsa_lagna_label: Optional[StrictStr] = None
     navamsa_lagna_index: StrictInt
     twelfth_house_sign: StrictStr
+    twelfth_house_sign_id: Optional[StrictStr] = None
+    twelfth_house_sign_label: Optional[StrictStr] = None
     twelfth_house_index: StrictInt
     planets_in_12th: List[StrictStr]
+    planets_in_12th_ids: Optional[List[StrictStr]] = None
+    planets_in_12th_labels: Optional[List[StrictStr]] = None
     ishta_devta_planet: StrictStr
+    ishta_devta_planet_id: Optional[StrictStr] = None
+    ishta_devta_planet_label: Optional[StrictStr] = None
     deity: StrictStr
     description: StrictStr
     method: StrictStr
     d9_positions: Dict[str, Any]
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "atmakaraka", "karakamsha_lagna", "karakamsha_lagna_index", "jivanmuktamsa_planet", "navamsa_lagna", "navamsa_lagna_index", "twelfth_house_sign", "twelfth_house_index", "planets_in_12th", "ishta_devta_planet", "deity", "description", "method", "d9_positions"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "atmakaraka", "atmakaraka_id", "atmakaraka_label", "karakamsha_lagna", "karakamsha_lagna_id", "karakamsha_lagna_label", "karakamsha_lagna_index", "jivanmuktamsa_planet", "jivanmuktamsa_planet_id", "jivanmuktamsa_planet_label", "navamsa_lagna", "navamsa_lagna_id", "navamsa_lagna_label", "navamsa_lagna_index", "twelfth_house_sign", "twelfth_house_sign_id", "twelfth_house_sign_label", "twelfth_house_index", "planets_in_12th", "planets_in_12th_ids", "planets_in_12th_labels", "ishta_devta_planet", "ishta_devta_planet_id", "ishta_devta_planet_label", "deity", "description", "method", "d9_positions"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -84,10 +98,80 @@ class IshtaDevtaResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if atmakaraka_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.atmakaraka_id is None and "atmakaraka_id" in self.model_fields_set:
+            _dict['atmakaraka_id'] = None
+
+        # set to None if atmakaraka_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.atmakaraka_label is None and "atmakaraka_label" in self.model_fields_set:
+            _dict['atmakaraka_label'] = None
+
+        # set to None if karakamsha_lagna_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.karakamsha_lagna_id is None and "karakamsha_lagna_id" in self.model_fields_set:
+            _dict['karakamsha_lagna_id'] = None
+
+        # set to None if karakamsha_lagna_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.karakamsha_lagna_label is None and "karakamsha_lagna_label" in self.model_fields_set:
+            _dict['karakamsha_lagna_label'] = None
+
         # set to None if jivanmuktamsa_planet (nullable) is None
         # and model_fields_set contains the field
         if self.jivanmuktamsa_planet is None and "jivanmuktamsa_planet" in self.model_fields_set:
             _dict['jivanmuktamsa_planet'] = None
+
+        # set to None if jivanmuktamsa_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.jivanmuktamsa_planet_id is None and "jivanmuktamsa_planet_id" in self.model_fields_set:
+            _dict['jivanmuktamsa_planet_id'] = None
+
+        # set to None if jivanmuktamsa_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.jivanmuktamsa_planet_label is None and "jivanmuktamsa_planet_label" in self.model_fields_set:
+            _dict['jivanmuktamsa_planet_label'] = None
+
+        # set to None if navamsa_lagna_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.navamsa_lagna_id is None and "navamsa_lagna_id" in self.model_fields_set:
+            _dict['navamsa_lagna_id'] = None
+
+        # set to None if navamsa_lagna_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.navamsa_lagna_label is None and "navamsa_lagna_label" in self.model_fields_set:
+            _dict['navamsa_lagna_label'] = None
+
+        # set to None if twelfth_house_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.twelfth_house_sign_id is None and "twelfth_house_sign_id" in self.model_fields_set:
+            _dict['twelfth_house_sign_id'] = None
+
+        # set to None if twelfth_house_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.twelfth_house_sign_label is None and "twelfth_house_sign_label" in self.model_fields_set:
+            _dict['twelfth_house_sign_label'] = None
+
+        # set to None if planets_in_12th_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.planets_in_12th_ids is None and "planets_in_12th_ids" in self.model_fields_set:
+            _dict['planets_in_12th_ids'] = None
+
+        # set to None if planets_in_12th_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.planets_in_12th_labels is None and "planets_in_12th_labels" in self.model_fields_set:
+            _dict['planets_in_12th_labels'] = None
+
+        # set to None if ishta_devta_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.ishta_devta_planet_id is None and "ishta_devta_planet_id" in self.model_fields_set:
+            _dict['ishta_devta_planet_id'] = None
+
+        # set to None if ishta_devta_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.ishta_devta_planet_label is None and "ishta_devta_planet_label" in self.model_fields_set:
+            _dict['ishta_devta_planet_label'] = None
 
         return _dict
 
@@ -103,15 +187,29 @@ class IshtaDevtaResponse(BaseModel):
         _obj = cls.model_validate({
             "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "atmakaraka": obj.get("atmakaraka"),
+            "atmakaraka_id": obj.get("atmakaraka_id"),
+            "atmakaraka_label": obj.get("atmakaraka_label"),
             "karakamsha_lagna": obj.get("karakamsha_lagna"),
+            "karakamsha_lagna_id": obj.get("karakamsha_lagna_id"),
+            "karakamsha_lagna_label": obj.get("karakamsha_lagna_label"),
             "karakamsha_lagna_index": obj.get("karakamsha_lagna_index"),
             "jivanmuktamsa_planet": obj.get("jivanmuktamsa_planet"),
+            "jivanmuktamsa_planet_id": obj.get("jivanmuktamsa_planet_id"),
+            "jivanmuktamsa_planet_label": obj.get("jivanmuktamsa_planet_label"),
             "navamsa_lagna": obj.get("navamsa_lagna"),
+            "navamsa_lagna_id": obj.get("navamsa_lagna_id"),
+            "navamsa_lagna_label": obj.get("navamsa_lagna_label"),
             "navamsa_lagna_index": obj.get("navamsa_lagna_index"),
             "twelfth_house_sign": obj.get("twelfth_house_sign"),
+            "twelfth_house_sign_id": obj.get("twelfth_house_sign_id"),
+            "twelfth_house_sign_label": obj.get("twelfth_house_sign_label"),
             "twelfth_house_index": obj.get("twelfth_house_index"),
             "planets_in_12th": obj.get("planets_in_12th"),
+            "planets_in_12th_ids": obj.get("planets_in_12th_ids"),
+            "planets_in_12th_labels": obj.get("planets_in_12th_labels"),
             "ishta_devta_planet": obj.get("ishta_devta_planet"),
+            "ishta_devta_planet_id": obj.get("ishta_devta_planet_id"),
+            "ishta_devta_planet_label": obj.get("ishta_devta_planet_label"),
             "deity": obj.get("deity"),
             "description": obj.get("description"),
             "method": obj.get("method"),

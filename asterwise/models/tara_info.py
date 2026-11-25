@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,11 +33,15 @@ class TaraInfo(BaseModel):
     tara_number: Annotated[int, Field(le=9, strict=True, ge=1)]
     cycle: Annotated[int, Field(le=3, strict=True, ge=1)] = Field(description="Which round of nine the count falls in.")
     cycle_name: StrictStr
-    name: StrictStr = Field(description="Tara name: Janma, Sampat, Vipat, Kshema, Pratyak, Sadhana, Naidhana, Mitra, Ati-Mitra (Anujanma/Trijanma for the 10th and 19th).")
+    cycle_name_id: Optional[StrictStr] = None
+    cycle_name_label: Optional[StrictStr] = None
+    name: StrictStr = Field(description="Tara name: Janma, Sampat, Vipat, Kshema, Pratyak, Sadhana, Naidhana, Mitra, Parama Mitra (Anujanma/Trijanma for the 10th and 19th).")
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     meaning: StrictStr
-    is_favorable: StrictBool = Field(description="True for Sampat, Kshema, Sadhana, Mitra and Ati-Mitra.")
+    is_favorable: StrictBool = Field(description="True for Sampat, Kshema, Sadhana, Mitra and Parama Mitra.")
     is_moon_in_birth_nakshatra: StrictBool
-    __properties: ClassVar[List[str]] = ["count_from_birth", "tara_number", "cycle", "cycle_name", "name", "meaning", "is_favorable", "is_moon_in_birth_nakshatra"]
+    __properties: ClassVar[List[str]] = ["count_from_birth", "tara_number", "cycle", "cycle_name", "cycle_name_id", "cycle_name_label", "name", "id", "label", "meaning", "is_favorable", "is_moon_in_birth_nakshatra"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +82,26 @@ class TaraInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if cycle_name_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.cycle_name_id is None and "cycle_name_id" in self.model_fields_set:
+            _dict['cycle_name_id'] = None
+
+        # set to None if cycle_name_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.cycle_name_label is None and "cycle_name_label" in self.model_fields_set:
+            _dict['cycle_name_label'] = None
+
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         return _dict
 
     @classmethod
@@ -94,7 +118,11 @@ class TaraInfo(BaseModel):
             "tara_number": obj.get("tara_number"),
             "cycle": obj.get("cycle"),
             "cycle_name": obj.get("cycle_name"),
+            "cycle_name_id": obj.get("cycle_name_id"),
+            "cycle_name_label": obj.get("cycle_name_label"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "meaning": obj.get("meaning"),
             "is_favorable": obj.get("is_favorable"),
             "is_moon_in_birth_nakshatra": obj.get("is_moon_in_birth_nakshatra")

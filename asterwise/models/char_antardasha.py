@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,11 +29,13 @@ class CharAntardasha(BaseModel):
     CharAntardasha
     """ # noqa: E501
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     rashi_index: StrictInt
     years: StrictInt
     start_date: StrictStr
     end_date: StrictStr
-    __properties: ClassVar[List[str]] = ["rashi", "rashi_index", "years", "start_date", "end_date"]
+    __properties: ClassVar[List[str]] = ["rashi", "rashi_id", "rashi_label", "rashi_index", "years", "start_date", "end_date"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,6 +76,16 @@ class CharAntardasha(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
         return _dict
 
     @classmethod
@@ -87,6 +99,8 @@ class CharAntardasha(BaseModel):
 
         _obj = cls.model_validate({
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "rashi_index": obj.get("rashi_index"),
             "years": obj.get("years"),
             "start_date": obj.get("start_date"),

@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
+from asterwise.models.ashtottari_niyama import AshtottariNiyama
 from asterwise.models.ashtottari_response import AshtottariResponse
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,8 +31,9 @@ class AshtottariEndpointResponse(BaseModel):
     AshtottariEndpointResponse
     """ # noqa: E501
     periods: AshtottariResponse
+    niyama: AshtottariNiyama = Field(description="Both classical applicability conditions")
     birth_time_provided: Optional[StrictBool] = Field(default=True, description="Whether a precise birth time was provided. False when birth time was not supplied or treated as unknown — calculations using this field will have lagna-dependent accuracy limits.")
-    __properties: ClassVar[List[str]] = ["periods", "birth_time_provided"]
+    __properties: ClassVar[List[str]] = ["periods", "niyama", "birth_time_provided"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,6 +77,9 @@ class AshtottariEndpointResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of periods
         if self.periods:
             _dict['periods'] = self.periods.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of niyama
+        if self.niyama:
+            _dict['niyama'] = self.niyama.to_dict()
         return _dict
 
     @classmethod
@@ -88,6 +93,7 @@ class AshtottariEndpointResponse(BaseModel):
 
         _obj = cls.model_validate({
             "periods": AshtottariResponse.from_dict(obj["periods"]) if obj.get("periods") is not None else None,
+            "niyama": AshtottariNiyama.from_dict(obj["niyama"]) if obj.get("niyama") is not None else None,
             "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True
         })
         return _obj

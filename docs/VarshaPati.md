@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet** | **str** |  | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **role** | **str** |  | 
 **pancha_vargeeya_bala** | **float** |  | 
 **kshetra_bala** | **float** |  | 

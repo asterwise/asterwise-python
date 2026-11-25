@@ -6,10 +6,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet** | **str** | Planet name, e.g. Sun, Mars, Rahu | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **from_sign** | **int** | Zero-based sign index the planet is leaving, 0 for Aries through 11 for Pisces | 
 **to_sign** | **int** | Zero-based sign index the planet is entering | 
 **from_sign_name** | **str** |  | [optional] 
+**from_sign_name_id** | **str** |  | [optional] 
+**from_sign_name_label** | **str** |  | [optional] 
 **to_sign_name** | **str** |  | [optional] 
+**to_sign_name_id** | **str** |  | [optional] 
+**to_sign_name_label** | **str** |  | [optional] 
 **jd** | **float** | Julian Day number of the ingress moment | 
 **date_iso** | **str** | Instant of ingress in UTC, ISO 8601 without an offset (YYYY-MM-DDTHH:MM:SS). Read it as UTC; datetime_utc carries the Z. | 
 **datetime_utc** | **str** |  | [optional] 

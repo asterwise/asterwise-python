@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **success** | **bool** | True if the request succeeded | [optional] [default to True]
 **message** | **str** | Human-readable status message | [optional] [default to 'success']
 **data** | [**PersonalCycleResponse**](PersonalCycleResponse.md) | The endpoint response payload | 
+**key_labels** | **Dict[str, str]** |  | [optional] 
 
 ## Example
 

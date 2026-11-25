@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,13 +32,15 @@ class PlanetaryHour(BaseModel):
     hour: Annotated[int, Field(le=24, strict=True, ge=1)] = Field(description="1–12 are day hours (sunrise to sunset), 13–24 night hours.")
     period: StrictStr
     planet: StrictStr = Field(description="Planet ruling this hour.")
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     start_local: StrictStr = Field(description="Start, local time with UTC offset (ISO 8601).")
     end_local: StrictStr = Field(description="End, local time with UTC offset (ISO 8601).")
     start_utc: StrictStr = Field(description="Start in UTC (ISO 8601 with Z).")
     end_utc: StrictStr = Field(description="End in UTC (ISO 8601 with Z).")
     length_minutes: Union[StrictFloat, StrictInt]
     is_current: StrictBool = Field(description="True if the current moment falls in this hour.")
-    __properties: ClassVar[List[str]] = ["hour", "period", "planet", "start_local", "end_local", "start_utc", "end_utc", "length_minutes", "is_current"]
+    __properties: ClassVar[List[str]] = ["hour", "period", "planet", "planet_id", "planet_label", "start_local", "end_local", "start_utc", "end_utc", "length_minutes", "is_current"]
 
     @field_validator('period')
     def period_validate_enum(cls, value):
@@ -86,6 +88,16 @@ class PlanetaryHour(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         return _dict
 
     @classmethod
@@ -101,6 +113,8 @@ class PlanetaryHour(BaseModel):
             "hour": obj.get("hour"),
             "period": obj.get("period"),
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "start_local": obj.get("start_local"),
             "end_local": obj.get("end_local"),
             "start_utc": obj.get("start_utc"),

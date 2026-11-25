@@ -31,11 +31,13 @@ class BiorhythmCycleDetail(BaseModel):
     value: Union[StrictFloat, StrictInt] = Field(description="Cycle value from -1.0 to +1.0")
     percentage: Union[StrictFloat, StrictInt] = Field(description="Cycle value as percentage")
     phase: StrictStr = Field(description="Phase label: High (value above +0.5), Low (below -0.5), otherwise Rising or Falling by the direction the curve is moving that day (see trend).")
+    phase_id: Optional[StrictStr] = None
+    phase_label: Optional[StrictStr] = None
     trend: Optional[StrictStr] = None
     is_critical: StrictBool = Field(description="True when the cycle crosses zero")
     cycle_length_days: Optional[StrictInt] = None
     description: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["value", "percentage", "phase", "trend", "is_critical", "cycle_length_days", "description"]
+    __properties: ClassVar[List[str]] = ["value", "percentage", "phase", "phase_id", "phase_label", "trend", "is_critical", "cycle_length_days", "description"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,6 +78,16 @@ class BiorhythmCycleDetail(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if phase_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.phase_id is None and "phase_id" in self.model_fields_set:
+            _dict['phase_id'] = None
+
+        # set to None if phase_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.phase_label is None and "phase_label" in self.model_fields_set:
+            _dict['phase_label'] = None
+
         # set to None if trend (nullable) is None
         # and model_fields_set contains the field
         if self.trend is None and "trend" in self.model_fields_set:
@@ -106,6 +118,8 @@ class BiorhythmCycleDetail(BaseModel):
             "value": obj.get("value"),
             "percentage": obj.get("percentage"),
             "phase": obj.get("phase"),
+            "phase_id": obj.get("phase_id"),
+            "phase_label": obj.get("phase_label"),
             "trend": obj.get("trend"),
             "is_critical": obj.get("is_critical"),
             "cycle_length_days": obj.get("cycle_length_days"),

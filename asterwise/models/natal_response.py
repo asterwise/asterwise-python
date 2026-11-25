@@ -39,6 +39,8 @@ class NatalResponse(BaseModel):
     houses: List[HouseData] = Field(description="Computed house cusp placements")
     ascendant: Union[StrictFloat, StrictInt] = Field(description="Ascendant longitude in degrees")
     ascendant_sign: StrictStr = Field(description="Ascendant sign name")
+    ascendant_sign_id: Optional[StrictStr] = None
+    ascendant_sign_label: Optional[StrictStr] = None
     ayanamsa_value: Union[StrictFloat, StrictInt] = Field(description="Numerical ayanamsa value used in calculations")
     ayanamsa_used: StrictStr = Field(description="Ayanamsa mode used for the chart")
     birth_moment: Optional[BirthMoment] = None
@@ -46,7 +48,11 @@ class NatalResponse(BaseModel):
     interpretation: Optional[List[Dict[str, Any]]] = None
     ascendant_sign_interpretation: Optional[Dict[str, Any]] = None
     moon_sign: Optional[StrictStr] = None
+    moon_sign_id: Optional[StrictStr] = None
+    moon_sign_label: Optional[StrictStr] = None
     moon_nakshatra: Optional[StrictStr] = None
+    moon_nakshatra_id: Optional[StrictStr] = None
+    moon_nakshatra_label: Optional[StrictStr] = None
     moon_sign_interpretation: Optional[Dict[str, Any]] = None
     moon_nakshatra_interpretation: Optional[Dict[str, Any]] = None
     avakahada: Optional[Dict[str, Any]] = None
@@ -58,9 +64,13 @@ class NatalResponse(BaseModel):
     upapada_lagna: Optional[UpapadaLagna] = None
     ascendant_tropical_longitude: Optional[Union[StrictFloat, StrictInt]] = None
     ascendant_tropical_sign: Optional[StrictStr] = None
+    ascendant_tropical_sign_id: Optional[StrictStr] = None
+    ascendant_tropical_sign_label: Optional[StrictStr] = None
     ascendant_tropical_sign_index: Optional[Annotated[int, Field(le=11, strict=True, ge=0)]] = None
     moon_tropical_sign: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["planets", "houses", "ascendant", "ascendant_sign", "ayanamsa_value", "ayanamsa_used", "birth_moment", "birth_time_provided", "interpretation", "ascendant_sign_interpretation", "moon_sign", "moon_nakshatra", "moon_sign_interpretation", "moon_nakshatra_interpretation", "avakahada", "bhava_madhya", "bhava_sandhi", "graha_drishti", "rashi_drishti", "arudha_padas", "upapada_lagna", "ascendant_tropical_longitude", "ascendant_tropical_sign", "ascendant_tropical_sign_index", "moon_tropical_sign"]
+    moon_tropical_sign_id: Optional[StrictStr] = None
+    moon_tropical_sign_label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["planets", "houses", "ascendant", "ascendant_sign", "ascendant_sign_id", "ascendant_sign_label", "ayanamsa_value", "ayanamsa_used", "birth_moment", "birth_time_provided", "interpretation", "ascendant_sign_interpretation", "moon_sign", "moon_sign_id", "moon_sign_label", "moon_nakshatra", "moon_nakshatra_id", "moon_nakshatra_label", "moon_sign_interpretation", "moon_nakshatra_interpretation", "avakahada", "bhava_madhya", "bhava_sandhi", "graha_drishti", "rashi_drishti", "arudha_padas", "upapada_lagna", "ascendant_tropical_longitude", "ascendant_tropical_sign", "ascendant_tropical_sign_id", "ascendant_tropical_sign_label", "ascendant_tropical_sign_index", "moon_tropical_sign", "moon_tropical_sign_id", "moon_tropical_sign_label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -142,6 +152,16 @@ class NatalResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of upapada_lagna
         if self.upapada_lagna:
             _dict['upapada_lagna'] = self.upapada_lagna.to_dict()
+        # set to None if ascendant_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_sign_id is None and "ascendant_sign_id" in self.model_fields_set:
+            _dict['ascendant_sign_id'] = None
+
+        # set to None if ascendant_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_sign_label is None and "ascendant_sign_label" in self.model_fields_set:
+            _dict['ascendant_sign_label'] = None
+
         # set to None if birth_moment (nullable) is None
         # and model_fields_set contains the field
         if self.birth_moment is None and "birth_moment" in self.model_fields_set:
@@ -162,10 +182,30 @@ class NatalResponse(BaseModel):
         if self.moon_sign is None and "moon_sign" in self.model_fields_set:
             _dict['moon_sign'] = None
 
+        # set to None if moon_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_sign_id is None and "moon_sign_id" in self.model_fields_set:
+            _dict['moon_sign_id'] = None
+
+        # set to None if moon_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_sign_label is None and "moon_sign_label" in self.model_fields_set:
+            _dict['moon_sign_label'] = None
+
         # set to None if moon_nakshatra (nullable) is None
         # and model_fields_set contains the field
         if self.moon_nakshatra is None and "moon_nakshatra" in self.model_fields_set:
             _dict['moon_nakshatra'] = None
+
+        # set to None if moon_nakshatra_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_nakshatra_id is None and "moon_nakshatra_id" in self.model_fields_set:
+            _dict['moon_nakshatra_id'] = None
+
+        # set to None if moon_nakshatra_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_nakshatra_label is None and "moon_nakshatra_label" in self.model_fields_set:
+            _dict['moon_nakshatra_label'] = None
 
         # set to None if moon_sign_interpretation (nullable) is None
         # and model_fields_set contains the field
@@ -222,6 +262,16 @@ class NatalResponse(BaseModel):
         if self.ascendant_tropical_sign is None and "ascendant_tropical_sign" in self.model_fields_set:
             _dict['ascendant_tropical_sign'] = None
 
+        # set to None if ascendant_tropical_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_tropical_sign_id is None and "ascendant_tropical_sign_id" in self.model_fields_set:
+            _dict['ascendant_tropical_sign_id'] = None
+
+        # set to None if ascendant_tropical_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.ascendant_tropical_sign_label is None and "ascendant_tropical_sign_label" in self.model_fields_set:
+            _dict['ascendant_tropical_sign_label'] = None
+
         # set to None if ascendant_tropical_sign_index (nullable) is None
         # and model_fields_set contains the field
         if self.ascendant_tropical_sign_index is None and "ascendant_tropical_sign_index" in self.model_fields_set:
@@ -231,6 +281,16 @@ class NatalResponse(BaseModel):
         # and model_fields_set contains the field
         if self.moon_tropical_sign is None and "moon_tropical_sign" in self.model_fields_set:
             _dict['moon_tropical_sign'] = None
+
+        # set to None if moon_tropical_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_tropical_sign_id is None and "moon_tropical_sign_id" in self.model_fields_set:
+            _dict['moon_tropical_sign_id'] = None
+
+        # set to None if moon_tropical_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_tropical_sign_label is None and "moon_tropical_sign_label" in self.model_fields_set:
+            _dict['moon_tropical_sign_label'] = None
 
         return _dict
 
@@ -248,6 +308,8 @@ class NatalResponse(BaseModel):
             "houses": [HouseData.from_dict(_item) for _item in obj["houses"]] if obj.get("houses") is not None else None,
             "ascendant": obj.get("ascendant"),
             "ascendant_sign": obj.get("ascendant_sign"),
+            "ascendant_sign_id": obj.get("ascendant_sign_id"),
+            "ascendant_sign_label": obj.get("ascendant_sign_label"),
             "ayanamsa_value": obj.get("ayanamsa_value"),
             "ayanamsa_used": obj.get("ayanamsa_used"),
             "birth_moment": BirthMoment.from_dict(obj["birth_moment"]) if obj.get("birth_moment") is not None else None,
@@ -255,7 +317,11 @@ class NatalResponse(BaseModel):
             "interpretation": obj.get("interpretation"),
             "ascendant_sign_interpretation": obj.get("ascendant_sign_interpretation"),
             "moon_sign": obj.get("moon_sign"),
+            "moon_sign_id": obj.get("moon_sign_id"),
+            "moon_sign_label": obj.get("moon_sign_label"),
             "moon_nakshatra": obj.get("moon_nakshatra"),
+            "moon_nakshatra_id": obj.get("moon_nakshatra_id"),
+            "moon_nakshatra_label": obj.get("moon_nakshatra_label"),
             "moon_sign_interpretation": obj.get("moon_sign_interpretation"),
             "moon_nakshatra_interpretation": obj.get("moon_nakshatra_interpretation"),
             "avakahada": obj.get("avakahada"),
@@ -267,8 +333,12 @@ class NatalResponse(BaseModel):
             "upapada_lagna": UpapadaLagna.from_dict(obj["upapada_lagna"]) if obj.get("upapada_lagna") is not None else None,
             "ascendant_tropical_longitude": obj.get("ascendant_tropical_longitude"),
             "ascendant_tropical_sign": obj.get("ascendant_tropical_sign"),
+            "ascendant_tropical_sign_id": obj.get("ascendant_tropical_sign_id"),
+            "ascendant_tropical_sign_label": obj.get("ascendant_tropical_sign_label"),
             "ascendant_tropical_sign_index": obj.get("ascendant_tropical_sign_index"),
-            "moon_tropical_sign": obj.get("moon_tropical_sign")
+            "moon_tropical_sign": obj.get("moon_tropical_sign"),
+            "moon_tropical_sign_id": obj.get("moon_tropical_sign_id"),
+            "moon_tropical_sign_label": obj.get("moon_tropical_sign_label")
         })
         return _obj
 

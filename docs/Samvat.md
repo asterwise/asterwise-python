@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **shaka** | **int** | Shaka Samvat. | 
 **gujarati** | **int** | Gujarati Vikram Samvat (year begins at Kartika Shukla Pratipada). | 
 **samvatsara** | **str** | Name of the Shaka year in the 60-year Chandramana cycle. | 
+**samvatsara_id** | **str** |  | [optional] 
+**samvatsara_label** | **str** |  | [optional] 
 
 ## Example
 

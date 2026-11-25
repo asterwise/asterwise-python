@@ -6,22 +6,18 @@ The endpoint response payload
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**planets** | [**Dict[str, PlanetNatureEntry]**](PlanetNatureEntry.md) |  | 
-**tattva** | **str** |  | 
-**guna** | **str** |  | 
-**gender** | **str** |  | 
-**caste** | **str** |  | 
-**nature** | **str** |  | 
-**direction** | **str** |  | 
-**color** | **str** |  | 
-**deity** | **str** |  | 
-**day** | **str** |  | 
-**metal** | **str** |  | 
-**body_part** | **str** |  | 
-**friends** | **List[str]** |  | 
-**enemies** | **List[str]** |  | 
-**neutrals** | **List[str]** |  | 
-**planet** | **str** |  | 
+**birth_date** | **str** |  | 
+**target_date** | **str** |  | 
+**days_since_birth** | **int** |  | 
+**cycles** | [**Dict[str, BiorhythmCycleDetail]**](BiorhythmCycleDetail.md) |  | 
+**critical_today** | **List[str]** |  | 
+**has_critical_day** | **bool** |  | 
+**composite_score** | **float** |  | 
+**note** | **str** |  | 
+**start_date** | **str** |  | 
+**end_date** | **str** |  | 
+**days** | **int** |  | 
+**daily** | [**List[BiorhythmDailyEntry]**](BiorhythmDailyEntry.md) |  | 
 
 ## Example
 

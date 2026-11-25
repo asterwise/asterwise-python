@@ -55,6 +55,8 @@ class PanchangaResponse(BaseModel):
     day_duration_minutes: Optional[Union[StrictFloat, StrictInt]] = None
     night_duration_minutes: Optional[Union[StrictFloat, StrictInt]] = None
     paksha: Optional[StrictStr] = None
+    paksha_id: Optional[StrictStr] = None
+    paksha_label: Optional[StrictStr] = None
     tithis: Optional[List[DayTithi]] = None
     nakshatras: Optional[List[DayNakshatra]] = None
     yogas: Optional[List[DayYoga]] = None
@@ -73,7 +75,7 @@ class PanchangaResponse(BaseModel):
     yoga: YogaData = Field(description="Luni-solar yoga — combined Sun and Moon longitude divided into 27 parts")
     karana: KaranaData = Field(description="Half of a tithi — the smaller unit of lunar time")
     civil_day: Optional[CivilDay] = None
-    __properties: ClassVar[List[str]] = ["date", "timezone", "sunrise", "sunset", "next_sunrise", "moonrise", "moonset", "day_duration_minutes", "night_duration_minutes", "paksha", "tithis", "nakshatras", "yogas", "karanas", "sun_rashi", "moon_rashi", "sun_nakshatra", "masa", "samvat", "ritu", "ayana", "timings", "tithi", "vara", "nakshatra", "yoga", "karana", "civil_day"]
+    __properties: ClassVar[List[str]] = ["date", "timezone", "sunrise", "sunset", "next_sunrise", "moonrise", "moonset", "day_duration_minutes", "night_duration_minutes", "paksha", "paksha_id", "paksha_label", "tithis", "nakshatras", "yogas", "karanas", "sun_rashi", "moon_rashi", "sun_nakshatra", "masa", "samvat", "ritu", "ayana", "timings", "tithi", "vara", "nakshatra", "yoga", "karana", "civil_day"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -246,6 +248,16 @@ class PanchangaResponse(BaseModel):
         if self.paksha is None and "paksha" in self.model_fields_set:
             _dict['paksha'] = None
 
+        # set to None if paksha_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_id is None and "paksha_id" in self.model_fields_set:
+            _dict['paksha_id'] = None
+
+        # set to None if paksha_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_label is None and "paksha_label" in self.model_fields_set:
+            _dict['paksha_label'] = None
+
         # set to None if tithis (nullable) is None
         # and model_fields_set contains the field
         if self.tithis is None and "tithis" in self.model_fields_set:
@@ -333,6 +345,8 @@ class PanchangaResponse(BaseModel):
             "day_duration_minutes": obj.get("day_duration_minutes"),
             "night_duration_minutes": obj.get("night_duration_minutes"),
             "paksha": obj.get("paksha"),
+            "paksha_id": obj.get("paksha_id"),
+            "paksha_label": obj.get("paksha_label"),
             "tithis": [DayTithi.from_dict(_item) for _item in obj["tithis"]] if obj.get("tithis") is not None else None,
             "nakshatras": [DayNakshatra.from_dict(_item) for _item in obj["nakshatras"]] if obj.get("nakshatras") is not None else None,
             "yogas": [DayYoga.from_dict(_item) for _item in obj["yogas"]] if obj.get("yogas") is not None else None,

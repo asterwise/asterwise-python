@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **moonrise** | **str** |  | [optional] 
 **moonset** | **str** |  | [optional] 
 **paksha** | **str** |  | [optional] 
+**paksha_id** | **str** |  | [optional] 
+**paksha_label** | **str** |  | [optional] 
 **masa** | [**Masa**](Masa.md) |  | [optional] 
 **tithis** | [**List[DayTithi]**](DayTithi.md) |  | [optional] 
 **nakshatras** | [**List[DayNakshatra]**](DayNakshatra.md) |  | [optional] 

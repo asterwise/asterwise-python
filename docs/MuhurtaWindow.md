@@ -10,11 +10,19 @@ Name | Type | Description | Notes
 **end** | **str** | End, HH:MM local time. Kept from the earlier Choghadiya-slot response; prefer end_at. | 
 **score** | **int** | 0-100. | 
 **choghadiya** | **str** | Choghadiya at the window&#39;s start. | 
+**choghadiya_id** | **str** |  | [optional] 
+**choghadiya_label** | **str** |  | [optional] 
 **choghadiya_type** | **str** |  | 
 **yoga** | **str** | Panchanga yoga name. | 
+**yoga_id** | **str** |  | [optional] 
+**yoga_label** | **str** |  | [optional] 
 **vara** | **str** | Weekday name (Sanskrit). | 
+**vara_id** | **str** |  | [optional] 
+**vara_label** | **str** |  | [optional] 
 **vara_number** | **int** | 1 &#x3D; Sunday ... 7 &#x3D; Saturday. | 
 **tithi** | **str** | Tithi name; see paksha and tithi_number. | 
+**tithi_id** | **str** |  | [optional] 
+**tithi_label** | **str** |  | [optional] 
 **tithi_number** | **int** | 1-30 (16-30 Krishna). | 
 **reason** | **str** | Reasons joined into one line. Kept from the earlier Choghadiya-slot response; prefer reasons. | 
 **is_rahu_kaal** | **bool** | Always false: Rahu Kaal is excluded from every window. | 
@@ -27,13 +35,23 @@ Name | Type | Description | Notes
 **panchanga_day** | **str** | Same as date: the sunrise date of the panchanga day. | 
 **duration_minutes** | **float** |  | 
 **grade** | **str** | Excellent (85+), Good (70+) or Acceptable. | 
+**grade_id** | **str** |  | [optional] 
+**grade_label** | **str** |  | [optional] 
 **paksha** | **str** |  | 
+**paksha_id** | **str** |  | [optional] 
+**paksha_label** | **str** |  | [optional] 
 **nakshatra** | [**MuhurtaNamed**](MuhurtaNamed.md) |  | 
 **yoga_number** | **int** |  | 
 **karana** | **str** |  | 
+**karana_id** | **str** |  | [optional] 
+**karana_label** | **str** |  | [optional] 
 **vara_lord** | **str** |  | 
+**vara_lord_id** | **str** |  | [optional] 
+**vara_lord_label** | **str** |  | [optional] 
 **lagna** | [**MuhurtaLagna**](MuhurtaLagna.md) |  | [optional] 
 **masa** | **str** | Amanta lunar month. | 
+**masa_id** | **str** |  | [optional] 
+**masa_label** | **str** |  | [optional] 
 **is_guru_pushya** | **bool** |  | 
 **is_ravi_pushya** | **bool** |  | 
 **reasons** | **List[str]** | What makes the window good. | 

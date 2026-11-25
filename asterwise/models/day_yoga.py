@@ -39,8 +39,10 @@ class DayYoga(BaseModel):
     index: StrictInt
     number: StrictInt
     name: StrictStr
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     is_inauspicious: StrictBool
-    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "start_utc", "end_utc", "nature", "index", "number", "name", "is_inauspicious"]
+    __properties: ClassVar[List[str]] = ["at_sunrise", "is_kshaya", "is_vriddhi", "start", "end", "start_utc", "end_utc", "nature", "index", "number", "name", "id", "label", "is_inauspicious"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -96,6 +98,16 @@ class DayYoga(BaseModel):
         if self.nature is None and "nature" in self.model_fields_set:
             _dict['nature'] = None
 
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         return _dict
 
     @classmethod
@@ -119,6 +131,8 @@ class DayYoga(BaseModel):
             "index": obj.get("index"),
             "number": obj.get("number"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "is_inauspicious": obj.get("is_inauspicious")
         })
         return _obj

@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **end_utc** | **str** |  | [optional] 
 **nature** | **str** |  | [optional] 
 **nakshatra** | **str** |  | 
+**nakshatra_id** | **str** |  | [optional] 
+**nakshatra_label** | **str** |  | [optional] 
 
 ## Example
 

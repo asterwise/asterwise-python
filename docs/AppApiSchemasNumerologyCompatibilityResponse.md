@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **life_path_2** | **int** | Second person&#39;s life path number | 
 **compatibility_score** | **int** | Compatibility score (1-10) | 
 **compatibility_level** | **str** | Compatibility level (Excellent, Good, Fair, Challenging) | 
+**compatibility_level_id** | **str** |  | [optional] 
+**compatibility_level_label** | **str** |  | [optional] 
 **interpretation** | **str** | Detailed compatibility interpretation | 
 **strengths** | **List[str]** | Relationship strengths | [optional] 
 **challenges** | **List[str]** | Potential challenges | [optional] 

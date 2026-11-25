@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,7 +30,9 @@ class MuhurtaNamed(BaseModel):
     """ # noqa: E501
     number: StrictInt
     name: StrictStr
-    __properties: ClassVar[List[str]] = ["number", "name"]
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["number", "name", "id", "label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -71,6 +73,16 @@ class MuhurtaNamed(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         return _dict
 
     @classmethod
@@ -84,7 +96,9 @@ class MuhurtaNamed(BaseModel):
 
         _obj = cls.model_validate({
             "number": obj.get("number"),
-            "name": obj.get("name")
+            "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label")
         })
         return _obj
 

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,14 +29,18 @@ class CompositePlanetSchema(BaseModel):
     CompositePlanetSchema
     """ # noqa: E501
     name: StrictStr
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     longitude: Union[StrictFloat, StrictInt]
     sign: StrictStr
+    sign_id: Optional[StrictStr] = None
+    sign_label: Optional[StrictStr] = None
     sign_index: StrictInt
     degree_in_sign: Union[StrictFloat, StrictInt]
     dignity: StrictStr
-    dignity_score: StrictInt = Field(description="Weight of the primary sign-level dignity only: domicile=5, exaltation=4, detriment=-5, fall=-4, peregrine=0. Triplicity, term and face are not scored, and the weights are not summed (e.g. Mercury in Virgo scores 5 for domicile, not 5+4). Full traditional scoring is in essential_dignities (natal and return charts).")
+    dignity_score: StrictInt = Field(description="Weight of the primary sign-level dignity only: domicile=5, exaltation=4, detriment=-5, fall=-4, peregrine=0. Triplicity, term and face are not scored, and the weights are not summed (e.g. Mercury in Virgo scores 5 for domicile, not 5+4). This is a simple sign score, kept for compatibility; William Lilly's full tally is essential_dignities.total (natal, return and horary charts).")
     dignity_disputed: StrictBool = Field(description="True for outer planet (Uranus/Neptune/Pluto) exaltation/fall — no established consensus.")
-    __properties: ClassVar[List[str]] = ["name", "longitude", "sign", "sign_index", "degree_in_sign", "dignity", "dignity_score", "dignity_disputed"]
+    __properties: ClassVar[List[str]] = ["name", "id", "label", "longitude", "sign", "sign_id", "sign_label", "sign_index", "degree_in_sign", "dignity", "dignity_score", "dignity_disputed"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,6 +81,26 @@ class CompositePlanetSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
+        # set to None if sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_id is None and "sign_id" in self.model_fields_set:
+            _dict['sign_id'] = None
+
+        # set to None if sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_label is None and "sign_label" in self.model_fields_set:
+            _dict['sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -90,8 +114,12 @@ class CompositePlanetSchema(BaseModel):
 
         _obj = cls.model_validate({
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "longitude": obj.get("longitude"),
             "sign": obj.get("sign"),
+            "sign_id": obj.get("sign_id"),
+            "sign_label": obj.get("sign_label"),
             "sign_index": obj.get("sign_index"),
             "degree_in_sign": obj.get("degree_in_sign"),
             "dignity": obj.get("dignity"),

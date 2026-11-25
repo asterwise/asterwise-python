@@ -30,13 +30,21 @@ class UpapadaLagna(BaseModel):
     """ # noqa: E501
     sign_index: StrictInt = Field(description="Upapada Lagna sign index 0–11")
     sign_name: StrictStr = Field(description="Sanskrit sign name of Upapada Lagna")
+    sign_name_id: Optional[StrictStr] = None
+    sign_name_label: Optional[StrictStr] = None
     upapada_lord: StrictStr = Field(description="Lord of the Upapada sign")
+    upapada_lord_id: Optional[StrictStr] = None
+    upapada_lord_label: Optional[StrictStr] = None
     second_from_upapada_sign_index: StrictInt = Field(description="Sign index 0–11 of the sign second from Upapada Lagna")
     second_from_upapada_sign_name: Optional[StrictStr] = None
+    second_from_upapada_sign_name_id: Optional[StrictStr] = None
+    second_from_upapada_sign_name_label: Optional[StrictStr] = None
     planets_in_second_from_upapada: Optional[List[StrictStr]] = Field(default=None, description="Grahas occupying the sign second from Upapada")
+    planets_in_second_from_upapada_ids: Optional[List[StrictStr]] = None
+    planets_in_second_from_upapada_labels: Optional[List[StrictStr]] = None
     has_benefic_in_second_from_upapada: StrictBool = Field(description="True if a benefic occupies the 2nd-from-Upapada sign")
     has_malefic_in_second_from_upapada: StrictBool = Field(description="True if a malefic occupies the 2nd-from-Upapada sign")
-    __properties: ClassVar[List[str]] = ["sign_index", "sign_name", "upapada_lord", "second_from_upapada_sign_index", "second_from_upapada_sign_name", "planets_in_second_from_upapada", "has_benefic_in_second_from_upapada", "has_malefic_in_second_from_upapada"]
+    __properties: ClassVar[List[str]] = ["sign_index", "sign_name", "sign_name_id", "sign_name_label", "upapada_lord", "upapada_lord_id", "upapada_lord_label", "second_from_upapada_sign_index", "second_from_upapada_sign_name", "second_from_upapada_sign_name_id", "second_from_upapada_sign_name_label", "planets_in_second_from_upapada", "planets_in_second_from_upapada_ids", "planets_in_second_from_upapada_labels", "has_benefic_in_second_from_upapada", "has_malefic_in_second_from_upapada"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,10 +85,50 @@ class UpapadaLagna(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if sign_name_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_name_id is None and "sign_name_id" in self.model_fields_set:
+            _dict['sign_name_id'] = None
+
+        # set to None if sign_name_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_name_label is None and "sign_name_label" in self.model_fields_set:
+            _dict['sign_name_label'] = None
+
+        # set to None if upapada_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.upapada_lord_id is None and "upapada_lord_id" in self.model_fields_set:
+            _dict['upapada_lord_id'] = None
+
+        # set to None if upapada_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.upapada_lord_label is None and "upapada_lord_label" in self.model_fields_set:
+            _dict['upapada_lord_label'] = None
+
         # set to None if second_from_upapada_sign_name (nullable) is None
         # and model_fields_set contains the field
         if self.second_from_upapada_sign_name is None and "second_from_upapada_sign_name" in self.model_fields_set:
             _dict['second_from_upapada_sign_name'] = None
+
+        # set to None if second_from_upapada_sign_name_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.second_from_upapada_sign_name_id is None and "second_from_upapada_sign_name_id" in self.model_fields_set:
+            _dict['second_from_upapada_sign_name_id'] = None
+
+        # set to None if second_from_upapada_sign_name_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.second_from_upapada_sign_name_label is None and "second_from_upapada_sign_name_label" in self.model_fields_set:
+            _dict['second_from_upapada_sign_name_label'] = None
+
+        # set to None if planets_in_second_from_upapada_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.planets_in_second_from_upapada_ids is None and "planets_in_second_from_upapada_ids" in self.model_fields_set:
+            _dict['planets_in_second_from_upapada_ids'] = None
+
+        # set to None if planets_in_second_from_upapada_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.planets_in_second_from_upapada_labels is None and "planets_in_second_from_upapada_labels" in self.model_fields_set:
+            _dict['planets_in_second_from_upapada_labels'] = None
 
         return _dict
 
@@ -96,10 +144,18 @@ class UpapadaLagna(BaseModel):
         _obj = cls.model_validate({
             "sign_index": obj.get("sign_index"),
             "sign_name": obj.get("sign_name"),
+            "sign_name_id": obj.get("sign_name_id"),
+            "sign_name_label": obj.get("sign_name_label"),
             "upapada_lord": obj.get("upapada_lord"),
+            "upapada_lord_id": obj.get("upapada_lord_id"),
+            "upapada_lord_label": obj.get("upapada_lord_label"),
             "second_from_upapada_sign_index": obj.get("second_from_upapada_sign_index"),
             "second_from_upapada_sign_name": obj.get("second_from_upapada_sign_name"),
+            "second_from_upapada_sign_name_id": obj.get("second_from_upapada_sign_name_id"),
+            "second_from_upapada_sign_name_label": obj.get("second_from_upapada_sign_name_label"),
             "planets_in_second_from_upapada": obj.get("planets_in_second_from_upapada"),
+            "planets_in_second_from_upapada_ids": obj.get("planets_in_second_from_upapada_ids"),
+            "planets_in_second_from_upapada_labels": obj.get("planets_in_second_from_upapada_labels"),
             "has_benefic_in_second_from_upapada": obj.get("has_benefic_in_second_from_upapada"),
             "has_malefic_in_second_from_upapada": obj.get("has_malefic_in_second_from_upapada")
         })

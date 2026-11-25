@@ -29,14 +29,18 @@ class TransitAspectSchema(BaseModel):
     TransitAspectSchema
     """ # noqa: E501
     transit_planet: StrictStr
+    transit_planet_id: Optional[StrictStr] = None
+    transit_planet_label: Optional[StrictStr] = None
     natal_planet: StrictStr
+    natal_planet_id: Optional[StrictStr] = None
+    natal_planet_label: Optional[StrictStr] = None
     type: StrictStr
     exact_angle: Union[StrictFloat, StrictInt]
     orb: Union[StrictFloat, StrictInt]
     is_applying: StrictBool = Field(description="True if the transiting planet's instantaneous motion is closing the orb to the (fixed) natal planet. False if separating or exact.")
     exact_at: Optional[StrictStr] = None
     days_to_exact: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties: ClassVar[List[str]] = ["transit_planet", "natal_planet", "type", "exact_angle", "orb", "is_applying", "exact_at", "days_to_exact"]
+    __properties: ClassVar[List[str]] = ["transit_planet", "transit_planet_id", "transit_planet_label", "natal_planet", "natal_planet_id", "natal_planet_label", "type", "exact_angle", "orb", "is_applying", "exact_at", "days_to_exact"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,6 +81,26 @@ class TransitAspectSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if transit_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.transit_planet_id is None and "transit_planet_id" in self.model_fields_set:
+            _dict['transit_planet_id'] = None
+
+        # set to None if transit_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.transit_planet_label is None and "transit_planet_label" in self.model_fields_set:
+            _dict['transit_planet_label'] = None
+
+        # set to None if natal_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.natal_planet_id is None and "natal_planet_id" in self.model_fields_set:
+            _dict['natal_planet_id'] = None
+
+        # set to None if natal_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.natal_planet_label is None and "natal_planet_label" in self.model_fields_set:
+            _dict['natal_planet_label'] = None
+
         # set to None if exact_at (nullable) is None
         # and model_fields_set contains the field
         if self.exact_at is None and "exact_at" in self.model_fields_set:
@@ -100,7 +124,11 @@ class TransitAspectSchema(BaseModel):
 
         _obj = cls.model_validate({
             "transit_planet": obj.get("transit_planet"),
+            "transit_planet_id": obj.get("transit_planet_id"),
+            "transit_planet_label": obj.get("transit_planet_label"),
             "natal_planet": obj.get("natal_planet"),
+            "natal_planet_id": obj.get("natal_planet_id"),
+            "natal_planet_label": obj.get("natal_planet_label"),
             "type": obj.get("type"),
             "exact_angle": obj.get("exact_angle"),
             "orb": obj.get("orb"),

@@ -29,6 +29,8 @@ class DashaPeriod(BaseModel):
     DashaPeriod
     """ # noqa: E501
     planet: StrictStr = Field(description="Dasha lord for this period")
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     start_jd: Union[StrictFloat, StrictInt] = Field(description="Julian day at period start")
     end_jd: Union[StrictFloat, StrictInt] = Field(description="Julian day at period end")
     start_date: StrictStr = Field(description="Period start, DD/MM/YYYY (UTC calendar date). The first Mahadasha row starts at birth.")
@@ -37,7 +39,7 @@ class DashaPeriod(BaseModel):
     dasha_start_date: Optional[StrictStr] = None
     balance_years: Optional[Union[StrictFloat, StrictInt]] = None
     modern_summary: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["planet", "start_jd", "end_jd", "start_date", "end_date", "sub", "dasha_start_date", "balance_years", "modern_summary"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "start_jd", "end_jd", "start_date", "end_date", "sub", "dasha_start_date", "balance_years", "modern_summary"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -85,6 +87,16 @@ class DashaPeriod(BaseModel):
                 if _item_sub:
                     _items.append(_item_sub.to_dict())
             _dict['sub'] = _items
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         # set to None if sub (nullable) is None
         # and model_fields_set contains the field
         if self.sub is None and "sub" in self.model_fields_set:
@@ -118,6 +130,8 @@ class DashaPeriod(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "start_jd": obj.get("start_jd"),
             "end_jd": obj.get("end_jd"),
             "start_date": obj.get("start_date"),

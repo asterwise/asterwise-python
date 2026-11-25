@@ -7,8 +7,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **moon_nakshatra_index** | **int** |  | 
 **moon_nakshatra** | **str** |  | 
+**moon_nakshatra_id** | **str** |  | [optional] 
+**moon_nakshatra_label** | **str** |  | [optional] 
 **moon_sign_index** | **int** |  | 
 **moon_sign** | **str** |  | 
+**moon_sign_id** | **str** |  | [optional] 
+**moon_sign_label** | **str** |  | [optional] 
 
 ## Example
 

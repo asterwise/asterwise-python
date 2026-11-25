@@ -29,13 +29,15 @@ class VarshaPati(BaseModel):
     VarshaPati
     """ # noqa: E501
     planet: StrictStr
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     role: StrictStr
     pancha_vargeeya_bala: Union[StrictFloat, StrictInt]
     kshetra_bala: Union[StrictFloat, StrictInt]
     uchcha_bala: Union[StrictFloat, StrictInt]
     election_fallback: Optional[StrictStr] = None
     moon_election: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["planet", "role", "pancha_vargeeya_bala", "kshetra_bala", "uchcha_bala", "election_fallback", "moon_election"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "role", "pancha_vargeeya_bala", "kshetra_bala", "uchcha_bala", "election_fallback", "moon_election"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,6 +78,16 @@ class VarshaPati(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         # set to None if election_fallback (nullable) is None
         # and model_fields_set contains the field
         if self.election_fallback is None and "election_fallback" in self.model_fields_set:
@@ -99,6 +111,8 @@ class VarshaPati(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "role": obj.get("role"),
             "pancha_vargeeya_bala": obj.get("pancha_vargeeya_bala"),
             "kshetra_bala": obj.get("kshetra_bala"),

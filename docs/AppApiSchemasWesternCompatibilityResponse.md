@@ -15,9 +15,17 @@ Name | Type | Description | Notes
 **moon_sign_affinity** | **str** |  | 
 **rising_sign_affinity** | **str** |  | 
 **person1_sun** | **str** |  | 
+**person1_sun_id** | **str** |  | [optional] 
+**person1_sun_label** | **str** |  | [optional] 
 **person2_sun** | **str** |  | 
+**person2_sun_id** | **str** |  | [optional] 
+**person2_sun_label** | **str** |  | [optional] 
 **person1_moon** | **str** |  | 
+**person1_moon_id** | **str** |  | [optional] 
+**person1_moon_label** | **str** |  | [optional] 
 **person2_moon** | **str** |  | 
+**person2_moon_id** | **str** |  | [optional] 
+**person2_moon_label** | **str** |  | [optional] 
 **key_aspects** | [**List[SynastryAspectSchema]**](SynastryAspectSchema.md) |  | 
 
 ## Example

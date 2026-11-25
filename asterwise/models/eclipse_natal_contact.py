@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,10 +29,12 @@ class EclipseNatalContact(BaseModel):
     EclipseNatalContact
     """ # noqa: E501
     natal_point: StrictStr = Field(description="Natal planet, Ascendant or MC.")
+    natal_point_id: Optional[StrictStr] = None
+    natal_point_label: Optional[StrictStr] = None
     natal_longitude: Union[StrictFloat, StrictInt]
     aspect: StrictStr = Field(description="How the eclipse degree meets the natal point: same degree (conjunction) or opposite (opposition).")
     orb: Union[StrictFloat, StrictInt] = Field(description="Distance from exact, in degrees (0–3).")
-    __properties: ClassVar[List[str]] = ["natal_point", "natal_longitude", "aspect", "orb"]
+    __properties: ClassVar[List[str]] = ["natal_point", "natal_point_id", "natal_point_label", "natal_longitude", "aspect", "orb"]
 
     @field_validator('aspect')
     def aspect_validate_enum(cls, value):
@@ -80,6 +82,16 @@ class EclipseNatalContact(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if natal_point_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.natal_point_id is None and "natal_point_id" in self.model_fields_set:
+            _dict['natal_point_id'] = None
+
+        # set to None if natal_point_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.natal_point_label is None and "natal_point_label" in self.model_fields_set:
+            _dict['natal_point_label'] = None
+
         return _dict
 
     @classmethod
@@ -93,6 +105,8 @@ class EclipseNatalContact(BaseModel):
 
         _obj = cls.model_validate({
             "natal_point": obj.get("natal_point"),
+            "natal_point_id": obj.get("natal_point_id"),
+            "natal_point_label": obj.get("natal_point_label"),
             "natal_longitude": obj.get("natal_longitude"),
             "aspect": obj.get("aspect"),
             "orb": obj.get("orb")

@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **group** | **str** |  | 
+**group_id** | **str** |  | [optional] 
+**group_label** | **str** |  | [optional] 
 **tithi_numbers** | **List[int]** |  | 
 **description** | **str** |  | 
 

@@ -28,14 +28,20 @@ class AtmakarakaResponse(BaseModel):
     """
     AtmakarakaResponse
     """ # noqa: E501
-    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Always true: this endpoint requires the birth time and has no sunrise fallback, so house, Ascendant and Moon-dependent results use the time you sent.")
     karaka_to_planet: Dict[str, StrictStr]
     planet_to_karaka: Dict[str, StrictStr]
     atmakaraka: StrictStr
+    atmakaraka_id: Optional[StrictStr] = None
+    atmakaraka_label: Optional[StrictStr] = None
     atmakaraka_sign: StrictStr
+    atmakaraka_sign_id: Optional[StrictStr] = None
+    atmakaraka_sign_label: Optional[StrictStr] = None
     atmakaraka_nakshatra: Optional[StrictStr]
+    atmakaraka_nakshatra_id: Optional[StrictStr] = None
+    atmakaraka_nakshatra_label: Optional[StrictStr] = None
     details: Dict[str, Any]
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "karaka_to_planet", "planet_to_karaka", "atmakaraka", "atmakaraka_sign", "atmakaraka_nakshatra", "details"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "karaka_to_planet", "planet_to_karaka", "atmakaraka", "atmakaraka_id", "atmakaraka_label", "atmakaraka_sign", "atmakaraka_sign_id", "atmakaraka_sign_label", "atmakaraka_nakshatra", "atmakaraka_nakshatra_id", "atmakaraka_nakshatra_label", "details"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,10 +82,40 @@ class AtmakarakaResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if atmakaraka_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.atmakaraka_id is None and "atmakaraka_id" in self.model_fields_set:
+            _dict['atmakaraka_id'] = None
+
+        # set to None if atmakaraka_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.atmakaraka_label is None and "atmakaraka_label" in self.model_fields_set:
+            _dict['atmakaraka_label'] = None
+
+        # set to None if atmakaraka_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.atmakaraka_sign_id is None and "atmakaraka_sign_id" in self.model_fields_set:
+            _dict['atmakaraka_sign_id'] = None
+
+        # set to None if atmakaraka_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.atmakaraka_sign_label is None and "atmakaraka_sign_label" in self.model_fields_set:
+            _dict['atmakaraka_sign_label'] = None
+
         # set to None if atmakaraka_nakshatra (nullable) is None
         # and model_fields_set contains the field
         if self.atmakaraka_nakshatra is None and "atmakaraka_nakshatra" in self.model_fields_set:
             _dict['atmakaraka_nakshatra'] = None
+
+        # set to None if atmakaraka_nakshatra_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.atmakaraka_nakshatra_id is None and "atmakaraka_nakshatra_id" in self.model_fields_set:
+            _dict['atmakaraka_nakshatra_id'] = None
+
+        # set to None if atmakaraka_nakshatra_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.atmakaraka_nakshatra_label is None and "atmakaraka_nakshatra_label" in self.model_fields_set:
+            _dict['atmakaraka_nakshatra_label'] = None
 
         return _dict
 
@@ -97,8 +133,14 @@ class AtmakarakaResponse(BaseModel):
             "karaka_to_planet": obj.get("karaka_to_planet"),
             "planet_to_karaka": obj.get("planet_to_karaka"),
             "atmakaraka": obj.get("atmakaraka"),
+            "atmakaraka_id": obj.get("atmakaraka_id"),
+            "atmakaraka_label": obj.get("atmakaraka_label"),
             "atmakaraka_sign": obj.get("atmakaraka_sign"),
+            "atmakaraka_sign_id": obj.get("atmakaraka_sign_id"),
+            "atmakaraka_sign_label": obj.get("atmakaraka_sign_label"),
             "atmakaraka_nakshatra": obj.get("atmakaraka_nakshatra"),
+            "atmakaraka_nakshatra_id": obj.get("atmakaraka_nakshatra_id"),
+            "atmakaraka_nakshatra_label": obj.get("atmakaraka_nakshatra_label"),
             "details": obj.get("details")
         })
         return _obj

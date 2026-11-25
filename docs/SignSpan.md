@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **nature** | **str** |  | [optional] 
 **index** | **int** | 0 &#x3D; Mesha ... 11 &#x3D; Meena (sidereal). | 
 **name** | **str** |  | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 
 ## Example
 

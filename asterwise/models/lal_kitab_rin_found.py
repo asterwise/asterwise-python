@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,8 +29,10 @@ class LalKitabRinFound(BaseModel):
     LalKitabRinFound
     """ # noqa: E501
     planet: StrictStr
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     house: StrictInt
-    __properties: ClassVar[List[str]] = ["planet", "house"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "house"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -71,6 +73,16 @@ class LalKitabRinFound(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         return _dict
 
     @classmethod
@@ -84,6 +96,8 @@ class LalKitabRinFound(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "house": obj.get("house")
         })
         return _obj

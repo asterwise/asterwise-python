@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **longitude** | **float** | Tropical ecliptic longitude 0–360° | 
 **sign** | **str** | Zodiac sign name | 
+**sign_id** | **str** |  | [optional] 
+**sign_label** | **str** |  | [optional] 
 **sign_index** | **int** | Sign index 0&#x3D;Aries … 11&#x3D;Pisces | 
 **degree_in_sign** | **float** | Degrees within sign 0–29.999 | 
 

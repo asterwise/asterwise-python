@@ -30,22 +30,32 @@ class GocharTransitEntry(BaseModel):
     GocharTransitEntry
     """ # noqa: E501
     planet: StrictStr
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     transit_sign: StrictStr
+    transit_sign_id: Optional[StrictStr] = None
+    transit_sign_label: Optional[StrictStr] = None
     transit_sign_index: StrictInt
     transit_degree: Union[StrictFloat, StrictInt]
     transit_tropical_longitude: Optional[Union[StrictFloat, StrictInt]] = None
     transit_tropical_sign: Optional[StrictStr] = None
+    transit_tropical_sign_id: Optional[StrictStr] = None
+    transit_tropical_sign_label: Optional[StrictStr] = None
     transit_tropical_sign_index: Optional[Annotated[int, Field(le=11, strict=True, ge=0)]] = None
     is_retrograde: StrictBool
     nakshatra: Optional[StrictStr]
+    nakshatra_id: Optional[StrictStr] = None
+    nakshatra_label: Optional[StrictStr] = None
     nakshatra_pada: Optional[StrictInt]
     house_from_moon: StrictInt
     house_from_lagna: StrictInt
     is_favorable_from_moon: StrictBool
     is_favorable_from_lagna: StrictBool
-    bindu_override: Optional[StrictBool] = Field(default=False, description="True when the bindus in ashtakavarga_score decided is_favorable_from_moon and is_favorable_from_lagna (5 or more: favourable; 3 or fewer: unfavourable) instead of the house from the Moon or Lagna. False when the score is 4 or unavailable and the house rule stands.")
+    bindu_override: Optional[StrictBool] = Field(default=False, description="True when the bindus in ashtakavarga_score decided is_favorable_from_moon and is_favorable_from_lagna (5 or more: favourable; 3 or fewer: unfavourable) instead of the house from the Moon or Lagna (Phaladeepika 26.41: more bindus give good results even in the 6th, 8th or 12th; 23.11: 0-3 bindus give death, loss, expense, fear). False when the score is 4 or unavailable and the house rule stands.")
     vedha_active: StrictBool
     vedha_blocking_planet: Optional[StrictStr]
+    vedha_blocking_planet_id: Optional[StrictStr] = None
+    vedha_blocking_planet_label: Optional[StrictStr] = None
     ashtakavarga_score: Optional[StrictInt]
     ashtakavarga_score_reduced: Optional[StrictInt] = None
     favorable_reason: Optional[StrictStr] = None
@@ -55,7 +65,7 @@ class GocharTransitEntry(BaseModel):
     house_rule_quality: Optional[StrictStr] = None
     house_rule_interpretation: Optional[StrictStr] = None
     house_rule_themes: Optional[List[StrictStr]] = Field(default=None, description="Theme tags for this house from the Moon alone.")
-    __properties: ClassVar[List[str]] = ["planet", "transit_sign", "transit_sign_index", "transit_degree", "transit_tropical_longitude", "transit_tropical_sign", "transit_tropical_sign_index", "is_retrograde", "nakshatra", "nakshatra_pada", "house_from_moon", "house_from_lagna", "is_favorable_from_moon", "is_favorable_from_lagna", "bindu_override", "vedha_active", "vedha_blocking_planet", "ashtakavarga_score", "ashtakavarga_score_reduced", "favorable_reason", "interpretation", "themes", "quality", "house_rule_quality", "house_rule_interpretation", "house_rule_themes"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "transit_sign", "transit_sign_id", "transit_sign_label", "transit_sign_index", "transit_degree", "transit_tropical_longitude", "transit_tropical_sign", "transit_tropical_sign_id", "transit_tropical_sign_label", "transit_tropical_sign_index", "is_retrograde", "nakshatra", "nakshatra_id", "nakshatra_label", "nakshatra_pada", "house_from_moon", "house_from_lagna", "is_favorable_from_moon", "is_favorable_from_lagna", "bindu_override", "vedha_active", "vedha_blocking_planet", "vedha_blocking_planet_id", "vedha_blocking_planet_label", "ashtakavarga_score", "ashtakavarga_score_reduced", "favorable_reason", "interpretation", "themes", "quality", "house_rule_quality", "house_rule_interpretation", "house_rule_themes"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -96,6 +106,26 @@ class GocharTransitEntry(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
+        # set to None if transit_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.transit_sign_id is None and "transit_sign_id" in self.model_fields_set:
+            _dict['transit_sign_id'] = None
+
+        # set to None if transit_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.transit_sign_label is None and "transit_sign_label" in self.model_fields_set:
+            _dict['transit_sign_label'] = None
+
         # set to None if transit_tropical_longitude (nullable) is None
         # and model_fields_set contains the field
         if self.transit_tropical_longitude is None and "transit_tropical_longitude" in self.model_fields_set:
@@ -105,6 +135,16 @@ class GocharTransitEntry(BaseModel):
         # and model_fields_set contains the field
         if self.transit_tropical_sign is None and "transit_tropical_sign" in self.model_fields_set:
             _dict['transit_tropical_sign'] = None
+
+        # set to None if transit_tropical_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.transit_tropical_sign_id is None and "transit_tropical_sign_id" in self.model_fields_set:
+            _dict['transit_tropical_sign_id'] = None
+
+        # set to None if transit_tropical_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.transit_tropical_sign_label is None and "transit_tropical_sign_label" in self.model_fields_set:
+            _dict['transit_tropical_sign_label'] = None
 
         # set to None if transit_tropical_sign_index (nullable) is None
         # and model_fields_set contains the field
@@ -116,6 +156,16 @@ class GocharTransitEntry(BaseModel):
         if self.nakshatra is None and "nakshatra" in self.model_fields_set:
             _dict['nakshatra'] = None
 
+        # set to None if nakshatra_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_id is None and "nakshatra_id" in self.model_fields_set:
+            _dict['nakshatra_id'] = None
+
+        # set to None if nakshatra_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_label is None and "nakshatra_label" in self.model_fields_set:
+            _dict['nakshatra_label'] = None
+
         # set to None if nakshatra_pada (nullable) is None
         # and model_fields_set contains the field
         if self.nakshatra_pada is None and "nakshatra_pada" in self.model_fields_set:
@@ -125,6 +175,16 @@ class GocharTransitEntry(BaseModel):
         # and model_fields_set contains the field
         if self.vedha_blocking_planet is None and "vedha_blocking_planet" in self.model_fields_set:
             _dict['vedha_blocking_planet'] = None
+
+        # set to None if vedha_blocking_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.vedha_blocking_planet_id is None and "vedha_blocking_planet_id" in self.model_fields_set:
+            _dict['vedha_blocking_planet_id'] = None
+
+        # set to None if vedha_blocking_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.vedha_blocking_planet_label is None and "vedha_blocking_planet_label" in self.model_fields_set:
+            _dict['vedha_blocking_planet_label'] = None
 
         # set to None if ashtakavarga_score (nullable) is None
         # and model_fields_set contains the field
@@ -164,14 +224,22 @@ class GocharTransitEntry(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "transit_sign": obj.get("transit_sign"),
+            "transit_sign_id": obj.get("transit_sign_id"),
+            "transit_sign_label": obj.get("transit_sign_label"),
             "transit_sign_index": obj.get("transit_sign_index"),
             "transit_degree": obj.get("transit_degree"),
             "transit_tropical_longitude": obj.get("transit_tropical_longitude"),
             "transit_tropical_sign": obj.get("transit_tropical_sign"),
+            "transit_tropical_sign_id": obj.get("transit_tropical_sign_id"),
+            "transit_tropical_sign_label": obj.get("transit_tropical_sign_label"),
             "transit_tropical_sign_index": obj.get("transit_tropical_sign_index"),
             "is_retrograde": obj.get("is_retrograde"),
             "nakshatra": obj.get("nakshatra"),
+            "nakshatra_id": obj.get("nakshatra_id"),
+            "nakshatra_label": obj.get("nakshatra_label"),
             "nakshatra_pada": obj.get("nakshatra_pada"),
             "house_from_moon": obj.get("house_from_moon"),
             "house_from_lagna": obj.get("house_from_lagna"),
@@ -180,6 +248,8 @@ class GocharTransitEntry(BaseModel):
             "bindu_override": obj.get("bindu_override") if obj.get("bindu_override") is not None else False,
             "vedha_active": obj.get("vedha_active"),
             "vedha_blocking_planet": obj.get("vedha_blocking_planet"),
+            "vedha_blocking_planet_id": obj.get("vedha_blocking_planet_id"),
+            "vedha_blocking_planet_label": obj.get("vedha_blocking_planet_label"),
             "ashtakavarga_score": obj.get("ashtakavarga_score"),
             "ashtakavarga_score_reduced": obj.get("ashtakavarga_score_reduced"),
             "favorable_reason": obj.get("favorable_reason"),

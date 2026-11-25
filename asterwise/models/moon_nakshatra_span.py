@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from asterwise.models.tara_info import TaraInfo
 from typing import Optional, Set
@@ -33,12 +33,14 @@ class MoonNakshatraSpan(BaseModel):
     index: Annotated[int, Field(le=26, strict=True, ge=0)]
     number: Annotated[int, Field(le=27, strict=True, ge=1)]
     name: StrictStr
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     start: StrictStr = Field(description="When the Moon entered this nakshatra. ISO 8601 local time with UTC offset.")
     end: StrictStr = Field(description="When it leaves. ISO 8601 local time with UTC offset.")
     start_utc: StrictStr
     end_utc: StrictStr
     tarabala: TaraInfo
-    __properties: ClassVar[List[str]] = ["index", "number", "name", "start", "end", "start_utc", "end_utc", "tarabala"]
+    __properties: ClassVar[List[str]] = ["index", "number", "name", "id", "label", "start", "end", "start_utc", "end_utc", "tarabala"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,6 +84,16 @@ class MoonNakshatraSpan(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of tarabala
         if self.tarabala:
             _dict['tarabala'] = self.tarabala.to_dict()
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         return _dict
 
     @classmethod
@@ -97,6 +109,8 @@ class MoonNakshatraSpan(BaseModel):
             "index": obj.get("index"),
             "number": obj.get("number"),
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "start": obj.get("start"),
             "end": obj.get("end"),
             "start_utc": obj.get("start_utc"),

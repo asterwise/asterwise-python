@@ -30,13 +30,15 @@ class YogaResult(BaseModel):
     YogaResult
     """ # noqa: E501
     yoga_name: StrictStr = Field(description="Detected yoga name")
+    yoga_id: Optional[StrictStr] = Field(default='', description="Fixed id of the yoga (e.g. \"gajakesari_yoga\", \"raja_yoga\"). The same for every chart and every variant of the label, so it is safe to store and compare; yoga_name carries the chart's details and may change wording.")
+    yoga_label: Optional[StrictStr] = None
     category: StrictStr = Field(description="Yoga category bucket")
     formation: StrictStr = Field(description="Formation condition")
     modern_summary: StrictStr = Field(description="Modern interpretation summary")
     keywords: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Interpretation keywords")
     classical_sources: Optional[List[ClassicalSource]] = Field(default=None, description="Classical texts this yoga is drawn from (empty when the yoga comes from general tradition rather than a named text)")
     needs_birth_time: Optional[StrictBool] = Field(default=False, description="True when this yoga depends on the lagna (houses or house lordship counted from the ascendant) and no birth time was given, so the result may change with the real birth time. Yogas read only from the Moon or from signs are never marked.")
-    __properties: ClassVar[List[str]] = ["yoga_name", "category", "formation", "modern_summary", "keywords", "classical_sources", "needs_birth_time"]
+    __properties: ClassVar[List[str]] = ["yoga_name", "yoga_id", "yoga_label", "category", "formation", "modern_summary", "keywords", "classical_sources", "needs_birth_time"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -84,6 +86,11 @@ class YogaResult(BaseModel):
                 if _item_classical_sources:
                     _items.append(_item_classical_sources.to_dict())
             _dict['classical_sources'] = _items
+        # set to None if yoga_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.yoga_label is None and "yoga_label" in self.model_fields_set:
+            _dict['yoga_label'] = None
+
         return _dict
 
     @classmethod
@@ -97,6 +104,8 @@ class YogaResult(BaseModel):
 
         _obj = cls.model_validate({
             "yoga_name": obj.get("yoga_name"),
+            "yoga_id": obj.get("yoga_id") if obj.get("yoga_id") is not None else '',
+            "yoga_label": obj.get("yoga_label"),
             "category": obj.get("category"),
             "formation": obj.get("formation"),
             "modern_summary": obj.get("modern_summary"),

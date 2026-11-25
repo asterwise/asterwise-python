@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **day_duration_minutes** | **float** |  | [optional] 
 **night_duration_minutes** | **float** |  | [optional] 
 **paksha** | **str** |  | [optional] 
+**paksha_id** | **str** |  | [optional] 
+**paksha_label** | **str** |  | [optional] 
 **tithis** | [**List[DayTithi]**](DayTithi.md) |  | [optional] 
 **nakshatras** | [**List[DayNakshatra]**](DayNakshatra.md) |  | [optional] 
 **yogas** | [**List[DayYoga]**](DayYoga.md) |  | [optional] 

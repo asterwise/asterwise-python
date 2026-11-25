@@ -34,10 +34,14 @@ class KPRulingPlanetsResponse(BaseModel):
     target_timezone: StrictStr = Field(description="Time zone used to read `target_date`/`target_time` and for the sunrise-based day lord.")
     local_time_status: Optional[StrictStr] = Field(default='ok', description="How `target_date`/`target_time` was read. 'nonexistent': the local time fell in a daylight-saving gap and was read with the offset in force before the change (moved forward by the gap). 'ambiguous': the local time occurred twice and the first occurrence was used. 'ok' otherwise, including when the current instant was used.")
     day_lord: StrictStr
+    day_lord_id: Optional[StrictStr] = None
+    day_lord_label: Optional[StrictStr] = None
     moon: KPRulingPlanetBody
     ascendant: KPRulingPlanetBody
     ruling_planets: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["ayanamsa", "target_utc", "target_timezone", "local_time_status", "day_lord", "moon", "ascendant", "ruling_planets"]
+    ruling_planet_ids: Optional[List[StrictStr]] = None
+    ruling_planet_labels: Optional[List[StrictStr]] = None
+    __properties: ClassVar[List[str]] = ["ayanamsa", "target_utc", "target_timezone", "local_time_status", "day_lord", "day_lord_id", "day_lord_label", "moon", "ascendant", "ruling_planets", "ruling_planet_ids", "ruling_planet_labels"]
 
     @field_validator('local_time_status')
     def local_time_status_validate_enum(cls, value):
@@ -94,6 +98,26 @@ class KPRulingPlanetsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of ascendant
         if self.ascendant:
             _dict['ascendant'] = self.ascendant.to_dict()
+        # set to None if day_lord_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_lord_id is None and "day_lord_id" in self.model_fields_set:
+            _dict['day_lord_id'] = None
+
+        # set to None if day_lord_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.day_lord_label is None and "day_lord_label" in self.model_fields_set:
+            _dict['day_lord_label'] = None
+
+        # set to None if ruling_planet_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.ruling_planet_ids is None and "ruling_planet_ids" in self.model_fields_set:
+            _dict['ruling_planet_ids'] = None
+
+        # set to None if ruling_planet_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.ruling_planet_labels is None and "ruling_planet_labels" in self.model_fields_set:
+            _dict['ruling_planet_labels'] = None
+
         return _dict
 
     @classmethod
@@ -111,9 +135,13 @@ class KPRulingPlanetsResponse(BaseModel):
             "target_timezone": obj.get("target_timezone"),
             "local_time_status": obj.get("local_time_status") if obj.get("local_time_status") is not None else 'ok',
             "day_lord": obj.get("day_lord"),
+            "day_lord_id": obj.get("day_lord_id"),
+            "day_lord_label": obj.get("day_lord_label"),
             "moon": KPRulingPlanetBody.from_dict(obj["moon"]) if obj.get("moon") is not None else None,
             "ascendant": KPRulingPlanetBody.from_dict(obj["ascendant"]) if obj.get("ascendant") is not None else None,
-            "ruling_planets": obj.get("ruling_planets")
+            "ruling_planets": obj.get("ruling_planets"),
+            "ruling_planet_ids": obj.get("ruling_planet_ids"),
+            "ruling_planet_labels": obj.get("ruling_planet_labels")
         })
         return _obj
 

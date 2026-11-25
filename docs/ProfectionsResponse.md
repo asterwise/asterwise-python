@@ -5,17 +5,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**birth_time_provided** | **bool** | True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time. | [optional] [default to True]
+**birth_time_provided** | **bool** | Always true: this endpoint requires the birth time and has no sunrise fallback, so house, Ascendant and Moon-dependent results use the time you sent. | [optional] [default to True]
 **target_date** | **str** |  | 
 **age** | **int** | Completed years of life on target_date. | 
 **year_start** | **str** |  | 
 **year_end** | **str** |  | 
 **ascendant_sign** | **str** |  | 
+**ascendant_sign_id** | **str** |  | [optional] 
+**ascendant_sign_label** | **str** |  | [optional] 
 **ascendant_sign_index** | **int** |  | 
 **profected_house** | **int** |  | 
 **profected_sign** | **str** |  | 
+**profected_sign_id** | **str** |  | [optional] 
+**profected_sign_label** | **str** |  | [optional] 
 **profected_sign_index** | **int** |  | 
 **year_lord** | **str** | Lord of the year: traditional ruler of the profected sign (Ptolemy, Tetrabiblos I.17). | 
+**year_lord_id** | **str** |  | [optional] 
+**year_lord_label** | **str** |  | [optional] 
 **year_lord_natal** | [**YearLordNatalSchema**](YearLordNatalSchema.md) |  | [optional] 
 **natal_planets_in_profected_sign** | [**List[ProfectedSignPlanetSchema]**](ProfectedSignPlanetSchema.md) |  | 
 **upcoming_years** | [**List[ProfectionYearSchema]**](ProfectionYearSchema.md) | This year and the next eleven. | 

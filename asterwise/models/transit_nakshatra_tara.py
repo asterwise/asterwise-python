@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.tarabala_detail import TarabalaDetail
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,11 +30,13 @@ class TransitNakshatraTara(BaseModel):
     TransitNakshatraTara
     """ # noqa: E501
     nakshatra: StrictStr
+    nakshatra_id: Optional[StrictStr] = None
+    nakshatra_label: Optional[StrictStr] = None
     nakshatra_index: StrictInt
     start: StrictStr = Field(description="ISO 8601 local time.")
     end: StrictStr = Field(description="ISO 8601 local time.")
     tara: TarabalaDetail
-    __properties: ClassVar[List[str]] = ["nakshatra", "nakshatra_index", "start", "end", "tara"]
+    __properties: ClassVar[List[str]] = ["nakshatra", "nakshatra_id", "nakshatra_label", "nakshatra_index", "start", "end", "tara"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +80,16 @@ class TransitNakshatraTara(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of tara
         if self.tara:
             _dict['tara'] = self.tara.to_dict()
+        # set to None if nakshatra_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_id is None and "nakshatra_id" in self.model_fields_set:
+            _dict['nakshatra_id'] = None
+
+        # set to None if nakshatra_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_label is None and "nakshatra_label" in self.model_fields_set:
+            _dict['nakshatra_label'] = None
+
         return _dict
 
     @classmethod
@@ -91,6 +103,8 @@ class TransitNakshatraTara(BaseModel):
 
         _obj = cls.model_validate({
             "nakshatra": obj.get("nakshatra"),
+            "nakshatra_id": obj.get("nakshatra_id"),
+            "nakshatra_label": obj.get("nakshatra_label"),
             "nakshatra_index": obj.get("nakshatra_index"),
             "start": obj.get("start"),
             "end": obj.get("end"),

@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet** | **str** |  | [optional] 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **house** | **int** |  | [optional] 
 **sign_index** | **int** |  | [optional] 
 **debilitated** | **bool** |  | 

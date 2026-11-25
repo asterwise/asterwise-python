@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from asterwise.models.data import Data
+from asterwise.models.data1 import Data1
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,8 +31,9 @@ class ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse(BaseModel
     """ # noqa: E501
     success: Optional[StrictBool] = Field(default=True, description="True if the request succeeded")
     message: Optional[StrictStr] = Field(default='success', description="Human-readable status message")
-    data: Data
-    __properties: ClassVar[List[str]] = ["success", "message", "data"]
+    data: Data1
+    key_labels: Optional[Dict[str, StrictStr]] = None
+    __properties: ClassVar[List[str]] = ["success", "message", "data", "key_labels"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,6 +77,11 @@ class ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse(BaseModel
         # override the default output from pydantic by calling `to_dict()` of data
         if self.data:
             _dict['data'] = self.data.to_dict()
+        # set to None if key_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.key_labels is None and "key_labels" in self.model_fields_set:
+            _dict['key_labels'] = None
+
         return _dict
 
     @classmethod
@@ -90,7 +96,8 @@ class ApiResponseUnionBiorhythmSingleDayResponseBiorhythmRangeResponse(BaseModel
         _obj = cls.model_validate({
             "success": obj.get("success") if obj.get("success") is not None else True,
             "message": obj.get("message") if obj.get("message") is not None else 'success',
-            "data": Data.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "data": Data1.from_dict(obj["data"]) if obj.get("data") is not None else None,
+            "key_labels": obj.get("key_labels")
         })
         return _obj
 

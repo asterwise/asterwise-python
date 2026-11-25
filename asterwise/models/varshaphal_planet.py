@@ -31,10 +31,12 @@ class VarshaphalPlanet(BaseModel):
     longitude: Union[StrictFloat, StrictInt]
     rashi_index: StrictInt
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     degree: Union[StrictFloat, StrictInt]
     is_retrograde: StrictBool
     speed: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties: ClassVar[List[str]] = ["longitude", "rashi_index", "rashi", "degree", "is_retrograde", "speed"]
+    __properties: ClassVar[List[str]] = ["longitude", "rashi_index", "rashi", "rashi_id", "rashi_label", "degree", "is_retrograde", "speed"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,6 +77,16 @@ class VarshaphalPlanet(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
         # set to None if speed (nullable) is None
         # and model_fields_set contains the field
         if self.speed is None and "speed" in self.model_fields_set:
@@ -95,6 +107,8 @@ class VarshaphalPlanet(BaseModel):
             "longitude": obj.get("longitude"),
             "rashi_index": obj.get("rashi_index"),
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "degree": obj.get("degree"),
             "is_retrograde": obj.get("is_retrograde"),
             "speed": obj.get("speed")

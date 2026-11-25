@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **planet** | **str** | Dasha lord for this period | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **start_jd** | **float** | Julian day at period start | 
 **end_jd** | **float** | Julian day at period end | 
 **start_date** | **str** | Period start, DD/MM/YYYY (UTC calendar date). The first Mahadasha row starts at birth. | 

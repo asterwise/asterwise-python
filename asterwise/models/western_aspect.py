@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,12 +29,16 @@ class WesternAspect(BaseModel):
     WesternAspect
     """ # noqa: E501
     planet_a: StrictStr
+    planet_a_id: Optional[StrictStr] = None
+    planet_a_label: Optional[StrictStr] = None
     planet_b: StrictStr
+    planet_b_id: Optional[StrictStr] = None
+    planet_b_label: Optional[StrictStr] = None
     type: StrictStr = Field(description="Aspect type: conjunction | opposition | trine | square | sextile | semisextile | semisquare | sesquiquadrate | quincunx")
     exact_angle: Union[StrictFloat, StrictInt] = Field(description="Actual angular distance between planets")
     orb: Union[StrictFloat, StrictInt] = Field(description="Difference from exact aspect angle (always positive)")
     is_applying: StrictBool = Field(description="True if the aspect is applying at this instant: the planets' relative motion (instantaneous speeds) is closing the orb toward exactness. False if separating or exact.")
-    __properties: ClassVar[List[str]] = ["planet_a", "planet_b", "type", "exact_angle", "orb", "is_applying"]
+    __properties: ClassVar[List[str]] = ["planet_a", "planet_a_id", "planet_a_label", "planet_b", "planet_b_id", "planet_b_label", "type", "exact_angle", "orb", "is_applying"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,6 +79,26 @@ class WesternAspect(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if planet_a_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_a_id is None and "planet_a_id" in self.model_fields_set:
+            _dict['planet_a_id'] = None
+
+        # set to None if planet_a_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_a_label is None and "planet_a_label" in self.model_fields_set:
+            _dict['planet_a_label'] = None
+
+        # set to None if planet_b_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_b_id is None and "planet_b_id" in self.model_fields_set:
+            _dict['planet_b_id'] = None
+
+        # set to None if planet_b_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_b_label is None and "planet_b_label" in self.model_fields_set:
+            _dict['planet_b_label'] = None
+
         return _dict
 
     @classmethod
@@ -88,7 +112,11 @@ class WesternAspect(BaseModel):
 
         _obj = cls.model_validate({
             "planet_a": obj.get("planet_a"),
+            "planet_a_id": obj.get("planet_a_id"),
+            "planet_a_label": obj.get("planet_a_label"),
             "planet_b": obj.get("planet_b"),
+            "planet_b_id": obj.get("planet_b_id"),
+            "planet_b_label": obj.get("planet_b_label"),
             "type": obj.get("type"),
             "exact_angle": obj.get("exact_angle"),
             "orb": obj.get("orb"),

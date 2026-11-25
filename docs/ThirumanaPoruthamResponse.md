@@ -11,13 +11,18 @@ Name | Type | Description | Notes
 **total_passed** | **int** |  | 
 **total_poruthams** | **int** |  | 
 **compatibility_level** | **str** |  | 
+**compatibility_level_id** | **str** |  | [optional] 
+**compatibility_level_label** | **str** |  | [optional] 
 **rajju_veto** | **bool** |  | 
 **vedha_veto** | **bool** |  | 
 **hard_veto** | **bool** |  | 
 **rajju_severity** | **int** |  | 
 **rajju_severity_label** | **str** |  | 
+**rajju_severity_label_id** | **str** |  | [optional] 
+**rajju_severity_label_text** | **str** |  | [optional] 
 **tradition** | **str** |  | 
-**breakdown** | **Dict[str, object]** |  | 
+**breakdown** | **Dict[str, object]** | Deprecated, removed on 2026-12-21: the same results keyed by the old names (\&quot;Dina Porutham\&quot; ... \&quot;Varna Porutham\&quot;). Use poruthams. | 
+**poruthams** | **Dict[str, object]** | Each porutham&#39;s result, keyed by fixed id: dina, gana, mahendra, stree_deergha, yoni, rasi, rasi_adhipati, rajju, vedha, vashya, nadi, varna. | [optional] 
 
 ## Example
 

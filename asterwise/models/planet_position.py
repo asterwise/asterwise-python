@@ -30,10 +30,16 @@ class PlanetPosition(BaseModel):
     PlanetPosition
     """ # noqa: E501
     planet: StrictStr = Field(description="Planet name")
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     sign: StrictStr = Field(description="Zodiac sign name where the planet is placed")
+    sign_id: Optional[StrictStr] = None
+    sign_label: Optional[StrictStr] = None
     sign_num: Annotated[int, Field(le=11, strict=True, ge=0)] = Field(description="Zero-based zodiac sign index")
     degree: Union[StrictFloat, StrictInt] = Field(description="Sidereal longitude in degrees")
     nakshatra: StrictStr = Field(description="Nakshatra name for planetary placement")
+    nakshatra_id: Optional[StrictStr] = None
+    nakshatra_label: Optional[StrictStr] = None
     nakshatra_pada: Annotated[int, Field(le=4, strict=True, ge=1)] = Field(description="Nakshatra pada index")
     is_retrograde: StrictBool = Field(description="Whether the planet is retrograde")
     is_combust: Optional[StrictBool] = Field(default=False, description="True if the planet is within its combustion orb of the Sun")
@@ -44,8 +50,10 @@ class PlanetPosition(BaseModel):
     house_system_note: Optional[StrictStr] = None
     tropical_longitude: Optional[Union[StrictFloat, StrictInt]] = None
     tropical_sign: Optional[StrictStr] = None
+    tropical_sign_id: Optional[StrictStr] = None
+    tropical_sign_label: Optional[StrictStr] = None
     tropical_sign_index: Optional[Annotated[int, Field(le=11, strict=True, ge=0)]] = None
-    __properties: ClassVar[List[str]] = ["planet", "sign", "sign_num", "degree", "nakshatra", "nakshatra_pada", "is_retrograde", "is_combust", "is_deep_combust", "house", "rasi_house", "bhava_chalit_house", "house_system_note", "tropical_longitude", "tropical_sign", "tropical_sign_index"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "sign", "sign_id", "sign_label", "sign_num", "degree", "nakshatra", "nakshatra_id", "nakshatra_label", "nakshatra_pada", "is_retrograde", "is_combust", "is_deep_combust", "house", "rasi_house", "bhava_chalit_house", "house_system_note", "tropical_longitude", "tropical_sign", "tropical_sign_id", "tropical_sign_label", "tropical_sign_index"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,6 +94,36 @@ class PlanetPosition(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
+        # set to None if sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_id is None and "sign_id" in self.model_fields_set:
+            _dict['sign_id'] = None
+
+        # set to None if sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_label is None and "sign_label" in self.model_fields_set:
+            _dict['sign_label'] = None
+
+        # set to None if nakshatra_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_id is None and "nakshatra_id" in self.model_fields_set:
+            _dict['nakshatra_id'] = None
+
+        # set to None if nakshatra_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.nakshatra_label is None and "nakshatra_label" in self.model_fields_set:
+            _dict['nakshatra_label'] = None
+
         # set to None if rasi_house (nullable) is None
         # and model_fields_set contains the field
         if self.rasi_house is None and "rasi_house" in self.model_fields_set:
@@ -111,6 +149,16 @@ class PlanetPosition(BaseModel):
         if self.tropical_sign is None and "tropical_sign" in self.model_fields_set:
             _dict['tropical_sign'] = None
 
+        # set to None if tropical_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.tropical_sign_id is None and "tropical_sign_id" in self.model_fields_set:
+            _dict['tropical_sign_id'] = None
+
+        # set to None if tropical_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.tropical_sign_label is None and "tropical_sign_label" in self.model_fields_set:
+            _dict['tropical_sign_label'] = None
+
         # set to None if tropical_sign_index (nullable) is None
         # and model_fields_set contains the field
         if self.tropical_sign_index is None and "tropical_sign_index" in self.model_fields_set:
@@ -129,10 +177,16 @@ class PlanetPosition(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "sign": obj.get("sign"),
+            "sign_id": obj.get("sign_id"),
+            "sign_label": obj.get("sign_label"),
             "sign_num": obj.get("sign_num"),
             "degree": obj.get("degree"),
             "nakshatra": obj.get("nakshatra"),
+            "nakshatra_id": obj.get("nakshatra_id"),
+            "nakshatra_label": obj.get("nakshatra_label"),
             "nakshatra_pada": obj.get("nakshatra_pada"),
             "is_retrograde": obj.get("is_retrograde"),
             "is_combust": obj.get("is_combust") if obj.get("is_combust") is not None else False,
@@ -143,6 +197,8 @@ class PlanetPosition(BaseModel):
             "house_system_note": obj.get("house_system_note"),
             "tropical_longitude": obj.get("tropical_longitude"),
             "tropical_sign": obj.get("tropical_sign"),
+            "tropical_sign_id": obj.get("tropical_sign_id"),
+            "tropical_sign_label": obj.get("tropical_sign_label"),
             "tropical_sign_index": obj.get("tropical_sign_index")
         })
         return _obj

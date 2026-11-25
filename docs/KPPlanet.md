@@ -8,13 +8,19 @@ Name | Type | Description | Notes
 **longitude** | **float** | Sidereal longitude (KP ayanamsa), degrees 0-360. | 
 **rashi_index** | **int** | Sign index, 0 &#x3D; Mesha … 11 &#x3D; Meena. | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **degree** | **float** | Degrees within the sign. | 
 **is_retrograde** | **bool** | True when the longitude speed is negative. Rahu and Ketu are the mean node, which is always retrograde. | 
 **house** | **int** | KP house (1-12), cusp to cusp: from cusp h up to, not including, cusp h+1 of the sidereal Placidus cusps. A planet exactly on a cusp is in the house that cusp starts. | 
 **rasi_house** | **int** | Whole-sign house (1-12) counted from the lagna sign, for comparison with Parashari charts. | 
 **nakshatra_index** | **int** | Nakshatra index 0-26. | 
 **nakshatra_lord** | **str** | Star lord (nakshatra lord). | 
+**nakshatra_lord_id** | **str** |  | [optional] 
+**nakshatra_lord_label** | **str** |  | [optional] 
 **sub_lord** | **str** | KP sub-lord. | 
+**sub_lord_id** | **str** |  | [optional] 
+**sub_lord_label** | **str** |  | [optional] 
 
 ## Example
 

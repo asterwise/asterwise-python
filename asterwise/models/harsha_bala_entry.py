@@ -29,14 +29,18 @@ class HarshaBalaEntry(BaseModel):
     HarshaBalaEntry
     """ # noqa: E501
     planet: StrictStr
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     harsha_bala: StrictInt = Field(description="Harsha Bala score for this planet (0-20).")
     max_harsha_bala: Optional[StrictInt] = 20
     varsha_house: StrictInt = Field(description="Planet's whole-sign house in the Varshaphal chart, counted from the Varsha Ascendant's sign.")
     rashi_index: StrictInt
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     components: Dict[str, Any] = Field(description="Breakdown of the 4 Harsha Bala components.")
     interpretation: StrictStr
-    __properties: ClassVar[List[str]] = ["planet", "harsha_bala", "max_harsha_bala", "varsha_house", "rashi_index", "rashi", "components", "interpretation"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "harsha_bala", "max_harsha_bala", "varsha_house", "rashi_index", "rashi", "rashi_id", "rashi_label", "components", "interpretation"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -77,6 +81,26 @@ class HarshaBalaEntry(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
         return _dict
 
     @classmethod
@@ -90,11 +114,15 @@ class HarshaBalaEntry(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "harsha_bala": obj.get("harsha_bala"),
             "max_harsha_bala": obj.get("max_harsha_bala") if obj.get("max_harsha_bala") is not None else 20,
             "varsha_house": obj.get("varsha_house"),
             "rashi_index": obj.get("rashi_index"),
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "components": obj.get("components"),
             "interpretation": obj.get("interpretation")
         })

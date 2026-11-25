@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,9 +29,11 @@ class VoidOfCourseLastAspect(BaseModel):
     VoidOfCourseLastAspect
     """ # noqa: E501
     planet: StrictStr = Field(description="Planet of the Moon's last exact aspect in the sign.")
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     aspect: StrictStr = Field(description="Aspect type: conjunction, sextile, square, trine or opposition.")
     exact_at: StrictStr = Field(description="UTC moment that aspect was exact (ISO 8601 with Z).")
-    __properties: ClassVar[List[str]] = ["planet", "aspect", "exact_at"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "aspect", "exact_at"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -72,6 +74,16 @@ class VoidOfCourseLastAspect(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         return _dict
 
     @classmethod
@@ -85,6 +97,8 @@ class VoidOfCourseLastAspect(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "aspect": obj.get("aspect"),
             "exact_at": obj.get("exact_at")
         })

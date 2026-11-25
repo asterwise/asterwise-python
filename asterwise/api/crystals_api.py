@@ -637,7 +637,7 @@ class CrystalsApi:
     ) -> ApiResponseCrystalListResponse:
         """Complete crystal database
 
-        Returns all 54 crystals in the database sorted alphabetically. Each entry includes chakra associations, elemental correspondences, Vedic and Western planetary assignments, healing properties, origins, affirmations, and safety cautions. Vedic correspondences are strictly separated: 'navaratna' (classical primary gem), 'uparatna' (substitute gem; the description says when a substitute is modern rather than classical), or 'none_classical' (no Vedic gem use).
+        Returns all 54 crystals in the database sorted alphabetically. Each entry includes chakra associations, elemental correspondences, Vedic and Western planetary assignments, healing properties, affirmations, and safety cautions. Vedic correspondences are strictly separated: 'navaratna' (classical primary gem), 'uparatna' (substitute gem; the description says when a substitute is modern rather than classical), or 'none_classical' (no Vedic gem use).
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -709,7 +709,7 @@ class CrystalsApi:
     ) -> ApiResponse[ApiResponseCrystalListResponse]:
         """Complete crystal database
 
-        Returns all 54 crystals in the database sorted alphabetically. Each entry includes chakra associations, elemental correspondences, Vedic and Western planetary assignments, healing properties, origins, affirmations, and safety cautions. Vedic correspondences are strictly separated: 'navaratna' (classical primary gem), 'uparatna' (substitute gem; the description says when a substitute is modern rather than classical), or 'none_classical' (no Vedic gem use).
+        Returns all 54 crystals in the database sorted alphabetically. Each entry includes chakra associations, elemental correspondences, Vedic and Western planetary assignments, healing properties, affirmations, and safety cautions. Vedic correspondences are strictly separated: 'navaratna' (classical primary gem), 'uparatna' (substitute gem; the description says when a substitute is modern rather than classical), or 'none_classical' (no Vedic gem use).
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -781,7 +781,7 @@ class CrystalsApi:
     ) -> RESTResponseType:
         """Complete crystal database
 
-        Returns all 54 crystals in the database sorted alphabetically. Each entry includes chakra associations, elemental correspondences, Vedic and Western planetary assignments, healing properties, origins, affirmations, and safety cautions. Vedic correspondences are strictly separated: 'navaratna' (classical primary gem), 'uparatna' (substitute gem; the description says when a substitute is modern rather than classical), or 'none_classical' (no Vedic gem use).
+        Returns all 54 crystals in the database sorted alphabetically. Each entry includes chakra associations, elemental correspondences, Vedic and Western planetary assignments, healing properties, affirmations, and safety cautions. Vedic correspondences are strictly separated: 'navaratna' (classical primary gem), 'uparatna' (substitute gem; the description says when a substitute is modern rather than classical), or 'none_classical' (no Vedic gem use).
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1212,7 +1212,7 @@ class CrystalsApi:
     ) -> ApiResponseNatalCrystalResponse:
         """Natal Chart Crystal Recommendations
 
-        Recommend crystals from the natal chart's functional benefics, using the same rule as POST /v1/astro/gemstones (BPHS Ch.34 lordship, whole-sign from the lagna). Recommended: the lagna lord (always auspicious) = Life Stone (+5), the Yogakaraka = supreme benefic (+5), the 9th lord = Fortune Stone (+4), the 5th lord = Lucky Stone (+3). A 5th/9th lord that also owns a Dusthana (6, 8, 12) is still recommended, with that Dusthana named in warnings[]. Contraindicated (natal_context.contraindicated_lords, never returned): Dusthana lords that own no Trikona, and debilitated or combust planets. Kendra-only and 2nd/3rd/11th lords are neither recommended nor contraindicated. Only crystals with Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
+        Recommend crystals from the natal chart's functional benefics, using the same rule as POST /v1/astro/gemstones (BPHS Ch.34 lordship, whole-sign from the lagna). Recommended: the lagna lord (always auspicious) = Life Stone (+5), the Yogakaraka = supreme benefic (+5), the 9th lord = Fortune Stone (+4), the 5th lord = Lucky Stone (+3). A 5th/9th lord that also owns a Dusthana (6, 8, 12) is still recommended, with that Dusthana named in warnings[]. Contraindicated (natal_context.contraindicated_lords, never returned): Dusthana lords and 3rd/11th lords that own no Trikona (Laghu Parashari sl. 6), and debilitated or combust planets. Kendra-only and 2nd lords are neither recommended nor contraindicated. Only crystals with Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
         :param natal_crystal_request: (required)
         :type natal_crystal_request: NatalCrystalRequest
@@ -1288,7 +1288,7 @@ class CrystalsApi:
     ) -> ApiResponse[ApiResponseNatalCrystalResponse]:
         """Natal Chart Crystal Recommendations
 
-        Recommend crystals from the natal chart's functional benefics, using the same rule as POST /v1/astro/gemstones (BPHS Ch.34 lordship, whole-sign from the lagna). Recommended: the lagna lord (always auspicious) = Life Stone (+5), the Yogakaraka = supreme benefic (+5), the 9th lord = Fortune Stone (+4), the 5th lord = Lucky Stone (+3). A 5th/9th lord that also owns a Dusthana (6, 8, 12) is still recommended, with that Dusthana named in warnings[]. Contraindicated (natal_context.contraindicated_lords, never returned): Dusthana lords that own no Trikona, and debilitated or combust planets. Kendra-only and 2nd/3rd/11th lords are neither recommended nor contraindicated. Only crystals with Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
+        Recommend crystals from the natal chart's functional benefics, using the same rule as POST /v1/astro/gemstones (BPHS Ch.34 lordship, whole-sign from the lagna). Recommended: the lagna lord (always auspicious) = Life Stone (+5), the Yogakaraka = supreme benefic (+5), the 9th lord = Fortune Stone (+4), the 5th lord = Lucky Stone (+3). A 5th/9th lord that also owns a Dusthana (6, 8, 12) is still recommended, with that Dusthana named in warnings[]. Contraindicated (natal_context.contraindicated_lords, never returned): Dusthana lords and 3rd/11th lords that own no Trikona (Laghu Parashari sl. 6), and debilitated or combust planets. Kendra-only and 2nd lords are neither recommended nor contraindicated. Only crystals with Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
         :param natal_crystal_request: (required)
         :type natal_crystal_request: NatalCrystalRequest
@@ -1364,7 +1364,7 @@ class CrystalsApi:
     ) -> RESTResponseType:
         """Natal Chart Crystal Recommendations
 
-        Recommend crystals from the natal chart's functional benefics, using the same rule as POST /v1/astro/gemstones (BPHS Ch.34 lordship, whole-sign from the lagna). Recommended: the lagna lord (always auspicious) = Life Stone (+5), the Yogakaraka = supreme benefic (+5), the 9th lord = Fortune Stone (+4), the 5th lord = Lucky Stone (+3). A 5th/9th lord that also owns a Dusthana (6, 8, 12) is still recommended, with that Dusthana named in warnings[]. Contraindicated (natal_context.contraindicated_lords, never returned): Dusthana lords that own no Trikona, and debilitated or combust planets. Kendra-only and 2nd/3rd/11th lords are neither recommended nor contraindicated. Only crystals with Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
+        Recommend crystals from the natal chart's functional benefics, using the same rule as POST /v1/astro/gemstones (BPHS Ch.34 lordship, whole-sign from the lagna). Recommended: the lagna lord (always auspicious) = Life Stone (+5), the Yogakaraka = supreme benefic (+5), the 9th lord = Fortune Stone (+4), the 5th lord = Lucky Stone (+3). A 5th/9th lord that also owns a Dusthana (6, 8, 12) is still recommended, with that Dusthana named in warnings[]. Contraindicated (natal_context.contraindicated_lords, never returned): Dusthana lords and 3rd/11th lords that own no Trikona (Laghu Parashari sl. 6), and debilitated or combust planets. Kendra-only and 2nd lords are neither recommended nor contraindicated. Only crystals with Vedic assignments (Navaratna or Uparatna) are returned. Dangerous gem combinations are flagged in warnings[].
 
         :param natal_crystal_request: (required)
         :type natal_crystal_request: NatalCrystalRequest

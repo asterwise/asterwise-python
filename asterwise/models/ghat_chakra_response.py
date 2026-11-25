@@ -29,13 +29,15 @@ class GhatChakraResponse(BaseModel):
     """
     GhatChakraResponse
     """ # noqa: E501
-    birth_time_provided: Optional[StrictBool] = Field(default=True, description="True when a birth time was supplied. False when it was not: house, Ascendant and Moon-dependent results then carry the accuracy limits of an unknown birth time.")
+    birth_time_provided: Optional[StrictBool] = Field(default=True, description="Always true: this endpoint requires the birth time and has no sunrise fallback, so house, Ascendant and Moon-dependent results use the time you sent.")
     janma_rasi: StrictStr
+    janma_rasi_id: Optional[StrictStr] = None
+    janma_rasi_label: Optional[StrictStr] = None
     janma_rasi_index: StrictInt
     ghatak_parameters: GhatakParameters
     guidance: StrictStr
     avoidance_guidance: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["birth_time_provided", "janma_rasi", "janma_rasi_index", "ghatak_parameters", "guidance", "avoidance_guidance"]
+    __properties: ClassVar[List[str]] = ["birth_time_provided", "janma_rasi", "janma_rasi_id", "janma_rasi_label", "janma_rasi_index", "ghatak_parameters", "guidance", "avoidance_guidance"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,6 +81,16 @@ class GhatChakraResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of ghatak_parameters
         if self.ghatak_parameters:
             _dict['ghatak_parameters'] = self.ghatak_parameters.to_dict()
+        # set to None if janma_rasi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.janma_rasi_id is None and "janma_rasi_id" in self.model_fields_set:
+            _dict['janma_rasi_id'] = None
+
+        # set to None if janma_rasi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.janma_rasi_label is None and "janma_rasi_label" in self.model_fields_set:
+            _dict['janma_rasi_label'] = None
+
         return _dict
 
     @classmethod
@@ -93,6 +105,8 @@ class GhatChakraResponse(BaseModel):
         _obj = cls.model_validate({
             "birth_time_provided": obj.get("birth_time_provided") if obj.get("birth_time_provided") is not None else True,
             "janma_rasi": obj.get("janma_rasi"),
+            "janma_rasi_id": obj.get("janma_rasi_id"),
+            "janma_rasi_label": obj.get("janma_rasi_label"),
             "janma_rasi_index": obj.get("janma_rasi_index"),
             "ghatak_parameters": GhatakParameters.from_dict(obj["ghatak_parameters"]) if obj.get("ghatak_parameters") is not None else None,
             "guidance": obj.get("guidance"),

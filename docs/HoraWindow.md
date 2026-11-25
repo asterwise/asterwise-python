@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **nature** | **str** |  | [optional] 
 **hora** | **int** | 1-12 day hours from sunrise, 13-24 night hours from sunset. | 
 **planet** | **str** | Planet ruling the hour (weekday lord first, then the Chaldean order). | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **period** | **str** | day or night | 
 
 ## Example

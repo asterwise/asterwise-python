@@ -6,7 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **transit_planet** | **str** |  | 
+**transit_planet_id** | **str** |  | [optional] 
+**transit_planet_label** | **str** |  | [optional] 
 **natal_planet** | **str** |  | 
+**natal_planet_id** | **str** |  | [optional] 
+**natal_planet_label** | **str** |  | [optional] 
 **type** | **str** |  | 
 **exact_angle** | **float** |  | 
 **orb** | **float** |  | 

@@ -53,6 +53,8 @@ class CalendarDay(BaseModel):
     moonrise: Optional[StrictStr] = None
     moonset: Optional[StrictStr] = None
     paksha: Optional[StrictStr] = None
+    paksha_id: Optional[StrictStr] = None
+    paksha_label: Optional[StrictStr] = None
     masa: Optional[Masa] = None
     tithis: Optional[List[DayTithi]] = None
     nakshatras: Optional[List[DayNakshatra]] = None
@@ -60,7 +62,7 @@ class CalendarDay(BaseModel):
     karanas: Optional[List[DayKarana]] = None
     bhadra: Optional[List[BhadraWindow]] = None
     moon_rashi: Optional[List[SignSpan]] = None
-    __properties: ClassVar[List[str]] = ["date", "tithi", "vara", "nakshatra", "yoga", "karana", "rahu_kaal", "sunrise", "sunset", "moonrise", "moonset", "paksha", "masa", "tithis", "nakshatras", "yogas", "karanas", "bhadra", "moon_rashi"]
+    __properties: ClassVar[List[str]] = ["date", "tithi", "vara", "nakshatra", "yoga", "karana", "rahu_kaal", "sunrise", "sunset", "moonrise", "moonset", "paksha", "paksha_id", "paksha_label", "masa", "tithis", "nakshatras", "yogas", "karanas", "bhadra", "moon_rashi"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -189,6 +191,16 @@ class CalendarDay(BaseModel):
         if self.paksha is None and "paksha" in self.model_fields_set:
             _dict['paksha'] = None
 
+        # set to None if paksha_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_id is None and "paksha_id" in self.model_fields_set:
+            _dict['paksha_id'] = None
+
+        # set to None if paksha_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_label is None and "paksha_label" in self.model_fields_set:
+            _dict['paksha_label'] = None
+
         # set to None if masa (nullable) is None
         # and model_fields_set contains the field
         if self.masa is None and "masa" in self.model_fields_set:
@@ -248,6 +260,8 @@ class CalendarDay(BaseModel):
             "moonrise": obj.get("moonrise"),
             "moonset": obj.get("moonset"),
             "paksha": obj.get("paksha"),
+            "paksha_id": obj.get("paksha_id"),
+            "paksha_label": obj.get("paksha_label"),
             "masa": Masa.from_dict(obj["masa"]) if obj.get("masa") is not None else None,
             "tithis": [DayTithi.from_dict(_item) for _item in obj["tithis"]] if obj.get("tithis") is not None else None,
             "nakshatras": [DayNakshatra.from_dict(_item) for _item in obj["nakshatras"]] if obj.get("nakshatras") is not None else None,

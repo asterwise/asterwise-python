@@ -6,11 +6,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **moon_sign** | **str** |  | 
+**moon_sign_id** | **str** |  | [optional] 
+**moon_sign_label** | **str** |  | [optional] 
 **moon_sign_index** | **int** |  | 
 **ascendant_sign** | **str** |  | 
+**ascendant_sign_id** | **str** |  | [optional] 
+**ascendant_sign_label** | **str** |  | [optional] 
 **ascendant_sign_index** | **int** |  | 
 **moon_tropical_sign** | **str** |  | [optional] 
+**moon_tropical_sign_id** | **str** |  | [optional] 
+**moon_tropical_sign_label** | **str** |  | [optional] 
 **ascendant_tropical_sign** | **str** |  | [optional] 
+**ascendant_tropical_sign_id** | **str** |  | [optional] 
+**ascendant_tropical_sign_label** | **str** |  | [optional] 
 
 ## Example
 

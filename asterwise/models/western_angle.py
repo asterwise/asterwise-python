@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,9 +31,11 @@ class WesternAngle(BaseModel):
     """ # noqa: E501
     longitude: Union[StrictFloat, StrictInt] = Field(description="Tropical ecliptic longitude 0–360°")
     sign: StrictStr = Field(description="Zodiac sign name")
+    sign_id: Optional[StrictStr] = None
+    sign_label: Optional[StrictStr] = None
     sign_index: Annotated[int, Field(le=11, strict=True, ge=0)] = Field(description="Sign index 0=Aries … 11=Pisces")
     degree_in_sign: Union[StrictFloat, StrictInt] = Field(description="Degrees within sign 0–29.999")
-    __properties: ClassVar[List[str]] = ["longitude", "sign", "sign_index", "degree_in_sign"]
+    __properties: ClassVar[List[str]] = ["longitude", "sign", "sign_id", "sign_label", "sign_index", "degree_in_sign"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,6 +76,16 @@ class WesternAngle(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_id is None and "sign_id" in self.model_fields_set:
+            _dict['sign_id'] = None
+
+        # set to None if sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_label is None and "sign_label" in self.model_fields_set:
+            _dict['sign_label'] = None
+
         return _dict
 
     @classmethod
@@ -88,6 +100,8 @@ class WesternAngle(BaseModel):
         _obj = cls.model_validate({
             "longitude": obj.get("longitude"),
             "sign": obj.get("sign"),
+            "sign_id": obj.get("sign_id"),
+            "sign_label": obj.get("sign_label"),
             "sign_index": obj.get("sign_index"),
             "degree_in_sign": obj.get("degree_in_sign")
         })

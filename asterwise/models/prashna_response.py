@@ -37,8 +37,8 @@ class PrashnaResponse(BaseModel):
     ayanamsa: StrictStr
     question: StrictStr
     primary_house: StrictInt
-    ithsala_applying: StrictBool = Field(description="Tajika Ithasala (applying) between the Lagna lord and the quesited house lord, by the Varshaphal rule: Tajika aspect by sign (same sign, 3rd/11th, 4th/10th, 5th/9th, 7th), the faster planet by mean motion (Moon, Mercury, Venus, Sun, Mars, Jupiter, Saturn) behind the slower in degrees within the mean of their Deeptamsas. Retrogression is not modelled. False when one planet rules both houses (always for 'self'; compare lagna.lord and house_analysis.lord).")
-    ithsala_separating: StrictBool = Field(description="Tajika Musaripha (separating): the two lords in Tajika aspect within the same orb but the faster planet already past the slower one's degree. False when one planet rules both houses.")
+    ithsala_applying: StrictBool = Field(description="Tajika Ithasala (applying) between the Lagna lord and the quesited house lord, by the Varshaphal rule: Tajika aspect by sign (same sign, 3rd/11th, 4th/10th, 5th/9th, 7th), the gap between their degrees closing by their true daily motions (retrograde included: vakra-ithasala) within the mean of their Deeptamsas. False when one planet rules both houses (always for 'self'; compare lagna.lord and house_analysis.lord).")
+    ithsala_separating: StrictBool = Field(description="Tajika Musaripha (separating): the two lords in Tajika aspect within the same orb but the gap between their degrees opening. False when one planet rules both houses.")
     query_utc: StrictStr
     lagna: PrashnaLagna
     house_analysis: PrashnaHouseAnalysis

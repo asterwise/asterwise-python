@@ -14,8 +14,12 @@ Name | Type | Description | Notes
 **directed_planets** | [**List[SolarArcPlanetSchema]**](SolarArcPlanetSchema.md) |  | 
 **directed_ascendant** | **float** |  | 
 **directed_ascendant_sign** | **str** |  | 
+**directed_ascendant_sign_id** | **str** |  | [optional] 
+**directed_ascendant_sign_label** | **str** |  | [optional] 
 **directed_mc** | **float** |  | 
 **directed_mc_sign** | **str** |  | 
+**directed_mc_sign_id** | **str** |  | [optional] 
+**directed_mc_sign_label** | **str** |  | [optional] 
 
 ## Example
 

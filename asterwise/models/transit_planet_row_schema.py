@@ -31,14 +31,18 @@ class TransitPlanetRowSchema(BaseModel):
     TransitPlanetRowSchema
     """ # noqa: E501
     name: StrictStr
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     longitude: Union[StrictFloat, StrictInt]
     sign: StrictStr
+    sign_id: Optional[StrictStr] = None
+    sign_label: Optional[StrictStr] = None
     sign_index: StrictInt
     degree_in_sign: Union[StrictFloat, StrictInt]
     is_retrograde: StrictBool
     aspects_to_natal: List[TransitAspectSchema]
     natal_house: Optional[Annotated[int, Field(le=12, strict=True, ge=1)]] = None
-    __properties: ClassVar[List[str]] = ["name", "longitude", "sign", "sign_index", "degree_in_sign", "is_retrograde", "aspects_to_natal", "natal_house"]
+    __properties: ClassVar[List[str]] = ["name", "id", "label", "longitude", "sign", "sign_id", "sign_label", "sign_index", "degree_in_sign", "is_retrograde", "aspects_to_natal", "natal_house"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,6 +90,26 @@ class TransitPlanetRowSchema(BaseModel):
                 if _item_aspects_to_natal:
                     _items.append(_item_aspects_to_natal.to_dict())
             _dict['aspects_to_natal'] = _items
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
+        # set to None if sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_id is None and "sign_id" in self.model_fields_set:
+            _dict['sign_id'] = None
+
+        # set to None if sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_label is None and "sign_label" in self.model_fields_set:
+            _dict['sign_label'] = None
+
         # set to None if natal_house (nullable) is None
         # and model_fields_set contains the field
         if self.natal_house is None and "natal_house" in self.model_fields_set:
@@ -104,8 +128,12 @@ class TransitPlanetRowSchema(BaseModel):
 
         _obj = cls.model_validate({
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "longitude": obj.get("longitude"),
             "sign": obj.get("sign"),
+            "sign_id": obj.get("sign_id"),
+            "sign_label": obj.get("sign_label"),
             "sign_index": obj.get("sign_index"),
             "degree_in_sign": obj.get("degree_in_sign"),
             "is_retrograde": obj.get("is_retrograde"),

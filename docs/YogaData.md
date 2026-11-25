@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **index** | **int** | Zero-based yoga index, 0 to 26 | 
 **name** | **str** | Yoga name, e.g. Vishkumbha, Shiva | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **is_inauspicious** | **bool** | True if this yoga is considered inauspicious | 
 **degrees_elapsed** | **float** | Degrees completed within the current yoga | 
 **end_time** | **str** |  | [optional] 

@@ -6,8 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Weekday name in Sanskrit. | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **number** | **int** | Weekday number, 1 to 7. | 
 **lord** | **str** |  | [optional] 
+**lord_id** | **str** |  | [optional] 
+**lord_label** | **str** |  | [optional] 
 
 ## Example
 

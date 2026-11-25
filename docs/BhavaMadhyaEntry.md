@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **house** | **int** | House number 1-12 | 
 **sign** | **str** | Sanskrit sign name | 
+**sign_id** | **str** |  | [optional] 
+**sign_label** | **str** |  | [optional] 
 **sign_num** | **int** | Sign index 0-11 | 
 **degree** | **float** | Ecliptic longitude in degrees | 
 

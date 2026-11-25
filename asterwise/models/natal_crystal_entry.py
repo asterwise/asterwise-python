@@ -28,28 +28,39 @@ class NatalCrystalEntry(BaseModel):
     """
     NatalCrystalEntry
     """ # noqa: E501
+    label: Optional[StrictStr] = None
     slug: StrictStr
     name: StrictStr
     colors: List[StrictStr]
     hardness_mohs: Union[StrictFloat, StrictInt]
     chakras: List[StrictStr]
+    chakra_ids: Optional[List[StrictStr]] = None
+    chakra_labels: Optional[List[StrictStr]] = None
     element: StrictStr
+    element_id: Optional[StrictStr] = None
+    element_label: Optional[StrictStr] = None
     zodiac_signs: List[StrictStr]
+    zodiac_sign_ids: Optional[List[StrictStr]] = None
+    zodiac_sign_labels: Optional[List[StrictStr]] = None
     vedic_planet: Optional[StrictStr]
+    vedic_planet_id: Optional[StrictStr] = None
+    vedic_planet_label: Optional[StrictStr] = None
     vedic_correspondence: StrictStr
     western_planet: Optional[StrictStr]
+    western_planet_id: Optional[StrictStr] = None
+    western_planet_label: Optional[StrictStr] = None
     keywords: List[StrictStr]
     healing_physical: StrictStr
     healing_emotional: StrictStr
     healing_spiritual: StrictStr
     description: StrictStr
-    origins: List[StrictStr]
+    origins: List[StrictStr] = Field(description="Deprecated, removed on 2026-12-21: places the stone is said to be mined. It has no source and is not translated; do not rely on it.")
     affirmation: StrictStr
     caution: Optional[StrictStr]
     match_score: StrictInt = Field(description="Gemstone match score based on house lordship.")
     match_reasons: List[StrictStr] = Field(description="Classical factors — which house lordship triggered this recommendation.")
     warnings: Optional[List[StrictStr]] = Field(default=None, description="Classical cautions for this specific chart context.")
-    __properties: ClassVar[List[str]] = ["slug", "name", "colors", "hardness_mohs", "chakras", "element", "zodiac_signs", "vedic_planet", "vedic_correspondence", "western_planet", "keywords", "healing_physical", "healing_emotional", "healing_spiritual", "description", "origins", "affirmation", "caution", "match_score", "match_reasons", "warnings"]
+    __properties: ClassVar[List[str]] = ["label", "slug", "name", "colors", "hardness_mohs", "chakras", "chakra_ids", "chakra_labels", "element", "element_id", "element_label", "zodiac_signs", "zodiac_sign_ids", "zodiac_sign_labels", "vedic_planet", "vedic_planet_id", "vedic_planet_label", "vedic_correspondence", "western_planet", "western_planet_id", "western_planet_label", "keywords", "healing_physical", "healing_emotional", "healing_spiritual", "description", "origins", "affirmation", "caution", "match_score", "match_reasons", "warnings"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -90,15 +101,70 @@ class NatalCrystalEntry(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
+        # set to None if chakra_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.chakra_ids is None and "chakra_ids" in self.model_fields_set:
+            _dict['chakra_ids'] = None
+
+        # set to None if chakra_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.chakra_labels is None and "chakra_labels" in self.model_fields_set:
+            _dict['chakra_labels'] = None
+
+        # set to None if element_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.element_id is None and "element_id" in self.model_fields_set:
+            _dict['element_id'] = None
+
+        # set to None if element_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.element_label is None and "element_label" in self.model_fields_set:
+            _dict['element_label'] = None
+
+        # set to None if zodiac_sign_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.zodiac_sign_ids is None and "zodiac_sign_ids" in self.model_fields_set:
+            _dict['zodiac_sign_ids'] = None
+
+        # set to None if zodiac_sign_labels (nullable) is None
+        # and model_fields_set contains the field
+        if self.zodiac_sign_labels is None and "zodiac_sign_labels" in self.model_fields_set:
+            _dict['zodiac_sign_labels'] = None
+
         # set to None if vedic_planet (nullable) is None
         # and model_fields_set contains the field
         if self.vedic_planet is None and "vedic_planet" in self.model_fields_set:
             _dict['vedic_planet'] = None
 
+        # set to None if vedic_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.vedic_planet_id is None and "vedic_planet_id" in self.model_fields_set:
+            _dict['vedic_planet_id'] = None
+
+        # set to None if vedic_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.vedic_planet_label is None and "vedic_planet_label" in self.model_fields_set:
+            _dict['vedic_planet_label'] = None
+
         # set to None if western_planet (nullable) is None
         # and model_fields_set contains the field
         if self.western_planet is None and "western_planet" in self.model_fields_set:
             _dict['western_planet'] = None
+
+        # set to None if western_planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.western_planet_id is None and "western_planet_id" in self.model_fields_set:
+            _dict['western_planet_id'] = None
+
+        # set to None if western_planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.western_planet_label is None and "western_planet_label" in self.model_fields_set:
+            _dict['western_planet_label'] = None
 
         # set to None if caution (nullable) is None
         # and model_fields_set contains the field
@@ -117,16 +183,27 @@ class NatalCrystalEntry(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "label": obj.get("label"),
             "slug": obj.get("slug"),
             "name": obj.get("name"),
             "colors": obj.get("colors"),
             "hardness_mohs": obj.get("hardness_mohs"),
             "chakras": obj.get("chakras"),
+            "chakra_ids": obj.get("chakra_ids"),
+            "chakra_labels": obj.get("chakra_labels"),
             "element": obj.get("element"),
+            "element_id": obj.get("element_id"),
+            "element_label": obj.get("element_label"),
             "zodiac_signs": obj.get("zodiac_signs"),
+            "zodiac_sign_ids": obj.get("zodiac_sign_ids"),
+            "zodiac_sign_labels": obj.get("zodiac_sign_labels"),
             "vedic_planet": obj.get("vedic_planet"),
+            "vedic_planet_id": obj.get("vedic_planet_id"),
+            "vedic_planet_label": obj.get("vedic_planet_label"),
             "vedic_correspondence": obj.get("vedic_correspondence"),
             "western_planet": obj.get("western_planet"),
+            "western_planet_id": obj.get("western_planet_id"),
+            "western_planet_label": obj.get("western_planet_label"),
             "keywords": obj.get("keywords"),
             "healing_physical": obj.get("healing_physical"),
             "healing_emotional": obj.get("healing_emotional"),

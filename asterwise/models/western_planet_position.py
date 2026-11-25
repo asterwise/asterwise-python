@@ -31,18 +31,22 @@ class WesternPlanetPosition(BaseModel):
     WesternPlanetPosition
     """ # noqa: E501
     name: StrictStr = Field(description="Planet name")
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
     longitude: Union[StrictFloat, StrictInt] = Field(description="Tropical ecliptic longitude 0–360°")
     sign: StrictStr = Field(description="Zodiac sign name")
+    sign_id: Optional[StrictStr] = None
+    sign_label: Optional[StrictStr] = None
     sign_index: Annotated[int, Field(le=11, strict=True, ge=0)]
     degree_in_sign: Union[StrictFloat, StrictInt] = Field(description="Degrees within sign 0–29.999")
     house: Annotated[int, Field(le=12, strict=True, ge=1)] = Field(description="House number (Placidus or chosen system)")
     is_retrograde: StrictBool
     dignity: StrictStr = Field(description="Primary sign-level essential dignity: domicile | exaltation | detriment | fall | peregrine. 'peregrine' here means no sign-level dignity; triplicity, term and face are not assessed.")
-    dignity_score: StrictInt = Field(description="Weight of the primary sign-level dignity only: domicile=5, exaltation=4, detriment=-5, fall=-4, peregrine=0. Triplicity, term and face are not scored, and the weights are not summed (e.g. Mercury in Virgo scores 5 for domicile, not 5+4). Full traditional scoring is in essential_dignities (natal and return charts).")
+    dignity_score: StrictInt = Field(description="Weight of the primary sign-level dignity only: domicile=5, exaltation=4, detriment=-5, fall=-4, peregrine=0. Triplicity, term and face are not scored, and the weights are not summed (e.g. Mercury in Virgo scores 5 for domicile, not 5+4). This is a simple sign score, kept for compatibility; William Lilly's full tally is essential_dignities.total (natal, return and horary charts).")
     is_exaltation_degree: StrictBool = Field(description="True if planet is in the exact classical exaltation degree (Nth degree = N-1°00' to N-1°59'59\"). Always false for outer planets (no exact degree defined).")
     dignity_disputed: StrictBool = Field(description="True for outer planet (Uranus/Neptune/Pluto) exaltation/fall — no established consensus.")
     essential_dignities: Optional[WesternEssentialDignities] = None
-    __properties: ClassVar[List[str]] = ["name", "longitude", "sign", "sign_index", "degree_in_sign", "house", "is_retrograde", "dignity", "dignity_score", "is_exaltation_degree", "dignity_disputed", "essential_dignities"]
+    __properties: ClassVar[List[str]] = ["name", "id", "label", "longitude", "sign", "sign_id", "sign_label", "sign_index", "degree_in_sign", "house", "is_retrograde", "dignity", "dignity_score", "is_exaltation_degree", "dignity_disputed", "essential_dignities"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,6 +90,26 @@ class WesternPlanetPosition(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of essential_dignities
         if self.essential_dignities:
             _dict['essential_dignities'] = self.essential_dignities.to_dict()
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
+        # set to None if sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_id is None and "sign_id" in self.model_fields_set:
+            _dict['sign_id'] = None
+
+        # set to None if sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_label is None and "sign_label" in self.model_fields_set:
+            _dict['sign_label'] = None
+
         # set to None if essential_dignities (nullable) is None
         # and model_fields_set contains the field
         if self.essential_dignities is None and "essential_dignities" in self.model_fields_set:
@@ -104,8 +128,12 @@ class WesternPlanetPosition(BaseModel):
 
         _obj = cls.model_validate({
             "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label"),
             "longitude": obj.get("longitude"),
             "sign": obj.get("sign"),
+            "sign_id": obj.get("sign_id"),
+            "sign_label": obj.get("sign_label"),
             "sign_index": obj.get("sign_index"),
             "degree_in_sign": obj.get("degree_in_sign"),
             "house": obj.get("house"),

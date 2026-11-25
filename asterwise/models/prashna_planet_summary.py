@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,10 +31,12 @@ class PrashnaPlanetSummary(BaseModel):
     longitude: Union[StrictFloat, StrictInt]
     rashi_index: StrictInt
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     house: StrictInt
     is_retrograde: StrictBool
     dignity: StrictStr
-    __properties: ClassVar[List[str]] = ["longitude", "rashi_index", "rashi", "house", "is_retrograde", "dignity"]
+    __properties: ClassVar[List[str]] = ["longitude", "rashi_index", "rashi", "rashi_id", "rashi_label", "house", "is_retrograde", "dignity"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,6 +77,16 @@ class PrashnaPlanetSummary(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
         return _dict
 
     @classmethod
@@ -90,6 +102,8 @@ class PrashnaPlanetSummary(BaseModel):
             "longitude": obj.get("longitude"),
             "rashi_index": obj.get("rashi_index"),
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "house": obj.get("house"),
             "is_retrograde": obj.get("is_retrograde"),
             "dignity": obj.get("dignity")

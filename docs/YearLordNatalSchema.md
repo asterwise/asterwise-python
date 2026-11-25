@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sign** | **str** |  | 
+**sign_id** | **str** |  | [optional] 
+**sign_label** | **str** |  | [optional] 
 **sign_index** | **int** |  | 
 **degree_in_sign** | **float** |  | 
 **whole_sign_house** | **int** | Natal whole-sign house of the year lord, counted from the Ascendant sign. | 

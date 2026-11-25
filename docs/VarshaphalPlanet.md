@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **longitude** | **float** |  | 
 **rashi_index** | **int** |  | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **degree** | **float** |  | 
 **is_retrograde** | **bool** |  | 
 **speed** | **float** |  | [optional] 

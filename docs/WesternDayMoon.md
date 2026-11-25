@@ -6,9 +6,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sign_at_start** | **str** | Tropical Moon sign at local midnight opening the day. | 
+**sign_at_start_id** | **str** |  | [optional] 
+**sign_at_start_label** | **str** |  | [optional] 
 **sign_at_end** | **str** | Tropical Moon sign at the midnight closing it. | 
+**sign_at_end_id** | **str** |  | [optional] 
+**sign_at_end_label** | **str** |  | [optional] 
 **sign_changes** | [**List[MoonSignChange]**](MoonSignChange.md) | Moon sign changes inside the day, with exact times. | 
 **phase_name** | **str** | Moon phase for the date (eight 45° phases). | 
+**phase_name_id** | **str** |  | [optional] 
+**phase_name_label** | **str** |  | [optional] 
 **illumination_pct** | **float** |  | 
 **is_waxing** | **bool** |  | 
 

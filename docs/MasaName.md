@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **index** | **int** | 1 &#x3D; Chaitra ... 12 &#x3D; Phalguna. | 
 **name** | **str** |  | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **display_name** | **str** | Name with &#39;Adhik&#39; prefix for an intercalary month. | 
 **is_adhik** | **bool** |  | 
 

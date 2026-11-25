@@ -34,12 +34,16 @@ class VoidOfCoursePeriod(BaseModel):
     end_utc: StrictStr = Field(description="When it ends: the Moon enters the next sign, UTC.")
     duration_hours: Union[StrictFloat, StrictInt] = Field(description="Length of the void period in hours.")
     moon_sign: StrictStr = Field(description="Sign the Moon is in while void.")
+    moon_sign_id: Optional[StrictStr] = None
+    moon_sign_label: Optional[StrictStr] = None
     moon_sign_index: Annotated[int, Field(le=11, strict=True, ge=0)]
     next_sign: StrictStr = Field(description="Sign the Moon enters at end_utc.")
+    next_sign_id: Optional[StrictStr] = None
+    next_sign_label: Optional[StrictStr] = None
     next_sign_index: Annotated[int, Field(le=11, strict=True, ge=0)]
     last_aspect: Optional[VoidOfCourseLastAspect] = None
     whole_sign_void: StrictBool = Field(description="True when the Moon made no exact aspect at all while in the sign, so it was void for the whole passage.")
-    __properties: ClassVar[List[str]] = ["start_utc", "end_utc", "duration_hours", "moon_sign", "moon_sign_index", "next_sign", "next_sign_index", "last_aspect", "whole_sign_void"]
+    __properties: ClassVar[List[str]] = ["start_utc", "end_utc", "duration_hours", "moon_sign", "moon_sign_id", "moon_sign_label", "moon_sign_index", "next_sign", "next_sign_id", "next_sign_label", "next_sign_index", "last_aspect", "whole_sign_void"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -83,6 +87,26 @@ class VoidOfCoursePeriod(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of last_aspect
         if self.last_aspect:
             _dict['last_aspect'] = self.last_aspect.to_dict()
+        # set to None if moon_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_sign_id is None and "moon_sign_id" in self.model_fields_set:
+            _dict['moon_sign_id'] = None
+
+        # set to None if moon_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.moon_sign_label is None and "moon_sign_label" in self.model_fields_set:
+            _dict['moon_sign_label'] = None
+
+        # set to None if next_sign_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_sign_id is None and "next_sign_id" in self.model_fields_set:
+            _dict['next_sign_id'] = None
+
+        # set to None if next_sign_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_sign_label is None and "next_sign_label" in self.model_fields_set:
+            _dict['next_sign_label'] = None
+
         # set to None if last_aspect (nullable) is None
         # and model_fields_set contains the field
         if self.last_aspect is None and "last_aspect" in self.model_fields_set:
@@ -104,8 +128,12 @@ class VoidOfCoursePeriod(BaseModel):
             "end_utc": obj.get("end_utc"),
             "duration_hours": obj.get("duration_hours"),
             "moon_sign": obj.get("moon_sign"),
+            "moon_sign_id": obj.get("moon_sign_id"),
+            "moon_sign_label": obj.get("moon_sign_label"),
             "moon_sign_index": obj.get("moon_sign_index"),
             "next_sign": obj.get("next_sign"),
+            "next_sign_id": obj.get("next_sign_id"),
+            "next_sign_label": obj.get("next_sign_label"),
             "next_sign_index": obj.get("next_sign_index"),
             "last_aspect": VoidOfCourseLastAspect.from_dict(obj["last_aspect"]) if obj.get("last_aspect") is not None else None,
             "whole_sign_void": obj.get("whole_sign_void")

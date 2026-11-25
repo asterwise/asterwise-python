@@ -33,6 +33,7 @@ class FestivalEntry(BaseModel):
     """
     FestivalEntry
     """ # noqa: E501
+    label: Optional[StrictStr] = None
     name: StrictStr = Field(description="Festival name.")
     var_date: StrictStr = Field(description="Festival date in YYYY-MM-DD format (start date for a period).", alias="date")
     type: StrictStr = Field(description="'solar' (sankranti-based), 'tithi' (lunar day-based) or 'eclipse'.")
@@ -43,6 +44,8 @@ class FestivalEntry(BaseModel):
     end_date: Optional[StrictStr] = None
     masa: Optional[FestivalMasa] = None
     paksha: Optional[StrictStr] = None
+    paksha_id: Optional[StrictStr] = None
+    paksha_label: Optional[StrictStr] = None
     tithi: Optional[FestivalTithi] = None
     rule: Optional[StrictStr] = None
     observance_window: Optional[FestivalWindow] = None
@@ -50,7 +53,7 @@ class FestivalEntry(BaseModel):
     note: Optional[StrictStr] = None
     sankranti: Optional[FestivalSankranti] = None
     eclipse: Optional[FestivalEclipse] = None
-    __properties: ClassVar[List[str]] = ["name", "date", "type", "description", "significance", "id", "category", "end_date", "masa", "paksha", "tithi", "rule", "observance_window", "tithi_at_moonrise", "note", "sankranti", "eclipse"]
+    __properties: ClassVar[List[str]] = ["label", "name", "date", "type", "description", "significance", "id", "category", "end_date", "masa", "paksha", "paksha_id", "paksha_label", "tithi", "rule", "observance_window", "tithi_at_moonrise", "note", "sankranti", "eclipse"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -106,6 +109,11 @@ class FestivalEntry(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of eclipse
         if self.eclipse:
             _dict['eclipse'] = self.eclipse.to_dict()
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
         if self.id is None and "id" in self.model_fields_set:
@@ -130,6 +138,16 @@ class FestivalEntry(BaseModel):
         # and model_fields_set contains the field
         if self.paksha is None and "paksha" in self.model_fields_set:
             _dict['paksha'] = None
+
+        # set to None if paksha_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_id is None and "paksha_id" in self.model_fields_set:
+            _dict['paksha_id'] = None
+
+        # set to None if paksha_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.paksha_label is None and "paksha_label" in self.model_fields_set:
+            _dict['paksha_label'] = None
 
         # set to None if tithi (nullable) is None
         # and model_fields_set contains the field
@@ -178,6 +196,7 @@ class FestivalEntry(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "label": obj.get("label"),
             "name": obj.get("name"),
             "date": obj.get("date"),
             "type": obj.get("type"),
@@ -188,6 +207,8 @@ class FestivalEntry(BaseModel):
             "end_date": obj.get("end_date"),
             "masa": FestivalMasa.from_dict(obj["masa"]) if obj.get("masa") is not None else None,
             "paksha": obj.get("paksha"),
+            "paksha_id": obj.get("paksha_id"),
+            "paksha_label": obj.get("paksha_label"),
             "tithi": FestivalTithi.from_dict(obj["tithi"]) if obj.get("tithi") is not None else None,
             "rule": obj.get("rule"),
             "observance_window": FestivalWindow.from_dict(obj["observance_window"]) if obj.get("observance_window") is not None else None,

@@ -33,6 +33,8 @@ class DailyFactor(BaseModel):
     group: StrictStr = Field(description="Vedic: gochar, sade_sati, chandra_ashtama, tarabala, chandrabala, dasha, dasha_transit, natal_contact, panchanga, moon_phase. Western: aspect, transit, moon_phase, void_of_course, planetary_hour, profection.")
     name: StrictStr
     planet: Optional[StrictStr] = None
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     frame: StrictStr = Field(description="What the houses or distances are counted from. See frames.")
     value: Dict[str, Any] = Field(description="The raw numbers and flags of this factor.")
     ranges: Dict[str, Any] = Field(description="The documented range of each numeric value, e.g. bindus [0, 8].")
@@ -42,7 +44,7 @@ class DailyFactor(BaseModel):
     significations: List[StrictStr] = Field(description="Ids from /v1/astro/significations touched by this factor.")
     time: FactorTime
     depends_on_birth_time: StrictBool = Field(description="True when an unknown birth time can change this factor.")
-    __properties: ClassVar[List[str]] = ["id", "group", "name", "planet", "frame", "value", "ranges", "verdict", "verdict_rule", "rule_source", "significations", "time", "depends_on_birth_time"]
+    __properties: ClassVar[List[str]] = ["id", "group", "name", "planet", "planet_id", "planet_label", "frame", "value", "ranges", "verdict", "verdict_rule", "rule_source", "significations", "time", "depends_on_birth_time"]
 
     @field_validator('frame')
     def frame_validate_enum(cls, value):
@@ -108,6 +110,16 @@ class DailyFactor(BaseModel):
         if self.planet is None and "planet" in self.model_fields_set:
             _dict['planet'] = None
 
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         # set to None if verdict (nullable) is None
         # and model_fields_set contains the field
         if self.verdict is None and "verdict" in self.model_fields_set:
@@ -139,6 +151,8 @@ class DailyFactor(BaseModel):
             "group": obj.get("group"),
             "name": obj.get("name"),
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "frame": obj.get("frame"),
             "value": obj.get("value"),
             "ranges": obj.get("ranges"),

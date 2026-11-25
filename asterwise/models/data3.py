@@ -20,28 +20,28 @@ import pprint
 import re  # noqa: F401
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Optional
-from asterwise.models.rudraksha_all_response import RudrakshaAllResponse
-from asterwise.models.rudraksha_single_response import RudrakshaSingleResponse
+from asterwise.models.puja_suggestion_single_response import PujaSuggestionSingleResponse
+from asterwise.models.puja_suggestions_all_response import PujaSuggestionsAllResponse
 from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
 from typing_extensions import Literal, Self
 from pydantic import Field
 
-DATA3_ANY_OF_SCHEMAS = ["RudrakshaAllResponse", "RudrakshaSingleResponse"]
+DATA3_ANY_OF_SCHEMAS = ["PujaSuggestionSingleResponse", "PujaSuggestionsAllResponse"]
 
 class Data3(BaseModel):
     """
     The endpoint response payload
     """
 
-    # data type: RudrakshaAllResponse
-    anyof_schema_1_validator: Optional[RudrakshaAllResponse] = None
-    # data type: RudrakshaSingleResponse
-    anyof_schema_2_validator: Optional[RudrakshaSingleResponse] = None
+    # data type: PujaSuggestionsAllResponse
+    anyof_schema_1_validator: Optional[PujaSuggestionsAllResponse] = None
+    # data type: PujaSuggestionSingleResponse
+    anyof_schema_2_validator: Optional[PujaSuggestionSingleResponse] = None
     if TYPE_CHECKING:
-        actual_instance: Optional[Union[RudrakshaAllResponse, RudrakshaSingleResponse]] = None
+        actual_instance: Optional[Union[PujaSuggestionSingleResponse, PujaSuggestionsAllResponse]] = None
     else:
         actual_instance: Any = None
-    any_of_schemas: Set[str] = { "RudrakshaAllResponse", "RudrakshaSingleResponse" }
+    any_of_schemas: Set[str] = { "PujaSuggestionSingleResponse", "PujaSuggestionsAllResponse" }
 
     model_config = {
         "validate_assignment": True,
@@ -62,21 +62,21 @@ class Data3(BaseModel):
     def actual_instance_must_validate_anyof(cls, v):
         instance = Data3.model_construct()
         error_messages = []
-        # validate data type: RudrakshaAllResponse
-        if not isinstance(v, RudrakshaAllResponse):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `RudrakshaAllResponse`")
+        # validate data type: PujaSuggestionsAllResponse
+        if not isinstance(v, PujaSuggestionsAllResponse):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `PujaSuggestionsAllResponse`")
         else:
             return v
 
-        # validate data type: RudrakshaSingleResponse
-        if not isinstance(v, RudrakshaSingleResponse):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `RudrakshaSingleResponse`")
+        # validate data type: PujaSuggestionSingleResponse
+        if not isinstance(v, PujaSuggestionSingleResponse):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `PujaSuggestionSingleResponse`")
         else:
             return v
 
         if error_messages:
             # no match
-            raise ValueError("No match found when setting the actual_instance in Data3 with anyOf schemas: RudrakshaAllResponse, RudrakshaSingleResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting the actual_instance in Data3 with anyOf schemas: PujaSuggestionSingleResponse, PujaSuggestionsAllResponse. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -89,22 +89,22 @@ class Data3(BaseModel):
         """Returns the object represented by the json string"""
         instance = cls.model_construct()
         error_messages = []
-        # anyof_schema_1_validator: Optional[RudrakshaAllResponse] = None
+        # anyof_schema_1_validator: Optional[PujaSuggestionsAllResponse] = None
         try:
-            instance.actual_instance = RudrakshaAllResponse.from_json(json_str)
+            instance.actual_instance = PujaSuggestionsAllResponse.from_json(json_str)
             return instance
         except (ValidationError, ValueError) as e:
              error_messages.append(str(e))
-        # anyof_schema_2_validator: Optional[RudrakshaSingleResponse] = None
+        # anyof_schema_2_validator: Optional[PujaSuggestionSingleResponse] = None
         try:
-            instance.actual_instance = RudrakshaSingleResponse.from_json(json_str)
+            instance.actual_instance = PujaSuggestionSingleResponse.from_json(json_str)
             return instance
         except (ValidationError, ValueError) as e:
              error_messages.append(str(e))
 
         if error_messages:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Data3 with anyOf schemas: RudrakshaAllResponse, RudrakshaSingleResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Data3 with anyOf schemas: PujaSuggestionSingleResponse, PujaSuggestionsAllResponse. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -118,7 +118,7 @@ class Data3(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], RudrakshaAllResponse, RudrakshaSingleResponse]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], PujaSuggestionSingleResponse, PujaSuggestionsAllResponse]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

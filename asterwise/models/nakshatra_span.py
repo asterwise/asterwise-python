@@ -35,7 +35,9 @@ class NakshatraSpan(BaseModel):
     nature: Optional[StrictStr] = None
     index: StrictInt
     name: StrictStr
-    __properties: ClassVar[List[str]] = ["start", "end", "start_utc", "end_utc", "nature", "index", "name"]
+    id: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["start", "end", "start_utc", "end_utc", "nature", "index", "name", "id", "label"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -91,6 +93,16 @@ class NakshatraSpan(BaseModel):
         if self.nature is None and "nature" in self.model_fields_set:
             _dict['nature'] = None
 
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
         return _dict
 
     @classmethod
@@ -109,7 +121,9 @@ class NakshatraSpan(BaseModel):
             "end_utc": obj.get("end_utc"),
             "nature": obj.get("nature"),
             "index": obj.get("index"),
-            "name": obj.get("name")
+            "name": obj.get("name"),
+            "id": obj.get("id"),
+            "label": obj.get("label")
         })
         return _obj
 

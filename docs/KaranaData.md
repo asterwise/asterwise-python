@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **number** | **int** | Karana number, 1 to 60 | 
 **name** | **str** | Karana name | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **degrees_elapsed** | **float** | Degrees completed within the current karana | 
 **degrees_remaining** | **float** | Degrees remaining until the next karana | 
 **end_time** | **str** |  | [optional] 

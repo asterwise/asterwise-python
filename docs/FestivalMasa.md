@@ -6,7 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amanta** | **str** | Amanta month name (with &#39;Adhik&#39; for an intercalary month). | 
+**amanta_id** | **str** |  | [optional] 
+**amanta_label** | **str** |  | [optional] 
 **purnimanta** | **str** | Purnimanta month name. | 
+**purnimanta_id** | **str** |  | [optional] 
+**purnimanta_label** | **str** |  | [optional] 
 **is_adhik** | **bool** |  | 
 
 ## Example

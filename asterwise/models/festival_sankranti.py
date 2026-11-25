@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,8 +29,10 @@ class FestivalSankranti(BaseModel):
     FestivalSankranti
     """ # noqa: E501
     rashi: StrictStr = Field(description="Sidereal sign the Sun enters.")
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     moment: StrictStr = Field(description="Ingress instant, ISO 8601 local time.")
-    __properties: ClassVar[List[str]] = ["rashi", "moment"]
+    __properties: ClassVar[List[str]] = ["rashi", "rashi_id", "rashi_label", "moment"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -71,6 +73,16 @@ class FestivalSankranti(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
         return _dict
 
     @classmethod
@@ -84,6 +96,8 @@ class FestivalSankranti(BaseModel):
 
         _obj = cls.model_validate({
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "moment": obj.get("moment")
         })
         return _obj

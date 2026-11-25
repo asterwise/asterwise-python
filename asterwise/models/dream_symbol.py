@@ -29,11 +29,14 @@ class DreamSymbol(BaseModel):
     """
     DreamSymbol
     """ # noqa: E501
+    label: Optional[StrictStr] = None
     slug: StrictStr = Field(description="URL-safe identifier.")
     name: StrictStr = Field(description="Display name of the symbol.")
     category: StrictStr = Field(description="Symbol category: animals, nature, people, places, objects, actions, body, or abstract.")
     jungian_meaning: StrictStr = Field(description="Jungian/Western psychological interpretation.")
     jungian_archetype: StrictStr = Field(description="Primary Jungian archetype activated by this symbol.")
+    jungian_archetype_id: Optional[StrictStr] = None
+    jungian_archetype_label: Optional[StrictStr] = None
     vedic_meaning: StrictStr = Field(description="Classical Vedic dream tradition interpretation.")
     vedic_auspicious: Optional[StrictBool] = None
     traditions_agree: StrictStr = Field(description="Whether Jungian and Vedic traditions agree: 'agree', 'conflict', or 'partial'.")
@@ -41,7 +44,7 @@ class DreamSymbol(BaseModel):
     themes: List[StrictStr] = Field(description="Thematic keywords used for AI synthesis and search.")
     context_variants: List[ContextVariant] = Field(description="Alternative readings depending on dream context.")
     related_symbols: List[StrictStr] = Field(description="Slugs of four related dream symbols: hand-picked links first, then the most similar symbols by category, themes and meaning. Every slug exists in the catalogue; links are reciprocal.")
-    __properties: ClassVar[List[str]] = ["slug", "name", "category", "jungian_meaning", "jungian_archetype", "vedic_meaning", "vedic_auspicious", "traditions_agree", "emotional_tone", "themes", "context_variants", "related_symbols"]
+    __properties: ClassVar[List[str]] = ["label", "slug", "name", "category", "jungian_meaning", "jungian_archetype", "jungian_archetype_id", "jungian_archetype_label", "vedic_meaning", "vedic_auspicious", "traditions_agree", "emotional_tone", "themes", "context_variants", "related_symbols"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -89,6 +92,21 @@ class DreamSymbol(BaseModel):
                 if _item_context_variants:
                     _items.append(_item_context_variants.to_dict())
             _dict['context_variants'] = _items
+        # set to None if label (nullable) is None
+        # and model_fields_set contains the field
+        if self.label is None and "label" in self.model_fields_set:
+            _dict['label'] = None
+
+        # set to None if jungian_archetype_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.jungian_archetype_id is None and "jungian_archetype_id" in self.model_fields_set:
+            _dict['jungian_archetype_id'] = None
+
+        # set to None if jungian_archetype_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.jungian_archetype_label is None and "jungian_archetype_label" in self.model_fields_set:
+            _dict['jungian_archetype_label'] = None
+
         # set to None if vedic_auspicious (nullable) is None
         # and model_fields_set contains the field
         if self.vedic_auspicious is None and "vedic_auspicious" in self.model_fields_set:
@@ -106,11 +124,14 @@ class DreamSymbol(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "label": obj.get("label"),
             "slug": obj.get("slug"),
             "name": obj.get("name"),
             "category": obj.get("category"),
             "jungian_meaning": obj.get("jungian_meaning"),
             "jungian_archetype": obj.get("jungian_archetype"),
+            "jungian_archetype_id": obj.get("jungian_archetype_id"),
+            "jungian_archetype_label": obj.get("jungian_archetype_label"),
             "vedic_meaning": obj.get("vedic_meaning"),
             "vedic_auspicious": obj.get("vedic_auspicious"),
             "traditions_agree": obj.get("traditions_agree"),

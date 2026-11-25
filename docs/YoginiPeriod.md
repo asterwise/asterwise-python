@@ -6,7 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **yogini** | **str** | Name of the Yogini ruling this period, e.g. Mangala, Pingala, Dhanya | 
+**yogini_id** | **str** |  | [optional] 
+**yogini_label** | **str** |  | [optional] 
 **planet** | **str** | Planetary lord of this Yogini | 
+**planet_id** | **str** |  | [optional] 
+**planet_label** | **str** |  | [optional] 
 **start_jd** | **float** | Start of period as Julian Day number | 
 **end_jd** | **float** | End of period as Julian Day number | 
 **start_date** | **str** | Start date in DD/MM/YYYY format | 

@@ -29,11 +29,13 @@ class PitruNinthLordAnalysis(BaseModel):
     PitruNinthLordAnalysis
     """ # noqa: E501
     planet: Optional[StrictStr] = None
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     house: Optional[StrictInt] = None
     sign_index: Optional[StrictInt] = None
     debilitated: StrictBool
     afflictions: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["planet", "house", "sign_index", "debilitated", "afflictions"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "house", "sign_index", "debilitated", "afflictions"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,6 +81,16 @@ class PitruNinthLordAnalysis(BaseModel):
         if self.planet is None and "planet" in self.model_fields_set:
             _dict['planet'] = None
 
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
         # set to None if house (nullable) is None
         # and model_fields_set contains the field
         if self.house is None and "house" in self.model_fields_set:
@@ -102,6 +114,8 @@ class PitruNinthLordAnalysis(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "house": obj.get("house"),
             "sign_index": obj.get("sign_index"),
             "debilitated": obj.get("debilitated"),

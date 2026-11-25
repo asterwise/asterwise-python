@@ -20,28 +20,28 @@ import pprint
 import re  # noqa: F401
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Optional
-from asterwise.models.biorhythm_range_response import BiorhythmRangeResponse
-from asterwise.models.biorhythm_single_day_response import BiorhythmSingleDayResponse
+from asterwise.models.ashtottari_endpoint_response import AshtottariEndpointResponse
+from asterwise.models.ashtottari_not_applicable_response import AshtottariNotApplicableResponse
 from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
 from typing_extensions import Literal, Self
 from pydantic import Field
 
-DATA_ANY_OF_SCHEMAS = ["BiorhythmRangeResponse", "BiorhythmSingleDayResponse"]
+DATA_ANY_OF_SCHEMAS = ["AshtottariEndpointResponse", "AshtottariNotApplicableResponse"]
 
 class Data(BaseModel):
     """
     The endpoint response payload
     """
 
-    # data type: BiorhythmSingleDayResponse
-    anyof_schema_1_validator: Optional[BiorhythmSingleDayResponse] = None
-    # data type: BiorhythmRangeResponse
-    anyof_schema_2_validator: Optional[BiorhythmRangeResponse] = None
+    # data type: AshtottariEndpointResponse
+    anyof_schema_1_validator: Optional[AshtottariEndpointResponse] = None
+    # data type: AshtottariNotApplicableResponse
+    anyof_schema_2_validator: Optional[AshtottariNotApplicableResponse] = None
     if TYPE_CHECKING:
-        actual_instance: Optional[Union[BiorhythmRangeResponse, BiorhythmSingleDayResponse]] = None
+        actual_instance: Optional[Union[AshtottariEndpointResponse, AshtottariNotApplicableResponse]] = None
     else:
         actual_instance: Any = None
-    any_of_schemas: Set[str] = { "BiorhythmRangeResponse", "BiorhythmSingleDayResponse" }
+    any_of_schemas: Set[str] = { "AshtottariEndpointResponse", "AshtottariNotApplicableResponse" }
 
     model_config = {
         "validate_assignment": True,
@@ -62,21 +62,21 @@ class Data(BaseModel):
     def actual_instance_must_validate_anyof(cls, v):
         instance = Data.model_construct()
         error_messages = []
-        # validate data type: BiorhythmSingleDayResponse
-        if not isinstance(v, BiorhythmSingleDayResponse):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `BiorhythmSingleDayResponse`")
+        # validate data type: AshtottariEndpointResponse
+        if not isinstance(v, AshtottariEndpointResponse):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `AshtottariEndpointResponse`")
         else:
             return v
 
-        # validate data type: BiorhythmRangeResponse
-        if not isinstance(v, BiorhythmRangeResponse):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `BiorhythmRangeResponse`")
+        # validate data type: AshtottariNotApplicableResponse
+        if not isinstance(v, AshtottariNotApplicableResponse):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `AshtottariNotApplicableResponse`")
         else:
             return v
 
         if error_messages:
             # no match
-            raise ValueError("No match found when setting the actual_instance in Data with anyOf schemas: BiorhythmRangeResponse, BiorhythmSingleDayResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting the actual_instance in Data with anyOf schemas: AshtottariEndpointResponse, AshtottariNotApplicableResponse. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -89,22 +89,22 @@ class Data(BaseModel):
         """Returns the object represented by the json string"""
         instance = cls.model_construct()
         error_messages = []
-        # anyof_schema_1_validator: Optional[BiorhythmSingleDayResponse] = None
+        # anyof_schema_1_validator: Optional[AshtottariEndpointResponse] = None
         try:
-            instance.actual_instance = BiorhythmSingleDayResponse.from_json(json_str)
+            instance.actual_instance = AshtottariEndpointResponse.from_json(json_str)
             return instance
         except (ValidationError, ValueError) as e:
              error_messages.append(str(e))
-        # anyof_schema_2_validator: Optional[BiorhythmRangeResponse] = None
+        # anyof_schema_2_validator: Optional[AshtottariNotApplicableResponse] = None
         try:
-            instance.actual_instance = BiorhythmRangeResponse.from_json(json_str)
+            instance.actual_instance = AshtottariNotApplicableResponse.from_json(json_str)
             return instance
         except (ValidationError, ValueError) as e:
              error_messages.append(str(e))
 
         if error_messages:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Data with anyOf schemas: BiorhythmRangeResponse, BiorhythmSingleDayResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Data with anyOf schemas: AshtottariEndpointResponse, AshtottariNotApplicableResponse. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -118,7 +118,7 @@ class Data(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], BiorhythmRangeResponse, BiorhythmSingleDayResponse]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], AshtottariEndpointResponse, AshtottariNotApplicableResponse]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

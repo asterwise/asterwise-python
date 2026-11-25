@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **nature** | **str** |  | [optional] 
 **index** | **int** |  | 
 **name** | **str** |  | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 
 ## Example
 

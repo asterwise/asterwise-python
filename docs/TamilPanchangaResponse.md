@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **sunset_at** | **str** |  | [optional] 
 **sunset_utc** | **str** |  | [optional] 
 **tamil_month** | **str** | Tamil solar month name based on Sun&#39;s sidereal sign at sunrise. | 
+**tamil_month_id** | **str** |  | [optional] 
+**tamil_month_label** | **str** |  | [optional] 
 **rahu_kalam** | [**TamilKaalPeriod**](TamilKaalPeriod.md) | Rahu Kalam — inauspicious period, avoid new beginnings. | 
 **yamagandam** | [**TamilKaalPeriod**](TamilKaalPeriod.md) | Yamagandam — inauspicious period associated with Yama. | 
 **kuligai** | [**TamilKaalPeriod**](TamilKaalPeriod.md) | Kuligai (Gulika) — inauspicious period associated with Mandi. | 

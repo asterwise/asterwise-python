@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Karana name. | 
+**id** | **str** |  | [optional] 
+**label** | **str** |  | [optional] 
 **number** | **int** | Karana number. | 
 **end_time** | **str** |  | [optional] 
 

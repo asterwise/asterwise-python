@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from asterwise.models.lal_kitab_remedy_item import LalKitabRemedyItem
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,15 +30,19 @@ class LalKitabPlanetRemedy(BaseModel):
     LalKitabPlanetRemedy
     """ # noqa: E501
     planet: StrictStr
+    planet_id: Optional[StrictStr] = None
+    planet_label: Optional[StrictStr] = None
     lk_house: StrictInt
     rashi: StrictStr
+    rashi_id: Optional[StrictStr] = None
+    rashi_label: Optional[StrictStr] = None
     pucca_ghar: StrictBool
     uchcha: StrictBool
     neecha: StrictBool
     effect: StrictStr = Field(description="Always 'doubtful' here: only planets with a doubtful (rashi phal) effect can be remedied.")
     malefic_reasons: List[StrictStr] = Field(description="Why this placement is generally malefic.")
     remedies: List[LalKitabRemedyItem] = Field(description="Remedies the book gives for this planet in this house; empty when it gives none.")
-    __properties: ClassVar[List[str]] = ["planet", "lk_house", "rashi", "pucca_ghar", "uchcha", "neecha", "effect", "malefic_reasons", "remedies"]
+    __properties: ClassVar[List[str]] = ["planet", "planet_id", "planet_label", "lk_house", "rashi", "rashi_id", "rashi_label", "pucca_ghar", "uchcha", "neecha", "effect", "malefic_reasons", "remedies"]
 
     @field_validator('effect')
     def effect_validate_enum(cls, value):
@@ -93,6 +97,26 @@ class LalKitabPlanetRemedy(BaseModel):
                 if _item_remedies:
                     _items.append(_item_remedies.to_dict())
             _dict['remedies'] = _items
+        # set to None if planet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_id is None and "planet_id" in self.model_fields_set:
+            _dict['planet_id'] = None
+
+        # set to None if planet_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.planet_label is None and "planet_label" in self.model_fields_set:
+            _dict['planet_label'] = None
+
+        # set to None if rashi_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_id is None and "rashi_id" in self.model_fields_set:
+            _dict['rashi_id'] = None
+
+        # set to None if rashi_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.rashi_label is None and "rashi_label" in self.model_fields_set:
+            _dict['rashi_label'] = None
+
         return _dict
 
     @classmethod
@@ -106,8 +130,12 @@ class LalKitabPlanetRemedy(BaseModel):
 
         _obj = cls.model_validate({
             "planet": obj.get("planet"),
+            "planet_id": obj.get("planet_id"),
+            "planet_label": obj.get("planet_label"),
             "lk_house": obj.get("lk_house"),
             "rashi": obj.get("rashi"),
+            "rashi_id": obj.get("rashi_id"),
+            "rashi_label": obj.get("rashi_label"),
             "pucca_ghar": obj.get("pucca_ghar"),
             "uchcha": obj.get("uchcha"),
             "neecha": obj.get("neecha"),

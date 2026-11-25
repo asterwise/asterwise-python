@@ -7,8 +7,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rashi_index** | **int** |  | 
 **rashi** | **str** |  | 
+**rashi_id** | **str** |  | [optional] 
+**rashi_label** | **str** |  | [optional] 
 **longitude** | **float** |  | 
 **lord** | **str** |  | 
+**lord_id** | **str** |  | [optional] 
+**lord_label** | **str** |  | [optional] 
 
 ## Example
 

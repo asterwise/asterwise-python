@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from asterwise.models.moon_sign_change import MoonSignChange
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,12 +30,18 @@ class WesternDayMoon(BaseModel):
     WesternDayMoon
     """ # noqa: E501
     sign_at_start: StrictStr = Field(description="Tropical Moon sign at local midnight opening the day.")
+    sign_at_start_id: Optional[StrictStr] = None
+    sign_at_start_label: Optional[StrictStr] = None
     sign_at_end: StrictStr = Field(description="Tropical Moon sign at the midnight closing it.")
+    sign_at_end_id: Optional[StrictStr] = None
+    sign_at_end_label: Optional[StrictStr] = None
     sign_changes: List[MoonSignChange] = Field(description="Moon sign changes inside the day, with exact times.")
     phase_name: StrictStr = Field(description="Moon phase for the date (eight 45° phases).")
+    phase_name_id: Optional[StrictStr] = None
+    phase_name_label: Optional[StrictStr] = None
     illumination_pct: Union[StrictFloat, StrictInt]
     is_waxing: StrictBool
-    __properties: ClassVar[List[str]] = ["sign_at_start", "sign_at_end", "sign_changes", "phase_name", "illumination_pct", "is_waxing"]
+    __properties: ClassVar[List[str]] = ["sign_at_start", "sign_at_start_id", "sign_at_start_label", "sign_at_end", "sign_at_end_id", "sign_at_end_label", "sign_changes", "phase_name", "phase_name_id", "phase_name_label", "illumination_pct", "is_waxing"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -83,6 +89,36 @@ class WesternDayMoon(BaseModel):
                 if _item_sign_changes:
                     _items.append(_item_sign_changes.to_dict())
             _dict['sign_changes'] = _items
+        # set to None if sign_at_start_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_at_start_id is None and "sign_at_start_id" in self.model_fields_set:
+            _dict['sign_at_start_id'] = None
+
+        # set to None if sign_at_start_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_at_start_label is None and "sign_at_start_label" in self.model_fields_set:
+            _dict['sign_at_start_label'] = None
+
+        # set to None if sign_at_end_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_at_end_id is None and "sign_at_end_id" in self.model_fields_set:
+            _dict['sign_at_end_id'] = None
+
+        # set to None if sign_at_end_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.sign_at_end_label is None and "sign_at_end_label" in self.model_fields_set:
+            _dict['sign_at_end_label'] = None
+
+        # set to None if phase_name_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.phase_name_id is None and "phase_name_id" in self.model_fields_set:
+            _dict['phase_name_id'] = None
+
+        # set to None if phase_name_label (nullable) is None
+        # and model_fields_set contains the field
+        if self.phase_name_label is None and "phase_name_label" in self.model_fields_set:
+            _dict['phase_name_label'] = None
+
         return _dict
 
     @classmethod
@@ -96,9 +132,15 @@ class WesternDayMoon(BaseModel):
 
         _obj = cls.model_validate({
             "sign_at_start": obj.get("sign_at_start"),
+            "sign_at_start_id": obj.get("sign_at_start_id"),
+            "sign_at_start_label": obj.get("sign_at_start_label"),
             "sign_at_end": obj.get("sign_at_end"),
+            "sign_at_end_id": obj.get("sign_at_end_id"),
+            "sign_at_end_label": obj.get("sign_at_end_label"),
             "sign_changes": [MoonSignChange.from_dict(_item) for _item in obj["sign_changes"]] if obj.get("sign_changes") is not None else None,
             "phase_name": obj.get("phase_name"),
+            "phase_name_id": obj.get("phase_name_id"),
+            "phase_name_label": obj.get("phase_name_label"),
             "illumination_pct": obj.get("illumination_pct"),
             "is_waxing": obj.get("is_waxing")
         })
